@@ -1,0 +1,58 @@
+#!/bin/bash
+
+# User can provide command line args to cmake
+user_args=$@
+
+# Set preferred build directory.
+builddir=build
+
+# No command line args. Print usage info
+while [ ! -z "$1" ]
+do
+  case "$1" in
+    --help)
+		echo  ""
+    	echo  "Usage: $0 -D<cmake variable/value>"
+    	echo  "   Automates configure phase of cmake run. Arg(s) can be any legitimate"
+    	echo  "   CMake variable/value pair. See $builddir/CMakeCache.txt for a list of "
+    	echo  "   variables that cmake understands."
+    	echo  ""
+        echo  "   Example: $0 -DCMAKE_BUILD_TYPE=Debug-conracts"
+    	echo  ""
+        echo  "   Example: $0 -DCMAKE_BUILD_TYPE=Debug-conracts -DLPS_DOC_STATE=User"
+    	echo  ""
+        echo  "   Example: $0 -DCMAKE_BUILD_TYPE=Debug-conracts -DLPS_DOC_STATE=User -DCMAKE_INSTALL_PREFIX=/tmp/test"
+    	echo  "";;
+     *) break;;
+  esac
+  exit 0
+done
+
+# Create the build directory
+if ! test -d $builddir; then
+   mkdir $builddir
+fi
+
+# Go there
+cd $builddir;
+
+# Execute CMake; redirect errors to file
+if cmake $user_args .. 2> cmake.error; then
+	echo ""
+	echo "CMake configure complete. Now cd to $builddir and source the set_env_vars script"
+	echo "appropriate for your your shell before executing make."
+	echo""
+	echo "Example:"
+	echo""
+	echo "	cd build"
+	echo "	source set_env_vars.csh"
+	echo "	make -j6 lib"
+	echo""
+# Cat the file to stdout. This really cleans up the cmake error trace.	
+else
+	echo ""
+	echo ""
+	cat cmake.error
+	echo ""
+	echo ""
+fi

@@ -1,0 +1,31 @@
+
+// $RCSfile: lps_environment.h.in,v $ $Revision: 1.7 $ $Date: 2012/03/01 00:41:43 $
+
+//
+// Copyright (c) 2012 Limit Point Systems, Inc. 
+//
+
+#ifndef LPS_ENVIRONMENT_H
+#define LPS_ENVIRONMENT_H
+
+//$$HACK (WEM): Using @DEV_PREFIX@ here results in paths like "@SYSTEM_DIR@/tools/lib/SheafScope.jar" instead
+//              of "@SYSTEM_DIR@/lib/SheafScope.jar" which is what we want (at least for the "components" system).
+//              Actually what we really want here is DEV_INSTALLED_LIB_DIR from components_definitions.mk.
+
+//#define CLASSPATH ".:@DEV_PREFIX@/lib/SheafScope.jar:@DEV_PREFIX@/lib/tools_java_binding.jar:@VTK_LIB_DIR@/vtk.jar"
+//#define LD_LIBRARY_PATH ".:@DEV_PREFIX@/lib:@VTK_LIB_DIR@:@JDK_LIB_DIR@:@JDK_LIB_DIR@/xawt:@JDK_LIB_DIR@/client:@HDF_LIB_DIR@"
+ 
+#define CLASSPATH \
+  "."\
+  ":@SYSTEM_DIR@/lib/SheafScope.jar"\
+  ":@SYSTEM_DIR@/lib/tools_java_binding.jar"\
+  ":@VTK_LIB_DIR@/java/vtk.jar"
+
+#define LD_LIBRARY_PATH \
+  "."\
+  ":@SYSTEM_DIR@/lib"\
+  ":@JDK_LIB_DIR@:@JDK_LIB_DIR@/xawt:@JDK_LIB_DIR@/client"\
+  ":@VTK_LIB_DIR@"\
+  ":@HDF_LIB_DIR@"
+
+#endif // ifndef LPS_ENVIRONMENT_H

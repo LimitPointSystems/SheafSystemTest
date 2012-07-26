@@ -1,0 +1,47 @@
+/// @dir solvers/solvers
+///
+/// @details
+/// The solvers cluster contains classes intended to support the solution 
+/// of partial differential equations. The classes fall into 5 categories:
+/// <ul>
+/// <li><b>partial differential equations:</b><br>
+/// 
+/// classes which describe the partial differential equation to be solved;
+/// 
+/// <li><b>term evaluators:</b> <br>
+/// classes which provide various integrands depending on the equation and
+/// cell types for the partial differential equations;
+/// 
+/// <li><b>partial differential equation solvers:</b> <br>
+/// classes which solve a partial differential equation; and
+/// 
+/// <li><b>algebraic systems:</b> <br>
+/// classes which convert a partial differential equation into a system of<br>
+/// algebraic equations; and
+/// 
+/// <li><b>equation solvers:</b> <br>
+/// classes which solve systems of algebraic equations. </li>
+/// </ul>
+/// <BR><BR><div style="margin-left: 30px;">
+/// The solvers cluster is a work in progress. The initial development has validated
+/// the design approach, but has also identified
+/// several additional features which must be implemented:
+/// </div>
+/// 
+/// <ul>
+/// <li><b>adaptive mesh refinement:</B><br>
+/// The cluster is designed to support adaptive mesh refinement,
+/// but current limitations of the refinement cluster prevent proper treatment of
+/// boundary conditions during refinement. 
+/// 
+/// <li><b>additional equation types</b><br>
+/// The cluster currently supports only linear partial differential equations of the 
+/// Poisson type and hence, only linear systems of algebraic equations. Additional
+/// PDE and algebraic system types need to be incorporated
+/// 
+/// <li><b>additional abstract classes</b><br>
+/// The incorpoartion of additional equation types will require additional abstract 
+/// classes to serve as common base classes.
+/// </ul>
+///
+///

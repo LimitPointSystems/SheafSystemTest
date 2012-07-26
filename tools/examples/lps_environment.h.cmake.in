@@ -1,0 +1,24 @@
+
+// $RCSfile: lps_environment.h.cmake.in,v $ $Revision: 1.3 $ $Date: 2012/03/01 00:41:43 $
+
+//
+// Copyright (c) 2012 Limit Point Systems, Inc. 
+//
+
+#ifndef LPS_ENVIRONMENT_H
+#define LPS_ENVIRONMENT_H
+ 
+#define CLASSPATH \
+  "."\
+  ":@CMAKE_BINARY_DIR@/lib/SheafScope.jar"\
+  ":@CMAKE_BINARY_DIR@/lib/tools_java_binding.jar"\
+  ":@VTK_LIB_DIR@/java/vtk.jar"
+
+#define LD_LIBRARY_PATH \
+  "."\
+  ":@CMAKE_BINARY_DIR@/lib"\
+  ":@JDK_LIB_DIR@:@JDK_LIB_DIR@/xawt:@JDK_LIB_DIR@/client"\
+  ":@VTK_LIB_DIR@"\
+  ":@HDF5_LIBRARY_DIRS@"
+
+#endif // ifndef LPS_ENVIRONMENT_H

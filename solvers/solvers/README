@@ -1,0 +1,55 @@
+************************************************
+SOLVERS README FILE:
+************************************************
+
+
+PREREQUISITES FOR THE EXAMPLE:
+------------------------------
+
+Make sure you have run ../../set_env_vars.csh (if you use csh or tcsh) 
+or ../../set_env_vars.sh (if you use bash) to set your LD_LIBRARY_PATH 
+variable correctly.
+
+EXECUTING THE EXAMPLES:
+-----------------------
+
+1D:
+---
+
+> ./solver_1d.t
+
+or
+
+> ./solver_1d.t i_size
+
+where
+        i_size = the number of elements (default 5).
+
+2D:
+---
+
+> ./solver_2d.t
+
+or
+
+> ./solver_2d.t i_size j_size
+
+where
+        i_size is the number of elements in the x-directon (default 5) and
+        j_size is the number of elements in the y-directon (default 5).
+
+(likewise for one_material_with_source_2d.t and two_materials_with_source_2d.t)
+
+3D:
+---
+
+> ./solver_3d.t
+
+or
+
+> ./solver_3d.t i_size j_size k_size
+
+where
+        i_size is the number of elements in the x-directon (default 5),
+        j_size is the number of elements in the y-directon (default 5) and
+        k_size is the number of elements in the z-directon (default 5).
