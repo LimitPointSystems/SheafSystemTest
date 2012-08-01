@@ -13,7 +13,7 @@
 #
 # Establish the list of components in this system
 #
-set(COMPONENTS sheaves fiber_bundles geometry fields CACHE STRING "List of components in this system" FORCE)
+set(COMPONENTS SheavesTest FiberBundlesTest GeometryTest FieldsTest CACHE STRING "List of components in this system" FORCE)
 
 # Set backward compatibility so we can link to modules. If not, we can't link to the bindings libs.
 set(CMAKE_BACKWARDS_COMPATIBILITY 2.2 CACHE STRING "backward compat so we can link to bindings libs")

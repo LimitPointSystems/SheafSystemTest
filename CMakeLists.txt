@@ -19,7 +19,7 @@ set(CMAKE_CONFIGURATION_TYPES Debug-contracts Debug-no-contracts Release-contrac
 #
 # Extablich the project name
 #    
-project(sheaf_system)
+project(SheafSystemTest)
 
 #
 # Ensure that we have the required cmake version.
@@ -130,5 +130,5 @@ endif()
 #
 # Append the list of components from this system to the exports file
 #
-file(APPEND  ${CMAKE_BINARY_DIR}/${EXPORTS_FILE} "\n")
-file(APPEND ${CMAKE_BINARY_DIR}/${EXPORTS_FILE} "set(SDM_COMPONENTS ${COMPONENTS} CACHE STRING \"List of external components\")\n")
+#file(APPEND  ${CMAKE_BINARY_DIR}/${EXPORTS_FILE} "\n")
+#file(APPEND ${CMAKE_BINARY_DIR}/${EXPORTS_FILE} "set(SDM_COMPONENTS ${COMPONENTS} CACHE STRING \"List of external components\")\n")

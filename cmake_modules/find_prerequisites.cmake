@@ -13,6 +13,13 @@
 # discovered and included here will be visible to the entire system.
 #
 
+#
+# Set the location of the sheaf system top level.
+#
+set(SHEAF_HOME CACHE PATH "Sheaf_system top level directory.")
+
+find_package(Sheaf)
+
 # HDF5, Tetgen, and Doxygen need to be found for all target platforms.
 
 #

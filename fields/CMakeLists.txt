@@ -6,7 +6,7 @@
 #
 #
 
-project(fields)
+project(FieldsTest)
 
 cmake_minimum_required(VERSION 2.8.3)
 
@@ -23,7 +23,7 @@ status_message("Processing ${PROJECT_NAME}")
 #
 # Initialize all variables for this component.
 #
-set_component_vars()
+#set_component_vars()
 
 #
 # Add the clusters to the project
@@ -43,7 +43,7 @@ create_output_dirs()
 #
 # Add the library targets
 #
-add_library_targets()
+#add_library_targets()
 
 #
 # Add Bindings targets
@@ -89,4 +89,4 @@ add_clean_files()
 #
 # Write this component's lib targets and include paths to an export file.
 #
-export_targets()
+#export_targets()
