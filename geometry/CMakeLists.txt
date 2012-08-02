@@ -48,7 +48,7 @@ create_output_dirs()
 #
 # Add Bindings targets
 #
-add_bindings_targets()
+#add_bindings_targets()
 
 #
 # Testing targets
@@ -58,7 +58,7 @@ add_test_targets()
 #
 # Add the example targets
 #
-add_example_targets()
+#add_example_targets()
 
 #
 # Component specific check target

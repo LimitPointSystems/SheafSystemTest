@@ -58,7 +58,7 @@ add_test_targets()
 #
 # Add the example targets
 #
-add_example_targets()
+#add_example_targets()
 
 #
 # Component specific check target

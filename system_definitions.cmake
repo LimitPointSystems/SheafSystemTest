@@ -87,14 +87,14 @@ set(OPTIMIZATION_LEVEL "0" CACHE STRING "Compiler optimization level. Valid valu
 #
 # Establish the list of components
 #
-set(COMPONENTS sheaves fiber_bundles geometry fields CACHE STRING "List of components in this system" FORCE)
+set(COMPONENTS sheaves fiber_bundles geometry fields solvers CACHE STRING "List of components in this system" FORCE)
 
 #
 # Add solvers and tools if linux
 #
-if(LINUX64GNU OR LINUX64INTEL)
-    set(COMPONENTS ${COMPONENTS} solvers tools CACHE STRING "List of components in this system" FORCE)
-endif()
+#if(LINUX64GNU OR LINUX64INTEL)
+#    set(COMPONENTS ${COMPONENTS} solvers tools CACHE STRING "List of components in this system" FORCE)
+#endif()
 
 #
 # Default linux installation location is /usr/local

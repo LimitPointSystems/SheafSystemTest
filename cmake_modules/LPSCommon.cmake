@@ -579,7 +579,8 @@ function(add_test_targets)
                 set_target_properties(${t_file} PROPERTIES COMPILE_DEFINITIONS "SHEAF_DLL_IMPORTS")
                 add_dependencies(${t_file} ${FIELDS_IMPORT_LIB})
             else()
-                add_dependencies(${t_file} ${${COMPONENT}_SHARED_LIB})
+                add_dependencies(${t_file} libsheaves.so)
+                #add_dependencies(${t_file} ${${COMPONENT}_SHARED_LIB})
             endif()
 
             if(LINUX64GNU OR LINUX64INTEL)
@@ -650,8 +651,10 @@ function(add_example_targets)
             # Insert the unit tests into the VS folder "unit_tests"
             set_target_properties(${t_file} PROPERTIES FOLDER "Standalone Exec Targets")
         else()
-            add_dependencies(${t_file} ${${COMPONENT}_SHARED_LIB})
-            target_link_libraries(${t_file} ${${COMPONENT}_SHARED_LIB} ${HDF5_LIBRARIES})
+            add_dependencies(${t_file} libsheaves.so)
+            target_link_libraries(${t_file} libsheaves.so ${HDF5_LIBRARIES})
+      #      add_dependencies(${t_file} ${${COMPONENT}_SHARED_LIB})
+      #      target_link_libraries(${t_file} ${${COMPONENT}_SHARED_LIB} ${HDF5_LIBRARIES})
         endif()
     
         # Supply the *_DLL_IMPORTS directive to preprocessor
