@@ -1,5 +1,5 @@
 #
-# $RCSfile: component_definitions.cmake,v $ $Revision: 1.12 $ $Date: 2012/07/05 19:18:15 $
+# $RCSfile: component_definitions.cmake,v $ $Revision: 1.14 $ $Date: 2012/07/05 19:18:16 $
 #
 #
 # Copyright (c) 2012 Limit Point Systems, Inc.
@@ -23,14 +23,23 @@ include(CTest)
 #
 # Define the clusters for this component.
 #
-set(clusters base_spaces dof_iterators dof_maps evaluators fiber_spaces general 
-    id_spaces iterators matrices section_spaces examples)
+set(clusters fields iterators pushers refiners)
+
+#
+# Define the component library associated with this test module.
+#
+set(${COMPONENT}_SHARED_LIB libfields.so CACHE STRING "Fields Shared Library")
 
 #
 # Specify component prerequisite include directories.
 #
-include_directories(${CMAKE_BINARY_DIR}/include)
-include_directories(${SHEAVES_IPATH})   
+#include_directories(${CMAKE_BINARY_DIR}/include)
+#if(${USE_VTK})
+#    include_directories(${VTK_INC_DIRS})
+#endif()
+#include_directories(${SHEAVES_IPATH} ${FIBER_BUNDLES_IPATH} ${GEOMETRY_IPATH})
+#include_directories(${TETGEN_INC_DIR})
+#include_directories(${VTK_INC_DIRS})
 
 #------------------------------------------------------------------------------
 # FUNCTION DEFINITION SECTION
@@ -50,12 +59,12 @@ function(add_install_target)
         # Only install python binding if the component has a target for it.
         if(TARGET ${${COMPONENT}_PYTHON_BINDING_LIB})
             install(TARGETS ${${COMPONENT}_PYTHON_BINDING_LIB} LIBRARY DESTINATION ${CMAKE_BUILD_TYPE}/lib)
-        endif()      
+        endif()       
 
         # Include files are independent of build type. Includes and docs install at top level.
         # See system level CMakeLists.txt for "documentation" install directive.
      
         install(FILES ${${COMPONENT}_INCS} DESTINATION include)
         #install(TARGETS ${${COMPONENT}_CHECK_EXECS} RUNTIME DESTINATION bin)
-        
+                     
 endfunction(add_install_target)

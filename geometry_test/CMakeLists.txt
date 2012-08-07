@@ -1,12 +1,12 @@
 #
-# $RCSfile: CMakeLists.txt,v $ $Revision: 1.10 $ $Date: 2012/07/05 19:18:16 $
+# $RCSfile: CMakeLists.txt,v $ $Revision: 1.9 $ $Date: 2012/07/05 19:18:16 $
 #
 #
 # Copyright (c) 2012 Limit Point Systems, Inc.
 #
 #
 
-project(SheavesTest)
+project(geometry_test)
 
 cmake_minimum_required(VERSION 2.8.3)
 
@@ -51,7 +51,7 @@ create_output_dirs()
 #add_bindings_targets()
 
 #
-# Add the unit test targets
+# Testing targets
 #
 add_test_targets()
 
@@ -81,12 +81,6 @@ add_component_bin_target()
 if(LINUX64)
     add_install_target()
 endif()
-
-#
-# Add files to the clean target
-#
-add_clean_files()
-
 #
 # Write this component's lib targets and include paths to an export file.
 #

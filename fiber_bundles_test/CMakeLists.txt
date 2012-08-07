@@ -6,7 +6,7 @@
 #
 #
 
-project(FiberBundlesTest)
+project(fiber_bundles_test)
 
 cmake_minimum_required(VERSION 2.8.3)
 
