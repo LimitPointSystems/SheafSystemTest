@@ -26,12 +26,12 @@ string(TOUPPER ${PROJECT_NAME} COMPONENT)
 #
 # Tell the compiler where to find the std_headers.
 #
-include_directories(${CMAKE_BINARY_DIR}/include)
- 
+include_directories(${STD_IPATH} ${SHEAVES_IPATH} ${FIBER_BUNDLES_IPATH} ${GEOMETRY_IPATH} ${FIELDS_IPATH})
+
 #
 # Tell the linker where to look for COMPONENT libraries.
 #
-link_directories(${CMAKE_BINARY_DIR}/lib)
+link_directories(${SHEAVES_LIB_OUTPUT_DIR})
 
 #
 # Set the location and name of the Intel coverage utilities
@@ -418,13 +418,13 @@ function(add_doc_targets)
 
     if(DOXYGEN_FOUND)
         if(LPS_DOC_STATE MATCHES Dev)
-            add_custom_target(doc ALL
+            add_custom_target(doc EXCLUDE_FROM_ALL
                     COMMAND ${CMAKE_COMMAND} -E echo "Generating Developer Documentation ... " 
                     COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/documentation/c++/${PROJECT_NAME}
                     COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_BINARY_DIR}/dev_doxyfile
                             )
         else()
-            add_custom_target(doc ALL
+            add_custom_target(doc EXCLUDE_FROM_ALL
                      COMMAND ${CMAKE_COMMAND} -E echo "Generating User Documentation ... "  
                      COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/documentation/c++/${PROJECT_NAME}
                      COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_BINARY_DIR}/user_doxyfile
@@ -490,9 +490,9 @@ function(add_check_target)
 
     if(WIN64MSVC OR WIN64INTEL)
         # $$TODO: Spend a little time finding out what's going on here.
-        add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} DEPENDS ${ALL_CHECK_TARGETS})
+        add_custom_target(check ALL COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} DEPENDS ${ALL_CHECK_TARGETS})
     else()
-        add_custom_target(check COMMAND DEPENDS ${ALL_CHECK_TARGETS})
+        add_custom_target(check ALL COMMAND DEPENDS ${ALL_CHECK_TARGETS})
     endif()
     set_target_properties(check PROPERTIES FOLDER "Check Targets")
         
@@ -572,15 +572,15 @@ function(add_test_targets)
         # If the target already exists, don't try to create it.
         if(NOT TARGET ${t_file})
              message(STATUS "Creating ${t_file} from ${t_cc_file}")
-             add_executable(${t_file} EXCLUDE_FROM_ALL ${t_cc_file})
+             add_executable(${t_file} ${t_cc_file})
             # Make sure the library is up to date
             if(WIN64MSVC OR WIN64INTEL)
                 # Supply the *_DLL_IMPORTS directive to preprocessor
                 set_target_properties(${t_file} PROPERTIES COMPILE_DEFINITIONS "SHEAF_DLL_IMPORTS")
                 add_dependencies(${t_file} ${FIELDS_IMPORT_LIB})
             else()
-                add_dependencies(${t_file} libsheaves.so)
-                #add_dependencies(${t_file} ${${COMPONENT}_SHARED_LIB})
+               # add_dependencies(${t_file} libsheaves.so libfiber_bundles.so libgeometry.so libfields.so)
+                add_dependencies(${t_file} ${${COMPONENT}_SHARED_LIB})
             endif()
 
             if(LINUX64GNU OR LINUX64INTEL)
@@ -673,7 +673,7 @@ function(add_clusters clusters)
         #Add each cluster subdir to the project. 
         add_subdirectory(${cluster})
         #Add each cluster to the compiler search path.
-        include_directories(${cluster})
+    #    include_directories(${cluster})
         # Add the fully-qualified cluster names to this component's ipath var
         set(${COMPONENT}_IPATH ${${COMPONENT}_IPATH} ${CMAKE_CURRENT_SOURCE_DIR}/${cluster} CACHE STRING "test" FORCE)
     endforeach()

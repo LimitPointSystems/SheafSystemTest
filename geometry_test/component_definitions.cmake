@@ -30,15 +30,6 @@ set(clusters coordinates general kd_lattice mesh_generators point_locators)
 #
 set(${COMPONENT}_SHARED_LIB libgeometry.so CACHE STRING "Geometry Shared Library")
 
-#
-# Specify component prerequisite include directories.
-#
-#include_directories(${CMAKE_BINARY_DIR}/include)
-#if(${USE_VTK})
-#    include_directories(${VTK_INC_DIRS})
-#endif()
-#include_directories(${TETGEN_INC_DIR})
-#include_directories(${SHEAVES_IPATH} ${FIBER_BUNDLES_IPATH})
 
 #------------------------------------------------------------------------------
 # FUNCTION DEFINITION SECTION

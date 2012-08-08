@@ -20,10 +20,6 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/component_definitions.cmake)
 #
 status_message("Processing ${PROJECT_NAME}")
 
-#
-# Initialize all variables for this component.
-#
-#set_component_vars()
 
 #
 # Add the clusters to the project
@@ -40,15 +36,6 @@ set_compiler_flags()
 #
 create_output_dirs()
 
-#
-# Add the library targets
-#
-#add_library_targets()
-
-#
-# Add Bindings targets
-#
-#add_bindings_targets()
 
 #
 # Add the unit test targets
@@ -58,7 +45,7 @@ add_test_targets()
 #
 # Add the example targets
 #
-#add_example_targets()
+add_example_targets()
 
 #
 # Component specific check target
@@ -87,8 +74,4 @@ endif()
 #
 add_clean_files()
 
-#
-# Write this component's lib targets and include paths to an export file.
-#
-#export_targets()
 

@@ -30,16 +30,6 @@ set(clusters fields iterators pushers refiners)
 #
 set(${COMPONENT}_SHARED_LIB libfields.so CACHE STRING "Fields Shared Library")
 
-#
-# Specify component prerequisite include directories.
-#
-#include_directories(${CMAKE_BINARY_DIR}/include)
-#if(${USE_VTK})
-#    include_directories(${VTK_INC_DIRS})
-#endif()
-#include_directories(${SHEAVES_IPATH} ${FIBER_BUNDLES_IPATH} ${GEOMETRY_IPATH})
-#include_directories(${TETGEN_INC_DIR})
-#include_directories(${VTK_INC_DIRS})
 
 #------------------------------------------------------------------------------
 # FUNCTION DEFINITION SECTION

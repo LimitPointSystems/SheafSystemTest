@@ -39,10 +39,10 @@ cd $builddir;
 echo ""
 
 # Get the sheaf source dir
-echo "Enter fully qualified path to top level of Sheaf System source tree: "
+echo "Enter fully qualified path to top level of SheafSystem source tree: "
 echo "   Example: /home/moriartio/cvs-stuff/components-my-branch: "
 echo ""
-echo -n "Sheaf System path: "
+echo -n "SheafSystem path: "
 read response
 if [ ! -z $response ]; then
 	echo ""

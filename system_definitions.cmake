@@ -13,7 +13,7 @@
 #
 # Establish the list of components in this system
 #
-set(COMPONENTS SheavesTest FiberBundlesTest GeometryTest FieldsTest CACHE STRING "List of components in this system" FORCE)
+set(COMPONENTS sheaves_test fiber_bundles_test geometry_test fields_test CACHE STRING "List of components in this system" FORCE)
 
 # Set backward compatibility so we can link to modules. If not, we can't link to the bindings libs.
 set(CMAKE_BACKWARDS_COMPATIBILITY 2.2 CACHE STRING "backward compat so we can link to bindings libs")
@@ -83,11 +83,6 @@ endif()
 #
 
 set(OPTIMIZATION_LEVEL "0" CACHE STRING "Compiler optimization level. Valid values for are 0,1,2,3, and \"s\(Linux only\)\". Default is 0. \n Linux values translate to -On. \n\n Windows values are: \n\n 0 = /0d \(no optimization\) \n 1 = /O1 \(Minimize Size\) \n 2 = /O2 \(Maximize Speed\) \n 3 = /GL \(Whole Program Optimization\) \n ")
-
-#
-# Establish the list of components
-#
-set(COMPONENTS sheaves fiber_bundles geometry fields solvers CACHE STRING "List of components in this system" FORCE)
 
 #
 # Add solvers and tools if linux

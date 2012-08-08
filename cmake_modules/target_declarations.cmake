@@ -7,23 +7,8 @@
 #
 
 
-
-
 #
 # Library targets
-#
-
-#shared-libs <lib>
-#    - <comp>-shared-lib
-#
-#static-libs
-#    - <comp>-static-lib
-#    
-#bindings
-#    java-bindings
-#        - <comp>-java-binding
-#    python-bindings
-#        <comp>-python-binding
 #
 
 if(LINUX64GNU OR LINUX64INTEL)
@@ -98,7 +83,7 @@ if(LINUX64GNU OR LINUX64INTEL)
     #
     # Documentation targets
     #
-
+    # doc target is defined in LPSCommon
     add_custom_target(java-docs)
     # $$TODO: this list, and the one for bindings above, should be populated programmatically,
     # NOT by hand. Fix it.
@@ -256,5 +241,5 @@ if(LINUX64GNU OR LINUX64INTEL)
 
 endif()
 
-#$$TODO: add an "examples" target
+
 
