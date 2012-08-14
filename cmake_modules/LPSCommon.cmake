@@ -366,7 +366,6 @@ endfunction()
 #
 # Create per-configuration snapshot target for VS.
 #
-# # $$TODO: Add install target for win64
 function(create_vswin64_snapshot_target)
 
     if(WIN64MSVC OR WIN64INTEL)
@@ -418,13 +417,13 @@ function(add_doc_targets)
 
     if(DOXYGEN_FOUND)
         if(LPS_DOC_STATE MATCHES Dev)
-            add_custom_target(doc EXCLUDE_FROM_ALL
+            add_custom_target(doc ALL
                     COMMAND ${CMAKE_COMMAND} -E echo "Generating Developer Documentation ... " 
                     COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/documentation/c++/${PROJECT_NAME}
                     COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_BINARY_DIR}/dev_doxyfile
                             )
         else()
-            add_custom_target(doc EXCLUDE_FROM_ALL
+            add_custom_target(doc ALL
                      COMMAND ${CMAKE_COMMAND} -E echo "Generating User Documentation ... "  
                      COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/documentation/c++/${PROJECT_NAME}
                      COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_BINARY_DIR}/user_doxyfile
@@ -651,10 +650,8 @@ function(add_example_targets)
             # Insert the unit tests into the VS folder "unit_tests"
             set_target_properties(${t_file} PROPERTIES FOLDER "Standalone Exec Targets")
         else()
-            add_dependencies(${t_file} libsheaves.so)
-            target_link_libraries(${t_file} libsheaves.so ${HDF5_LIBRARIES})
-      #      add_dependencies(${t_file} ${${COMPONENT}_SHARED_LIB})
-      #      target_link_libraries(${t_file} ${${COMPONENT}_SHARED_LIB} ${HDF5_LIBRARIES})
+           add_dependencies(${t_file} libsheaves.so)
+           target_link_libraries(${t_file} ${${COMPONENT}_SHARED_LIB} ${HDF5_LIBRARIES})
         endif()
     
         # Supply the *_DLL_IMPORTS directive to preprocessor
@@ -672,8 +669,6 @@ function(add_clusters clusters)
     foreach(cluster ${clusters})
         #Add each cluster subdir to the project. 
         add_subdirectory(${cluster})
-        #Add each cluster to the compiler search path.
-    #    include_directories(${cluster})
         # Add the fully-qualified cluster names to this component's ipath var
         set(${COMPONENT}_IPATH ${${COMPONENT}_IPATH} ${CMAKE_CURRENT_SOURCE_DIR}/${cluster} CACHE STRING "test" FORCE)
     endforeach()

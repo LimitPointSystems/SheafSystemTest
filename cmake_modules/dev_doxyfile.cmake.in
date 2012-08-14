@@ -576,12 +576,12 @@ WARN_LOGFILE           =
 # directories like "/usr/src/myproject". Separate the files or directories 
 # with spaces.
 
-INPUT = @CMAKE_SOURCE_DIR@/sheaves       \	
-		@CMAKE_SOURCE_DIR@/fiber_bundles \
-		@CMAKE_SOURCE_DIR@/geometry      \		
-		@CMAKE_SOURCE_DIR@/fields        \
-		@CMAKE_SOURCE_DIR@/solvers       \
-		@CMAKE_SOURCE_DIR@/tools
+INPUT = @CMAKE_SOURCE_DIR@/sheaves_test       \	
+		@CMAKE_SOURCE_DIR@/fiber_bundles_test \
+		@CMAKE_SOURCE_DIR@/geometry_test      \		
+		@CMAKE_SOURCE_DIR@/fields_test        \
+#		@CMAKE_SOURCE_DIR@/solvers_test       \
+#		@CMAKE_SOURCE_DIR@/tools_test
 		
 # This tag can be used to specify the character encoding of the source files that 
 # doxygen parses. Internally doxygen uses the UTF-8 encoding, which is also the default 
