@@ -441,14 +441,17 @@ function(add_clean_files)
 
     #Define the file types to be included in the clean operation.
     file(GLOB HDF_FILES ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/*.hdf)
+    file(GLOB LOG_FILES ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/*.log)
     file(GLOB JAR_FILES ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}/*.jar)
     # Clean up the mess left by the Intel coverage tool
     file(GLOB DYN_FILES ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}/*.dyn)
     file(GLOB DPI_FILES ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}/*.dpi)
     file(GLOB SPI_FILES ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}/*.spi)
-    
+ 
+
     # Append them to the list
     list(APPEND CLEAN_FILES ${HDF_FILES})
+    list(APPEND CLEAN_FILES ${LOG_FILES})    
     list(APPEND CLEAN_FILES ${JAR_FILES})
     list(APPEND CLEAN_FILES ${DYN_FILES})
     list(APPEND CLEAN_FILES ${DPI_FILES})
@@ -572,6 +575,7 @@ function(add_test_targets)
         if(NOT TARGET ${t_file})
              message(STATUS "Creating ${t_file} from ${t_cc_file}")
              add_executable(${t_file} ${t_cc_file})
+
             # Make sure the library is up to date
             if(WIN64MSVC OR WIN64INTEL)
                 # Supply the *_DLL_IMPORTS directive to preprocessor
@@ -599,7 +603,9 @@ function(add_test_targets)
             add_test(${t_file} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${t_file})
             # Tag the test with the name of the current component.
             set_property(TEST ${t_file} PROPERTY LABELS "${PROJECT_NAME}")
-
+            # Generate a log file for each .t. "make <test>.log will build and run a given executable.
+            add_custom_target(${t_file}.log COMMAND ${t_file} > ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${t_file}.log )
+                 
             if(WIN64MSVC OR WIN64INTEL)
                 # Set the PATH environment variable for CTest so the HDF5 and Fields dlls lie in it.
                 set_tests_properties(${t_file} PROPERTIES ENVIRONMENT

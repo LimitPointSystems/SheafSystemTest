@@ -132,7 +132,17 @@ if(LINUX64GNU OR LINUX64INTEL)
         COMMAND ${CMAKE_COMMAND} -E echo "        java-docs -- Builds the system bindings and constructs java documentation for same."
         COMMAND ${CMAKE_COMMAND} -E echo "                     Does not construct the C++ library docs."
         COMMAND ${CMAKE_COMMAND} -E echo "        alldocs   -- Contructs C++ and java documentation    "
-        COMMAND ${CMAKE_COMMAND} -E echo ""              
+        COMMAND ${CMAKE_COMMAND} -E echo ""
+        COMMAND ${CMAKE_COMMAND} -E echo "[test].t.log:"
+        COMMAND ${CMAKE_COMMAND} -E echo "    Builds and runs [test].t. Redirects output from run into bin/[test].t.log"
+        COMMAND ${CMAKE_COMMAND} -E echo "    "
+        COMMAND ${CMAKE_COMMAND} -E echo "    Aliases: none."
+        COMMAND ${CMAKE_COMMAND} -E echo "    "
+        COMMAND ${CMAKE_COMMAND} -E echo "    Related commands: check"
+        COMMAND ${CMAKE_COMMAND} -E echo "    "
+        COMMAND ${CMAKE_COMMAND} -E echo "       example: make poset.t.log"
+        COMMAND ${CMAKE_COMMAND} -E echo "    "
+        COMMAND ${CMAKE_COMMAND} -E echo "    "                                        
   
     )
 
