@@ -16,11 +16,6 @@
 include(${CMAKE_MODULE_PATH}/LPSCommon.cmake)
 
 #
-# Include cmake test functions and macros
-#
-include(CTest)
-
-#
 # Define the clusters for this component.
 #
 set(clusters concurrency dof_iterators dof_maps examples id_spaces io iterators 

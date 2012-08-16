@@ -21,6 +21,29 @@ set(CMAKE_CONFIGURATION_TYPES Debug-contracts Debug-no-contracts Release-contrac
 #    
 project(SheafSystemTest)
 
+include(CTest)
+
+#
+# Information glaringly omitted from CMake documentation and discussion regarding CTest and CDash:
+#
+# 1. CTestConfig.cmake must be in the top level of your project.
+#
+#    1.1 DROP_SITE value must be a FQDN sans "http://". Numerical IP will not work!
+#
+#    1.2 If the system is multi-component, then the vars in CTestConfig.cmake
+#        must be cached so they are placed in the cmake global namespace and 
+#        therefore visible to all components.
+#
+# 2. The prerequisite for all ctest targets e.g. "Experimental" is ALL.
+#     If you plan to submit tests to a dashboard, it might be a good idea
+#     to carefully review what constitutes "ALL" in your system to avoid
+#     uneccessary time consuming tasks.
+#
+# 3. It is only neccessary to include CTest at the top level of the System.
+#    enable_testing() is implied by the inclusion of the CTest modules and
+#    therefore an explicit reference to it is redundant and perhaps problematic
+#    under certain conditions. 
+
 #
 # Ensure that we have the required cmake version.
 #
@@ -61,6 +84,15 @@ endif()
 # tests.
 #
 add_check_target()
+
+#
+# Add the system checklog target. Action is
+# identical to "check", but output is redirected to file.
+# Only needs to be called at the system level.
+# use "<component>-check" for component level
+# tests.
+#
+add_checklog_target()
 
 #
 # Add the system coverage target.
@@ -127,8 +159,3 @@ if(${USE_VTK})
     file(APPEND  ${CMAKE_BINARY_DIR}/${EXPORTS_FILE} "\n")
 endif()
 
-#
-# Append the list of components from this system to the exports file
-#
-#file(APPEND  ${CMAKE_BINARY_DIR}/${EXPORTS_FILE} "\n")
-#file(APPEND ${CMAKE_BINARY_DIR}/${EXPORTS_FILE} "set(SDM_COMPONENTS ${COMPONENTS} CACHE STRING \"List of external components\")\n")

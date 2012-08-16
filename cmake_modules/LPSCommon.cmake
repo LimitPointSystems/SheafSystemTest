@@ -494,7 +494,7 @@ function(add_check_target)
         # $$TODO: Spend a little time finding out what's going on here.
         add_custom_target(check ALL COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} DEPENDS ${ALL_CHECK_TARGETS})
     else()
-        add_custom_target(check ALL COMMAND DEPENDS ${ALL_CHECK_TARGETS})
+        add_custom_target(check ALL COMMAND  DEPENDS ${ALL_CHECK_TARGETS})
     endif()
     set_target_properties(check PROPERTIES FOLDER "Check Targets")
         
@@ -505,7 +505,7 @@ endfunction(add_check_target)
 #
 function(add_component_check_target)
 
-    add_custom_target(${PROJECT_NAME}-check COMMAND ${CMAKE_CTEST_COMMAND} DEPENDS ${${COMPONENT}_SHARED_LIB} ${${COMPONENT}_UNIT_TESTS})
+    add_custom_target(${PROJECT_NAME}-check COMMAND ${CMAKE_CTEST_COMMAND} -O ${PROJECT_NAME}_chk.out DEPENDS ${${COMPONENT}_SHARED_LIB} ${${COMPONENT}_UNIT_TESTS})
     # Add a check target for this component to the system list. "make check" will invoke this list.
     set(ALL_CHECK_TARGETS ${ALL_CHECK_TARGETS} ${PROJECT_NAME}-check CACHE STRING "Aggregate list of component check targets" FORCE)
         set_target_properties(${PROJECT_NAME}-check PROPERTIES FOLDER "Check Targets")
@@ -547,6 +547,33 @@ function(add_coverage_target)
                 add_custom_target(coverage DEPENDS ${ALL_COVERAGE_TARGETS})
 endfunction()
 
+#
+# Add component specific checklog targets. e.g., "sheaves-checklog", "tools-checklog", etc.
+#
+function(add_component_checklog_target)
+
+    add_custom_target(${PROJECT_NAME}-checklog COMMAND ${CMAKE_CTEST_COMMAND} -O ${PROJECT_NAME}_chk.log DEPENDS ${${COMPONENT}_SHARED_LIB} ${${COMPONENT}_UNIT_TESTS})
+    # Add a check target for this component to the system list. "make check" will invoke this list.
+    set(ALL_CHECKLOG_TARGETS ${ALL_CHECKLOG_TARGETS} ${PROJECT_NAME}-checklog CACHE STRING "Aggregate list of component checklog targets" FORCE)
+        set_target_properties(${PROJECT_NAME}-checklog PROPERTIES FOLDER "Checklog Targets")
+    mark_as_advanced(ALL_CHECKLOG_TARGETS) 
+
+endfunction(add_component_checklog_target)
+
+# 
+# Establish a system level "checklog" target
+#
+function(add_checklog_target)
+
+    if(WIN64MSVC OR WIN64INTEL)
+        # $$TODO: Spend a little time finding out what's going on here.
+        add_custom_target(checklog ALL COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} DEPENDS ${ALL_CHECKLOG_TARGETS})
+    else()
+        add_custom_target(checklog ALL COMMAND DEPENDS ${ALL_CHECKLOG_TARGETS})
+    endif()
+    set_target_properties(checklog PROPERTIES FOLDER "Checklog Targets")
+        
+endfunction(add_checklog_target)
 # 
 # Create a cmake test for each unit test executable.
 #

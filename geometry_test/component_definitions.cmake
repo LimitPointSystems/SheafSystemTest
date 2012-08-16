@@ -16,11 +16,6 @@
 include(${CMAKE_MODULE_PATH}/LPSCommon.cmake)
 
 #
-# Include cmake test functions and macros
-#
-include(CTest)
-
-#
 # Define the clusters for this component.
 #
 set(clusters coordinates general kd_lattice mesh_generators point_locators)
