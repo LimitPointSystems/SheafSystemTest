@@ -87,9 +87,10 @@ set(OPTIMIZATION_LEVEL "0" CACHE STRING "Compiler optimization level. Valid valu
 #
 # Add solvers and tools if linux
 #
-#if(LINUX64GNU OR LINUX64INTEL)
-#    set(COMPONENTS ${COMPONENTS} solvers tools CACHE STRING "List of components in this system" FORCE)
-#endif()
+if(LINUX64GNU OR LINUX64INTEL)
+    set(COMPONENTS ${COMPONENTS} solvers_test CACHE STRING "List of components in this system" FORCE)
+    #set(COMPONENTS ${COMPONENTS} solvers tools CACHE STRING "List of components in this system" FORCE)
+endif()
 
 #
 # Default linux installation location is /usr/local

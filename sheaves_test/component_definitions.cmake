@@ -9,11 +9,13 @@
 #
 # This file contains declarations and functions unique to this component.
 #
-  
+
 #
 # Include functions and definitions common to all components.
 # .
 include(${CMAKE_MODULE_PATH}/LPSCommon.cmake)
+
+include_directories(${STD_IPATH} ${SHEAVES_IPATH}) 
 
 #
 # Define the clusters for this component.

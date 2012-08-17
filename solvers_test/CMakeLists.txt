@@ -40,15 +40,6 @@ set_compiler_flags()
 #
 create_output_dirs()
     
-#
-# Add the library targets
-#
-#add_library_targets()
-
-#
-# Add Bindings targets
-#
-#add_bindings_targets()
 
 #
 # Testing targets
@@ -58,12 +49,17 @@ add_test_targets()
 #
 # Add the example targets
 #
-#add_example_targets()
+add_example_targets()
 
 #
 # Component specific check target
 #
 add_component_check_target()
+
+#
+# Component specific checklog target
+#
+add_component_checklog_target()
 
 #
 # Component specific coverage target
@@ -82,7 +78,4 @@ if(LINUX64)
     add_install_target()
 endif()
 
-#
-# Write this component's lib targets and include paths to an export file.
-#
-#export_targets()
+
