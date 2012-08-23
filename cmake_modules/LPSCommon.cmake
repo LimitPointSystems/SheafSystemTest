@@ -236,7 +236,8 @@ function(set_compiler_flags)
             set(CMAKE_CXX_FLAGS_DEBUG-CONTRACTS "${LPS_CXX_FLAGS} -g -DUSE_VTK" CACHE
                 STRING "Flags used by the C++ compiler for Debug-contracts builds" FORCE)
         else()         
-            set(CMAKE_CXX_FLAGS_DEBUG-CONTRACTS "${LPS_CXX_FLAGS} -g" CACHE
+            set(CMAKE_CXX_FLAGS_DEBUG-CONTRACTS "${LPS_CXX_FLAGS} -g -fprofile-arcs -ftest-coverage" CACHE
+            #set(CMAKE_CXX_FLAGS_DEBUG-CONTRACTS "${LPS_CXX_FLAGS} -g -fprofile-arcs -ftest-coverage" CACHE
                 STRING "Flags used by the C++ compiler for Debug-contracts builds" FORCE)
         endif()
     endif()
@@ -268,6 +269,7 @@ function(set_compiler_flags)
                 STRING "Flags used by the C++ compiler for Debug-no-contracts builds" FORCE)
         else()
             set(CMAKE_CXX_FLAGS_DEBUG-NO-CONTRACTS "${LPS_CXX_FLAGS} -g -DNDEBUG" CACHE
+            #set(CMAKE_CXX_FLAGS_DEBUG-NO-CONTRACTS "${LPS_CXX_FLAGS} -g -DNDEBUG -fprofile-arcs -ftest-coverage" CACHE
                 STRING "Flags used by the C++ compiler for Debug-no-contracts builds" FORCE)
         endif()
     endif()
