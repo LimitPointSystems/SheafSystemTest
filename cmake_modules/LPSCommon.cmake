@@ -621,24 +621,27 @@ function(add_test_targets)
 
             if(LINUX64GNU OR LINUX64INTEL)
                 target_link_libraries(${t_file} ${${COMPONENT}_SHARED_LIB} ${HDF5_LIBRARIES})
+                # Add a test target for ${t_file}
+                add_test(NAME ${t_file} WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} COMMAND $<TARGET_FILE:${t_file}>) 
+
             elseif(WIN64MSVC OR WIN64INTEL)
                 if(${USE_VTK})
                     target_link_libraries(${t_file} ${FIELDS_IMPORT_LIB} ${HDF5_LIBRARIES} ${VTK_LIBS}) 
                 else()
                     target_link_libraries(${t_file} ${FIELDS_IMPORT_LIB} ${HDF5_LIBRARIES})                                         
                 endif()
+                
+                add_test(NAME ${t_file} WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE} COMMAND $<TARGET_FILE:${t_file}>)
                 # Insert the unit tests into the VS folder "unit test targets"
                 set_target_properties(${t_file} PROPERTIES FOLDER "Unit Test Targets")
             endif()
-
-            # Add a test target for ${t_file}
-         
-            add_test(${t_file} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${t_file})
+            
             # Tag the test with the name of the current component.
             set_property(TEST ${t_file} PROPERTY LABELS "${PROJECT_NAME}")
             # Generate a log file for each .t. "make <test>.log will build and run a given executable.
             add_custom_target(${t_file}.log COMMAND ${t_file} > ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${t_file}.log )
             set_target_properties(${t_file}.log PROPERTIES FOLDER "Unit Test Log Targets")
+
         endif()
     endforeach()
 endfunction(add_test_targets)
