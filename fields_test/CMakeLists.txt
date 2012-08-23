@@ -66,12 +66,6 @@ add_component_coverage_target()
 add_component_bin_target()
 
 #
-# Installation target
-#
-if(LINUX64)
-    add_install_target()
-endif()
-#
 # Add files to the clean target
 #
 add_clean_files()

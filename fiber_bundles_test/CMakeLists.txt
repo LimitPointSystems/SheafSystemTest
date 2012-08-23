@@ -20,7 +20,6 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/component_definitions.cmake)
 #
 status_message("Processing ${PROJECT_NAME}")
 
-
 #
 # Add the clusters to the project
 #
@@ -66,11 +65,5 @@ add_component_coverage_target()
 #
 add_component_bin_target()
 
-#
-# Installation target
-#
-if(LINUX64)
-    add_install_target()
-endif()
 
 

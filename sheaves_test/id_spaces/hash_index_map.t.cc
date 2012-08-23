@@ -42,7 +42,6 @@ test_hash_index_map(index_space_family& xid_spaces, size_t xoffset)
 				      lspace_args);
 
   hash_index_map& lmap = lspace.id_map<hash_index_map>();
-
   // Initialize the id map.
 
   print_header("Initialize the id map.");
@@ -61,7 +60,6 @@ test_hash_index_map(index_space_family& xid_spaces, size_t xoffset)
 
   remove_entry(lmap, 0, false, true);
   remove_entry(lmap, 6, false, true);
-
   test_domain_id_iterator(lspace);
   test_range_id_iterator(lspace);
 
@@ -86,7 +84,6 @@ test_hash_index_map(index_space_family& xid_spaces, size_t xoffset)
 
   test_domain_id_iterator(lspace);
   test_range_id_iterator(lspace);
-
   // Test push_back.
 
   print_header("Test push_back.");
@@ -128,13 +125,12 @@ test_hash_index_map(index_space_family& xid_spaces, size_t xoffset)
   // Test empty map.
 
   print_header("Test empty map.");
-
   for(pod_index_type i = lmap.domain_begin(); i < lmap.domain_end(); i++)
   {
     remove_entry(lmap, i, false, false);
-  }
-  update_extrema(lmap);
+   }
 
+  update_extrema(lmap);
   test_domain_id_iterator(lspace);
   test_range_id_iterator(lspace);
 }
