@@ -16,7 +16,7 @@
 #
 # Set the location of the sheaf system top level.
 #
-set(SHEAF_HOME CACHE PATH "Sheaf_system top level directory.")
+set(SHEAFSYSTEM_HOME CACHE PATH "Sheaf_system top level directory.")
 
 find_package(Sheaf)
 
