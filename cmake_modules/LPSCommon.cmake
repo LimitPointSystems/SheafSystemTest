@@ -24,11 +24,6 @@ endif()
 #
 string(TOUPPER ${PROJECT_NAME} COMPONENT)
 
-#
-# Tell the compiler where to find the std_headers.
-#
-# $$TODO: We can probably refine this by moving the includes into comp_defs in each comp. Look into it.
-#include_directories(${STD_IPATH} ${SHEAVES_IPATH})
 
 #
 # Tell the linker where to look for COMPONENT libraries.
@@ -644,7 +639,8 @@ function(add_test_targets)
             # Generate a log file for each .t. "make <test>.log will build and run a given executable.
             add_custom_target(${t_file}.log COMMAND ${t_file} > ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${t_file}.log )
             set_target_properties(${t_file}.log PROPERTIES FOLDER "Unit Test Log Targets")
-
+        endif()
+    endforeach()
 endfunction(add_test_targets)
 
 # 
