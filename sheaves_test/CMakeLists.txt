@@ -20,7 +20,6 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/component_definitions.cmake)
 #
 status_message("Processing ${PROJECT_NAME}")
 
-
 #
 # Add the clusters to the project
 #
@@ -35,7 +34,6 @@ set_compiler_flags()
 # Set up output directories
 #
 create_output_dirs()
-
 
 #
 # Add the unit test targets
@@ -68,15 +66,7 @@ add_component_coverage_target()
 add_component_bin_target()
 
 #
-# Installation target
-#
-if(LINUX64)
-    add_install_target()
-endif()
-
-#
 # Add files to the clean target
 #
 add_clean_files()
-
 

@@ -16,6 +16,7 @@
 #
 if(WIN64MSVC OR WIN64INTEL)
     set_property(GLOBAL PROPERTY USE_FOLDERS On)
+	set(FIELDS_IMPORT_LIB fieldsdll CACHE STRING "SheafSystem import library")
 endif()
 
 #
@@ -490,12 +491,17 @@ endfunction(add_component_bin_target)
 # Establish a system level "check" target
 #
 function(add_check_target)
-
+    message(STATUS "oUTPUT dIR IS ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE} -- ${FIELDS_BIN_OUTPUT_DIR}/${CMAKE_BUILD_TYPE}/fieldsdll.dll")
     if(WIN64MSVC OR WIN64INTEL)
         # $$TODO: Spend a little time finding out what's going on here.
-        add_custom_target(check ALL COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} DEPENDS ${ALL_CHECK_TARGETS})
+        add_custom_target(check ALL COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} DEPENDS ${ALL_CHECK_TARGETS}) 
+
+
+             
     else()
         add_custom_target(check ALL COMMAND  DEPENDS ${ALL_CHECK_TARGETS})
+
+
     endif()
     set_target_properties(check PROPERTIES FOLDER "Check Targets")
         
@@ -506,12 +512,13 @@ endfunction(add_check_target)
 #
 function(add_component_check_target)
 
-    add_custom_target(${PROJECT_NAME}-check COMMAND ${CMAKE_CTEST_COMMAND} -O ${PROJECT_NAME}_chk.out DEPENDS ${${COMPONENT}_SHARED_LIB} ${${COMPONENT}_UNIT_TESTS})
+    add_custom_target(${PROJECT_NAME}-check COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} -VV DEPENDS ${${COMPONENT}_SHARED_LIB} ${${COMPONENT}_UNIT_TESTS})
     # Add a check target for this component to the system list. "make check" will invoke this list.
     set(ALL_CHECK_TARGETS ${ALL_CHECK_TARGETS} ${PROJECT_NAME}-check CACHE STRING "Aggregate list of component check targets" FORCE)
         set_target_properties(${PROJECT_NAME}-check PROPERTIES FOLDER "Check Targets")
-    mark_as_advanced(ALL_CHECK_TARGETS) 
+    mark_as_advanced(ALL_CHECK_TARGETS)
 
+#       
 endfunction(add_component_check_target)
 
 #
@@ -569,12 +576,13 @@ function(add_checklog_target)
     if(WIN64MSVC OR WIN64INTEL)
         # $$TODO: Spend a little time finding out what's going on here.
         add_custom_target(checklog ALL COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} DEPENDS ${ALL_CHECKLOG_TARGETS})
+        set_target_properties(checklog PROPERTIES FOLDER "Checklog Targets")
     else()
         add_custom_target(checklog ALL COMMAND DEPENDS ${ALL_CHECKLOG_TARGETS})
     endif()
-    set_target_properties(checklog PROPERTIES FOLDER "Checklog Targets")
-        
+
 endfunction(add_checklog_target)
+
 # 
 # Create a cmake test for each unit test executable.
 #
@@ -608,7 +616,7 @@ function(add_test_targets)
             if(WIN64MSVC OR WIN64INTEL)
                 # Supply the *_DLL_IMPORTS directive to preprocessor
                 set_target_properties(${t_file} PROPERTIES COMPILE_DEFINITIONS "SHEAF_DLL_IMPORTS")
-                add_dependencies(${t_file} ${FIELDS_IMPORT_LIB})
+                add_dependencies(${t_file} fieldsdll.dll)
             else()
                # add_dependencies(${t_file} libsheaves.so libfiber_bundles.so libgeometry.so libfields.so)
                 add_dependencies(${t_file} ${${COMPONENT}_SHARED_LIB})
@@ -633,14 +641,7 @@ function(add_test_targets)
             set_property(TEST ${t_file} PROPERTY LABELS "${PROJECT_NAME}")
             # Generate a log file for each .t. "make <test>.log will build and run a given executable.
             add_custom_target(${t_file}.log COMMAND ${t_file} > ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${t_file}.log )
-                 
-            if(WIN64MSVC OR WIN64INTEL)
-                # Set the PATH environment variable for CTest so the HDF5 and Fields dlls lie in it.
-                set_tests_properties(${t_file} PROPERTIES ENVIRONMENT
-                                     "PATH=${HDF5_LIBRARY_DIRS};${${COMPONENT}_OUTPUT_DIR}:${CMAKE_CFG_INTDIR}")
-            endif()
-        endif()
-    endforeach()
+            set_target_properties(${t_file}.log PROPERTIES FOLDER "Unit Test Log Targets")
 
 endfunction(add_test_targets)
 
@@ -855,7 +856,6 @@ function(collect_example_sources)
 
 endfunction(collect_example_sources)
 
-
 # 
 # Convenience routine for diagnostic output during configure phase.
 #
@@ -868,5 +868,5 @@ function(status_message txt)
 
 endfunction()
 
-
+  
 

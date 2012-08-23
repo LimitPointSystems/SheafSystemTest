@@ -39,7 +39,6 @@ set_compiler_flags()
 # Set up output directories
 #
 create_output_dirs()
-    
 
 #
 # Testing targets
@@ -70,12 +69,4 @@ add_component_coverage_target()
 # Component specific bin target
 #
 add_component_bin_target()
-
-#
-# Installation target
-#
-if(LINUX64)
-    add_install_target()
-endif()
-
 

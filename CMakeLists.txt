@@ -159,3 +159,12 @@ if(${USE_VTK})
     file(APPEND  ${CMAKE_BINARY_DIR}/${EXPORTS_FILE} "\n")
 endif()
 
+# HACK: get the dependent libs into the bin dir so tests don't fail
+# CMake's set_tests_properties does not seem to work, at least not for us.
+#
+copy_libs()
+
+add_custom_command(TARGET ALL PRE_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy ${FIELDS_BIN_OUTPUT_DIR}/${CMAKE_BUILD_TYPE}/fieldsdll.dll ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE}
+        COMMAND ${CMAKE_COMMAND} -E copy ${HDF5_LIBRARY_DIRS}/hdf5dll.dll ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE}
+    )
