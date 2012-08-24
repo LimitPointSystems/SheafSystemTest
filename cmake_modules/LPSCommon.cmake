@@ -475,7 +475,6 @@ endfunction(add_bin_target)
 # Add component specific bin targets. e.g., "sheaves-bin", "tools-bin", etc.
 #
 function(add_component_bin_target)
-
     add_custom_target(${PROJECT_NAME}-bin DEPENDS ${${COMPONENT}_SHARED_LIB} ${${COMPONENT}_UNIT_TESTS} ${${COMPONENT}_EXAMPLES})
     # Add a bin target for this component to the system list. "make bin" will invoke this list.
     set(ALL_BIN_TARGETS ${ALL_BIN_TARGETS} ${PROJECT_NAME}-bin CACHE STRING "Aggregate list of component bin targets" FORCE)
@@ -488,18 +487,14 @@ endfunction(add_component_bin_target)
 # Establish a system level "check" target
 #
 function(add_check_target)
-    message(STATUS "oUTPUT dIR IS ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE} -- ${FIELDS_BIN_OUTPUT_DIR}/${CMAKE_BUILD_TYPE}/fieldsdll.dll")
+
     if(WIN64MSVC OR WIN64INTEL)
         # $$TODO: Spend a little time finding out what's going on here.
-        add_custom_target(check ALL COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} DEPENDS ${ALL_CHECK_TARGETS}) 
-
-
-             
+        add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND} -VV -C ${CMAKE_CFG_INTDIR} DEPENDS ${ALL_CHECK_TARGETS}) 
     else()
-        add_custom_target(check ALL COMMAND  DEPENDS ${ALL_CHECK_TARGETS})
-
-
+        add_custom_target(check COMMAND  DEPENDS ${ALL_CHECK_TARGETS})
     endif()
+
     set_target_properties(check PROPERTIES FOLDER "Check Targets")
         
 endfunction(add_check_target)
@@ -514,8 +509,7 @@ function(add_component_check_target)
     set(ALL_CHECK_TARGETS ${ALL_CHECK_TARGETS} ${PROJECT_NAME}-check CACHE STRING "Aggregate list of component check targets" FORCE)
         set_target_properties(${PROJECT_NAME}-check PROPERTIES FOLDER "Check Targets")
     mark_as_advanced(ALL_CHECK_TARGETS)
-
-#       
+     
 endfunction(add_component_check_target)
 
 #
@@ -548,8 +542,9 @@ endfunction()
 # Establish a system level "coverage" target
 #
 function(add_coverage_target)
-        #add_custom_target(coverage DEPENDS check ${ALL_COVERAGE_TARGETS})
-                add_custom_target(coverage DEPENDS ${ALL_COVERAGE_TARGETS})
+
+    add_custom_target(coverage DEPENDS ${ALL_COVERAGE_TARGETS})
+
 endfunction()
 
 #
@@ -584,24 +579,26 @@ endfunction(add_checklog_target)
 # Create a cmake test for each unit test executable.
 #
 function(add_test_targets)
+
     if(${USE_VTK})
         link_directories(${VTK_LIB_DIR})
     endif()
+    
     # link_directories only applies to targets created after it is called.
     if(LINUX64GNU OR LINUX64INTEL)
         link_directories(${${COMPONENT}_OUTPUT_DIR} ${HDF5_LIBRARY_DIRS} ${TETGEN_DIR})
     else()
         link_directories(${${COMPONENT}_OUTPUT_DIR}/${CMAKE_BUILD_TYPE} ${HDF5_LIBRARY_DIRS} ${TETGEN_DIR})
     endif()    
+    
     # Let the user know what's being configured
     status_message("Configuring Unit Tests for ${PROJECT_NAME}")   
+    
     foreach(t_cc_file ${${COMPONENT}_UNIT_TEST_SRCS})
-
         # Extract name of executable from source filename
         string(REPLACE .t.cc .t t_file_with_path ${t_cc_file})
         # Remove path information  
         get_filename_component(t_file ${t_file_with_path} NAME)
-
         set(${COMPONENT}_UNIT_TESTS ${${COMPONENT}_UNIT_TESTS} ${t_file} CACHE STRING "List of unit test binaries" FORCE)
         mark_as_advanced(${COMPONENT}_UNIT_TESTS)
         # If the target already exists, don't try to create it.
@@ -623,7 +620,9 @@ function(add_test_targets)
                 target_link_libraries(${t_file} ${${COMPONENT}_SHARED_LIB} ${HDF5_LIBRARIES})
                 # Add a test target for ${t_file}
                 add_test(NAME ${t_file} WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} COMMAND $<TARGET_FILE:${t_file}>) 
-
+            # Generate a log file for each .t. "make <test>.log will build and run a given executable.
+            add_custom_target(${t_file}.log COMMAND ${t_file} > ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${t_file}.log )
+            set_target_properties(${t_file}.log PROPERTIES FOLDER "Unit Test Log Targets")
             elseif(WIN64MSVC OR WIN64INTEL)
                 if(${USE_VTK})
                     target_link_libraries(${t_file} ${FIELDS_IMPORT_LIB} ${HDF5_LIBRARIES} ${VTK_LIBS}) 
@@ -632,18 +631,28 @@ function(add_test_targets)
                 endif()
                 
                 add_test(NAME ${t_file} WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE} COMMAND $<TARGET_FILE:${t_file}>)
+            #    set_tests_properties(${t_file} PROPERTIES ENVIRONMENT "PATH=%PATH%;${CMAKE_CFG_INTDIR};${HDF5_LIBRARY_DIRS};${FIELDS_BIN_DIR}")
                 # Insert the unit tests into the VS folder "unit test targets"
                 set_target_properties(${t_file} PROPERTIES FOLDER "Unit Test Targets")
+               # Hack to get dependent libs into the bin directory.
+            # Generate a log file for each .t. "make <test>.log will build and run a given executable.
+            add_custom_target(${t_file}.log COMMAND ${t_file} > ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE}/${t_file}.log )
+            set_target_properties(${t_file}.log PROPERTIES FOLDER "Unit Test Log Targets")
+            add_custom_command(TARGET ${t_file}
+                   PRE_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy_if_different ${FIELDS_BIN_OUTPUT_DIR}/${CMAKE_BUILD_TYPE}/fieldsdll.dll ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE} 
+                   COMMAND ${CMAKE_COMMAND} -E copy_if_different ${HDF5_LIBRARY_DIRS}/hdf5dll.dll ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE}
+            ) 
             endif()
             
             # Tag the test with the name of the current component.
             set_property(TEST ${t_file} PROPERTY LABELS "${PROJECT_NAME}")
-            # Generate a log file for each .t. "make <test>.log will build and run a given executable.
-            add_custom_target(${t_file}.log COMMAND ${t_file} > ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${t_file}.log )
-            set_target_properties(${t_file}.log PROPERTIES FOLDER "Unit Test Log Targets")
 
         endif()
+
+
     endforeach()
+
 endfunction(add_test_targets)
 
 # 
