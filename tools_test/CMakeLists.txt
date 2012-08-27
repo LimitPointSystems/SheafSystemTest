@@ -38,7 +38,7 @@ add_subdirectory(examples)
 #
 # Intialize the SheafScope sources var
 #
-set_scope_sources()
+#set_scope_sources()
 
 #
 # Set compiler flags for all build configurations

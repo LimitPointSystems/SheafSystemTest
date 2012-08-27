@@ -150,30 +150,6 @@ function(check_cxx_includes)
 endfunction(check_cxx_includes)
 
 #
-# Check for C++ headers and configure the STD wrappers 
-# for the current platform.
-#
-function(configure_std_headers)
-
-    status_message("Configuring STD include files")
-
-    # Glob all the .h.cmake.in files in std
-    file(GLOB STD_INC_INS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/std ${CMAKE_CURRENT_SOURCE_DIR}/std/*.h.cmake.in)
-
-    # Configure the .h file from each .h.cmake.in
-    foreach(input_file ${STD_INC_INS})
-        # Strip .cmake.in from globbed filenames for output filenames
-        string(REGEX REPLACE ".cmake.in$" ""  std_h ${input_file})
-        message(STATUS "Creating ${CMAKE_BINARY_DIR}/include/${std_h} from std/${input_file}")
-        list(APPEND std_incs ${CMAKE_BINARY_DIR}/include/${std_h})
-        set(STD_HEADERS ${std_incs} CACHE STRING "STD Includes" FORCE)          
-        # Configure the .h files
-        configure_file(std/${input_file} ${CMAKE_BINARY_DIR}/include/${std_h})
-    endforeach()
-
-endfunction(configure_std_headers)
-
-#
 # Set the compiler flags per build configuration
 #
 function(set_compiler_flags)
@@ -232,7 +208,7 @@ function(set_compiler_flags)
             set(CMAKE_CXX_FLAGS_DEBUG-CONTRACTS "${LPS_CXX_FLAGS} -g -DUSE_VTK" CACHE
                 STRING "Flags used by the C++ compiler for Debug-contracts builds" FORCE)
         else()         
-            set(CMAKE_CXX_FLAGS_DEBUG-CONTRACTS "${LPS_CXX_FLAGS} -g -fprofile-arcs -ftest-coverage" CACHE
+            set(CMAKE_CXX_FLAGS_DEBUG-CONTRACTS "${LPS_CXX_FLAGS} -g " CACHE
             #set(CMAKE_CXX_FLAGS_DEBUG-CONTRACTS "${LPS_CXX_FLAGS} -g -fprofile-arcs -ftest-coverage" CACHE
                 STRING "Flags used by the C++ compiler for Debug-contracts builds" FORCE)
         endif()
@@ -363,53 +339,6 @@ function(create_output_dirs)
 endfunction()
 
 #
-# Create per-configuration snapshot target for VS.
-#
-function(create_vswin64_snapshot_target)
-
-    if(WIN64MSVC OR WIN64INTEL)
-       # Set this for your system. Finding dumpbin is very tedious as there are 3 versions in a VS install. 
-       set(DUMPBIN "C:/Program Files (x86)/Microsoft Visual Studio 9.0/VC/bin/amd64/dumpbin.exe")
-       file(TO_NATIVE_PATH "$ENV{RELEASE_DIR}/Components-Win64/lib/$(ConfigurationName)" RELEASE_DIR)
-       file(TO_NATIVE_PATH "${CMAKE_BINARY_DIR}/lib/$(ConfigurationName)" VS_LIBRARY_OUTPUT_DIR)
-       file(TO_NATIVE_PATH "${CMAKE_BINARY_DIR}/bin/$(ConfigurationName)" VS_RUNTIME_OUTPUT_DIR)
-        # Add the target
-       set(SNAPSHOT_TARGET_NAME system_snapshot)        
-       add_custom_target(${SNAPSHOT_TARGET_NAME} DEPENDS ${FIELDS_DYNAMIC_LIB})
-    
-       add_custom_command(TARGET ${SNAPSHOT_TARGET_NAME} PRE_BUILD
-                          COMMAND ${CMAKE_COMMAND} -E make_directory ${RELEASE_DIR}
-                          )
-       set_target_properties(${SNAPSHOT_TARGET_NAME} PROPERTIES FOLDER "Release Targets")   
-        # Create a post-build action associated with the VS snapshot target.
-        # Copy the files to the release dir.
-        # Create the release text file and populate it with pertinent info regarding the release.
-
-       add_custom_command(TARGET ${SNAPSHOT_TARGET_NAME} POST_BUILD
-            COMMAND copy "${VS_LIBRARY_OUTPUT_DIR}\\*.*" "${RELEASE_DIR}"
-            COMMAND copy "${VS_RUNTIME_OUTPUT_DIR}\\*.*" "${RELEASE_DIR}"
-            COMMAND ${DUMPBIN} "/OUT:${RELEASE_DIR}\\$(ConfigurationName).txt" "/DEPENDENTS" "${RELEASE_DIR}\\fieldsdll.dll"
-            COMMAND echo: >>  "${RELEASE_DIR}\\$(ConfigurationName).txt"
-            COMMAND echo Configuration: >> "${RELEASE_DIR}\\$(ConfigurationName).txt"
-            COMMAND echo $(ConfigurationName) >> "${RELEASE_DIR}" "${RELEASE_DIR}\\$(ConfigurationName).txt"
-            COMMAND echo: >>  "${RELEASE_DIR}\\$(ConfigurationName).txt"
-            COMMAND echo Platform: >> "${RELEASE_DIR}\\$(ConfigurationName).txt"
-            COMMAND echo $(PlatformName) >> "${RELEASE_DIR}\\$(ConfigurationName).txt"
-            COMMAND echo: >>  "${RELEASE_DIR}\\$(ConfigurationName).txt"
-            COMMAND echo Date: >>  "${RELEASE_DIR}\\$(ConfigurationName).txt"
-            COMMAND date /T >>  "${RELEASE_DIR}\\$(ConfigurationName).txt"
-            COMMAND echo: >>  "${RELEASE_DIR}\\$(ConfigurationName).txt"
-            COMMAND echo Time: >>  "${RELEASE_DIR}\\$(ConfigurationName).txt"
-            COMMAND time /T >>  "${RELEASE_DIR}\\$(ConfigurationName).txt"
-            COMMAND echo: >>  "${RELEASE_DIR}\\$(ConfigurationName).txt"
-            COMMAND echo .NET Version: >>  "${RELEASE_DIR}\\$(ConfigurationName).txt"
-            COMMAND echo $(FrameworkVersion) >>  "${RELEASE_DIR}\\$(ConfigurationName).txt"
-           )
-    endif(WIN64MSVC OR WIN64INTEL)
-
-endfunction(create_vswin64_snapshot_target)
-
-#
 # Add the documentation targets.
 #
 function(add_doc_targets)
@@ -490,13 +419,13 @@ function(add_check_target)
 
     if(WIN64MSVC OR WIN64INTEL)
         # $$TODO: Spend a little time finding out what's going on here.
-        add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND} -VV -C ${CMAKE_CFG_INTDIR} DEPENDS ${ALL_CHECK_TARGETS}) 
+        add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} DEPENDS ${${COMPONENT}_EXAMPLES} ${ALL_CHECK_TARGETS})
+        set_target_properties(check PROPERTIES FOLDER "Check Targets")
+
     else()
         add_custom_target(check COMMAND  DEPENDS ${ALL_CHECK_TARGETS})
     endif()
 
-    set_target_properties(check PROPERTIES FOLDER "Check Targets")
-        
 endfunction(add_check_target)
 
 #
@@ -504,12 +433,30 @@ endfunction(add_check_target)
 #
 function(add_component_check_target)
 
-    add_custom_target(${PROJECT_NAME}-check COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} -VV DEPENDS ${${COMPONENT}_SHARED_LIB} ${${COMPONENT}_UNIT_TESTS})
+    add_custom_target(${PROJECT_NAME}-check COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} -O  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE}/${PROJECT_NAME}_chk.log DEPENDS ${${COMPONENT}_SHARED_LIB} ${${COMPONENT}_UNIT_TESTS})
     # Add a check target for this component to the system list. "make check" will invoke this list.
+    set(ALL_UNIT_TEST_TARGETS ${ALL_UNIT_TEST_TARGETS} ${${COMPONENT}_UNIT_TESTS} CACHE STRING "Aggregate list of unit test targets" FORCE)
     set(ALL_CHECK_TARGETS ${ALL_CHECK_TARGETS} ${PROJECT_NAME}-check CACHE STRING "Aggregate list of component check targets" FORCE)
-        set_target_properties(${PROJECT_NAME}-check PROPERTIES FOLDER "Check Targets")
+    set_target_properties(${PROJECT_NAME}-check PROPERTIES FOLDER "Check Targets")
     mark_as_advanced(ALL_CHECK_TARGETS)
-     
+#    add_custom_command(TARGET ${PROJECT_NAME}-check
+#        POST_BUILD
+#            foreach(unit_test ${${COMPONENT}_UNIT_TESTS})
+#                if(EXIST ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE}/${unit_test}.exe.hdf)
+#                    # get the project the unit test is associated with
+#                        get_property(PROJ_MEMBER PROPERTY LABELS ${unit_test})
+#                        if(${PROJ_MEMBER} strequal "sheaves_test")
+#                            COMMAND ${CMAKE_COMMAND} -E echo "Reading ${unit_test}.exe.hdf ... "
+#                           COMMAND ${CMAKE_COMMAND} -E ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE}/sheaves_read.exe ${unit_test}.exe.hdf                        
+#                           # run sheaves_read on the hdf file                          
+#                        elseif(${PROJ_MEMBER} strequal "fiber_bundles_test")
+#                            COMMAND ${CMAKE_COMMAND} -E echo "Reading ${unit_test}.exe.hdf ... "
+#                            # run fiber_bundles_read on the hdf file                      
+#                        endif()
+#               endif()
+#           endforeach()
+#    )
+
 endfunction(add_component_check_target)
 
 #
@@ -546,34 +493,6 @@ function(add_coverage_target)
     add_custom_target(coverage DEPENDS ${ALL_COVERAGE_TARGETS})
 
 endfunction()
-
-#
-# Add component specific checklog targets. e.g., "sheaves-checklog", "tools-checklog", etc.
-#
-function(add_component_checklog_target)
-
-    add_custom_target(${PROJECT_NAME}-checklog COMMAND ${CMAKE_CTEST_COMMAND} -O ${PROJECT_NAME}_chk.log DEPENDS ${${COMPONENT}_SHARED_LIB} ${${COMPONENT}_UNIT_TESTS})
-    # Add a check target for this component to the system list. "make check" will invoke this list.
-    set(ALL_CHECKLOG_TARGETS ${ALL_CHECKLOG_TARGETS} ${PROJECT_NAME}-checklog CACHE STRING "Aggregate list of component checklog targets" FORCE)
-        set_target_properties(${PROJECT_NAME}-checklog PROPERTIES FOLDER "Checklog Targets")
-    mark_as_advanced(ALL_CHECKLOG_TARGETS) 
-
-endfunction(add_component_checklog_target)
-
-# 
-# Establish a system level "checklog" target
-#
-function(add_checklog_target)
-
-    if(WIN64MSVC OR WIN64INTEL)
-        # $$TODO: Spend a little time finding out what's going on here.
-        add_custom_target(checklog ALL COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} DEPENDS ${ALL_CHECKLOG_TARGETS})
-        set_target_properties(checklog PROPERTIES FOLDER "Checklog Targets")
-    else()
-        add_custom_target(checklog ALL COMMAND DEPENDS ${ALL_CHECKLOG_TARGETS})
-    endif()
-
-endfunction(add_checklog_target)
 
 # 
 # Create a cmake test for each unit test executable.
@@ -617,40 +536,42 @@ function(add_test_targets)
             endif()
 
             if(LINUX64GNU OR LINUX64INTEL)
+            
                 target_link_libraries(${t_file} ${${COMPONENT}_SHARED_LIB} ${HDF5_LIBRARIES})
                 # Add a test target for ${t_file}
-                add_test(NAME ${t_file} WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} COMMAND $<TARGET_FILE:${t_file}>) 
-            # Generate a log file for each .t. "make <test>.log will build and run a given executable.
-            add_custom_target(${t_file}.log COMMAND ${t_file} > ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${t_file}.log )
-            set_target_properties(${t_file}.log PROPERTIES FOLDER "Unit Test Log Targets")
+                add_test(NAME ${t_file} WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} COMMAND $<TARGET_FILE:${t_file}>)
+                # Tag the test with the name of the current component.
+                set_property(TEST ${t_file} PROPERTY LABELS "${PROJECT_NAME}") 
+                # Generate a log file for each .t. "make <test>.log will build and run a given executable.
+                add_custom_target(${t_file}.log COMMAND ${t_file} > ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${t_file}.log )
+                set_target_properties(${t_file}.log PROPERTIES FOLDER "Unit Test Log Targets")
+                
             elseif(WIN64MSVC OR WIN64INTEL)
+                
                 if(${USE_VTK})
                     target_link_libraries(${t_file} ${FIELDS_IMPORT_LIB} ${HDF5_LIBRARIES} ${VTK_LIBS}) 
                 else()
                     target_link_libraries(${t_file} ${FIELDS_IMPORT_LIB} ${HDF5_LIBRARIES})                                         
                 endif()
                 
-                add_test(NAME ${t_file} WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE} COMMAND $<TARGET_FILE:${t_file}>)
-            #    set_tests_properties(${t_file} PROPERTIES ENVIRONMENT "PATH=%PATH%;${CMAKE_CFG_INTDIR};${HDF5_LIBRARY_DIRS};${FIELDS_BIN_DIR}")
+                #add_test(NAME ${t_file} WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE} COMMAND ${t_file})
+                add_test(NAME ${t_file} WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE} COMMAND $<TARGET_FILE:${t_file}>)                
+                # Tag the test with the name of the current component.
+                set_property(TEST ${t_file} PROPERTY LABELS "${PROJECT_NAME}")
+                
+                #set_tests_properties(${t_file} PROPERTIES ENVIRONMENT "PATH=%PATH%;${CMAKE_CFG_INTDIR};${HDF5_LIBRARY_DIRS};${FIELDS_BIN_DIR}")
                 # Insert the unit tests into the VS folder "unit test targets"
                 set_target_properties(${t_file} PROPERTIES FOLDER "Unit Test Targets")
-               # Hack to get dependent libs into the bin directory.
-            # Generate a log file for each .t. "make <test>.log will build and run a given executable.
-            add_custom_target(${t_file}.log COMMAND ${t_file} > ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE}/${t_file}.log )
-            set_target_properties(${t_file}.log PROPERTIES FOLDER "Unit Test Log Targets")
-            add_custom_command(TARGET ${t_file}
+
+                # Hack to get prerequisite libs into the bin directory.
+                add_custom_command(TARGET ${t_file}
                    PRE_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${FIELDS_BIN_OUTPUT_DIR}/${CMAKE_BUILD_TYPE}/fieldsdll.dll ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE} 
                    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${HDF5_LIBRARY_DIRS}/hdf5dll.dll ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE}
-            ) 
+                )
+                  
             endif()
-            
-            # Tag the test with the name of the current component.
-            set_property(TEST ${t_file} PROPERTY LABELS "${PROJECT_NAME}")
-
         endif()
-
-
     endforeach()
 
 endfunction(add_test_targets)
@@ -693,7 +614,7 @@ function(add_example_targets)
                 target_link_libraries(${t_file} ${FIELDS_IMPORT_LIB} ${HDF5_LIBRARIES})
             endif()
             # Insert the unit tests into the VS folder "unit_tests"
-            set_target_properties(${t_file} PROPERTIES FOLDER "Standalone Exec Targets")
+            set_target_properties(${t_file} PROPERTIES FOLDER "Example Targets")
         else()
            add_dependencies(${t_file} libsheaves.so)
            target_link_libraries(${t_file} ${${COMPONENT}_SHARED_LIB} ${HDF5_LIBRARIES})

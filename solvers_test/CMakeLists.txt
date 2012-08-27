@@ -53,7 +53,7 @@ add_example_targets()
 #
 # Component specific check target
 #
-add_component_check_target()
+#add_component_check_target()
 
 #
 # Component specific checklog target

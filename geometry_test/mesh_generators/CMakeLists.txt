@@ -39,7 +39,7 @@ collect_includes()
 set(UNIT_TEST_SRCS
     cube_with_fault_1.t.cc
     jessen.t.cc
-    oct_generator_2.t.cc
+#    oct_generator_2.t.cc
     oct_generator.t.cc
     s2_bag_generator.t.cc
     schonhardt.t.cc
