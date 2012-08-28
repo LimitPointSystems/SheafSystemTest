@@ -494,6 +494,34 @@ function(add_coverage_target)
 
 endfunction()
 
+#
+# Add component specific checklog targets. e.g., "sheaves-checklog", "tools-checklog", etc.
+#
+function(add_component_checklog_target)
+
+    add_custom_target(${PROJECT_NAME}-checklog COMMAND ${CMAKE_CTEST_COMMAND} -O ${PROJECT_NAME}_chk.log DEPENDS ${${COMPONENT}_SHARED_LIB} ${${COMPONENT}_UNIT_TESTS})
+    # Add a check target for this component to the system list. "make check" will invoke this list.
+    set(ALL_CHECKLOG_TARGETS ${ALL_CHECKLOG_TARGETS} ${PROJECT_NAME}-checklog CACHE STRING "Aggregate list of component checklog targets" FORCE)
+        set_target_properties(${PROJECT_NAME}-checklog PROPERTIES FOLDER "Checklog Targets")
+    mark_as_advanced(ALL_CHECKLOG_TARGETS) 
+
+endfunction(add_component_checklog_target)
+
+# 
+# Establish a system level "checklog" target
+#
+function(add_checklog_target)
+
+    if(WIN64MSVC OR WIN64INTEL)
+        # $$TODO: Spend a little time finding out what's going on here.
+        add_custom_target(checklog ALL COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} DEPENDS ${ALL_CHECKLOG_TARGETS})
+        set_target_properties(checklog PROPERTIES FOLDER "Checklog Targets")
+    else()
+        add_custom_target(checklog ALL COMMAND DEPENDS ${ALL_CHECKLOG_TARGETS})
+    endif()
+
+endfunction(add_checklog_target)
+
 # 
 # Create a cmake test for each unit test executable.
 #
@@ -531,20 +559,42 @@ function(add_test_targets)
                 set_target_properties(${t_file} PROPERTIES COMPILE_DEFINITIONS "SHEAF_DLL_IMPORTS")
                 add_dependencies(${t_file} fieldsdll.dll)
             else()
-               # add_dependencies(${t_file} libsheaves.so libfiber_bundles.so libgeometry.so libfields.so)
                 add_dependencies(${t_file} ${${COMPONENT}_SHARED_LIB})
             endif()
 
             if(LINUX64GNU OR LINUX64INTEL)
             
                 target_link_libraries(${t_file} ${${COMPONENT}_SHARED_LIB} ${HDF5_LIBRARIES})
+
                 # Add a test target for ${t_file}
                 add_test(NAME ${t_file} WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} COMMAND $<TARGET_FILE:${t_file}>)
+
                 # Tag the test with the name of the current component.
                 set_property(TEST ${t_file} PROPERTY LABELS "${PROJECT_NAME}") 
+
                 # Generate a log file for each .t. "make <test>.log will build and run a given executable.
                 add_custom_target(${t_file}.log COMMAND ${t_file} > ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${t_file}.log )
+
+                # Insert the unit tests into the VS folder "unit test targets"
                 set_target_properties(${t_file}.log PROPERTIES FOLDER "Unit Test Log Targets")
+                                
+                # Set the PATH variable for CTest               
+                set_tests_properties(${t_file}.log PROPERTIES ENVIRONMENT "PATH=%PATH%;${CMAKE_CFG_INTDIR};${HDF5_LIBRARY_DIRS};${FIELDS_BIN_DIR}")
+                 
+                # Generate a log file for each .t.hdf "make <test>.hdf will build and run a given executable.
+                add_custom_target(${t_file}.hdf DEPENDS ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${t_file}.log )
+ 
+                # Insert the unit tests into the VS folder "Unit Test HDF Targets"
+                set_target_properties(${t_file}.hdf PROPERTIES FOLDER "Unit Test HDF Targets")
+                                
+                # Generate a log file for each .t.hdf "make <test>.hdf will build and run a given executable.
+                add_custom_target(${t_file}.hdf.log DEPENDS ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${t_file}.hdf )
+                
+                # Insert the unit tests into the VS folder "Unit Test HDF Log Targets"
+                set_target_properties(${t_file}.hdf.log PROPERTIES FOLDER "Unit Test HDF Log Targets")
+                
+                # Set the PATH variable for CTest               
+                set_tests_properties(${t_file}.hdf.log PROPERTIES ENVIRONMENT "PATH=%PATH%;${CMAKE_CFG_INTDIR};${HDF5_LIBRARY_DIRS};${FIELDS_BIN_DIR}")
                 
             elseif(WIN64MSVC OR WIN64INTEL)
                 
@@ -554,15 +604,38 @@ function(add_test_targets)
                     target_link_libraries(${t_file} ${FIELDS_IMPORT_LIB} ${HDF5_LIBRARIES})                                         
                 endif()
                 
-                #add_test(NAME ${t_file} WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE} COMMAND ${t_file})
                 add_test(NAME ${t_file} WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE} COMMAND $<TARGET_FILE:${t_file}>)                
+
                 # Tag the test with the name of the current component.
                 set_property(TEST ${t_file} PROPERTY LABELS "${PROJECT_NAME}")
-                
-                #set_tests_properties(${t_file} PROPERTIES ENVIRONMENT "PATH=%PATH%;${CMAKE_CFG_INTDIR};${HDF5_LIBRARY_DIRS};${FIELDS_BIN_DIR}")
+
                 # Insert the unit tests into the VS folder "unit test targets"
                 set_target_properties(${t_file} PROPERTIES FOLDER "Unit Test Targets")
+                                
+                 # Generate a log file for each .t. "make <test>.log will build and run a given executable.
+                add_custom_target(${t_file}.log COMMAND ${t_file} > ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${t_file}.log )
 
+                # Insert the unit tests into the VS folder "unit test targets"
+                set_target_properties(${t_file}.log PROPERTIES FOLDER "Unit Test Log Targets")
+                                
+                # Set the PATH variable for CTest               
+                set_tests_properties(${t_file}.log PROPERTIES ENVIRONMENT "PATH=%PATH%;${CMAKE_CFG_INTDIR};${HDF5_LIBRARY_DIRS};${FIELDS_BIN_DIR}")
+                 
+                # Generate a log file for each .t.hdf "make <test>.hdf will build and run a given executable.
+                add_custom_target(${t_file}.hdf DEPENDS ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${t_file}.log )
+ 
+                # Insert the unit tests into the VS folder "Unit Test HDF Targets"
+                set_target_properties(${t_file}.hdf PROPERTIES FOLDER "Unit Test HDF Targets")
+                                
+                # Generate a log file for each .t.hdf "make <test>.hdf will build and run a given executable.
+                add_custom_target(${t_file}.hdf.log DEPENDS ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${t_file}.hdf )
+                
+                # Insert the unit tests into the VS folder "Unit Test HDF Log Targets"
+                set_target_properties(${t_file}.hdf.log PROPERTIES FOLDER "Unit Test HDF Log Targets")
+                
+                # Set the PATH variable for CTest               
+                set_tests_properties(${t_file}.hdf.log PROPERTIES ENVIRONMENT "PATH=%PATH%;${CMAKE_CFG_INTDIR};${HDF5_LIBRARY_DIRS};${FIELDS_BIN_DIR}")
+                                                              
                 # Hack to get prerequisite libs into the bin directory.
                 add_custom_command(TARGET ${t_file}
                    PRE_BUILD
