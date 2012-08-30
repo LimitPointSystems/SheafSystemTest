@@ -419,7 +419,7 @@ function(add_check_target)
 
     if(WIN64MSVC OR WIN64INTEL)
         # $$TODO: Spend a little time finding out what's going on here.
-        add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} DEPENDS ${${COMPONENT}_EXAMPLES} ${ALL_CHECK_TARGETS})
+        add_custom_target(check ALL COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} DEPENDS ${${COMPONENT}_EXAMPLES} ${ALL_CHECK_TARGETS})
         set_target_properties(check PROPERTIES FOLDER "Check Targets")
 
     else()
@@ -433,7 +433,7 @@ endfunction(add_check_target)
 #
 function(add_component_check_target)
 
-    add_custom_target(${PROJECT_NAME}-check COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} -O  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE}/${PROJECT_NAME}_chk.log DEPENDS ${${COMPONENT}_SHARED_LIB} ${${COMPONENT}_UNIT_TESTS})
+    add_custom_target(${PROJECT_NAME}-check ALL COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} DEPENDS ${${COMPONENT}_SHARED_LIB} ${${COMPONENT}_UNIT_TESTS})
     # Add a check target for this component to the system list. "make check" will invoke this list.
     set(ALL_UNIT_TEST_TARGETS ${ALL_UNIT_TEST_TARGETS} ${${COMPONENT}_UNIT_TESTS} CACHE STRING "Aggregate list of unit test targets" FORCE)
     set(ALL_CHECK_TARGETS ${ALL_CHECK_TARGETS} ${PROJECT_NAME}-check CACHE STRING "Aggregate list of component check targets" FORCE)
@@ -575,7 +575,7 @@ function(add_test_targets)
                                                 
                 if(${PROJ_MEMBER} MATCHES "sheaves_test")
                     # Generate a log file for each .t.hdf "make <test>.hdf will build and run a given executable.
-                    add_custom_target(${t_file}.hdf.log  DEPENDS sheaves_read ${t_file}.hdf WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
+                    add_custom_target(${t_file}.hdf.log ALL DEPENDS sheaves_read ${t_file}.hdf WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
                     # Insert the target into the VS folder "Unit Test HDF Log Targets"
                     set_target_properties(${t_file}.hdf.log PROPERTIES FOLDER "Unit Test HDF Log Targets")
                     add_custom_command(TARGET ${t_file}.hdf.log WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
@@ -585,24 +585,16 @@ function(add_test_targets)
                     )
                 elseif(${PROJ_MEMBER} MATCHES "fiber_bundles_test")
                     # Generate a log file for each .t.hdf "make <test>.hdf will build and run a given executable.
-                    add_custom_target(${t_file}.hdf.log  DEPENDS fiber_bundles_read ${t_file}.hdf WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
+                    add_custom_target(${t_file}.hdf.log ALL DEPENDS fiber_bundles_read ${t_file}.hdf WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
                     # Insert the target into the VS folder "Unit Test HDF Log Targets"
                     set_target_properties(${t_file}.hdf.log PROPERTIES FOLDER "Unit Test HDF Log Targets")
                     add_custom_command(TARGET ${t_file}.hdf.log WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
                     POST_BUILD
                        COMMAND ${CMAKE_COMMAND} -E echo "Reading ${t_file}.hdf ... "
-                       COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE}/fiber_bundles_read ${t_file}.hdf > ${t_file}.hdf.log
+                       COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/fiber_bundles_read ${t_file}.hdf > ${t_file}.hdf.log
                     )                                             
                 endif()
-                                                
-                # Generate a log file for each .t.hdf "make <test>.hdf will build and run a given executable.
-                #add_custom_target(${t_file}.hdf.log DEPENDS sheaves_read fiber_bundles_read ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${t_file}.hdf )
-                #add_custom_target(${t_file}.hdf.log COMMAND sheaves_read ${t_file}.hdf DEPENDS sheaves_read ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${t_file}.hdf )
                
-                # Insert the unit tests into the VS folder "Unit Test HDF Log Targets"
-                #set_target_properties(${t_file}.hdf.log PROPERTIES FOLDER "Unit Test HDF Log Targets")
-                
-                
             elseif(WIN64MSVC OR WIN64INTEL)
                 #
                 # unit_test.hdf.log -> unit_test.hdf -> unit_test.log -> unit_test
@@ -641,7 +633,7 @@ function(add_test_targets)
                                                 
                 if(${PROJ_MEMBER} MATCHES "sheaves_test")
                     # Generate a log file for each .t.hdf "make <test>.hdf will build and run a given executable.
-                    add_custom_target(${t_file}.exe.hdf.log  DEPENDS sheaves_read ${t_file}.exe.hdf WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE})
+                    add_custom_target(${t_file}.exe.hdf.log ALL DEPENDS sheaves_read ${t_file}.exe.hdf WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE})
                     # Insert the target into the VS folder "Unit Test HDF Log Targets"
                     set_target_properties(${t_file}.exe.hdf.log PROPERTIES FOLDER "Unit Test HDF Log Targets")
                     add_custom_command(TARGET ${t_file}.exe.hdf.log WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE}
@@ -651,7 +643,7 @@ function(add_test_targets)
                     )
                 elseif(${PROJ_MEMBER} MATCHES "fiber_bundles_test")
                     # Generate a log file for each .t.hdf "make <test>.hdf will build and run a given executable.
-                    add_custom_target(${t_file}.exe.hdf.log  DEPENDS fiber_bundles_read ${t_file}.exe.hdf WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE})
+                    add_custom_target(${t_file}.exe.hdf.log ALL DEPENDS fiber_bundles_read ${t_file}.exe.hdf WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE})
                     # Insert the target into the VS folder "Unit Test HDF Log Targets"
                     set_target_properties(${t_file}.exe.hdf.log PROPERTIES FOLDER "Unit Test HDF Log Targets")
                     add_custom_command(TARGET ${t_file}.exe.hdf.log WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE}
