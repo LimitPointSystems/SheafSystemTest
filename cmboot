@@ -49,7 +49,7 @@ if [ ! -z $response ]; then
 	echo "Roger that, configuring ..."
 	echo ""	
 	# Redirect cmake errors to file
-	if cmake $user_args -DSHEAF_HOME=$response .. 2> cmake.error; then
+	if cmake $user_args -DSHEAFSYSTEM_HOME=$response .. 2> cmake.error; then
 		echo ""
 		echo "CMake configure complete. Now cd to $builddir and source the set_env_vars script"
 		echo "appropriate for your your shell before executing make."

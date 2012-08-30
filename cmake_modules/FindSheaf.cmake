@@ -16,12 +16,12 @@ set(SHEAF_FOUND 0)
 #
 # Find the exports file
 #
-message(STATUS "Looking for sheafSystem exports file ...")
+message(STATUS "Looking for SheafSystem exports file ...")
 find_file(SHEAFEXPORTSFILE SheafSystem-exports.cmake
     HINTS ${SHEAFSYSTEM_HOME} ${SHEAFSYSTEM_HOME}/build)
 # Not good. The exports file wasn't where SHEAF_HOME claimed it was.    
 if(${SHEAFEXPORTSFILE} MATCHES "SHEAFEXPORTSFILE-NOTFOUND")
-    message(FATAL_ERROR "sheafSystem-exports.cmake was not found in ${SHEAFSYSTEM_HOME}/build; Is the SHEAFSYSTEM_HOME variable set correctly?")
+    message(FATAL_ERROR "SheafSystem-exports.cmake was not found in ${SHEAFSYSTEM_HOME}/build; Is the SHEAFSYSTEM_HOME variable set correctly?")
 else()
     message(STATUS "Found ${SHEAFEXPORTSFILE}")
     include(${SHEAFEXPORTSFILE})
