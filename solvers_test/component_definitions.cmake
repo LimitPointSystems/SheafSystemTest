@@ -10,7 +10,7 @@
 # This file contains declarations and functions unique to this component.
 #
 
-include_directories(${STD_IPATH} ${SHEAVES_IPATH} ${FIBER_BUNDLES_IPATH} ${FIELDS_IPATH} ${SOLVERS_IPATH})
+include_directories(${SOLVERS_IPATHS})
 
 #
 # Include functions and definitions common to all components.

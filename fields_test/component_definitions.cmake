@@ -9,7 +9,7 @@
 #
 # This file contains declarations and functions unique to this component.
 #
-include_directories(${STD_IPATH} ${SHEAVES_IPATH} ${FIBER_BUNDLES_IPATH} ${GEOMETRY_IPATH} ${FIELDS_IPATH})
+include_directories(${FIELDS_IPATHS)
 #
 # Include functions and definitions common to all components.
 # 

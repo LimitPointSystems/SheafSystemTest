@@ -15,13 +15,23 @@
 # .
 include(${CMAKE_MODULE_PATH}/LPSCommon.cmake)
 
-include_directories(${STD_IPATH} ${SHEAVES_IPATH}) 
+include_directories(${SHEAVES_IPATHS}) 
 
 #
 # Define the clusters for this component.
 #
 set(clusters concurrency dof_iterators dof_maps examples id_spaces io iterators 
     maps posets support test_posets traversers)
+
+#
+# Announce current status.
+#
+status_message("Processing ${PROJECT_NAME}")
+
+#
+# Add the clusters to the project
+#
+add_clusters("${clusters}")
     
 #
 # Define the component library associated with this test module.
