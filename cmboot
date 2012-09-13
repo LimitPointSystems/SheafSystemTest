@@ -22,11 +22,11 @@ do
     	echo  "   CMake variable/value pair. See $builddir/CMakeCache.txt for a list of "
     	echo  "   variables that cmake understands."
     	echo  ""
-        echo  "   Example: $0 -DCMAKE_BUILD_TYPE=Debug-conracts"
+        echo  "   Example: $0 -DCMAKE_BUILD_TYPE=Debug-contracts"
     	echo  ""
-        echo  "   Example: $0 -DCMAKE_BUILD_TYPE=Debug-conracts -DLPS_DOC_STATE=User"
+        echo  "   Example: $0 -DCMAKE_BUILD_TYPE=Debug-contracts -DLPS_DOC_STATE=User"
     	echo  ""
-        echo  "   Example: $0 -DCMAKE_BUILD_TYPE=Debug-conracts -DLPS_DOC_STATE=User -DCMAKE_INSTALL_PREFIX=/tmp/test"
+        echo  "   Example: $0 -DCMAKE_BUILD_TYPE=Debug-contracts -DLPS_DOC_STATE=User -DCMAKE_INSTALL_PREFIX=/tmp/test"
     	echo  "";;
      *) break;;
   esac
@@ -38,7 +38,7 @@ cd $builddir;
 # give a little space
 echo ""
 
-# Get the sheaf source dir
+# Get the SheafSystem home dir from the user.
 echo "Enter fully qualified path to top level of SheafSystem source tree: "
 echo "   Example: /home/user/projects/SheafSystem-my-branch: "
 echo ""

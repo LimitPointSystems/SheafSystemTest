@@ -136,12 +136,6 @@ configure_file(${CMAKE_MODULE_PATH}/set_env_vars.csh.cmake.in ${CMAKE_BINARY_DIR
 configure_file(${CMAKE_MODULE_PATH}/set_env_vars.sh.cmake.in ${CMAKE_BINARY_DIR}/set_env_vars.sh)
 
 #
-# System level is responsible for installing the documentation. The component list (see system_definitions.cmake)
-# determines what components are included in the docs.
-#
-#install(DIRECTORY ${CMAKE_BINARY_DIR}/documentation/ DESTINATION documentation)
-
-#
 # Cpack Setup
 #
 if(LINUX64)
