@@ -12,6 +12,14 @@
 # This file is included in the top level CmakeLists.txt file, hence any prereq
 # discovered and included here will be visible to the entire system.
 #
+find_package(HDF5 1.8.3 REQUIRED)
+
+if(HDF5_FOUND)
+    configure_file(${CMAKE_MODULE_PATH}/hdf_definitions.cmake.in ${CMAKE_BINARY_DIR}/hdf_definitions.cmake)
+    include(${CMAKE_BINARY_DIR}/hdf_definitions.cmake)
+    link_directories(${HDF5_LIBRARY_DIRS})
+    include_directories(${HDF5_INCLUDE_DIRS})
+endif()
 
 #
 # Set the location of the sheaf system top level.
@@ -36,14 +44,7 @@ else()
     message(WARNING "Doxygen was not found. Documentation will not be generated.")
 endif()
 
-find_package(HDF5 1.8.3 REQUIRED)
 
-if(HDF5_FOUND)
-    configure_file(${CMAKE_MODULE_PATH}/hdf_definitions.cmake.in ${CMAKE_BINARY_DIR}/hdf_definitions.cmake)
-    include(${CMAKE_BINARY_DIR}/hdf_definitions.cmake)
-    link_directories(${HDF5_LIBRARY_DIRS})
-    include_directories(${HDF5_INCLUDE_DIRS})
-endif()
 
 #
 # Find tetgen

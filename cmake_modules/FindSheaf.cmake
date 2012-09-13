@@ -4,38 +4,34 @@
 #
 #
 
+# RAW is going to need to work with sheaf libs in one of 2 ways: It's either going
+# to have a "dev" version; that is a built version in SHEAFSYSTEM_HOME/build, or a snapshot release
+# $$TODO: Equip RAW to deal with either -- export the "exported file" in the snapshot target
+
 #
-#
-#
-# Initialize the "found" variable
+# Initialize the found variable
 #
 set(SHEAF_FOUND 0)
 
-# Determine if we are dealing with a build tree or install tree.
-message(STATUS "Checking nature of SheafSystem Tree ...")
-find_file(SHEAFEXPORTSFILE SheafSystem-exports.cmake
-    HINTS ${SHEAFSYSTEM_HOME}/config)
-# Not good. The exports file wasn't where SHEAF_HOME claimed it was.    
+#set(SHEAFSYSTEM_HOME $ENV{SHEAFSYSTEM_HOME} CACHE STRING "Sheaf Home Directory" FORCE)
+
+#
+# Find the exports file
+#
+message(STATUS "Looking for sheafSystem exports file ...")
+find_file(SHEAFEXPORTSFILE SheafSystem-exports.cmake.in
+    HINTS ${SHEAFSYSTEM_HOME} ${SHEAFSYSTEM_HOME}/${CMAKE_BUILD_TYPE}/config ${SHEAFSYSTEM_HOME}/build)
+# Not good. The exports file wasn't where SHEAFSYSTEM_HOME claimed it was.    
 if(${SHEAFEXPORTSFILE} MATCHES "SHEAFEXPORTSFILE-NOTFOUND")
-    message(WARNING "SheafSystem-exports.cmake was not found in ${SHEAFSYSTEM_HOME}/config; checking for a SheafSystem Build Tree ...")
-    # it wasnt an install. Check for a build tree
-    find_file(SHEAFEXPORTSFILE SheafSystem-exports.cmake
-    HINTS ${SHEAFSYSTEM_HOME}/build)
-    # Still didn't find it. Die.
-    if(${SHEAFEXPORTSFILE} MATCHES "SHEAFEXPORTSFILE-NOTFOUND")
-        message(FATAL_ERROR "SheafSystem-exports.cmake was not found in ${SHEAFSYSTEM_HOME}/build either; Is the SHEAFSYSTEM_HOME variable set correctly?")
-    else()
-        set(SHEAFSYSTEM_IS_BUILD 1)
-    endif()
+    message(FATAL_ERROR "SheafSystem-exports.cmake was not found; Is the SHEAFSYSTEM_HOME variable set correctly?")
 else()
-    message(STATUS "Found ${SHEAFEXPORTSFILE}")
+    message(STATUS "Found ${SHEAFEXPORTSFILE}; configuring ...")
+    configure_file(${SHEAFEXPORTSFILE} ${CMAKE_BINARY_DIR}/SheafSystemExports.cmake)
     include(${SHEAFEXPORTSFILE})
     set(SHEAF_FOUND 1)
-    set(SHEAFSYSTEM_IS_INSTALL 1)
 endif()
 
-message(STATUS "SHEAFSYSTEM_IS_BUILD is ${SHEAFSYSTEM_IS_BUILD}")
-message(STATUS "SHEAFSYSTEM_IS_INSTALL is ${SHEAFSYSTEM_IS_INSTALL}")
+
    
 
 

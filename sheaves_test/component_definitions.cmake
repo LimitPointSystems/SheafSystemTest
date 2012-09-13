@@ -24,16 +24,6 @@ set(clusters concurrency dof_iterators dof_maps examples id_spaces io iterators
     maps posets support test_posets traversers)
 
 #
-# Announce current status.
-#
-status_message("Processing ${PROJECT_NAME}")
-
-#
-# Add the clusters to the project
-#
-add_clusters("${clusters}")
-    
-#
 # Define the component library associated with this test module.
 #
 set(${COMPONENT}_SHARED_LIB libsheaves.so CACHE STRING "Sheaves Shared Library")
