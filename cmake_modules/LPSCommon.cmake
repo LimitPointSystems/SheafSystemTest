@@ -149,6 +149,7 @@ function(check_cxx_includes)
 
 endfunction(check_cxx_includes)
 
+
 #
 # Set the compiler flags per build configuration
 #
@@ -205,17 +206,16 @@ function(set_compiler_flags)
         endif()
     else()
         if(${USE_VTK})
-            set(CMAKE_CXX_FLAGS_DEBUG-CONTRACTS "${LPS_CXX_FLAGS} -g -DUSE_VTK" CACHE
+            set(CMAKE_CXX_FLAGS_DEBUG-CONTRACTS "${LPS_CXX_FLAGS} -g -DUSE_VTK " CACHE
                 STRING "Flags used by the C++ compiler for Debug-contracts builds" FORCE)
         else()         
-            #set(CMAKE_CXX_FLAGS_DEBUG-CONTRACTS "${LPS_CXX_FLAGS} -g " CACHE
-            set(CMAKE_CXX_FLAGS_DEBUG-CONTRACTS "${LPS_CXX_FLAGS} -g -fprofile-arcs -ftest-coverage" CACHE
+            set(CMAKE_CXX_FLAGS_DEBUG-CONTRACTS "${LPS_CXX_FLAGS} -g" CACHE
                 STRING "Flags used by the C++ compiler for Debug-contracts builds" FORCE)
         endif()
     endif()
     
     # True for all currently supported platforms    
-    set(CMAKE_EXE_LINKER_FLAGS_DEBUG-CONTRACTS ${CMAKE_EXE_LINKER_FLAGS} CACHE
+    set(CMAKE_EXE_LINKER_FLAGS_DEBUG-CONTRACTS ${CMAKE_EXE_LINKER_FLAGS}  CACHE
         STRING "Flags used by the linker for executables for Debug-contracts builds" FORCE)
     set(CMAKE_SHARED_LINKER_FLAGS_DEBUG-CONTRACTS ${LPS_SHARED_LINKER_FLAGS} CACHE
         STRING "Flags used by the linker for shared libraries for Debug-contracts builds" FORCE)
@@ -240,8 +240,7 @@ function(set_compiler_flags)
             set(CMAKE_CXX_FLAGS_DEBUG-NO-CONTRACTS "${LPS_CXX_FLAGS} -g -DNDEBUG -DUSE_VTK" CACHE
                 STRING "Flags used by the C++ compiler for Debug-no-contracts builds" FORCE)
         else()
-            #set(CMAKE_CXX_FLAGS_DEBUG-NO-CONTRACTS "${LPS_CXX_FLAGS} -g -DNDEBUG" CACHE
-            set(CMAKE_CXX_FLAGS_DEBUG-NO-CONTRACTS "${LPS_CXX_FLAGS} -g -DNDEBUG -fprofile-arcs -ftest-coverage" CACHE
+            set(CMAKE_CXX_FLAGS_DEBUG-NO-CONTRACTS "${LPS_CXX_FLAGS} -g -DNDEBUG" CACHE
                 STRING "Flags used by the C++ compiler for Debug-no-contracts builds" FORCE)
         endif()
     endif()

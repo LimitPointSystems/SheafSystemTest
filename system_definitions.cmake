@@ -34,6 +34,7 @@ elseif(CMAKE_HOST_SYSTEM_NAME MATCHES "Linux" AND CMAKE_COMPILER_IS_GNUCXX AND C
 # OS is 64 bit linux, compiler is icpc
 elseif(CMAKE_HOST_SYSTEM_NAME MATCHES "Linux" AND CMAKE_CXX_COMPILER_ID MATCHES "Intel" AND CMAKE_SIZEOF_VOID_P MATCHES "8")
     set(LINUX64INTEL ON CACHE BOOL "Intel compiler in use.")
+    message(STATUS "Using Intel compiler")    
 else()
     message(FATAL_ERROR "A 64 bit Windows or Linux environment was not detected; exiting")
 endif()
