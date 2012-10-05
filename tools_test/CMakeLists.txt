@@ -48,7 +48,7 @@ create_output_dirs()
 #
 # Add the library targets
 #
-add_library_targets()
+#add_library_targets()
 
 #
 # Add Bindings targets
