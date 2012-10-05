@@ -16,7 +16,7 @@ set(CLUSTER ${CMAKE_CURRENT_BINARY_DIR})
 # Library sources.
 #
 set(SRCS
-    sec_ed_invertible.cc
+
 )
 
 collect_sources()

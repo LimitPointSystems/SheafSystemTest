@@ -41,6 +41,11 @@ set_compiler_flags()
 create_output_dirs()
 
 #
+# Add the library targets
+#
+add_library_targets()
+
+#
 # Testing targets
 #
 add_test_targets()

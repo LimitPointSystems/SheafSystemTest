@@ -16,8 +16,7 @@ set(CLUSTER id_spaces)
 # Library sources.
 #
 set(SRCS
-    section_space_schema_index_map.cc
-    section_space_schema_index_map_iterator.cc
+
 )
 
 collect_sources()

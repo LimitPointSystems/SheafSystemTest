@@ -16,14 +16,7 @@ set(CLUSTER dof_maps)
 # Library sources.
 #
 set(SRCS
-    array_poset_dof_map.cc
-    dof_descriptor_array.cc
-    dof_map_factory.cc
-    dof_tuple_type.cc
-    namespace_poset_dof_map.cc
-    poset_dof_map.cc
-    primitives_poset_dof_map.cc
-)
+    )
 
 collect_sources()
 

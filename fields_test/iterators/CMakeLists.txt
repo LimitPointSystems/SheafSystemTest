@@ -16,13 +16,7 @@ set(CLUSTER iterators)
 # Library sources.
 #
 set(SRCS
-    field_eval_iterator.cc
-    property_disc_iterator.cc
-    property_disc_iterator_1_1.cc
-    property_disc_iterator_1_2.cc
-    property_disc_iterator_1_3.cc
-    property_disc_iterator_4_2.cc
-    property_disc_iterator_4_3.cc
+
 )
 
 collect_sources()

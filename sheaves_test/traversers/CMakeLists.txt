@@ -13,10 +13,6 @@
 set(CLUSTER traversers)
 
 set(SRCS
-    poset_dft.cc
-    poset_orderer.cc
-    poset_slicer.cc
-    poset_traverser.cc
 )
 
 collect_sources()

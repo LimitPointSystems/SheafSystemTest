@@ -16,8 +16,7 @@ set(CLUSTER general)
 # Library sources.
 #
 set(SRCS
-    fiber_bundle.cc
-    fiber_bundles_namespace.cc
+
 )
 
 collect_sources()
@@ -26,8 +25,7 @@ collect_sources()
 # Headers that are NOT associated with a .cc file.
 #
 set(ADDITIONAL_INCS
-    fiber_bundle.impl.h 
-    fiber_bundles_namespace.impl.h
+
   )
 
 collect_includes()

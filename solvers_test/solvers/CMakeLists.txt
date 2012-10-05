@@ -16,21 +16,7 @@ set(CLUSTER iterators)
 # Library sources.
 #
 set(SRCS
-    algebraic_system.cc
-    banded_algebraic_system.cc
-    banded_pde_solver.cc
-    banded_solver.cc
-    direct_banded_solver.cc
-    linear_solver.cc
-    pde_solver.cc
-    poisson_eqn.cc
-    poisson_term_evaluator.cc
-    poisson_terms_bilinear_2d.cc
-    poisson_terms_linear_1d.cc
-    poisson_terms_linear_2d.cc
-    poisson_terms_linear_3d.cc
-    poisson_terms_trilinear_3d.cc
-    poisson_terms_0d.cc
+
 )
 
 collect_sources()

@@ -16,25 +16,7 @@ set(CLUSTER refiners)
 # Library sources.
 #
 set(SRCS
-    barycentric_refiner_family.cc
-    barycentric_quad_refiner.cc
-    barycentric_triangle_refiner.cc
-    depth_bound_refinement_policy.cc
-    edge_centered_polygon_refiner.cc
-    edge_centered_refiner_family.cc
-    edge_centered_triangle_refiner.cc
-    field_refinement_buffer.cc
-    field_refinement_policy.cc
-    field_refiner.cc
-    field_refiner_family.cc
-    local_field_refiner.cc
-    refining_section_pusher.cc
-    variance_bound_refinement_policy.cc
-    zone_centered_error_bound_refinement_policy.cc
-    zone_centered_refiner_family.cc
-    zone_centered_segment_refiner.cc
-    zone_centered_tet_refiner.cc
-    zone_centered_triangle_refiner.cc
+
 )
 
 collect_sources()

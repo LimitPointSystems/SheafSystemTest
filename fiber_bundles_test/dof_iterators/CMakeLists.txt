@@ -16,8 +16,7 @@ set(CLUSTER dof_iterators)
 # Library sources.
 #
 set(SRCS
-    binary_section_dof_iterator.cc
-    section_dof_iterator.cc
+
 )
 
 collect_sources()

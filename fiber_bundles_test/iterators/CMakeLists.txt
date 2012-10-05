@@ -16,13 +16,7 @@ set(CLUSTER iterators)
 # Library sources.
 #
 set(SRCS
-    binary_section_component_iterator.cc
-    discretization_context.cc
-    discretization_iterator.cc
-    eval_iterator.cc
-    section_eval_iterator.cc
-    section_component_iterator.cc
-    section_iteration_state.cc
+
 )
 
 collect_sources()

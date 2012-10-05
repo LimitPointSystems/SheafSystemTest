@@ -17,13 +17,6 @@ set(CLUSTER concurrency)
 # Library sources.
 #
 set(SRCS
-    equivalence.cc 
-    read_write_monitor.cc 
-    read_write_monitor_handle.cc 
-    runnable.cc 
-    thread.cc 
-    thread_condition_variable.cc 
-    thread_mutex.cc
     )
 
 collect_sources()

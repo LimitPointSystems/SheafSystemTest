@@ -16,9 +16,7 @@ set(CLUSTER dof_maps)
 # Library sources.
 #
 set(SRCS
-    array_section_dof_map.cc
-    section_dof_map.cc
-    sparse_section_dof_map.cc
+
 )
 
 collect_sources()

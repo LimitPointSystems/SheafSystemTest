@@ -16,23 +16,7 @@ set(CLUSTER pushers)
 # Library sources.
 #
 set(SRCS
-    average_base_space_map_push_action.cc
-    average_push_action.cc
-    avg_section_pusher.cc
-    base_space_map.cc
-    base_space_map_push_action.cc
-    body_builder.cc
-    body_factory.cc
-    body_pusher.cc
-    body_pusher_pullback_action.cc
-    constant_base_space_map_push_action.cc
-    constant_push_action.cc
-    copy_base_space_map_push_action.cc
-    copy_push_action.cc
-    pullback_map.cc
-    section_pusher.cc
-    section_pusher_pullback_action.cc
-    section_pusher_push_action.cc
+
 )
 
 collect_sources()

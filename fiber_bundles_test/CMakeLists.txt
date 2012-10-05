@@ -36,6 +36,11 @@ set_compiler_flags()
 create_output_dirs()
 
 #
+# Add the library targets
+#
+add_library_targets()
+
+#
 # Add the unit test targets
 #
 add_test_targets()
@@ -50,10 +55,7 @@ add_example_targets()
 #
 add_component_check_target()
 
-#
-# Component specific checklog target
-#
-#add_component_checklog_target()
+
 
 #
 # Component specific coverage target

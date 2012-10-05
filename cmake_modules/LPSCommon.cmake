@@ -742,6 +742,7 @@ function(set_component_vars)
         set(${COMPONENT}_IMPORT_LIB ${PROJECT_NAME}dll CACHE STRING "${PROJECT_NAME} import library")
     else()
         set(${COMPONENT}_SHARED_LIB lib${PROJECT_NAME}.so CACHE STRING "${PROJECT_NAME} shared library")
+                message(STATUS "Library name is: ${${COMPONENT}_SHARED_LIB}") 
         set(${COMPONENT}_STATIC_LIB lib${PROJECT_NAME}.a CACHE STRING "${PROJECT_NAME} static library")
     endif()
 

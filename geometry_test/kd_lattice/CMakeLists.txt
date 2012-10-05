@@ -18,37 +18,7 @@ set(CLUSTER ${CMAKE_CURRENT_BINARY_DIR})
 # Library sources.
 #
 set(SRCS
-  abstract_cohort.cc 
-  cohort.cc 
-  d_cells_cohort.cc 
-  jim_cohort.cc 
-  kd_bounding_box.cc 
-  kd_display.cc
-  kd_edge.cc 
-  kd_edge_cohort.cc 
-  kd_enums.cc 
-  kd_face.cc 
-  kd_face_cohort.cc 
-  kd_lattice.cc 
-  kd_line.cc 
-  kd_line_fragment.cc 
-  kd_member.cc 
-  kd_plane.cc 
-  kd_point.cc 
-  kd_region.cc
-  kd_segment.cc 
-  kd_surface.cc 
-  kd_tetgen_generator.cc 
-  kd_triangle.cc
-  kd_truncation_pair.cc
-  kd_truncation.cc
-  kd_vertex.cc 
-  kd_vertex_cohort.cc 
-  kd_zone.cc 
-  kd_zone_cohort.cc 
-  pooled_cohort.cc 
-  subcohort.cc 
-  vertex_cohort.cc 
+
 )
 
 collect_sources()

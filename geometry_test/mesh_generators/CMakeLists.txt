@@ -18,8 +18,7 @@ set(CLUSTER ${CMAKE_CURRENT_BINARY_DIR})
 # Library sources.
 #
 set(SRCS
-    mesh_generator.cc
-    tetgen_generator.cc
+
 )
 
 collect_sources()

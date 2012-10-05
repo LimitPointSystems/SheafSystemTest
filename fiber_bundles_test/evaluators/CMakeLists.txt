@@ -16,32 +16,7 @@ set(CLUSTER evaluators)
 # Library sources.
 #
 set(SRCS
-    dlinear_eval_family.cc
-    differentiable_section_evaluator.cc
-    constant_eval_family.cc
-    constant_fcn_space.cc
-    constant_hex.cc
-    constant_point.cc
-    constant_quad.cc
-    constant_segment.cc
-    constant_tet.cc
-    constant_triangle.cc
-    eval_family.cc
-    integrable_section_evaluator.cc
-    uniform_eval_family.cc
-    section_evaluator.cc
-    linear_fcn_space.cc
-    bilinear_2d.cc
-    linear_1d.cc
-    linear_2d.cc
-    linear_3d.cc
-    quadratic_1d.cc
-    quadratic_2d.cc
-    quadratic_3d.cc
-    trilinear_3d.cc
-    uniform_1d.cc
-    uniform_2d.cc
-    uniform_3d.cc
+
 )
 
 collect_sources()
