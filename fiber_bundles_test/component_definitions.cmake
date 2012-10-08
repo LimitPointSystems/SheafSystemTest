@@ -26,45 +26,41 @@ set(clusters base_spaces dof_iterators dof_maps evaluators fiber_spaces general
 #
 set_component_vars()
 
-#
-# Define the SheafSystem component library associated with this test module.
-#
-set(${COMPONENT}_EXTERNAL_LIB libfiber_bundles.so CACHE STRING "Fiber_bundles Shared Library")
 
 if(WIN64INTEL OR WIN64MSVC)
 
     #
     # Set the cumulative import library (win32) var for this component.
     #
-    set(${COMPONENT}_IMPORT_LIBS ${${COMPONENT}_IMPORT_LIB} ${SHEAVES_IMPORT_LIBS} CACHE STRING " Cumulative import libraries (win32) for ${PROJECT_NAME}" FORCE)
+    set(${COMPONENT}_IMPORT_LIBS ${${COMPONENT}_IMPORT_LIB} ${SHEAVES_TEST_IMPORT_LIBS} CACHE STRING " Cumulative import libraries (win32) for ${PROJECT_NAME}" FORCE)
 
 else()
 
     #
     # Set the cumulative shared library var for this component.
     #
-    set(${COMPONENT}_STATIC_LIBS ${${COMPONENT}_STATIC_LIB} ${SHEAVES_STATIC_LIBS} CACHE STRING " Cumulative static libraries for ${PROJECT_NAME}" FORCE)
+    set(${COMPONENT}_STATIC_LIBS ${${COMPONENT}_STATIC_LIB} ${SHEAVES_TEST_STATIC_LIBS} CACHE STRING " Cumulative static libraries for ${PROJECT_NAME}" FORCE)
     
     #
     # Set the cumulative shared library var for this component.
     #
-    set(${COMPONENT}_SHARED_LIBS ${${COMPONENT}_SHARED_LIB} ${SHEAVES_SHARED_LIBS} CACHE STRING " Cumulative shared libraries for ${PROJECT_NAME}" FORCE)
+    set(${COMPONENT}_SHARED_LIBS ${${COMPONENT}_SHARED_LIB} ${SHEAVES_TEST_SHARED_LIBS} CACHE STRING " Cumulative shared libraries for ${PROJECT_NAME}" FORCE)
     
     #
     # Set the cumulative Java binding library var for this component.
     #
-    set(${COMPONENT}_JAVA_BINDING_LIBS ${${COMPONENT}_JAVA_BINDING_LIB} ${SHEAVES_JAVA_BINDING_LIBS} CACHE STRING " Cumulative Java binding libraries for ${PROJECT_NAME}" FORCE)
+    set(${COMPONENT}_JAVA_BINDING_LIBS ${${COMPONENT}_JAVA_BINDING_LIB} ${SHEAVES_TEST_JAVA_BINDING_LIBS} CACHE STRING " Cumulative Java binding libraries for ${PROJECT_NAME}" FORCE)
     
     #
     # Set the cumulative Python binding library var for this component.
     #
-    set(${COMPONENT}_PYTHON_BINDING_LIBS ${${COMPONENT}_PYTHON_BINDING_LIB} ${SHEAVES_PYTHON_BINDING_LIBS} CACHE STRING " Cumulative Python binding libraries for ${PROJECT_NAME}" FORCE)
+    set(${COMPONENT}_PYTHON_BINDING_LIBS ${${COMPONENT}_PYTHON_BINDING_LIB} ${SHEAVES_TEST_PYTHON_BINDING_LIBS} CACHE STRING " Cumulative Python binding libraries for ${PROJECT_NAME}" FORCE)
 
 endif()      
 #
 # Set the cumulative include path for this component.
 #
-set(${COMPONENT}_IPATHS ${${COMPONENT}_IPATH} ${SHEAVES_IPATHS} CACHE STRING " Cumulative include paths for ${PROJECT_NAME}" FORCE)
+set(${COMPONENT}_IPATHS ${${COMPONENT}_IPATH} ${SHEAVES_TEST_IPATHS} CACHE STRING " Cumulative include paths for ${PROJECT_NAME}" FORCE)
 
 #------------------------------------------------------------------------------
 # FUNCTION DEFINITION SECTION
@@ -81,9 +77,9 @@ function(add_library_targets)
         link_directories(${${COMPONENT}_OUTPUT_DIR})
         # Create the DLL.
         add_library(${${COMPONENT}_DYNAMIC_LIB} SHARED ${${COMPONENT}_SRCS})
-        add_dependencies(${${COMPONENT}_DYNAMIC_LIB} ${SHEAVES_IMPORT_LIBS})
+        add_dependencies(${${COMPONENT}_DYNAMIC_LIB} ${SHEAVES_TEST_IMPORT_LIBS})
 
-        target_link_libraries(${${COMPONENT}_DYNAMIC_LIB} ${SHEAVES_IMPORT_LIBS} )
+        target_link_libraries(${${COMPONENT}_DYNAMIC_LIB} ${SHEAVES_TEST_IMPORT_LIBS} )
         set_target_properties(${${COMPONENT}_DYNAMIC_LIB} PROPERTIES FOLDER "Component Library Targets")
         # Override cmake's placing of "${${COMPONENT}_DYNAMIC_LIB}_EXPORTS into the preproc symbol table.
         set_target_properties(${${COMPONENT}_DYNAMIC_LIB} PROPERTIES DEFINE_SYMBOL "SHEAF_DLL_EXPORTS")
@@ -92,12 +88,12 @@ function(add_library_targets)
     
         # Static library
         add_library(${${COMPONENT}_STATIC_LIB} STATIC ${${COMPONENT}_SRCS})
-        add_dependencies(${${COMPONENT}_STATIC_LIB} ${SHEAVES_STATIC_LIB})
+        add_dependencies(${${COMPONENT}_STATIC_LIB} ${SHEAVES_TEST_STATIC_LIB})
         set_target_properties(${${COMPONENT}_STATIC_LIB} PROPERTIES OUTPUT_NAME ${PROJECT_NAME} )
 
         # Shared library
         add_library(${${COMPONENT}_SHARED_LIB} SHARED ${${COMPONENT}_SRCS})
-        add_dependencies(${${COMPONENT}_SHARED_LIB} ${SHEAVES_SHARED_LIBS})
+        add_dependencies(${${COMPONENT}_SHARED_LIB} ${SHEAVES_TEST_SHARED_LIBS})
         set_target_properties(${${COMPONENT}_SHARED_LIB} PROPERTIES OUTPUT_NAME ${PROJECT_NAME} LINKER_LANGUAGE CXX)
         set_target_properties(${${COMPONENT}_SHARED_LIB} PROPERTIES LINK_INTERFACE_LIBRARIES "") 
         

@@ -541,12 +541,12 @@ function(add_test_targets)
                 set_target_properties(${t_file} PROPERTIES COMPILE_DEFINITIONS "SHEAF_DLL_IMPORTS")
                 add_dependencies(${t_file} fieldsdll.dll)
             else()
-                add_dependencies(${t_file} ${${COMPONENT}_SHARED_LIB})
+                add_dependencies(${t_file} libsheaves.so)
             endif()
 
             if(LINUX64GNU OR LINUX64INTEL)
             
-                target_link_libraries(${t_file} ${${COMPONENT}_SHARED_LIB} ${HDF5_LIBRARIES})
+                target_link_libraries(${t_file} libsheaves.so ${HDF5_LIBRARIES})
 
                 # Add a test target for ${t_file}
                 add_test(NAME ${t_file} WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} COMMAND $<TARGET_FILE:${t_file}>)
@@ -593,7 +593,16 @@ function(add_test_targets)
                        COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/fiber_bundles_read ${t_file}.hdf > ${t_file}.hdf.log
                     )                                             
                 endif()
-               
+ 
+                 # Generate a log file for each .t. "make <test>.log will build and run a given executable.
+                add_custom_target(${t_file}. WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} COMMAND ${t_file} > ${t_file}.log DEPENDS ${t_file} )
+                
+                add_custom_target(${t_file}.cov DEPENDS ${t_file}.hdf.log
+                # Create the "classes of interest" file.
+                COMMAND ${CMAKE_COMMAND} -E echo ${t_file} > cov_files.txt
+                COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_BINARY_DIR}/${PROJECT_NAME} ${PROFMERGE}
+                COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_BINARY_DIR}/${PROJECT_NAME} ${CODECOV} -comp cov_files.txt -bcolor ${UNCOVERED_COLOR} -ccolor ${COVERED_COLOR} -pcolor ${PARTIAL_COLOR} -prj ${PROJECT_NAME} -txtbcvrgfull ${PROJECT_NAME}_cov.out -demang
+                )               
             elseif(WIN64MSVC OR WIN64INTEL)
                 #
                 # unit_test.hdf.log -> unit_test.hdf -> unit_test.log -> unit_test

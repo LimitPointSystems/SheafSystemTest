@@ -28,10 +28,6 @@ set(clusters concurrency dof_iterators dof_maps examples id_spaces io iterators
 #
 set_component_vars()
 
-#
-# Define the component library associated with this test module.
-#
-set(${COMPONENT}_EXTERNAL_LIB libsheaves.so CACHE STRING "Sheaves Shared Library")
 
 #
 # We don't have to use this decision structure. Windows and linux will ignore the other's lib vars. Just keeps things tidy in the CMake GUI.
@@ -41,19 +37,19 @@ if(WIN64INTEL OR WIN64MSVC)
     #
     # Set the cumulative import library (win32) var for this component.
     #
-    set(${COMPONENT}_IMPORT_LIBS ${HDF5_DLL_LIBRARY} ${${COMPONENT}_IMPORT_LIB}  CACHE STRING " Cumulative import libraries (win32) for ${PROJECT_NAME}" FORCE)
+    set(${COMPONENT}_IMPORT_LIBS ${SHEAVES_IMPORT_LIBS} ${${COMPONENT}_IMPORT_LIB}  CACHE STRING " Cumulative import libraries (win32) for ${PROJECT_NAME}" FORCE)
 
 else()
 
     #
     # Set the cumulative shared library var for this component.
     #
-    set(${COMPONENT}_STATIC_LIBS ${HDF5_LIBRARIES} ${${COMPONENT}_STATIC_LIB} CACHE STRING " Cumulative static libraries for ${PROJECT_NAME}" FORCE)
+    set(${COMPONENT}_STATIC_LIBS $${SHEAVES_STATIC_LIBS} ${${COMPONENT}_STATIC_LIB} CACHE STRING " Cumulative static libraries for ${PROJECT_NAME}" FORCE)
     
     #
     # Set the cumulative shared library var for this component.
     #
-    set(${COMPONENT}_SHARED_LIBS ${HDF5_LIBRARIES} ${${COMPONENT}_SHARED_LIB} CACHE STRING " Cumulative shared libraries for ${PROJECT_NAME}" FORCE)
+    set(${COMPONENT}_SHARED_LIBS ${SHEAVES_SHARED_LIBS} ${${COMPONENT}_SHARED_LIB} CACHE STRING " Cumulative shared libraries for ${PROJECT_NAME}" FORCE)
 
 endif()
 
@@ -93,14 +89,13 @@ function(add_library_targets)
         # Static library
         add_library(${${COMPONENT}_STATIC_LIB} STATIC ${${COMPONENT}_SRCS})
         set_target_properties(${${COMPONENT}_STATIC_LIB} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
-        message(STATUS "Shared lib name is: ${COMPONENT}")
-        message(STATUS "Project name is: ${PROJECT_NAME}")
-        message(STATUS "Library name is: ${${COMPONENT}_SHARED_LIB}")  
+        add_dependencies(${${COMPONENT}_STATIC_LIB} ${SHEAVES_STATIC_LIBS})
+
         # Shared library
         add_library(${${COMPONENT}_SHARED_LIB} SHARED ${${COMPONENT}_SRCS})
         set_target_properties(${${COMPONENT}_SHARED_LIB} PROPERTIES OUTPUT_NAME ${PROJECT_NAME} LINKER_LANGUAGE CXX)
         set_target_properties(${${COMPONENT}_SHARED_LIB} PROPERTIES LINK_INTERFACE_LIBRARIES "")        
-        add_dependencies(${${COMPONENT}_SHARED_LIB} ${HDF5_LIBRARIES})
+        add_dependencies(${${COMPONENT}_SHARED_LIB} ${SHEAVES_SHARED_LIBS})
  
         # Override cmake's placing of "${COMPONENT_LIB}_EXPORTS into the preproc symbol table.
         # CMake apparently detects the presence of cdecl_dllspec in the source and places
@@ -114,8 +109,8 @@ function(add_library_targets)
         add_dependencies(${PROJECT_NAME}-shared-lib ${${COMPONENT}_SHARED_LIB})
         add_dependencies(${PROJECT_NAME}-static-lib ${${COMPONENT}_STATIC_LIB})
     
-        target_link_libraries(${${COMPONENT}_SHARED_LIB} ${HDF5_LIBRARIES})
-        target_link_libraries(${${COMPONENT}_STATIC_LIB} ${HDF5_LIBRARIES})
+        target_link_libraries(${${COMPONENT}_SHARED_LIB} ${SHEAVES_SHARED_LIBS})
+        target_link_libraries(${${COMPONENT}_STATIC_LIB} ${SHEAVES_STATIC_LIBS})
         
         add_custom_command(TARGET ${${COMPONENT}_SHARED_LIB} POST_BUILD
             # rename the coverage output files and put them in lib
