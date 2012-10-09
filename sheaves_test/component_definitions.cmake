@@ -37,26 +37,26 @@ if(WIN64INTEL OR WIN64MSVC)
     #
     # Set the cumulative import library (win32) var for this component.
     #
-    set(${COMPONENT}_IMPORT_LIBS ${SHEAVES_IMPORT_LIBS} ${${COMPONENT}_IMPORT_LIB}  CACHE STRING " Cumulative import libraries (win32) for ${PROJECT_NAME}" FORCE)
+    set(${COMPONENT}_IMPORT_LIBS ${${COMPONENT}_IMPORT_LIB} ${SHEAVES_IMPORT_LIBS}  CACHE STRING " Cumulative import libraries (win32) for ${PROJECT_NAME}" FORCE)
 
 else()
 
     #
     # Set the cumulative shared library var for this component.
     #
-    set(${COMPONENT}_STATIC_LIBS $${SHEAVES_STATIC_LIBS} ${${COMPONENT}_STATIC_LIB} CACHE STRING " Cumulative static libraries for ${PROJECT_NAME}" FORCE)
+    set(${COMPONENT}_STATIC_LIBS ${${COMPONENT}_STATIC_LIB} ${SHEAVES_STATIC_LIBS} CACHE STRING " Cumulative static libraries for ${PROJECT_NAME}" FORCE)
     
     #
     # Set the cumulative shared library var for this component.
     #
-    set(${COMPONENT}_SHARED_LIBS ${SHEAVES_SHARED_LIBS} ${${COMPONENT}_SHARED_LIB} CACHE STRING " Cumulative shared libraries for ${PROJECT_NAME}" FORCE)
+    set(${COMPONENT}_SHARED_LIBS ${${COMPONENT}_SHARED_LIB} CACHE STRING " Cumulative shared libraries for ${PROJECT_NAME}" FORCE)
 
 endif()
 
 #
 # Set the cumulative include path for this component.
 #
-set(${COMPONENT}_IPATHS ${${COMPONENT}_IPATH} ${CMAKE_BINARY_DIR}/include CACHE STRING " Cumulative include paths for ${PROJECT_NAME}" FORCE)
+set(${COMPONENT}_IPATHS ${${COMPONENT}_IPATH} ${SHEAVES_IPATHS} ${CMAKE_BINARY_DIR}/include CACHE STRING " Cumulative include paths for ${PROJECT_NAME}" FORCE)
 
 #
 # Check for the presence of system cxx includes.
@@ -109,8 +109,8 @@ function(add_library_targets)
         add_dependencies(${PROJECT_NAME}-shared-lib ${${COMPONENT}_SHARED_LIB})
         add_dependencies(${PROJECT_NAME}-static-lib ${${COMPONENT}_STATIC_LIB})
     
-        target_link_libraries(${${COMPONENT}_SHARED_LIB} ${SHEAVES_SHARED_LIBS})
-        target_link_libraries(${${COMPONENT}_STATIC_LIB} ${SHEAVES_STATIC_LIBS})
+        target_link_libraries(${${COMPONENT}_SHARED_LIB} ${HDF5_LIBRARIES})
+        target_link_libraries(${${COMPONENT}_STATIC_LIB} ${HDF5_LIBRARIES})
         
         add_custom_command(TARGET ${${COMPONENT}_SHARED_LIB} POST_BUILD
             # rename the coverage output files and put them in lib

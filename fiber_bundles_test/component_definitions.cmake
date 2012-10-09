@@ -39,7 +39,7 @@ else()
     #
     # Set the cumulative shared library var for this component.
     #
-    set(${COMPONENT}_STATIC_LIBS ${${COMPONENT}_STATIC_LIB} ${SHEAVES_TEST_STATIC_LIBS} CACHE STRING " Cumulative static libraries for ${PROJECT_NAME}" FORCE)
+    set(${COMPONENT}_STATIC_LIBS ${${COMPONENT}_STATIC_LIB} ${SHEAVES_TEST_STATIC_LIBS} ${FIBER_BUNDLES_STATIC_LIBS} CACHE STRING " Cumulative static libraries for ${PROJECT_NAME}" FORCE)
     
     #
     # Set the cumulative shared library var for this component.
@@ -88,12 +88,12 @@ function(add_library_targets)
     
         # Static library
         add_library(${${COMPONENT}_STATIC_LIB} STATIC ${${COMPONENT}_SRCS})
-        add_dependencies(${${COMPONENT}_STATIC_LIB} ${SHEAVES_TEST_STATIC_LIB})
+        add_dependencies(${${COMPONENT}_STATIC_LIB} ${SHEAVES_TEST_STATIC_LIBS} ${FIBER_BUNDLES_STATIC_LIBS})
         set_target_properties(${${COMPONENT}_STATIC_LIB} PROPERTIES OUTPUT_NAME ${PROJECT_NAME} )
 
         # Shared library
         add_library(${${COMPONENT}_SHARED_LIB} SHARED ${${COMPONENT}_SRCS})
-        add_dependencies(${${COMPONENT}_SHARED_LIB} ${SHEAVES_TEST_SHARED_LIBS})
+        add_dependencies(${${COMPONENT}_SHARED_LIB} ${SHEAVES_TEST_SHARED_LIBS} ${FIBER_BUNDLES_SHARED_LIBS})
         set_target_properties(${${COMPONENT}_SHARED_LIB} PROPERTIES OUTPUT_NAME ${PROJECT_NAME} LINKER_LANGUAGE CXX)
         set_target_properties(${${COMPONENT}_SHARED_LIB} PROPERTIES LINK_INTERFACE_LIBRARIES "") 
         
@@ -109,8 +109,8 @@ function(add_library_targets)
         add_dependencies(${PROJECT_NAME}-shared-lib ${${COMPONENT}_SHARED_LIBS})
         add_dependencies(${PROJECT_NAME}-static-lib ${${COMPONENT}_STATIC_LIBS})
     
-        target_link_libraries(${${COMPONENT}_SHARED_LIB} ${${COMPONENT}_SHARED_LIBS})
-        target_link_libraries(${${COMPONENT}_STATIC_LIB} ${${COMPONENT}_STATIC_LIBS})
+        target_link_libraries(${${COMPONENT}_SHARED_LIB} ${SHEAVES_SHARED_LIBS} ${SHEAVES_TEST_SHARED_LIBS})
+        target_link_libraries(${${COMPONENT}_STATIC_LIB} ${SHEAVES_STATIC_LIBS} ${SHEAVES_TEST_STATIC_LIBS})
         
         add_custom_command(TARGET ${${COMPONENT}_SHARED_LIB} POST_BUILD
             # rename the coverage output files and put them in lib

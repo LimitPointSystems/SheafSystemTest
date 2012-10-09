@@ -10,7 +10,7 @@
 set(SHEAF_FOUND 0)
 
 #
-# Find the exports file
+# Find the SheafSystem exports file
 #
 message(STATUS "Looking for SheafSystem exports file ...")
 # Look for a binary installation of SheafSystem first

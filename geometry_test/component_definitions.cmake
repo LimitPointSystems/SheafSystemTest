@@ -25,11 +25,6 @@ set(clusters coordinates general kd_lattice mesh_generators point_locators)
 #
 set_component_vars()
 
-#
-# Define the component library associated with this test module.
-#
-set(${COMPONENT}_EXTERNAL_LIB libgeometry.so CACHE STRING "Geometry Shared Library")
-
 
 if(WIN64INTEL OR WIN64MSVC)
 
@@ -48,7 +43,7 @@ else()
     #
     # Set the cumulative shared library var for this component.
     #
-    set(${COMPONENT}_SHARED_LIBS ${${COMPONENT}_SHARED_LIB} ${FIBER_BUNDLES_SHARED_LIBS} CACHE STRING " Cumulative shared libraries for ${PROJECT_NAME}" FORCE)
+    set(${COMPONENT}_SHARED_LIBS ${${COMPONENT}_SHARED_LIB} ${FIBER_BUNDLES_TEST_SHARED_LIBS} CACHE STRING " Cumulative shared libraries for ${PROJECT_NAME}" FORCE)
     
     #
     # Set the cumulative Java binding library var for this component.
@@ -107,7 +102,7 @@ function(add_library_targets)
 
          # Shared library
         add_library(${${COMPONENT}_SHARED_LIB} SHARED ${${COMPONENT}_SRCS})
-        add_dependencies(${${COMPONENT}_SHARED_LIB} ${FIBER_BUNDLES_SHARED_LIBS})
+        add_dependencies(${${COMPONENT}_SHARED_LIB} ${FIBER_BUNDLES_TEST_SHARED_LIBS} ${GEOMETRY_SHARED_LIBS})
         set_target_properties(${${COMPONENT}_SHARED_LIB} PROPERTIES OUTPUT_NAME ${PROJECT_NAME} LINKER_LANGUAGE CXX)
         set_target_properties(${${COMPONENT}_SHARED_LIB} PROPERTIES LINK_INTERFACE_LIBRARIES "") 
         
@@ -124,10 +119,10 @@ function(add_library_targets)
         add_dependencies(${PROJECT_NAME}-static-lib ${${COMPONENT}_STATIC_LIBS})
         
         if(${USE_VTK})
-            target_link_libraries(${${COMPONENT}_SHARED_LIB} ${FIBER_BUNDLES_SHARED_LIBS} ${VTK_LIBS} ${TETGEN_LIB})
+            target_link_libraries(${${COMPONENT}_SHARED_LIB} ${FIBER_BUNDLES_TEST_SHARED_LIBS} ${GEOMETRY_SHARED_LIBS} ${VTK_LIBS} ${TETGEN_LIB})
             target_link_libraries(${${COMPONENT}_STATIC_LIB} ${FIBER_BUNDLES_STATIC_LIBS} ${VTK_LIBS} ${TETGEN_LIB})    
         else()
-            target_link_libraries(${${COMPONENT}_SHARED_LIB} ${FIBER_BUNDLES_SHARED_LIBS} ${TETGEN_LIB})
+            target_link_libraries(${${COMPONENT}_SHARED_LIB} ${FIBER_BUNDLES_TEST_SHARED_LIBS} ${GEOMETRY_SHARED_LIBS} ${TETGEN_LIB})
             target_link_libraries(${${COMPONENT}_STATIC_LIB} ${FIBER_BUNDLES_STATIC_LIBS} ${TETGEN_LIB})
         endif()
 
