@@ -134,6 +134,8 @@ include(${CMAKE_MODULE_PATH}/find_prerequisites.cmake)
 set(COVERAGE_DIR ${CMAKE_BINARY_DIR}/coverage CACHE STRING "Directory for coverage files")
 execute_process(COMMAND ${CMAKE_COMMAND} -E make_directory ${COVERAGE_DIR})
 
+configure_file(${CMAKE_MODULE_PATH}/coverage_files.lst.in ${CMAKE_BINARY_DIR}/coverage_files.lst)
+
 #
 # Utility function to add a component to a system.
 #

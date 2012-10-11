@@ -45,7 +45,7 @@ if(LINUX64INTEL)
     set(CODECOV "${INTELPATH}/codecov" CACHE STRING "Intel Code coverage utility.")
     # The profmerge executable
     set(PROFMERGE "${INTELPATH}/profmerge" CACHE STRING "Intel dynamic profile merge utility." )
-    set(CODECOV_ARGS -bcolor ${UNCOVERED_COLOR} -ccolor ${COVERED_COLOR} -pcolor ${PARTIAL_COLOR} -demang CACHE STRING "Arguments for Intel codecov utility." FORCE)
+    set(CODECOV_ARGS -spi ${SHEAFSYSTEM_HOME}/build/${CMAKE_BUILD_TYPE}/lib/pgopti.spi -bcolor ${UNCOVERED_COLOR} -ccolor ${COVERED_COLOR} -pcolor ${PARTIAL_COLOR} -demang -prj CACHE STRING "Arguments for Intel codecov utility." FORCE)
 endif()
 
 #------------------------------------------------------------------------------
@@ -603,7 +603,7 @@ function(add_test_targets)
                 # Create file-scope coverage target.
                 add_custom_target(${t_file}.cov DEPENDS ${t_file}.log
                    COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${PROFMERGE}
-                   COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${CODECOV} -prj ${t_file} -spi ${SHEAFSYSTEM_HOME}/build/${CMAKE_BUILD_TYPE}/lib/pgopti.spi ${CODECOV_ARGS} 
+                   COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${CODECOV} -comp ${CMAKE_BINARY_DIR}/coverage_files.lst ${CODECOV_ARGS} ${t_file} 
                 )               
 
             elseif(WIN64MSVC OR WIN64INTEL)
