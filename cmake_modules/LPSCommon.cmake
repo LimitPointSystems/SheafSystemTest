@@ -180,10 +180,15 @@ function(set_compiler_flags)
        
     elseif(LINUX64INTEL)
         if(INTELWARN)
-           set(LPS_CXX_FLAGS "-ansi -m64 -w1 -wd186,1125 -Wno-deprecated ${OPTIMIZATION} -prof-gen=srcpos -prof-dir ${COVERAGE_DIR}")
+           set(LPS_CXX_FLAGS "-ansi -m64 -w1 -wd186,1125 -Wno-deprecated ${OPTIMIZATION} -prof-gen=srcpos")
         else()
-           set(LPS_CXX_FLAGS "-ansi -m64 -w0 -Wno-deprecated ${OPTIMIZATION} -prof-gen=srcpos -prof-dir ${COVERAGE_DIR}")
+           set(LPS_CXX_FLAGS "-ansi -m64 -w0 -Wno-deprecated ${OPTIMIZATION} -prof-gen=srcpos")
         endif()
+#        if(INTELWARN)
+#           set(LPS_CXX_FLAGS "-ansi -m64 -w1 -wd186,1125 -Wno-deprecated ${OPTIMIZATION} -prof-gen=srcpos -prof-dir ${COVERAGE_DIR}")
+#        else()
+#           set(LPS_CXX_FLAGS "-ansi -m64 -w0 -Wno-deprecated ${OPTIMIZATION} -prof-gen=srcpos -prof-dir ${COVERAGE_DIR}")
+#        endif()
      elseif(LINUX64GNU)
        set(LPS_CXX_FLAGS "-ansi -m64 -Wno-deprecated ${OPTIMIZATION}")
              
@@ -594,23 +599,13 @@ function(add_test_targets)
                        COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/fiber_bundles_read ${t_file}.hdf > ${t_file}.hdf.log
                     )                                             
                 endif()
- 
-
                 
                 # Create file-scope coverage target.
                 add_custom_target(${t_file}.cov DEPENDS ${t_file}.log
-                # Create the "classes of interest" file.
-                
- #               COMMAND ${CMAKE_COMMAND} -E echo ${t_file} > cov_files.lst
-       #        COMMAND ${CMAKE_COMMAND} -E copy ${SHEAFSYSTEM_HOME}/build/${CMAKE_BUILD_TYPE}/lib/pgopti.dpi ext_pgopti.dpi
-# get the name of the generated dyn file
-# now copy the corresponding one from sheafsystem over local one
-#                COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${PROFMERGE} -cov_dir ${COVERAGE_DIR};${SHEAFSYSTEM_HOME}/build/${CMAKE_BUILD_TYPE}/lib
-               COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${PROFMERGE}
-#              COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_BINARY_DIR}/${PROJECT_NAME} ${PROFMERGE} -a pgopti.dpi ext_pgopti.dpi                
-#                COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${CODECOV} -bcolor ${UNCOVERED_COLOR} -ccolor ${COVERED_COLOR} -pcolor ${PARTIAL_COLOR} -prj ${t_file} -demang
-                COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${CODECOV} -prj ${t_file} -spi ${SHEAFSYSTEM_HOME}/build/${CMAKE_BUILD_TYPE}/lib/libsheaves.so.spi ${CODECOV_ARGS} 
+                   COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${PROFMERGE}
+                   COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${CODECOV} -prj ${t_file} -spi ${SHEAFSYSTEM_HOME}/build/${CMAKE_BUILD_TYPE}/lib/pgopti.spi ${CODECOV_ARGS} 
                 )               
+
             elseif(WIN64MSVC OR WIN64INTEL)
                 #
                 # unit_test.hdf.log -> unit_test.hdf -> unit_test.log -> unit_test

@@ -1,29 +1,10 @@
-# This file can be used to correctly set needed environment variables
-# in order to run the executables and java applications
-# in this package.
+#
+# Source this script to set needed environment variables
+# for SheafSystem development.
 
 set revert_file = @CMAKE_BINARY_DIR@/revert_env_vars.csh
 
-# Are we building bindings? Query the user. Default is no.
-
-   echo -n "Configure environment for bindings? [y/N]: "
-   set response = $<
-
-   switch ($response)
-      case [yY]:
-         set bindings = yes
-         breaksw
-      case [nN]:
-         set bindings = no
-         breaksw
-      default:
-         set bindings = no
-         breaksw
-   endsw
-   
-echo setting SHEAF_HOME in this terminal.
-setenv SHEAF_HOME @SHEAF_HOME@
-
+# Backup the current terminal state
 if (! -e $revert_file) then
    if ($?LD_LIBRARY_PATH) then
       echo copying contents of existing LD_LIBRARY_PATH to $revert_file
@@ -59,25 +40,19 @@ if (! -e $revert_file) then
       echo PYTHONPATH is not set in your environment. No backup will be created.
    endif
 
-endif
-   # $$HACK: The intel lib path is hacked into place for the purposes of this branch. This will need to be
-   # made agnostic to support the current c++ compiler. See the "else" case as well. If you need to revert to gcc, uncomment LD_LIBRARY_PATHs for GNU.
-   if ($bindings == "yes") then
+endif # revert_file
+
 	echo setting LD_LIBRARY_PATH in this terminal.
-	#setenv LD_LIBRARY_PATH .:/home/jebutler/LPS/prerequisites/Intel/lib/intel64:@SHEAVES_LIB_OUTPUT_DIR@:@VTK_LIB_DIR@:@JMF_LIB_DIR@:@JDK_LIB_DIR@:@JVM_LIB_DIR@:@XAWT_LIB_DIR@:@TETGEN_LIB_DIR@:
-	setenv LD_LIBRARY_PATH .:$home/LPS/prerequisites/gcc/lib64:@SHEAVES_LIB_OUTPUT_DIR@:@VTK_LIB_DIR@:@JMF_LIB_DIR@:@JDK_LIB_DIR@:@JVM_LIB_DIR@:@XAWT_LIB_DIR@:@TETGEN_LIB_DIR@:
+	setenv LD_LIBRARY_PATH {$LD_LIBRARY_PATH}:@GNU_LIBPATH@:@CMAKE_BINARY_DIR@/${CMAKE_BUILD_TYPE}/lib:@VTK_LIB_DIR@:@JMF_LIB_DIR@:@JDK_LIB_DIR@:@JVM_LIB_DIR@:@XAWT_LIB_DIR@:@TETGEN_LIB_DIR@:
+
 	echo setting CLASSPATH in this terminal.
-	setenv CLASSPATH .:@SHEAVES_LIB_OUTPUT_DIR@/SheafScope.jar:@SHEAVES_LIB_OUTPUT_DIR@/solvers_java_binding.jar:@SHEAVES_LIB_OUTPUT_DIR@/tools_java_binding.jar:@SHEAVES_LIB_OUTPUT_DIR@/fields_java_binding.jar:@SHEAVES_LIB_OUTPUT_DIR@/geometry_java_binding.jar:@SHEAVES_LIB_OUTPUT_DIR@/fiber_bundles_java_binding.jar:@SHEAVES_LIB_OUTPUT_DIR@/sheaves_java_binding.jar:@VTK_LIB_DIR@/java/vtk.jar:@JMF_LIB_DIR@/jmf.jar
+	setenv CLASSPATH .:@CMAKE_BINARY_DIR@/${CMAKE_BUILD_TYPE}/lib/SheafScope.jar:@CMAKE_BINARY_DIR@/${CMAKE_BUILD_TYPE}/lib/solvers_java_binding.jar:@CMAKE_BINARY_DIR@/${CMAKE_BUILD_TYPE}/lib/tools_java_binding.jar:@CMAKE_BINARY_DIR@/${CMAKE_BUILD_TYPE}/lib/fields_java_binding.jar:@CMAKE_BINARY_DIR@/${CMAKE_BUILD_TYPE}/lib/geometry_java_binding.jar:@CMAKE_BINARY_DIR@/${CMAKE_BUILD_TYPE}/lib/fiber_bundles_java_binding.jar:@CMAKE_BINARY_DIR@/${CMAKE_BUILD_TYPE}/lib/sheaves_java_binding.jar:@VTK_LIB_DIR@/java/vtk.jar:@JMF_LIB_DIR@/jmf.jar
 
 	echo setting PATH in this terminal.
 	setenv PATH @JDK_BIN_DIR@:$PATH
 
 	echo setting PYTHONPATH in this terminal.
-	setenv PYTHONPATH .:@SHEAVES_LIB_OUTPUT_DIR@
+	setenv PYTHONPATH .:@CMAKE_BINARY_DIR@/${CMAKE_BUILD_TYPE}/lib
 
-   else
-
-	echo setting LD_LIBRARY_PATH in this terminal
-	setenv LD_LIBRARY_PATH .:$home/LPS/prerequisites/gcc/lib64:@SHEAVES_LIB_OUTPUT_DIR@:@TETGEN_LIB_DIR@:
-	#setenv LD_LIBRARY_PATH .:/home/jebutler/LPS/prerequisites/Intel/composer_xe_2011_sp1/lib/intel64:@SHEAVES_LIB_OUTPUT_DIR@:@TETGEN_LIB_DIR@: 
-   endif
+	echo setting PROF_DIR in this terminal.
+	setenv PROF_DIR @CMAKE_BINARY_DIR@/coverage
