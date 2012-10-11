@@ -130,6 +130,10 @@ include(${CMAKE_MODULE_PATH}/target_declarations.cmake)
 #
 include(${CMAKE_MODULE_PATH}/find_prerequisites.cmake)
 
+# Set the Coverage dir variable (used by compiler) and create the coverage dir.
+set(COVERAGE_DIR ${CMAKE_BINARY_DIR}/Coverage CACHE STRING "Directory for coverage files")
+execute_process(COMMAND ${CMAKE_COMMAND} -E make_directory ${COVERAGE_DIR})
+
 #
 # Utility function to add a component to a system.
 #

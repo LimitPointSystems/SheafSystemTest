@@ -45,6 +45,7 @@ if(LINUX64INTEL)
     set(CODECOV "${INTELPATH}/codecov" CACHE STRING "Intel Code coverage utility.")
     # The profmerge executable
     set(PROFMERGE "${INTELPATH}/profmerge" CACHE STRING "Intel dynamic profile merge utility." )
+    set(CODECOV_ARGS -bcolor ${UNCOVERED_COLOR} -ccolor ${COVERED_COLOR} -pcolor ${PARTIAL_COLOR} -demang CACHE STRING "Arguments for Intel codecov utility." FORCE)
 endif()
 
 #------------------------------------------------------------------------------
@@ -179,9 +180,9 @@ function(set_compiler_flags)
        
     elseif(LINUX64INTEL)
         if(INTELWARN)
-           set(LPS_CXX_FLAGS "-ansi -m64 -w1 -wd186,1125 -Wno-deprecated ${OPTIMIZATION} -prof-gen=srcpos")
+           set(LPS_CXX_FLAGS "-ansi -m64 -w1 -wd186,1125 -Wno-deprecated ${OPTIMIZATION} -prof-gen=srcpos -prof-dir ${COVERAGE_DIR}")
         else()
-           set(LPS_CXX_FLAGS "-ansi -m64 -w0 -Wno-deprecated ${OPTIMIZATION} -prof-gen=srcpos")
+           set(LPS_CXX_FLAGS "-ansi -m64 -w0 -Wno-deprecated ${OPTIMIZATION} -prof-gen=srcpos -prof-dir ${COVERAGE_DIR}")
         endif()
      elseif(LINUX64GNU)
        set(LPS_CXX_FLAGS "-ansi -m64 -Wno-deprecated ${OPTIMIZATION}")
@@ -373,7 +374,7 @@ function(add_clean_files)
     # Clean up the mess left by the Intel coverage tool
     file(GLOB DYN_FILES ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}/*.dyn)
     file(GLOB DPI_FILES ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}/*.dpi)
-    file(GLOB SPI_FILES ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}/*.spi)
+#    file(GLOB SPI_FILES ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}/*.spi)
  
 
     # Append them to the list
@@ -594,14 +595,21 @@ function(add_test_targets)
                     )                                             
                 endif()
  
-                 # Generate a log file for each .t. "make <test>.log will build and run a given executable.
-                add_custom_target(${t_file}. WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} COMMAND ${t_file} > ${t_file}.log DEPENDS ${t_file} )
+
                 
-                add_custom_target(${t_file}.cov DEPENDS ${t_file}.hdf
+                # Create file-scope coverage target.
+                add_custom_target(${t_file}.cov DEPENDS ${t_file}.log
                 # Create the "classes of interest" file.
-                COMMAND ${CMAKE_COMMAND} -E echo ${t_file} > cov_files.lst
-                COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_BINARY_DIR}/${PROJECT_NAME} ${PROFMERGE}
-                COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_BINARY_DIR}/${PROJECT_NAME} ${CODECOV} -comp cov_files.lst -bcolor ${UNCOVERED_COLOR} -ccolor ${COVERED_COLOR} -pcolor ${PARTIAL_COLOR} -prj ${PROJECT_NAME} -demang
+                
+ #               COMMAND ${CMAKE_COMMAND} -E echo ${t_file} > cov_files.lst
+       #        COMMAND ${CMAKE_COMMAND} -E copy ${SHEAFSYSTEM_HOME}/build/${CMAKE_BUILD_TYPE}/lib/pgopti.dpi ext_pgopti.dpi
+# get the name of the generated dyn file
+# now copy the corresponding one from sheafsystem over local one
+#                COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${PROFMERGE} -cov_dir ${COVERAGE_DIR};${SHEAFSYSTEM_HOME}/build/${CMAKE_BUILD_TYPE}/lib
+               COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${PROFMERGE}
+#              COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_BINARY_DIR}/${PROJECT_NAME} ${PROFMERGE} -a pgopti.dpi ext_pgopti.dpi                
+#                COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${CODECOV} -bcolor ${UNCOVERED_COLOR} -ccolor ${COVERED_COLOR} -pcolor ${PARTIAL_COLOR} -prj ${t_file} -demang
+                COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${CODECOV} -prj ${t_file} -spi ${SHEAFSYSTEM_HOME}/build/${CMAKE_BUILD_TYPE}/lib/libsheaves.so.spi ${CODECOV_ARGS} 
                 )               
             elseif(WIN64MSVC OR WIN64INTEL)
                 #
@@ -612,7 +620,7 @@ function(add_test_targets)
                 else()
                     target_link_libraries(${t_file} ${FIELDS_IMPORT_LIB} ${HDF5_LIBRARIES})                                         
                 endif()
-                
+
                 add_test(NAME ${t_file} WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE} COMMAND $<TARGET_FILE:${t_file}>)                
 
                 # Insert the unit tests into the VS folder "unit test targets"

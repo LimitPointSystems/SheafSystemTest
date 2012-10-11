@@ -32,6 +32,7 @@ collect_includes()
 # Source for unit test executables.
 #
 set(UNIT_TEST_SRCS
+name_multimap.t.cc
 )
 
 collect_unit_test_sources()
