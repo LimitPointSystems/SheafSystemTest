@@ -16,6 +16,7 @@ set(CLUSTER id_spaces)
 # Library sources.
 #
 set(SRCS
+    test_index_spaces.cc
     )
 
 collect_sources()

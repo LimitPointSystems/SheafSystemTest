@@ -134,6 +134,8 @@ include(${CMAKE_MODULE_PATH}/find_prerequisites.cmake)
 set(COVERAGE_DIR ${CMAKE_BINARY_DIR}/coverage CACHE STRING "Directory for coverage files")
 execute_process(COMMAND ${CMAKE_COMMAND} -E make_directory ${COVERAGE_DIR})
 
+# Configure the list of files for which we generate coverage data. Use only the SheafSystem
+# and ignore sheaves/std.
 configure_file(${CMAKE_MODULE_PATH}/coverage_files.lst.in ${CMAKE_BINARY_DIR}/coverage_files.lst)
 
 #

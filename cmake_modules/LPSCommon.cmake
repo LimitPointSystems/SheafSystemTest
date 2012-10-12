@@ -568,6 +568,9 @@ function(add_test_targets)
 
                 # Insert the unit tests into the VS folder "unit test targets"
                 set_target_properties(${t_file}.log PROPERTIES FOLDER "Unit Test Log Targets")
+                
+                # Note that this var should be named component_test_logs, but the components are named x_test. Not pretty.
+                set(${COMPONENT}_LOGS ${${COMPONENT}_LOGS} ${t_file}.log CACHE STRING "List of unit test log targets" FORCE)
                                 
                 # Generate a log file for each .t.hdf "make <test>.hdf will build and run a given executable.
                 add_custom_target(${t_file}.hdf DEPENDS ${t_file}.log )
