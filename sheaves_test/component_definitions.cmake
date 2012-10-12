@@ -109,14 +109,9 @@ function(add_library_targets)
         add_dependencies(${PROJECT_NAME}-shared-lib ${${COMPONENT}_SHARED_LIB})
         add_dependencies(${PROJECT_NAME}-static-lib ${${COMPONENT}_STATIC_LIB})
     
-        target_link_libraries(${${COMPONENT}_SHARED_LIB} ${HDF5_LIBRARIES})
-        target_link_libraries(${${COMPONENT}_STATIC_LIB} ${HDF5_LIBRARIES})
+        target_link_libraries(${${COMPONENT}_SHARED_LIB} ${SHEAVES_SHARED_LIBS})
+        target_link_libraries(${${COMPONENT}_STATIC_LIB} ${SHEAVES_SHARED_LIBS})
         
-        add_custom_command(TARGET ${${COMPONENT}_SHARED_LIB} POST_BUILD
-            # rename the coverage output files and put them in lib
-            COMMAND ${CMAKE_COMMAND} -E  rename ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}/pgopti.spi ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}/${${COMPONENT}_SHARED_LIB}.spi
-            COMMAND ${CMAKE_COMMAND} -E  rename ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}/pgopti.spl ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}/${${COMPONENT}_SHARED_LIB}.spl
-             )
     endif()
 
 endfunction(add_library_targets)
