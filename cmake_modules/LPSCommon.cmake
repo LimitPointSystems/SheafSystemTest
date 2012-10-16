@@ -454,7 +454,7 @@ function(add_component_coverage_target)
     if(LINUX64INTEL)
         # if the component unit test list is not empty, generate coverage data.   
         if(NOT ${COMPONENT}_UNIT_TEST_SRCS STREQUAL "")
-            add_custom_target(${PROJECT_NAME}-coverage DEPENDS ${${COMPONENT}_LOGS}
+            add_custom_target(${PROJECT_NAME}-coverage DEPENDS ${${COMPONENT}_SHARED_LIB} ${${PROJECT_NAME}_LOGS}
                 COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${PROFMERGE}
                 COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${CODECOV} -comp ${CMAKE_BINARY_DIR}/coverage_files.lst ${CODECOV_ARGS} ${PROJECT_NAME}
                 COMMAND ${CMAKE_COMMAND} -E rename ${COVERAGE_DIR}/CODE_COVERAGE.HTML ${COVERAGE_DIR}/index.html

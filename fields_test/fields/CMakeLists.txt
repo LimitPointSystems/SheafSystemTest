@@ -16,7 +16,7 @@ set(CLUSTER fields)
 # Library sources.
 #
 set(SRCS
-
+    fields_libstub.cc
 )
 
 collect_sources()

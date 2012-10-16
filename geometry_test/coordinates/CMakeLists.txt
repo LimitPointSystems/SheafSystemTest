@@ -16,7 +16,7 @@ set(CLUSTER ${CMAKE_CURRENT_BINARY_DIR})
 # Library sources.
 #
 set(SRCS
-
+    geom_libstub.cc
 )
 
 collect_sources()

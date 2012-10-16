@@ -16,6 +16,7 @@ set(CLUSTER base_spaces)
 # Library sources.
 #
 set(SRCS
+    fb_libstub.cc
 )
 
 collect_sources()
