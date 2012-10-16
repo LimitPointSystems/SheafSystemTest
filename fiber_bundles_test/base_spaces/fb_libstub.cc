@@ -1,6 +1,3 @@
-// $RCSfile: fb_libstub.cc,v $ $Revision: 1.20 $ $Date: 2011/04/13 21:44:09 $
-
-// $Name:  $
 //
 // Copyright (c) 2011 Limit Point Systems, Inc.
 //
@@ -88,96 +85,56 @@ fiber_bundle::fb_libstub::
 
 // PUBLIC MEMBER FUNCTIONS
 
-bool
-fiber_bundle::fb_libstub::
-is_ancestor_of(const any *other) const
-{
 
-  // Preconditions:
 
-  require(other != 0);
-
-  // Body:
-
-  // True if other conforms to this
-
-  bool result = dynamic_cast<const fb_libstub*>(other) != 0;
-
-  // Postconditions:
-
-  return result;
-}
-
-fb_libstub*
-fiber_bundle::fb_libstub::
-clone() const
-{
-  fb_libstub* result;
-
-  // Preconditions:
-
-  // Body:
-
-  result = new fb_libstub();
-
-  // Postconditions:
-
-  ensure(result != 0);
-  ensure(is_same_type(result));
-
-  // Exit:
-
-  return result;
-}
-
-fb_libstub&
-fiber_bundle::fb_libstub::
-operator=(const fb_libstub& xother)
-{
+//fb_libstub&
+//fiber_bundle::fb_libstub::
+//operator=(const fb_libstub& xother)
+//{
 
   // Preconditions:
 
 
   // Body:
 
-  not_implemented();
+//  not_implemented();
 
   // Postconditions:
 
-  ensure(invariant());
+//  ensure(invariant());
 
   // Exit
 
-  return *this;
-}
+//  return *this;
+//}
 
-bool
-fiber_bundle::fb_libstub::
-invariant() const
-{
-  bool result = true;
+//bool
+//fiber_bundle::fb_libstub::
+//invariant() const
+//{
+//  bool result = true;
 
-  if(invariant_check())
-  {
+//  if(invariant_check())
+//  {
     // Prevent recursive calls to invariant
 
-    disable_invariant_check();
+//    disable_invariant_check();
 
     // Must satisfy base class invariant
 
-    invariance(base::invariant());
+//    invariance(base::invariant());
 
     // Invariances for this class:
 
     // Finished, turn invariant checking back on.
 
-    enable_invariant_check();
-  }
+//    enable_invariant_check();
+//  }
 
   // Exit
 
-  return result;
-}
+//  return result;
+//}
 
 
 // ===========================================================

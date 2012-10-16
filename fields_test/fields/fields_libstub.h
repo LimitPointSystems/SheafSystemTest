@@ -18,6 +18,8 @@
 namespace fields
 {
 
+using namespace sheaf;
+
 ///
 /// One sentence synopsis. (don't forget the period)
 /// Add more comments here (in doxygen format)
@@ -63,26 +65,6 @@ private:
 
 public:
 
-  ///
-  /// Conformance test; true if other conforms to this
-  ///
-  virtual bool is_ancestor_of(const any *other) const;
-
-  ///
-  /// Virtual constructor, makes a new
-  /// instance of the same type as this
-  ///
-  virtual fields_libstub* clone() const;
-
-  ///
-  /// Assignment operator
-  ///
-  virtual fields_libstub& operator=(const any& xother);
-
-  ///
-  /// Class invariant.
-  ///
-  virtual bool invariant() const;
 
   //@}
 

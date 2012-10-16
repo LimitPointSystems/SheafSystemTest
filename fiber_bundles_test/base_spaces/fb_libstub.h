@@ -15,9 +15,9 @@
 #include "any.h"
 #endif
 
-namespace nnn
+namespace fiber_bundle
 {
-
+using namespace sheaf;
 ///
 /// One sentence synopsis. (don't forget the period)
 /// Add more comments here (in doxygen format)
@@ -63,26 +63,7 @@ private:
 
 public:
 
-  ///
-  /// Conformance test; true if other conforms to this
-  ///
-  virtual bool is_ancestor_of(const any *other) const;
-
-  ///
-  /// Virtual constructor, makes a new
-  /// instance of the same type as this
-  ///
-  virtual fb_libstub* clone() const;
-
-  ///
-  /// Assignment operator
-  ///
-  virtual fb_libstub& operator=(const any& xother);
-
-  ///
-  /// Class invariant.
-  ///
-  virtual bool invariant() const;
+ // virtual bool invariant() const;
 
   //@}
 
