@@ -454,10 +454,10 @@ function(add_component_coverage_target)
     if(LINUX64INTEL)
         # if the component unit test list is not empty, generate coverage data.   
         if(NOT ${COMPONENT}_UNIT_TEST_SRCS STREQUAL "")
-            add_custom_target(${PROJECT_NAME}-coverage DEPENDS ${PROJECT_NAME}-check
-                COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_BINARY_DIR}/${PROJECT_NAME} ${PROFMERGE}
-                COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_BINARY_DIR}/${PROJECT_NAME} ${CODECOV} -bcolor ${UNCOVERED_COLOR} -ccolor ${COVERED_COLOR} -pcolor ${PARTIAL_COLOR} -prj ${PROJECT_NAME} -txtbcvrgfull ${PROJECT_NAME}_cov.out -demang 
-                COMMAND ${CMAKE_COMMAND} -E rename ${CMAKE_BINARY_DIR}/${PROJECT_NAME}/CODE_COVERAGE.HTML ${CMAKE_BINARY_DIR}/${PROJECT_NAME}/index.html
+            add_custom_target(${PROJECT_NAME}-coverage DEPENDS ${${COMPONENT}_LOGS}
+                COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${PROFMERGE}
+                COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${CODECOV} -comp ${CMAKE_BINARY_DIR}/coverage_files.lst ${CODECOV_ARGS} ${PROJECT_NAME}
+                COMMAND ${CMAKE_COMMAND} -E rename ${COVERAGE_DIR}/CODE_COVERAGE.HTML ${COVERAGE_DIR}/index.html
                 )
         else()
             # Component has no unit tests associated with it, make target an "informational no-op"
@@ -500,7 +500,6 @@ endfunction(add_component_checklog_target)
 function(add_checklog_target)
 
     if(WIN64MSVC OR WIN64INTEL)
-        # $$TODO: Spend a little time finding out what's going on here.
         add_custom_target(checklog ALL COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} DEPENDS ${ALL_CHECKLOG_TARGETS})
         set_target_properties(checklog PROPERTIES FOLDER "Checklog Targets")
     else()

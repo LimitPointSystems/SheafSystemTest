@@ -58,7 +58,7 @@ add_component_check_target()
 #
 # Component specific checklog target
 #
-#add_component_checklog_target()
+add_component_checklog_target()
 
 #
 # Component specific coverage target
