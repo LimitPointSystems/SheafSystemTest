@@ -45,7 +45,7 @@ if(LINUX64INTEL)
     set(CODECOV "${INTELPATH}/codecov" CACHE STRING "Intel Code coverage utility.")
     # The profmerge executable
     set(PROFMERGE "${INTELPATH}/profmerge" CACHE STRING "Intel dynamic profile merge utility." )
-#    set(CODECOV_ARGS -spi ${SHEAFSYSTEM_HOME}/build/${CMAKE_BUILD_TYPE}/lib/pgopti.spi -bcolor ${UNCOVERED_COLOR} -ccolor ${COVERED_COLOR} -pcolor ${PARTIAL_COLOR} -demang -prj CACHE STRING "Arguments for Intel codecov utility." FORCE)
+    set(CODECOV_ARGS -spi ${SHEAFSYSTEM_HOME}/build/${CMAKE_BUILD_TYPE}/lib/pgopti.spi -bcolor ${UNCOVERED_COLOR} -ccolor ${COVERED_COLOR} -pcolor ${PARTIAL_COLOR} -demang -prj CACHE STRING "Arguments for Intel codecov utility." FORCE)
 endif()
 
 #------------------------------------------------------------------------------
@@ -487,10 +487,9 @@ endfunction()
 #
 function(add_component_checklog_target)
 
-    add_custom_target(${PROJECT_NAME}-checklog COMMAND ${CMAKE_CTEST_COMMAND} -O ${PROJECT_NAME}_chk.log DEPENDS ${${COMPONENT}_SHARED_LIB} ${${COMPONENT}_UNIT_TESTS})
-    # Add a check target for this component to the system list. "make check" will invoke this list.
-    set(ALL_CHECKLOG_TARGETS ${ALL_CHECKLOG_TARGETS} ${PROJECT_NAME}-checklog CACHE STRING "Aggregate list of component checklog targets" FORCE)
-        set_target_properties(${PROJECT_NAME}-checklog PROPERTIES FOLDER "Checklog Targets")
+    add_custom_target(${PROJECT_NAME}-checklog DEPENDS ${${COMPONENT}_SHARED_LIB} ${${COMPONENT}_LOGS})
+    set_target_properties(${PROJECT_NAME}-checklog PROPERTIES FOLDER "Checklog Targets")
+    set(ALL_CHECKLOG_TARGETS ${ALL_CHECKLOG_TARGETS} ${${COMPONENT}_LOGS} CACHE STRING "Aggregate list of component checklog targets" FORCE)
     mark_as_advanced(ALL_CHECKLOG_TARGETS) 
 
 endfunction(add_component_checklog_target)
@@ -571,7 +570,8 @@ function(add_test_targets)
                 
                 # Note that this var should be named component_test_logs, but the components are named x_test. Not pretty.
                 set(${COMPONENT}_LOGS ${${COMPONENT}_LOGS} ${t_file}.log CACHE STRING "List of unit test log targets" FORCE)
-                                
+                mark_as_advanced(${COMPONENT}_LOGS)                                
+                
                 # Generate a log file for each .t.hdf "make <test>.hdf will build and run a given executable.
                 add_custom_target(${t_file}.hdf DEPENDS ${t_file}.log )
  
