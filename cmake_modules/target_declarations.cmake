@@ -12,9 +12,16 @@
 #
 if(LINUX64GNU OR LINUX64INTEL)
 
+    # Add a shared and static library target for each component
+    foreach(comp ${COMPONENTS})
+        message(STATUS "Adding lib target: ${comp}-shared-lib")
+        add_custom_target(${comp}-shared-lib)
+        add_custom_target(${comp}-static-lib)   
+    endforeach() 
+    
      # "shared-libs" builds solely shared libs
     add_custom_target(shared-libs)
-
+    
     # Because the library dependencies are correct, we only
     # need to list the leaf nodes in the dependency list for shared libs.
     add_dependencies(shared-libs fields_test-shared-lib)
@@ -30,13 +37,6 @@ if(LINUX64GNU OR LINUX64INTEL)
     # need to list the leaf nodes in the dependency list for static libs.
     add_dependencies(static-libs fields_test-static-lib)
 
-    # Add a shared and static library target for each component
-    foreach(comp ${COMPONENTS})
-        add_custom_target(${comp}-shared-lib)
-        add_custom_target(${comp}-static-lib)   
-    endforeach()  
-    
-
     #
     # clean targets
     #
@@ -46,7 +46,13 @@ if(LINUX64GNU OR LINUX64INTEL)
     add_custom_target(realclean 
             COMMAND ${CMAKE_COMMAND} --build  ${CMAKE_BINARY_DIR} --target clean
             COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_BINARY_DIR}/documentation)   
-
+    # Remove html dpi CodeCoverage dir and .lock files for coverage dir
+    add_custom_target(covclean 
+            COMMAND ${CMAKE_COMMAND} -E remove_directory ${COVERAGE_DIR}/CodeCoverage
+            COMMAND ${CMAKE_COMMAND} -E remove -f ${COVERAGE_DIR}/*.dpi
+            COMMAND ${CMAKE_COMMAND} -E remove -f ${COVERAGE_DIR}/*.lock
+            COMMAND ${CMAKE_COMMAND} -E remove -f ${COVERAGE_DIR}/*.html            
+    )
     #
     # Documentation targets
     #
