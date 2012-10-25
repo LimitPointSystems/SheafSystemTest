@@ -179,5 +179,11 @@ if(LINUX64GNU OR LINUX64INTEL)
 
 endif()
 
+#
+# Convenience targets to abstract away the _test nomenclature
+#
 
-
+    add_custom_target(sheaves-coverage DEPENDS sheaves_test-coverage)
+    add_custom_target(fiber_bundles-coverage DEPENDS fiber_bundles_test-coverage)
+    add_custom_target(geometry-coverage DEPENDS geometry_test-coverage)
+    add_custom_target(fields-coverage DEPENDS fields_test-coverage)            
