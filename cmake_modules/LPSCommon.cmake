@@ -377,9 +377,9 @@ function(add_clean_files)
     file(GLOB LOG_FILES ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/*.log)
     file(GLOB JAR_FILES ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}/*.jar)
     # Clean up the mess left by the Intel coverage tool
-    file(GLOB DYN_FILES ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}/*.dyn)
-    file(GLOB DPI_FILES ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}/*.dpi)
-#    file(GLOB SPI_FILES ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}/*.spi)
+    file(GLOB DYN_FILES ${COVERAGE_DIR}/*.dyn)
+    file(GLOB DPI_FILES ${COVERAGE_DIR}/*.dpi)
+    file(GLOB SPI_FILES ${COVERAGE_DIR}/*.spi)
  
 
     # Append them to the list
@@ -454,10 +454,11 @@ function(add_component_coverage_target)
     if(LINUX64INTEL)
         # if the component unit test list is not empty, generate coverage data.   
         if(NOT ${COMPONENT}_UNIT_TEST_SRCS STREQUAL "")
-            add_custom_target(${PROJECT_NAME}-coverage DEPENDS ${${COMPONENT}_SHARED_LIB} ${${PROJECT_NAME}_LOGS}
+         #  add_custom_target(${PROJECT_NAME}-coverage DEPENDS ${${COMPONENT}_SHARED_LIB} ${${PROJECT_NAME}_LOGS}
+            add_custom_target(${PROJECT_NAME}-coverage DEPENDS ${${COMPONENT}_SHARED_LIB} ${PROJECT_NAME}-check
                 COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${PROFMERGE}
                 COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${CODECOV} -comp ${CMAKE_BINARY_DIR}/coverage_files.lst ${CODECOV_ARGS} ${PROJECT_NAME}
-                COMMAND ${CMAKE_COMMAND} -E rename ${COVERAGE_DIR}/CODE_COVERAGE.HTML ${COVERAGE_DIR}/index.html
+          #      COMMAND ${CMAKE_COMMAND} -E rename ${COVERAGE_DIR}/CODE_COVERAGE.HTML ${COVERAGE_DIR}/index.html
                 )
         else()
             # Component has no unit tests associated with it, make target an "informational no-op"
@@ -480,6 +481,8 @@ function(add_coverage_target)
 
     add_custom_target(coverage DEPENDS ${ALL_COVERAGE_TARGETS})
 
+    # depends on make check
+    # execute profmerge and codecov after check is complete     
 endfunction()
 
 #
