@@ -92,7 +92,7 @@ add_check_target()
 # use "<component>-check" for component level
 # tests.
 #
-#add_checklog_target()
+add_checklog_target()
 
 #
 # Add the system coverage target.

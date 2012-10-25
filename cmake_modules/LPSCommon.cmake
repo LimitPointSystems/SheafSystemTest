@@ -454,12 +454,10 @@ function(add_component_coverage_target)
     if(LINUX64INTEL)
         # if the component unit test list is not empty, generate coverage data.   
         if(NOT ${COMPONENT}_UNIT_TEST_SRCS STREQUAL "")
-         #  add_custom_target(${PROJECT_NAME}-coverage DEPENDS ${${COMPONENT}_SHARED_LIB} ${${PROJECT_NAME}_LOGS}
-            add_custom_target(${PROJECT_NAME}-coverage DEPENDS ${${COMPONENT}_SHARED_LIB} ${PROJECT_NAME}-check
+            add_custom_target(${PROJECT_NAME}-coverage DEPENDS ${PROJECT_NAME}-check
                 COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${PROFMERGE}
                 COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${CODECOV} -comp ${CMAKE_BINARY_DIR}/coverage_files.lst ${CODECOV_ARGS} ${PROJECT_NAME}
-          #      COMMAND ${CMAKE_COMMAND} -E rename ${COVERAGE_DIR}/CODE_COVERAGE.HTML ${COVERAGE_DIR}/index.html
-                )
+                 )
         else()
             # Component has no unit tests associated with it, make target an "informational no-op"
             add_custom_target(${PROJECT_NAME}-coverage
@@ -479,10 +477,11 @@ endfunction()
 #
 function(add_coverage_target)
 
-    add_custom_target(coverage DEPENDS ${ALL_COVERAGE_TARGETS})
-
-    # depends on make check
-    # execute profmerge and codecov after check is complete     
+    add_custom_target(coverage ALL DEPENDS checklog    
+        COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${PROFMERGE}
+        COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${CODECOV} -comp ${CMAKE_BINARY_DIR}/coverage_files.lst ${CODECOV_ARGS} ${PROJECT_NAME}   
+    )
+    
 endfunction()
 
 #
@@ -553,7 +552,7 @@ function(add_test_targets)
 
             if(LINUX64GNU OR LINUX64INTEL)
             
-                target_link_libraries(${t_file} libsheaves.so ${HDF5_LIBRARIES})
+                target_link_libraries(${t_file} ${FIELDS_TEST_SHARED_LIBS} ${FIELDS_SHARED_LIBS} ${HDF5_LIBRARIES})
 
                 # Add a test target for ${t_file}
                 add_test(NAME ${t_file} WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} COMMAND $<TARGET_FILE:${t_file}>)
@@ -694,9 +693,9 @@ function(add_example_targets)
     foreach(t_cc_file ${${COMPONENT}_EXAMPLE_SRCS})
         # link_directories only applies to targets created after it is called.
         if(LINUX64GNU OR LINUX64INTEL)
-            link_directories(${${COMPONENT}_OUTPUT_DIR} ${HDF5_LIBRARY_DIRS} ${TETGEN_DIR})
+            link_directories(${${COMPONENT}_OUTPUT_DIR} ${SHEAVES_LIB_OUTPUT_DIR} ${HDF5_LIBRARY_DIRS} ${TETGEN_DIR})
         else()
-            link_directories(${${COMPONENT}_OUTPUT_DIR}/${CMAKE_BUILD_TYPE} ${HDF5_LIBRARY_DIRS} ${TETGEN_DIR})
+            link_directories(${${COMPONENT}_OUTPUT_DIR}/${CMAKE_BUILD_TYPE} ${SHEAVES_LIB_OUTPUT_DIR} ${HDF5_LIBRARY_DIRS} ${TETGEN_DIR})
         endif()    
         # Let the user know what's being configured
         status_message("Configuring example executables for ${PROJECT_NAME}")   
@@ -722,8 +721,8 @@ function(add_example_targets)
             # Insert the unit tests into the VS folder "unit_tests"
             set_target_properties(${t_file} PROPERTIES FOLDER "Example Targets")
         else()
-           add_dependencies(${t_file} libsheaves.so)
-           target_link_libraries(${t_file} ${${COMPONENT}_SHARED_LIB} ${HDF5_LIBRARIES})
+           add_dependencies(${t_file} ${FIELDS_TEST_SHARED_LIBS} ${FIELDS_SHARED_LIBS})
+           target_link_libraries(${t_file} ${${COMPONENT}_SHARED_LIB} ${FIELDS_SHARED_LIBS} ${HDF5_LIBRARIES})
         endif()
     
         # Supply the *_DLL_IMPORTS directive to preprocessor
