@@ -81,10 +81,32 @@ endif()
 
 #
 # Set compiler optimization level.
+# Default is zero.
 #
+#$$TODO: add Windows clause.
+# We still need provision for user set opt levels. Can't always force "2" on the user.
 
-set(OPTIMIZATION_LEVEL "0" CACHE STRING "Compiler optimization level. Valid values for are 0,1,2,3, and \"s\(Linux only\)\". Default is 0. \n Linux values translate to -On. \n\n Windows values are: \n\n 0 = /0d \(no optimization\) \n 1 = /O1 \(Minimize Size\) \n 2 = /O2 \(Maximize Speed\) \n 3 = /GL \(Whole Program Optimization\) \n ")
+if(LINUX64GNU OR LINUX64INTEL)
+    if(CMAKE_BUILD_TYPE STREQUAL "Debug-contracts" OR CMAKE_BUILD_TYPE STREQUAL "Debug-no-contracts")
+        set(OPTIMIZATION_LEVEL "0" CACHE STRING "Compiler optimization level. Valid values for are 0,1,2,3, and \"s\(Linux only\)\". Default is 0. \n Linux values translate to -On. \n\n Windows values are: \n\n 0 = /0d \(no optimization\) \n 1 = /O1 \(Minimize Size\) \n 2 = /O2 \(Maximize Speed\) \n 3 = /GL \(Whole Program Optimization\) \n " FORCE)
+    else()
+        # Optimize for execution speed.
+        set(OPTIMIZATION_LEVEL "2" CACHE STRING "Compiler optimization level. Valid values for are 0,1,2,3, and \"s\(Linux only\)\". Default is 0. \n Linux values translate to -On. \n\n Windows values are: \n\n 0 = /0d \(no optimization\) \n 1 = /O1 \(Minimize Size\) \n 2 = /O2 \(Maximize Speed\) \n 3 = /GL \(Whole Program Optimization\) \n " FORCE)
+    endif()
+endif()
+mark_as_advanced(CLEAR OPTIMIZATION_LEVEL)
 
+
+#
+# Enable coverage results
+#
+set(ENABLE_COVERAGE ON CACHE BOOL "Set to OFF to compile without coverage support. Default is ON.")
+
+# Set the Coverage dir variable (used by compiler) and create the coverage dir.
+if(ENABLE_COVERAGE)
+    set(COVERAGE_DIR ${CMAKE_BINARY_DIR}/coverage CACHE STRING "Directory for coverage files")
+    execute_process(COMMAND ${CMAKE_COMMAND} -E make_directory ${COVERAGE_DIR})
+endif()
 #
 # Add solvers and tools if linux
 #
@@ -190,7 +212,7 @@ function(set_optimization_level)
 
     if(LINUX64GNU OR LINUX64INTEL)
         if(${OPTIMIZATION_LEVEL} STREQUAL 0)
-            set(OPTIMIZATION "-O" PARENT_SCOPE)
+            set(OPTIMIZATION "-O0" PARENT_SCOPE)
         elseif(${OPTIMIZATION_LEVEL} STREQUAL 1)
             set(OPTIMIZATION "-O1" PARENT_SCOPE)
         elseif(${OPTIMIZATION_LEVEL} EQUAL 2)

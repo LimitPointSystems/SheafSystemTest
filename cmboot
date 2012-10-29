@@ -4,8 +4,17 @@
 # Copyright (c) 2012 Limit Point Systems, Inc. 
 #
 
-# Set the preferred build directory name.
+# NOTE: The assumption is that this script is executed from the top of the SheafSystemTest source tree.
+
+# User can provide command line args to cmake
+user_args=$@
+
+# Set preferred build directory.
+# You may change this to any location that suits.
 builddir=build
+
+# The directory cmboot is run from; ostensibly the top of the source tree.
+sourcedir=$PWD
 
 # Create the build directory
 if ! test -d $builddir; then
@@ -49,7 +58,7 @@ if [ ! -z $response ]; then
 	echo "Roger that, configuring ..."
 	echo ""	
 	# Redirect cmake errors to file
-	if cmake $user_args -DSHEAFSYSTEM_HOME=$response .. 2> cmake.error; then
+	if cmake $user_args -DSHEAFSYSTEM_HOME=$response $sourcedir 2> cmake.error; then
 		echo ""
 		echo "CMake configure complete. Now cd to $builddir and source the set_env_vars script"
 		echo "appropriate for your your shell before executing make."

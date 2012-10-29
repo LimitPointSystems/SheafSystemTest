@@ -51,15 +51,15 @@ if(LINUX64GNU OR LINUX64INTEL)
             COMMAND ${CMAKE_COMMAND} -E remove_directory ${COVERAGE_DIR}/CodeCoverage
             COMMAND ${CMAKE_COMMAND} -E remove -f ${COVERAGE_DIR}/*.dpi
             COMMAND ${CMAKE_COMMAND} -E remove -f ${COVERAGE_DIR}/*.lock
-            COMMAND ${CMAKE_COMMAND} -E remove -f ${COVERAGE_DIR}/*.html            
+            COMMAND ${CMAKE_COMMAND} -E remove -f ${COVERAGE_DIR}/*.HTML
+            COMMAND ${CMAKE_COMMAND} -E remove -f ${COVERAGE_DIR}/*.dyn
+            COMMAND ${CMAKE_COMMAND} -E remove -f ${COVERAGE_DIR}/*.spi
+            COMMAND ${CMAKE_COMMAND} -E remove -f ${COVERAGE_DIR}/*.spl 
     )
     #
     # Documentation targets
     #
-    # doc target is defined in LPSCommon
     add_custom_target(java-docs)
-    # $$TODO: this list, and the one for bindings above, should be populated programmatically,
-    # NOT by hand. Fix it.
     add_dependencies(java-docs sheaves-java-docs fiber_bundles-java-docs geometry-java-docs
                      fields-java-docs solvers-java-docs tools-java-docs)
                  
@@ -67,7 +67,7 @@ if(LINUX64GNU OR LINUX64INTEL)
 
     #
     # Help targets
-    # $$TODO: format output to 80 chars
+    # 
     add_custom_target(help
         COMMAND ${CMAKE_COMMAND} -E echo "" 
         COMMAND ${CMAKE_COMMAND} -E echo "The following top level help targets are available: "
@@ -180,6 +180,7 @@ if(LINUX64GNU OR LINUX64INTEL)
 endif()
 
 #
+# $$HACK:
 # Convenience targets to abstract away the _test nomenclature
 #
 
