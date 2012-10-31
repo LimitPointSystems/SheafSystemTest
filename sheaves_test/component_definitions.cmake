@@ -49,7 +49,7 @@ else()
     #
     # Set the cumulative shared library var for this component.
     #
-    set(${COMPONENT}_SHARED_LIBS ${${COMPONENT}_SHARED_LIB} CACHE STRING " Cumulative shared libraries for ${PROJECT_NAME}" FORCE)
+    set(${COMPONENT}_SHARED_LIBS ${${COMPONENT}_SHARED_LIB} ${SHEAVES_SHARED_LIBS} CACHE STRING " Cumulative shared libraries for ${PROJECT_NAME}" FORCE)
 
 endif()
 

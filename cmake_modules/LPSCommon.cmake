@@ -565,7 +565,7 @@ function(add_test_targets)
 
             if(LINUX64GNU OR LINUX64INTEL)
             
-                target_link_libraries(${t_file} ${FIELDS_TEST_SHARED_LIBS} ${FIELDS_SHARED_LIBS} ${HDF5_LIBRARIES})
+                target_link_libraries(${t_file} ${${COMPONENT}_SHARED_LIBS})
 
                 # Add a test target for ${t_file}
                 add_test(NAME ${t_file} WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} COMMAND $<TARGET_FILE:${t_file}>)

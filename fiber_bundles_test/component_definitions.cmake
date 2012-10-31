@@ -44,7 +44,7 @@ else()
     #
     # Set the cumulative shared library var for this component.
     #
-    set(${COMPONENT}_SHARED_LIBS ${${COMPONENT}_SHARED_LIB} ${SHEAVES_TEST_SHARED_LIBS} CACHE STRING " Cumulative shared libraries for ${PROJECT_NAME}" FORCE)
+    set(${COMPONENT}_SHARED_LIBS ${${COMPONENT}_SHARED_LIB} ${FIBER_BUNDLES_SHARED_LIB} ${SHEAVES_TEST_SHARED_LIBS} CACHE STRING " Cumulative shared libraries for ${PROJECT_NAME}" FORCE)
     
     #
     # Set the cumulative Java binding library var for this component.

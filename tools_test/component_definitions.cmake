@@ -37,7 +37,7 @@ set_component_vars()
 #
 # Define the component library associated with this test module.
 #
-set(${COMPONENT}_EXTERNAL_LIB libtools.so CACHE STRING "Tools Shared Library")
+#set(${COMPONENT}_EXTERNAL_LIB libtools.so CACHE STRING "Tools Shared Library")
 
 #
 # We don't have to use this decision structure. Windows and linux will ignore the other's lib vars. Just keeps things tidy in the CMake GUI.
@@ -47,7 +47,7 @@ if(WIN64INTEL OR WIN64MSVC)
     #
     # Set the cumulative import library (win32) var for this component.
     #
-    set(${COMPONENT}_IMPORT_LIBS  ${FIELDS_IMPORT_LIBS} ${${COMPONENT}_IMPORT_LIB} CACHE STRING " Cumulative import libraries (win32) for ${PROJECT_NAME}" FORCE)
+    set(${COMPONENT}_IMPORT_LIBS ${FIELDS_IMPORT_LIBS} ${${COMPONENT}_IMPORT_LIB} CACHE STRING " Cumulative import libraries (win32) for ${PROJECT_NAME}" FORCE)
 
 else()
 
@@ -59,7 +59,7 @@ else()
     #
     # Set the cumulative shared library var for this component.
     #
-    set(${COMPONENT}_SHARED_LIBS ${FIELDS_SHARED_LIBS} ${${COMPONENT}_SHARED_LIB} CACHE STRING " Cumulative shared libraries for ${PROJECT_NAME}" FORCE)
+    set(${COMPONENT}_SHARED_LIBS ${${COMPONENT}_SHARED_LIB} ${FIELDS_SHARED_LIB} ${FIELDS_TEST_SHARED_LIBS} CACHE STRING " Cumulative shared libraries for ${PROJECT_NAME}" FORCE)
 
 endif()
 
