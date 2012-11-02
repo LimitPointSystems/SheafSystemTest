@@ -53,4 +53,4 @@ endif # revert_file
 	setenv PYTHONPATH .:@SHEAVES_LIB_OUTPUT_DIR@
 
 	echo setting PROF_DIR in this terminal.
-	setenv PROF_DIR @CMAKE_BINARY_DIR@/coverage
+	setenv PROF_DIR @COVERAGE_DIR@
