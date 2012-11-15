@@ -42,7 +42,7 @@ else()
     #
     # Set the cumulative shared library var for this component.
     #
-    set(${COMPONENT}_SHARED_LIBS ${${COMPONENT}_SHARED_LIB} ${FIELDS_SHARED_LIB} ${GEOMETRY_TEST_SHARED_LIBS} CACHE STRING " Cumulative shared libraries for ${PROJECT_NAME}" FORCE)
+    set(${COMPONENT}_SHARED_LIBS ${${COMPONENT}_SHARED_LIB} libfields.so ${GEOMETRY_TEST_SHARED_LIBS} CACHE STRING " Cumulative shared libraries for ${PROJECT_NAME}" FORCE)
     
     #
     # Set the cumulative Java binding library var for this component.
@@ -93,7 +93,7 @@ function(add_library_targets)
         link_directories(${VTK_LIB_DIR})   
         # Static library
         add_library(${${COMPONENT}_STATIC_LIB} STATIC ${${COMPONENT}_SRCS})
-        add_dependencies(${${COMPONENT}_STATIC_LIB} ${GEOMETRY_STATIC_LIB})
+        add_dependencies(${${COMPONENT}_STATIC_LIB} ${GEOMETRY_STATIC_LIBS})
         set_target_properties(${${COMPONENT}_STATIC_LIB} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
         
         # Shared library

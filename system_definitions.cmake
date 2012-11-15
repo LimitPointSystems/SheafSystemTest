@@ -100,7 +100,7 @@ mark_as_advanced(CLEAR OPTIMIZATION_LEVEL)
 #
 # Enable coverage results
 #
-set(ENABLE_COVERAGE ON CACHE BOOL "Set to OFF to compile without coverage support. Default is ON.")
+set(ENABLE_COVERAGE OFF CACHE BOOL "Set to ON to compile with Intel coverage support. Default is OFF.")
 
 # Set the Coverage dir variable (used by compiler) and create the coverage dir.
 if(ENABLE_COVERAGE)

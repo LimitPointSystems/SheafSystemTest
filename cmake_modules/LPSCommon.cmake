@@ -560,12 +560,12 @@ function(add_test_targets)
                 set_target_properties(${t_file} PROPERTIES COMPILE_DEFINITIONS "SHEAF_DLL_IMPORTS")
                 add_dependencies(${t_file} fieldsdll.dll)
             else()
-                add_dependencies(${t_file} libsheaves.so)
+                add_dependencies(${t_file} ${${COMPONENT}_SHARED_LIBS})
             endif()
 
             if(LINUX64GNU OR LINUX64INTEL)
             
-                target_link_libraries(${t_file} ${${COMPONENT}_SHARED_LIBS})
+                target_link_libraries(${t_file} ${${COMPONENT}_SHARED_LIBS} ${HDF5_LIBRARIES})
 
                 # Add a test target for ${t_file}
                 add_test(NAME ${t_file} WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} COMMAND $<TARGET_FILE:${t_file}>)
@@ -617,12 +617,14 @@ function(add_test_targets)
                     )                                             
                 endif()
                 
-                # Create file-scope coverage target.
-                add_custom_target(${t_file}.cov DEPENDS ${t_file}.log
-                   COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${PROFMERGE}
-                   COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${CODECOV} -comp ${CMAKE_BINARY_DIR}/coverage_files.lst ${CODECOV_ARGS} ${t_file} 
-                )               
-
+                if(${ENABLE_COVERAGE})
+                    # Create file-scope coverage target.
+                    add_custom_target(${t_file}.cov DEPENDS ${t_file}.log
+                        COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${PROFMERGE}
+                        COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${CODECOV} -comp ${CMAKE_BINARY_DIR}/coverage_files.lst ${CODECOV_ARGS} ${t_file} 
+                        )               
+                endif()
+                
             elseif(WIN64MSVC OR WIN64INTEL)
                 #
                 # unit_test.hdf.log -> unit_test.hdf -> unit_test.log -> unit_test

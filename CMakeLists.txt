@@ -100,7 +100,9 @@ add_checklog_target()
 # use "<component>-coverage" for component level
 # coverage results.
 #
-add_coverage_target()
+if(${ENABLE_COVERAGE})
+    add_coverage_target()
+endif()
 
 #
 # Add the documentation targets (doc, docclean)
