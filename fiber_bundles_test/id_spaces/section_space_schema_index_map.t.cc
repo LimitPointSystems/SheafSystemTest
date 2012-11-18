@@ -18,6 +18,7 @@
 #include "scoped_index.h"
 #include "std_strstream.h"
 #include "test_index_spaces.h"
+#include "test_utils.h"
 
 using namespace fiber_bundle;
 
