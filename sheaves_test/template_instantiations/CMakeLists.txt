@@ -47,6 +47,7 @@ set(UNIT_TEST_SRCS
     sheaves_block.inst.t.cc
     sheaves_auto_block.inst.t.cc
     name_map.inst.t.cc
+    name_multimap.inst.t.cc
     namespace_poset.inst.t.cc
     ragged_array.inst.t.cc
     record_map.inst.t.cc
