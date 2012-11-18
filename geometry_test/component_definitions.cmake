@@ -18,7 +18,8 @@ include(${CMAKE_MODULE_PATH}/LPSCommon.cmake)
 #
 # Define the clusters for this component.
 #
-set(clusters coordinates general kd_lattice mesh_generators point_locators)
+set(clusters coordinates general kd_lattice mesh_generators point_locators
+    template_instantiations)
 
 #
 # Initialize all variables for this component.
