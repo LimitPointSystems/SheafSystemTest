@@ -27,6 +27,7 @@ add_clusters("${clusters}")
 
 #
 #  Add the component ipath to the include directories.
+#  $$SCRIBBLE: Should be using something like SHEAVES_TEST_IPATHS here.
 #
 include_directories(BEFORE ${SHEAVES_TEST_IPATH})
 include_directories(BEFORE ${FIBER_BUNDLES_TEST_IPATH}) 
