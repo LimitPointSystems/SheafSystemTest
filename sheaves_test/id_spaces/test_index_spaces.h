@@ -152,26 +152,26 @@ test_space_iterator(const index_space& xspace, bool xis_host_order);
 // Convenience functions
 // ===========================================================
 
-///
-/// Convenience function to print a "header" to standard out.
-///
-SHEAF_DLL_SPEC
-void
-print_header(const string& xtext);
+// ///
+// /// Convenience function to print a "header" to standard out.
+// ///
+// SHEAF_DLL_SPEC
+// void
+// print_header(const string& xtext);
 
-///
-/// Convenience function to print a "subheader" to standard out.
-///
-SHEAF_DLL_SPEC
-void
-print_subheader(const string& xtext);
+// ///
+// /// Convenience function to print a "subheader" to standard out.
+// ///
+// SHEAF_DLL_SPEC
+// void
+// print_subheader(const string& xtext);
 
-///
-/// Convenience function to print an "action" to standard out.
-///
-SHEAF_DLL_SPEC
-void
-print_action(const string& xtext);
+// ///
+// /// Convenience function to print an "action" to standard out.
+// ///
+// SHEAF_DLL_SPEC
+// void
+// print_action(const string& xtext);
 
 
 // ===========================================================

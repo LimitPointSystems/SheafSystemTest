@@ -26,6 +26,11 @@ status_message("Processing ${PROJECT_NAME}")
 add_clusters("${clusters}")
 
 #
+#  Add the component ipath to the include directories.
+#
+include_directories(${SHEAVES_TEST_IPATH}) 
+
+#
 # Set compiler flags for all build configurations
 #
 set_compiler_flags()
@@ -76,4 +81,3 @@ add_component_bin_target()
 # Add files to the clean target
 #
 add_clean_files()
-

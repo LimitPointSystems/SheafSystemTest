@@ -9,6 +9,7 @@
 /// Implementation for id space test functions.
 
 #include "test_index_spaces.h"
+#include "test_utils.h"
 
 #include "arg_list.h"
 #include "assert_contract.h"
@@ -302,62 +303,62 @@ test_space_iterator(const index_space& xspace, bool xis_host_order)
 // Convenience functions
 // ===========================================================
 
-void
-sheaf::
-print_header(const string& xtext)
-{
-  // Preconditions:
+// void
+// sheaf::
+// print_header(const string& xtext)
+// {
+//   // Preconditions:
 
-  // Body:
+//   // Body:
 
-  static const string nl("\n");
-  static const string s = "=======================================";
-  static const string sep = s + s;
+//   static const string nl("\n");
+//   static const string s = "=======================================";
+//   static const string sep = s + s;
 
-  cout << nl << sep << nl << xtext << nl << sep << nl;
-  cout << endl;
+//   cout << nl << sep << nl << xtext << nl << sep << nl;
+//   cout << endl;
 
-  // Postconditions:
+//   // Postconditions:
 
-  // Exit:  
+//   // Exit:  
 
-  return;
-}
+//   return;
+// }
 
-void
-sheaf::
-print_subheader(const string& xtext)
-{
-  // Preconditions:
+// void
+// sheaf::
+// print_subheader(const string& xtext)
+// {
+//   // Preconditions:
 
-  // Body:
+//   // Body:
 
-  static const string nl("\n");
+//   static const string nl("\n");
 
-  cout << nl << "======== " << xtext << " ========" << nl;
-  cout << endl;
+//   cout << nl << "======== " << xtext << " ========" << nl;
+//   cout << endl;
 
-  // Postconditions:
+//   // Postconditions:
 
-  // Exit:
+//   // Exit:
 
-  return;
-}
+//   return;
+// }
 
-void
-sheaf::
-print_action(const string& xtext)
-{
-  // Preconditons:
+// void
+// sheaf::
+// print_action(const string& xtext)
+// {
+//   // Preconditons:
 
-  // Body:
+//   // Body:
 
-  cout << ">>>>>>>> " << xtext << endl;
+//   cout << ">>>>>>>> " << xtext << endl;
 
-  // Postconditions:
+//   // Postconditions:
 
-  // Exit:
+//   // Exit:
 
-  return;
-}
+//   return;
+// }
 
