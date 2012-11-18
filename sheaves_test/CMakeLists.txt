@@ -28,7 +28,7 @@ add_clusters("${clusters}")
 #
 #  Add the component ipath to the include directories.
 #
-include_directories(${SHEAVES_TEST_IPATH}) 
+include_directories(BEFORE ${SHEAVES_TEST_IPATH}) 
 
 #
 # Set compiler flags for all build configurations
