@@ -26,6 +26,14 @@ status_message("Processing ${PROJECT_NAME}")
 add_clusters("${clusters}")
 
 #
+#  Add the component ipath to the include directories.
+#  $$SCRIBBLE: Should be using something like FIBER_BUNDLES_TEST_IPATHS here.
+#
+include_directories(BEFORE ${SHEAVES_TEST_IPATH})
+include_directories(BEFORE ${FIBER_BUNDLES_TEST_IPATH}) 
+include_directories(BEFORE ${GEOMETRY_TEST_IPATH}) 
+
+#
 # Set compiler flags for all build configurations
 #
 set_compiler_flags()
