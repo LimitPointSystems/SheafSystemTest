@@ -1266,7 +1266,7 @@ test_block_facet_equal()
    bool ltest = (lblock_test == lblock);
    cout << "  Test for equality: " << boolalpha << ltest << endl;
 
-  cout << lblock << endl;
+   //cout << lblock << endl;
 
   print_footer("End testing block facet equal:");
 
