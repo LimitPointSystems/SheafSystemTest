@@ -18,7 +18,7 @@ include(${CMAKE_MODULE_PATH}/LPSCommon.cmake)
 #
 # Define the clusters for this component.
 #
-set(clusters fields iterators pushers refiners)
+set(clusters fields iterators pushers refiners template_instantiations)
 
 #
 # Initialize all variables for this component.
