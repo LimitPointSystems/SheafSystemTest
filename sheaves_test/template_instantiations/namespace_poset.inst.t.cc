@@ -30,7 +30,7 @@ main(int xargc, char* xargv[])
 
   bool ltest = true;
 
-  namespace_poset lns("test_namespace");
+  sheaves_namespace lns("test_namespace");
   lns.get_read_write_access();
 
   //============================================================================
