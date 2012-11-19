@@ -262,6 +262,18 @@ main(int xargc, char* xargv[])
   print_footer("End testing auto_block<discretization_context*>");
 
   //============================================================================
+
+  //pair<scoped_index, chart_point_3d>
+
+  print_header("Begin testing auto_block<pair<scoped_index, chart_point_3d> >");
+  cout << "Need to specialize this one." << endl;
+  //ltest &= test_auto_block_facet_all<pair<scoped_index, chart_point_3d> >();
+  //ltest &= test_auto_block_facet_equal_all<pair<scoped_index, chart_point_3d> >();
+  //ltest &= test_auto_block_facet_insertion_all<pair<scoped_index, chart_point_3d> >();
+  //ltest &= test_auto_block_facet_deep_size_all<pair<scoped_index, chart_point_3d> >();
+  print_footer("End testing auto_block<pair<scoped_index, chart_point_3d> >");
+
+  //============================================================================
   // Two parameter cases:
   //============================================================================
 
