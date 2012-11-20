@@ -39,6 +39,7 @@ set(UNIT_TEST_SRCS
     fiber_bundles_abstract_poset_member.inst.t.cc
     fiber_bundles_namespace.inst.t.cc
     fiber_bundles_namespace_poset.inst.t.cc
+    section_space_factory.inst.t.cc
 )
 
 collect_unit_test_sources()
