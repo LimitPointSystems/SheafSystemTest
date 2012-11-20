@@ -1,5 +1,5 @@
 
-// $RCSfile: test_fields.h,v $ $Revision: 1.1.2.2 $ $Date: 2012/11/08 17:24:44 $
+// $RCSfile: test_fields_inst.h,v $ $Revision: 1.1.2.2 $ $Date: 2012/11/08 17:24:44 $
 
 //
 // Copyright (c) 2012 Limit Point Systems, Inc. 
@@ -15,8 +15,8 @@
 #include "sheaf_dll_spec.h"
 #endif
 
-#ifndef FIELDS_NAMESPACE_H
-#include "fields_namespace.h"
+#ifndef FIBER_BUNDLES_NAMESPACE_H
+#include "fiber_bundles_namespace.h"
 #endif
 
 
