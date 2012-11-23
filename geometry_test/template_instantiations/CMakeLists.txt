@@ -36,6 +36,7 @@ collect_includes()
 set(UNIT_TEST_SRCS
     geometry_block.inst.t.cc
     geometry_auto_block.inst.t.cc
+    d_bin_coordinates.inst.t.cc
     d_bounding_box.inst.t.cc
 )
 
