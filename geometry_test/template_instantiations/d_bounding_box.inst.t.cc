@@ -53,23 +53,35 @@ test_d_bounding_box_facet()
   scoped_index lbranch_id2 = lbox.branch_id();
   cout << "lbranch_id2 = " << lbranch_id2 << endl;
 
+  print_subheader("Testing ostream& operator<<(ostream& xos, const d_bounding_box<DC, DB>& xbox)");
+
+  cout << lbox << endl;
+
   //============================================================================
 
   print_subheader("Testing d_bounding_box(const d_bounding_box<DC, DB>& xbox)");
 
   d_bounding_box<DC, DB> lbox2(lbox);
 
+  cout << lbox2 << endl;
+
   print_subheader("Testing d_bounding_box<DC, DB>& operator=(const d_bounding_box<DC, DB>& xbox)");
 
   d_bounding_box<DC, DB> lbox3 = lbox2;
+
+  cout << lbox3 << endl;
 
   print_subheader("Testing d_bounding_box<DC, DB>* = new d_bounding_box<DC, DB>()");
 
   d_bounding_box<DC, DB>* lbox_ptr = new d_bounding_box<DC, DB>();
 
+  cout << *lbox_ptr << endl;
+
   print_subheader("Testing  d_bounding_box<DC, DB>* = new d_bounding_box<DC, DB>(const d_bounding_box<DC, DB>& xbox)");
 
   d_bounding_box<DC, DB>* lbox_ptr2 = new d_bounding_box<DC, DB>(lbox);
+
+  cout << *lbox_ptr2 << endl;
 
   print_subheader("Testing bool operator==(const d_bounding_box<DC, DB>& xbox) const");
 
@@ -152,7 +164,7 @@ test_d_bounding_box_facet()
 
   // Cleanup:
 
-  print_subheader("Testing ~d_bounding_box()");
+  print_subheader("Testing ~d_bounding_box() via delete");
 
   delete lbox_ptr;
   delete lbox_ptr2;
