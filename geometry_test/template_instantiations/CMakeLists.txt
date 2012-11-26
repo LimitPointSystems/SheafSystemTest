@@ -38,6 +38,10 @@ set(UNIT_TEST_SRCS
     geometry_auto_block.inst.t.cc
     d_bin_coordinates.inst.t.cc
     d_bounding_box.inst.t.cc
+    db0_point_locator.inst.t.cc
+    d_bin_point_locator.inst.t.cc
+    d_tree_point_locator.inst.t.cc
+    d_uniform_point_locator.inst.t.cc
 )
 
 
