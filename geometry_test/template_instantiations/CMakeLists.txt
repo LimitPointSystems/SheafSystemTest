@@ -36,11 +36,15 @@ collect_includes()
 set(UNIT_TEST_SRCS
     geometry_block.inst.t.cc
     geometry_auto_block.inst.t.cc
+    geometry_ptr_linked_pool.inst.t.cc
+    d_array_point_locator.inst.t.cc
     d_bin_coordinates.inst.t.cc
     d_bounding_box.inst.t.cc
     db0_point_locator.inst.t.cc
     d_bin_point_locator.inst.t.cc
     d_tree_point_locator.inst.t.cc
+    d_tree_point_locator_node.inst.t.cc
+    d_tree_point_locator_path.inst.t.cc
     d_uniform_point_locator.inst.t.cc
 )
 
