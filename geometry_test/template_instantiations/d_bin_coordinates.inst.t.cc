@@ -5,12 +5,10 @@
 //
 
 /// @example
-/// Unit test driver for template class d_bin_coordinates.
+/// Unit test driver for class d_bin_coordinates.
 
 #include "d_bin_coordinates.h"
 
-// #include "constant_quad.h"  // section_evaluator
-// #include "d_bin_coordinates.h"
 // #include "geometry.h"
 #include "test_utils.h"
 
@@ -77,6 +75,8 @@ test_d_bin_coordinates_facet()
 
   //==================================================================
 
+  size_type lbits = lcoords.bits();
+
   size_type lleftmost = lcoords.leftmost_bit_id();
 
   size_type lrightmost = lcoords.rightmost_bit_id();
@@ -89,147 +89,26 @@ test_d_bin_coordinates_facet()
 
   //==================================================================
 
-//   print_subheader("Testing void put_member_id(const scoped_index& xid)");
+  // For cases where DB == DC, there are specializations.
+  // For cases where DB != DC, the functions are "not_implemented".
 
-//   scoped_index lmember_id(123);
-//   lbox.put_member_id(lmember_id);
+  if(DB == DC)
+  {
+    lcoords.put_branch(0, 0);
 
-//   print_subheader("Testing scoped_index member_id() const");
+    size_type lbranch = lcoords.branch(0);
+  }
 
-//   scoped_index lmember_id2 = lbox.member_id();
-//   cout << "lmember_id2 = " << lmember_id2 << endl;
+  //============================================================================
 
-//   print_subheader("Testing void put_branch_id(const scoped_index& xid)");
+  // Cleanup:
 
-//   scoped_index lbranch_id(345);
-//   lbox.put_branch_id(lbranch_id);
+  print_subheader("Testing ~d_bin_coordinates via delete");
 
-//   print_subheader("Testing scoped_index branch_id() const");
+  //delete lbox_ptr;
+  //delete lbox_ptr2;
 
-//   scoped_index lbranch_id2 = lbox.branch_id();
-//   cout << "lbranch_id2 = " << lbranch_id2 << endl;
-
-//   print_subheader("Testing ostream& operator<<(ostream& xos, const d_bounding_box<DC, DB>& xbox)");
-
-//   cout << lbox << endl;
-
-//   //============================================================================
-
-//   print_subheader("Testing d_bounding_box(const d_bounding_box<DC, DB>& xbox)");
-
-//   d_bounding_box<DC, DB> lbox2(lbox);
-
-//   cout << lbox2 << endl;
-
-//   print_subheader("Testing d_bounding_box<DC, DB>& operator=(const d_bounding_box<DC, DB>& xbox)");
-
-//   d_bounding_box<DC, DB> lbox3 = lbox2;
-
-//   cout << lbox3 << endl;
-
-//   print_subheader("Testing d_bounding_box<DC, DB>* = new d_bounding_box<DC, DB>()");
-
-//   d_bounding_box<DC, DB>* lbox_ptr = new d_bounding_box<DC, DB>();
-
-//   cout << *lbox_ptr << endl;
-
-//   print_subheader("Testing  d_bounding_box<DC, DB>* = new d_bounding_box<DC, DB>(const d_bounding_box<DC, DB>& xbox)");
-
-//   d_bounding_box<DC, DB>* lbox_ptr2 = new d_bounding_box<DC, DB>(lbox);
-
-//   cout << *lbox_ptr2 << endl;
-
-//   print_subheader("Testing bool operator==(const d_bounding_box<DC, DB>& xbox) const");
-
-//   bool lequal = (lbox == lbox2);
-//   cout << "lequal = " << boolalpha << lequal << endl;
-
-//   print_subheader("Testing ostream& operator<<(ostream& xos, const d_bounding_box<DC, DB>& xbox)");
-
-//   cout << 
-
-//   //============================================================================
-
-
-//   print_subheader("Testing static int dc()");
-
-//   int ldc = lbox.dc();
-//   cout << "ldc = " << ldc << endl;
-
-//   print_subheader("Testing void size_pa(d_bin_coordinates<DC, DB>& xresult) const");
-
-//   d_bin_coordinates<DC, DB> lcoords;
-//   lbox.size_pa(lcoords);
-//   cout << "lcoords = " << lcoords << endl;
-
-//   print_subheader("Testing bool contains_point(const d_bin_coordinates<DC, DB>& xpt) const");
-
-//   bool lcontains_point = lbox.contains_point(lcoords);
-//   cout << "lcontains_point = " << boolalpha << lcontains_point << endl;
-
-//   // Setting the upper and lower bounds to the same (doesn't matter
-//   // for purposes of just successfully calling the put_lb/_ub functions.
-
-//   print_subheader("Testing void put_lb(const d_bin_coordinates<DC, DB>& xlb)");
-
-//   lbox.put_lb(lcoords);
-
-//   print_subheader("Testing const d_bin_coordinates<DC, DB>& lb() const");
-
-//   const d_bin_coordinates<DC, DB>& lcoords_lb = lbox.lb();
-//   cout << "lcoords_lb = " << lcoords_lb << endl;
-
-//   print_subheader("Testing void put_ub(const d_bin_coordinates<DC, DB>& xub)");
-
-//   lbox.put_ub(lcoords);
-
-//   print_subheader("Testing const d_bin_coordinates<DC, DB>& ub() const");
-
-//   const d_bin_coordinates<DC, DB>& lcoords_ub = lbox.ub();
-//   cout << "lcoords_ub = " << lcoords_ub << endl;
-
-//   print_subheader("Testing void put_dof_ct(size_type xct)");
-
-//   lbox.put_dof_ct(8);
-
-//   print_subheader("Testing size_type dof_ct() const");
-
-//   size_type ldoc_ct = lbox.dof_ct();
-//   cout << "ldoc_ct = " << ldoc_ct << endl;
-
-//   print_subheader("Testing void put_dofs_index(size_type xindex)");
-
-//   lbox.put_dofs_index(16);
-
-//   print_subheader("Testing size_type dofs_index() const");
-
-//   size_type ldofs_index = lbox.dofs_index();
-//   cout << "ldofs_index = " << ldofs_index << endl;
-
-//   //============================================================================
-
-//   // Just pick any evaluator.
-
-//   print_subheader("Testing void put_evaluator(section_evaluator* xevaluator);");
-
-//   constant_quad leval;
-//   lbox.put_evaluator(&leval);
-
-//   print_subheader("Testing section_evaluator* evaluator() const");
-
-//   section_evaluator* leval_ptr = lbox.evaluator();
-//   cout << "leval_ptr = " << leval_ptr << endl;
-
-//   //============================================================================
-
-//   // Cleanup:
-
-//   print_subheader("Testing ~d_bounding_box() via delete");
-
-//   delete lbox_ptr;
-//   delete lbox_ptr2;
-
-//   //============================================================================
+  //============================================================================
 
  // Postconditions:
 
@@ -256,20 +135,23 @@ main(int xargc, char* xargv[])
   print_header("Testing d_bin_coordinates_facet<1, 0>:");
   ltest &= test_d_bin_coordinates_facet<1, 0>();
 
-  print_header("Testing d_bin_coordinates_facet<1, 1>:");
-  ltest &= test_d_bin_coordinates_facet<1, 1>();
-
   print_header("Testing d_bin_coordinates_facet<2, 0>:");
   ltest &= test_d_bin_coordinates_facet<2, 0>();
-
-  print_header("Testing d_bin_coordinates_facet<2, 2>:");
-  ltest &= test_d_bin_coordinates_facet<2, 2>();
 
   print_header("Testing d_bin_coordinates_facet<3, 0>:");
   ltest &= test_d_bin_coordinates_facet<3, 0>();
 
+  print_header("Testing d_bin_coordinates_facet<4, 0>:");
+  ltest &= test_d_bin_coordinates_facet<4, 0>();
+
+  print_header("Testing d_bin_coordinates_facet<1, 1>:");
+  ltest &= test_d_bin_coordinates_facet<1, 1>();
+
   print_header("Testing d_bin_coordinates_facet<3, 1>:");
   ltest &= test_d_bin_coordinates_facet<3, 1>();
+
+  print_header("Testing d_bin_coordinates_facet<2, 2>:");
+  ltest &= test_d_bin_coordinates_facet<2, 2>();
 
   print_header("Testing d_bin_coordinates_facet<3, 2>:");
   ltest &= test_d_bin_coordinates_facet<3, 2>();

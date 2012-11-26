@@ -5,11 +5,11 @@
 //
 
 /// @example
-/// Unit test driver for template class d_bounding_box.
+/// Unit test driver for class d_bounding_box.
 
 #include "d_bounding_box.h"
 
-#include "constant_quad.h"  // section_evaluator
+#include "constant_quad.h"  // concrete section_evaluator
 #include "d_bin_coordinates.h"
 #include "geometry.h"
 #include "test_utils.h"
