@@ -9,6 +9,7 @@
 
 #include "record_map.h"
 #include "test_sheaves.impl.h"
+#include "test_utils.h"
 
 using namespace sheaf;
 

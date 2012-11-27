@@ -9,7 +9,7 @@
 
 #include "d_tree_point_locator.h"
 
-// #include "geometry.h"
+#include "geometry.h"
 #include "test_utils.h"
 
 using namespace geometry;

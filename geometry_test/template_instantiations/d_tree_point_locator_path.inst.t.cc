@@ -1,15 +1,15 @@
-// $RCSfile: xxx.inst.t.cc,v $ $Revision: 1.1.2.4 $ $Date: 2012/10/24 02:00:34 $
+// $RCSfile: d_tree_point_locator_path.inst.t.cc,v $ $Revision: 1.1.2.4 $ $Date: 2012/10/24 02:00:34 $
 
 //
 // Copyright (c) 2012 Limit Point Systems, Inc.
 //
 
 /// @example
-/// Unit test driver for class xxx.
+/// Unit test driver for class d_tree_point_locator_path.
 
-#include "xxx.h"
+#include "d_tree_point_locator_path.h"
 
-// #include "geometry.h"
+#include "geometry.h"
 #include "test_utils.h"
 
 using namespace geometry;
@@ -28,7 +28,7 @@ main(int xargc, char* xargv[])
 
   // Body:
 
-  print_header("Begin testing xxx_facet<???>:");
+  print_header("Begin testing d_tree_point_locator_path_facet<???>:");
 
   bool ltest = true;
 
@@ -38,7 +38,7 @@ main(int xargc, char* xargv[])
 
   int lresult = ltest ? EXIT_SUCCESS : EXIT_FAILURE;
 
-  print_footer("End testing xxx_facet<???>:");
+  print_footer("End testing d_tree_point_locator_path_facet<???>:");
 
   // Postconditions:
 

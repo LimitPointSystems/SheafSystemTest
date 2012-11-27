@@ -17,7 +17,7 @@
 #include "fiber_bundles_namespace.h"
 #include "sec_rep_descriptor.h" 
 
-// #include "geometry.h"
+#include "geometry.h"
 #include "test_utils.h"
 
 #include "test_sections.h"
@@ -28,15 +28,15 @@ using namespace geometry;
 namespace
 {
 
-template<int DC>
-bool
-test_db0_point_locator_facet()
-{
+// template<int DC>
+// bool
+// test_db0_point_locator_facet()
+// {
 
-  sec_ed sec;
-  db0_point_locator<DC> lloc(sec);
-  return true;
-}
+//   sec_ed sec;
+//   db0_point_locator<DC> lloc(sec);
+//   return true;
+// }
 
 } //end namespace
 
@@ -52,72 +52,72 @@ main(int xargc, char* xargv[])
   bool ltest = true;
 
 
-  //============================================================================
+//   //============================================================================
 
-  fiber_bundles_namespace lns("test_namespace");
-  lns.get_read_write_access();
+//   fiber_bundles_namespace lns("test_namespace");
+//   lns.get_read_write_access();
 
-  // Make a base space.
+//   // Make a base space.
 
-//   const poset_path& lbase_path = make_test_base_space(lns, 2); // 1d
-//   const poset_path& lbase_path = make_test_base_space(lns, 2, 2); // 2d
-  const poset_path& lbase_path = make_test_base_space(lns, 2, 2, 3); // 3d
+// //   const poset_path& lbase_path = make_test_base_space(lns, 2); // 1d
+// //   const poset_path& lbase_path = make_test_base_space(lns, 2, 2); // 2d
+//   const poset_path& lbase_path = make_test_base_space(lns, 2, 2, 3); // 3d
 
-  poset_path lcoordinates_path("coordinate_section_space/coordinates_0");
+//   poset_path lcoordinates_path("coordinate_section_space/coordinates_0");
 
-  sec_at1_space* lcoords_space =
-    &(lns.new_section_space<sec_e3>(lcoordinates_path.poset_name(),
-                                    lbase_path,
-                                    "sec_rep_descriptors/vertex_vertex_constant",
-                                    true));
+//   sec_at1_space* lcoords_space =
+//     &(lns.new_section_space<sec_e3>(lcoordinates_path.poset_name(),
+//                                     lbase_path,
+//                                     "sec_rep_descriptors/vertex_vertex_constant",
+//                                     true));
 
-  lcoords_space->get_read_write_access();
+//   lcoords_space->get_read_write_access();
 
-  sec_e1 lcoords(lcoords_space);
-  lcoords.put_name(lcoordinates_path.member_name(), true, false);
-
-
-  cout << lcoords.schema().rep().name() << endl;
-
-  sec_ed_invertible lsec_inv(lcoords);
-  lsec_inv.initialize_point_locator(false);
-
-  //db0_point_locator<1> lloc(lcoords);
-  //db0_point_locator<1> lloc(lsec_inv);
-
-//   block<size_type> lbin_ub;
-//   lbin_ub.push_back(10);
-
-//   //db0_point_locator<1> lloc(lcoords, lbin_ub);
-//   db0_point_locator<1> lloc(lsec_inv, lbin_ub);
-
-  const point_locator& lloc = lsec_inv.inverter();
-
-  //test_db0_point_locator_facet<1>(lcoords);
+//   sec_e1 lcoords(lcoords_space);
+//   lcoords.put_name(lcoordinates_path.member_name(), true, false);
 
 
-  //============================================================================
-  // point_locator facet:
+//   cout << lcoords.schema().rep().name() << endl;
 
-  // sec_ed& coordinates() const;
+//   sec_ed_invertible lsec_inv(lcoords);
+//   lsec_inv.initialize_point_locator(false);
 
-  sec_ed& lcoord_section = lloc.coordinates();
+//   //db0_point_locator<1> lloc(lcoords);
+//   //db0_point_locator<1> lloc(lsec_inv);
 
-  // const block<sec_vd_value_type>& lb() const;
+// //   block<size_type> lbin_ub;
+// //   lbin_ub.push_back(10);
+
+// //   //db0_point_locator<1> lloc(lcoords, lbin_ub);
+// //   db0_point_locator<1> lloc(lsec_inv, lbin_ub);
+
+//   const point_locator& lloc = lsec_inv.inverter();
+
+//   //test_db0_point_locator_facet<1>(lcoords);
+
+
+//   //============================================================================
+//   // point_locator facet:
+
+//   // sec_ed& coordinates() const;
+
+//   sec_ed& lcoord_section = lloc.coordinates();
+
+//   // const block<sec_vd_value_type>& lb() const;
   
-  const block<sec_vd_value_type>& llb = lloc.lb();
+//   const block<sec_vd_value_type>& llb = lloc.lb();
 
-  // const block<sec_vd_value_type>& ub() const;
+//   // const block<sec_vd_value_type>& ub() const;
   
-  const block<sec_vd_value_type>& lub = lloc.ub();
+//   const block<sec_vd_value_type>& lub = lloc.ub();
 
-  // int dc() const;
+//   // int dc() const;
 
-  int ldc = lloc.dc();
+//   int ldc = lloc.dc();
 
-  // int db() const;
+//   // int db() const;
 
-  int ldb = lloc.db();
+//   int ldb = lloc.db();
 
   //============================================================================
 

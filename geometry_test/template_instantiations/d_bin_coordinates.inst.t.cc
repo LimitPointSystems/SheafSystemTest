@@ -9,7 +9,7 @@
 
 #include "d_bin_coordinates.h"
 
-// #include "geometry.h"
+#include "geometry.h"
 #include "test_utils.h"
 
 using namespace geometry;

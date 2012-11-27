@@ -1,15 +1,15 @@
-// $RCSfile: xxx.inst.t.cc,v $ $Revision: 1.1.2.4 $ $Date: 2012/10/24 02:00:34 $
+// $RCSfile: geometry_ptr_linked_pool.inst.t.cc,v $ $Revision: 1.1.2.4 $ $Date: 2012/10/24 02:00:34 $
 
 //
 // Copyright (c) 2012 Limit Point Systems, Inc.
 //
 
 /// @example
-/// Unit test driver for class xxx.
+/// Unit test driver for class ptr_linked_pool.
 
-#include "xxx.h"
+#include "ptr_linked_pool.h"
 
-// #include "geometry.h"
+#include "geometry.h"
 #include "test_utils.h"
 
 using namespace geometry;
@@ -28,7 +28,7 @@ main(int xargc, char* xargv[])
 
   // Body:
 
-  print_header("Begin testing xxx_facet<???>:");
+  print_header("Begin testing ptr_linked_pool_facet<???>:");
 
   bool ltest = true;
 
@@ -38,7 +38,7 @@ main(int xargc, char* xargv[])
 
   int lresult = ltest ? EXIT_SUCCESS : EXIT_FAILURE;
 
-  print_footer("End testing xxx_facet<???>:");
+  print_footer("End testing ptr_linked_pool_facet<???>:");
 
   // Postconditions:
 
