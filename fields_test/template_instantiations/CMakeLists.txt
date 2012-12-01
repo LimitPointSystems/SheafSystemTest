@@ -36,6 +36,7 @@ collect_includes()
 set(UNIT_TEST_SRCS
     fields_block.inst.t.cc
     fields_auto_block.inst.t.cc
+    field_factory_2.inst.t.cc
 )
 
 collect_unit_test_sources()
