@@ -29,7 +29,7 @@ main(int xargc, char *xargv[])
 
   string filename = filename_from_cmdline(*xargv);
 
-  print_field_header("Testing " + filename);
+  print_header("Testing " + filename);
 
   // Create the namespace.
 

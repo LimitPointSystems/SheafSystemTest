@@ -33,7 +33,7 @@ main()
   // Body:
 
   const string& field_name = field_met_e1::static_class_name();
-  print_field_header("Testing " + field_name);
+  print_header("Testing " + field_name);
 
   // Create the namespace.
 

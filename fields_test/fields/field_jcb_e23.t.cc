@@ -25,7 +25,7 @@ main()
   // Body:
 
   const string& field_name = field_jcb_e23::static_class_name();
-  print_field_header("Testing " + field_name);
+  print_header("Testing " + field_name);
 
   // Create the namespace.
 

@@ -246,8 +246,8 @@ test_sec_hook_product(fiber_bundles_namespace& xns,
 
   // Execute the test(s).
 
-  printtion(ltensor_0[0]);
-  printtion(ltensor_1[0]);
+  print_section(ltensor_0[0]);
+  print_section(ltensor_1[0]);
 
   hook(ltensor_0[0], ltensor_1[0], ltensor_r[0], true);
   print_result("hook(ltensor_0[0], ltensor_1[0], ltensor_r[0]):",

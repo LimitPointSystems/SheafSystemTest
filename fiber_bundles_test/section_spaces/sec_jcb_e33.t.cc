@@ -27,7 +27,7 @@ main()
 
   const string& section_name = sec_jcb_e33::static_class_name();
 
-  print_sec_header("Testing " + section_name);
+  print_header("Testing " + section_name);
 
   // Create the namespace.
 
