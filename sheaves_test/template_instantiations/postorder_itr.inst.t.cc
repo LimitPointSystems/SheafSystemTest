@@ -78,7 +78,7 @@ main(int xargc, char* xargv[])
   ltest &= test_filtered_depth_first_itr_facet<postorder_itr, ZBOOL>(lns);
   print_footer("End testing postorder_itr<zn_to_bool>");
 
-  typedef hash_set<pod_index_type> SET;
+  typedef set<pod_index_type> SET;
   print_header("Begin testing postorder_itr<set<pod_index_type> >");
   ltest &= test_depth_first_itr_facet<postorder_itr, SET >(lns);
   ltest &= test_filtered_depth_first_itr_facet<postorder_itr, SET >(lns);

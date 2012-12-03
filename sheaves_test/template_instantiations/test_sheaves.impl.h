@@ -2233,6 +2233,10 @@ test_depth_first_itr_facet(namespace_poset& xns)
 
   ITR<T> litr(lanchor);
 
+  print_subheader("Testing depth_first_itr<T>::reserve_has_visited(pod_index_type xub)");
+
+  litr.reserve_has_visited(16);
+
 
   print_subheader("Testing bool depth_first_itr<T>::visit_once()");
 
