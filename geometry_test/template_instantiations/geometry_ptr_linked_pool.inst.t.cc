@@ -7,26 +7,32 @@
 /// @example
 /// Unit test driver for class ptr_linked_pool.
 
-// #include "ptr_linked_pool.impl.h"
-
-// #include "d_tree_point_locator_node.impl.h"
-
-
 #include "ptr_linked_pool.h"
 
 #include "d_tree_point_locator_node.h"
-
-#include "geometry.h"
 #include "test_utils.h"
-#include "std_iostream.h"
+
+namespace
+{
 
 using namespace sheaf;
 using namespace geometry;
 
-namespace sheaf
-{
 
 //$$TODO: Move to test_geometry.impl.h.
+
+///
+/// Simple derived class for ptr_linked_pool with only
+/// a  default constructor and destructor.
+///
+template<typename T>
+class ptr_linked_pool_child : public ptr_linked_pool<T>
+{
+public:
+    ptr_linked_pool_child(size_t xcapacity=16) {}
+    ~ptr_linked_pool_child() {}
+};
+
 template<typename T>
 bool
 test_ptr_linked_pool()
@@ -93,6 +99,10 @@ test_ptr_linked_pool()
                   "    ostream& xos,const ptr_linked_pool<T>& xp);)");
 
   cout << lpool << endl;
+
+  print_subheader("Testing derived class CTOR/DTOR");
+
+  ptr_linked_pool_child<T> lchild;
 
   // Postconditions:
 

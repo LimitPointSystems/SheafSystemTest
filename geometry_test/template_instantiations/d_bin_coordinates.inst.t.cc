@@ -17,6 +17,18 @@ using namespace geometry;
 namespace
 {
 
+///
+/// Simple derived class for d_bin_coordinates with only
+/// a default constructor and destructor.
+///
+template<int DC, int DB>
+class d_bin_coordinates_child : public d_bin_coordinates<DC, DB>
+{
+public:
+  d_bin_coordinates_child() {}
+  ~d_bin_coordinates_child() {}
+};
+
 template<int DC, int DB>
 bool
 test_d_bin_coordinates_facet()
@@ -64,9 +76,9 @@ test_d_bin_coordinates_facet()
 
   cout << lcoords4 << endl;
 
-//   d_bin_coordinates<DC, DB> lcoords5;
-//   lcoords5 -= lcoords4;
-//   cout << lcoords5 << endl;
+  //d_bin_coordinates<DC, DB> lcoords5;
+  //lcoords5 -= lcoords4;
+  //cout << lcoords5 << endl;
 
   d_bin_coordinates<DC, DB> lcoords6;
   lcoords6 >>= 1;
@@ -87,6 +99,13 @@ test_d_bin_coordinates_facet()
 
   int_type& lint = lcoords[DC-1];
 
+  bool leql2 = (lcoords == lint);
+  cout << "leql2 = " << boolalpha << leql2 << endl;
+
+  //==================================================================
+
+  lcoords[DC-1] = 0;
+
   //==================================================================
 
   // For cases where DB == DC, there are specializations.
@@ -98,6 +117,12 @@ test_d_bin_coordinates_facet()
 
     size_type lbranch = lcoords.branch(0);
   }
+
+  //============================================================================
+
+  print_subheader("Testing derived class CTOR/DTOR");
+
+  d_bin_coordinates_child<DC, DB> lchild;
 
   //============================================================================
 
