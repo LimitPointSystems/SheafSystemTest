@@ -27,7 +27,7 @@ namespace // unnamed
 
     print_subheader("Test binary_index_block(int xi_ub = 0, int xj_ub = 0)");
 
-    //$$ISSUE: This contstructor fails in the "invariant" function.
+    //$$ISSUE: This constructor fails in the "invariant" function.
     //         Does this class work at all? Is it used?
 
 //     binary_index_block<T> lblock(3, 5);
