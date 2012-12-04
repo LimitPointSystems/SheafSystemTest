@@ -26,7 +26,7 @@ collect_sources()
 #
 set(ADDITIONAL_INCS
 
-  )
+)
 
 collect_includes()
 
@@ -34,6 +34,7 @@ collect_includes()
 # Source for unit test executables.
 #
 set(UNIT_TEST_SRCS
+    array_cylindrical_point_locator.t.cc
 )
 
 collect_unit_test_sources()
@@ -43,6 +44,8 @@ collect_unit_test_sources()
 #
 set(EXAMPLE_SRCS
 
- )
+)
 
 collect_example_sources()
+
+
