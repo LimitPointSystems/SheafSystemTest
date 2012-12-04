@@ -193,15 +193,7 @@ function(set_compiler_flags)
                set(LPS_CXX_FLAGS "-ansi -m64 -w0 -Wno-deprecated ${OPTIMIZATION}")
             endif()
         endif() # ENABLE_COVERAGE          
-#           set(LPS_CXX_FLAGS "-ansi -m64 -w1 -wd186,1125 -Wno-deprecated ${OPTIMIZATION} -prof-gen=srcpos")
-#        else()
-#           set(LPS_CXX_FLAGS "-ansi -m64 -w0 -Wno-deprecated ${OPTIMIZATION} -prof-gen=srcpos")
-#        endif()
-#        if(INTELWARN)
-#           set(LPS_CXX_FLAGS "-ansi -m64 -w1 -wd186,1125 -Wno-deprecated ${OPTIMIZATION} -prof-gen=srcpos -prof-dir ${COVERAGE_DIR}")
-#        else()
-#           set(LPS_CXX_FLAGS "-ansi -m64 -w0 -Wno-deprecated ${OPTIMIZATION} -prof-gen=srcpos -prof-dir ${COVERAGE_DIR}")
-#        endif()
+
      elseif(LINUX64GNU)
          set(LPS_CXX_FLAGS "-ansi -m64 -Wno-deprecated ${OPTIMIZATION}")
              
