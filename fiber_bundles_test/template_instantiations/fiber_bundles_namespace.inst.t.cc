@@ -21,6 +21,7 @@
 #include "at3_e3.h"
 #include "atp.h"
 #include "atp_space.h"
+#include "base_space_poset.h"
 #include "e1.h"
 #include "e2.h"
 #include "e3.h"
@@ -105,6 +106,7 @@
 #include "st4_e3.h"
 #include "stp.h"
 #include "stp_space.h"
+#include "structured_block_2d.h"
 #include "t2.h"
 #include "t2_e2.h"
 #include "t2_e3.h"
@@ -287,7 +289,7 @@ main(int xargc, char* xargv[])
 
   //============================================================================
 
-#ifdef DO_FAIL
+  //#ifdef DO_FAIL
 
   // These return poset_path:
   // All of these tests fail with roughly the same error message:
@@ -301,7 +303,30 @@ main(int xargc, char* xargv[])
   // poset_path(xsection_space_schema_args.value("base_space_path")).full())'
   // in file fiber_bundles_namespace.cc at line 793
 
-  lns.new_section_space_schema<sec_at0>();
+  // Create a base space poset for 2d strructured blocks.
+
+  poset_path lbase_path("test_base_space");
+  base_space_poset& lbase = lns.new_base_space<structured_block_2d>(lbase_path);
+
+  // Create a block; has to have a name to use as a base space for a section space.
+
+  structured_block_2d lblock(&lbase, 2, 2);
+  lblock.put_name("2d_block", true, true);  
+
+  // Create a name for the section space.
+
+  poset_path lsec_space_path("test_section_space_at0_on_2d_block");
+
+  // Create the section space.
+
+  lns.new_section_space<sec_at0>(lsec_space_path, lblock.path());
+  
+  // If trying to make a section space schema directly,
+  // have to specify a base space one way or another,
+  // here we'll use the explicit base space arg.
+
+  //lns.new_section_space_schema<sec_at0>("", "", "", "", lblock.path());
+
   ////lns.new_section_space_schema<sec_at1>();
   ////lns.new_section_space_schema<sec_at2>();
   ////lns.new_section_space_schema<sec_at2_e2>();
@@ -363,7 +388,7 @@ main(int xargc, char* xargv[])
 
   //============================================================================
 
-#endif
+  //#endif
 
   int lresult = ltest ? EXIT_SUCCESS : EXIT_FAILURE;
 
