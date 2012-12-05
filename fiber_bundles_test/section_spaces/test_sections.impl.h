@@ -115,7 +115,7 @@
 #include "sec_tp_space.h"
 #endif
 
-#ifndef SEC_VD.IMPL_H
+#ifndef SEC_VD_IMPL_H
 #include "sec_vd.impl.h"
 #endif
 

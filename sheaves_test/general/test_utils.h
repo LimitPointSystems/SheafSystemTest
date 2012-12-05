@@ -8,8 +8,8 @@
 /// @file
 /// Interface for fiber test function templates.
 
-#ifndef TEST_UTILS.H_H
-#define TEST_UTILS.H_H
+#ifndef TEST_UTILS_H
+#define TEST_UTILS_H
 
 #ifndef SHEAF_DLL_SPEC_H
 #include "sheaf_dll_spec.h"
@@ -66,4 +66,4 @@ print_action(const string& xtext);
 } // namespace sheaf
 
 
-#endif // ifndef TEST_UTILS.H_H
+#endif // ifndef TEST_UTILS_H
