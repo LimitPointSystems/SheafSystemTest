@@ -337,32 +337,34 @@ main(int xargc, char* xargv[])
 
   //============================================================================
 
+  //$$SCRIBBLE: db0_point_locator<DC>::vertex_type is protected.
+
   // slist<geometry::db0_point_locator<1>::vertex_type>
 
-  print_header("Begin testing block<slist<db0_point_locator<1>::vertex_type> >");
-  ltest &= test_block_facet<slist<db0_point_locator<1>::vertex_type> >();
-  //ltest &= test_block_facet_equal<slist<db0_point_locator<1>::vertex_type> >();
-  //ltest &= test_block_facet_insertion<slist<db0_point_locator<1>::vertex_type> >();
-  //ltest &= test_block_facet_deep_size<slist<db0_point_locator<1>::vertex_type >();
-  print_footer("End testing block<slist<db0_point_locator<1>::vertex_type> >");
+//   print_header("Begin testing block<slist<db0_point_locator<1>::vertex_type> >");
+//   //ltest &= test_block_facet<slist<db0_point_locator<1>::vertex_type> >();
+//   //ltest &= test_block_facet_equal<slist<db0_point_locator<1>::vertex_type> >();
+//   //ltest &= test_block_facet_insertion<slist<db0_point_locator<1>::vertex_type> >();
+//   //ltest &= test_block_facet_deep_size<slist<db0_point_locator<1>::vertex_type >();
+//   print_footer("End testing block<slist<db0_point_locator<1>::vertex_type> >");
 
-  // slist<geometry::db0_point_locator<2>::vertex_type>
+//   // slist<geometry::db0_point_locator<2>::vertex_type>
 
-  print_header("Begin testing block<slist<db0_point_locator<2>::vertex_type> >");
-  ltest &= test_block_facet<slist<db0_point_locator<2>::vertex_type> >();
-  //ltest &= test_block_facet_equal<slist<db0_point_locator<2>::vertex_type> >();
-  //ltest &= test_block_facet_insertion<slist<db0_point_locator<2>::vertex_type> >();
-  //ltest &= test_block_facet_deep_size<slist<db0_point_locator<2>::vertex_type >();
-  print_footer("End testing block<slist<db0_point_locator<2>::vertex_type> >");
+//   print_header("Begin testing block<slist<db0_point_locator<2>::vertex_type> >");
+//   //ltest &= test_block_facet<slist<db0_point_locator<2>::vertex_type> >();
+//   //ltest &= test_block_facet_equal<slist<db0_point_locator<2>::vertex_type> >();
+//   //ltest &= test_block_facet_insertion<slist<db0_point_locator<2>::vertex_type> >();
+//   //ltest &= test_block_facet_deep_size<slist<db0_point_locator<2>::vertex_type >();
+//   print_footer("End testing block<slist<db0_point_locator<2>::vertex_type> >");
 
-  // slist<geometry::db0_point_locator<3>::vertex_type>
+//   // slist<geometry::db0_point_locator<3>::vertex_type>
 
-  print_header("Begin testing block<slist<db0_point_locator<3>::vertex_type> >");
-  ltest &= test_block_facet<slist<db0_point_locator<3>::vertex_type> >();
-  //ltest &= test_block_facet_equal<slist<db0_point_locator<3>::vertex_type> >();
-  //ltest &= test_block_facet_insertion<slist<db0_point_locator<3>::vertex_type> >();
-  //ltest &= test_block_facet_deep_size<slist<db0_point_locator<3>::vertex_type >();
-  print_footer("End testing block<slist<db0_point_locator<3>::vertex_type> >");
+//   print_header("Begin testing block<slist<db0_point_locator<3>::vertex_type> >");
+//   //ltest &= test_block_facet<slist<db0_point_locator<3>::vertex_type> >();
+//   //ltest &= test_block_facet_equal<slist<db0_point_locator<3>::vertex_type> >();
+//   //ltest &= test_block_facet_insertion<slist<db0_point_locator<3>::vertex_type> >();
+//   //ltest &= test_block_facet_deep_size<slist<db0_point_locator<3>::vertex_type >();
+//   print_footer("End testing block<slist<db0_point_locator<3>::vertex_type> >");
 
   //============================================================================
 
