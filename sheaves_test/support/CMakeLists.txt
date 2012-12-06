@@ -34,6 +34,7 @@ collect_includes()
 # Source for unit test executables.
 #
 set(UNIT_TEST_SRCS
+    primitive_value.t.cc
 )
 
 collect_unit_test_sources()
