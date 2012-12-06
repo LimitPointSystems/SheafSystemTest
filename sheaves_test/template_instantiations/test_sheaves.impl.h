@@ -21,13 +21,15 @@
 #include "test_sheaves.h"
 #include "test_utils.h"
 
-#include "test_sheaves.impl.h"
+#include "test_sheaves.h"
 
 #include "namespace_poset.h"
 #include "subposet_member_iterator.h"
 
 #include "ragged_array.impl.h"
 #include "rc_any.h"
+#include "record_map.h"
+
 
 
 namespace sheaf

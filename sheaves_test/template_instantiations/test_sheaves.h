@@ -275,7 +275,6 @@ test_block_facet<index_space*>();
 ///
 template<typename T>
 bool
-sheaf::
 test_block_facet_equal();
 
 ///
@@ -283,7 +282,6 @@ test_block_facet_equal();
 ///
 template<typename T>
 bool
-sheaf::
 test_block_facet_insertion();
 
 ///
@@ -429,7 +427,6 @@ test_filtered_depth_first_itr_facet(const refinable_poset& xposet);
 ///  Used for testing. 
 ///
 void
-sheaf::
 make_triangle_poset(namespace_poset& xns, const string& xname);
 
 //============================================================================
