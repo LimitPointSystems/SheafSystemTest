@@ -35,11 +35,26 @@ void
 print_header(const string& xtext);
 
 ///
+/// Convenience function to print a "header" to standard out.
+///
+SHEAF_DLL_SPEC
+void
+print_header(const string& xtext, const string& xtext2);
+
+
+///
 /// Convenience function to print a "footer" to standard out.
 ///
 SHEAF_DLL_SPEC
 void
 print_footer(const string& xtext);
+
+///
+/// Convenience function to print a "footer" to standard out.
+///
+SHEAF_DLL_SPEC
+void
+print_footer(const string& xtext, const string& xtext2);
 
 ///
 /// Convenience function to print a "subheader" to standard out.

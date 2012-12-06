@@ -31,6 +31,26 @@ print_header(const string& xtext)
   // Exit:  
 }
 
+void
+sheaf::
+print_header(const string& xtext, const string& xtext2)
+{
+  // Preconditions:
+
+  // Body:
+
+  static const string nl("\n");
+  static const string s = "========================================";
+  static const string sep = s + s;
+
+  cout << nl << sep << nl << xtext << xtext2 << nl << sep << nl;
+  cout << endl;
+
+  // Postconditions:
+
+  // Exit:  
+}
+
 
 void
 sheaf::
@@ -43,6 +63,23 @@ print_footer(const string& xtext)
   // Just do the same as in print_header for now.
 
   print_header(xtext);
+
+  // Postconditions:
+
+  // Exit:  
+}
+
+void
+sheaf::
+print_footer(const string& xtext, const string& xtext2)
+{
+  // Preconditions:
+
+  // Body:
+
+  // Just do the same as in print_header for now.
+
+  print_header(xtext, xtext2);
 
   // Postconditions:
 
