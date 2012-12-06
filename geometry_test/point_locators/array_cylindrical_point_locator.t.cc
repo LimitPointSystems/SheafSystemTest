@@ -17,6 +17,26 @@ namespace
 {
 
 bool
+test_cylindrical_point_locator_facet()
+{
+  // Preconditions:
+
+  // Body:
+
+  // Need sec_ed xcoords.
+
+  // array_cylindrical_point_locator(sec_ed& xcoords);
+
+  // array_cylindrical_point_locator(sec_ed& xcoords, const block<size_type>& xbin_ub);
+
+  // Postconditions:
+
+  // Exit:
+
+  return true;
+}
+
+bool
 test_array_cylindrical_point_locator_facet()
 {
   // Preconditions:
@@ -45,19 +65,20 @@ main(int xargc, char* xargv[])
 
   // Body:
 
-  print_header("Begin testing array_cylindrical_point_locator facet:");
+  print_header("Begin testing array_cylindrical_point_locator facet");
 
   bool ltest = true;
 
   //============================================================================
 
+  ltest &= test_cylindrical_point_locator_facet();
   ltest &= test_array_cylindrical_point_locator_facet();
 
   //============================================================================
 
   int lresult = ltest ? EXIT_SUCCESS : EXIT_FAILURE;
 
-  print_header("Begin testing array_cylindrical_point_locator facet:");
+  print_footer("End testing array_cylindrical_point_locator facet");
 
   // Postconditions:
 
