@@ -123,11 +123,120 @@
 #include "vd.h"
 #include "vd_space.h"
 
+#include "std_sstream.h"
+
+
 using namespace fiber_bundle;
 
 // Uncomment this #define to cause the failures in new section functions.
 
 //#define DO_FAIL 
+
+namespace
+{
+
+//==============================================================================
+
+void
+make_names_unique(string xnames[], int xnum_names)
+{
+  // Preconditions:
+
+  require(unexecutable("xnum_names <= dimension of xnames"));
+
+  // Body:
+
+  // Make names "unique" by appending "_#" to each name.
+
+  static int lname_suffix = -1;
+  lname_suffix++;
+
+  static ostringstream lname;
+
+  for(int i=0; i<xnum_names; ++i)
+  {
+    lname.str("");
+    lname << xnames[i] << "_" << lname_suffix;
+    xnames[i] = lname.str();
+  }
+
+  // Postconditions:
+
+  // Exit:
+
+  return;
+}
+
+//==============================================================================
+
+template<typename S, typename B>
+bool
+test_fiber_bundles_namespace_facet(fiber_bundles_namespace& xns)
+{
+  // Preconditions:
+
+  require(xns.state_is_read_write_accessible());
+
+  // Body:
+
+  // Postconditions:
+
+  //============================================================================
+
+  const string lproto_name = B::static_prototype_path().member_name();
+  cout << "B::static_prototype_path() = " << B::static_prototype_path() << endl;
+  cout << "lproto_name = " << lproto_name << endl;
+
+  cout << "S::static_class_name() = " << S::static_class_name() << endl;
+
+  //============================================================================
+
+  // Make names for the spaces:
+
+  string lnames[2] = {"section_space",
+                      "base_space"};
+
+  make_names_unique(lnames, 2);
+  
+  const string& lsec_space_name   = lnames[0];
+  poset_path lsec_space_path(lsec_space_name);
+
+  const string& lbase_space_name  = lnames[1];
+  string lblock_name = "block";
+
+  base_space_poset& lbase = xns.new_base_space<B>(lbase_space_name);
+
+  // Create a block; has to have a name to use as a base space
+  // for a section space.
+
+  // NOTE: 2d specific:
+  //structured_block_2d lblock(&lbase, 2, 2);
+  B lblock(&lbase, 2, 2);
+
+  lblock.put_name(lblock_name, true, true);  
+
+  // Create a name for the section space.
+
+  cout <<  "lbase_space_name = " << lbase_space_name << endl;
+  cout <<  "lblock_name = " << lblock_name << endl;
+  cout <<  "lsec_space_name = " << lsec_space_name << endl;
+  cout << endl;
+
+  cout << "lsec_space_path = " << lsec_space_path << endl;
+  cout << "lblock.path() = " << lblock.path() << endl;
+  cout << endl;
+
+  // Create the section space.
+
+  //xns.new_section_space<sec_at0>(lsec_space_path, lblock.path());
+  xns.new_section_space<S>(lsec_space_path, lblock.path());
+  
+  // Exit:
+
+  return true;
+}
+
+} //end unnamed namespace
 
 int
 main(int xargc, char* xargv[])
@@ -289,6 +398,11 @@ main(int xargc, char* xargv[])
 
   //============================================================================
 
+  test_fiber_bundles_namespace_facet<sec_at0, structured_block_2d>(lns);
+  //test_fiber_bundles_namespace_facet<sec_at0, structured_block_2d>(lns); // Test naming
+
+  test_fiber_bundles_namespace_facet<sec_at2_e2, structured_block_2d>(lns); // Test naming
+
   //#ifdef DO_FAIL
 
   // These return poset_path:
@@ -303,23 +417,23 @@ main(int xargc, char* xargv[])
   // poset_path(xsection_space_schema_args.value("base_space_path")).full())'
   // in file fiber_bundles_namespace.cc at line 793
 
-  // Create a base space poset for 2d strructured blocks.
+//   // Create a base space poset for 2d structured blocks.
 
-  poset_path lbase_path("test_base_space");
-  base_space_poset& lbase = lns.new_base_space<structured_block_2d>(lbase_path);
+//   poset_path lbase_path("test_base_space");
+//   base_space_poset& lbase = lns.new_base_space<structured_block_2d>(lbase_path);
 
-  // Create a block; has to have a name to use as a base space for a section space.
+//   // Create a block; has to have a name to use as a base space for a section space.
 
-  structured_block_2d lblock(&lbase, 2, 2);
-  lblock.put_name("2d_block", true, true);  
+//   structured_block_2d lblock(&lbase, 2, 2);
+//   lblock.put_name("2d_block", true, true);  
 
-  // Create a name for the section space.
+//   // Create a name for the section space.
 
-  poset_path lsec_space_path("test_section_space_at0_on_2d_block");
+//   poset_path lsec_space_path("test_section_space_at0_on_2d_block");
 
-  // Create the section space.
+//   // Create the section space.
 
-  lns.new_section_space<sec_at0>(lsec_space_path, lblock.path());
+//   lns.new_section_space<sec_at0>(lsec_space_path, lblock.path());
   
   // If trying to make a section space schema directly,
   // have to specify a base space one way or another,
