@@ -15,34 +15,50 @@
 
 using namespace sheaf;
 
-// Just testing!
 namespace
 {
-  template <typename T>
-  class derived_itr : public postorder_itr<T>
-  {
-  public:
-    derived_itr();
-    ~derived_itr();
-    int* _values;
-  };
 
-  template <typename T>
-  derived_itr<T>::
-  derived_itr()
-    : postorder_itr<T>::postorder_itr()
-  {
-    _values = new int[5];
-  }
+///
+/// Simple derived class.  Used to insure coverage of
+/// bi/list/post/pre/triorder_itr constructors and destructors
+/// (see LPS Forum topic "Code Coverage").
+///
+template <template <typename> class ITR, typename T>
+class itr_child : public ITR<T>
+{
+public:
+  itr_child() {}
+  ~itr_child() {}
+};
 
-  template <typename T>
-  derived_itr<T>::
-  ~derived_itr()
-  {
-    delete [] _values;
-  }
-  
+template <template <typename> class ITR, typename T>
+bool
+test_default_constructor_and_destructor()
+{
+  // Preconditions:
+
+  // Body:
+
+  ITR<T> litr0;
+
+  ITR<T>* litr0_ptr = new ITR<T>();
+  delete litr0_ptr; 
+
+
+  itr_child<ITR, T> litr;
+
+  itr_child<ITR, T>* lchild_ptr = new itr_child<ITR, T>();
+  delete lchild_ptr;
+
+  // Postconditions:
+
+  // Exit:
+
+  return true;
 }
+
+
+} // end unnamed namespace
 
 int
 main(int xargc, char* xargv[])
@@ -54,12 +70,6 @@ main(int xargc, char* xargv[])
   print_header("Begin testing postorder_itr");
 
   bool ltest = true;
-
-  //============================================================================
-
-  derived_itr<zn_to_bool> lderived();
-  derived_itr<zn_to_bool>* lderived2 = new derived_itr<zn_to_bool>();
-  delete lderived2;
   
   //============================================================================
 
@@ -74,18 +84,21 @@ main(int xargc, char* xargv[])
 
   typedef zn_to_bool ZBOOL;
   print_header("Begin testing postorder_itr<zn_to_bool>");
+  ltest &= test_default_constructor_and_destructor<postorder_itr, ZBOOL>();
   ltest &= test_depth_first_itr_facet<postorder_itr, ZBOOL>(lns);
   ltest &= test_filtered_depth_first_itr_facet<postorder_itr, ZBOOL>(lns);
   print_footer("End testing postorder_itr<zn_to_bool>");
 
   typedef set<pod_index_type> SET;
   print_header("Begin testing postorder_itr<set<pod_index_type> >");
+  ltest &= test_default_constructor_and_destructor<postorder_itr, SET>();
   ltest &= test_depth_first_itr_facet<postorder_itr, SET >(lns);
   ltest &= test_filtered_depth_first_itr_facet<postorder_itr, SET >(lns);
   print_footer("End testing postorder_itr<set<pod_index_type> >");
 
   print_header("Begin testing postorder_itr<hash_set<pod_index_type> >");
   typedef hash_set<pod_index_type> HASH_SET;
+  ltest &= test_default_constructor_and_destructor<postorder_itr, HASH_SET>();
   ltest &= test_depth_first_itr_facet<postorder_itr, HASH_SET >(lns);
   ltest &= test_filtered_depth_first_itr_facet<postorder_itr, HASH_SET >(lns);
   print_footer("End testing postorder_itr<hash_set<pod_index_type> >");

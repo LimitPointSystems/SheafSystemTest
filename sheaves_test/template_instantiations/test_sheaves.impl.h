@@ -2227,8 +2227,40 @@ test_depth_first_itr_facet(namespace_poset& xns)
      make_triangle_poset(xns, lposet_name);
   }
   refinable_poset* lposet = xns.member_poset<refinable_poset>(lposet_name);
-  lposet->get_read_access();
+  lposet->get_read_write_access();
   const abstract_poset_member& lanchor = lposet->top();
+
+  //////////////////////////////////////////////////////////////////////////////
+
+  subposet* lvertices;
+  if(!(lposet->includes_subposet("__vertices")))
+  {
+    lvertices = new subposet(lposet);
+    lvertices->put_name("__vertices", true, false);
+  }
+  else
+  {
+    lvertices = new subposet(lposet, "__vertices");
+  }
+
+  //ITR<T> litr(lanchor, const string& xfilter_name);
+  ITR<T> litr_xx(lanchor, "__vertices");
+
+  const subposet& lfilter = litr_xx.filter();
+
+  cout << "lfilter.name() = " << lfilter.name() << endl;
+  cout << "lfilter.index() = " << lfilter.index() << endl;
+
+  //ITR<T> litr(lanchor, scoped_index xfilter_index);
+  ITR<T> litr_yy(lanchor, lfilter.index());
+
+  //ITR<T> litr(lanchor); == litr(lanchor, 0, sheaf::DOWN, sheaf::NOT_STRICT)
+  ITR<T> litr_zz(lanchor, lvertices, sheaf::DOWN, sheaf::NOT_STRICT);
+  ITR<T> litr_zz2(lanchor, lvertices, sheaf::UP, sheaf::NOT_STRICT);
+  ITR<T> litr_zz3(lanchor, lvertices, sheaf::UP, sheaf::STRICT);
+  ITR<T> litr_zz4(lanchor, lvertices, sheaf::DOWN, sheaf::STRICT);
+
+  //////////////////////////////////////////////////////////////////////////////
 
   print_subheader("Testing filtered_depth_first_itr(",
                   "        const abstract_poset_member&, const subposet*,)");
@@ -2282,17 +2314,17 @@ test_depth_first_itr_facet(namespace_poset& xns)
 
   //============================================================================
 
-//   print_subheader("Testing depth_first_itr<T>::operator=(",
-//                   "        sheaf::depth_first_itr<T> const&)");
+  print_subheader("Testing depth_first_itr<T>::operator=(",
+                  "        sheaf::depth_first_itr<T> const&)");
 
-//   ITR<T> litr_eql = litr;
-//   cout << "litr_eql (address) = " << &litr_eql << endl;
+  ITR<T> litr_eql = litr;
+  cout << "litr_eql (address) = " << &litr_eql << endl;
 
-//   print_subheader("Testing depth_first_itr<T>::depth_first_itr(",
-//                   "        depth_first_itr<T> const&)");
+  print_subheader("Testing depth_first_itr<T>::depth_first_itr(",
+                  "        depth_first_itr<T> const&)");
 
-//   ITR<T> litr_copy(litr);
-//   cout << "litr_copy (address) = " << &litr_copy << endl;
+  ITR<T> litr_copy(litr);
+  cout << "litr_copy (address) = " << &litr_copy << endl;
 
 
   print_subheader("Testing depth_first_itr<T>::clone() const");
@@ -2419,20 +2451,20 @@ test_filtered_depth_first_itr_facet(namespace_poset& xns)
 
   ITR<T> litr3(lanchor, lposet->whole().index());
 
-//   print_subheader("Testing filtered_depth_first_itr<T>(",
-//                   "        const filtered_depth_first_itr& xother)");
+  print_subheader("Testing filtered_depth_first_itr<T>(",
+                  "        const filtered_depth_first_itr& xother)");
 
-//   ITR<T> litr_copy(litr);
+  ITR<T> litr_copy(litr);
 
-//   print_subheader("Testing filtered_depth_first_itr<T>&",
-//                   "          operator=(const filtered_depth_first_itr& xother)");
+  print_subheader("Testing filtered_depth_first_itr<T>&",
+                  "          operator=(const filtered_depth_first_itr& xother)");
 
-//   // Use expliicit call.
-//   //ITR<T> litr_eql = litr;
-//   ITR<T> litr_eql = litr.operator=(litr);
+  // Use expliicit call.
+  //ITR<T> litr_eql = litr;
+  ITR<T> litr_eql = litr.operator=(litr);
 
-//   print_subheader("Testing filtered_depth_first_itr<T>* = ",
-//                   "        filtered_depth_first_itr<T>.clone()");
+  print_subheader("Testing filtered_depth_first_itr<T>* = ",
+                  "        filtered_depth_first_itr<T>.clone()");
 
   ITR<T>* litr_clone = litr.clone();
 
@@ -2487,7 +2519,7 @@ test_filtered_depth_first_itr_facet(namespace_poset& xns)
   //litr.put_anchor(???);
 
 
-  print_subheader("Testing filtered_depth_first_itr<T>::put_anchor("
+  print_subheader("Testing filtered_depth_first_itr<T>::put_anchor(",
                   "        const scoped_index& xfilter_index)");
 
   litr.put_anchor(lanchor.index());
