@@ -18,6 +18,26 @@ using namespace geometry;
 
 namespace
 {
+template<int DC, int DB>
+class d_bounding_box_child : public d_bounding_box<DC, DB>
+{
+public:
+  d_bounding_box_child() {}
+  ~d_bounding_box_child() {}
+};
+
+template<int DC, int DB>
+bool
+test_d_bounding_box_ctors_dtors()
+{
+  d_bounding_box<DC, DB>* lparent = new d_bounding_box<DC, DB>;
+  delete lparent;
+
+  d_bounding_box_child<DC, DB>* lchild = new d_bounding_box_child<DC, DB>;
+  delete lchild;
+
+  return true;
+}
 
 template<int DC, int DB>
 bool
@@ -194,30 +214,39 @@ main(int xargc, char* xargv[])
   //============================================================================
 
   print_header("Testing d_bounding_box_facet<1, 0>:");
+  ltest &= test_d_bounding_box_ctors_dtors<1, 0>();
   ltest &= test_d_bounding_box_facet<1, 0>();
 
   print_header("Testing d_bounding_box_facet<1, 1>:");
+  ltest &= test_d_bounding_box_ctors_dtors<1, 1>();
   ltest &= test_d_bounding_box_facet<1, 1>();
 
   print_header("Testing d_bounding_box_facet<2, 0>:");
+  ltest &= test_d_bounding_box_ctors_dtors<2, 0>();
   ltest &= test_d_bounding_box_facet<2, 0>();
 
   print_header("Testing d_bounding_box_facet<2, 2>:");
+  ltest &= test_d_bounding_box_ctors_dtors<2, 2>();
   ltest &= test_d_bounding_box_facet<2, 2>();
 
   print_header("Testing d_bounding_box_facet<3, 0>:");
+  ltest &= test_d_bounding_box_ctors_dtors<3, 0>();
   ltest &= test_d_bounding_box_facet<3, 0>();
 
   print_header("Testing d_bounding_box_facet<3, 1>:");
+  ltest &= test_d_bounding_box_ctors_dtors<3, 1>();
   ltest &= test_d_bounding_box_facet<3, 1>();
 
   print_header("Testing d_bounding_box_facet<3, 2>:");
+  ltest &= test_d_bounding_box_ctors_dtors<3, 2>();
   ltest &= test_d_bounding_box_facet<3, 2>();
 
   print_header("Testing d_bounding_box_facet<3, 3>:");
+  ltest &= test_d_bounding_box_ctors_dtors<3, 3>();
   ltest &= test_d_bounding_box_facet<3, 3>();
 
   print_header("Testing d_bounding_box_facet<4, 4>:");
+  ltest &= test_d_bounding_box_ctors_dtors<4, 4>();
   ltest &= test_d_bounding_box_facet<4, 4>();
 
   //============================================================================
