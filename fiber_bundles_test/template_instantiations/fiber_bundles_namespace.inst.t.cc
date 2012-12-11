@@ -106,7 +106,9 @@
 #include "st4_e3.h"
 #include "stp.h"
 #include "stp_space.h"
+#include "structured_block_1d.h"
 #include "structured_block_2d.h"
+#include "structured_block_3d.h"
 #include "t2.h"
 #include "t2_e2.h"
 #include "t2_e3.h"
@@ -123,14 +125,12 @@
 #include "vd.h"
 #include "vd_space.h"
 
+#include "binary_section_space_schema_poset.h"
+
 #include "std_sstream.h"
 
 
 using namespace fiber_bundle;
-
-// Uncomment this #define to cause the failures in new section functions.
-
-//#define DO_FAIL 
 
 namespace
 {
@@ -167,11 +167,9 @@ make_names_unique(string xnames[], int xnum_names)
   return;
 }
 
-//==============================================================================
-
 template<typename S, typename B>
 bool
-test_fiber_bundles_namespace_facet(fiber_bundles_namespace& xns)
+test_fiber_bundles_namespace_facet_1d(fiber_bundles_namespace& xns)
 {
   // Preconditions:
 
@@ -209,8 +207,73 @@ test_fiber_bundles_namespace_facet(fiber_bundles_namespace& xns)
   // Create a block; has to have a name to use as a base space
   // for a section space.
 
-  // NOTE: 2d specific:
-  //structured_block_2d lblock(&lbase, 2, 2);
+  B lblock(&lbase, 2);
+
+  lblock.put_name(lblock_name, true, true);  
+
+  // Create a name for the section space.
+
+  cout <<  "lbase_space_name = " << lbase_space_name << endl;
+  cout <<  "lblock_name = " << lblock_name << endl;
+  cout <<  "lsec_space_name = " << lsec_space_name << endl;
+  cout << endl;
+
+  cout << "lsec_space_path = " << lsec_space_path << endl;
+  cout << "lblock.path() = " << lblock.path() << endl;
+  cout << endl;
+
+  // Create the section space.
+
+  //xns.new_section_space<sec_at0>(lsec_space_path, lblock.path());
+  xns.new_section_space<S>(lsec_space_path, lblock.path());
+  
+  // Exit:
+
+  return true;
+}
+
+//==============================================================================
+
+template<typename S, typename B>
+bool
+test_fiber_bundles_namespace_facet_2d(fiber_bundles_namespace& xns)
+{
+  // Preconditions:
+
+  require(xns.state_is_read_write_accessible());
+
+  // Body:
+
+  // Postconditions:
+
+  //============================================================================
+
+  const string lproto_name = B::static_prototype_path().member_name();
+  cout << "B::static_prototype_path() = " << B::static_prototype_path() << endl;
+  cout << "lproto_name = " << lproto_name << endl;
+
+  cout << "S::static_class_name() = " << S::static_class_name() << endl;
+
+  //============================================================================
+
+  // Make names for the spaces:
+
+  string lnames[2] = {"section_space",
+                      "base_space"};
+
+  make_names_unique(lnames, 2);
+  
+  const string& lsec_space_name   = lnames[0];
+  poset_path lsec_space_path(lsec_space_name);
+
+  const string& lbase_space_name  = lnames[1];
+  string lblock_name = "block";
+
+  base_space_poset& lbase = xns.new_base_space<B>(lbase_space_name);
+
+  // Create a block; has to have a name to use as a base space
+  // for a section space.
+
   B lblock(&lbase, 2, 2);
 
   lblock.put_name(lblock_name, true, true);  
@@ -235,6 +298,380 @@ test_fiber_bundles_namespace_facet(fiber_bundles_namespace& xns)
 
   return true;
 }
+
+template<typename S, typename B>
+bool
+test_fiber_bundles_namespace_facet_3d(fiber_bundles_namespace& xns)
+{
+  // Preconditions:
+
+  require(xns.state_is_read_write_accessible());
+
+  // Body:
+
+  // Postconditions:
+
+  //============================================================================
+
+  const string lproto_name = B::static_prototype_path().member_name();
+  cout << "B::static_prototype_path() = " << B::static_prototype_path() << endl;
+  cout << "lproto_name = " << lproto_name << endl;
+
+  cout << "S::static_class_name() = " << S::static_class_name() << endl;
+
+  //============================================================================
+
+  // Make names for the spaces:
+
+  string lnames[2] = {"section_space",
+                      "base_space"};
+
+  make_names_unique(lnames, 2);
+  
+  const string& lsec_space_name   = lnames[0];
+  poset_path lsec_space_path(lsec_space_name);
+
+  const string& lbase_space_name  = lnames[1];
+  string lblock_name = "block";
+
+  base_space_poset& lbase = xns.new_base_space<B>(lbase_space_name);
+
+  // Create a block; has to have a name to use as a base space
+  // for a section space.
+
+  B lblock(&lbase, 2, 2, 2);
+
+  lblock.put_name(lblock_name, true, true);  
+
+  // Create a name for the section space.
+
+  cout <<  "lbase_space_name = " << lbase_space_name << endl;
+  cout <<  "lblock_name = " << lblock_name << endl;
+  cout <<  "lsec_space_name = " << lsec_space_name << endl;
+  cout << endl;
+
+  cout << "lsec_space_path = " << lsec_space_path << endl;
+  cout << "lblock.path() = " << lblock.path() << endl;
+  cout << endl;
+
+  // Create the section space.
+
+  //xns.new_section_space<sec_at0>(lsec_space_path, lblock.path());
+  xns.new_section_space<S>(lsec_space_path, lblock.path());
+  
+  // Exit:
+
+  return true;
+}
+
+template<typename S, typename B>
+bool
+test_new_scalar_section_space_1d(fiber_bundles_namespace& xns)
+{
+  // Preconditions:
+
+  require(xns.state_is_read_write_accessible());
+
+  // Body:
+
+  // Postconditions:
+
+  //============================================================================
+
+  const string lproto_name = B::static_prototype_path().member_name();
+  cout << "B::static_prototype_path() = " << B::static_prototype_path() << endl;
+  cout << "lproto_name = " << lproto_name << endl;
+
+  cout << "S::static_class_name() = " << S::static_class_name() << endl;
+
+  //============================================================================
+
+  // Make names for the spaces:
+
+  string lnames[2] = {"section_space",
+                      "base_space"};
+
+  make_names_unique(lnames, 2);
+  
+  const string& lsec_space_name   = lnames[0];
+  poset_path lsec_space_path(lsec_space_name);
+
+  const string& lbase_space_name  = lnames[1];
+  string lblock_name = "block";
+
+  base_space_poset& lbase = xns.new_base_space<B>(lbase_space_name);
+
+  // Create a block; has to have a name to use as a base space
+  // for a section space.
+
+  B lblock(&lbase, 2);
+
+  lblock.put_name(lblock_name, true, true);  
+
+  // Create a name for the section space.
+
+  cout <<  "lbase_space_name = " << lbase_space_name << endl;
+  cout <<  "lblock_name = " << lblock_name << endl;
+  cout <<  "lsec_space_name = " << lsec_space_name << endl;
+  cout << endl;
+
+  cout << "lsec_space_path = " << lsec_space_path << endl;
+  cout << "lblock.path() = " << lblock.path() << endl;
+  cout << endl;
+
+  // Create the section space.
+
+  arg_list largs = binary_section_space_schema_poset::make_arg_list("", lblock.path(), "");
+
+  poset_path lschema_path =
+    xns.new_scalar_section_space_schema<sec_at0>("at0_on_1d_block_schema", largs);
+
+  largs = sec_at0_space::make_arg_list();
+
+  xns.new_scalar_section_space<sec_at0>("at0_on_1d_block", largs, lschema_path);
+
+  // Exit:
+
+  return true;
+}
+
+
+template<typename S, typename B>
+bool
+test_new_scalar_section_space_2d(fiber_bundles_namespace& xns)
+{
+  // Preconditions:
+
+  require(xns.state_is_read_write_accessible());
+
+  // Body:
+
+  // Postconditions:
+
+  //============================================================================
+
+  const string lproto_name = B::static_prototype_path().member_name();
+  cout << "B::static_prototype_path() = " << B::static_prototype_path() << endl;
+  cout << "lproto_name = " << lproto_name << endl;
+
+  cout << "S::static_class_name() = " << S::static_class_name() << endl;
+
+  //============================================================================
+
+  // Make names for the spaces:
+
+  string lnames[2] = {"section_space",
+                      "base_space"};
+
+  make_names_unique(lnames, 2);
+  
+  const string& lsec_space_name   = lnames[0];
+  poset_path lsec_space_path(lsec_space_name);
+
+  const string& lbase_space_name  = lnames[1];
+  string lblock_name = "block";
+
+  base_space_poset& lbase = xns.new_base_space<B>(lbase_space_name);
+
+  // Create a block; has to have a name to use as a base space
+  // for a section space.
+
+  B lblock(&lbase, 2, 2);
+
+  lblock.put_name(lblock_name, true, true);  
+
+  // Create a name for the section space.
+
+  cout <<  "lbase_space_name = " << lbase_space_name << endl;
+  cout <<  "lblock_name = " << lblock_name << endl;
+  cout <<  "lsec_space_name = " << lsec_space_name << endl;
+  cout << endl;
+
+  cout << "lsec_space_path = " << lsec_space_path << endl;
+  cout << "lblock.path() = " << lblock.path() << endl;
+  cout << endl;
+
+  // Create the section space.
+
+  arg_list largs = binary_section_space_schema_poset::make_arg_list("", lblock.path(), "");
+
+  poset_path lschema_path =
+    xns.new_scalar_section_space_schema<sec_at0>("at0_on_2d_block_schema", largs);
+
+  largs = sec_at0_space::make_arg_list();
+
+  xns.new_scalar_section_space<sec_at0>("at0_on_2d_block", largs, lschema_path);
+
+  // Exit:
+
+  return true;
+}
+
+template<typename S, typename B>
+bool
+test_new_scalar_section_space_3d(fiber_bundles_namespace& xns)
+{
+  // Preconditions:
+
+  require(xns.state_is_read_write_accessible());
+
+  // Body:
+
+  // Postconditions:
+
+  //============================================================================
+
+  const string lproto_name = B::static_prototype_path().member_name();
+  cout << "B::static_prototype_path() = " << B::static_prototype_path() << endl;
+  cout << "lproto_name = " << lproto_name << endl;
+
+  cout << "S::static_class_name() = " << S::static_class_name() << endl;
+
+  //============================================================================
+
+  // Make names for the spaces:
+
+  string lnames[2] = {"section_space",
+                      "base_space"};
+
+  make_names_unique(lnames, 2);
+  
+  const string& lsec_space_name   = lnames[0];
+  poset_path lsec_space_path(lsec_space_name);
+
+  const string& lbase_space_name  = lnames[1];
+  string lblock_name = "block";
+
+  base_space_poset& lbase = xns.new_base_space<B>(lbase_space_name);
+
+  // Create a block; has to have a name to use as a base space
+  // for a section space.
+
+  B lblock(&lbase, 2, 2, 2);
+
+  lblock.put_name(lblock_name, true, true);  
+
+  // Create a name for the section space.
+
+  cout <<  "lbase_space_name = " << lbase_space_name << endl;
+  cout <<  "lblock_name = " << lblock_name << endl;
+  cout <<  "lsec_space_name = " << lsec_space_name << endl;
+  cout << endl;
+
+  cout << "lsec_space_path = " << lsec_space_path << endl;
+  cout << "lblock.path() = " << lblock.path() << endl;
+  cout << endl;
+
+  // Create the section space.
+
+  arg_list largs = binary_section_space_schema_poset::make_arg_list("", lblock.path(), "");
+
+  poset_path lschema_path =
+    xns.new_scalar_section_space_schema<sec_at0>("at0_on_3d_block_schema", largs);
+
+  largs = sec_at0_space::make_arg_list();
+
+  xns.new_scalar_section_space<sec_at0>("at0_on_3d_block", largs, lschema_path);
+ 
+  // Exit:
+
+  return true;
+}
+
+//==============================================================================
+
+template<typename S, typename B>
+bool
+test_new_vector_section_space_1d(fiber_bundles_namespace& xns)
+{
+  // Preconditions:
+
+  require(xns.state_is_read_write_accessible());
+
+  // Body:
+
+  // Postconditions:
+
+  //============================================================================
+
+  const string lproto_name = B::static_prototype_path().member_name();
+  cout << "B::static_prototype_path() = " << B::static_prototype_path() << endl;
+  cout << "lproto_name = " << lproto_name << endl;
+
+  cout << "S::static_class_name() = " << S::static_class_name() << endl;
+
+  //============================================================================
+
+  // Make names for the spaces:
+
+  string lnames[2] = {"section_space",
+                      "base_space"};
+
+  make_names_unique(lnames, 2);
+  
+  const string& lsec_space_name   = lnames[0];
+  poset_path lsec_space_path(lsec_space_name);
+
+  const string& lbase_space_name  = lnames[1];
+  string lblock_name = "block";
+
+  base_space_poset& lbase = xns.new_base_space<B>(lbase_space_name);
+
+  // Create a block; has to have a name to use as a base space
+  // for a section space.
+
+  B lblock(&lbase, 2);
+
+  lblock.put_name(lblock_name, true, true);  
+
+  // Create a name for the section space.
+
+  cout <<  "lbase_space_name = " << lbase_space_name << endl;
+  cout <<  "lblock_name = " << lblock_name << endl;
+  cout <<  "lsec_space_name = " << lsec_space_name << endl;
+  cout << endl;
+
+  cout << "lsec_space_path = " << lsec_space_path << endl;
+  cout << "lblock.path() = " << lblock.path() << endl;
+  cout << endl;
+
+  // Create the scalar section space.
+
+  arg_list largs = binary_section_space_schema_poset::make_arg_list("", lblock.path(), "");
+
+  poset_path lscalar_space_schema_path =
+    xns.new_scalar_section_space_schema<sec_at0>("at0_on_1d_block_schema_zzz", largs);
+
+  largs = sec_at0_space::make_arg_list();
+
+  sec_at0::host_type& lat0_srs = 
+      xns.new_scalar_section_space<sec_at0>("at0_on_1d_block_zzz", largs, lscalar_space_schema_path);
+ 
+
+  // Create the section space.
+
+  //arg_list largs = binary_section_space_schema_poset::make_arg_list("", lblock.path(), "");
+
+  poset_path lschema_path =
+    xns.new_vector_section_space_schema<sec_e1>("e1_on_1d_block_schema", largs);
+
+  //largs = sec_e1::make_arg_list();
+
+  xns.new_vector_section_space<sec_e1>("e1_on_1d_block",
+                                        "",
+                                       lschema_path,
+                                       lat0_srs.path(),
+                                       "",
+                                       lscalar_space_schema_path);
+
+  // Exit:
+
+  return true;
+}
+
+
+//==============================================================================
+
 
 } //end unnamed namespace
 
@@ -398,12 +835,74 @@ main(int xargc, char* xargv[])
 
   //============================================================================
 
-  test_fiber_bundles_namespace_facet<sec_at0, structured_block_2d>(lns);
-  //test_fiber_bundles_namespace_facet<sec_at0, structured_block_2d>(lns); // Test naming
+  test_fiber_bundles_namespace_facet_1d<sec_at0, structured_block_1d>(lns);
+  test_fiber_bundles_namespace_facet_1d<sec_e1, structured_block_1d>(lns);
+  test_fiber_bundles_namespace_facet_1d<sec_e1_uniform, structured_block_1d>(lns);
+  test_fiber_bundles_namespace_facet_1d<sec_met_e1, structured_block_1d>(lns);
 
-  test_fiber_bundles_namespace_facet<sec_at2_e2, structured_block_2d>(lns); // Test naming
+  ////
 
-  //#ifdef DO_FAIL
+  test_fiber_bundles_namespace_facet_2d<sec_at0, structured_block_2d>(lns);
+  test_fiber_bundles_namespace_facet_2d<sec_at2_e2, structured_block_2d>(lns);
+  test_fiber_bundles_namespace_facet_2d<sec_st2_e2, structured_block_2d>(lns);
+  test_fiber_bundles_namespace_facet_2d<sec_st4_e2, structured_block_2d>(lns);
+  test_fiber_bundles_namespace_facet_2d<sec_t2_e2, structured_block_2d>(lns);
+  test_fiber_bundles_namespace_facet_2d<sec_t4_e2, structured_block_2d>(lns);
+  test_fiber_bundles_namespace_facet_2d<sec_e2, structured_block_2d>(lns);
+  test_fiber_bundles_namespace_facet_2d<sec_e2_uniform, structured_block_2d>(lns);
+  test_fiber_bundles_namespace_facet_2d<sec_met_e2, structured_block_2d>(lns);
+
+  ////
+
+  test_fiber_bundles_namespace_facet_3d<sec_at0, structured_block_3d>(lns);
+  test_fiber_bundles_namespace_facet_3d<sec_at2_e3, structured_block_3d>(lns);
+  test_fiber_bundles_namespace_facet_3d<sec_at3_e3, structured_block_3d>(lns);
+  test_fiber_bundles_namespace_facet_3d<sec_st2_e3, structured_block_3d>(lns);
+  test_fiber_bundles_namespace_facet_3d<sec_st3_e3, structured_block_3d>(lns);
+  test_fiber_bundles_namespace_facet_3d<sec_st4_e3, structured_block_3d>(lns);
+  test_fiber_bundles_namespace_facet_3d<sec_t2_e3, structured_block_3d>(lns);
+  test_fiber_bundles_namespace_facet_3d<sec_t3_e3, structured_block_3d>(lns);
+  test_fiber_bundles_namespace_facet_3d<sec_t4_e3, structured_block_3d>(lns);
+  test_fiber_bundles_namespace_facet_3d<sec_e3, structured_block_3d>(lns);
+  test_fiber_bundles_namespace_facet_3d<sec_e3_uniform, structured_block_3d>(lns);
+  test_fiber_bundles_namespace_facet_3d<sec_met_e3, structured_block_3d>(lns);
+
+
+  //test_fiber_bundles_namespace_facet<sec_at1, structured_block_2d>(lns);
+  //test_fiber_bundles_namespace_facet<sec_at2, structured_block_2d>(lns);
+  //test_fiber_bundles_namespace_facet<sec_st2, structured_block_2d>(lns);
+  //test_fiber_bundles_namespace_facet<sec_t2, structured_block_2d>(lns);
+
+  //============================================================================
+
+  // Scalar section spaces
+
+  test_new_scalar_section_space_1d<sec_at0, structured_block_1d>(lns);
+  test_new_scalar_section_space_2d<sec_at0, structured_block_2d>(lns);
+  test_new_scalar_section_space_3d<sec_at0, structured_block_3d>(lns);
+
+
+  //============================================================================
+
+ // Vector section spaces
+
+  //test_new_vector_section_space_1d<sec_at1, structured_block_1d>(lns);
+  //test_new_vector_section_space_1d<sec_ed, structured_block_1d>(lns);
+
+  //test_new_vector_section_space_1d<sec_e1, structured_block_1d>(lns);
+
+//   test_new_vector_section_space_1d<sec_e1_uniform, structured_block_1d>(lns);
+//   test_new_vector_section_space_1d<sec_e2, structured_block_1d>(lns);
+//   test_new_vector_section_space_1d<sec_e2_uniform, structured_block_1d>(lns);
+//   test_new_vector_section_space_1d<sec_e3, structured_block_1d>(lns);
+//   test_new_vector_section_space_1d<sec_e3_uniform, structured_block_1d>(lns);
+
+//   lns.new_vector_space<e2>();
+//   lns.new_vector_space<e3>();
+//   lns.new_vector_space<e4>();
+//   lns.new_vector_space<ed>();
+
+  //============================================================================
 
   // These return poset_path:
   // All of these tests fail with roughly the same error message:
@@ -501,8 +1000,6 @@ main(int xargc, char* xargv[])
   ////lns.new_vector_section_space_schema<sec_vd>();
 
   //============================================================================
-
-  //#endif
 
   int lresult = ltest ? EXIT_SUCCESS : EXIT_FAILURE;
 

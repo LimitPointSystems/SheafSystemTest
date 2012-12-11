@@ -26,6 +26,31 @@
 #include "test_sheaves.impl.h"
 
 using namespace sheaf;
+namespace
+{
+
+template<typename T>
+class block_child : public block<T>
+{
+public:
+  block_child(int xub) : block<T>::block(xub) {}
+  ~block_child() {}
+};
+
+template<typename T>
+bool
+test_block_ctors_dtors()
+{
+  block<T>* lparent = new block<T>(4);
+  delete lparent;
+
+  block_child<T>* lchild = new block_child<T>(4);
+  delete lchild;
+
+  return true;
+}
+
+} // end unnamed namespace
 
 int
 main(int xargc, char* xargv[])
@@ -39,6 +64,7 @@ main(int xargc, char* xargv[])
   // bool
 
   print_header("Begin testing block<bool>");
+  ltest &= test_block_ctors_dtors<bool>();
   ltest &= test_block_facet<bool>();
   ltest &= test_block_facet_equal<bool>();
   ltest &= test_block_facet_insertion<bool>();
