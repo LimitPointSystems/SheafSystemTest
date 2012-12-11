@@ -34,7 +34,6 @@ collect_includes()
 # Source for unit test executables.
 #
 set(UNIT_TEST_SRCS
-    binary_index_block.inst.t.cc
     deep_size.inst.t.cc
     depth_first_itr.inst.t.cc
     filtered_depth_first_itr.inst.t.cc
