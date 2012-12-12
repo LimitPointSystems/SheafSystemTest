@@ -167,507 +167,863 @@ make_names_unique(string xnames[], int xnum_names)
   return;
 }
 
-template<typename S, typename B>
-bool
-test_fiber_bundles_namespace_facet_1d(fiber_bundles_namespace& xns)
+//==============================================================================
+
+poset_path
+make_base_space_1d(fiber_bundles_namespace& xns, const string& xbase_space_name)
 {
-  // Preconditions:
+  //xns.get_read_write_access();
 
-  require(xns.state_is_read_write_accessible());
+  typedef structured_block_1d B;
 
-  // Body:
+  //const string lbase_space_name = "base_space_1d";
+    
+  base_space_poset& lhost = xns.new_base_space<B>(xbase_space_name);
 
-  // Postconditions:
+  B lmesh(&lhost, 2);
+  lmesh.put_name("mesh", true, true);
 
-  //============================================================================
+  poset_path result = lmesh.path(true);
+    
+  lmesh.detach_from_state();
+    
+  return result;
+}
 
-  const string lproto_name = B::static_prototype_path().member_name();
-  cout << "B::static_prototype_path() = " << B::static_prototype_path() << endl;
-  cout << "lproto_name = " << lproto_name << endl;
+poset_path
+make_base_space_2d(fiber_bundles_namespace& xns, const string& xbase_space_name)
+{
+  //xns.get_read_write_access();
 
-  cout << "S::static_class_name() = " << S::static_class_name() << endl;
+  typedef structured_block_2d B;
 
-  //============================================================================
+  //const string lbase_space_name = "base_space_2d";
+    
+  base_space_poset& lhost = xns.new_base_space<B>(xbase_space_name);
 
-  // Make names for the spaces:
+  B lmesh(&lhost, 2, 2);
+  lmesh.put_name("mesh", true, true);
 
-  string lnames[2] = {"section_space",
-                      "base_space"};
+  poset_path result = lmesh.path(true);
+    
+  lmesh.detach_from_state();
+    
+  return result;
+}
 
-  make_names_unique(lnames, 2);
-  
-  const string& lsec_space_name   = lnames[0];
-  poset_path lsec_space_path(lsec_space_name);
+poset_path
+make_base_space_3d(fiber_bundles_namespace& xns, const string& xbase_space_name)
+{
+  //xns.get_read_write_access();
 
-  const string& lbase_space_name  = lnames[1];
-  string lblock_name = "block";
+  typedef structured_block_3d B;
 
-  base_space_poset& lbase = xns.new_base_space<B>(lbase_space_name);
+  //const string lbase_space_name = "base_space_3d";
+    
+  base_space_poset& lhost = xns.new_base_space<B>(xbase_space_name);
 
-  // Create a block; has to have a name to use as a base space
-  // for a section space.
+  B lmesh(&lhost, 2, 2, 2);
+  lmesh.put_name("mesh", true, true);
 
-  B lblock(&lbase, 2);
+  poset_path result = lmesh.path(true);
+    
+  lmesh.detach_from_state();
+    
+  return result;
+}
 
-  lblock.put_name(lblock_name, true, true);  
 
-  // Create a name for the section space.
+poset_path
+make_base_space(fiber_bundles_namespace& xns, const string& xbase_space_name, int xd)
+{
 
-  cout <<  "lbase_space_name = " << lbase_space_name << endl;
-  cout <<  "lblock_name = " << lblock_name << endl;
-  cout <<  "lsec_space_name = " << lsec_space_name << endl;
-  cout << endl;
+  poset_path result;
+  if(xd == 1)
+  {
+    result = make_base_space_1d(xns, xbase_space_name);
+  }
+  else if (xd == 2)
+  {
+    result = make_base_space_2d(xns, xbase_space_name);
+  }
+  else
+  {
+    result = make_base_space_3d(xns, xbase_space_name);
+  }
 
-  cout << "lsec_space_path = " << lsec_space_path << endl;
-  cout << "lblock.path() = " << lblock.path() << endl;
-  cout << endl;
-
-  // Create the section space.
-
-  //xns.new_section_space<sec_at0>(lsec_space_path, lblock.path());
-  xns.new_section_space<S>(lsec_space_path, lblock.path());
-  
-  // Exit:
-
-  return true;
+  return result;
 }
 
 //==============================================================================
 
-template<typename S, typename B>
-bool
-test_fiber_bundles_namespace_facet_2d(fiber_bundles_namespace& xns)
+template<typename S>
+poset_path
+make_section_space(fiber_bundles_namespace& xns,
+                   const poset_path& xbase_path,
+                   const string& xsection_space_name)
 {
-  // Preconditions:
 
-  require(xns.state_is_read_write_accessible());
+  typename S::host_type& lsection_space =
+    xns.new_section_space<S>(xsection_space_name, xbase_path);
 
-  // Body:
-
-  // Postconditions:
-
-  //============================================================================
-
-  const string lproto_name = B::static_prototype_path().member_name();
-  cout << "B::static_prototype_path() = " << B::static_prototype_path() << endl;
-  cout << "lproto_name = " << lproto_name << endl;
-
-  cout << "S::static_class_name() = " << S::static_class_name() << endl;
-
-  //============================================================================
-
-  // Make names for the spaces:
-
-  string lnames[2] = {"section_space",
-                      "base_space"};
-
-  make_names_unique(lnames, 2);
-  
-  const string& lsec_space_name   = lnames[0];
-  poset_path lsec_space_path(lsec_space_name);
-
-  const string& lbase_space_name  = lnames[1];
-  string lblock_name = "block";
-
-  base_space_poset& lbase = xns.new_base_space<B>(lbase_space_name);
-
-  // Create a block; has to have a name to use as a base space
-  // for a section space.
-
-  B lblock(&lbase, 2, 2);
-
-  lblock.put_name(lblock_name, true, true);  
-
-  // Create a name for the section space.
-
-  cout <<  "lbase_space_name = " << lbase_space_name << endl;
-  cout <<  "lblock_name = " << lblock_name << endl;
-  cout <<  "lsec_space_name = " << lsec_space_name << endl;
+  cout << "lsection_space.path() = " << lsection_space.path() << endl;
   cout << endl;
 
-  cout << "lsec_space_path = " << lsec_space_path << endl;
-  cout << "lblock.path() = " << lblock.path() << endl;
-  cout << endl;
+  poset_path result = lsection_space.path(true);
 
-  // Create the section space.
-
-  //xns.new_section_space<sec_at0>(lsec_space_path, lblock.path());
-  xns.new_section_space<S>(lsec_space_path, lblock.path());
-  
-  // Exit:
-
-  return true;
-}
-
-template<typename S, typename B>
-bool
-test_fiber_bundles_namespace_facet_3d(fiber_bundles_namespace& xns)
-{
-  // Preconditions:
-
-  require(xns.state_is_read_write_accessible());
-
-  // Body:
-
-  // Postconditions:
-
-  //============================================================================
-
-  const string lproto_name = B::static_prototype_path().member_name();
-  cout << "B::static_prototype_path() = " << B::static_prototype_path() << endl;
-  cout << "lproto_name = " << lproto_name << endl;
-
-  cout << "S::static_class_name() = " << S::static_class_name() << endl;
-
-  //============================================================================
-
-  // Make names for the spaces:
-
-  string lnames[2] = {"section_space",
-                      "base_space"};
-
-  make_names_unique(lnames, 2);
-  
-  const string& lsec_space_name   = lnames[0];
-  poset_path lsec_space_path(lsec_space_name);
-
-  const string& lbase_space_name  = lnames[1];
-  string lblock_name = "block";
-
-  base_space_poset& lbase = xns.new_base_space<B>(lbase_space_name);
-
-  // Create a block; has to have a name to use as a base space
-  // for a section space.
-
-  B lblock(&lbase, 2, 2, 2);
-
-  lblock.put_name(lblock_name, true, true);  
-
-  // Create a name for the section space.
-
-  cout <<  "lbase_space_name = " << lbase_space_name << endl;
-  cout <<  "lblock_name = " << lblock_name << endl;
-  cout <<  "lsec_space_name = " << lsec_space_name << endl;
-  cout << endl;
-
-  cout << "lsec_space_path = " << lsec_space_path << endl;
-  cout << "lblock.path() = " << lblock.path() << endl;
-  cout << endl;
-
-  // Create the section space.
-
-  //xns.new_section_space<sec_at0>(lsec_space_path, lblock.path());
-  xns.new_section_space<S>(lsec_space_path, lblock.path());
-  
-  // Exit:
-
-  return true;
-}
-
-template<typename S, typename B>
-bool
-test_new_scalar_section_space_1d(fiber_bundles_namespace& xns)
-{
-  // Preconditions:
-
-  require(xns.state_is_read_write_accessible());
-
-  // Body:
-
-  // Postconditions:
-
-  //============================================================================
-
-  const string lproto_name = B::static_prototype_path().member_name();
-  cout << "B::static_prototype_path() = " << B::static_prototype_path() << endl;
-  cout << "lproto_name = " << lproto_name << endl;
-
-  cout << "S::static_class_name() = " << S::static_class_name() << endl;
-
-  //============================================================================
-
-  // Make names for the spaces:
-
-  string lnames[2] = {"section_space",
-                      "base_space"};
-
-  make_names_unique(lnames, 2);
-  
-  const string& lsec_space_name   = lnames[0];
-  poset_path lsec_space_path(lsec_space_name);
-
-  const string& lbase_space_name  = lnames[1];
-  string lblock_name = "block";
-
-  base_space_poset& lbase = xns.new_base_space<B>(lbase_space_name);
-
-  // Create a block; has to have a name to use as a base space
-  // for a section space.
-
-  B lblock(&lbase, 2);
-
-  lblock.put_name(lblock_name, true, true);  
-
-  // Create a name for the section space.
-
-  cout <<  "lbase_space_name = " << lbase_space_name << endl;
-  cout <<  "lblock_name = " << lblock_name << endl;
-  cout <<  "lsec_space_name = " << lsec_space_name << endl;
-  cout << endl;
-
-  cout << "lsec_space_path = " << lsec_space_path << endl;
-  cout << "lblock.path() = " << lblock.path() << endl;
-  cout << endl;
-
-  // Create the section space.
-
-  arg_list largs = binary_section_space_schema_poset::make_arg_list("", lblock.path(), "");
-
-  poset_path lschema_path =
-    xns.new_scalar_section_space_schema<sec_at0>("at0_on_1d_block_schema", largs);
-
-  largs = sec_at0_space::make_arg_list();
-
-  xns.new_scalar_section_space<sec_at0>("at0_on_1d_block", largs, lschema_path);
-
-  // Exit:
-
-  return true;
+  return result;
 }
 
 
-template<typename S, typename B>
-bool
-test_new_scalar_section_space_2d(fiber_bundles_namespace& xns)
+template<typename S>
+poset_path
+make_scalar_section_space_schema(fiber_bundles_namespace& xns,
+                                 const poset_path& xbase_path,
+                                 const string& xscalar_section_space_name)
 {
-  // Preconditions:
+  arg_list largs = binary_section_space_schema_poset::make_arg_list("", xbase_path, "");
 
-  require(xns.state_is_read_write_accessible());
-
-  // Body:
-
-  // Postconditions:
-
-  //============================================================================
-
-  const string lproto_name = B::static_prototype_path().member_name();
-  cout << "B::static_prototype_path() = " << B::static_prototype_path() << endl;
-  cout << "lproto_name = " << lproto_name << endl;
-
-  cout << "S::static_class_name() = " << S::static_class_name() << endl;
-
-  //============================================================================
-
-  // Make names for the spaces:
-
-  string lnames[2] = {"section_space",
-                      "base_space"};
-
-  make_names_unique(lnames, 2);
-  
-  const string& lsec_space_name   = lnames[0];
-  poset_path lsec_space_path(lsec_space_name);
-
-  const string& lbase_space_name  = lnames[1];
-  string lblock_name = "block";
-
-  base_space_poset& lbase = xns.new_base_space<B>(lbase_space_name);
-
-  // Create a block; has to have a name to use as a base space
-  // for a section space.
-
-  B lblock(&lbase, 2, 2);
-
-  lblock.put_name(lblock_name, true, true);  
-
-  // Create a name for the section space.
-
-  cout <<  "lbase_space_name = " << lbase_space_name << endl;
-  cout <<  "lblock_name = " << lblock_name << endl;
-  cout <<  "lsec_space_name = " << lsec_space_name << endl;
-  cout << endl;
-
-  cout << "lsec_space_path = " << lsec_space_path << endl;
-  cout << "lblock.path() = " << lblock.path() << endl;
-  cout << endl;
-
-  // Create the section space.
-
-  arg_list largs = binary_section_space_schema_poset::make_arg_list("", lblock.path(), "");
-
-  poset_path lschema_path =
-    xns.new_scalar_section_space_schema<sec_at0>("at0_on_2d_block_schema", largs);
-
-  largs = sec_at0_space::make_arg_list();
-
-  xns.new_scalar_section_space<sec_at0>("at0_on_2d_block", largs, lschema_path);
-
-  // Exit:
-
-  return true;
-}
-
-template<typename S, typename B>
-bool
-test_new_scalar_section_space_3d(fiber_bundles_namespace& xns)
-{
-  // Preconditions:
-
-  require(xns.state_is_read_write_accessible());
-
-  // Body:
-
-  // Postconditions:
-
-  //============================================================================
-
-  const string lproto_name = B::static_prototype_path().member_name();
-  cout << "B::static_prototype_path() = " << B::static_prototype_path() << endl;
-  cout << "lproto_name = " << lproto_name << endl;
-
-  cout << "S::static_class_name() = " << S::static_class_name() << endl;
-
-  //============================================================================
-
-  // Make names for the spaces:
-
-  string lnames[2] = {"section_space",
-                      "base_space"};
-
-  make_names_unique(lnames, 2);
-  
-  const string& lsec_space_name   = lnames[0];
-  poset_path lsec_space_path(lsec_space_name);
-
-  const string& lbase_space_name  = lnames[1];
-  string lblock_name = "block";
-
-  base_space_poset& lbase = xns.new_base_space<B>(lbase_space_name);
-
-  // Create a block; has to have a name to use as a base space
-  // for a section space.
-
-  B lblock(&lbase, 2, 2, 2);
-
-  lblock.put_name(lblock_name, true, true);  
-
-  // Create a name for the section space.
-
-  cout <<  "lbase_space_name = " << lbase_space_name << endl;
-  cout <<  "lblock_name = " << lblock_name << endl;
-  cout <<  "lsec_space_name = " << lsec_space_name << endl;
-  cout << endl;
-
-  cout << "lsec_space_path = " << lsec_space_path << endl;
-  cout << "lblock.path() = " << lblock.path() << endl;
-  cout << endl;
-
-  // Create the section space.
-
-  arg_list largs = binary_section_space_schema_poset::make_arg_list("", lblock.path(), "");
-
-  poset_path lschema_path =
-    xns.new_scalar_section_space_schema<sec_at0>("at0_on_3d_block_schema", largs);
-
-  largs = sec_at0_space::make_arg_list();
-
-  xns.new_scalar_section_space<sec_at0>("at0_on_3d_block", largs, lschema_path);
- 
-  // Exit:
-
-  return true;
-}
-
-//==============================================================================
-
-template<typename S, typename B>
-bool
-test_new_vector_section_space_1d(fiber_bundles_namespace& xns)
-{
-  // Preconditions:
-
-  require(xns.state_is_read_write_accessible());
-
-  // Body:
-
-  // Postconditions:
-
-  //============================================================================
-
-  const string lproto_name = B::static_prototype_path().member_name();
-  cout << "B::static_prototype_path() = " << B::static_prototype_path() << endl;
-  cout << "lproto_name = " << lproto_name << endl;
-
-  cout << "S::static_class_name() = " << S::static_class_name() << endl;
-
-  //============================================================================
-
-  // Make names for the spaces:
-
-  string lnames[2] = {"section_space",
-                      "base_space"};
-
-  make_names_unique(lnames, 2);
-  
-  const string& lsec_space_name   = lnames[0];
-  poset_path lsec_space_path(lsec_space_name);
-
-  const string& lbase_space_name  = lnames[1];
-  string lblock_name = "block";
-
-  base_space_poset& lbase = xns.new_base_space<B>(lbase_space_name);
-
-  // Create a block; has to have a name to use as a base space
-  // for a section space.
-
-  B lblock(&lbase, 2);
-
-  lblock.put_name(lblock_name, true, true);  
-
-  // Create a name for the section space.
-
-  cout <<  "lbase_space_name = " << lbase_space_name << endl;
-  cout <<  "lblock_name = " << lblock_name << endl;
-  cout <<  "lsec_space_name = " << lsec_space_name << endl;
-  cout << endl;
-
-  cout << "lsec_space_path = " << lsec_space_path << endl;
-  cout << "lblock.path() = " << lblock.path() << endl;
-  cout << endl;
-
-  // Create the scalar section space.
-
-  arg_list largs = binary_section_space_schema_poset::make_arg_list("", lblock.path(), "");
+  const string lscalar_space_schema_name = xscalar_section_space_name + "_schema";
 
   poset_path lscalar_space_schema_path =
-    xns.new_scalar_section_space_schema<sec_at0>("at0_on_1d_block_schema_zzz", largs);
+    xns.new_scalar_section_space_schema<S>(lscalar_space_schema_name, largs);
 
-  largs = sec_at0_space::make_arg_list();
+  poset_path result = lscalar_space_schema_path;
 
-  sec_at0::host_type& lat0_srs = 
-      xns.new_scalar_section_space<sec_at0>("at0_on_1d_block_zzz", largs, lscalar_space_schema_path);
+  return result;
+}
+
+
+template<typename S>
+poset_path
+make_scalar_section_space(fiber_bundles_namespace& xns,
+                          const poset_path& xbase_path,
+                          const poset_path& xscalar_space_schema_path,
+                          const string& xscalar_sec_space_name)
+{
+
+  typedef typename S::host_type SHOST_TYPE;
+
+  arg_list largs = SHOST_TYPE::make_arg_list();
+
+  SHOST_TYPE& lscalar_sec_space = 
+      xns.new_scalar_section_space<S>(xscalar_sec_space_name,
+                                      largs,
+                                      xscalar_space_schema_path);
+
+  poset_path result = lscalar_sec_space.path(true);
+
+  return result;
+}
+
+template<typename V>
+poset_path
+make_vector_section_space_schema(fiber_bundles_namespace& xns,
+                                 const poset_path& xbase_path,
+                                 const string& xvector_section_space_name)
+{
+
+  arg_list largs = binary_section_space_schema_poset::make_arg_list("", xbase_path, "");
+
+  const string lvector_space_schema_name = xvector_section_space_name + "_schema";
+
+  poset_path lvector_space_schema_path =
+    xns.new_vector_section_space_schema<V>(lvector_space_schema_name, largs);
+
+  poset_path result = lvector_space_schema_path;
+
+  return result;
+}
+
+template<typename V>
+poset_path
+make_vector_section_space(fiber_bundles_namespace& xns,
+                          const poset_path& xbase_path,
+                          const poset_path& xscalar_space_schema_path,
+                          const poset_path& xscalar_section_space_path,
+                          const poset_path& xvector_space_schema_path,
+                          const string& xvector_sec_space_name)
+{
+
+  typename V::host_type& lvector_sec_space =
+    xns.new_vector_section_space<V>(xvector_sec_space_name,
+                                    "",
+                                    xvector_space_schema_path,
+                                    xscalar_section_space_path,
+                                    "",
+                                    xscalar_space_schema_path);
+
+  poset_path result = lvector_sec_space.path(true);
+
+  return result;
+}
+
+
+template<typename T>
+poset_path
+make_tensor_section_space_schema(fiber_bundles_namespace& xns,
+                                 const poset_path& xbase_path,
+                                 const string& xtensor_section_space_name)
+{
+  arg_list largs =
+    binary_section_space_schema_poset::make_arg_list("", xbase_path, "");
+
+  const string ltensor_space_schema_name = xtensor_section_space_name + "_schema";
+
+  poset_path ltensor_space_schema_path =
+    xns.new_tensor_section_space_schema<T>(ltensor_space_schema_name, largs);
+
+  poset_path result = ltensor_space_schema_path;
+
+  return result;
+}
+
+template<typename T>
+poset_path
+make_tensor_section_space(fiber_bundles_namespace& xns,
+                          const poset_path& xbase_path,
+                          const poset_path& xscalar_space_schema_path,
+                          const poset_path& xscalar_section_space_path,
+                          const poset_path& xvector_space_schema_path,
+                          const poset_path& xvector_section_space_path,
+                          const poset_path& xtensor_space_schema_path,
+                          const string& xtensor_section_space_name)
+{
+  typename T::host_type& ltensor_sec_space =
+    xns.new_tensor_section_space<T>(xtensor_section_space_name,
+							        "",
+							        xtensor_space_schema_path,
+							        xvector_section_space_path,
+							        "",
+							        xvector_space_schema_path,
+							        xscalar_section_space_path,
+							        "",
+							        xscalar_space_schema_path);
+
+  poset_path result = ltensor_sec_space.path(true);
+
+  return result;
+}
+
+
+//==============================================================================
+
+template<typename S>
+bool
+test_new_section_space(fiber_bundles_namespace& xns, int xd)
+{
+  // Preconditions:
+
+  require(xns.state_is_read_write_accessible());
+  require(1 <= xd && xd <= 3);
+
+  // Body:
+
+  print_header("test_new_section_space");
+
+  //============================================================================
+
+  cout << "S::static_class_name() = " << S::static_class_name() << endl;
+
+  //============================================================================
+
+  // Make names for the spaces:
+
+  string lnames[2] = {"base_space",
+                      "section_space"};
+
+  make_names_unique(lnames, 2);
  
+  const string& lbase_space_name    = lnames[0];
+  const string& lsection_space_name = lnames[1];
+
+ // Make a base space.
+ 
+  poset_path lbase_path = make_base_space(xns, lbase_space_name, xd);
+
+  cout << "lbase_path = " << lbase_path << endl;
+  cout << endl;
+ 
+  // Create the section space.
+
+  poset_path lsection_space_path =
+    make_section_space<S>(xns, lbase_path, lsection_space_name);
+
+  cout << "lsection_space_path = " << lsection_space_path << endl;
+  cout << endl;
+
+  // Postconditions:
+  
+  // Exit:
+
+  return true;
+}
+
+//==============================================================================
+//==============================================================================
+
+template<typename S>
+bool
+test_new_scalar_section_space(fiber_bundles_namespace& xns, int xd)
+{
+  // Preconditions:
+
+  require(xns.state_is_read_write_accessible());
+  require(1 <= xd && xd <= 3);
+
+  // Body:
+
+  print_header("test_new_scalar_section_space");
+
+  //============================================================================
+
+  // Make names for the spaces:
+
+  string lnames[2] = {"base_space",
+                      "scalar_section_space"};
+
+  make_names_unique(lnames, 2);
+  
+  const string& lscalar_section_space_name   = lnames[0];
+  const string& lbase_space_name  = lnames[1];
+
+  //============================================================================
+
+  // Make a base space.
+
+  poset_path lbase_path = make_base_space(xns, lbase_space_name, xd);
+
+  cout << "lbase_path = " << lbase_path << endl;
+  cout << endl;
+
+  //============================================================================
+
+  // Create the section space schema.
+
+  poset_path lscalar_space_schema_path =
+    make_scalar_section_space_schema<S>(xns, lbase_path, lscalar_section_space_name);
+
+  cout << "lscalar_space_schema_path = " << lscalar_space_schema_path << endl;
+  cout << endl;
+
+  //============================================================================
 
   // Create the section space.
 
-  //arg_list largs = binary_section_space_schema_poset::make_arg_list("", lblock.path(), "");
+  poset_path lscalar_section_space_path =
+    make_scalar_section_space<S>(xns,
+                                 lbase_path,
+                                 lscalar_space_schema_path,
+                                 lscalar_section_space_name);
 
-  poset_path lschema_path =
-    xns.new_vector_section_space_schema<sec_e1>("e1_on_1d_block_schema", largs);
+  cout << "lscalar_section_space_path = " << lscalar_section_space_path << endl;
+  cout << endl;
 
-  //largs = sec_e1::make_arg_list();
+  //============================================================================
 
-  xns.new_vector_section_space<sec_e1>("e1_on_1d_block",
-                                        "",
-                                       lschema_path,
-                                       lat0_srs.path(),
-                                       "",
-                                       lscalar_space_schema_path);
+  // Postconditions:
 
   // Exit:
 
   return true;
 }
+
+//==============================================================================
+
+//==============================================================================
+//==============================================================================
+
+template<typename V>
+bool
+test_new_vector_section_space(fiber_bundles_namespace& xns, int xd)
+{
+  // Preconditions:
+
+  require(xns.state_is_read_write_accessible());
+
+  // Body:
+
+
+  print_header("test_new_vector_section_space");
+
+  //============================================================================
+
+  typedef sec_at0 S;
+
+  cout << "V::static_class_name() = " << V::static_class_name() << endl;
+  cout << "S::static_class_name() = " << S::static_class_name() << endl;
+
+  //============================================================================
+
+  // Make names for the spaces:
+
+  string lnames[3] = {"base_space",
+                      "scalar_section_space",
+                      "vector_section_space"};
+
+  make_names_unique(lnames, 3);
+  
+  const string& lbase_space_name  = lnames[0];
+  const string& lscalar_section_space_name   = lnames[1];
+  const string& lvector_section_space_name   = lnames[2];
+
+  //============================================================================
+
+  // Make a base space.
+
+  poset_path lbase_path = make_base_space(xns, lbase_space_name, xd);
+
+  cout << "lbase_path = " << lbase_path << endl;
+  cout << endl;
+
+  //============================================================================
+
+  // Create the section space schema.
+
+  poset_path lscalar_space_schema_path =
+    make_scalar_section_space_schema<S>(xns, lbase_path, lscalar_section_space_name);
+
+  cout << "lscalar_space_schema_path = " << lscalar_space_schema_path << endl;
+  cout << endl;
+
+  //============================================================================
+
+  // Create the section space.
+
+  poset_path lscalar_section_space_path =
+    make_scalar_section_space<S>(xns,
+                                 lbase_path,
+                                 lscalar_space_schema_path,
+                                 lscalar_section_space_name);
+
+  cout << "lscalar_section_space_path = " << lscalar_section_space_path << endl;
+  cout << endl;
+
+  //============================================================================
+
+  // Create the vector space schema.
+
+  poset_path lvector_space_schema_path =
+    make_vector_section_space_schema<V>(xns,
+                                        lbase_path,
+                                        lvector_section_space_name);
+
+  cout << "lvector_space_schema_path = " << lvector_space_schema_path << endl;
+  cout << endl;
+
+  //============================================================================
+
+  // Create the vector space.
+
+  poset_path lvector_section_space_path =
+    make_vector_section_space<V>(xns,
+                                 lbase_path,
+                                 lscalar_space_schema_path,
+                                 lscalar_section_space_path,
+                                 lvector_space_schema_path,
+                                 lvector_section_space_name);
+
+  cout << "lvector_section_space_path = " << lvector_section_space_path << endl;
+  cout << endl;
+
+  //============================================================================
+
+  // Postconditions:
+
+  // Exit:
+
+  return true;
+}
+
+
+//==============================================================================
+//==============================================================================
+
+template<typename V>
+bool
+test_new_vector_section_space_xx(fiber_bundles_namespace& xns, int xd)
+{
+  // Preconditions:
+
+  require(xns.state_is_read_write_accessible());
+
+  // Body:
+
+  print_header("test_new_vector_section_space");
+
+  //============================================================================
+
+  typedef sec_at0 S;
+
+  cout << "V::static_class_name() = " << V::static_class_name() << endl;
+
+  //============================================================================
+
+  // Make names for the spaces:
+
+  string lnames[3] = {"base_space",
+                      "scalar_section_space",
+                      "vector_section_space"};
+
+  make_names_unique(lnames, 3);
+  
+  const string& lbase_space_name             = lnames[0];
+  const string& lscalar_section_space_name   = lnames[1];
+  const string& lvector_section_space_name   = lnames[2];
+
+  //============================================================================
+
+  // Make a base space.
+
+  poset_path lbase_path = make_base_space(xns, lbase_space_name, xd);
+
+  cout << "lbase_path = " << lbase_path << endl;
+  cout << endl;
+
+  //============================================================================
+
+  // Create the section space schema.
+
+  poset_path lscalar_space_schema_path =
+    make_scalar_section_space_schema<S>(xns, lbase_path, lscalar_section_space_name);
+
+  cout << "lscalar_space_schema_path = " << lscalar_space_schema_path << endl;
+  cout << endl;
+
+  //============================================================================
+
+  // Create the section space.
+
+  poset_path lscalar_section_space_path =
+    make_scalar_section_space<S>(xns,
+                                 lbase_path,
+                                 lscalar_space_schema_path,
+                                 lscalar_section_space_name);
+
+  cout << "lscalar_section_space_path = " << lscalar_section_space_path << endl;
+  cout << endl;
+
+  //============================================================================
+
+  // Create the vector space schema.
+
+  poset_path lvector_space_schema_path =
+    make_vector_section_space_schema<sec_e1>(xns,
+                                        lbase_path,
+                                        lvector_section_space_name);
+
+  cout << "lvector_space_schema_path = " << lvector_space_schema_path << endl;
+  cout << endl;
+
+  //============================================================================
+
+  // Create the vector space.
+
+  poset_path lvector_section_space_path =
+    make_vector_section_space<V>(xns,
+                                 lbase_path,
+                                 lscalar_space_schema_path,
+                                 lscalar_section_space_path,
+                                 lvector_space_schema_path,
+                                 lvector_section_space_name);
+
+  cout << "lvector_section_space_path = " << lvector_section_space_path << endl;
+  cout << endl;
+
+  //============================================================================
+
+  // Postconditions:
+
+  // Exit:
+
+  return true;
+}
+
+
+//==============================================================================
+
+
+template<typename T>
+bool
+test_new_tensor_section_space(fiber_bundles_namespace& xns, int xd)
+{
+  // Preconditions:
+
+  require(xns.state_is_read_write_accessible());
+
+  // Body:
+
+  print_header("test_new_tensor_section_space");
+
+  //============================================================================
+
+  typedef sec_at0 S;
+  typedef typename T::vector_space_type V;
+
+  cout << "T::static_class_name() = " << T::static_class_name() << endl;
+  cout << "V::static_class_name() = " << V::static_class_name() << endl;
+  cout << "S::static_class_name() = " << S::static_class_name() << endl;
+
+  //============================================================================
+
+  // Make names for the spaces:
+
+  string lnames[4] = {"base_space",
+                      "scalar_section_space",
+                      "vector_section_space",
+                      "tensor_section_space"};
+
+  make_names_unique(lnames, 4);
+  
+  const string& lbase_space_name           = lnames[0];
+  const string& lscalar_section_space_name = lnames[1];
+  const string& lvector_section_space_name = lnames[2];
+  const string& ltensor_section_space_name = lnames[3];
+
+  //============================================================================
+
+  // Make a base space.
+
+  poset_path lbase_path = make_base_space(xns, lbase_space_name, xd);
+
+  cout << "lbase_path = " << lbase_path << endl;
+  cout << endl;
+
+  //============================================================================
+
+  // Create the section space schema.
+
+  poset_path lscalar_space_schema_path =
+    make_scalar_section_space_schema<S>(xns, lbase_path, lscalar_section_space_name);
+
+  cout << "lscalar_space_schema_path = " << lscalar_space_schema_path << endl;
+  cout << endl;
+
+  //============================================================================
+
+  // Create the section space.
+
+  poset_path lscalar_section_space_path =
+    make_scalar_section_space<S>(xns,
+                                 lbase_path,
+                                 lscalar_space_schema_path,
+                                 lscalar_section_space_name);
+
+  cout << "lscalar_section_space_path = " << lscalar_section_space_path << endl;
+  cout << endl;
+
+  //============================================================================
+
+  // Create the vector space schema.
+
+  poset_path lvector_space_schema_path =
+    make_vector_section_space_schema<V>(xns,
+                                        lbase_path,
+                                        lvector_section_space_name);
+
+  cout << "lvector_space_schema_path = " << lvector_space_schema_path << endl;
+  cout << endl;
+
+  //============================================================================
+
+  // Create the vector space.
+
+  poset_path lvector_section_space_path =
+    make_vector_section_space<V>(xns,
+                                 lbase_path,
+                                 lscalar_space_schema_path,
+                                 lscalar_section_space_path,
+                                 lvector_space_schema_path,
+                                 lvector_section_space_name);
+
+  cout << "lvector_section_space_path = " << lvector_section_space_path << endl;
+  cout << endl;
+
+  //============================================================================
+
+  // Create the tensor space schema.
+
+  poset_path ltensor_space_schema_path =
+    make_tensor_section_space_schema<T>(xns,
+                                        lbase_path,
+                                        ltensor_section_space_name);
+
+  cout << "ltensor_space_schema_path = " << ltensor_space_schema_path << endl;
+  cout << endl;
+
+  //============================================================================
+
+  // Create the tensor space.
+
+  poset_path ltensor_section_space_path =
+    make_tensor_section_space<T>(xns,
+                                 lbase_path,
+                                 lscalar_space_schema_path,
+                                 lscalar_section_space_path,
+                                 lvector_space_schema_path,
+                                 lvector_section_space_path,
+                                 ltensor_space_schema_path,
+                                 ltensor_section_space_name);
+
+  cout << "ltensor_section_space_path = " << ltensor_section_space_path << endl;
+  cout << endl;
+
+  //============================================================================
+
+  // Postconditions:
+
+  // Exit:
+
+  return true;
+}
+
+
+// template<typename T>
+// bool
+// test_new_tensor_section_space_xx(fiber_bundles_namespace& xns, int xd)
+// {
+//   // Preconditions:
+
+//   require(xns.state_is_read_write_accessible());
+
+//   // Body:
+
+//   print_header("test_new_tensor_section_space");
+
+//   //============================================================================
+
+//   typedef sec_at0 S;
+//   typedef typename T::vector_space_type V;
+
+//   cout << "T::static_class_name() = " << T::static_class_name() << endl;
+//   cout << "V::static_class_name() = " << V::static_class_name() << endl;
+//   cout << "S::static_class_name() = " << S::static_class_name() << endl;
+
+//   //============================================================================
+
+//   // Make names for the spaces:
+
+//   string lnames[4] = {"base_space",
+//                       "scalar_section_space",
+//                       "vector_section_space",
+//                       "tensor_section_space"};
+
+//   make_names_unique(lnames, 4);
+  
+//   const string& lbase_space_name           = lnames[0];
+//   const string& lscalar_section_space_name = lnames[1];
+//   const string& lvector_section_space_name = lnames[2];
+//   const string& ltensor_section_space_name = lnames[3];
+
+//   //============================================================================
+
+//   // Make a base space.
+
+//   poset_path lbase_path;
+//   if(xd == 1)
+//   {
+//     lbase_path = make_base_space_1d(xns, lbase_space_name);
+//   }
+//   else if (xd == 2)
+//   {
+//     lbase_path = make_base_space_2d(xns, lbase_space_name);
+//   }
+//   else
+//   {
+//     lbase_path = make_base_space_3d(xns, lbase_space_name);
+//   }
+
+//   cout << "lbase_path = " << lbase_path << endl;
+//   cout << endl;
+
+//   //============================================================================
+
+//   // Create the section space schema.
+
+//   poset_path lscalar_space_schema_path =
+//     make_scalar_section_space_schema<S>(xns, lbase_path, lscalar_section_space_name);
+
+//   cout << "lscalar_space_schema_path = " << lscalar_space_schema_path << endl;
+//   cout << endl;
+
+//   //============================================================================
+
+//   // Create the section space.
+
+//   poset_path lscalar_section_space_path =
+//     make_scalar_section_space<S>(xns,
+//                                  lbase_path,
+//                                  lscalar_space_schema_path,
+//                                  lscalar_section_space_name);
+
+//   cout << "lscalar_section_space_path = " << lscalar_section_space_path << endl;
+//   cout << endl;
+
+//   //============================================================================
+
+//   // Create the vector space schema.
+
+//   poset_path lvector_space_schema_path =
+//     make_vector_section_space_schema<V>(xns,
+//                                         lbase_path,
+//                                         lvector_section_space_name);
+
+//   cout << "lvector_space_schema_path = " << lvector_space_schema_path << endl;
+//   cout << endl;
+
+//   //============================================================================
+
+//   // Create the vector space.
+
+//   poset_path lvector_section_space_path =
+//     //make_vector_section_space<V>(xns,
+//     make_vector_section_space<sec_e2>(xns,
+//                                  lbase_path,
+//                                  lscalar_space_schema_path,
+//                                  lscalar_section_space_path,
+//                                  lvector_space_schema_path,
+//                                  lvector_section_space_name);
+
+//   cout << "lvector_section_space_path = " << lvector_section_space_path << endl;
+//   cout << endl;
+
+//   //============================================================================
+
+//   // Create the tensor space schema.
+
+//   poset_path ltensor_space_schema_path =
+//     make_tensor_section_space_schema<T>(xns,
+//                                         lbase_path,
+//                                         ltensor_section_space_name);
+
+//   cout << "ltensor_space_schema_path = " << ltensor_space_schema_path << endl;
+//   cout << endl;
+
+//   //============================================================================
+
+//   // Create the tensor space.
+
+//   poset_path ltensor_section_space_path =
+//     make_tensor_section_space<T>(xns,
+//                                  lbase_path,
+//                                  lscalar_space_schema_path,
+//                                  lscalar_section_space_path,
+//                                  lvector_space_schema_path,
+//                                  lvector_section_space_path,
+//                                  ltensor_space_schema_path,
+//                                  ltensor_section_space_name);
+
+//   cout << "ltensor_section_space_path = " << ltensor_section_space_path << endl;
+//   cout << endl;
+
+//   //============================================================================
+
+//   // Postconditions:
+
+//   // Exit:
+
+//   return true;
+// }
 
 
 //==============================================================================
@@ -692,6 +1048,9 @@ main(int xargc, char* xargv[])
   lns.get_read_write_access();
 
   cout << "Finished creating namespace." << endl;
+
+  //#define SKIP
+#ifndef SKIP
 
   //============================================================================
 
@@ -835,37 +1194,38 @@ main(int xargc, char* xargv[])
 
   //============================================================================
 
-  test_fiber_bundles_namespace_facet_1d<sec_at0, structured_block_1d>(lns);
-  test_fiber_bundles_namespace_facet_1d<sec_e1, structured_block_1d>(lns);
-  test_fiber_bundles_namespace_facet_1d<sec_e1_uniform, structured_block_1d>(lns);
-  test_fiber_bundles_namespace_facet_1d<sec_met_e1, structured_block_1d>(lns);
 
-  ////
+//   test_fiber_bundles_namespace_facet_1d<sec_at0, structured_block_1d>(lns);
+//   test_fiber_bundles_namespace_facet_1d<sec_e1, structured_block_1d>(lns);
+//   test_fiber_bundles_namespace_facet_1d<sec_e1_uniform, structured_block_1d>(lns);
+//   test_fiber_bundles_namespace_facet_1d<sec_met_e1, structured_block_1d>(lns);
 
-  test_fiber_bundles_namespace_facet_2d<sec_at0, structured_block_2d>(lns);
-  test_fiber_bundles_namespace_facet_2d<sec_at2_e2, structured_block_2d>(lns);
-  test_fiber_bundles_namespace_facet_2d<sec_st2_e2, structured_block_2d>(lns);
-  test_fiber_bundles_namespace_facet_2d<sec_st4_e2, structured_block_2d>(lns);
-  test_fiber_bundles_namespace_facet_2d<sec_t2_e2, structured_block_2d>(lns);
-  test_fiber_bundles_namespace_facet_2d<sec_t4_e2, structured_block_2d>(lns);
-  test_fiber_bundles_namespace_facet_2d<sec_e2, structured_block_2d>(lns);
-  test_fiber_bundles_namespace_facet_2d<sec_e2_uniform, structured_block_2d>(lns);
-  test_fiber_bundles_namespace_facet_2d<sec_met_e2, structured_block_2d>(lns);
+//   ////
 
-  ////
+//   test_fiber_bundles_namespace_facet_2d<sec_at0, structured_block_2d>(lns);
+//   test_fiber_bundles_namespace_facet_2d<sec_at2_e2, structured_block_2d>(lns);
+//   test_fiber_bundles_namespace_facet_2d<sec_st2_e2, structured_block_2d>(lns);
+//   test_fiber_bundles_namespace_facet_2d<sec_st4_e2, structured_block_2d>(lns);
+//   test_fiber_bundles_namespace_facet_2d<sec_t2_e2, structured_block_2d>(lns);
+//   test_fiber_bundles_namespace_facet_2d<sec_t4_e2, structured_block_2d>(lns);
+//   test_fiber_bundles_namespace_facet_2d<sec_e2, structured_block_2d>(lns);
+//   test_fiber_bundles_namespace_facet_2d<sec_e2_uniform, structured_block_2d>(lns);
+//   test_fiber_bundles_namespace_facet_2d<sec_met_e2, structured_block_2d>(lns);
 
-  test_fiber_bundles_namespace_facet_3d<sec_at0, structured_block_3d>(lns);
-  test_fiber_bundles_namespace_facet_3d<sec_at2_e3, structured_block_3d>(lns);
-  test_fiber_bundles_namespace_facet_3d<sec_at3_e3, structured_block_3d>(lns);
-  test_fiber_bundles_namespace_facet_3d<sec_st2_e3, structured_block_3d>(lns);
-  test_fiber_bundles_namespace_facet_3d<sec_st3_e3, structured_block_3d>(lns);
-  test_fiber_bundles_namespace_facet_3d<sec_st4_e3, structured_block_3d>(lns);
-  test_fiber_bundles_namespace_facet_3d<sec_t2_e3, structured_block_3d>(lns);
-  test_fiber_bundles_namespace_facet_3d<sec_t3_e3, structured_block_3d>(lns);
-  test_fiber_bundles_namespace_facet_3d<sec_t4_e3, structured_block_3d>(lns);
-  test_fiber_bundles_namespace_facet_3d<sec_e3, structured_block_3d>(lns);
-  test_fiber_bundles_namespace_facet_3d<sec_e3_uniform, structured_block_3d>(lns);
-  test_fiber_bundles_namespace_facet_3d<sec_met_e3, structured_block_3d>(lns);
+//   ////
+
+//   test_fiber_bundles_namespace_facet_3d<sec_at0, structured_block_3d>(lns);
+//   test_fiber_bundles_namespace_facet_3d<sec_at2_e3, structured_block_3d>(lns);
+//   test_fiber_bundles_namespace_facet_3d<sec_at3_e3, structured_block_3d>(lns);
+//   test_fiber_bundles_namespace_facet_3d<sec_st2_e3, structured_block_3d>(lns);
+//   test_fiber_bundles_namespace_facet_3d<sec_st3_e3, structured_block_3d>(lns);
+//   test_fiber_bundles_namespace_facet_3d<sec_st4_e3, structured_block_3d>(lns);
+//   test_fiber_bundles_namespace_facet_3d<sec_t2_e3, structured_block_3d>(lns);
+//   test_fiber_bundles_namespace_facet_3d<sec_t3_e3, structured_block_3d>(lns);
+//   test_fiber_bundles_namespace_facet_3d<sec_t4_e3, structured_block_3d>(lns);
+//   test_fiber_bundles_namespace_facet_3d<sec_e3, structured_block_3d>(lns);
+//   test_fiber_bundles_namespace_facet_3d<sec_e3_uniform, structured_block_3d>(lns);
+//   test_fiber_bundles_namespace_facet_3d<sec_met_e3, structured_block_3d>(lns);
 
 
   //test_fiber_bundles_namespace_facet<sec_at1, structured_block_2d>(lns);
@@ -875,33 +1235,155 @@ main(int xargc, char* xargv[])
 
   //============================================================================
 
+  // Section spaces
+
+  test_new_section_space<sec_at0>(lns, 1);
+  test_new_section_space<sec_e1>(lns, 1);
+  test_new_section_space<sec_e1_uniform>(lns, 1);
+  test_new_section_space<sec_met_e1>(lns, 1);
+
+  test_new_section_space<sec_at0>(lns, 2);
+  test_new_section_space<sec_at2_e2>(lns, 2);
+  test_new_section_space<sec_st2_e2>(lns, 2);
+  test_new_section_space<sec_st4_e2>(lns, 2);
+  test_new_section_space<sec_t2_e2>(lns, 2);
+  test_new_section_space<sec_t4_e2>(lns, 2);
+  test_new_section_space<sec_e2>(lns, 2);
+  test_new_section_space<sec_e2_uniform>(lns, 2);
+  test_new_section_space<sec_met_e2>(lns, 2);
+
+  test_new_section_space<sec_at0>(lns, 3);
+  test_new_section_space<sec_at2_e3>(lns, 3);
+  test_new_section_space<sec_at3_e3>(lns, 3);
+  test_new_section_space<sec_st2_e3>(lns, 3);
+  test_new_section_space<sec_st3_e3>(lns, 3);
+  test_new_section_space<sec_st4_e3>(lns, 3);
+  test_new_section_space<sec_t2_e3>(lns, 3);
+  test_new_section_space<sec_t3_e3>(lns, 3);
+  test_new_section_space<sec_t4_e3>(lns, 3);
+  test_new_section_space<sec_e3>(lns, 3);
+  test_new_section_space<sec_e3_uniform>(lns, 3);
+  test_new_section_space<sec_met_e3>(lns, 3);
+
+  //test_new_section_space<sec_at1>(lns, dd);
+  //test_new_section_space<sec_at2>(lns, dd);
+  //test_new_section_space<sec_st2>(lns, dd);
+  //test_new_section_space<sec_t2>(lns, dd);
+
+  //============================================================================
+
   // Scalar section spaces
 
-  test_new_scalar_section_space_1d<sec_at0, structured_block_1d>(lns);
-  test_new_scalar_section_space_2d<sec_at0, structured_block_2d>(lns);
-  test_new_scalar_section_space_3d<sec_at0, structured_block_3d>(lns);
-
+  test_new_scalar_section_space<sec_at0>(lns, 1);
+  test_new_scalar_section_space<sec_at0>(lns, 2);
+  test_new_scalar_section_space<sec_at0>(lns, 3);
 
   //============================================================================
 
  // Vector section spaces
 
-  //test_new_vector_section_space_1d<sec_at1, structured_block_1d>(lns);
-  //test_new_vector_section_space_1d<sec_ed, structured_block_1d>(lns);
+  test_new_vector_section_space<sec_e1>(lns, 1);
+  test_new_vector_section_space<sec_e2>(lns, 1);
+  test_new_vector_section_space<sec_e3>(lns, 1);
+  test_new_vector_section_space<sec_e1_uniform>(lns, 1);
+  test_new_vector_section_space<sec_e2_uniform>(lns, 1);
+  test_new_vector_section_space<sec_e3_uniform>(lns, 1);
 
-  //test_new_vector_section_space_1d<sec_e1, structured_block_1d>(lns);
+  test_new_vector_section_space<sec_e1>(lns, 2);
+  test_new_vector_section_space<sec_e2>(lns, 2);
+  test_new_vector_section_space<sec_e3>(lns, 2);
+  test_new_vector_section_space<sec_e1_uniform>(lns, 2);
+  test_new_vector_section_space<sec_e2_uniform>(lns, 2);
+  test_new_vector_section_space<sec_e3_uniform>(lns, 2);
 
-//   test_new_vector_section_space_1d<sec_e1_uniform, structured_block_1d>(lns);
-//   test_new_vector_section_space_1d<sec_e2, structured_block_1d>(lns);
-//   test_new_vector_section_space_1d<sec_e2_uniform, structured_block_1d>(lns);
-//   test_new_vector_section_space_1d<sec_e3, structured_block_1d>(lns);
-//   test_new_vector_section_space_1d<sec_e3_uniform, structured_block_1d>(lns);
+  test_new_vector_section_space<sec_e1>(lns, 3);
+  test_new_vector_section_space<sec_e2>(lns, 3);
+  test_new_vector_section_space<sec_e3>(lns, 3);
+  test_new_vector_section_space<sec_e1_uniform>(lns, 3);
+  test_new_vector_section_space<sec_e2_uniform>(lns, 3);
+  test_new_vector_section_space<sec_e3_uniform>(lns, 3);
 
-//   lns.new_vector_space<e2>();
-//   lns.new_vector_space<e3>();
-//   lns.new_vector_space<e4>();
-//   lns.new_vector_space<ed>();
+  test_new_vector_section_space<sec_e4>(lns, 1);
+  test_new_vector_section_space<sec_e4>(lns, 2);
+  test_new_vector_section_space<sec_e4>(lns, 3);
 
+
+  test_new_vector_section_space_xx<sec_ed>(lns, 1);  // df() > 0'
+  test_new_vector_section_space_xx<sec_at1>(lns, 1); // df() > 0'
+  //test_new_vector_section_space_xx<sec_vd>(lns, 1);  // df() > 0'
+
+  test_new_vector_section_space_xx<sec_ed>(lns, 2);  // df() > 0'
+  test_new_vector_section_space_xx<sec_at1>(lns, 2); // df() > 0'
+  //test_new_vector_section_space_xx<sec_vd>(lns, 2);  // df() > 0'
+
+  test_new_vector_section_space_xx<sec_ed>(lns, 3);  // df() > 0'
+  test_new_vector_section_space_xx<sec_at1>(lns, 3); // df() > 0'
+  //test_new_vector_section_space_xx<sec_vd>(lns, 3);  // df() > 0'
+
+
+  //============================================================================
+  //============================================================================
+
+  // Tensor section spaces
+
+  test_new_tensor_section_space<sec_at2_e2>(lns, 2);
+  test_new_tensor_section_space<sec_at2_e3>(lns, 3);
+  test_new_tensor_section_space<sec_at3_e3>(lns, 3);
+
+  test_new_tensor_section_space<sec_st2_e2>(lns, 2);
+  test_new_tensor_section_space<sec_st2_e3>(lns, 3);
+  test_new_tensor_section_space<sec_st3_e3>(lns, 3);
+  test_new_tensor_section_space<sec_st4_e2>(lns, 2);
+  test_new_tensor_section_space<sec_st4_e3>(lns, 3);
+
+  test_new_tensor_section_space<sec_t2_e2>(lns, 2);
+  test_new_tensor_section_space<sec_t2_e3>(lns, 3);
+  test_new_tensor_section_space<sec_t3_e3>(lns, 3);
+  test_new_tensor_section_space<sec_t4_e2>(lns, 2);
+  test_new_tensor_section_space<sec_t4_e3>(lns, 3);
+
+  test_new_tensor_section_space<sec_met_e1>(lns, 1);
+  test_new_tensor_section_space<sec_met_e2>(lns, 2);
+  test_new_tensor_section_space<sec_met_e3>(lns, 3);
+
+#endif // SKIP
+
+  //test_new_tensor_section_space_xx<sec_at2>(lns, 2); // df() >0
+  //test_new_tensor_section_space_xx<sec_met_ed>(lns, 2); // df() >0
+
+// sec_atp
+// sec_at2
+// sec_at2_e2
+// sec_at2_e3
+// sec_at3_e3
+
+// sec_stp
+// sec_st2
+// sec_st3
+// sec_st4
+// sec_st2_e2
+// sec_st2_e3
+// sec_st3_e3
+// sec_st4_e2
+// sec_st4_e3
+
+// sec_tp
+// sec_t2
+// sec_t3
+// sec_t4
+// sec_t2_e2
+// sec_t2_e3
+// sec_t3_e3
+// sec_t4_e2
+// sec_t4_e3
+
+// sec_met
+// sec_met_ed
+// sec_met_e1
+// sec_met_e2
+// sec_met_e3
+
+  //============================================================================
   //============================================================================
 
   // These return poset_path:
