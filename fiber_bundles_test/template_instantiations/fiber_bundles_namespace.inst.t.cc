@@ -22,6 +22,7 @@
 #include "atp.h"
 #include "atp_space.h"
 #include "base_space_poset.h"
+#include "binary_section_space_schema_poset.h"
 #include "e1.h"
 #include "e2.h"
 #include "e3.h"
@@ -125,8 +126,6 @@
 #include "vd.h"
 #include "vd_space.h"
 
-#include "binary_section_space_schema_poset.h"
-
 #include "std_sstream.h"
 
 
@@ -172,11 +171,14 @@ make_names_unique(string xnames[], int xnum_names)
 poset_path
 make_base_space_1d(fiber_bundles_namespace& xns, const string& xbase_space_name)
 {
-  //xns.get_read_write_access();
+  // Preconditions:
+
+  require(xns.state_is_read_write_accessible());
+  require(!xbase_space_name.empty());
+
+  // Body:
 
   typedef structured_block_1d B;
-
-  //const string lbase_space_name = "base_space_1d";
     
   base_space_poset& lhost = xns.new_base_space<B>(xbase_space_name);
 
@@ -186,6 +188,13 @@ make_base_space_1d(fiber_bundles_namespace& xns, const string& xbase_space_name)
   poset_path result = lmesh.path(true);
     
   lmesh.detach_from_state();
+
+  // Postconditions:
+
+  ensure(!result.empty());
+  //+ other ensure(...)
+
+  // Exit:
     
   return result;
 }
@@ -193,11 +202,14 @@ make_base_space_1d(fiber_bundles_namespace& xns, const string& xbase_space_name)
 poset_path
 make_base_space_2d(fiber_bundles_namespace& xns, const string& xbase_space_name)
 {
-  //xns.get_read_write_access();
+  // Preconditions:
+
+  require(xns.state_is_read_write_accessible());
+  require(!xbase_space_name.empty());
+
+  // Body:
 
   typedef structured_block_2d B;
-
-  //const string lbase_space_name = "base_space_2d";
     
   base_space_poset& lhost = xns.new_base_space<B>(xbase_space_name);
 
@@ -207,6 +219,13 @@ make_base_space_2d(fiber_bundles_namespace& xns, const string& xbase_space_name)
   poset_path result = lmesh.path(true);
     
   lmesh.detach_from_state();
+
+  // Postconditions:
+
+  ensure(!result.empty());
+  //+ other ensure(...)
+
+  // Exit:
     
   return result;
 }
@@ -214,11 +233,14 @@ make_base_space_2d(fiber_bundles_namespace& xns, const string& xbase_space_name)
 poset_path
 make_base_space_3d(fiber_bundles_namespace& xns, const string& xbase_space_name)
 {
-  //xns.get_read_write_access();
+  // Preconditions:
+
+  require(xns.state_is_read_write_accessible());
+  require(!xbase_space_name.empty());
+
+  // Body:
 
   typedef structured_block_3d B;
-
-  //const string lbase_space_name = "base_space_3d";
     
   base_space_poset& lhost = xns.new_base_space<B>(xbase_space_name);
 
@@ -228,14 +250,28 @@ make_base_space_3d(fiber_bundles_namespace& xns, const string& xbase_space_name)
   poset_path result = lmesh.path(true);
     
   lmesh.detach_from_state();
+
+  // Postconditions:
+
+  ensure(!result.empty());
+  //+ other ensure(...)
+
+  // Exit:
     
   return result;
 }
 
 
 poset_path
-make_base_space(fiber_bundles_namespace& xns, const string& xbase_space_name, int xd)
+make_base_space(fiber_bundles_namespace& xns,
+                const string& xbase_space_name,
+                int xd)
 {
+  // Preconditions:
+
+  require(xns.state_is_read_write_accessible());
+  require(!xbase_space_name.empty());
+  require(1 <= xd && xd <= 3);
 
   poset_path result;
   if(xd == 1)
@@ -251,8 +287,47 @@ make_base_space(fiber_bundles_namespace& xns, const string& xbase_space_name, in
     result = make_base_space_3d(xns, xbase_space_name);
   }
 
+  // Postconditions:
+
+  ensure(!result.empty());
+  //+ other ensure(...)
+
+  // Exit:
+
   return result;
 }
+
+//==============================================================================
+
+template<typename F>
+poset_path
+make_fiber_space_schema(fiber_bundles_namespace& xns)
+{
+    poset_path result = F::standard_schema_path();
+
+    return result;
+}
+
+// template<>
+// poset_path
+// make_fiber_space_schema<tuple_space>(fiber_bundles_namespace& xns)
+// {
+//     string lmember_names = "x DOUBLE false y DOUBLE false";
+
+//     schema_poset_member lschema(xns,
+// 				"tuple_space_test_schema",
+// 				tuple_space::standard_schema_path(),
+// 				lmember_names,
+// 				true,
+// 				true);
+
+//     poset_path result = lschema.path();
+
+//     lschema.detach_from_state();
+
+//     return result;
+// }
+
 
 //==============================================================================
 
@@ -641,7 +716,8 @@ test_new_vector_section_space(fiber_bundles_namespace& xns, int xd)
 
 template<typename V>
 bool
-test_new_vector_section_space_xx(fiber_bundles_namespace& xns, int xd)
+test_new_vector_section_space2
+(fiber_bundles_namespace& xns, int xd)
 {
   // Preconditions:
 
@@ -1194,47 +1270,6 @@ main(int xargc, char* xargv[])
 
   //============================================================================
 
-
-//   test_fiber_bundles_namespace_facet_1d<sec_at0, structured_block_1d>(lns);
-//   test_fiber_bundles_namespace_facet_1d<sec_e1, structured_block_1d>(lns);
-//   test_fiber_bundles_namespace_facet_1d<sec_e1_uniform, structured_block_1d>(lns);
-//   test_fiber_bundles_namespace_facet_1d<sec_met_e1, structured_block_1d>(lns);
-
-//   ////
-
-//   test_fiber_bundles_namespace_facet_2d<sec_at0, structured_block_2d>(lns);
-//   test_fiber_bundles_namespace_facet_2d<sec_at2_e2, structured_block_2d>(lns);
-//   test_fiber_bundles_namespace_facet_2d<sec_st2_e2, structured_block_2d>(lns);
-//   test_fiber_bundles_namespace_facet_2d<sec_st4_e2, structured_block_2d>(lns);
-//   test_fiber_bundles_namespace_facet_2d<sec_t2_e2, structured_block_2d>(lns);
-//   test_fiber_bundles_namespace_facet_2d<sec_t4_e2, structured_block_2d>(lns);
-//   test_fiber_bundles_namespace_facet_2d<sec_e2, structured_block_2d>(lns);
-//   test_fiber_bundles_namespace_facet_2d<sec_e2_uniform, structured_block_2d>(lns);
-//   test_fiber_bundles_namespace_facet_2d<sec_met_e2, structured_block_2d>(lns);
-
-//   ////
-
-//   test_fiber_bundles_namespace_facet_3d<sec_at0, structured_block_3d>(lns);
-//   test_fiber_bundles_namespace_facet_3d<sec_at2_e3, structured_block_3d>(lns);
-//   test_fiber_bundles_namespace_facet_3d<sec_at3_e3, structured_block_3d>(lns);
-//   test_fiber_bundles_namespace_facet_3d<sec_st2_e3, structured_block_3d>(lns);
-//   test_fiber_bundles_namespace_facet_3d<sec_st3_e3, structured_block_3d>(lns);
-//   test_fiber_bundles_namespace_facet_3d<sec_st4_e3, structured_block_3d>(lns);
-//   test_fiber_bundles_namespace_facet_3d<sec_t2_e3, structured_block_3d>(lns);
-//   test_fiber_bundles_namespace_facet_3d<sec_t3_e3, structured_block_3d>(lns);
-//   test_fiber_bundles_namespace_facet_3d<sec_t4_e3, structured_block_3d>(lns);
-//   test_fiber_bundles_namespace_facet_3d<sec_e3, structured_block_3d>(lns);
-//   test_fiber_bundles_namespace_facet_3d<sec_e3_uniform, structured_block_3d>(lns);
-//   test_fiber_bundles_namespace_facet_3d<sec_met_e3, structured_block_3d>(lns);
-
-
-  //test_fiber_bundles_namespace_facet<sec_at1, structured_block_2d>(lns);
-  //test_fiber_bundles_namespace_facet<sec_at2, structured_block_2d>(lns);
-  //test_fiber_bundles_namespace_facet<sec_st2, structured_block_2d>(lns);
-  //test_fiber_bundles_namespace_facet<sec_t2, structured_block_2d>(lns);
-
-  //============================================================================
-
   // Section spaces
 
   test_new_section_space<sec_at0>(lns, 1);
@@ -1308,17 +1343,17 @@ main(int xargc, char* xargv[])
   test_new_vector_section_space<sec_e4>(lns, 3);
 
 
-  test_new_vector_section_space_xx<sec_ed>(lns, 1);  // df() > 0'
-  test_new_vector_section_space_xx<sec_at1>(lns, 1); // df() > 0'
-  //test_new_vector_section_space_xx<sec_vd>(lns, 1);  // df() > 0'
+  test_new_vector_section_space2<sec_ed>(lns, 1);  // df() > 0'
+  test_new_vector_section_space2<sec_at1>(lns, 1); // df() > 0'
+  //test_new_vector_section_space2<sec_vd>(lns, 1);  // df() > 0'
 
-  test_new_vector_section_space_xx<sec_ed>(lns, 2);  // df() > 0'
-  test_new_vector_section_space_xx<sec_at1>(lns, 2); // df() > 0'
-  //test_new_vector_section_space_xx<sec_vd>(lns, 2);  // df() > 0'
+  test_new_vector_section_space2<sec_ed>(lns, 2);  // df() > 0'
+  test_new_vector_section_space2<sec_at1>(lns, 2); // df() > 0'
+  //test_new_vector_section_space2<sec_vd>(lns, 2);  // df() > 0'
 
-  test_new_vector_section_space_xx<sec_ed>(lns, 3);  // df() > 0'
-  test_new_vector_section_space_xx<sec_at1>(lns, 3); // df() > 0'
-  //test_new_vector_section_space_xx<sec_vd>(lns, 3);  // df() > 0'
+  test_new_vector_section_space2<sec_ed>(lns, 3);  // df() > 0'
+  test_new_vector_section_space2<sec_at1>(lns, 3); // df() > 0'
+  //test_new_vector_section_space2<sec_vd>(lns, 3);  // df() > 0'
 
 
   //============================================================================
@@ -1348,40 +1383,53 @@ main(int xargc, char* xargv[])
 
 #endif // SKIP
 
-  //test_new_tensor_section_space_xx<sec_at2>(lns, 2); // df() >0
-  //test_new_tensor_section_space_xx<sec_met_ed>(lns, 2); // df() >0
+  //============================================================================
+
+//   typedef sec_e1 S;
+//   typedef typename S::fiber_type F;
+
+//   cout << "S::static_class_name() = " << S::static_class_name() << endl; 
+//   cout << "F::static_class_name() = " << F::static_class_name() << endl; 
+//   cout << "S::host_type::static_class_name() = "
+//        << S::host_type::static_class_name() << endl; 
+
+
+//   poset_path lfiber_schema_path = make_fiber_space_schema<F>(lns);
+
+//   poset_path lfiber_space_path = make_fiber_space(lns, lfiber_schema_path);
+
+//   poset_path lsection_space_schema_path =
+//       make_section_space_schema(xns, xbase_space_path, lfiber_space_path);
+
+
+//   arg_list largs = S::host_type::make_arg_list();
+
+//   string lsection_space_name = "section_space_name";
+//   typename S::host_type& lsection_space0 =
+//     lns.new_section_space<S>(lsection_space_name,
+//                              largs,
+//                              lsection_space_schema_path);
+
+  //============================================================================
+
+  //test_new_tensor_section_space2<sec_at2>(lns, 2); // df() >0
+  //test_new_tensor_section_space2<sec_met_ed>(lns, 2); // df() >0
 
 // sec_atp
 // sec_at2
-// sec_at2_e2
-// sec_at2_e3
-// sec_at3_e3
 
 // sec_stp
 // sec_st2
 // sec_st3
 // sec_st4
-// sec_st2_e2
-// sec_st2_e3
-// sec_st3_e3
-// sec_st4_e2
-// sec_st4_e3
 
 // sec_tp
 // sec_t2
 // sec_t3
 // sec_t4
-// sec_t2_e2
-// sec_t2_e3
-// sec_t3_e3
-// sec_t4_e2
-// sec_t4_e3
 
 // sec_met
 // sec_met_ed
-// sec_met_e1
-// sec_met_e2
-// sec_met_e3
 
   //============================================================================
   //============================================================================
@@ -1421,65 +1469,6 @@ main(int xargc, char* xargv[])
   // here we'll use the explicit base space arg.
 
   //lns.new_section_space_schema<sec_at0>("", "", "", "", lblock.path());
-
-  ////lns.new_section_space_schema<sec_at1>();
-  ////lns.new_section_space_schema<sec_at2>();
-  ////lns.new_section_space_schema<sec_at2_e2>();
-  ////lns.new_section_space_schema<sec_at2_e3>();
-  ////lns.new_section_space_schema<sec_at3>();
-  ////lns.new_section_space_schema<sec_at3_e3>();
-  ////lns.new_section_space_schema<sec_atp>();
-  ////lns.new_section_space_schema<sec_e1>();
-  ////lns.new_section_space_schema<sec_e1_uniform>();
-  ////lns.new_section_space_schema<sec_e2>();
-  ////lns.new_section_space_schema<sec_e2_uniform>();
-  ////lns.new_section_space_schema<sec_e3>();
-  ////lns.new_section_space_schema<sec_e3_uniform>();
-  ////lns.new_section_space_schema<sec_e4>();
-  ////lns.new_section_space_schema<sec_ed>();
-
-
-  ////lns.new_section_space_schema<sec_met>();
-  ////lns.new_section_space_schema<sec_met_e1>();
-  ////lns.new_section_space_schema<sec_met_e2>();
-  ////lns.new_section_space_schema<sec_met_e3>();
-  ////lns.new_section_space_schema<sec_met_ed>();
-  ////lns.new_section_space_schema<sec_st2>();
-
-  ////lns.new_section_space_schema<sec_st2_e2>();
-  ////lns.new_section_space_schema<sec_st2_e3>();
-  ////lns.new_section_space_schema<sec_st3>();
-  ////lns.new_section_space_schema<sec_st3_e3>();
-  ////lns.new_section_space_schema<sec_st4>();
-  ////lns.new_section_space_schema<sec_st4_e2>();
-  ////lns.new_section_space_schema<sec_st4_e3>();
-  ////lns.new_section_space_schema<sec_stp>();
-  ////lns.new_section_space_schema<sec_t2>();
-  ////lns.new_section_space_schema<sec_t2_e2>();
-  ////lns.new_section_space_schema<sec_t2_e3>();
-  ////lns.new_section_space_schema<sec_t3>();
-  ////lns.new_section_space_schema<sec_t3_e3>();
-  ////lns.new_section_space_schema<sec_t4>();
-  ////lns.new_section_space_schema<sec_t4_e2>();
-  ////lns.new_section_space_schema<sec_t4_e3>();
-  ////lns.new_section_space_schema<sec_tp>();
-
-  //============================================================================
-
-  ////lns.new_scalar_section_space_schema<sec_at0>();
-
-  //============================================================================
-
-  ////lns.new_vector_section_space_schema<sec_at1>();
-  ////lns.new_vector_section_space_schema<sec_e1>();
-  ////lns.new_vector_section_space_schema<sec_e1_uniform>();
-  ////lns.new_vector_section_space_schema<sec_e2>();
-  ////lns.new_vector_section_space_schema<sec_e2_uniform>();
-  ////lns.new_vector_section_space_schema<sec_e3>();
-  ////lns.new_vector_section_space_schema<sec_e3_uniform>();
-  ////lns.new_vector_section_space_schema<sec_e4>();
-  ////lns.new_vector_section_space_schema<sec_ed>();
-  ////lns.new_vector_section_space_schema<sec_vd>();
 
   //============================================================================
 
