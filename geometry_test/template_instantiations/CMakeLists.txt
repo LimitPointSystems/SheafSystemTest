@@ -16,7 +16,7 @@ set(CLUSTER template_instantiations)
 # Library sources.
 #
 set(SRCS
-    test_geometry.cc
+    test_geometry_inst.cc
 )
 
 collect_sources()
@@ -25,7 +25,7 @@ collect_sources()
 # Headers that are NOT associated with a .cc file.
 #
 set(ADDITIONAL_INCS
-    test_geometry.impl.h
+    test_geometry_inst.impl.h
 )
   
 collect_includes()
