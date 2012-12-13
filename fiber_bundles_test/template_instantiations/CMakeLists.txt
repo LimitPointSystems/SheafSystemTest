@@ -34,12 +34,12 @@ collect_includes()
 # Source for unit test executables.
 #
 set(UNIT_TEST_SRCS
-    fiber_bundles_block.inst.t.cc
-    fiber_bundles_auto_block.inst.t.cc
-    fiber_bundles_abstract_poset_member.inst.t.cc
-    fiber_bundles_namespace.inst.t.cc
-    fiber_bundles_namespace_poset.inst.t.cc
     base_space_factory.inst.t.cc
+    fiber_bundle.abstract_poset_member.inst.t.cc
+    fiber_bundle.auto_block.inst.t.cc
+    fiber_bundle.block.inst.t.cc
+    fiber_bundle.namespace_poset.inst.t.cc
+    fiber_bundles_namespace.inst.t.cc
     section_space_factory.inst.t.cc
 )
 
