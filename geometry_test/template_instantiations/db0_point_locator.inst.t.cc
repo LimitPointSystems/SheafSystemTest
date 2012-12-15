@@ -17,6 +17,10 @@
 #include "fiber_bundles_namespace.h"
 #include "sec_rep_descriptor.h" 
 
+#include "structured_block_1d.h"
+#include "structured_block_2d.h"
+#include "structured_block_3d.h"
+
 #include "geometry.h"
 #include "test_utils.h"
 
@@ -27,6 +31,138 @@ using namespace geometry;
 
 namespace
 {
+
+poset_path
+make_base_space_1d(fiber_bundles_namespace& xns, const string& xbase_space_name)
+{
+  // Preconditions:
+
+  require(xns.state_is_read_write_accessible());
+  require(!xbase_space_name.empty());
+
+  // Body:
+
+  typedef structured_block_1d B;
+    
+  base_space_poset& lhost = xns.new_base_space<B>(xbase_space_name);
+
+  B lmesh(&lhost, 2);
+  lmesh.put_name("mesh", true, true);
+
+  poset_path result = lmesh.path(true);
+    
+  lmesh.detach_from_state();
+
+  // Postconditions:
+
+  ensure(!result.empty());
+  //+ other ensure(...)
+
+  // Exit:
+    
+  return result;
+}
+
+poset_path
+make_base_space_2d(fiber_bundles_namespace& xns, const string& xbase_space_name)
+{
+  // Preconditions:
+
+  require(xns.state_is_read_write_accessible());
+  require(!xbase_space_name.empty());
+
+  // Body:
+
+  typedef structured_block_2d B;
+    
+  base_space_poset& lhost = xns.new_base_space<B>(xbase_space_name);
+
+  B lmesh(&lhost, 2, 2);
+  lmesh.put_name("mesh", true, true);
+
+  poset_path result = lmesh.path(true);
+    
+  lmesh.detach_from_state();
+
+  // Postconditions:
+
+  ensure(!result.empty());
+  //+ other ensure(...)
+
+  // Exit:
+    
+  return result;
+}
+
+poset_path
+make_base_space_3d(fiber_bundles_namespace& xns, const string& xbase_space_name)
+{
+  // Preconditions:
+
+  require(xns.state_is_read_write_accessible());
+  require(!xbase_space_name.empty());
+
+  // Body:
+
+  typedef structured_block_3d B;
+    
+  base_space_poset& lhost = xns.new_base_space<B>(xbase_space_name);
+
+  B lmesh(&lhost, 2, 2, 2);
+  lmesh.put_name("mesh", true, true);
+
+  poset_path result = lmesh.path(true);
+    
+  lmesh.detach_from_state();
+
+  // Postconditions:
+
+  ensure(!result.empty());
+  //+ other ensure(...)
+
+  // Exit:
+    
+  return result;
+}
+
+
+poset_path
+make_base_space(fiber_bundles_namespace& xns,
+                const string& xbase_space_name,
+                int xd)
+{
+  // Preconditions:
+
+  require(xns.state_is_read_write_accessible());
+  require(!xbase_space_name.empty());
+  require(1 <= xd && xd <= 3);
+
+  poset_path result;
+  if(xd == 1)
+  {
+    result = make_base_space_1d(xns, xbase_space_name);
+  }
+  else if (xd == 2)
+  {
+    result = make_base_space_2d(xns, xbase_space_name);
+  }
+  else
+  {
+    result = make_base_space_3d(xns, xbase_space_name);
+  }
+
+  // Postconditions:
+
+  ensure(!result.empty());
+  //+ other ensure(...)
+
+  // Exit:
+
+  return result;
+}
+
+//==============================================================================
+
 
 // template<int DC>
 // bool
@@ -51,19 +187,40 @@ main(int xargc, char* xargv[])
 
   bool ltest = true;
 
+  //============================================================================
 
-//   //============================================================================
+  fiber_bundles_namespace lns("test_namespace");
+  lns.get_read_write_access();
 
-//   fiber_bundles_namespace lns("test_namespace");
-//   lns.get_read_write_access();
+  // Make a base space.
 
-//   // Make a base space.
+  poset_path lbase_path = make_base_space(lns, "my_base_space", 2);
+ 
+  poset_path lcoordinates_path("coordinate_section_space/coordinates_0");
 
-// //   const poset_path& lbase_path = make_test_base_space(lns, 2); // 1d
-// //   const poset_path& lbase_path = make_test_base_space(lns, 2, 2); // 2d
-//   const poset_path& lbase_path = make_test_base_space(lns, 2, 2, 3); // 3d
+  sec_at1_space* lcoords_space =
+    &(lns.new_section_space<sec_e2>(lcoordinates_path.poset_name(),
+                                    lbase_path,
+                                    "sec_rep_descriptors/vertex_element_dlinear",
+                                    true));
 
-//   poset_path lcoordinates_path("coordinate_section_space/coordinates_0");
+  lcoords_space->get_read_write_access();
+
+  sec_e2 lcoords(lcoords_space);
+  lcoords.put_name(lcoordinates_path.member_name(), true, false);
+
+  sec_ed_invertible lsec_inv(lcoords);
+
+  lcoords.detach_from_state();
+
+  //lsec_inv.initialize_point_locator(false);
+
+  db0_point_locator<1> lloc(lsec_inv);
+
+  lsec_inv.detach_from_state();
+
+//   sec_e1 lcoords(lcoords_space);
+//   lcoords.put_name(lcoordinates_path.member_name(), true, false);
 
 //   sec_at1_space* lcoords_space =
 //     &(lns.new_section_space<sec_e3>(lcoordinates_path.poset_name(),
