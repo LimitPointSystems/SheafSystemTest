@@ -141,7 +141,10 @@ test_d_tree_point_locator_node_facet()
 
   print_subheader("Testing derived class CTOR/DTOR");
 
-  d_tree_point_locator_node_child<DC, DB> lchild;
+  d_tree_point_locator_node_child<DC, DB>* lchild =
+    new d_tree_point_locator_node_child<DC, DB>;
+
+  delete lchild;
 
   //============================================================================
 

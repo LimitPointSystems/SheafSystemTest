@@ -383,12 +383,6 @@ test_d_array_point_locator_facet(fiber_bundles_namespace& xns)
   //============================================================================
 
 
-  // d_array_point_locator default constructor is protected.
-  //   d_array_point_locator_child<DC, DB>* lchild =
-  //     new d_array_point_locator_child<DC, DB>;
-
-  //   delete lchild;
-
   d_array_point_locator_child<DC, DB>* lchild =
     new d_array_point_locator_child<DC, DB>(lcoords);
 
