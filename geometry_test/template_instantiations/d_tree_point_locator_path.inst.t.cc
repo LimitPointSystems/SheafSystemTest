@@ -14,13 +14,6 @@
 
 using namespace geometry;
 
-namespace
-{
-
-
-
-} //end namespace
-
 int
 main(int xargc, char* xargv[])
 {
@@ -33,6 +26,13 @@ main(int xargc, char* xargv[])
   bool ltest = true;
 
   //============================================================================
+
+  //$$SCRIBBLE: We test d_tree_point_locator_path in d_tree_point_locator.inst.t
+  //            because we need a d_tree_point_locator to instantiate a
+  //            d_tree_point_locator_path and we already create them there.
+
+  cout << "d_tree_point_locator_path is tested in d_tree_point_locator.inst.t"
+       << endl;
 
   //============================================================================
 

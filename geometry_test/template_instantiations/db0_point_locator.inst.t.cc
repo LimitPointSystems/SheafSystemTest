@@ -497,33 +497,6 @@ main(int xargc, char* xargv[])
 
   //============================================================================
 
-
-
-//   //============================================================================
-//   // point_locator facet:
-
-//   // sec_ed& coordinates() const;
-
-//   sec_ed& lcoord_section = lloc.coordinates();
-
-//   // const block<sec_vd_value_type>& lb() const;
-  
-//   const block<sec_vd_value_type>& llb = lloc.lb();
-
-//   // const block<sec_vd_value_type>& ub() const;
-  
-//   const block<sec_vd_value_type>& lub = lloc.ub();
-
-//   // int dc() const;
-
-//   int ldc = lloc.dc();
-
-//   // int db() const;
-
-//   int ldb = lloc.db();
-
-  //============================================================================
-
   int lresult = ltest ? EXIT_SUCCESS : EXIT_FAILURE;
 
   print_footer("End testing db0_point_locator_facet<DC>:");

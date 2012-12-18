@@ -40,11 +40,11 @@ public:
   d_array_point_locator_child(sec_ed& xcoords, 
 			                 bool xpopulate = true, 
 			                 size_type xeval_capacity = 256)
-    : d_array_point_locator<DC, DB>(xcoords, xpopulate, xeval_capacity)
-  {
-  }
+    : d_array_point_locator<DC, DB>(xcoords, xpopulate, xeval_capacity) {}
+
 
   ~d_array_point_locator_child() {}
+
 };
 
 
@@ -239,7 +239,7 @@ make_dofs(S& xcoords)
       lfiber.put_component(j, i+j);
     }
     xcoords.put_fiber(i, lfiber);
-    cout << "lfiber = " << lfiber << endl;
+    //cout << "lfiber = " << lfiber << endl;
   }
 
   // Postconditions:
@@ -318,23 +318,6 @@ test_d_array_point_locator_facet(fiber_bundles_namespace& xns)
 
   d_array_point_locator<DC, DB>llocator(lcoords);
 
-  //cout << "llocator = \n" << llocator << endl;
-
-
-//   d_array_point_locator(sec_ed& xcoords, 
-// 			const block<size_type>& xbin_ub, 
-// 			bool xpopulate = true, 
-// 			size_type xeval_capacity = 256);
-
-//   block<size_type> lbin_ub;
-//   lbin_ub.push_back(5);
-//   lbin_ub.push_back(10);
-
-//   d_array_point_locator<2, 2> llocator2(lcoords, lbin_ub);
-
-//   //cout << "llocator2 = \n" << llocator2 << endl;
-
-  
   cout << "llocator = \n" << llocator << endl;
 
   size_type lsize = llocator.size();
@@ -345,17 +328,6 @@ test_d_array_point_locator_facet(fiber_bundles_namespace& xns)
 
   bool linvariant = llocator.invariant();
   cout << "linvariant  = " << boolalpha << linvariant  << endl;
-
-  //protected:
-  //size_type lbin_id2 = llocator.bin_id(0, 0);
-  //cout << "lbin_id2  = " << lbin_id2  << endl;
-
-  //protected:
-  //size_type lbin_id3 = llocator.bin_id(0, 0);
-  //cout << "lbin_id3  = " << lbin_id3  << endl;
-
-  //virtual const box_list_type& box_list(sec_vd_value_type* xpt,
-  //                                      size_type xpt_ub) const;
 
   double lpt[DC];
   for(int i=0; i<DC; ++i)
@@ -382,12 +354,13 @@ test_d_array_point_locator_facet(fiber_bundles_namespace& xns)
 
   //============================================================================
 
+  // Invoke the derived class functions.
 
   d_array_point_locator_child<DC, DB>* lchild =
     new d_array_point_locator_child<DC, DB>(lcoords);
 
   delete lchild;
- 
+
   //============================================================================
 
   lcoords.detach_from_state();
@@ -446,17 +419,3 @@ main(int xargc, char* xargv[])
 }
 
 
-////////////////////////////////////////////////////////////////////////////////
-
-
-
-//   sec_ed_invertible lsec_inv(lcoords);
-//   bool lis_d_array = lsec_inv.use_d_array_point_locator();
-//   cout << "lis_d_array = " << boolalpha << lis_d_array << endl;
-
-//   cout << "lsec_inv.schema().df() = " << lsec_inv.schema().df() << endl;
-//   cout << "lsec_inv.schema().db() = " << lsec_inv.schema().db() << endl;
-
-//   lsec_inv.initialize_d_array_point_locator(false);
-
-//   lsec_inv.detach_from_state();

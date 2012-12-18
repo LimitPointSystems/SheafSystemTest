@@ -123,7 +123,12 @@ test_d_tree_point_locator_node_facet()
   const box_list_type& lbox_list = lnode.box_list();
 
 
-  //$$TODO: Need d_tree_point_locator_path.
+  //$$SCRIBBLE: Need a d_tree_point_locator_path object to
+  //            invoke these functions.  They are tested in
+  //            d_tree_point_locator.inst.t where we create
+  //            d_tree_point_locator_paths from instances of
+  //            d_tree_point_locator.
+
 
 //   void insert_box(const d_bounding_box<DC, DB>* xbox,
 //                   d_tree_point_locator_path<DC, DB>& xpath);
@@ -134,8 +139,8 @@ test_d_tree_point_locator_node_facet()
 //   bool contains_box(const d_bounding_box<DC, DB>* xbox,
 //                     d_tree_point_locator_path<DC, DB>& xpath) const;
 
-//   const box_list_type& box_list(d_tree_point_locator_path<DC, DB>& xpath) const;
-
+//   const box_list_type&
+//     box_list(d_tree_point_locator_path<DC, DB>& xpath) const;
 
   //============================================================================
 
@@ -179,8 +184,9 @@ main(int xargc, char* xargv[])
   print_header("Testing _d_tree_point_locator_node_facet<3, 3>");
   ltest &= test_d_tree_point_locator_node_facet<3, 3>();
 
-  print_header("Testing _d_tree_point_locator_node_facet<4, 4>");
-  ltest &= test_d_tree_point_locator_node_facet<4, 4>();
+  // Not instantiated because we cant make a d_tree_point_locator<4, 4>
+  //print_header("Testing _d_tree_point_locator_node_facet<4, 4>");
+  //ltest &= test_d_tree_point_locator_node_facet<4, 4>();
 
   //============================================================================
 

@@ -8,6 +8,8 @@
 /// Unit test driver for class d_tree_point_locator.
 
 #include "d_tree_point_locator.h"
+#include "d_tree_point_locator_node.h"
+#include "d_tree_point_locator_path.h"
 
 #include "geometry.h"
 #include "test_utils.h"
@@ -40,12 +42,25 @@ template<int DC, int DB>
 class d_tree_point_locator_child : public d_tree_point_locator<DC, DB>
 {
 public:
+  d_tree_point_locator_child(sec_ed& xcoords, size_type xdepth) 
+    : d_tree_point_locator<DC, DB>(xcoords, xdepth) {}
+
   d_tree_point_locator_child(sec_ed& xcoords) 
     : d_tree_point_locator<DC, DB>(xcoords) {}
 
   ~d_tree_point_locator_child() {}
 };
 
+
+template<int DC, int DB>
+class d_tree_point_locator_path_child : public d_tree_point_locator_path<DC, DB>
+{
+public:
+  d_tree_point_locator_path_child(const d_tree_point_locator<DC, DB>* xtree) 
+    : d_tree_point_locator_path<DC, DB>(xtree) {}
+  
+  ~d_tree_point_locator_path_child() {}
+};
 
 //==============================================================================
 
@@ -327,10 +342,24 @@ test_d_tree_point_locator_facet(fiber_bundles_namespace& xns)
 
   cout << "llocator.box_ct() = " << llocator.box_ct() << endl;
 
-  //cout << "llocator = \n" << llocator << endl; // Hangs in d_tree_point_locator_node::to_string
+  cout << "llocator = \n" << llocator << endl; // Hangs in d_tree_point_locator_node::to_string
+
+  /////////////////////////////////////////////////////////////////////////////////
+
+
+//   cout << "depth = " << llocator.depth() << endl;
+//   //cout << "root = " << llocator.root() << endl;
+
+//   bool lbool = llocator.invariant();
+
+//   cout << "dc = " << llocator.dc() << endl;
+
+
+  /////////////////////////////////////////////////////////////////////////////////
 
   const d_tree_point_locator_node<DC, DB>& lroot = llocator.root();
 
+//   string* lstring = lroot.to_string();
   //cout << "lroot = \n" << lroot << endl;  // Hangs in d_tree_point_locator_node::to_string
 
   //============================================================================
@@ -376,40 +405,166 @@ test_d_tree_point_locator_facet(fiber_bundles_namespace& xns)
   typedef slist<const d_bounding_box<DC, DB>*> box_list_type;
   const box_list_type& lbox_list = llocator.box_list(lpt, DC);
 
-  //llocator.remove_box(lbox0);
-  //  terminate called after throwing an instance of 'std::logic_error'
-  //  what():  'is_empty() ? xpath.depth() > xpath.tree()->depth() : true' in file d_tree_point_locator_node.impl.h at line 363
+  //============================================================================
+  // $$SCRIBBLE: Maybe test d_tree_point_locator_node and
+  //             d_tree_point_locator_path here since they need
+  //             a d_tree_point_locator to be fully tested.
+  //============================================================================
 
+  d_tree_point_locator_path<DC, DB> lpath(&llocator);
+  d_tree_point_locator_node<DC, DB> lnode;
 
-  //llocator.clear(); // terminate called after throwing an instance of 'std::logic_error'
-                       // what():  'is_leaf()' in file d_tree_point_locator_node.impl.h at line 513
+  //   void insert_box(const d_bounding_box<DC, DB>* xbox,
+  //                   d_tree_point_locator_path<DC, DB>& xpath);
+
+  d_bounding_box<DC, DB> lbox2;
+  lnode.insert_box(&lbox2, lpath);
+
+  //   bool contains_box(const d_bounding_box<DC, DB>* xbox,
+  //                     d_tree_point_locator_path<DC, DB>& xpath) const;
+
+  bool lcontains_box = lnode.contains_box(&lbox2, lpath);
+  cout << "lcontains_box   = " << boolalpha << lcontains_box   << endl;
+
+  //   void remove_box(const d_bounding_box<DC, DB>* xbox,
+  //                   d_tree_point_locator_path<DC, DB>& xpath);
+
+  lnode.remove_box(&lbox2, lpath);
+
+  // void clear()
+
+  lnode.insert_box(&lbox2, lpath);
+  lnode.clear();
+
+  //   const box_list_type& box_list(d_tree_point_locator_path<DC, DB>& xpath) const;
+  const box_list_type& lbox_list3 = lnode.box_list(lpath);
+
+  //============================================================================
+  //============================================================================
+
+   // void remove_box(const d_bounding_box<DC, DB>* xbox);
+
+  llocator.remove_box(lbox0);
+
+  // void clear()
+
+  llocator.insert_box(lbox0);
+  llocator.clear();
 
   //============================================================================
 
-  d_tree_point_locator<DC, DB> llocator2(lcoords);
+  d_tree_point_locator<DC, DB>* llocator_ptr1 = 
+    new d_tree_point_locator_child<DC, DB>(lcoords, 4);
 
-  //cout << "llocator2 = \n" << llocator2 << endl;
+  delete llocator_ptr1;
 
-  //============================================================================
-
-
-  // d_tree_point_locator default constructor is protected.
-  //   d_tree_point_locator_child<DC, DB>* lchild =
-  //     new d_tree_point_locator_child<DC, DB>;
-
-  //   delete lchild;
-
-  d_tree_point_locator_child<DC, DB>* lchild =
+  d_tree_point_locator<DC, DB>* llocator_ptr2 = 
     new d_tree_point_locator_child<DC, DB>(lcoords);
 
-  delete lchild;
- 
-// #define SKIP
-// #ifndef SKIP
-
-// #endif //SKIP
+  delete llocator_ptr2;
 
   //============================================================================
+
+  // Invoke the derived class constructors and destructors.  
+
+  d_tree_point_locator_child<DC, DB>* lchild1 =
+    new d_tree_point_locator_child<DC, DB>(lcoords, 4);
+
+  delete lchild1;
+
+  d_tree_point_locator_child<DC, DB>* lchild2 =
+    new d_tree_point_locator_child<DC, DB>(lcoords);
+
+  delete lchild2;
+ 
+  //============================================================================
+  // Test d_tree_point_locator_path
+  //============================================================================
+
+  {
+
+  print_subheader("Testing d_tree_point_locator_path");
+
+  //d_tree_point_locator_path(const d_tree_point_locator<DC, DB>* xtree);
+  d_tree_point_locator_path<DC, DB> lpath2(&llocator);
+
+  //d_tree_point_locator_path(const d_tree_point_locator_path<DC, DB>& xother);
+  d_tree_point_locator_path<DC, DB> lpath_assign = lpath2;
+
+  //d_tree_point_locator_path(const d_tree_point_locator_path<DC, DB>& xother);
+  d_tree_point_locator_path<DC, DB> lpath_copy = lpath2;
+
+  //d_tree_point_locator_path(const d_bin_coordinates<DC, DB>& xpt,
+  //                          const d_tree_point_locator<DC, DB>* xtree);
+  d_bin_coordinates<DC, DB> ld_bin_coords;
+  d_tree_point_locator_path<DC, DB> lpath3(ld_bin_coords, &llocator);
+
+  //ostream&
+  //operator<<(ostream &os, const d_tree_point_locator_path<DC, DB>& xpath)
+  cout << "lpath2 = \n" << lpath2 << endl;
+
+  //virtual bool invariant() const;
+  bool linvariant = lpath2.invariant();
+  cout << "linvariant  = " << boolalpha << linvariant  << endl;
+
+  // size_type depth() const;
+  size_type ldepth = lpath2.depth();
+  cout << "ldepth  = " << ldepth  << endl;
+
+  //static size_type max_depth();
+  size_type lmax_depth = d_tree_point_locator_path<DC, DB>::max_depth();
+  cout << "lmax_depth  = " << lmax_depth  << endl;
+
+  // size_type height() const;
+  size_type lheight = lpath2.height();
+  cout << "lheight  = " << lheight  << endl;
+
+  //static size_type max_height();
+  size_type lmax_height = d_tree_point_locator_path<DC, DB>::max_height();
+  cout << "lmax_height  = " << lmax_height  << endl;
+
+  //d_tree_point_locator<DC, DB>* tree() const;
+  d_tree_point_locator<DC, DB>* ltree = lpath2.tree();
+  cout << "ltree  = " << ltree  << endl;
+
+  //size_type head() const;
+  size_type lhead = lpath2. head();
+  cout << "lhead  = " << lhead  << endl;
+
+  //void put_head(size_type xhead);
+  lpath2.put_head(lhead);
+
+  //bool intersects(const d_bounding_box<DC, DB>* xbox) const;
+
+  //const d_bin_coordinates<DC, DB>& path() const;
+  const d_bin_coordinates<DC, DB>& lpath_coords = lpath2.path();
+
+  //static size_type degree();
+  size_type ldegree = d_tree_point_locator_path<DC, DB>::degree();
+  cout << "ldegree  = " << ldegree  << endl;
+
+
+  //void descend();
+  lpath2.descend();
+
+  //void ascend();
+  lpath2.ascend();
+
+  //void reset();
+  lpath2.reset();
+
+  // Invoke derived class constructor and destructor.
+
+  d_tree_point_locator_path_child<DC, DB>* lchild  = 
+    new d_tree_point_locator_path_child<DC, DB>(&llocator);
+
+  delete lchild;
+  
+  }
+ 
+  //============================================================================
+
+  // Cleanup.
 
   lcoords.detach_from_state();
   lcoords_space.release_access();
@@ -451,7 +606,7 @@ main(int xargc, char* xargv[])
   ltest &= test_d_tree_point_locator_facet<sec_e3, 3, 3>(lns);
 
   // We have no 4d base spaces yet!
-  ltest &= test_d_tree_point_locator_facet<sec_e4, 4, 4>(lns);
+  //ltest &= test_d_tree_point_locator_facet<sec_e4, 4, 4>(lns);
 
   //============================================================================
 
@@ -465,8 +620,3 @@ main(int xargc, char* xargv[])
 
   return lresult;
 }
-
-// geometry::d_tree_point_locator<1, 1>;
-// geometry::d_tree_point_locator<2, 2>;
-// geometry::d_tree_point_locator<3, 3>;
-// geometry::d_tree_point_locator<4, 4>;
