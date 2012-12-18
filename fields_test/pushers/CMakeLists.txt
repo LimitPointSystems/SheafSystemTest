@@ -26,7 +26,7 @@ collect_sources()
 #
 set(ADDITIONAL_INCS
 
-  )
+)
 
 collect_includes()
 
@@ -39,7 +39,9 @@ set(UNIT_TEST_SRCS
     section_pusher_0d.t.cc
     section_pusher_1d.t.cc
     section_pusher_2d.t.cc
-    section_pusher_3d.t.cc 
+    section_pusher_3d.t.cc
+##    multisection_pusher.t.cc
+##    multisection_base_space_map.t.cc 
 )
 
 collect_unit_test_sources()
@@ -49,6 +51,6 @@ collect_unit_test_sources()
 #
 set(EXAMPLE_SRCS
 
- )
+)
 
 collect_example_sources()

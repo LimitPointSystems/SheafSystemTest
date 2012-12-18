@@ -19,7 +19,7 @@ include(${CMAKE_MODULE_PATH}/LPSCommon.cmake)
 # Define the clusters for this component.
 #
 set(clusters base_spaces dof_iterators dof_maps evaluators fiber_spaces general 
-    id_spaces iterators matrices section_spaces examples)
+    id_spaces iterators matrices section_spaces examples template_instantiations)
 
 #
 # Initialize all variables for this component.

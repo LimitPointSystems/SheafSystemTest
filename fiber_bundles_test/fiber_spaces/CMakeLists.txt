@@ -16,7 +16,7 @@ set(CLUSTER fiber_spaces)
 # Library sources.
 #
 set(SRCS   
-
+    test_fibers.cc
 )
 
 collect_sources()
@@ -25,8 +25,8 @@ collect_sources()
 # Headers that are NOT associated with a .cc file.
 #
 set(ADDITIONAL_INCS
-
-  )
+    test_fibers.impl.h
+)
 
 collect_includes()
 
@@ -67,7 +67,6 @@ set(UNIT_TEST_SRCS
     t3_e3.t.cc    
     t4_e2.t.cc    
     t4_e3.t.cc    
-    test.t.cc    
     tp_space.t.cc    
     tuple_space.t.cc    
     vd_space.t.cc
@@ -80,6 +79,6 @@ collect_unit_test_sources()
 #
 set(EXAMPLE_SRCS
 
- )
+)
 
 collect_example_sources()

@@ -528,7 +528,7 @@ void test_new_scalar_field_3d_uniform(fiber_bundles_namespace& xns)
 }
 
 }
-; // End unnamed namespace.
+// End unnamed namespace.
 
 ///
 /// Main routine.

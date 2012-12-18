@@ -26,7 +26,7 @@ main()
 
   const string& section_name = sec_e4::static_class_name();
 
-  print_sec_header("Testing " + section_name);
+  print_header("Testing " + section_name);
 
   cout << " Not implemented." << endl;
   cout << endl;

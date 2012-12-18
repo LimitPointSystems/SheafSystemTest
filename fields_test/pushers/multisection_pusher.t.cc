@@ -16,7 +16,7 @@
 #include "base_space_poset.h"
 #include "error_message.h"
 #include "fiber_bundles_namespace.h"
-#include "field_factory_2_impl.h"
+#include "field_factory_2.h"
 #include "preorder_iterator.h"
 #include "section_pusher.h"
 #include "sec_at0.h"

@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
 
   const string& section_name = sec_e1_uniform::static_class_name();
 
-  print_sec_header("Testing " + section_name);
+  print_header("Testing " + section_name);
 
   // Create the namespace.
 

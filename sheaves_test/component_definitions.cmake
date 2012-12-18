@@ -21,7 +21,7 @@ include_directories(${SHEAVES_IPATHS})
 # Define the clusters for this component.
 #
 set(clusters concurrency dof_iterators dof_maps examples id_spaces io iterators 
-    maps posets support test_posets traversers)
+    maps posets support test_posets traversers general template_instantiations)
 
 #
 # Initialize all variables for this component.

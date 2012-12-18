@@ -41,7 +41,7 @@ main()
   // Body:
 
   const string& field_name = field_t3_e3::static_class_name();
-  print_field_header("Testing " + field_name);
+  print_header("Testing " + field_name);
 
   // Create the namespace.
 
