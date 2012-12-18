@@ -326,14 +326,14 @@ main(int xargc, char* xargv[])
   //ltest &= test_block_facet_deep_size<d_tree_point_locator_node<3, 3> >();
   print_footer("End testing block<d_tree_point_locator_node<3, 3> >");
 
-  // d_tree_point_locator_node<4, 4> 
+//   // d_tree_point_locator_node<4, 4> not instantiated
 
-  print_header("Begin testing block<d_tree_point_locator_node<4, 4> >");
-  ltest &= test_block_facet<d_tree_point_locator_node<4, 4> >();
-  ltest &= test_block_facet_equal<d_tree_point_locator_node<4, 4> >();
-  ltest &= test_block_facet_insertion<d_tree_point_locator_node<4, 4> >();
-  //ltest &= test_block_facet_deep_size<d_tree_point_locator_node<4, 4> >();
-  print_footer("End testing block<d_tree_point_locator_node<4, 4> >");
+//   print_header("Begin testing block<d_tree_point_locator_node<4, 4> >");
+//   ltest &= test_block_facet<d_tree_point_locator_node<4, 4> >();
+//   ltest &= test_block_facet_equal<d_tree_point_locator_node<4, 4> >();
+//   ltest &= test_block_facet_insertion<d_tree_point_locator_node<4, 4> >();
+//   //ltest &= test_block_facet_deep_size<d_tree_point_locator_node<4, 4> >();
+//   print_footer("End testing block<d_tree_point_locator_node<4, 4> >");
 
   //============================================================================
 
@@ -376,38 +376,3 @@ main(int xargc, char* xargv[])
 
   return lresult;
 }
-
-/*
-block<geometry::d_bounding_box<1, 0> >
-block<geometry::d_bounding_box<1, 1> >
-block<geometry::d_bounding_box<2, 0> >
-block<geometry::d_bounding_box<2, 2> >
-block<geometry::d_bounding_box<3, 0> >
-block<geometry::d_bounding_box<3, 1> >
-block<geometry::d_bounding_box<3, 2> >
-block<geometry::d_bounding_box<3, 3> >
-block<geometry::d_bounding_box<4, 4> >
-block<geometry::kd_bounding_box>
-block<geometry::d_tree_point_locator_node<1, 1> >
-block<geometry::d_tree_point_locator_node<2, 2> >
-block<geometry::d_tree_point_locator_node<3, 3> >
-block<geometry::d_tree_point_locator_node<4, 4> >
-block<geometry::kd_plane>
-
-block<__gnu_cxx::slist<geometry::d_bounding_box<1, 0> const*, std::allocator<geometry::d_bounding_box<1, 0> const*> > >
-block<__gnu_cxx::slist<geometry::d_bounding_box<1, 1> const*, std::allocator<geometry::d_bounding_box<1, 1> const*> > >
-block<__gnu_cxx::slist<geometry::d_bounding_box<2, 0> const*, std::allocator<geometry::d_bounding_box<2, 0> const*> > >
-block<__gnu_cxx::slist<geometry::d_bounding_box<2, 2> const*, std::allocator<geometry::d_bounding_box<2, 2> const*> > >
-block<__gnu_cxx::slist<geometry::d_bounding_box<3, 0> const*, std::allocator<geometry::d_bounding_box<3, 0> const*> > >
-block<__gnu_cxx::slist<geometry::d_bounding_box<3, 1> const*, std::allocator<geometry::d_bounding_box<3, 1> const*> > >
-block<__gnu_cxx::slist<geometry::d_bounding_box<3, 2> const*, std::allocator<geometry::d_bounding_box<3, 2> const*> > >
-block<__gnu_cxx::slist<geometry::d_bounding_box<3, 3> const*, std::allocator<geometry::d_bounding_box<3, 3> const*> > >
-block<__gnu_cxx::slist<geometry::d_bounding_box<4, 4> const*, std::allocator<geometry::d_bounding_box<4, 4> const*> > >
-
-block<__gnu_cxx::slist<geometry::db0_point_locator<1>::vertex_type, std::allocator<geometry::db0_point_locator<1>::vertex_type> > >
-block<__gnu_cxx::slist<geometry::db0_point_locator<2>::vertex_type, std::allocator<geometry::db0_point_locator<2>::vertex_type> > >
-block<__gnu_cxx::slist<geometry::db0_point_locator<3>::vertex_type, std::allocator<geometry::db0_point_locator<3>::vertex_type> > >
-
-
-
-*/

@@ -614,14 +614,14 @@ main(int xargc, char* xargv[])
   //ltest &= test_auto_block_facet_deep_size_un<d_tree_point_locator_node<3, 3> >();
   print_footer("End testing auto_block<d_tree_point_locator_node<3, 3> >");
 
-  // d_tree_point_locator_node<4, 4>
+//   // d_tree_point_locator_node<4, 4> not instantiated
 
-  print_header("Begin testing auto_block<d_tree_point_locator_node<4, 4> >");
-  ltest &= test_auto_block_facet_un<d_tree_point_locator_node<4, 4> >();
-  ltest &= test_auto_block_facet_equal_un<d_tree_point_locator_node<4, 4> >();
-  ltest &= test_auto_block_facet_insertion_un<d_tree_point_locator_node<4, 4> >();
-  //ltest &= test_auto_block_facet_deep_size_un<d_tree_point_locator_node<4, 4> >();
-  print_footer("End testing auto_block<d_tree_point_locator_node<4, 4> >");
+//   print_header("Begin testing auto_block<d_tree_point_locator_node<4, 4> >");
+//   ltest &= test_auto_block_facet_un<d_tree_point_locator_node<4, 4> >();
+//   ltest &= test_auto_block_facet_equal_un<d_tree_point_locator_node<4, 4> >();
+//   ltest &= test_auto_block_facet_insertion_un<d_tree_point_locator_node<4, 4> >();
+//   //ltest &= test_auto_block_facet_deep_size_un<d_tree_point_locator_node<4, 4> >();
+//   print_footer("End testing auto_block<d_tree_point_locator_node<4, 4> >");
 
   //============================================================================
 
@@ -634,70 +634,3 @@ main(int xargc, char* xargv[])
 
   return lresult;
 }
-
-/*
-
-//auto_block<geometry::d_bounding_box<1, 0>, sheaf::un_block_initialization_policy<geometry::d_bounding_box<1, 0> > >
-//auto_block<geometry::d_bounding_box<1, 1>, sheaf::un_block_initialization_policy<geometry::d_bounding_box<1, 1> > >
-//auto_block<geometry::d_bounding_box<2, 0>, sheaf::un_block_initialization_policy<geometry::d_bounding_box<2, 0> > >
-//auto_block<geometry::d_bounding_box<2, 2>, sheaf::un_block_initialization_policy<geometry::d_bounding_box<2, 2> > >
-//auto_block<geometry::d_bounding_box<3, 0>, sheaf::un_block_initialization_policy<geometry::d_bounding_box<3, 0> > >
-//auto_block<geometry::d_bounding_box<3, 1>, sheaf::un_block_initialization_policy<geometry::d_bounding_box<3, 1> > >
-//auto_block<geometry::d_bounding_box<3, 2>, sheaf::un_block_initialization_policy<geometry::d_bounding_box<3, 2> > >
-//auto_block<geometry::d_bounding_box<3, 3>, sheaf::un_block_initialization_policy<geometry::d_bounding_box<3, 3> > >
-//auto_block<geometry::d_bounding_box<4, 4>, sheaf::un_block_initialization_policy<geometry::d_bounding_box<4, 4> > >
-
-//auto_block<geometry::kd_bounding_box, sheaf::un_block_initialization_policy<geometry::kd_bounding_box> >
-
-auto_block<geometry::d_tree_point_locator_node<1, 1>, sheaf::un_block_initialization_policy<geometry::d_tree_point_locator_node<1, 1> > >
-auto_block<geometry::d_tree_point_locator_node<2, 2>, sheaf::un_block_initialization_policy<geometry::d_tree_point_locator_node<2, 2> > >
-auto_block<geometry::d_tree_point_locator_node<3, 3>, sheaf::un_block_initialization_policy<geometry::d_tree_point_locator_node<3, 3> > >
-auto_block<geometry::d_tree_point_locator_node<4, 4>, sheaf::un_block_initialization_policy<geometry::d_tree_point_locator_node<4, 4> > >
-
-//auto_block<geometry::kd_plane, sheaf::un_block_initialization_policy<geometry::kd_plane> >
-
-auto_block<__gnu_cxx::slist<geometry::db0_point_locator<1>::vertex_type, std::allocator<geometry::db0_point_locator<1>::vertex_type> >, sheaf::un_block_initialization_policy<__gnu_cxx::slist<geometry::db0_point_locator<1>::vertex_type, std::allocator<geometry::db0_point_locator<1>::vertex_type> > > >
-auto_block<__gnu_cxx::slist<geometry::db0_point_locator<2>::vertex_type, std::allocator<geometry::db0_point_locator<2>::vertex_type> >, sheaf::un_block_initialization_policy<__gnu_cxx::slist<geometry::db0_point_locator<2>::vertex_type, std::allocator<geometry::db0_point_locator<2>::vertex_type> > > >
-auto_block<__gnu_cxx::slist<geometry::db0_point_locator<3>::vertex_type, std::allocator<geometry::db0_point_locator<3>::vertex_type> >, sheaf::un_block_initialization_policy<__gnu_cxx::slist<geometry::db0_point_locator<3>::vertex_type, std::allocator<geometry::db0_point_locator<3>::vertex_type> > > >
-
-auto_block<__gnu_cxx::slist<geometry::d_bounding_box<1, 0> const*, std::allocator<geometry::d_bounding_box<1, 0> const*> >, sheaf::un_block_initialization_policy<__gnu_cxx::slist<geometry::d_bounding_box<1, 0> const*, std::allocator<geometry::d_bounding_box<1, 0> const*> > > >
-auto_block<__gnu_cxx::slist<geometry::d_bounding_box<1, 1> const*, std::allocator<geometry::d_bounding_box<1, 1> const*> >, sheaf::un_block_initialization_policy<__gnu_cxx::slist<geometry::d_bounding_box<1, 1> const*, std::allocator<geometry::d_bounding_box<1, 1> const*> > > >
-auto_block<__gnu_cxx::slist<geometry::d_bounding_box<2, 0> const*, std::allocator<geometry::d_bounding_box<2, 0> const*> >, sheaf::un_block_initialization_policy<__gnu_cxx::slist<geometry::d_bounding_box<2, 0> const*, std::allocator<geometry::d_bounding_box<2, 0> const*> > > >
-auto_block<__gnu_cxx::slist<geometry::d_bounding_box<2, 2> const*, std::allocator<geometry::d_bounding_box<2, 2> const*> >, sheaf::un_block_initialization_policy<__gnu_cxx::slist<geometry::d_bounding_box<2, 2> const*, std::allocator<geometry::d_bounding_box<2, 2> const*> > > >
-auto_block<__gnu_cxx::slist<geometry::d_bounding_box<3, 0> const*, std::allocator<geometry::d_bounding_box<3, 0> const*> >, sheaf::un_block_initialization_policy<__gnu_cxx::slist<geometry::d_bounding_box<3, 0> const*, std::allocator<geometry::d_bounding_box<3, 0> const*> > > >
-auto_block<__gnu_cxx::slist<geometry::d_bounding_box<3, 1> const*, std::allocator<geometry::d_bounding_box<3, 1> const*> >, sheaf::un_block_initialization_policy<__gnu_cxx::slist<geometry::d_bounding_box<3, 1> const*, std::allocator<geometry::d_bounding_box<3, 1> const*> > > >
-auto_block<__gnu_cxx::slist<geometry::d_bounding_box<3, 2> const*, std::allocator<geometry::d_bounding_box<3, 2> const*> >, sheaf::un_block_initialization_policy<__gnu_cxx::slist<geometry::d_bounding_box<3, 2> const*, std::allocator<geometry::d_bounding_box<3, 2> const*> > > >
-auto_block<__gnu_cxx::slist<geometry::d_bounding_box<3, 3> const*, std::allocator<geometry::d_bounding_box<3, 3> const*> >, sheaf::un_block_initialization_policy<__gnu_cxx::slist<geometry::d_bounding_box<3, 3> const*, std::allocator<geometry::d_bounding_box<3, 3> const*> > > >
-auto_block<__gnu_cxx::slist<geometry::d_bounding_box<4, 4> const*, std::allocator<geometry::d_bounding_box<4, 4> const*> >, sheaf::un_block_initialization_policy<__gnu_cxx::slist<geometry::d_bounding_box<4, 4> const*, std::allocator<geometry::d_bounding_box<4, 4> const*> > > >
-
-auto_block<__gnu_cxx::slist<geometry::d_bounding_box<1, 0>*, std::allocator<geometry::d_bounding_box<1, 0>*> >, sheaf::un_block_initialization_policy<__gnu_cxx::slist<geometry::d_bounding_box<1, 0>*, std::allocator<geometry::d_bounding_box<1, 0>*> > > >
-auto_block<__gnu_cxx::slist<geometry::d_bounding_box<1, 1>*, std::allocator<geometry::d_bounding_box<1, 1>*> >, sheaf::un_block_initialization_policy<__gnu_cxx::slist<geometry::d_bounding_box<1, 1>*, std::allocator<geometry::d_bounding_box<1, 1>*> > > >
-auto_block<__gnu_cxx::slist<geometry::d_bounding_box<2, 0>*, std::allocator<geometry::d_bounding_box<2, 0>*> >, sheaf::un_block_initialization_policy<__gnu_cxx::slist<geometry::d_bounding_box<2, 0>*, std::allocator<geometry::d_bounding_box<2, 0>*> > > >
-auto_block<__gnu_cxx::slist<geometry::d_bounding_box<2, 2>*, std::allocator<geometry::d_bounding_box<2, 2>*> >, sheaf::un_block_initialization_policy<__gnu_cxx::slist<geometry::d_bounding_box<2, 2>*, std::allocator<geometry::d_bounding_box<2, 2>*> > > >
-auto_block<__gnu_cxx::slist<geometry::d_bounding_box<3, 0>*, std::allocator<geometry::d_bounding_box<3, 0>*> >, sheaf::un_block_initialization_policy<__gnu_cxx::slist<geometry::d_bounding_box<3, 0>*, std::allocator<geometry::d_bounding_box<3, 0>*> > > >
-auto_block<__gnu_cxx::slist<geometry::d_bounding_box<3, 1>*, std::allocator<geometry::d_bounding_box<3, 1>*> >, sheaf::un_block_initialization_policy<__gnu_cxx::slist<geometry::d_bounding_box<3, 1>*, std::allocator<geometry::d_bounding_box<3, 1>*> > > >
-auto_block<__gnu_cxx::slist<geometry::d_bounding_box<3, 2>*, std::allocator<geometry::d_bounding_box<3, 2>*> >, sheaf::un_block_initialization_policy<__gnu_cxx::slist<geometry::d_bounding_box<3, 2>*, std::allocator<geometry::d_bounding_box<3, 2>*> > > >
-auto_block<__gnu_cxx::slist<geometry::d_bounding_box<3, 3>*, std::allocator<geometry::d_bounding_box<3, 3>*> >, sheaf::un_block_initialization_policy<__gnu_cxx::slist<geometry::d_bounding_box<3, 3>*, std::allocator<geometry::d_bounding_box<3, 3>*> > > >
-auto_block<__gnu_cxx::slist<geometry::d_bounding_box<4, 4>*, std::allocator<geometry::d_bounding_box<4, 4>*> >, sheaf::un_block_initialization_policy<__gnu_cxx::slist<geometry::d_bounding_box<4, 4>*, std::allocator<geometry::d_bounding_box<4, 4>*> > > >
-
-auto_block<sheaf::block<geometry::d_bounding_box<1, 0> >, sheaf::un_block_initialization_policy<sheaf::block<geometry::d_bounding_box<1, 0> > > >
-auto_block<sheaf::block<geometry::d_bounding_box<1, 1> >, sheaf::un_block_initialization_policy<sheaf::block<geometry::d_bounding_box<1, 1> > > >
-auto_block<sheaf::block<geometry::d_bounding_box<2, 0> >, sheaf::un_block_initialization_policy<sheaf::block<geometry::d_bounding_box<2, 0> > > >
-auto_block<sheaf::block<geometry::d_bounding_box<2, 2> >, sheaf::un_block_initialization_policy<sheaf::block<geometry::d_bounding_box<2, 2> > > >
-auto_block<sheaf::block<geometry::d_bounding_box<3, 0> >, sheaf::un_block_initialization_policy<sheaf::block<geometry::d_bounding_box<3, 0> > > >
-auto_block<sheaf::block<geometry::d_bounding_box<3, 1> >, sheaf::un_block_initialization_policy<sheaf::block<geometry::d_bounding_box<3, 1> > > >
-auto_block<sheaf::block<geometry::d_bounding_box<3, 2> >, sheaf::un_block_initialization_policy<sheaf::block<geometry::d_bounding_box<3, 2> > > >
-auto_block<sheaf::block<geometry::d_bounding_box<3, 3> >, sheaf::un_block_initialization_policy<sheaf::block<geometry::d_bounding_box<3, 3> > > >
-auto_block<sheaf::block<geometry::d_bounding_box<4, 4> >, sheaf::un_block_initialization_policy<sheaf::block<geometry::d_bounding_box<4, 4> > > >
-
-auto_block<sheaf::block<__gnu_cxx::slist<geometry::d_bounding_box<1, 0> const*, std::allocator<geometry::d_bounding_box<1, 0> const*> > >, sheaf::un_block_initialization_policy<sheaf::block<__gnu_cxx::slist<geometry::d_bounding_box<1, 0> const*, std::allocator<geometry::d_bounding_box<1, 0> const*> > > > >
-auto_block<sheaf::block<__gnu_cxx::slist<geometry::d_bounding_box<1, 1> const*, std::allocator<geometry::d_bounding_box<1, 1> const*> > >, sheaf::un_block_initialization_policy<sheaf::block<__gnu_cxx::slist<geometry::d_bounding_box<1, 1> const*, std::allocator<geometry::d_bounding_box<1, 1> const*> > > > >
-auto_block<sheaf::block<__gnu_cxx::slist<geometry::d_bounding_box<2, 0> const*, std::allocator<geometry::d_bounding_box<2, 0> const*> > >, sheaf::un_block_initialization_policy<sheaf::block<__gnu_cxx::slist<geometry::d_bounding_box<2, 0> const*, std::allocator<geometry::d_bounding_box<2, 0> const*> > > > >
-auto_block<sheaf::block<__gnu_cxx::slist<geometry::d_bounding_box<2, 2> const*, std::allocator<geometry::d_bounding_box<2, 2> const*> > >, sheaf::un_block_initialization_policy<sheaf::block<__gnu_cxx::slist<geometry::d_bounding_box<2, 2> const*, std::allocator<geometry::d_bounding_box<2, 2> const*> > > > >
-auto_block<sheaf::block<__gnu_cxx::slist<geometry::d_bounding_box<3, 0> const*, std::allocator<geometry::d_bounding_box<3, 0> const*> > >, sheaf::un_block_initialization_policy<sheaf::block<__gnu_cxx::slist<geometry::d_bounding_box<3, 0> const*, std::allocator<geometry::d_bounding_box<3, 0> const*> > > > >
-auto_block<sheaf::block<__gnu_cxx::slist<geometry::d_bounding_box<3, 1> const*, std::allocator<geometry::d_bounding_box<3, 1> const*> > >, sheaf::un_block_initialization_policy<sheaf::block<__gnu_cxx::slist<geometry::d_bounding_box<3, 1> const*, std::allocator<geometry::d_bounding_box<3, 1> const*> > > > >
-auto_block<sheaf::block<__gnu_cxx::slist<geometry::d_bounding_box<3, 2> const*, std::allocator<geometry::d_bounding_box<3, 2> const*> > >, sheaf::un_block_initialization_policy<sheaf::block<__gnu_cxx::slist<geometry::d_bounding_box<3, 2> const*, std::allocator<geometry::d_bounding_box<3, 2> const*> > > > >
-auto_block<sheaf::block<__gnu_cxx::slist<geometry::d_bounding_box<3, 3> const*, std::allocator<geometry::d_bounding_box<3, 3> const*> > >, sheaf::un_block_initialization_policy<sheaf::block<__gnu_cxx::slist<geometry::d_bounding_box<3, 3> const*, std::allocator<geometry::d_bounding_box<3, 3> const*> > > > >
-auto_block<sheaf::block<__gnu_cxx::slist<geometry::d_bounding_box<4, 4> const*, std::allocator<geometry::d_bounding_box<4, 4> const*> > >, sheaf::un_block_initialization_policy<sheaf::block<__gnu_cxx::slist<geometry::d_bounding_box<4, 4> const*, std::allocator<geometry::d_bounding_box<4, 4> const*> > > > >
-
-*/

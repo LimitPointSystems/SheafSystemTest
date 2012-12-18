@@ -138,8 +138,9 @@ main(int xargc, char* xargv[])
   print_header("Begin testing ptr_linked_pool<d_tree_point_locator_node<3, 3>");
   ltest &= test_ptr_linked_pool<d_tree_point_locator_node<3, 3> >();
 
-  print_header("Begin testing ptr_linked_pool<d_tree_point_locator_node<4, 4>");
-  ltest &= test_ptr_linked_pool<d_tree_point_locator_node<4, 4> >();
+  // d_tree_point_locator_node<4, 4> is not instantiated.
+  //print_header("Begin testing ptr_linked_pool<d_tree_point_locator_node<4, 4>");
+  //ltest &= test_ptr_linked_pool<d_tree_point_locator_node<4, 4> >();
 
   //============================================================================
 
