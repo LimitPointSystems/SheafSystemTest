@@ -279,9 +279,9 @@ test_array_cylindrical_point_locator_facet(fiber_bundles_namespace& xns)
  
   //============================================================================
 
-   // Create the coordinates section space.
+  // Create the coordinates section space.
 
-  typename S::host_type& lcoords_space =
+  S::host_type& lcoords_space =
     xns.new_section_space<S>(lcoords_space_name, lbase_path);
 
   lcoords_space.get_read_write_access();
