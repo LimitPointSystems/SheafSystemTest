@@ -11,7 +11,6 @@
 
 #include "sec_at1_space.h"
 #include "sec_e3.h"
-//#include "sec_ed_invertible.h"
 #include "structured_block_1d.h"
 #include "structured_block_2d.h"
 #include "structured_block_3d.h"
@@ -36,6 +35,11 @@ public:
     : array_cylindrical_point_locator(xcoords) {}
 
   ~array_cylindrical_point_locator_child() {}
+
+  size_type bin_id(const block<size_type>& xid) const
+  {
+    array_cylindrical_point_locator::bin_id(xid);
+  }
 };
 
 //==============================================================================
@@ -394,6 +398,12 @@ test_array_cylindrical_point_locator_facet(fiber_bundles_namespace& xns)
 
   array_cylindrical_point_locator_child* lchild =
     new array_cylindrical_point_locator_child(lcoords);
+
+  block<size_type> lblock2;
+  lblock2.push_back(0);
+  lblock2.push_back(1);
+
+  size_type lbin_id = lchild->bin_id(lblock2);
 
   delete lchild;
 
