@@ -33,7 +33,28 @@ collect_includes()
 #
 # Source for unit test executables.
 #
-set(UNIT_TEST_SRCS    
+set(UNIT_TEST_SRCS
+    e1_x.t.cc
+    e2_x.t.cc
+    e3_x.t.cc
+    ed_x.t.cc   
+    at0_x.t.cc
+    at1_x.t.cc
+    at2_x.t.cc
+    at2_e2_x.t.cc
+    at2_e3_x.t.cc
+    at3_x.t.cc
+    at3_e3_x.t.cc
+    atp_x.t.cc 
+    stp_x.t.cc
+    st2_x.t.cc
+    st3_x.t.cc
+    st4_x.t.cc
+    tp_x.t.cc
+    t2_x.t.cc
+    t3_x.t.cc
+    t4_x.t.cc
+    vd_x.t.cc   
     basis_transform.t.cc    
     at0_space.t.cc    
     at0.t.cc    
