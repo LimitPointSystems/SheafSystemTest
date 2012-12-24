@@ -12,9 +12,9 @@
 
 #include "assert_contract.h"
 #include "fiber_bundles_namespace.h"
-#include "test_fibers.impl.h"
+#include "test_fibers_x.impl.h"
 //#include "storage_agent.h"
-//#include "tuple_space.h"
+
 
 using namespace fiber_bundle;
 
@@ -71,6 +71,8 @@ main(int xargc, char* xargv[])
   ns.get_read_write_access();
 
   // Run tests.
+
+  test_tuple_volatile();
 
   // Write the namespace to standard out.
 

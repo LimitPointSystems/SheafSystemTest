@@ -12,180 +12,179 @@
 
 #include "assert_contract.h"
 #include "fiber_bundles_namespace.h"
-#include "test_fibers.impl.h"
-//#include "storage_agent.h"
-//#include "vd_space.h"
-
 #include "std_iomanip.h"
 #include "std_iostream.h"
+#include "test_fibers_x.impl.h"
+//#include "storage_agent.h"
+
 
 using namespace fiber_bundle;
 
 namespace
 {
-  template<typename F>
-  void
-  test_volatile_common()
-  {
-    // Preconditions:
+//   template<typename F>
+//   void
+//   test_volatile_common()
+//   {
+//     // Preconditions:
 
-    // Body:
+//     // Body:
 
-    const string& lfiber_name = F::static_class_name();
+//     const string& lfiber_name = F::static_class_name();
 
-    print_header("Begin testing " + lfiber_name + " common");
-
-
-     // Default constructor.
-
-    print_subheader("Testing " + lfiber_name + "()");
-
-    F lfiber;
+//     print_header("Begin testing " + lfiber_name + " common");
 
 
-     // Copy constructor.
+//      // Default constructor.
 
-    print_subheader("Testing " + lfiber_name
-                    + "(const "+lfiber_name+"& xother)");
+//     print_subheader("Testing " + lfiber_name + "()");
 
-    F lcopy(lfiber);
+//     F lfiber;
 
 
-    // Assignment operator.
+//      // Copy constructor.
 
-    print_subheader("Testing " + lfiber_name
-                    + "& = (const "+lfiber_name+"& xother");
+//     print_subheader("Testing " + lfiber_name
+//                     + "(const "+lfiber_name+"& xother)");
 
-    F lassign = lfiber;
+//     F lcopy(lfiber);
+
+
+//     // Assignment operator.
+
+//     print_subheader("Testing " + lfiber_name
+//                     + "& = (const "+lfiber_name+"& xother");
+
+//     F lassign = lfiber;
    
 
-    // Destructor.
+//     // Destructor.
 
-    print_subheader("Testing ~" + lfiber_name  + "()");
+//     print_subheader("Testing ~" + lfiber_name  + "()");
 
-    F* lptr = new F;
-    delete lptr;
+//     F* lptr = new F;
+//     delete lptr;
 
-    print_subheader("Testing bool operator==(",
-                     "                  const " +lfiber_name+"& xother) const");
+//     print_subheader("Testing bool operator==(",
+//                      "                  const " +lfiber_name+"& xother) const");
 
-    bool lequalequal = (lcopy == lfiber);
+//     bool lequalequal = (lcopy == lfiber);
 
-    cout << "lequalequal =" << boolalpha << lequalequal << endl;
+//     cout << "lequalequal =" << boolalpha << lequalequal << endl;
 
-    print_subheader("Testing ostream& operator<<(",
-                    "          ostream& xos, const "+lfiber_name+"& x0");
+//     print_subheader("Testing ostream& operator<<(",
+//                     "          ostream& xos, const "+lfiber_name+"& x0");
 
-    cout << "lfiber = \n" << lfiber << endl;
+//     cout << "lfiber = \n" << lfiber << endl;
 
-    //==========================================================================
-    // vd facet
-    //==========================================================================
+//     //==========================================================================
+//     // vd facet
+//     //==========================================================================
 
-    print_subheader("Testing virtual int d() const");
+//     print_subheader("Testing virtual int d() const");
 
-    int ld = lfiber.d();
-    cout << "ld = " << ld << endl;
+//     int ld = lfiber.d();
+//     cout << "ld = " << ld << endl;
 
-    //F(const row_dofs_type& xrow_dofs);
+//     //F(const row_dofs_type& xrow_dofs);
 
-    const typename F::row_dofs_type lrow_dofs;
-    F lfiber_2(lrow_dofs);
+//     const typename F::row_dofs_type lrow_dofs;
+//     F lfiber_2(lrow_dofs);
 
-    //F& operator=(const row_dofs_type& xrow_dofs);
+//     //F& operator=(const row_dofs_type& xrow_dofs);
 
-    F lfiber_2_assign = lrow_dofs;
+//     F lfiber_2_assign = lrow_dofs;
 
-//     //operator row_dofs_type& ();
+// //     //operator row_dofs_type& ();
 
-//     typename F::row_dofs_type& lrow_dofs1 = lfiber;
+// //     typename F::row_dofs_type& lrow_dofs1 = lfiber;
 
-//     //operator const row_dofs_type& () const;
+// //     //operator const row_dofs_type& () const;
 
-//      const F lfiber_const;
-//      const typename F::row_dofs_type& lrow_dofs3 = lfiber_const;
+// //      const F lfiber_const;
+// //      const typename F::row_dofs_type& lrow_dofs3 = lfiber_const;
 
-    //This does basically nothing except call the function in the vd case.
+//     //This does basically nothing except call the function in the vd case.
 
-    typename F::dof_type lresult[4];
-    lfiber.components(lresult, 4);
+//     typename F::dof_type lresult[4];
+//     lfiber.components(lresult, 4);
 
-    //virtual void put_components(const dof_type xcomps[], int xcomps_dimension);
+//     //virtual void put_components(const dof_type xcomps[], int xcomps_dimension);
 
-    //This does basically nothing except call the function in the vd case.
-    lfiber.put_components(lresult, 4);
+//     //This does basically nothing except call the function in the vd case.
+//     lfiber.put_components(lresult, 4);
 
-//     //vd_lite& operator=(const value_type& xvalue);
+// //     //vd_lite& operator=(const value_type& xvalue);
 
-//     typename F::value_type lvalue = 123.0;
-//     lfiber = lvalue;
+// //     typename F::value_type lvalue = 123.0;
+// //     lfiber = lvalue;
 
-//     //bool operator==(const value_type& xvalue) const;
+// //     //bool operator==(const value_type& xvalue) const;
 
-//     bool leqeq = (lfiber == lvalue);
+// //     bool leqeq = (lfiber == lvalue);
 
-   //==========================================================================
-    // tuple facet
-    //==========================================================================
+//    //==========================================================================
+//     // tuple facet
+//     //==========================================================================
 
-    print_subheader("Testing virtual int factor_ct() const");
+//     print_subheader("Testing virtual int factor_ct() const");
 
-    int lfactor_ct = lfiber.factor_ct();
-    cout << "lfactor_ct = " << lfactor_ct << endl;
+//     int lfactor_ct = lfiber.factor_ct();
+//     cout << "lfactor_ct = " << lfactor_ct << endl;
 
-    //==========================================================================
-    // abstract_poset_member facet
-    //==========================================================================
+//     //==========================================================================
+//     // abstract_poset_member facet
+//     //==========================================================================
 
-    print_subheader("Testing virtual const string& class_name() const");
+//     print_subheader("Testing virtual const string& class_name() const");
 
-    const string& lclass_name = lfiber.class_name();
-    cout << "lclass_name = " << lclass_name << endl;
-
- 
-    print_subheader("Testing static const string& static_class_name()");
-
-    const string& lstatic_class_name = F::static_class_name();
-    cout << "lstatic_class_name = " << lstatic_class_name << endl;
-
-
-    print_subheader("Testing virtual " +lfiber_name+ "* clone() const");
-
-    F* lclone = lfiber.clone();
-    cout << "lclone = " << lclone << endl;
-    delete lclone;
-
-
-    print_subheader("Testing table_dofs_type table_dofs() const");
-
-    typename F::table_dofs_type ltable_dofs = lfiber.table_dofs();
-
-
-    //==========================================================================
-    // any facet
-    //==========================================================================
-
-    print_subheader("Testing virtual bool is_ancestor_of",
-                    "                          (const any_lite& xother) const");
-
-    bool lis_ancestor_of = lfiber.is_ancestor_of(lcopy);
-    cout << "lis_ancestor_of  = " << boolalpha << lis_ancestor_of  << endl;
+//     const string& lclass_name = lfiber.class_name();
+//     cout << "lclass_name = " << lclass_name << endl;
 
  
-    print_subheader("Testing bool invariant() const");
+//     print_subheader("Testing static const string& static_class_name()");
 
-    bool linvariant = lfiber.invariant();
-    cout << "linvariant = " << boolalpha << linvariant << endl;
+//     const string& lstatic_class_name = F::static_class_name();
+//     cout << "lstatic_class_name = " << lstatic_class_name << endl;
 
 
-    print_footer("End testing " + lfiber_name + " common");
+//     print_subheader("Testing virtual " +lfiber_name+ "* clone() const");
 
-    // Postconditions:
+//     F* lclone = lfiber.clone();
+//     cout << "lclone = " << lclone << endl;
+//     delete lclone;
 
-    // Exit:
 
-    return;
-  }
+//     print_subheader("Testing table_dofs_type table_dofs() const");
+
+//     typename F::table_dofs_type ltable_dofs = lfiber.table_dofs();
+
+
+//     //==========================================================================
+//     // any facet
+//     //==========================================================================
+
+//     print_subheader("Testing virtual bool is_ancestor_of",
+//                     "                          (const any_lite& xother) const");
+
+//     bool lis_ancestor_of = lfiber.is_ancestor_of(lcopy);
+//     cout << "lis_ancestor_of  = " << boolalpha << lis_ancestor_of  << endl;
+
+ 
+//     print_subheader("Testing bool invariant() const");
+
+//     bool linvariant = lfiber.invariant();
+//     cout << "linvariant = " << boolalpha << linvariant << endl;
+
+
+//     print_footer("End testing " + lfiber_name + " common");
+
+//     // Postconditions:
+
+//     // Exit:
+
+//     return;
+//   }
 
   void
   test_volatile_tolerance_comparison()
@@ -275,11 +274,6 @@ namespace
 
     //==========================================================================
     // vd facet
-    //==========================================================================
-
-    test_volatile_common<vd_lite>();
-    test_volatile_tolerance_comparison();
-
     //==========================================================================
 
     vd_lite lvd;
