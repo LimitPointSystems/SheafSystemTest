@@ -254,6 +254,18 @@ namespace
 
     //==========================================================================
 
+    //at3_lite(const row_dofs_type& xrow_dofs);
+
+     at3_lite::row_dofs_type lrow_dofs;
+     at3_lite lfiber(lrow_dofs);
+
+
+     //at3_lite& operator=(const row_dofs_type& xrow_dofs);
+
+     at3_lite lfiber_assign = lrow_dofs;
+
+    //==========================================================================
+
     // Postconditions:
 
     // Exit:

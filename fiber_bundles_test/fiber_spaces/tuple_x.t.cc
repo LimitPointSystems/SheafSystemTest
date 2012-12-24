@@ -67,8 +67,8 @@ main(int xargc, char* xargv[])
 
   // Create the namespace.
 
-  fiber_bundles_namespace ns(filename);
-  ns.get_read_write_access();
+  //fiber_bundles_namespace ns(filename);
+  //ns.get_read_write_access();
 
   // Run tests.
 

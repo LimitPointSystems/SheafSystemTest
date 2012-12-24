@@ -96,21 +96,6 @@ namespace fiber_bundle
     V* lptr = new V;
     delete lptr;
 
-//     if(xtest_row_dofs)
-//     {
-//       print_subheader("Testing bool operator==(",
-//                       "                  const " +lfiber_name+"& xother) const");
-
-//       bool lequalequal = (lcopy == lfiber);
-
-//       cout << "lequalequal =" << boolalpha << lequalequal << endl;
-
-//       print_subheader("Testing ostream& operator<<(",
-//                       "          ostream& xos, const "+lfiber_name+"& x0");
-
-//       cout << "lfiber = \n" << lfiber << endl;
-//     }
-
     //==========================================================================
     // vd facet
     //==========================================================================
@@ -120,36 +105,6 @@ namespace fiber_bundle
     int ld = lfiber.d();
     cout << "ld = " << ld << endl;
 
-//     if(xtest_row_dofs)
-//     {
-//       //V(const row_dofs_type& xrow_dofs);
-
-//       typename V::row_dofs_type lrow_dofs;
-//       V lfiber_2(lrow_dofs);
-
-//       //V& operator=(const row_dofs_type& xrow_dofs);
-
-//       V lfiber_2_assign = lrow_dofs;
-
-// //     //operator row_dofs_type& ();
-
-// //     typename V::row_dofs_type& lrow_dofs1 = lfiber;
-
-// //     //operator const row_dofs_type& () const;
-
-// //     const V lfiber_const;
-// //     const typename V::row_dofs_type& lrow_dofs3 = lfiber_const;
-
-//       //This does basically nothing except call the function in the vd case.
-
-//       typename V::dof_type lresult[4];
-//       lfiber.components(lresult, 4);
-
-//       //virtual void put_components(const dof_type xcomps[], int xcomps_dimension);
-
-//       //This does basically nothing except call the function in the vd case.
-//       lfiber.put_components(lresult, 4);
-//     }
 
     //==========================================================================
 

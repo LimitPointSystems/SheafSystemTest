@@ -40,12 +40,50 @@ namespace
 
     //==========================================================================
 
+    at0_lite lfiber;
+
+    //operator row_dofs_type& ();
+
+    at0_lite::row_dofs_type& lrow_dofs1 = lfiber;
+
+    //operator const row_dofs_type& () const;
+
+    const at0_lite lfiber_const;
+    const at0_lite::row_dofs_type& lrow_dofs3 = lfiber_const;
+
+    //==========================================================================
+
+    //static const tp_lite& static_tp_prototype(int xp);
+
+    const tp_lite& lstatic_tp_prototype0 = at0_lite::static_tp_prototype(0);
+
+    //virtual const tp_lite& tp_prototype(int xp) const;
+
+    const tp_lite& ltp_prototype0 = lfiber.tp_prototype(0);
+
+    //static const atp_lite& static_atp_prototype(int xp);
+
+    const atp_lite& lstatic_atp_prototype0 = at0_lite::static_atp_prototype(0);
+
+    //virtual const atp_lite& atp_prototype(int xp) const;
+
+    const atp_lite& latp_prototype0 = lfiber.atp_prototype(0);
+
+    //static const stp_lite& static_stp_prototype(int xp);
+
+    const stp_lite& lstatic_stp_prototype0 = at0_lite::static_stp_prototype(0);
+
+    //virtual const stp_lite& stp_prototype(int xp) const;
+
+    const stp_lite& lstp_prototype0 = lfiber.stp_prototype(0);
+
+    //==========================================================================
+
     // Postconditions:
 
     // Exit:
 
     return;
-
   }
 
 } // end namespace

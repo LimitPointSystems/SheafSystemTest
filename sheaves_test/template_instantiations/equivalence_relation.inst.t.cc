@@ -7,7 +7,7 @@
 /// @example
 /// Unit test driver for class equivalence_relation.
 
-#include "equivalence_relation.h"
+#include "equivalence_relation.impl.h"
 
 #include "test_utils.h"
 
@@ -48,15 +48,63 @@ test_equivalence_relation_facet()
 
   //============================================================================
 
+  const T lmbr_id = T(1);
+  const T lrep_id = T(2);
+  const T lother_mbr_id = T(3);
+  const T lother_rep_id = T(4);
+
+  //void insert_equivalence(const T& xmbr_id, const T& xrep_id);
+
+  lrelation.insert_equivalence(lmbr_id, lrep_id);
+  lrelation.insert_equivalence(lother_mbr_id, lother_rep_id);
+
+  //bool contains_representative(const T& xmbr_id) const;
+
+  bool lcontains_representative = lrelation.contains_representative(lmbr_id);
+
+
+  //bool contains_unique_representative(const T& xrep_id) const;
+
+  bool lcontains_unique_representative =
+    lrelation.contains_unique_representative(lrep_id);
+
+
+  //bool contains_equivalence(const T& xmbr_id, const T& xother_mbr_id) const;
+
+  bool lcontains_equivalence =
+    lrelation.contains_equivalence(lmbr_id, lother_mbr_id);
+
+  //T representative(const T& xmbr_id) const;
+
+   T lrepresentative = lrelation.representative(lmbr_id);
+
+  //range_type equivalence_class(const T& xrep_id) const
+
+  typename equivalence_relation<T>::range_type lequivalence_class =
+    lrelation.equivalence_class(lrep_id);
+
+  //range_type all_equivalences() const;
+
   typename equivalence_relation<T>::range_type lequivalences =
     lrelation.all_equivalences();
 
-  T lmbr_id = T(0);
-  bool lcontains_representative = lrelation.contains_representative(lmbr_id);
+  //ostream& operator<<(ostream& xos, const range_type& xrange);
 
-  T lrep_id = T(0);
-  bool lcontains_unique_representative =
-    lrelation.contains_unique_representative(lrep_id);
+  //$$SCRIBBLE: This insertion operator is explicitly instantiated
+  //            but the compiler doesn't seem to be able to find it.
+
+  //cout << "lequivalences = \n" << lequivalences << endl;
+
+  //ostream& operator<<(ostream& xos, const equivalence_relation<T>& xer);
+
+  cout << "lrelation = \n" << lrelation << endl;
+
+  //void delete_equivalence(const T& xmbr_id);
+
+  lrelation.delete_equivalence(lmbr_id);
+
+  //============================================================================
+
 
   // Postconditions:
 

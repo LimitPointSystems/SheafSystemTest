@@ -39,6 +39,14 @@ namespace
 
     //==========================================================================
 
+    //virtual int index_for_ijk(int xi, int xj, int xk) const;
+
+    at3_e3_lite lfiber;
+
+    int lindex = lfiber.index_for_ijk(0, 0, 0);
+
+    //==========================================================================
+
     // Postconditions:
 
     // Exit:

@@ -36,6 +36,10 @@ collect_includes()
 # Source for unit test executables.
 #
 set(UNIT_TEST_SRCS
+    group_x.t.cc
+    gln_x.t.cc
+    gl2_x.t.cc
+    gl3_x.t.cc
     at0_x.t.cc
     at1_x.t.cc
     at2_e2_x.t.cc
