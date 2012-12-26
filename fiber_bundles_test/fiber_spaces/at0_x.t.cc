@@ -86,6 +86,54 @@ namespace
     return;
   }
 
+  void
+  //test_at0_persistent(fiber_bundles_namespace& xns)
+  test_at0_persistent()
+  {
+    // Preconditions:
+
+    // Body:
+
+    //==========================================================================
+
+    typedef at0_lite volatile_type;
+    typedef at0_row_dofs_type<double> row_dofs_type;
+
+    // at0();
+
+    at0 lfiber;
+
+    // ~at0();
+
+    at0* lfiber_ptr = new at0;
+    delete lfiber_ptr;
+
+    // virtual const volatile_type& lite_prototype() const;
+
+    const volatile_type& llite_prototype = lfiber.lite_prototype();
+
+    // virtual volatile_type* lite_type() const;
+
+    ////volatile_type* llite_type = lfiber.lite_type();
+
+    //operator row_dofs_type& ();
+
+    ////row_dofs_type& lrow_dofs(lfiber);
+
+    //operator const row_dofs_type& () const;
+
+    const at0 lfiber_const;
+    ////const row_dofs_type& lrow_dofs_const(lfiber_const);
+    
+    //==========================================================================
+
+    // Postconditions:
+
+    // Exit:
+
+    return;
+  }
+
 } // end namespace
 
 int
@@ -105,6 +153,8 @@ main(int xargc, char* xargv[])
   // Run tests.
 
   test_at0_volatile();
+
+  test_at0_persistent();
 
   // Write the namespace to standard out.
 

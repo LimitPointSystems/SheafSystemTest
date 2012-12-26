@@ -40,6 +40,45 @@ namespace
 
     //==========================================================================
 
+    typedef double value_type;
+    typedef t4_e3_row_dofs_type<double> row_dofs_type;
+
+    t4_e3_lite lfiber;
+    const t4_e3_lite lfiber_const;
+
+    //operator row_dofs_type& ();
+
+    row_dofs_type& lrow_dofs(lfiber);
+
+    //operator const row_dofs_type& () const;
+
+    const row_dofs_type& lrow_dofs_const(lfiber_const);
+
+    //==========================================================================
+
+    //virtual const tp_lite& tp_prototype(int xp) const;
+
+    const tp_lite& ltp_prototype0 = lfiber.tp_prototype(0);
+    const tp_lite& ltp_prototype1 = lfiber.tp_prototype(1);
+    const tp_lite& ltp_prototype2 = lfiber.tp_prototype(2);
+    const tp_lite& ltp_prototype3 = lfiber.tp_prototype(3);
+    const tp_lite& ltp_prototype4 = lfiber.tp_prototype(4);
+
+    //virtual const atp_lite& atp_prototype(int xp) const;
+
+    const atp_lite& latp_prototype0 = lfiber.atp_prototype(0);
+    const atp_lite& latp_prototype1 = lfiber.atp_prototype(1);
+    const atp_lite& latp_prototype2 = lfiber.atp_prototype(2);
+    const atp_lite& latp_prototype3 = lfiber.atp_prototype(3);
+
+    //virtual const stp_lite& stp_prototype(int xp) const;
+
+    const stp_lite& lstp_prototype2 = lfiber.stp_prototype(2);
+    const stp_lite& lstp_prototype3 = lfiber.stp_prototype(3);
+    const stp_lite& lstp_prototype4 = lfiber.stp_prototype(4);
+
+    //==========================================================================
+
     // Postconditions:
 
     // Exit:

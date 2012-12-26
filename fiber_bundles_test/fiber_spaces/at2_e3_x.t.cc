@@ -39,6 +39,85 @@ namespace
 
     //==========================================================================
 
+    typedef double value_type;
+    typedef at2_e3_row_dofs_type<double> row_dofs_type;
+    typedef antisymmetric_matrix_3x3<double> matrix_type;
+
+    //at2_e3_lite(const matrix_type& xmatrix);
+
+    matrix_type lmat;
+    lmat[0][1] = 2; lmat[0][2] = 3;
+                    lmat[1][2] = 4; 
+
+    cout << "lmat = " << endl;
+    cout << lmat << endl;
+
+    at2_e3_lite lfiber(lmat);
+    const at2_e3_lite lfiber_const(lmat);
+
+    //at2_e3_lite& operator=(const matrix_type& xmatrix);
+
+    at2_e3_lite lfiber_assign = lmat;
+
+    //operator matrix_type& ();
+
+    matrix_type& lmatrix_type(lfiber);
+
+    //operator const matrix_type& () const;
+
+    const matrix_type& lmatrix_type_const(lfiber_const);
+
+    //operator row_dofs_type& ();
+
+    row_dofs_type& lrow_dofs(lfiber);
+
+    //operator const row_dofs_type& () const;
+
+    const row_dofs_type& lrow_dofs_const(lfiber_const);
+
+    //==========================================================================
+
+    //at2_e3_lite(const value_type& xy_comp,
+    //            const value_type& xz_comp,
+    //            const value_type& yz_comp);
+
+    value_type lxy_comp = 123.0;
+    value_type lxz_comp = 345.0;
+    value_type lyz_comp = 678.0;
+
+    at2_e3_lite lfiber2(lxy_comp, lxz_comp, lyz_comp);
+
+    //virtual void put_components(const value_type& xy_comp,
+    //                            const value_type& xz_comp,
+    //                            const value_type& yz_comp);
+
+    lfiber.put_components(lxy_comp, lxz_comp, lyz_comp);
+
+    //==========================================================================
+
+    //virtual const tp_lite& tp_prototype(int xp) const;
+
+    const tp_lite& ltp_prototype0 = lfiber.tp_prototype(0);
+    const tp_lite& ltp_prototype1 = lfiber.tp_prototype(1);
+    const tp_lite& ltp_prototype2 = lfiber.tp_prototype(2);
+    const tp_lite& ltp_prototype3 = lfiber.tp_prototype(3);
+    const tp_lite& ltp_prototype4 = lfiber.tp_prototype(4);
+
+    //virtual const atp_lite& atp_prototype(int xp) const;
+
+    const atp_lite& latp_prototype0 = lfiber.atp_prototype(0);
+    const atp_lite& latp_prototype1 = lfiber.atp_prototype(1);
+    const atp_lite& latp_prototype2 = lfiber.atp_prototype(2);
+    const atp_lite& latp_prototype3 = lfiber.atp_prototype(3);
+
+    //virtual const stp_lite& stp_prototype(int xp) const;
+
+    const stp_lite& lstp_prototype2 = lfiber.stp_prototype(2);
+    const stp_lite& lstp_prototype3 = lfiber.stp_prototype(3);
+    const stp_lite& lstp_prototype4 = lfiber.stp_prototype(4);
+
+    //==========================================================================
+
     // Postconditions:
 
     // Exit:

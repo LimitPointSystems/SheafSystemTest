@@ -83,7 +83,6 @@ namespace
 
     lfiber.put_component(lvalue);
 
-
     //==========================================================================
 
     //virtual const tp_lite& tp_prototype(int xp) const;

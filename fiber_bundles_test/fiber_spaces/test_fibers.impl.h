@@ -247,7 +247,45 @@ test_persistent_type(typename P::host_type& xhost)
   typedef P persistent_type;
   const string& lfiber_name = P::static_class_name();
 
-  print_header("Testing persistent type " + P::static_class_name());
+  print_header("Testing persistent type " + lfiber_name);
+
+  //============================================================================
+
+  persistent_type* lfiber = new persistent_type(&xhost);
+
+  const string lmember_name("test_fiber");
+  lfiber->put_name(lmember_name, true, false);
+
+  const string& lclass_name = lfiber->class_name();
+  cout << "lclass_name = " << lclass_name << endl;
+
+  int lfactor_ct = lfiber->factor_ct();
+  cout << "lfactor_ct = " << lfactor_ct << endl;
+
+  persistent_type* lfiber2 = new persistent_type(lfiber);
+
+  persistent_type lfiber3 = *lfiber;
+
+  typename P::host_type* lhost = lfiber->host();
+
+  const scoped_index lindex = lfiber->index();
+
+  const poset_state_handle* lpsh = dynamic_cast<poset_state_handle*>(lhost);
+  persistent_type* lfiber4 = new persistent_type(lpsh, lmember_name);
+  persistent_type* lfiber5 = new persistent_type(lpsh, lindex);
+
+  lfiber->detach_from_state();
+  lfiber2->detach_from_state();
+  lfiber3.detach_from_state();
+  lfiber4->detach_from_state();
+  lfiber5->detach_from_state();
+
+  delete lfiber;
+  delete lfiber2;
+  delete lfiber4;
+  delete lfiber5;
+
+  //============================================================================
 
   persistent_type* test1 = new persistent_type(&xhost);
   test1->put_name("test1", true, false);
@@ -278,12 +316,14 @@ test_persistent_type(typename P::host_type& xhost)
     cout << " " << test2->component(i);
   }
   cout << endl;
-
+  
   test1->detach_from_state();
   test2->detach_from_state();
 
   delete test1;
   delete test2;
+
+  //============================================================================
 
   // Postconditions:
 
