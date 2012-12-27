@@ -48,7 +48,7 @@ namespace
 
     matrix_type lmat;
     lmat[0][0] =  4;  lmat[0][1] = -2; 
-    lmat[1][1] =  3; 
+                      lmat[1][1] =  3; 
  
 
     cout << "lmat = " << endl;
@@ -115,6 +115,25 @@ namespace
 
     const stp_lite& lstp_prototype2 = lfiber.stp_prototype(2);
     const stp_lite& lstp_prototype4 = lfiber.stp_prototype(4);
+
+    //==========================================================================
+
+    gl2_lite ltransform;
+    st2_e2_lite lresult;
+
+    st2_e2_lite llite(123.0, 345.0, 456.0);
+    st2_e2_lite lpd_lite(1.0, 0.0, 1.0);
+
+    //template <> void to_principal_axes(
+    //  const st2_e2_lite& xlite, gl2_lite& xtransform, st2_e2_lite& xresult);
+
+    to_principal_axes(llite, ltransform, lresult);
+
+    //template <> void to_principal_axes(
+    //  const st2_e2_lite& xlite, const st2_e2_lite& xpd_lite,
+    //  gl2_lite& xtransform, st2_e2_lite& xresult);
+
+    to_principal_axes(llite, lpd_lite, ltransform, lresult);
 
     //==========================================================================
 

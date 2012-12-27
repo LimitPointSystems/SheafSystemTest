@@ -126,6 +126,18 @@ namespace
 
     //==========================================================================
 
+    //template <> void to_principal_axes(
+    //  const st2_e3_lite& xlite, gl3_lite& xtransform, st2_e3_lite& xresult);
+
+    gl3_lite ltransform;
+    st2_e3_lite lresult;
+
+    st2_e3_lite llite(11.0, 12.0, 13.0, 22.0, 23.0, 33.0);
+
+    to_principal_axes(llite, ltransform, lresult);
+
+    //==========================================================================
+
     // Postconditions:
 
     // Exit:

@@ -88,6 +88,18 @@ namespace
 
     //==========================================================================
 
+    // Hodge star operator functions not exercized elsewhere.
+
+    at3_e3_lite lat3_e3_lite(123.0);
+
+    //at0_lite* star(const at3_e3_lite& x0);
+
+    at0_lite* lstar_at0 = star(lat3_e3_lite);
+
+    delete lstar_at0;
+
+    //==========================================================================
+
     //virtual int index_for_ijk(int xi, int xj, int xk) const;
 
     int lindex = lfiber.index_for_ijk(0, 0, 0);

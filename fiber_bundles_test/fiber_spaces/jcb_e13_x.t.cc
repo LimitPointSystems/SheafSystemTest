@@ -38,6 +38,17 @@ namespace
 
     //==========================================================================
 
+    jcb_e13_lite lfiber(0.11, 0.21, 0.31);
+    lfiber.put_components(0.111, 0.121, 0.131);
+
+    jcb_e13_lite::row_dofs_type& lrow_dofs(lfiber);
+
+    const jcb_e13_lite lfiber_const;
+
+    const jcb_e13_lite::row_dofs_type& lrow_dofs_const(lfiber_const);
+
+    //==========================================================================
+
     // Postconditions:
 
     // Exit:

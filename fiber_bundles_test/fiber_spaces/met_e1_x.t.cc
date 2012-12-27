@@ -37,6 +37,33 @@ namespace
 
     //==========================================================================
 
+    met_e1_lite lfiber(123.0);
+    lfiber.put_component(456.0);
+
+    met_e1_lite::value_type lvalue = lfiber.component();
+
+    met_e1_lite::row_dofs_type& lrow_dofs(lfiber);
+
+    const met_e1_lite lfiber_const;
+
+    const met_e1_lite::row_dofs_type& lrow_dofs_const(lfiber_const);
+
+    //==========================================================================
+
+    //virtual const tp_lite& tp_prototype(int xp) const;
+
+    const tp_lite& ltp_lite = lfiber.tp_prototype(1);
+
+    //virtual const atp_lite& atp_prototype(int xp) const;
+
+    const atp_lite& latp_lite = lfiber.atp_prototype(1);
+
+    //virtual const stp_lite& stp_prototype(int xp) const;
+
+    const stp_lite& lstp_lite = lfiber.stp_prototype(1);
+
+    //==========================================================================
+
     // Postconditions:
 
     // Exit:

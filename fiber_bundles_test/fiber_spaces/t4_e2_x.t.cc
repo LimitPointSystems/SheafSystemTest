@@ -89,6 +89,23 @@ namespace
 
     //==========================================================================
 
+    // Sym operator functions not exercized elsewhere.
+
+    t4_e2_lite lt4_e2_lite;
+    int ld = lt4_e2_lite.d();
+    for(int i=0; i<ld; ++i)
+    {
+      lt4_e2_lite.put_component(i, 100+i); 
+    }
+
+    st4_e2_lite lresult;
+
+    //void sym(const t4_e2_lite& x0, st4_e2_lite& xresult);
+
+    sym(lt4_e2_lite, lresult);
+
+    //==========================================================================
+
     // Postconditions:
 
     // Exit:

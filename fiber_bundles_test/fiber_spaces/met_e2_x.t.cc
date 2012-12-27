@@ -37,6 +37,63 @@ namespace
 
     //==========================================================================
 
+    met_e2_lite lfiber(11.0, 12.0, 22.0);
+    lfiber.put_components(111.0, 112.0, 122.0);
+
+    //met_e2_lite::value_type lvalue = lfiber.component();
+
+    met_e2_lite::row_dofs_type& lrow_dofs(lfiber);
+
+    const met_e2_lite lfiber_const;
+
+    const met_e2_lite::row_dofs_type& lrow_dofs_const(lfiber_const);
+
+    //==========================================================================
+
+    typedef double value_type;
+    typedef met_e2_row_dofs_type<double> row_dofs_type;
+    typedef symmetric_matrix_2x2<double> matrix_type;
+
+    //met_e2_lite(const matrix_type& xmatrix);
+
+    matrix_type lmat;
+    lmat[0][0] =  4;  lmat[0][1] = -2; 
+                      lmat[1][1] =  3; 
+
+    cout << "lmat = " << endl;
+    cout << lmat << endl;
+
+    met_e2_lite lfiber2(lmat);
+    const met_e2_lite lfiber_const2(lmat);
+
+    //met_e2_lite& operator=(const matrix_type& xmatrix);
+
+    met_e2_lite lfiber_assign = lmat;
+
+    //operator matrix_type& ();
+
+    matrix_type& lmatrix_type(lfiber2);
+
+    //operator const matrix_type& () const;
+
+    const matrix_type& lmatrix_type_const(lfiber_const2);
+
+    //==========================================================================
+
+    //virtual const tp_lite& tp_prototype(int xp) const;
+
+    const tp_lite& ltp_lite = lfiber.tp_prototype(2);
+
+    //virtual const atp_lite& atp_prototype(int xp) const;
+
+    const atp_lite& latp_lite = lfiber.atp_prototype(2);
+
+    //virtual const stp_lite& stp_prototype(int xp) const;
+
+    const stp_lite& lstp_lite = lfiber.stp_prototype(2);
+
+    //==========================================================================
+
     // Postconditions:
 
     // Exit:

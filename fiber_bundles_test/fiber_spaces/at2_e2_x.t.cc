@@ -105,6 +105,31 @@ namespace
 
     //==========================================================================
 
+    // Hodge star operator functions not exercized elsewhere.
+
+    at2_e2_lite lat2_e2_lite(123.0);
+    at0_lite lat0_lite(345.0);
+    e2_lite le2_lite(123.0, 345.0);
+
+
+    //at2_e2_lite* star(const at0_lite& x0);
+
+    at2_e2_lite* lstar_at2_e2 = star(lat0_lite);
+
+    //at0_lite* star(const at2_e2_lite& x0);
+
+    at0_lite* lstar_at0 = star(lat2_e2_lite);
+
+    //e2_lite* star(const e2_lite& x0);
+
+    e2_lite* lstar_e2 = star(le2_lite);
+
+    delete lstar_at2_e2;
+    delete lstar_at0;
+    delete lstar_e2;
+     
+    //==========================================================================
+
     // Postconditions:
 
     // Exit:

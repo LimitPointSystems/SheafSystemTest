@@ -118,6 +118,24 @@ namespace
 
     //==========================================================================
 
+    // Hodge star operator functions not exercized elsewhere.
+
+    e3_lite le3_lite(123.0, 345.0, 678.0);
+    at2_e3_lite lat2_e3_lite(123.0, 345.0, 678.0);
+
+    //e3_lite* star(const at2_e3_lite& x0);
+
+    e3_lite* lstar_e3 = star(lat2_e3_lite);
+
+    //at2_e3_lite* star(const e3_lite& x0);
+
+    at2_e3_lite* lstar_at2_e3 = star(le3_lite);
+
+    delete lstar_e3;
+    delete lstar_at2_e3;
+
+    //==========================================================================
+
     // Postconditions:
 
     // Exit:
