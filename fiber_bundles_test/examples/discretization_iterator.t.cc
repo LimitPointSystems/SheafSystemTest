@@ -1,4 +1,4 @@
-// $RCSfile: discretization_iterator.t.cc,v $ $Revision: 1.20 $ $Date: 2012/03/01 00:40:40 $
+// $RCSfile$ $Revision$ $Date$
 
 //
 // Copyright (c) 2012 Limit Point Systems, Inc.
@@ -14,7 +14,8 @@
 #include "discretization_iterator.h"
 #include "fiber_bundles_namespace.h"
 #include "std_cctype.h"
-#include "unstructured_block.h"
+#include "zone_nodes_block.h"
+#include "triangle_connectivity.h"
 #include "postorder_iterator.h"
 #include "poset.h"
 #include "schema_poset_member.h"
@@ -72,16 +73,15 @@ main(int argc, char* argv[])
 
   // Make triangle mesh
 
-  base_space_poset* lmesh =
-    &test_namespace.new_base_space<unstructured_block>("triangle_mesh", "", "", 2, true);
-  lmesh->get_read_write_access();
+  base_space_poset& lmesh =
+    test_namespace.new_base_space<zone_nodes_block>("triangle_mesh", "", "", 2, true);
+  lmesh.get_read_write_access();
 
   // Make triangle block base space
 
-  poset_path lproto_path(unstructured_block::prototypes_poset_name(),
-                         "triangle_complex");
+  triangle_connectivity lconn(edge_ct_x, edge_ct_y);
 
-  unstructured_block lbase_space(lmesh, lproto_path, edge_ct_x, edge_ct_y, true);
+  zone_nodes_block lbase_space(lmesh, lconn, true);
   lbase_space.put_name("triangle_block", true, false);
 
   // Make subposets.
@@ -127,7 +127,7 @@ main(int argc, char* argv[])
 
   while(!itr_single.is_done())
   {
-    cout << " " << itr_single.index();
+    cout << " " << itr_single.index().pod();
     itr_single.next();
   }
   cout << "\nshould be:\n";
@@ -168,7 +168,7 @@ main(int argc, char* argv[])
   // Clean-up
 
   lbase_space.detach_from_state();
-  lmesh->release_access();
+  lmesh.release_access();
 
   return 0;
 }

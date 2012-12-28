@@ -1053,12 +1053,12 @@ void print_field(const T& xfield, const string& xindent, bool xauto_access)
   int ld = lfiber.d();
 
   section_type& lsection = const_cast<section_type&>(xfield.property());
-  index_space_iterator* litr =
-    lsection.schema().discretization_id_space().iterator(true);
-  while(!litr->is_done())
+  index_space_iterator& litr =
+    lsection.schema().discretization_id_space().get_iterator();
+  while(!litr.is_done())
   {
-    lsection.get_fiber(litr->pod(), lfiber);
-    cout << xindent << setw(5) << litr->pod() << " : ";
+    lsection.get_fiber(litr.pod(), lfiber);
+    cout << xindent << setw(5) << litr.pod() << " : ";
 
     for(int i=0; i<ld; ++i)
     {
@@ -1066,11 +1066,9 @@ void print_field(const T& xfield, const string& xindent, bool xauto_access)
     }
     cout << endl;
 
-    litr->next();
+    litr.next();
   }
-  cout << endl;
-
-  delete litr;
+  lsection.schema().discretization_id_space().release_iterator(litr);
 
   if(xauto_access)
   {
@@ -1250,11 +1248,11 @@ set_dofs(T& xresult)
   int ld = lfiber.d();
   size_type ldisc_ct = xresult.schema().discretization_ct();
 
-  index_space_iterator* litr =
-    xresult.schema().discretization_id_space().iterator(true);
-  while(!litr->is_done())
+  index_space_iterator& litr =
+    xresult.schema().discretization_id_space().get_iterator();
+  while(!litr.is_done())
   {
-    pod_index_type i = litr->pod();
+    pod_index_type i = litr.pod();
 
     // Just make up some values for testing.
 
@@ -1265,10 +1263,9 @@ set_dofs(T& xresult)
 
     xresult.put_fiber(i, lfiber);
 
-    litr->next();
+    litr.next();
   }
-
-  delete litr;
+  xresult.schema().discretization_id_space().release_iterator(litr);
 }
 
 } // namespace fields

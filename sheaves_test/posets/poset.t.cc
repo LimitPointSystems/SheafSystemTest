@@ -1,4 +1,4 @@
-// $RCSfile: poset.t.cc,v $ $Revision: 1.35 $ $Date: 2012/03/01 00:41:29 $
+// $RCSfile$ $Revision$ $Date$
 
 //
 // Copyright (c) 2012 Limit Point Systems, Inc.
@@ -10,9 +10,10 @@
 #include "abstract_poset_member.h"
 #include "arg_list.h"
 #include "block.h"
+#include "mutable_index_space_handle.h"
 #include "index_space_iterator.h"
 #include "sheaves_namespace.h"
-#include "hash_index_map.h"
+#include "hash_index_space_state.h"
 #include "namespace_poset_member.h"
 #include "poset.h"
 #include "poset_member.h"
@@ -21,7 +22,6 @@
 #include "primitives_poset.h"
 #include "primitives_poset_schema.h"
 #include "assert_contract.h"
-#include "simple_index_space.h"
 #include "std_string.h"
 #include "storage_agent.h"
 #include "subposet.h"
@@ -72,7 +72,7 @@ void new_top_level_test(sheaves_namespace& xns)
 
   cout << "iterating over jims of the namespace" << endl;
 
-  postorder_member_iterator itr(xns.top(), "jims");
+  postorder_member_iterator itr(xns.top(), "jims", DOWN, NOT_STRICT);
   while(!itr.is_done())
   {
     cout << itr.item().index() << "  ";
@@ -259,21 +259,35 @@ void new_jim_test(sheaves_namespace& xns)
 
   // Create some id spaces.
 
-  arg_list lid_map_args = hash_index_map::make_arg_list(0);
-  arg_list lid_space_args =
-      simple_index_space::make_arg_list("hash_index_map", lid_map_args);
+  largs = hash_index_space_state::make_arg_list(0);
 
-  cells->new_id_space("__vertices", "simple_index_space", lid_space_args, true);
-  mutable_index_map& lv_id_map = cells->id_space("__vertices").id_map<mutable_index_map>();
+  // Create vertices id space.
 
-  cells->new_id_space("__edges", "simple_index_space", lid_space_args, true);
-  mutable_index_map& le_id_map = cells->id_space("__edges").id_map<mutable_index_map>();
+  pod_index_type lid = cells->new_member_id_space("__vertices",
+						  "hash_index_space_state",
+						  largs, true, false);
+  mutable_index_space_handle lv_id_space(cells->member_id_spaces(false), lid);
 
-  cells->new_id_space("__triangles", "simple_index_space", lid_space_args, true);
-  mutable_index_map& lt_id_map = cells->id_space("__triangles").id_map<mutable_index_map>();
-  
-  cells->new_id_space("__1_based_vertices", "simple_index_space", lid_space_args, true);
-  mutable_index_map& lv1_id_map = cells->id_space("__1_based_vertices").id_map<mutable_index_map>();
+  // Create edge id space.
+
+  lid = cells->new_member_id_space("__edges",
+				   "hash_index_space_state",
+				   largs, true, false);
+  mutable_index_space_handle le_id_space(cells->member_id_spaces(false), lid);
+
+  // Create triangle id space.
+
+  lid = cells->new_member_id_space("__triangles",
+				   "hash_index_space_state",
+				   largs, true, false);
+  mutable_index_space_handle lt_id_space(cells->member_id_spaces(false), lid);
+
+  // Create 1 based vertices id space.
+
+  lid = cells->new_member_id_space("__1_based_vertices",
+				   "hash_index_space_state",
+				   largs, true, false);
+  mutable_index_space_handle lv1_id_space(cells->member_id_spaces(false), lid);
 
   cells->begin_jim_edit_mode(false);
 
@@ -292,47 +306,47 @@ void new_jim_test(sheaves_namespace& xns)
   t->put_name("standard triangle", true, false);
   dof = 4;
   t->put_dof_tuple(&dof,sizeof(dof));
-  lt_id_map.push_back(t->index());
+  lt_id_space.push_back(t->index());
 
 
   e0 = new total_poset_member(cells, 0, false, false);
   e0->put_name("e0", true, false);
   dof = 3;
   e0->put_dof_tuple(&dof,sizeof(dof));
-  le_id_map.push_back(e0->index());
+  le_id_space.push_back(e0->index());
 
   e1 = new total_poset_member(cells, 0, false, false);
   e1->put_name("e1", true, false);
   dof = 3;
   e1->put_dof_tuple(&dof,sizeof(dof));
-  le_id_map.push_back(e1->index());
+  le_id_space.push_back(e1->index());
 
   e2 = new total_poset_member(cells, 0, false, false);
   e2->put_name("e2", true, false);
   dof = 3;
   e2->put_dof_tuple(&dof,sizeof(dof));
-  le_id_map.push_back(e2->index());
+  le_id_space.push_back(e2->index());
 
   v0 = new total_poset_member(cells, 0, false, false);
   v0->put_name("v0", true, false);
   dof = 2;
   v0->put_dof_tuple(&dof,sizeof(dof));
-  lv_id_map.push_back(v0->index());
-  lv1_id_map.insert_entry(1, v0->index());
+  lv_id_space.push_back(v0->index());
+  lv1_id_space.insert(1, v0->index());
 
   v1 = new total_poset_member(cells, 0, false, false);
   v1->put_name("v1", true, false);
   dof = 2;
   v1->put_dof_tuple(&dof,sizeof(dof));
-  lv_id_map.push_back(v1->index());
-  lv1_id_map.insert_entry(2, v1->index());
+  lv_id_space.push_back(v1->index());
+  lv1_id_space.insert(2, v1->index());
 
   v2 = new total_poset_member(cells, 0, false, false);
   v2->put_name("v2", true, false);
   dof = 2;
   v2->put_dof_tuple(&dof,sizeof(dof));
-  lv_id_map.push_back(v2->index());
-  lv1_id_map.insert_entry(3, v2->index());
+  lv_id_space.push_back(v2->index());
+  lv1_id_space.insert(3, v2->index());
 
   t->create_cover_link(e0);
   t->create_cover_link(e1);
@@ -515,12 +529,15 @@ subposet_iterator_test(sheaves_namespace& xns)
 
   // Iterate over the subposets in xns.
 
-  index_space_iterator* lsp_itr = xns.subposet_iterator();
-  while(!lsp_itr->is_done())
+  index_space_iterator& lsp_itr = xns.get_subposet_iterator();
+  scoped_index lsp_id = xns.subposet_id(false);
+  while(!lsp_itr.is_done())
   {
+    lsp_id = lsp_itr.pod();
+    
     // Attach the subposet handle to the current subposet state
 
-    lsp.attach_to_state(&xns, lsp_itr->id());
+    lsp.attach_to_state(&xns, lsp_id);
 
     // Print out the subposet index and name
 
@@ -540,10 +557,10 @@ subposet_iterator_test(sheaves_namespace& xns)
 
     // Move to the next subposet
 
-    lsp_itr->next();
+    lsp_itr.next();
   }
 
-  delete lsp_itr;
+  xns.release_subposet_iterator(lsp_itr);
 
   // Detach so state won't be deleted when handle
   // goes out of scope.

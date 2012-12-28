@@ -1,6 +1,6 @@
-// $RCSfile: test_index_spaces.h,v $ $Revision: 1.11 $ $Date: 2012/07/04 16:42:20 $
+// $RCSfile$ $Revision$ $Date$
 
-// $Name: coverage-mod-0-1 $
+// $Name$
 //
 // Copyright (c) 2012 Limit Point Systems, Inc. 
 //
@@ -31,147 +31,167 @@ namespace sheaf
 {
 
 class arg_list;
-class index_map;
-class index_space;
 class index_space_family;
-class interval_index_map;
-class mutable_index_map;
+class index_space_iterator;
+class index_space_handle;
+class mutable_index_space_handle;
 
 // ===========================================================
 // INDEX_SPACE FACET
 // ===========================================================
 
 ///
-/// Create an id space with name xname, space type xid_space_class_name,
-/// and map type xid_map_class_name in the id space family xid_spaces.
-/// Output the information to standard out.
+/// Create a secondary id space state with name xname, state type
+/// xstate_class_name, and arguments xstate_args in the id space
+/// family xid_spaces. Print the information to standard out.
 ///
 SHEAF_DLL_SPEC
-index_space&
+index_space_handle&
 make_id_space(index_space_family& xid_spaces,
 	      const string& xname,
-	      const string& xid_space_class_name,
-	      const arg_list& xspace_args);
+	      const string& xstate_class_name,
+	      const arg_list& xstate_args);
 
 ///
-/// Output the count and extrema for the map in xspace.
+/// Create a id space interval with type xid_spaces_class_name,
+/// and arguments xid_spaces_args in the id space family xid_spaces.
+/// Print the information to standard out.
+///
+SHEAF_DLL_SPEC
+pod_index_type
+make_id_space_interval(index_space_family& xid_spaces,
+		       const string& xinterval_class_name,
+		       const arg_list& xinterval_args,
+		       size_type xub);
+
+///
+/// Check the id space with ids [xbegin, xbegin+xct) for correctness.
+///
+SHEAF_DLL_SPEC
+bool
+check_id_spaces(index_space_family& xid_spaces,
+		pod_index_type xbegin, size_type xct);
+
+///
+/// Print the count and extrema for the id space xid_space.
 ///
 SHEAF_DLL_SPEC
 void 
-print_map_extrema(const index_space& xspace);
+print_out_map_extrema(const index_space_handle& xid_space);
 
 // ===========================================================
 // TOP ID SPACE FACET
 // ===========================================================
 
 ///
-/// Delete xid from the top id space of xid_spaces.
+/// Delete xid from the hub id space of xid_spaces.
 ///
 SHEAF_DLL_SPEC
 void
 delete_id(index_space_family& xid_spaces, pod_index_type xid);
 
 // ===========================================================
-// MUTABLE_INDEX_MAP FACET
+// MUTABLE_INDEX_SPACE FACET
 // ===========================================================
 
 ///
-/// Insert the entry (xdomain_id, xrange_id) into xmap.
+/// Insert the entry (xid, xhub_id) into xid_space.
 ///
 SHEAF_DLL_SPEC
 void
-insert_entry(mutable_index_map& xmap,
-	     pod_index_type xdomain_id,
-	     pod_index_type xrange_id);
+insert(mutable_index_space_handle& xid_space,
+       pod_index_type xid,
+       pod_index_type xhub_id);
 
 ///
-/// Push back range id, xrange_id into xmap.
+/// Push back hub id, hub_id into xid_space.
 ///
 SHEAF_DLL_SPEC
 void
-push_back(mutable_index_map& xmap,
-	  pod_index_type xrange_id);
+push_back(mutable_index_space_handle& xid_space,
+	  pod_index_type xhub_id);
 
 ///
-/// Remove entry for the xid from xmap.
+/// Remove entry for the id xid from xid_space.
 ///
 SHEAF_DLL_SPEC
 void
-remove_entry(mutable_index_map& xmap,
-	     pod_index_type xid,
-	     bool xis_range_id,
-	     bool xupdate_extrema);
+remove(mutable_index_space_handle& xid_space,
+       pod_index_type xid,
+       bool xupdate_extrema);
 
 ///
-/// Update the extrema for xmap.
+/// Remove entry for the hub id xhub_id from xid_space.
+///
+SHEAF_DLL_SPEC
+void
+remove_hub(mutable_index_space_handle& xid_space,
+	   pod_index_type xhub_id,
+	   bool xupdate_extrema);
+
+///
+/// Update the extrema for xid_space.
 ///
 SHEAF_DLL_SPEC
 void 
-update_extrema(mutable_index_map& xmap);
+update_extrema(mutable_index_space_handle& xid_space);
 
 ///
-/// Gather xmap.
+/// Gather xid_space.
 ///
 SHEAF_DLL_SPEC
 void 
-gather(mutable_index_map& xmap);
+gather(mutable_index_space_handle& xid_space);
 
 ///
-/// Clear xmap.
+/// Clear xid_space.
 ///
 SHEAF_DLL_SPEC
 void 
-clear(mutable_index_map& xmap);
+clear(mutable_index_space_handle& xid_space);
 
 // ===========================================================
 // ITERATOR FACET
 // ===========================================================
 
 ///
-/// Test the domain id map iterator for xspace.
+/// Test the iterator for xid_space.
 ///
 SHEAF_DLL_SPEC
 void
-test_domain_id_iterator(const index_space& xspace);
+test_iterator(const index_space_handle& xid_space);
 
 ///
-/// Test the range id map iterator for xspace.
+/// Test the iterator for xitr.
 ///
 SHEAF_DLL_SPEC
 void
-test_range_id_iterator(const index_space& xspace);
-
-///
-/// Test the space iterator for xspace with xis_host_order.
-///
-SHEAF_DLL_SPEC
-void
-test_space_iterator(const index_space& xspace, bool xis_host_order);
+test_iterator(index_space_iterator& xitr);
 
 // ===========================================================
 // Convenience functions
 // ===========================================================
 
-// ///
-// /// Convenience function to print a "header" to standard out.
-// ///
-// SHEAF_DLL_SPEC
-// void
-// print_header(const string& xtext);
+///
+/// Convenience function to print a "header" to standard out.
+///
+SHEAF_DLL_SPEC
+void
+print_out_header(const string& xtext);
 
-// ///
-// /// Convenience function to print a "subheader" to standard out.
-// ///
-// SHEAF_DLL_SPEC
-// void
-// print_subheader(const string& xtext);
+///
+/// Convenience function to print a "subheader" to standard out.
+///
+SHEAF_DLL_SPEC
+void
+print_out_subheader(const string& xtext);
 
-// ///
-// /// Convenience function to print an "action" to standard out.
-// ///
-// SHEAF_DLL_SPEC
-// void
-// print_action(const string& xtext);
+///
+/// Convenience function to print an "action" to standard out.
+///
+SHEAF_DLL_SPEC
+void
+print_out_action(const string& xtext);
 
 
 // ===========================================================

@@ -34,7 +34,10 @@ collect_includes()
 # Source for unit test executables.
 #
 set(UNIT_TEST_SRCS
-    section_space_schema_index_map.t.cc
+    i_index_space.t.cc
+    ij_index_space.t.cc
+    ijk_index_space.t.cc
+    section_space_schema_jims_index_space.t.cc
 )
 
 collect_unit_test_sources()

@@ -265,12 +265,12 @@ bool
 test_block_facet<poset_state_handle*>();
 
 ///
-/// Specialization for index_space*.
+/// Specialization for index_space_handle*.
 ///
 template<>
 SHEAF_DLL_SPEC
 bool
-test_block_facet<index_space*>();
+test_block_facet<index_space_handle*>();
 
 ///
 /// Test "operator==".
