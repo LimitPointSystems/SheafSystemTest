@@ -4,14 +4,17 @@
 // Copyright (c) 2012 Limit Point Systems, Inc.
 //
 
-/// @example support/error_message.t.cc
-/// Unit test driver for class error_message
+/// Unit test driver for class error_message.
 
 #include "error_message.h"
 #include "assert_contract.h"
+#include "std_iostream.h"
+#include "std_stdexcept.h"
 
+using namespace sheaf;
 
-int main()
+int
+main()
 {
 
   // Test information message:
@@ -58,9 +61,20 @@ int main()
 
   fatal.post();
 
-  // Test severe error macro; should exit
+  // Test severe error macro; should throw a logic_error exception.
 
-  post_fatal_error_message("testing fatal error macro. Should exit with status 3.");
+  // Catch the exception thrown so that CMake CTest doesn't complain about an error 
+
+  try
+  {
+    post_fatal_error_message("testing fatal error macro. Should throw a logic_error.");
+  }
+  catch (std::logic_error& le)
+  {
+    cerr << endl;
+    cerr << "Caught a logic_error: " << le.what () << endl;
+    cerr << endl;
+  }
 
   return 0;
 }

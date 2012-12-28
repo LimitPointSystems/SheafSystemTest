@@ -4,7 +4,6 @@
 // Copyright (c) 2012 Limit Point Systems, Inc.
 //
 
-/// @example support/rc.t.cc
 /// class RC_ANY & RC_PTR tester
 
 #include "assert_contract.h"
@@ -15,9 +14,10 @@
 
 using namespace sheaf;
 
-class rc_test : public rc_any
-  {}
-;
+namespace
+{
+
+class rc_test : public rc_any {};
 
 void print_rc(rc_test *rc)
 {
@@ -29,7 +29,10 @@ void print_rc(rc_test *rc)
   }
 }
 
-int main()
+} // end unnamed namespace
+
+int
+main()
 {
   cout << "---------------------------------" << endl;
   cout << "Constructing shareable rc_any"  << endl << endl;
