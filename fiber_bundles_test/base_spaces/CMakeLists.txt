@@ -33,6 +33,7 @@ collect_includes()
 #
 set(UNIT_TEST_SRCS
     adjacency_extractor.t.cc
+    connectivity_array.t.cc
     connectivity_extractor.t.cc
     hex_connectivity.t.cc
     line_connectivity.t.cc
