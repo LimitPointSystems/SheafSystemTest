@@ -45,7 +45,20 @@ int main( int xargc, char* xargv[])
 					   lscalar_schema_path,
 					   true);
 
-  at0_space& lscalar_space2 = lns.new_scalar_space<at0>("deep_instantiation_test_at0");
+  at0_space& lscalar_space2 =
+    lns.new_scalar_space<at0>("deep_instantiation_test_at0");
+
+  //============================================================================
+
+  // any facet
+
+  at0_space* lclone = lscalar_space->clone();
+
+  bool is_ancestor_of = lscalar_space->is_ancestor_of(&lscalar_space2);
+
+  bool linvariant = lscalar_space->invariant();
+
+  //============================================================================
 
   //cout << lns << endl;
 

@@ -50,6 +50,19 @@ namespace
 
     //==========================================================================
 
+    //met_e1_row_dofs_type<T>* clone(bool xnew_state, bool xauto_access) const
+
+    met_e1_row_dofs_type<double>* lclone_row_dofs = lrow_dofs.clone(true, true);
+
+    //virtual met_e1_lite* clone(bool xnew_state, bool xauto_access) const
+
+    met_e1_lite* lclone = lfiber.clone(true, true);
+
+    delete lclone_row_dofs; 
+    delete lclone; 
+
+    //==========================================================================
+
     //virtual const tp_lite& tp_prototype(int xp) const;
 
     const tp_lite& ltp_lite = lfiber.tp_prototype(1);

@@ -38,16 +38,66 @@ namespace
 
     //==========================================================================
 
+    typedef double value_type;
+    typedef jcb_e13_row_dofs_type<double> row_dofs_type;
+    typedef general_matrix_3x1<double> matrix_type;
+
     jcb_e13_lite lfiber(0.11, 0.21, 0.31);
     lfiber.put_components(0.111, 0.121, 0.131);
 
-    jcb_e13_lite::row_dofs_type& lrow_dofs(lfiber);
+    row_dofs_type& lrow_dofs(lfiber);
 
     const jcb_e13_lite lfiber_const;
 
-    const jcb_e13_lite::row_dofs_type& lrow_dofs_const(lfiber_const);
+    const row_dofs_type& lrow_dofs_const(lfiber_const);
 
     //==========================================================================
+
+    matrix_type lmat;
+    lmat[0][0] =  1;
+    lmat[1][0] =  2;
+    lmat[2][0] =  3;
+
+    cout << "lmat = " << endl;
+    cout << lmat << endl;
+
+    //jcb_e13_lite(const matrix_type& xmatrix);
+
+    jcb_e13_lite lfiber2(lmat);
+    const jcb_e13_lite lfiber2_const(lmat);
+
+    //jcb_e13_lite& operator=(const matrix_type& xmatrix);
+
+    jcb_e13_lite lfiber2_assign = lmat;
+
+    //operator matrix_type& ();
+
+    matrix_type& lmatrix_type(lfiber2);
+
+    //operator const matrix_type& () const;
+
+    const matrix_type& lmatrix_type_const(lfiber_const);
+
+    //==========================================================================
+
+    //jcb_e13_row_dofs_type<T>* clone(bool xnew_state, bool xauto_access) const
+
+    row_dofs_type* lclone_row_dofs = lrow_dofs.clone(true, true);
+
+    //virtual jcb_e13_lite* clone(bool xnew_state, bool xauto_access) const
+
+    jcb_e13_lite* lclone = lfiber.clone(true, true);
+
+    delete lclone_row_dofs; 
+    delete lclone;
+
+   //==========================================================================
+
+    //operator jcb_e13_row_dofs_type<T>& () const
+
+    row_dofs_type& lrow_dofs2(lmat);
+
+   //==========================================================================
 
     // Postconditions:
 

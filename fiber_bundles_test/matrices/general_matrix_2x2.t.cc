@@ -179,6 +179,44 @@ void test_general_matrix_2x2()
 
   //============================================================================
 
+  // Miscellaneous.
+
+  // general_matrix_2x2<double>::assign(double const&)
+
+  general_matrix_2x2<double> lgm;
+  lgm.assign(123.0);
+
+  //bool is_positive_definite() const
+
+  bool lis_positive_definite = lgm.is_positive_definite();
+  cout << "lis_positive_definite = " << boolalpha
+       << lis_positive_definite << endl;
+
+  //bool is_symmetric() const
+
+  bool lis_symmetric = lgm.is_symmetric();
+  cout << "lis_symmetric = " << boolalpha
+       << lis_symmetric << endl;
+
+  //bool is_antisymmetric() const
+
+  bool lis_antisymmetric = lgm.is_antisymmetric();
+  cout << "lis_antisymmetric = " << boolalpha
+       << lis_antisymmetric << endl;
+
+  //operator T* ();
+
+  double* lcomp(lgm);
+
+  //operator const T* () const;
+
+  const general_matrix_2x2<double> lgm_const = lgm;
+
+  const double* lcomp_const(lgm_const);
+
+  //============================================================================
+
+
 }
 
 ///

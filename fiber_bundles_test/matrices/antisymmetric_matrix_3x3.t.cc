@@ -155,6 +155,69 @@ void test_antisymmetric_matrix_3x3()
   general_matrix_3x1<double> col_1 = m.column(1);
   cout << "general_matrix_3x1<double> col_1 = m.column(1):" << endl;
   cout << col_1 << endl;
+
+  //============================================================================
+
+  // Miscellaneous.
+
+  // antisymmetric_matrix_3x3<double>::assign(double const&)
+
+  antisymmetric_matrix_3x3<double> lam;
+  lam.assign(123.0);
+
+  // No inverse for an antisymmetric matrix with n odd;
+  // determinant is always 0.
+
+  ////void inverse(antisymmetric_matrix_3x3<T>& xresult) const;
+
+  //antisymmetric_matrix_3x3<double> lresult;
+  //lam.inverse(lresult);
+
+  ////antisymmetric_matrix_3x3<T> inverse() const;
+
+  //antisymmetric_matrix_3x3<double> linverse = lam.inverse();
+
+  //bool is_positive_definite() const
+
+  bool lis_positive_definite = lam.is_positive_definite();
+  cout << "lis_positive_definite = " << boolalpha
+       << lis_positive_definite << endl;
+
+  //void multiply(const T& xscalar, antisymmetric_matrix_3x3<T>& xresult) const;
+
+  antisymmetric_matrix_3x3<double> lresult;
+  lam.multiply(2.0, lresult);
+
+  //antisymmetric_matrix_3x3<T> multiply(const T& xscalar) const;
+
+  antisymmetric_matrix_3x3<double> lmultiply = lam.multiply(2.0);
+
+  //void multiply(const general_matrix_3x3<T>& xother,
+  //              general_matrix_3x3<T>& xresult) const;
+
+  general_matrix_3x3<double> lgm;
+  lgm[0][0] =  10; lgm[0][1] = -10; lgm[0][2] =   0;
+  lgm[1][0] = -10; lgm[1][1] =  20; lgm[1][2] = -10;
+  lgm[2][0] =   0; lgm[2][1] =   0; lgm[2][2] =  10;
+
+  general_matrix_3x3<double> lresult2;
+
+  lam.multiply(lgm, lresult2);
+
+  general_matrix_3x3<double> lresult3 = lam.multiply(lgm);
+
+  //operator T* ();
+
+  double* lcomp(lam);
+
+  //operator const T* () const;
+
+  const antisymmetric_matrix_3x3<double> lam_const = lam;
+
+  const double* lcomp_const(lam_const);
+
+  //============================================================================
+
 }
 
 ///

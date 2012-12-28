@@ -81,6 +81,25 @@ namespace
 
     //==========================================================================
 
+    //met_e3_row_dofs_type<T>* clone(bool xnew_state, bool xauto_access) const
+
+    row_dofs_type* lclone_row_dofs = lrow_dofs.clone(true, true);
+
+    //virtual met_e3_lite* clone(bool xnew_state, bool xauto_access) const
+
+    met_e3_lite* lclone = lfiber.clone(true, true);
+
+    delete lclone_row_dofs; 
+    delete lclone; 
+
+    //==========================================================================
+ 
+    //operator met_e3_row_dofs_type<T>& () const
+
+    met_e3_row_dofs_type<double>& lrow_dofs2(lmat);
+
+    //==========================================================================
+
     //virtual const tp_lite& tp_prototype(int xp) const;
 
     const tp_lite& ltp_lite = lfiber.tp_prototype(2);

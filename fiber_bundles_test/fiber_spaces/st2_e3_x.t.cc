@@ -103,6 +103,13 @@ namespace
 
     //==========================================================================
 
+    //operator st2_e3_row_dofs_type<T>& () const
+
+    st2_e3_row_dofs_type<double>& lrow_dofs2(lmat);
+
+    //==========================================================================
+
+
     //virtual const tp_lite& tp_prototype(int xp) const;
 
     const tp_lite& ltp_prototype0 = lfiber.tp_prototype(0);

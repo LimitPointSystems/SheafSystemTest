@@ -38,18 +38,69 @@ namespace
 
     //==========================================================================
 
+    typedef double value_type;
+    typedef jcb_e33_row_dofs_type<double> row_dofs_type;
+    typedef general_matrix_3x3<double> matrix_type;
+
     jcb_e33_lite lfiber(0.11, 0.12, 0.13, 0.21, 0.22, 0.23, 0.31, 0.32, 0.33);
     lfiber.put_components(0.111, 0.112, 0.113,
                           0.121, 0.122, 0.123,
                           0.131, 0.132, 0.133);
 
-    jcb_e33_lite::row_dofs_type& lrow_dofs(lfiber);
+    row_dofs_type& lrow_dofs(lfiber);
 
     const jcb_e33_lite lfiber_const;
 
-    const jcb_e33_lite::row_dofs_type& lrow_dofs_const(lfiber_const);
+    const row_dofs_type& lrow_dofs_const(lfiber_const);
 
     //==========================================================================
+
+    matrix_type lmat;
+    lmat[0][0] =  10; lmat[0][1] = -10; lmat[0][2] =   0;
+    lmat[1][0] = -10; lmat[1][1] =  20; lmat[1][2] = -10;
+    lmat[2][0] =   0; lmat[2][1] =   0; lmat[2][2] =  10;
+
+    cout << "lmat = " << endl;
+    cout << lmat << endl;
+
+    //jcb_e33_lite(const matrix_type& xmatrix);
+
+    jcb_e33_lite lfiber2(lmat);
+    const jcb_e33_lite lfiber2_const(lmat);
+
+    //jcb_e33_lite& operator=(const matrix_type& xmatrix);
+
+    jcb_e33_lite lfiber2_assign = lmat;
+
+    //operator matrix_type& ();
+
+    matrix_type& lmatrix_type(lfiber2);
+
+    //operator const matrix_type& () const;
+
+    const matrix_type& lmatrix_type_const(lfiber_const);
+
+    //==========================================================================
+
+    //jcb_e33_row_dofs_type<T>* clone(bool xnew_state, bool xauto_access) const
+
+    row_dofs_type* lclone_row_dofs = lrow_dofs.clone(true, true);
+
+    //virtual jcb_e33_lite* clone(bool xnew_state, bool xauto_access) const
+
+    jcb_e33_lite* lclone = lfiber.clone(true, true);
+
+    delete lclone_row_dofs; 
+    delete lclone;
+
+   //==========================================================================
+
+    //operator jcb_e33_row_dofs_type<T>& () const
+
+    jcb_e33_row_dofs_type<double>& lrow_dofs3(lmat);
+
+    //==========================================================================
+
 
     // Postconditions:
 

@@ -666,18 +666,6 @@ void test_virtual_conversions(typename P::host_type& xhost);
 template <typename P>
 void test_matrix_type_conversions();
 
-//==============================================================================
-// Specializations:
-//==============================================================================
-
-template <>
-void
-test_persistent_type<gl2>(typename gl2::host_type& xhost);
-
-template <>
-void
-test_persistent_type<gl3>(typename gl3::host_type& xhost);
-
 
 //==============================================================================
 // Convenience functions

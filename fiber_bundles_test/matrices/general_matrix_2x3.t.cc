@@ -105,8 +105,31 @@ void test_general_matrix_2x3()
   general_matrix_2x1<double> col_1 = m.column(1);
   cout << "general_matrix_2x1<double> col_1 = m.column(1):" << endl;
   cout << col_1 << endl;
-}
 
+
+  //============================================================================
+
+  // Miscellaneous.
+
+  // general_matrix_2x3<double>::assign(double const&)
+
+  general_matrix_2x3<double> lgm;
+  lgm.assign(123.0);
+
+  //operator T* ();
+
+  double* lcomp(lgm);
+
+  //operator const T* () const;
+
+  const general_matrix_2x3<double> lgm_const = lgm;
+
+  const double* lcomp_const(lgm_const);
+
+  //============================================================================
+
+}
+ 
 ///
 int main()
 {

@@ -263,16 +263,15 @@ test_persistent_type(typename P::host_type& xhost)
   //int lfactor_ct = lfiber->factor_ct();
   //cout << "lfactor_ct = " << lfactor_ct << endl;
 
+  //$$SCRIBBLE: Inconsistency amoung classes here???
   //persistent_type* lfiber2 = new persistent_type(lfiber);
+  //persistent_type* lfiber2 = new persistent_type(*lfiber);
 
-  persistent_type lfiber3 = *lfiber;
-
-  typename P::host_type* lhost = lfiber->host();
+  //persistent_type lfiber3 = *lfiber;
 
   const scoped_index lindex = lfiber->index();
 
-  //const poset_state_handle* lpsh = dynamic_cast<poset_state_handle*>(lhost);
-  const poset* lposet = dynamic_cast<poset*>(lhost);
+  const poset* lposet = dynamic_cast<poset*>(&xhost);
   persistent_type* lfiber4 = new persistent_type(lposet, lmember_name);
   persistent_type* lfiber5 = new persistent_type(lposet, lindex);
 
@@ -280,7 +279,8 @@ test_persistent_type(typename P::host_type& xhost)
 
   //////////////////////////////////////////////////////////////////////////////
 
-  persistent_type lfiber3a = *lfiber;
+  //persistent_type lfiber3a = *lfiber;
+  persistent_type lfiber3a;
   persistent_type& lfiber3b = lfiber3a.operator=(lfiber3a);
 
   lfiber3a.detach_from_state();
@@ -290,7 +290,7 @@ test_persistent_type(typename P::host_type& xhost)
 
   lfiber->detach_from_state();
   //lfiber2->detach_from_state();
-  lfiber3.detach_from_state();
+  //lfiber3.detach_from_state();
   lfiber4->detach_from_state();
   lfiber5->detach_from_state();
   lfiber6->detach_from_state();

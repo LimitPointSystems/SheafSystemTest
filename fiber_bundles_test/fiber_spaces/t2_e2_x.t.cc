@@ -121,6 +121,16 @@ namespace
 
     //==========================================================================
 
+    //operator t02_e2_row_dofs_type<T>& () const
+
+    t02_e2_row_dofs_type<double>& lrow_dofs3(lmat);
+
+   //operator t11_e2_row_dofs_type<T>& () const
+
+    t11_e2_row_dofs_type<double>& lrow_dofs4(lmat);
+
+    //==========================================================================
+
     //virtual const tp_lite& tp_prototype(int xp) const;
 
     const tp_lite& ltp_prototype0 = lfiber.tp_prototype(0);

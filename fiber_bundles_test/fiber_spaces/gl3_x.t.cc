@@ -217,6 +217,25 @@ namespace
     lfiber.put_matrix(lrow_dofs2);
 
     //==========================================================================
+
+    //gl3_row_dofs_type<T>* clone(bool xnew_state, bool xauto_access) const
+
+    row_dofs_type* lclone_row_dofs = lrow_dofs.clone(true, true);
+
+    //virtual gl3_lite* clone(bool xnew_state, bool xauto_access) const
+
+    gl3_lite* lclone2 = lfiber.clone(true, true);
+
+    delete lclone_row_dofs; 
+    delete lclone2;
+
+   //==========================================================================
+
+    //operator gl3_row_dofs_type<T>& () const
+
+    gl3_row_dofs_type<double>& lrow_dofs3(lmat);
+
+    //==========================================================================
     // group facet
     //==========================================================================
 
