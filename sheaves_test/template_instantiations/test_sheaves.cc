@@ -12,8 +12,8 @@
 #include "test_sheaves.impl.h"
 #include "test_utils.h"
 
-#include "gluable_sum_index_space.h"
-#include "index_space.h"
+#include "hub_index_space_handle.h"
+#include "index_space_handle.h"
 #include "namespace_poset.h"
 #include "namespace_poset_member.h"
 #include "poset_state_handle.h"
@@ -103,13 +103,13 @@ test_block_facet<sheaf::poset_state_handle*>()
 }
 
 //===========================================================================
-// Specialization for "index_space*":
+// Specialization for "index_space_handle*":
 //===========================================================================
 
 template<>
 bool
 sheaf::
-test_block_facet<sheaf::index_space*>()
+test_block_facet<sheaf::index_space_handle*>()
 {
   // Preconditions:
 
@@ -119,7 +119,7 @@ test_block_facet<sheaf::index_space*>()
 
   print_subheader("Test block(index_type xub)");
 
-  typedef index_space* T;
+  typedef index_space_handle* T;
 
   block<T> lblock0(5);
 
@@ -134,13 +134,14 @@ test_block_facet<sheaf::index_space*>()
   print_subheader("Test block(index_type xub, size_type xct, const T *xitems)");
 
   // Need to create an index space (abstract class).
-  // Use index_space_family.top_id_space().
+  // Use index_space_family.hub_id_space().
 
   sheaf::index_space_family lid_spaces;
-  sheaf::gluable_sum_index_space& ltop_id_space = lid_spaces.top_id_space();
+  sheaf::hub_index_space_handle& lhub_id_space =
+    const_cast<hub_index_space_handle&>(lid_spaces.hub_id_space());
  
-  T litem0 = &ltop_id_space;
-  T litem1 = &ltop_id_space; 
+  T litem0 = &lhub_id_space;
+  T litem1 = &lhub_id_space; 
   T litems[2] = {litem0, litem1};
 
   block<T> lblock1(10, 2, litems);

@@ -339,80 +339,82 @@ main(int argc, char* argv[])
   print_header("Begin testing field_factory_2<sec_e1, sec_at0, point_block_1d>");
   ltest &= test_field_factory_2<sec_e1, sec_at0, point_block_1d>(lns);
 
-  print_header("Begin testing field_factory_2<sec_e1, sec_at0, structured_block_1d>");
-  ltest &= test_field_factory_2<sec_e1, sec_at0, structured_block_1d>(lns);
+  cout << lns.member_id_spaces(false) << endl;
 
-  print_header("Begin testing field_factory_2<sec_e1, sec_at0, unstructured_block>");
-  ltest &= test_field_factory_2<sec_e1, sec_at0, unstructured_block>(lns);
+//   print_header("Begin testing field_factory_2<sec_e1, sec_at0, structured_block_1d>");
+//   ltest &= test_field_factory_2<sec_e1, sec_at0, structured_block_1d>(lns);
 
-  print_header("Begin testing field_factory_2<sec_e1_uniform, sec_at0, structured_block_1d>");
-  ltest &= test_field_factory_2<sec_e1_uniform, sec_at0, structured_block_1d>(lns);
+//   print_header("Begin testing field_factory_2<sec_e1, sec_at0, unstructured_block>");
+//   ltest &= test_field_factory_2<sec_e1, sec_at0, unstructured_block>(lns);
 
-
-  print_header("Begin testing field_factory_2<sec_e2, sec_at0, point_block_2d>");
-  ltest &= test_field_factory_2<sec_e2, sec_at0, point_block_2d>(lns);
-
-  print_header("Begin testing field_factory_2<sec_e2, sec_at0, structured_block_2d>");
-  ltest &= test_field_factory_2<sec_e2, sec_at0, structured_block_2d>(lns);
-
-  print_header("Begin testing field_factory_2<sec_e2, sec_at0, unstructured_block>");
-  ltest &= test_field_factory_2<sec_e2, sec_at0, unstructured_block>(lns);
-
-  print_header("Begin testing field_factory_2<sec_e2_uniform, sec_at0, structured_block_2d>");
-  ltest &= test_field_factory_2<sec_e2_uniform, sec_at0, structured_block_2d>(lns);
+//   print_header("Begin testing field_factory_2<sec_e1_uniform, sec_at0, structured_block_1d>");
+//   ltest &= test_field_factory_2<sec_e1_uniform, sec_at0, structured_block_1d>(lns);
 
 
-  print_header("Begin testing field_factory_2<sec_e3, sec_at0, point_block_3d>");
-  ltest &= test_field_factory_2<sec_e3, sec_at0, point_block_3d>(lns);
+//   print_header("Begin testing field_factory_2<sec_e2, sec_at0, point_block_2d>");
+//   ltest &= test_field_factory_2<sec_e2, sec_at0, point_block_2d>(lns);
 
-  print_header("Begin testing field_factory_2<sec_e3, sec_at0, structured_block_3d>");
-  ltest &= test_field_factory_2<sec_e3, sec_at0, structured_block_3d>(lns);
+//   print_header("Begin testing field_factory_2<sec_e2, sec_at0, structured_block_2d>");
+//   ltest &= test_field_factory_2<sec_e2, sec_at0, structured_block_2d>(lns);
 
-  print_header("Begin testing field_factory_2<sec_e3, sec_at0, unstructured_block>");
-  ltest &= test_field_factory_2<sec_e3, sec_at0, unstructured_block>(lns);
+//   print_header("Begin testing field_factory_2<sec_e2, sec_at0, unstructured_block>");
+//   ltest &= test_field_factory_2<sec_e2, sec_at0, unstructured_block>(lns);
 
-  print_header("Begin testing field_factory_2<sec_e3_uniform, sec_at0, structured_block_3d>");
-  ltest &= test_field_factory_2<sec_e3_uniform, sec_at0, structured_block_3d>(lns);
-
-  //============================================================================
-
-  print_header("Begin testing field_factory_2<sec_e1, sec_e1, point_block_1d>");
-  ltest &= test_field_factory_2<sec_e1, sec_e1, point_block_1d>(lns);
-
-  print_header("Begin testing field_factory_2<sec_e1, sec_e1, structured_block_1d>");
-  ltest &= test_field_factory_2<sec_e1, sec_e1, structured_block_1d>(lns);
-
-  print_header("Begin testing field_factory_2<sec_e1, sec_e1, unstructured_block>");
-  ltest &= test_field_factory_2<sec_e1, sec_e1, unstructured_block>(lns);
-
-  print_header("Begin testing field_factory_2<sec_e1_uniform, sec_e1, structured_block_1d>");
-  ltest &= test_field_factory_2<sec_e1_uniform, sec_e1, structured_block_1d>(lns);
+//   print_header("Begin testing field_factory_2<sec_e2_uniform, sec_at0, structured_block_2d>");
+//   ltest &= test_field_factory_2<sec_e2_uniform, sec_at0, structured_block_2d>(lns);
 
 
-  print_header("Begin testing field_factory_2<sec_e2, sec_e1, point_block_2d>");
-  ltest &= test_field_factory_2<sec_e2, sec_e1, point_block_2d>(lns);
+//   print_header("Begin testing field_factory_2<sec_e3, sec_at0, point_block_3d>");
+//   ltest &= test_field_factory_2<sec_e3, sec_at0, point_block_3d>(lns);
 
-  print_header("Begin testing field_factory_2<sec_e2, sec_e1, structured_block_2d>");
-  ltest &= test_field_factory_2<sec_e2, sec_e1, structured_block_2d>(lns);
+//   print_header("Begin testing field_factory_2<sec_e3, sec_at0, structured_block_3d>");
+//   ltest &= test_field_factory_2<sec_e3, sec_at0, structured_block_3d>(lns);
 
-  print_header("Begin testing field_factory_2<sec_e2, sec_e1, unstructured_block>");
-  ltest &= test_field_factory_2<sec_e2, sec_e1, unstructured_block>(lns);
+//   print_header("Begin testing field_factory_2<sec_e3, sec_at0, unstructured_block>");
+//   ltest &= test_field_factory_2<sec_e3, sec_at0, unstructured_block>(lns);
 
-  print_header("Begin testing field_factory_2<sec_e2_uniform, sec_e1, structured_block_2d>");
-  ltest &= test_field_factory_2<sec_e2_uniform, sec_e1, structured_block_2d>(lns);
+//   print_header("Begin testing field_factory_2<sec_e3_uniform, sec_at0, structured_block_3d>");
+//   ltest &= test_field_factory_2<sec_e3_uniform, sec_at0, structured_block_3d>(lns);
+
+//   //============================================================================
+
+//   print_header("Begin testing field_factory_2<sec_e1, sec_e1, point_block_1d>");
+//   ltest &= test_field_factory_2<sec_e1, sec_e1, point_block_1d>(lns);
+
+//   print_header("Begin testing field_factory_2<sec_e1, sec_e1, structured_block_1d>");
+//   ltest &= test_field_factory_2<sec_e1, sec_e1, structured_block_1d>(lns);
+
+//   print_header("Begin testing field_factory_2<sec_e1, sec_e1, unstructured_block>");
+//   ltest &= test_field_factory_2<sec_e1, sec_e1, unstructured_block>(lns);
+
+//   print_header("Begin testing field_factory_2<sec_e1_uniform, sec_e1, structured_block_1d>");
+//   ltest &= test_field_factory_2<sec_e1_uniform, sec_e1, structured_block_1d>(lns);
 
 
-  print_header("Begin testing field_factory_2<sec_e3, sec_e1, point_block_3d>");
-  ltest &= test_field_factory_2<sec_e3, sec_e1, point_block_3d>(lns);
+//   print_header("Begin testing field_factory_2<sec_e2, sec_e1, point_block_2d>");
+//   ltest &= test_field_factory_2<sec_e2, sec_e1, point_block_2d>(lns);
 
-  print_header("Begin testing field_factory_2<sec_e3, sec_e1, structured_block_3d>");
-  ltest &= test_field_factory_2<sec_e3, sec_e1, structured_block_3d>(lns);
+//   print_header("Begin testing field_factory_2<sec_e2, sec_e1, structured_block_2d>");
+//   ltest &= test_field_factory_2<sec_e2, sec_e1, structured_block_2d>(lns);
 
-  print_header("Begin testing field_factory_2<sec_e3, sec_e1, unstructured_block>");
-  ltest &= test_field_factory_2<sec_e3, sec_e1, unstructured_block>(lns);
+//   print_header("Begin testing field_factory_2<sec_e2, sec_e1, unstructured_block>");
+//   ltest &= test_field_factory_2<sec_e2, sec_e1, unstructured_block>(lns);
 
-  print_header("Begin testing field_factory_2<sec_e3_uniform, sec_e1, structured_block_3d>");
-  ltest &= test_field_factory_2<sec_e3_uniform, sec_e1, structured_block_3d>(lns);
+//   print_header("Begin testing field_factory_2<sec_e2_uniform, sec_e1, structured_block_2d>");
+//   ltest &= test_field_factory_2<sec_e2_uniform, sec_e1, structured_block_2d>(lns);
+
+
+//   print_header("Begin testing field_factory_2<sec_e3, sec_e1, point_block_3d>");
+//   ltest &= test_field_factory_2<sec_e3, sec_e1, point_block_3d>(lns);
+
+//   print_header("Begin testing field_factory_2<sec_e3, sec_e1, structured_block_3d>");
+//   ltest &= test_field_factory_2<sec_e3, sec_e1, structured_block_3d>(lns);
+
+//   print_header("Begin testing field_factory_2<sec_e3, sec_e1, unstructured_block>");
+//   ltest &= test_field_factory_2<sec_e3, sec_e1, unstructured_block>(lns);
+
+//   print_header("Begin testing field_factory_2<sec_e3_uniform, sec_e1, structured_block_3d>");
+//   ltest &= test_field_factory_2<sec_e3_uniform, sec_e1, structured_block_3d>(lns);
 
   //============================================================================
 

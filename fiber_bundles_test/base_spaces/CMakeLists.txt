@@ -32,8 +32,6 @@ collect_includes()
 # Source for unit test executables.
 #
 set(UNIT_TEST_SRCS
-    adjacency_extractor.t.cc
-    connectivity_extractor.t.cc
     hex_connectivity.t.cc
     line_connectivity.t.cc
     point_block_1d.t.cc

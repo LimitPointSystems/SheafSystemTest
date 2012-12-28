@@ -32,7 +32,6 @@ collect_includes()
 # Source for unit test executables.
 #
 set(UNIT_TEST_SRCS
-    list_cover_set.t.cc
     member_multiple_names.t.cc
     namespace_poset.t.cc
     poset.t.cc

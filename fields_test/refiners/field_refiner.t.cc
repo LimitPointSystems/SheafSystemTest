@@ -1,4 +1,4 @@
-// $RCSfile: field_refiner.t.cc,v $ $Revision: 1.5 $ $Date: 2012/03/01 00:41:12 $
+// $RCSfile$ $Revision$ $Date$
 
 //
 // Copyright (c) 2012 Limit Point Systems, Inc.
@@ -28,12 +28,9 @@
 //#define DIAGNOSTIC_OUTPUT 1
 
 using namespace fields;
-using namespace fields;
 
 namespace
 {
-
-fiber_bundles_namespace ns("field_refiner.t");
 
 
 ///
@@ -83,7 +80,7 @@ step_fcn(block<sec_vd_value_type>& xglobal_coords,
 ///
 /// Test 1d refinement.
 ///
-void test_1d_refinement()
+void test_1d_refinement(fiber_bundles_namespace& xns)
 {
   wsv_block<sec_vd_value_type> xlower("-2.0");
   wsv_block<sec_vd_value_type> xupper("2.0");
@@ -92,7 +89,7 @@ void test_1d_refinement()
   // with a step in it.
 
   field_vd* coarse =
-    field_factory::new_scalar_field_1d_unstructured(ns,
+    field_factory::new_scalar_field_1d_unstructured(xns,
         "coarse_segments",
         3,
         xlower,
@@ -131,7 +128,7 @@ void test_1d_refinement()
 ///
 /// Test 2d refinement.
 ///
-void test_2d_refinement(bool xuse_quads, const string& xrefiner_type)
+void test_2d_refinement(fiber_bundles_namespace& xns, bool xuse_quads, const string& xrefiner_type)
 {
 
   // Preconsitions:
@@ -150,7 +147,7 @@ void test_2d_refinement(bool xuse_quads, const string& xrefiner_type)
   string lfield_name = "coarse_" + xrefiner_type + (xuse_quads ? "_quads" : "_triangles");
 
   field_vd* coarse =
-    field_factory::new_scalar_field_2d_unstructured(ns,
+    field_factory::new_scalar_field_2d_unstructured(xns,
         lfield_name,
         3,
         3,
@@ -195,26 +192,27 @@ void test_2d_refinement(bool xuse_quads, const string& xrefiner_type)
 int
 main(int argc, char* argv[])
 {
+  fiber_bundles_namespace ns("field_refiner.t");
   ns.get_read_write_access();
 
   // Test the section refiner in d = 1.
 
-  test_1d_refinement();
+  test_1d_refinement(ns);
 
   // Test the section refiner in d = 2 using
   // quads and edge centered refinement.
 
-  test_2d_refinement(true, "edge_centered");
+  test_2d_refinement(ns, true, "edge_centered");
 
   // Test the section refiner in d = 2 using
   // triangles and edge centered refinement.
 
-  test_2d_refinement(false, "edge_centered");
+  test_2d_refinement(ns, false, "edge_centered");
 
   // Test the section refiner in d = 2 using
   // triangles and barycentric refinement.
 
-  test_2d_refinement(false, "barycentric");
+  test_2d_refinement(ns, false, "barycentric");
 
   storage_agent sa("field_refiner.t.hdf");
   sa.write_entire(ns);

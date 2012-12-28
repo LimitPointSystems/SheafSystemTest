@@ -24,13 +24,6 @@
 #include "integrable_section_evaluator.h"
 #include "structured_block.h"
 #include "structured_block_1d.h"
-#include "structured_block_1d_crg_range.h"
-#include "structured_block_2d_crg_range.h"
-#include "structured_block_3d_crg_range.h"
-#include "base_space_crg_range.h"
-#include "point_block_crg_range.h"
-#include "zone_nodes_block_crg_range.h"
-#include "homogeneous_block_crg_range.h"
 #include "test_utils.h"
 #include "test_sheaves.impl.h"
 
@@ -170,69 +163,6 @@ main(int xargc, char* xargv[])
   ltest &= test_auto_block_facet_insertion_all<integrable_section_evaluator*>();
   ltest &= test_auto_block_facet_deep_size_all<integrable_section_evaluator*>();
   print_footer("End testing auto_block<integrable_section_evaluator*>");
-
-  // structured_auto_block_1d_crg_range*
-
-  print_header("Begin testing auto_block<structured_block_1d_crg_range*>");
-  ltest &= test_auto_block_facet_all<structured_block_1d_crg_range*>();
-  ltest &= test_auto_block_facet_equal_all<structured_block_1d_crg_range*>();
-  ltest &= test_auto_block_facet_insertion_all<structured_block_1d_crg_range*>();
-  ltest &= test_auto_block_facet_deep_size_all<structured_block_1d_crg_range*>();
-  print_footer("End testing auto_block<structured_block_1d_crg_range*>");
-
-  // structured_auto_block_2d_crg_range*
-
-  print_header("Begin testing auto_block<structured_block_2d_crg_range*>");
-  ltest &= test_auto_block_facet_all<structured_block_2d_crg_range*>();
-  ltest &= test_auto_block_facet_equal_all<structured_block_2d_crg_range*>();
-  ltest &= test_auto_block_facet_insertion_all<structured_block_2d_crg_range*>();
-  ltest &= test_auto_block_facet_deep_size_all<structured_block_2d_crg_range*>();
-  print_footer("End testing auto_block<structured_block_2d_crg_range*>");
-
-  // structured_auto_block_3d_crg_range*
-
-  print_header("Begin testing auto_block<structured_block_3d_crg_range*>");
-  ltest &= test_auto_block_facet_all<structured_block_3d_crg_range*>();
-  ltest &= test_auto_block_facet_equal_all<structured_block_3d_crg_range*>();
-  ltest &= test_auto_block_facet_insertion_all<structured_block_3d_crg_range*>();
-  ltest &= test_auto_block_facet_deep_size_all<structured_block_3d_crg_range*>();
-  print_footer("End testing auto_block<structured_block_3d_crg_range*>");
-
-  // base_space_crg_range*
-
-  print_header("Begin testing auto_block<base_space_crg_range*>");
-  ltest &= test_auto_block_facet_all<base_space_crg_range*>();
-  ltest &= test_auto_block_facet_equal_all<base_space_crg_range*>();
-  ltest &= test_auto_block_facet_insertion_all<base_space_crg_range*>();
-  ltest &= test_auto_block_facet_deep_size_all<base_space_crg_range*>();
-  print_footer("End testing auto_block<base_space_crg_range*>");
-
-  // point_block_crg_range*
-
-  print_header("Begin testing auto_block<point_block_crg_range*>");
-  ltest &= test_auto_block_facet_all<point_block_crg_range*>();
-  ltest &= test_auto_block_facet_equal_all<point_block_crg_range*>();
-  ltest &= test_auto_block_facet_insertion_all<point_block_crg_range*>();
-  ltest &= test_auto_block_facet_deep_size_all<point_block_crg_range*>();
-  print_footer("End testing auto_block<point_block_crg_range*>");
-
-  // zone_nodes_block_crg_range*
-
-  print_header("Begin testing auto_block<zone_nodes_block_crg_range*>");
-  ltest &= test_auto_block_facet_all<zone_nodes_block_crg_range*>();
-  ltest &= test_auto_block_facet_equal_all<zone_nodes_block_crg_range*>();
-  ltest &= test_auto_block_facet_insertion_all<zone_nodes_block_crg_range*>();
-  ltest &= test_auto_block_facet_deep_size_all<zone_nodes_block_crg_range*>();
-  print_footer("End testing auto_block<zone_nodes_block_crg_range*>");
-
-  // homogeneous_block_crg_range*
-
-  print_header("Begin testing auto_block<homogeneous_block_crg_range*>");
-  ltest &= test_auto_block_facet_all<homogeneous_block_crg_range*>();
-  ltest &= test_auto_block_facet_equal_all<homogeneous_block_crg_range*>();
-  ltest &= test_auto_block_facet_insertion_all<homogeneous_block_crg_range*>();
-  ltest &= test_auto_block_facet_deep_size_all<homogeneous_block_crg_range*>();
-  print_footer("End testing auto_block<homogeneous_block_crg_range*>");
 
   // block<scoped_index>*
 

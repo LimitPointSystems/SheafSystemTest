@@ -10,7 +10,7 @@
 
 #include "deep_size.impl.h"
 
-#include "gluable_sum_index_space.h"
+#include "index_space_family.h"
 #include "scoped_index.h"
 #include "std_list.h"
 #include "std_map.h"
@@ -31,6 +31,14 @@ main(int xargc, char* xargv[])
   bool ltest = true;
 
   size_t lsize;
+
+  // Make an id space family and a primary term so that scoped ids can be
+  // constructed.
+
+  index_space_family lid_spaces;
+  lid_spaces.new_primary_state(500);
+
+  const index_space_handle& lhub_id_space = lid_spaces.hub_id_space();
 
   // bool
 
@@ -128,8 +136,8 @@ main(int xargc, char* xargv[])
   // list<scoped_index>
 
   list<scoped_index> llist;
-  llist.push_back(scoped_index(123));  
-  llist.push_back(scoped_index(456));  
+  llist.push_back(scoped_index(lhub_id_space, 123));  
+  llist.push_back(scoped_index(lhub_id_space, 456));  
   lsize = deep_size<scoped_index>(llist, true);
   cout << "deep_size<scoped_index>(llist, true) = " << lsize << endl;
 
@@ -171,51 +179,9 @@ main(int xargc, char* xargv[])
   lsize = deep_size<int, bool, S5>(lmap3, true);
   cout << "deep_size<int, bool, S5>(lmap3, true) = " << lsize << endl;
 
-
-  // map<int, implicit_index_space_interval*>
-
-  map<int, implicit_index_space_interval*> lmap4;
-  implicit_index_space_interval* lptr;
-  lmap4[0] = lptr;
-  lmap4[1] = lptr;
-  typedef sheaf::no_deep_size_policy<map<int,
-                                         implicit_index_space_interval*> > S6;
-  lsize = deep_size<int, implicit_index_space_interval*, S6>(lmap4, true);
-  cout << "deep_size<int, implicit_index_space_interval*, S6>(lmap4, true) = "
-       << lsize << endl;
-
-  // map<int, index_space*>
-
-  sheaf::index_space_family lid_spaces;
-  sheaf::gluable_sum_index_space& ltop_id_space = lid_spaces.top_id_space();
-  map<int, index_space*> lmap2;
-  lmap2[0] = &ltop_id_space;
-  lmap2[1] = &ltop_id_space;
-  typedef sheaf::no_deep_size_policy<map<int,  index_space*> > S3;
-  lsize = deep_size<int, index_space*, S3>(lmap2, true);
-  cout << "deep_size<int, index_space*, S3>(lmap2, true) = " << lsize << endl;
-
-  // hash_map<int, index_space*>
-
-  hash_map<int, index_space*> lhash_map2;
-  lhash_map2[0] = &ltop_id_space;
-  lhash_map2[1] = &ltop_id_space;
-  typedef sheaf::no_deep_size_policy<hash_map<int, index_space*> > S4;
-  lsize = deep_size<int, index_space*, S4>(lhash_map2, true);
-  cout << "deep_size<int, index_space*, S4>(lhash_map2, true) = "
-       << lsize << endl;
-
   //============================================================================
 
   //$$SCRIBBLE: The following may be from either geometry or fields.
-
-  map<int, index_space*> lmap9;
-  lmap9[0] = &ltop_id_space;
-  lmap9[1] = &ltop_id_space;
-  typedef sheaf::no_deep_size_policy<map<int, index_space*> > S9;
-  lsize = deep_size<int, index_space*, S9>(lmap9, true);
-  cout << "deep_size<int, index_space*, S4>(lmap9, true) = "
-       << lsize << endl;
 
   map<string, scoped_index> lmap8;
   lmap8["abc"] = 123;
@@ -227,12 +193,12 @@ main(int xargc, char* xargv[])
 
  
   map<scoped_index, list<string> > lmap7;
-  scoped_index lindex0(123); 
+  scoped_index lindex0(lhub_id_space, 123); 
   list<string> llist0;
   llist0.push_back("abc");
   llist0.push_back("def");
 
-  scoped_index lindex1(456); 
+  scoped_index lindex1(lhub_id_space, 456); 
   list<string> llist1;
   llist1.push_back("cba");
   llist1.push_back("fed");

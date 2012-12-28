@@ -8,7 +8,7 @@
 /// Unit test driver for template class ragged_array.
 
 #include "ragged_array.impl.h"
-#include "scoped_index.h"
+// #include "scoped_index.h"
 #include "test_sheaves.impl.h"
 
 using namespace sheaf;
@@ -142,13 +142,13 @@ main(int xargc, char* xargv[])
   ltest &= test_ragged_array_facet<long double>();
   print_footer("End testing block<long double>");
 
-  // scoped_index
+//   // scoped_index
 
-  print_header("Begin testing ragged_array<scoped_index>");
-  ltest &= test_any_facet<ragged_array<scoped_index> >();
-  ltest &= test_rc_any_facet<ragged_array<scoped_index> >();
-  ltest &= test_ragged_array_facet<scoped_index>();
-  print_footer("End testing block<scoped_index>");
+//   print_header("Begin testing ragged_array<scoped_index>");
+//   ltest &= test_any_facet<ragged_array<scoped_index> >();
+//   ltest &= test_rc_any_facet<ragged_array<scoped_index> >();
+//   ltest &= test_ragged_array_facet<scoped_index>();
+//   print_footer("End testing block<scoped_index>");
 
 
   int lresult = ltest ? 0 : 1;
