@@ -9,19 +9,20 @@
 #include "int_set.h"
 #include "std_iostream.h"
 #include "std_iomanip.h"
+#include "subposet.h"
 #include "test_utils.h"
 
 using namespace sheaf;
 
-// namespace
-// {
-//   class int_set_child : public int_set
-//   {
-//   public:
-//     int_set_child() {}
-//     virtual ~int_set_child() {}
-//   };
-// }
+namespace
+{
+  class int_set_child : public int_set
+  {
+  public:
+    int_set_child() {}
+    ~int_set_child() {}
+  };
+}
 
 int
 main()
@@ -35,16 +36,20 @@ main()
   //============================================================================
 
   cout << boolalpha;
+  int lmbrs[4] = {101, 102, 103, 104};
 
   //int_set();
 
   int_set lset;
+  int_set lset_other;
 
   //int_set(const int_set& other);
 
   int_set lset_copy(lset);
 
   //int_set(const int* xmbrs, int xct);
+
+  int_set lset2(lmbrs, 4);
 
   //~int_set();
 
@@ -63,12 +68,15 @@ main()
 
   //void insert_members(const int* xmbrs, int xct);
 
-  int lmbrs[4] = {101, 102, 103, 104};
+
   lset.insert_members(lmbrs, 4);
+  lset_other.insert_members(lmbrs, 4);
 
   //void insert_members(const subposet* xmbrs);
 
-  //.......
+  // Need a namespace here.
+  //subposet lsubposet;
+  //lset2.insert_members(&lsubposet);
 
   //inline bool contains(int xindex) const;
 
@@ -88,25 +96,50 @@ main()
   //bool set_includes(const int_set* other,
   //                  bool this_is_much_larger = false) const;
 
-  //.......
+  bool lset_includes_false = lset.set_includes(&lset_other, false);
+  cout << "lset_includes_false = " << lset_includes_false << endl;
+
+  bool lset_includes_true = lset.set_includes(&lset_other, true);
+  cout << "lset_includes_true = " << lset_includes_true << endl;
 
   //int_set* set_union(const int_set* other) const;
 
+  int_set* lset_union = lset.set_union(&lset_other);
+
   //void set_union_pa(const int_set* other, int_set* result) const;
+
+  int_set lresult;
+  lset.set_union_pa(&lset_other, &lresult);
 
   //void set_union_sa(const int_set* other);
 
+  lset.set_union_sa(&lset_other);
+
   //int_set* set_intersection(const int_set* other) const;
+
+  int_set* lset_intersection = lset.set_intersection(&lset_other);
 
   //void set_intersection_pa(const int_set* other, int_set* result) const;
 
+  lset.set_intersection_pa(&lset_other, &lresult);
+
   //void set_intersection_sa(const int_set* other);
+
+  lset.set_intersection_sa(&lset_other);
 
   //int_set* set_difference(const int_set* other) const;
 
+  int_set* lset_difference = lset.set_difference(&lset_other);
+
   //void set_difference_pa(const int_set* other, int_set* result) const;
 
+  lset.set_difference_pa(&lset_other, &lresult);
+
   //void set_difference_sa(int_set* other, bool this_is_much_larger = false);
+
+  lset.set_difference_sa(&lset_other, false);
+
+  lset.set_difference_sa(&lset_other, true);
 
   //void print() const;
 
@@ -120,8 +153,8 @@ main()
 
   //$$HACK: To get better coverage of CTORs and DTORs.
 
-//   int_set_child* lchild = new int_set_child;
-//   delete lchild;
+  int_set_child* lchild = new int_set_child;
+  delete lchild;
 
   //============================================================================
 

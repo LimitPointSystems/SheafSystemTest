@@ -21,6 +21,16 @@ using namespace sheaf;
 
 /// @todo Update to match expanded set of primitives.
 
+namespace
+{
+  class arg_list_child : public arg_list
+  {
+  public:
+    arg_list_child() {}
+    virtual ~arg_list_child() {}
+  };
+}
+
 int
 main()
 {
@@ -522,6 +532,45 @@ main()
 //   lmbr.detach_from_state();
 //   lschema2.detach_from_state();
 //   lschema1.detach_from_state();
+
+  //============================================================================
+  // Miscellaneous (invoke functions to increase coverage).
+  //============================================================================
+
+  arg_list larg_list0;
+
+  larg_list0 << "int_dof" << 0;
+
+  arg_list::arg_type larg_type1;
+  larg_type1.put_type(0);
+
+  arg_list larg_list1(larg_type1);
+
+  larg_list0 += larg_list1; 
+
+  primitive_value& lvalue = larg_list0.value(0);
+
+  const string& lname = larg_list0.name(0);
+
+  int ltype = larg_list0.type(lname);
+
+  bool lparsing_value = larg_list0.parsing_value();
+
+  bool lparsing_error = larg_list0.parsing_error();
+
+  arg_list::arg_type& lback = larg_list0.back(); 
+
+  const arg_list larg_list_const = larg_list0;;
+  const arg_list::arg_type& lback_const = larg_list_const.back(); 
+
+  //============================================================================
+
+  //$$HACK: To get better coverage of CTORs and DTORs.
+
+  arg_list_child* lchild = new arg_list_child;
+  delete lchild;
+
+  //============================================================================
 
 
   return 0;
