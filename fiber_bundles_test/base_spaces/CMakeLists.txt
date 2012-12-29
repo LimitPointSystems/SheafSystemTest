@@ -37,6 +37,8 @@ set(UNIT_TEST_SRCS
     connectivity_extractor.t.cc
     hex_connectivity.t.cc
     line_connectivity.t.cc
+    material_decomposition.t.cc
+    mesh_decomposition.t.cc
     point_block_1d.t.cc
     point_block_2d.t.cc
     point_block_3d.t.cc
@@ -49,6 +51,7 @@ set(UNIT_TEST_SRCS
     triangle_connectivity.t.cc
     unstructured_block.t.cc
     zone_nodes_block.t.cc
+    zone_partition.t.cc
 )
 
 collect_unit_test_sources()
