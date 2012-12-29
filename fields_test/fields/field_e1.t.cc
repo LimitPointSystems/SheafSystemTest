@@ -5,8 +5,7 @@
 // Copyright (c) 2012 Limit Point Systems, Inc.
 //
 
-/// @example field_e1.t.cc
-/// Test driver for class e1.
+/// Unit test driver for class field_e1.
 
 #include "assert_contract.h"
 #include "at1_space.h"
@@ -20,7 +19,7 @@
 
 using namespace fields;
 
-///
+
 int
 main(int xargc, char *xargv[])
 {

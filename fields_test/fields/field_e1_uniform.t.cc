@@ -5,37 +5,71 @@
 // Copyright (c) 2012 Limit Point Systems, Inc.
 //
 
-/// @example fields/fields/field_e1_uniform.t.cc
 /// Unit test for class field_e1_uniform.
 
 #include "assert_contract.h"
+#include "at1_space.h"
+#include "base_space_member.h"
 #include "fiber_bundles_namespace.h"
 #include "field_e1_uniform.h"
-#include "std_iostream.h"
+#include "sec_at1_space.h"
+#include "sec_e1_uniform.h"
+#include "storage_agent.h"
+#include "test_fields.impl.h"
 
 using namespace fields;
 
-int main(int argc, char* argv[])
+int
+main(int xargc, char* xargv[])
 {
-//   size_t edge_ct_x = 2;
-//   if (argc > 1)
-//     edge_ct_x = atoi(argv[1]);
+  // Preconditions:
 
-//   fiber_bundles_namespace llns("field_e1_uniform.t");
+  // Body:
 
-//   field_rep_space* lhost =
-//     field_e1_uniform::new_host(lns, "1d_mesh", edge_ct_x, true);
+  string filename = filename_from_cmdline(*xargv);
 
-//   field_e1_uniform lcoords(lhost, -1.0, 1.0, true);
-//   lcoords.put_name("uniform_coordinates", true, true);
+  print_header("Testing " + filename);
 
-//   lns.get_read_access();
-//   cout << lns << endl;
+  // Create the namespace.
 
-//   // Clean-up
+  fiber_bundles_namespace lns(filename);
 
-//   lns.get_read_write_access(true);
-//   lcoords.detach_from_state();
+  lns.get_read_write_access();
+
+  size_type i_size = 2;
+
+  // Make a base space.
+
+  const poset_path& lbase_path = make_test_base_space(lns, i_size);
+
+  // Create the coordinates section.
+
+  const poset_path& lcoords_path = make_test_coordinates_1d(lns, lbase_path);
+
+  // Run tests.
+
+  // Test assignment:
+
+  test_field_assignment<field_e1_uniform>(lns, lbase_path, lcoords_path);
+
+  // Test vd facet:
+
+  test_field_vd_facet<field_e1_uniform>(lns, lbase_path, lcoords_path);
+
+  // Write the namespace to standard out.
+
+  //cout << ns << endl;
+
+  // Write the namespace to a file.
+
+  storage_agent write_agent(filename + ".hdf");
+
+  write_agent.write_entire(lns);
+
+  // Postconditions:
+
+  // Exit:
+
 
   return 0;
 }

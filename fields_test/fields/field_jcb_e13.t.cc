@@ -49,20 +49,20 @@ main()
 
   // Test assignment:
 
-  test_field_assignment<field_jcb_e13>(lns, lbase_path, lcoords_path);
+//   test_field_assignment<field_jcb_e13>(lns, lbase_path, lcoords_path);
 
-  // Test vd facet:
+//   // Test vd facet:
 
-  //@issue What does it mean to test the vd facet for jacobians?
-  //       They do derive from field_vd and therefore should pass
-  //       the vd facet tests.
+//   //@issue What does it mean to test the vd facet for jacobians?
+//   //       They do derive from field_vd and therefore should pass
+//   //       the vd facet tests.
 
-  test_field_vd_facet<field_jcb_e13>(lns, lbase_path, lcoords_path);
+//   test_field_vd_facet<field_jcb_e13>(lns, lbase_path, lcoords_path);
 
-  // Test jcb facet:
+//   // Test jcb facet:
 
-  test_field_jcb_facet<field_jcb_e13, field_e1, field_e3>
-    (lns, lbase_path, lcoords_path);
+//   test_field_jcb_facet<field_jcb_e13, field_e1, field_e3>
+//     (lns, lbase_path, lcoords_path);
 
   // Write the namespace to standard out.
 

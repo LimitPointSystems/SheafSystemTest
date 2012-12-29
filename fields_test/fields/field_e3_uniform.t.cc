@@ -5,49 +5,74 @@
 // Copyright (c) 2012 Limit Point Systems, Inc.
 //
 
-/// @example fields/fields/field_e3_uniform.t.cc
 /// Unit test for class field_e3_uniform.
 
 #include "assert_contract.h"
+#include "at1_space.h"
+#include "base_space_member.h"
 #include "fiber_bundles_namespace.h"
 #include "field_e3_uniform.h"
-#include "std_iostream.h"
-#include "wsv_block.h"
+#include "sec_at1_space.h"
+#include "sec_e3_uniform.h"
+#include "storage_agent.h"
+#include "test_fields.impl.h"
 
 using namespace fields;
 
-int main(int argc, char* argv[])
+int
+main(int xargc, char* xargv[])
 {
-//   size_t edge_ct_x = 2;
-//   if (argc > 1)
-//     edge_ct_x = atoi(argv[1]);
+  // Preconditions:
 
-//   size_t edge_ct_y = 3;
-//   if (argc > 2)
-//     edge_ct_y = atoi(argv[2]);
+  // Body:
 
-//   size_t edge_ct_z = 4;
-//   if (argc > 3)
-//     edge_ct_z = atoi(argv[3]);
+  string filename = filename_from_cmdline(*xargv);
 
-//   fiber_bundles_namespace llns("field_e3_uniform.t.hdf");
+  print_header("Testing " + filename);
 
-//   wsv_block<field_vd_dof_type> llower("-2.0 -3.0 -4.0");
-//   wsv_block<field_vd_dof_type> lupper("2.0 3.0 4.0");
+  // Create the namespace.
 
-//   field_rep_space* lhost =
-//     field_e3_uniform::new_host(lns, "3d_mesh", edge_ct_x, edge_ct_y, edge_ct_z, true);
+  fiber_bundles_namespace lns(filename);
 
-//   field_e3_uniform lcoords(lhost, llower, lupper, true);
-//   lcoords.put_name("uniform_coordinates", true, true);
+  lns.get_read_write_access();
 
-//   lns.get_read_access();
-//   cout << lns << endl;
+  size_type i_size = 2;
+  size_type j_size = 2;
+  size_type k_size = 2;
 
-//   // Clean-up
+  // Make a base space.
 
-//   lns.get_read_write_access(true);
-//   lcoords.detach_from_state();
+  const poset_path& lbase_path =
+    make_test_base_space(lns, i_size, j_size, k_size);
+
+  // Create the coordinates section.
+
+  const poset_path& lcoords_path = make_test_coordinates_3d(lns, lbase_path);
+
+  // Run tests.
+
+  // Test assignment:
+
+  test_field_assignment<field_e3_uniform>(lns, lbase_path, lcoords_path);
+
+  // Test vd facet:
+
+  test_field_vd_facet<field_e3_uniform>(lns, lbase_path, lcoords_path);
+
+  // Write the namespace to standard out.
+
+  //cout << ns << endl;
+
+  // Write the namespace to a file.
+
+  storage_agent write_agent(filename + ".hdf");
+
+  write_agent.write_entire(lns);
+
+  // Postconditions:
+
+  // Exit:
+
 
   return 0;
 }
