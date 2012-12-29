@@ -41,6 +41,7 @@ set(UNIT_TEST_SRCS
     interval_set.t.cc
     primitive_value.t.cc
     rc.t.cc
+    report.t.cc
     stop_watch.t.cc
     tolerance_comparison.t.cc
     zn_to_bool.t.cc
