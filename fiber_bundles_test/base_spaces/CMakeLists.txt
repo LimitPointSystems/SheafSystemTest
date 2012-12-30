@@ -39,6 +39,8 @@ set(UNIT_TEST_SRCS
     line_connectivity.t.cc
     material_decomposition.t.cc
     mesh_decomposition.t.cc
+    mesh_partition.t.cc
+    processor_decomposition.t.cc
     point_block_1d.t.cc
     point_block_2d.t.cc
     point_block_3d.t.cc
