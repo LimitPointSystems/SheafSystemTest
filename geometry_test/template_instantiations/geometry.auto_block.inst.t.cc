@@ -42,7 +42,7 @@ main(int xargc, char* xargv[])
   ltest &= test_auto_block_facet_un<kd_plane>();
   ltest &= test_auto_block_facet_equal_un<kd_plane>();
   ltest &= test_auto_block_facet_insertion_un<kd_plane>();
-  ltest &= test_auto_block_facet_deep_size_un<kd_plane>();
+  //ltest &= test_auto_block_facet_deep_size_un<kd_plane>();
   print_footer("End testing auto_block<kd_plane>");
 
   // kd_bounding_box:
@@ -51,7 +51,7 @@ main(int xargc, char* xargv[])
   ltest &= test_auto_block_facet_un<kd_bounding_box>();
   ltest &= test_auto_block_facet_equal_un<kd_bounding_box>();
   ltest &= test_auto_block_facet_insertion_un<kd_bounding_box>();
-  ltest &= test_auto_block_facet_deep_size_un<kd_bounding_box>();
+  //ltest &= test_auto_block_facet_deep_size_un<kd_bounding_box>();
   print_footer("End testing auto_block<kd_bounding_box>");
 
   //============================================================================

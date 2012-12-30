@@ -59,10 +59,10 @@ main(int xargc, char* xargv[])
   // scoped_index
 
   print_header("Begin testing auto_block<scoped_index>");
-  ltest &= test_auto_block_facet_all<scoped_index>();
-  ltest &= test_auto_block_facet_equal_all<scoped_index>();
-  ltest &= test_auto_block_facet_insertion_all<scoped_index>();
-  ltest &= test_auto_block_facet_deep_size_all<scoped_index>();
+  ltest &= test_auto_block_facet_un<scoped_index>();
+  ltest &= test_auto_block_facet_equal_un<scoped_index>();
+  ltest &= test_auto_block_facet_insertion_un<scoped_index>();
+  ltest &= test_auto_block_facet_deep_size_un<scoped_index>();
   print_footer("End testing auto_block<scoped_index>");
 
   // scoped_index*
@@ -131,10 +131,10 @@ main(int xargc, char* xargv[])
   // e3_lite
 
   print_header("Begin testing auto_block<e3_lite>");
-  ltest &= test_auto_block_facet_all<e3_lite>();
-  ltest &= test_auto_block_facet_equal_all<e3_lite>();
-  ltest &= test_auto_block_facet_insertion_all<e3_lite>();
-  ltest &= test_auto_block_facet_deep_size_all<e3_lite>();
+//   ltest &= test_auto_block_facet_all<e3_lite>();
+//   ltest &= test_auto_block_facet_equal_all<e3_lite>();
+//   ltest &= test_auto_block_facet_insertion_all<e3_lite>();
+//   ltest &= test_auto_block_facet_deep_size_all<e3_lite>();
   print_footer("End testing auto_block<e3_lite>");
 
   // section_evaluator*

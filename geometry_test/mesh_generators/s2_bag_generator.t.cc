@@ -1,5 +1,5 @@
 
-// $RCSfile: s2_bag_generator.t.cc,v $ $Revision: 1.4 $ $Date: 2012/03/01 00:41:14 $
+// $RCSfile$ $Revision$ $Date$
 
 //
 // Copyright (c) 2012 Limit Point Systems, Inc.
@@ -365,7 +365,7 @@ print_cells_subposet(const base_space_poset& xbase_space)
   while(!litr->is_done())
   {
     lmbr.attach_to_state(&xbase_space, litr->index());
-    cout << setw(8) << litr->index().internal_pod()
+    cout << setw(8) << litr->index().hub_pod()
          << "  :  " << lmbr.name() << endl;
     litr->next();
   }
@@ -467,17 +467,17 @@ create_coordinates_section(fiber_bundles_namespace& xns,
   vector<e3_lite> lcoords;
   get_coordinates(lcoords);
  
-  index_space_iterator* ldisc_itr =
-    lcoords_mbr.schema().discretization_id_space().iterator(true);
+  index_space_iterator& ldisc_itr =
+    lcoords_mbr.schema().discretization_id_space().get_iterator();
 
   size_type i = 0;
-  while(!ldisc_itr->is_done())
+  while(!ldisc_itr.is_done())
   {
-    lcoords_mbr.put_fiber(ldisc_itr->id(), lcoords[i++]);
-    ldisc_itr->next();
+    lcoords_mbr.put_fiber(ldisc_itr.pod(), lcoords[i++]);
+    ldisc_itr.next();
   }
 
-  delete ldisc_itr;
+  lcoords_mbr.schema().discretization_id_space().release_iterator(ldisc_itr);
 
   lbase_mbr.detach_from_state();
   lcoords_mbr.detach_from_state();
