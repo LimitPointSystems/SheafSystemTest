@@ -32,13 +32,16 @@ main(int xargc, char* xargv[])
 
   size_t lsize;
 
-  // Make an id space family and a primary term so that scoped ids can be
-  // constructed.
+  // Create some scoped ids for testing.
 
   index_space_family lid_spaces;
-  lid_spaces.new_primary_state(500);
+  lid_spaces.new_id(123);
+  lid_spaces.new_id(456);
 
   const index_space_handle& lhub_id_space = lid_spaces.hub_id_space();
+
+  scoped_index lindex0(lhub_id_space, 123); 
+  scoped_index lindex1(lhub_id_space, 456); 
 
   // bool
 
@@ -136,8 +139,8 @@ main(int xargc, char* xargv[])
   // list<scoped_index>
 
   list<scoped_index> llist;
-  llist.push_back(scoped_index(lhub_id_space, 123));  
-  llist.push_back(scoped_index(lhub_id_space, 456));  
+  llist.push_back(lindex0);  
+  llist.push_back(lindex1);  
   lsize = deep_size<scoped_index>(llist, true);
   cout << "deep_size<scoped_index>(llist, true) = " << lsize << endl;
 
@@ -184,8 +187,8 @@ main(int xargc, char* xargv[])
   //$$SCRIBBLE: The following may be from either geometry or fields.
 
   map<string, scoped_index> lmap8;
-  lmap8["abc"] = 123;
-  lmap8["def"] = 456;
+  lmap8["abc"] = lindex0;
+  lmap8["def"] = lindex1;
   typedef sheaf::key_deep_size_policy<map<string, scoped_index> > S8;
   lsize = deep_size<string, scoped_index, S8>(lmap8, true);
   cout << "deep_size<string, scoped_index, S8>(lmap8, true) = "
@@ -193,12 +196,10 @@ main(int xargc, char* xargv[])
 
  
   map<scoped_index, list<string> > lmap7;
-  scoped_index lindex0(lhub_id_space, 123); 
   list<string> llist0;
   llist0.push_back("abc");
   llist0.push_back("def");
 
-  scoped_index lindex1(lhub_id_space, 456); 
   list<string> llist1;
   llist1.push_back("cba");
   llist1.push_back("fed");

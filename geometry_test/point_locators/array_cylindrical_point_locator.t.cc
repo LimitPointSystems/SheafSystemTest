@@ -90,7 +90,7 @@ make_base_space_1d(fiber_bundles_namespace& xns, const string& xbase_space_name)
     
   base_space_poset& lhost = xns.new_base_space<B>(xbase_space_name);
 
-  B lmesh(&lhost, 2);
+  B lmesh(&lhost, 2, true);
   lmesh.put_name("mesh", true, true);
 
   poset_path result = lmesh.path(true);
@@ -121,7 +121,7 @@ make_base_space_2d(fiber_bundles_namespace& xns, const string& xbase_space_name)
     
   base_space_poset& lhost = xns.new_base_space<B>(xbase_space_name);
 
-  B lmesh(&lhost, 2, 2);
+  B lmesh(&lhost, 2, 2, true);
   lmesh.put_name("mesh", true, true);
 
   poset_path result = lmesh.path(true);
@@ -152,7 +152,7 @@ make_base_space_3d(fiber_bundles_namespace& xns, const string& xbase_space_name)
     
   base_space_poset& lhost = xns.new_base_space<B>(xbase_space_name);
 
-  B lmesh(&lhost, 2, 2, 2);
+  B lmesh(&lhost, 2, 2, 2, true);
   lmesh.put_name("mesh", true, true);
 
   poset_path result = lmesh.path(true);

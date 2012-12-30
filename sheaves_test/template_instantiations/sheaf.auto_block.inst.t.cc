@@ -238,7 +238,8 @@ main(int xargc, char* xargv[])
   ltest &= test_auto_block_facet_equal_all<block<double>* >();
   ltest &= test_auto_block_facet_equal_equal_all<block<double>* >();
   ltest &= test_auto_block_facet_insertion_all<block<double>* >();
-  ltest &= test_auto_block_facet_deep_size_all<block<double>* >();
+  //ltest &= test_auto_block_facet_deep_size_all<block<double>* >();
+  ltest &= test_auto_block_facet_deep_size_zero<block<double>* >();
   print_footer("End testing _auto_block<block<double>* >");
 
   // block<int>*
@@ -248,18 +249,9 @@ main(int xargc, char* xargv[])
   ltest &= test_auto_block_facet_equal_all<block<int>* >();
   ltest &= test_auto_block_facet_equal_equal_all<block<int>* >();
   ltest &= test_auto_block_facet_insertion_all<block<int>* >();
-  ltest &= test_auto_block_facet_deep_size_all<block<int>* >();
+  //ltest &= test_auto_block_facet_deep_size_all<block<int>* >();
+  ltest &= test_auto_block_facet_deep_size_zero<block<int>* >();
   print_footer("End testing _auto_block<block<int>* >");
-
-  // scoped_index
-
-  print_header("Begin testing auto_block<scoped_index>");
-  ltest &= test_auto_block_facet_all<scoped_index>();
-  ltest &= test_auto_block_facet_equal_all<scoped_index>();
-  ltest &= test_auto_block_facet_equal_equal_all<scoped_index>();
-  ltest &= test_auto_block_facet_insertion_all<scoped_index>();
-  ltest &= test_auto_block_facet_deep_size_all<scoped_index>();
-  print_footer("End testing block<scoped_index>");
 
   // primitive_value
 
@@ -338,7 +330,8 @@ main(int xargc, char* xargv[])
   ltest &= test_auto_block_facet_equal_all<poset_state_handle*>();
   ltest &= test_auto_block_facet_equal_equal_all<poset_state_handle*>();
   ltest &= test_auto_block_facet_insertion_all<poset_state_handle*>();
-  ltest &= test_auto_block_facet_deep_size_all<poset_state_handle*>();
+  //ltest &= test_auto_block_facet_deep_size_all<poset_state_handle*>();
+  ltest &= test_auto_block_facet_deep_size_zero<poset_state_handle*>();
   print_footer("End testing auto_block<poset_state_handle*>");
 
   // explicit_index_space_state*
