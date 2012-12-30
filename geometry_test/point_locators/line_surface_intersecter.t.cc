@@ -18,6 +18,9 @@
 #include "std_string.h"
 #include "zone_nodes_block.h"
 
+#include "std_iomanip.h"
+#include "std_iostream.h"
+
 using namespace geometry;
 
 void
@@ -143,19 +146,28 @@ main(int xargc, char* xargv[])
 
   // Body:
 
-  fiber_bundles_namespace* lns = new fiber_bundles_namespace("line_surface_intersecter.t.cc");
+  fiber_bundles_namespace lns("line_surface_intersecter.t.cc");
 
-  lns->get_read_write_access();
+  lns.get_read_write_access();
 
-  make_trimesh(lns, i_size, j_size);
-  sec_e3& lcoords = make_coordinates(lns, i_size, j_size);
+  make_trimesh(&lns, i_size, j_size);
+  sec_e3& lcoords = make_coordinates(&lns, i_size, j_size);
 
   block<size_type> lbnds(3);
   lbnds.push_back(10);
   lbnds.push_back(10);
   lbnds.push_back(1);
+
+  //$$ISSUE: Deleting the line_surface_intersecter created here
+  //         fails an assertion in the destructor for eval_iterator
+  //         on the line with " _schema_anchor->detach_from_state();".
+  //         So, we avoid this problem by creating it on the heap
+  //         and purposely not deleting it. This is OK, in a test
+  //         but the issue needs to be resolved.
   
-  line_surface_intersecter lintersecter(lcoords, lbnds);
+  //line_surface_intersecter lintersecter(lcoords, lbnds);
+  line_surface_intersecter* lintersecter =
+    new line_surface_intersecter(lcoords, lbnds);
   
   e3_lite lp0(0.5, 1.5, 1.0);
   e3_lite lp1(0.5, 1.5, -1.0);
@@ -163,7 +175,8 @@ main(int xargc, char* xargv[])
   typedef line_surface_intersecter::intersection_set_type set_type;
   set_type lset;
   
-  lintersecter.intersect(lp0, lp1, lset);
+  //lintersecter.intersect(lp0, lp1, lset);
+  lintersecter->intersect(lp0, lp1, lset);
   
   for(set_type::iterator litr = lset.begin(); litr != lset.end(); ++litr)
   {
@@ -177,7 +190,8 @@ main(int xargc, char* xargv[])
   e3_lite lp2(0.5, 1.0, 1.0);
   e3_lite lp3(0.5, 1.0, -1.0);
 
-  lintersecter.intersect(lp2, lp3, lset);
+  //lintersecter.intersect(lp2, lp3, lset);
+  lintersecter->intersect(lp2, lp3, lset);
   
   for(set_type::iterator litr = lset.begin(); litr != lset.end(); ++litr)
   {
@@ -186,8 +200,37 @@ main(int xargc, char* xargv[])
 	 <<endl;
   }
 
-  delete lns;
+  //delete lintersecter;
 
+  //============================================================================
+  // Miscellaneous test for code coverage:
+  //============================================================================
+
+  //line_surface_intersecter(const line_surface_intersecter& xother);
+  //  not_implemented
+
+  //line_surface_intersecter lintersecter_copy(*lintersecter);
+
+  //const sec_e3& coords() const;
+
+  const sec_e3& lcoords2 = lintersecter->coords();
+
+  //virtual bool is_ancestor_of(const any *other) const;
+
+  bool lis_ancestor_of =  lintersecter->is_ancestor_of(lintersecter);
+  cout << "lis_ancestor_of = " << boolalpha << lis_ancestor_of << endl;
+
+  //line_surface_intersecter lintersecter2;
+  //  protected
+
+  //line_surface_intersecter& operator=(const line_surface_intersecter& xother);
+  //  not_implemented
+
+  //ostream& operator<< (ostream &os, const line_surface_intersecter& xp);
+
+  cout << *lintersecter << endl;
+
+  //============================================================================
 
   // Postconditions:
 

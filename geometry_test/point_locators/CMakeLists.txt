@@ -35,6 +35,7 @@ collect_includes()
 #
 set(UNIT_TEST_SRCS
     array_cylindrical_point_locator.t.cc
+    line_surface_intersecter.t.cc
 )
 
 collect_unit_test_sources()
