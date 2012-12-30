@@ -8,6 +8,7 @@
 
 #include "mesh_decomposition.h"
 
+#include "fiber_bundles_namespace.h"
 #include "quad_connectivity.h" 
 #include "std_iomanip.h"
 #include "std_iostream.h"
@@ -84,7 +85,7 @@ namespace
 
     cout << "lbase_host->path() = " << lbase_host->path() << endl;
 
-    string lname_prefix =  mesh_decomposition::name_prefix();
+    string lname_prefix = mesh_decomposition::name_prefix();
 
     cout << "lname_prefix = " << lname_prefix << endl;
 
@@ -98,14 +99,14 @@ namespace
 
     //static bool is_valid_name(const string& xname);
 
-    bool lis_valid_name =
-      mesh_decomposition::is_valid_name(lname_prefix + "mesh_decomposition");
+    const string lpname = lname_prefix + "mesh_decomposition";
+
+    bool lis_valid_name = mesh_decomposition::is_valid_name(lpname);
     cout << "lis_valid_name = " << lis_valid_name << endl; 
 
     //mesh_decomposition(const base_space_poset& xmesh, const string& xname);
 
-    mesh_decomposition ldecomp(*lbase_host,
-                               lname_prefix + "mesh_decomposition");
+    mesh_decomposition ldecomp(*lbase_host, lpname);
 
     //const string& name() const;
 
@@ -175,6 +176,7 @@ namespace
     
     return true;
   }
+
 } // end unknown namespace
 
 int

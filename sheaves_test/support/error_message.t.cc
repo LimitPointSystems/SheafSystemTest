@@ -13,10 +13,20 @@
 
 using namespace sheaf;
 
+namespace
+{
+  class error_message_child : public error_message
+  {
+  public:
+    error_message_child() {}
+    ~error_message_child() {}
+  };
+
+} // end unnamed namespace
+
 int
 main()
 {
-
   // Test information message:
 
   error_message info(error_message::INFORMATION,
@@ -75,6 +85,36 @@ main()
     cerr << "Caught a logic_error: " << le.what () << endl;
     cerr << endl;
   }
+
+  //============================================================================
+  // Miscellaneous tests for code coverage.
+  //============================================================================
+
+  //error_message();
+
+  error_message lmsg; 
+
+  //error_message(const error_message& xother);
+
+  error_message lmsg_copy(lmsg); 
+
+  error_message& lmsg_assign = lmsg;
+
+  //virtual ~error_message();
+
+  error_message* lmsg_ptr = new error_message;
+  delete lmsg_ptr;
+
+  //ostream& operator<<(ostream& xos, const error_message& xmsg);
+
+  cout << "lmsg = " << lmsg << endl;  
+
+  //============================================================================
+
+  error_message_child* lmsg_ptr_child = new error_message_child;
+  delete lmsg_ptr_child;
+
+  //============================================================================
 
   return 0;
 }
