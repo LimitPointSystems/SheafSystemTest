@@ -1,15 +1,99 @@
+##
+## The list of directories and files which are included or
+## excluded by the intel codecov tool using the "-comp filename"
+## option.  Although not documented, blank lines and lines starting
+## with a '#' are ignored.
+
+##
+## Include only sheaves, fiber_bundles, geometry and fields.
+##
 @SHEAFSYSTEM_HOME@/sheaves
 @SHEAFSYSTEM_HOME@/fiber_bundles
 @SHEAFSYSTEM_HOME@/geometry
 @SHEAFSYSTEM_HOME@/fields
+
+##
+## Ignore all of the following:
+##
+~@SHEAFSYSTEM_HOME@/sheaves/std
+~@SHEAFSYSTEM_HOME@/geometry/kd_lattice
 ~@SHEAFSYSTEM_HOME@/solvers
 ~@SHEAFSYSTEM_HOME@/tools
-~@SHEAFSYSTEM_HOME@/sheaves/std
-~@SHEAFSYSTEM_HOME@/sheaves/iterators/block_decomposition_iterator
-~@SHEAFSYSTEM_HOME@/sheaves/support/binary_index_block
+
+##
+## Ignore the template_instatiation files;
+## otherwise they will be listed as uncovered.
+##
+~@SHEAFSYSTEM_HOME@/sheaves/template_instantiations
+~@SHEAFSYSTEM_HOME@/fiber_bundles/template_instantiations
+~@SHEAFSYSTEM_HOME@/geometry/template_instantiations
+~@SHEAFSYSTEM_HOME@/fields/template_instantiations
+
+##
+## Ignore everything in LPS prerequisites.
+##
+~@LPS_PREREQUISITES_HOME@
+
+##
+## The following are ignored because they are obsolete.
+##
+~@SHEAFSYSTEM_HOME@/sheaves/maps/name_map
 ~@SHEAFSYSTEM_HOME@/fiber_bundles/base_spaces/adjacency_extractor
 ~@SHEAFSYSTEM_HOME@/fiber_bundles/base_spaces/connectivity_extractor
 ~@SHEAFSYSTEM_HOME@/fiber_bundles/base_spaces/neighborhood_extractor
 ~@SHEAFSYSTEM_HOME@/fiber_bundles/base_spaces/stencil_extractor
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/array_implicit_index_map
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/array_implicit_index_map_interval
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/array_implicit_index_map_iterator
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/array_index_map
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/array_index_map_iterator
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/binary_product_index_map_iterator
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/explicit_product_index_space
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/gluable_sum_index_map
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/gluable_sum_index_map_iterator
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/gluable_sum_index_space
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/glued_sum_index_map
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/glued_sum_index_space
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/hash_index_map
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/implicit_index_map_interval
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/implicit_index_space_interval
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/implicit_product_index_space
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/index_map
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/index_map_iterator
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/index_space
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/interval_index_map
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/interval_index_map_iterator
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/mutable_index_map
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/offset_index_map
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/offset_index_map_iterator
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/primitives_index_map
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/product_index_map
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/product_index_space
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/simple_index_space
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/stl_index_map_iterator
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/sum_index_map
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/sum_index_map_local_iterator
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/sum_index_space
+~@SHEAFSYSTEM_HOME@/sheaves/id_spaces/ternary_product_index_map_iterator
+~@SHEAFSYSTEM_HOME@/fiber_bundles/id_spaces/section_space_schema_index_map
+~@SHEAFSYSTEM_HOME@/fiber_bundles/id_spaces/section_space_schema_index_map_iterator
+
+##
+## The following are ignored because they are not used.
+##
 ~@SHEAFSYSTEM_HOME@/fiber_bundles/section_spaces/section_space_factory
-~@LPS_PREREQUISITES_HOME@
+~@SHEAFSYSTEM_HOME@/sheaves/iterators/block_decomposition_iterator
+~@SHEAFSYSTEM_HOME@/sheaves/support/binary_index_block
+
+##
+## The following are ignored because they contain no functions.
+##
+~@SHEAFSYSTEM_HOME@/sheaves/iterators/block.cc
+~@SHEAFSYSTEM_HOME@/sheaves/iterators/biorder_itr.cc
+~@SHEAFSYSTEM_HOME@/sheaves/iterators/linkorder_itr.cc
+~@SHEAFSYSTEM_HOME@/sheaves/iterators/postorder_itr.cc
+~@SHEAFSYSTEM_HOME@/sheaves/iterators/preorder_itr.cc
+~@SHEAFSYSTEM_HOME@/sheaves/iterators/triorder_itr.cc
+~@SHEAFSYSTEM_HOME@/sheaves/iterators/triorder_itr.cc
+~@SHEAFSYSTEM_HOME@/sheaves/support/ragged_array.cc
+~@SHEAFSYSTEM_HOME@/sheaves/support/tolerance_comparison.cc
