@@ -12,3 +12,4 @@
 ~@SHEAFSYSTEM_HOME@/fiber_bundles/base_spaces/neighborhood_extractor
 ~@SHEAFSYSTEM_HOME@/fiber_bundles/base_spaces/stencil_extractor
 ~@SHEAFSYSTEM_HOME@/fiber_bundles/section_spaces/section_space_factory
+~@LPS_PREREQUISITES_HOME@
