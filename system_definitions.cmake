@@ -83,8 +83,8 @@ endif()
 # Set compiler optimization level.
 # Default is zero.
 #
-#$$TODO: add Windows clause.
-# We still need provision for user set opt levels. Can't always force "2" on the user.
+#$$TODO: Make certain optimization values for win32 compilers are valid. Adding win32 clause was "down and dirty".
+#$$TODO: We still need provision for user set opt levels. Can't always force "2" on the user.
 
 if(LINUX64GNU OR LINUX64INTEL)
     if(CMAKE_BUILD_TYPE STREQUAL "Debug-contracts" OR CMAKE_BUILD_TYPE STREQUAL "Debug-no-contracts")
@@ -93,9 +93,15 @@ if(LINUX64GNU OR LINUX64INTEL)
         # Optimize for execution speed.
         set(OPTIMIZATION_LEVEL "2" CACHE STRING "Compiler optimization level. Valid values for are 0,1,2,3, and \"s\(Linux only\)\". Default is 0. \n Linux values translate to -On. \n\n Windows values are: \n\n 0 = /0d \(no optimization\) \n 1 = /O1 \(Minimize Size\) \n 2 = /O2 \(Maximize Speed\) \n 3 = /GL \(Whole Program Optimization\) \n " FORCE)
     endif()
+else() # Win32
+    if($(Outdir) STREQUAL "Debug-contracts" OR $(Outdir) STREQUAL "Debug-no-contracts")
+        set(OPTIMIZATION_LEVEL "0" CACHE STRING "Compiler optimization level. Valid values for are 0,1,2,3, and \"s\(Linux only\)\". Default is 0. \n Linux values translate to -On. \n\n Windows values are: \n\n 0 = /0d \(no optimization\) \n 1 = /O1 \(Minimize Size\) \n 2 = /O2 \(Maximize Speed\) \n 3 = /GL \(Whole Program Optimization\) \n " FORCE)
+    else()
+        # Optimize for execution speed.
+        set(OPTIMIZATION_LEVEL "2" CACHE STRING "Compiler optimization level. Valid values for are 0,1,2,3, and \"s\(Linux only\)\". Default is 0. \n Linux values translate to -On. \n\n Windows values are: \n\n 0 = /0d \(no optimization\) \n 1 = /O1 \(Minimize Size\) \n 2 = /O2 \(Maximize Speed\) \n 3 = /GL \(Whole Program Optimization\) \n " FORCE)
+    endif()
 endif()
-mark_as_advanced(CLEAR OPTIMIZATION_LEVEL)
-
+mark_as_advanced(OPTIMIZATION_LEVEL)
 
 #
 # Enable coverage results
@@ -211,27 +217,27 @@ endfunction(clear_component_variables)
 function(set_optimization_level)
 
     if(LINUX64GNU OR LINUX64INTEL)
-        if(${OPTIMIZATION_LEVEL} STREQUAL 0)
+        if(${OPTIMIZATION_LEVEL} EQUAL 0)
             set(OPTIMIZATION "-O0" PARENT_SCOPE)
-        elseif(${OPTIMIZATION_LEVEL} STREQUAL 1)
+        elseif(${OPTIMIZATION_LEVEL} EQUAL 1)
             set(OPTIMIZATION "-O1" PARENT_SCOPE)
         elseif(${OPTIMIZATION_LEVEL} EQUAL 2)
             set(OPTIMIZATION "-O2" PARENT_SCOPE)
-        elseif(${OPTIMIZATION_LEVEL} STREQUAL 3)
+        elseif(${OPTIMIZATION_LEVEL} EQUAL 3)
             set(OPTIMIZATION "-O3" PARENT_SCOPE)
-        elseif(${OPTIMIZATION_LEVEL} STREQUAL s)
+        elseif(${OPTIMIZATION_LEVEL} EQUAL s)
             set(OPTIMIZATION "-Os" PARENT_SCOPE)
         else()
             break()
         endif()   # anything else, exit.
     elseif(WIN64MSVC OR WIN64INTEL)
-        if(${OPTIMIZATION_LEVEL} STREQUAL 0)
+        if(${OPTIMIZATION_LEVEL} EQUAL 0)
             set(OPTIMIZATION "/Od" PARENT_SCOPE)    
-        elseif(${OPTIMIZATION_LEVEL} STREQUAL 1)
+        elseif(${OPTIMIZATION_LEVEL} EQUAL 1)
             set(OPTIMIZATION "/O1" PARENT_SCOPE)
         elseif(${OPTIMIZATION_LEVEL} EQUAL 2)
             set(OPTIMIZATION "/O2" PARENT_SCOPE)
-        elseif(${OPTIMIZATION_LEVEL} STREQUAL 3)
+        elseif(${OPTIMIZATION_LEVEL} EQUAL 3)
             set(OPTIMIZATION "/GL" PARENT_SCOPE)    
         endif()
     endif()    

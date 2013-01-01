@@ -82,7 +82,7 @@ function(add_library_targets)
 
         # Create the DLL.
         add_library(${${COMPONENT}_DYNAMIC_LIB} SHARED ${${COMPONENT}_SRCS})
-        add_dependencies(${${COMPONENT}_DYNAMIC_LIB} ${FIBER_BUNDLES_IMPORT_LIBS})
+        add_dependencies(${${COMPONENT}_DYNAMIC_LIB} ${FIBER_BUNDLES_TEST_IMPORT_LIBS})
 
         if(${USE_VTK})
             target_link_libraries(${${COMPONENT}_DYNAMIC_LIB} ${FIBER_BUNDLES_IMPORT_LIBS} ${VTK_LIBS} ${TETGEN_LIB}) 
