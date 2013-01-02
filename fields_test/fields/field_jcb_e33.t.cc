@@ -54,18 +54,18 @@ main()
 
   // Test assignment:
 
-  typedef field_jcb_e33 field_type;
-  typedef typename field_type::property_section_type sec_type;
-  typedef typename sec_type::fiber_type fiber_type;
-  typedef typename fiber_type::volatile_type volatile_type;
+//   typedef field_jcb_e33 field_type;
+//   typedef typename field_type::property_section_type sec_type;
+//   typedef typename sec_type::fiber_type fiber_type;
+//   typedef typename fiber_type::volatile_type volatile_type;
 
-  cout << "field_type    = " << field_type::static_class_name() << endl;
-  cout << "sec_type      = " << sec_type::static_class_name() << endl;
-  cout << "fiber_type    = " << fiber_type::static_class_name() << endl;
-  cout << "volatile_type = " << volatile_type::static_class_name() << endl;
+//   cout << "field_type    = " << field_type::static_class_name() << endl;
+//   cout << "sec_type      = " << sec_type::static_class_name() << endl;
+//   cout << "fiber_type    = " << fiber_type::static_class_name() << endl;
+//   cout << "volatile_type = " << volatile_type::static_class_name() << endl;
 
-  cout << "sec_type::host_type = "
-       << sec_type::host_type::static_class_name() << endl;
+//   cout << "sec_type::host_type = "
+//        << sec_type::host_type::static_class_name() << endl;
 
 
 //   test_field_assignment<field_jcb_e33>(lns, lbase_path, lcoords_path);
