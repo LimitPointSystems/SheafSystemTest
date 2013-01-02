@@ -4,16 +4,29 @@
 // Copyright (c) 2012 Limit Point Systems, Inc.
 //
 
-/// @example support/error_message.t.cc
-/// Unit test driver for class error_message
+/// Unit test driver for class error_message.
 
 #include "error_message.h"
 #include "assert_contract.h"
+#include "std_iostream.h"
+#include "std_stdexcept.h"
 
+using namespace sheaf;
 
-int main()
+namespace
 {
+  class error_message_child : public error_message
+  {
+  public:
+    error_message_child() {}
+    ~error_message_child() {}
+  };
 
+} // end unnamed namespace
+
+int
+main()
+{
   // Test information message:
 
   error_message info(error_message::INFORMATION,
@@ -58,9 +71,50 @@ int main()
 
   fatal.post();
 
-  // Test severe error macro; should exit
+  // Test severe error macro; should throw a logic_error exception.
 
-  post_fatal_error_message("testing fatal error macro. Should exit with status 3.");
+  // Catch the exception thrown so that CMake CTest doesn't complain about an error 
+
+  try
+  {
+    post_fatal_error_message("testing fatal error macro. Should throw a logic_error.");
+  }
+  catch (std::logic_error& le)
+  {
+    cerr << endl;
+    cerr << "Caught a logic_error: " << le.what () << endl;
+    cerr << endl;
+  }
+
+  //============================================================================
+  // Miscellaneous tests for code coverage.
+  //============================================================================
+
+  //error_message();
+
+  error_message lmsg; 
+
+  //error_message(const error_message& xother);
+
+  error_message lmsg_copy(lmsg); 
+
+  error_message& lmsg_assign = lmsg;
+
+  //virtual ~error_message();
+
+  error_message* lmsg_ptr = new error_message;
+  delete lmsg_ptr;
+
+  //ostream& operator<<(ostream& xos, const error_message& xmsg);
+
+  cout << "lmsg = " << lmsg << endl;  
+
+  //============================================================================
+
+  error_message_child* lmsg_ptr_child = new error_message_child;
+  delete lmsg_ptr_child;
+
+  //============================================================================
 
   return 0;
 }

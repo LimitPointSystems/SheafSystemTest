@@ -91,6 +91,28 @@ void test_general_matrix_3x2()
   general_matrix_3x1<double> col_1 = m.column(1);
   cout << "general_matrix_3x1<double> col_1 = m.column(1):" << endl;
   cout << col_1 << endl;
+
+  //============================================================================
+
+  // Miscellaneous.
+
+  // general_matrix_3x2<double>::assign(double const&)
+
+  general_matrix_3x2<double> lgm;
+  lgm.assign(123.0);
+
+  //operator T* ();
+
+  double* lcomp(lgm);
+
+  //operator const T* () const;
+
+  const general_matrix_3x2<double> lgm_const = lgm;
+
+  const double* lcomp_const(lgm_const);
+
+  //============================================================================
+
 }
 
 ///

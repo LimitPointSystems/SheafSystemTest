@@ -1,11 +1,9 @@
 // $RCSfile: interval_set.t.cc,v $ $Revision: 1.8 $ $Date: 2012/07/04 16:42:27 $
 
-// $Name: HEAD $
 //
 // Copyright (c) 2012 Limit Point Systems, Inc.
 //
 
-/// @example support/interval_set.t.cc
 /// Test driver for class interval_set.
 
 #include "interval_set.h"
@@ -128,7 +126,8 @@ void interval_is_full(interval_set& xset,
 ///
 /// Main routine for testing interval_set.
 ///
-int main()
+int
+main()
 {
   interval_set lset;
   print_header("Testing empty interval set:");
@@ -189,7 +188,7 @@ int main()
   contains_member(lset, 16, false);
   contains_member(lset, 20, false);
 
-  // Test inteval is empty.
+  // Test interval is empty.
 
   print_header("Testing interval is empty:");
   interval_is_empty(lset, -2, 0, true);
@@ -205,7 +204,7 @@ int main()
   interval_is_empty(lset, 15, 15, false);
   interval_is_empty(lset, 16, 50, true);
 
-  // Test inteval is empty.
+  // Test interval is empty.
 
   print_header("Testing interval is full:");
   interval_is_full(lset, -2, 0, false);
@@ -220,6 +219,8 @@ int main()
   interval_is_full(lset, 12, 15, false);
   interval_is_full(lset, 15, 15, true);
   interval_is_full(lset, 16, 50, false);
+
+  return 0;
 }
 
 

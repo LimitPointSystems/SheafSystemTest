@@ -28,7 +28,7 @@ void test_symmetric_matrix_2x2()
 
   symmetric_matrix_2x2<double> m;
   m[0][0] =  4;  m[0][1] = -2; 
-  m[1][1] =  3; 
+                 m[1][1] =  3; 
 
   cout << "m = " << endl;
   cout << m << endl;
@@ -132,6 +132,34 @@ void test_symmetric_matrix_2x2()
   general_matrix_2x1<double> col_1 = m.column(1);
   cout << "general_matrix_2x1<double> col_1 = m.column(1):" << endl;
   cout << col_1 << endl;
+
+  //============================================================================
+
+  // Miscellaneous.
+
+
+  // symmetric_matrix_2x2<double>::assign(double const&)
+
+  symmetric_matrix_2x2<double> lsm;
+  lsm.assign(123.0);
+
+  //bool is_positive_definite() const
+
+  bool lis_positive_definite = lsm.is_positive_definite();
+  cout << "lis_positive_definite = " << boolalpha
+       << lis_positive_definite << endl;
+
+  //operator T* ();
+
+  double* lcomp(lsm);
+
+  //operator const T* () const;
+
+  const symmetric_matrix_2x2<double> lsm_const = lsm;
+
+  const double* lcomp_const(lsm_const);
+
+  //============================================================================
 
 }
 

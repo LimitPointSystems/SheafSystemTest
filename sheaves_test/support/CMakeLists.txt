@@ -34,7 +34,17 @@ collect_includes()
 # Source for unit test executables.
 #
 set(UNIT_TEST_SRCS
+    arg_list.t.cc
+    deep_size.t.cc
+    error_message.t.cc
+    int_set.t.cc
+    interval_set.t.cc
     primitive_value.t.cc
+    rc.t.cc
+    report.t.cc
+    stop_watch.t.cc
+    tolerance_comparison.t.cc
+    zn_to_bool.t.cc
 )
 
 collect_unit_test_sources()

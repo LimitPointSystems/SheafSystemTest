@@ -104,4 +104,15 @@ if(LINUX64GNU OR LINUX64INTEL)
     endif()   
 endif()
 
-
+#
+# Find LPS_PREREQUISITES_HOME
+#
+##
+## $$HACK: Extract the LPS prerequisites top level directory from VTK_DIR
+##
+if(VTK_FOUND)
+    get_filename_component(__TMP_DIR "${VTK_DIR}" PATH)
+    get_filename_component(__TMP_DIR "${__TMP_DIR}" PATH)
+    get_filename_component(__TMP_DIR "${__TMP_DIR}" PATH)
+    set(LPS_PREREQUISITES_HOME "${__TMP_DIR}" CACHE PATH "LPS prerequisites top level directory.")
+endif()

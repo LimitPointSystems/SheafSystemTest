@@ -201,6 +201,49 @@ void test_general_matrix_3x3()
   cout << "p2:" << endl << p2 << endl;
   cout << "p3:" << endl << p3 << endl;
 
+  //============================================================================
+
+  // Miscellaneous.
+
+  // general_matrix_3x3<double>::assign(double const&)
+
+  general_matrix_3x3<double> lgm;
+  lgm.assign(123.0);
+
+  lgm[0][0] =  10; lgm[0][1] = -10; lgm[0][2] =   0;
+  lgm[1][0] = -10; lgm[1][1] =  20; lgm[1][2] = -10;
+  lgm[2][0] =   0; lgm[2][1] =   0; lgm[2][2] =  10;
+
+  //bool is_positive_definite() const
+
+  bool lis_positive_definite = lgm.is_positive_definite();
+  cout << "lis_positive_definite = " << boolalpha
+       << lis_positive_definite << endl;
+
+  //bool is_symmetric() const
+
+  bool lis_symmetric = lgm.is_symmetric();
+  cout << "lis_symmetric = " << boolalpha
+       << lis_symmetric << endl;
+
+  //bool is_antisymmetric() const
+
+  bool lis_antisymmetric = lgm.is_antisymmetric();
+  cout << "lis_antisymmetric = " << boolalpha
+       << lis_antisymmetric << endl;
+
+  //operator T* ();
+
+  double* lcomp(lgm);
+
+  //operator const T* () const;
+
+  const general_matrix_3x3<double> lgm_const = lgm;
+
+  const double* lcomp_const(lgm_const);
+
+  //============================================================================
+
 }
 
 ///

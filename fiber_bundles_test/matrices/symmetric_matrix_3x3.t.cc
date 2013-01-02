@@ -153,6 +153,39 @@ void test_symmetric_matrix_3x3()
   general_matrix_3x1<double> col_1 = m.column(1);
   cout << "general_matrix_3x1<double> col_1 = m.column(1):" << endl;
   cout << col_1 << endl;
+
+  //============================================================================
+
+  // Miscellaneous.
+
+
+  // symmetric_matrix_3x3<double>::assign(double const&)
+
+  symmetric_matrix_3x3<double> lsm;
+  lsm.assign(123.0);
+
+  lsm[0][0] = 2;  lsm[0][1] =-1;  lsm[0][2] = 0;
+                  lsm[1][1] = 2;  lsm[1][2] =-1;
+                                  lsm[2][2] = 2;
+
+  //bool is_positive_definite() const
+
+  bool lis_positive_definite = lsm.is_positive_definite();
+  cout << "lis_positive_definite = " << boolalpha
+       << lis_positive_definite << endl;
+
+  //operator T* ();
+
+  double* lcomp(lsm);
+
+  //operator const T* () const;
+
+  const symmetric_matrix_3x3<double> lsm_const = lsm;
+
+  const double* lcomp_const(lsm_const);
+
+  //============================================================================
+
 }
 
 ///

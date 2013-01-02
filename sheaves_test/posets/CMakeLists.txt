@@ -37,6 +37,10 @@ set(UNIT_TEST_SRCS
     namespace_poset.t.cc
     poset.t.cc
     poset_joiner.t.cc
+    standard_dof_tuple_index.t.cc
+    standard_member_index.t.cc
+    standard_subposet_index.t.cc
+    standard_version_index.t.cc
     subposet.t.cc
 )
 

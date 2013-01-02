@@ -18,6 +18,8 @@
 #include "std_iostream.h"
 #include "test_utils.h"
 
+#include "gln_space.h"
+
 ///
 string
 fiber_bundle::
@@ -201,3 +203,4 @@ test_persistent_e3_facet(fiber_bundles_namespace& xns)
 
   // Exit:
 }
+

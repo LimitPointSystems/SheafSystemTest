@@ -71,6 +71,41 @@ void test_general_matrix_1x3()
   cout << "mm1x2 = m.multiply(m3x2):" << endl;
   cout << mm1x2 << endl;
 
+
+  //============================================================================
+
+  // Miscellaneous.
+
+
+  // general_matrix_1x3<double>::assign(double const&)
+
+  general_matrix_1x3<double> lgm;
+  lgm.assign(123.0);
+
+  general_matrix_3x1<double> lgm3x1;
+  lgm.assign(2.0);
+
+  // void multiply(const general_matrix_3x1<T>& xother, T& xresult) const
+
+  double lresult;
+  lgm.multiply(lgm3x1, lresult);
+  
+  // T multiply(const general_matrix_3x1<T>& xother) const
+
+  lresult = lgm.multiply(lgm3x1);
+
+  //operator T* ();
+
+  double* lcomp(lgm);
+
+  //operator const T* () const;
+
+  const general_matrix_1x3<double> lgm_const = lgm;
+
+  const double* lcomp_const(lgm_const);
+
+  //============================================================================
+
 }
 
 ///

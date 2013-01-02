@@ -1113,7 +1113,6 @@ public:
   }
 };
 
-
 } // namespace fiber_bundle
 
 

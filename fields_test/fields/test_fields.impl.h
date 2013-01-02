@@ -66,6 +66,34 @@
 #include "test_utils.h"
 #endif
 
+//============================
+
+#ifndef FIELD_JCB_E33_H
+#include "field_jcb_e33.h"
+#endif
+
+#ifndef SEC_JCB_E33_H
+#include "sec_jcb_e33.h"
+#endif
+
+#ifndef JCB_E33_H
+#include "jcb_e33.h"
+#endif
+
+#ifndef JCB_SPACE_H
+#include "jcb_space.h"
+#endif
+
+#ifndef SEC_REP_SPACE_H
+#include "sec_rep_space.h"
+#endif
+
+#ifndef BASE_SPACE_POSET_H
+#include "base_space_poset.h"
+#endif
+
+//============================
+
 //$$SCRIBBLE:
 //  This code is meant for testing purposes only.
 //  It is not meant to be a set of examples of how to use the library.
@@ -1107,7 +1135,7 @@ void make_test_sections(fiber_bundles_namespace& xns,
 
   // We have to make sure that the representation is the same for all
   // sections created here.  Otherwise we will end up trying to combine
-  // "apples and oranges" is the vector/tensor operations (and will
+  // "apples and oranges" in the vector/tensor operations (and will
   // violate pre- or postconditions).
 
   // For testing make all reps "vertex_element_dlinear".

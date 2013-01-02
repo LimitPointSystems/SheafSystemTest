@@ -70,6 +70,27 @@ void test_general_matrix_2x1()
   cout << "mm2x3 = m.multiply(m1x3):" << endl;
   cout << mm2x3 << endl;
 
+  //============================================================================
+
+  // Miscellaneous.
+
+  // general_matrix_2x1<double>::assign(double const&)
+
+  general_matrix_2x1<double> lgm;
+  lgm.assign(123.0);
+
+  //operator T* ();
+
+  double* lcomp(lgm);
+
+  //operator const T* () const;
+
+  const general_matrix_2x1<double> lgm_const = lgm;
+
+  const double* lcomp_const(lgm_const);
+
+  //============================================================================
+
 }
 
 ///

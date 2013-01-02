@@ -15,6 +15,7 @@
 #include "general_matrix_2x2.h"
 #include "general_matrix_2x3.h"
 #include "std_iostream.h"
+#include "std_iomanip.h"
 
 using namespace fiber_bundle;
 
@@ -122,6 +123,47 @@ void test_antisymmetric_matrix_2x2()
   general_matrix_2x1<double> col_1 = m.column(1);
   cout << "general_matrix_2x1<double> col_1 = m.column(1):" << endl;
   cout << col_1 << endl;
+
+  //============================================================================
+
+  // Miscellaneous.
+
+
+  // antisymmetric_matrix_2x2<double>::assign(double const&)
+
+  antisymmetric_matrix_2x2<double> lam;
+  lam.assign(123.0);
+
+  //bool is_positive_definite() const
+
+  bool lis_positive_definite = lam.is_positive_definite();
+  cout << "lis_positive_definite = " << boolalpha
+       << lis_positive_definite << endl;
+
+  //void multiply(const general_matrix_2x2<T>& xother,
+  //              general_matrix_2x2<T>& xresult) const;
+
+  general_matrix_2x2<double> lgm;
+  lgm[0][0] =  4; lgm[0][1] = -2;
+  lgm[1][0] = -2; lgm[1][1] =  3;
+
+  general_matrix_2x2<double> lresult;
+
+  lam.multiply(lgm, lresult);
+
+  general_matrix_2x2<double> lresult2 = lam.multiply(lgm);
+
+  //operator T* ();
+
+  double* lcomp(lam);
+
+  //operator const T* () const;
+
+  const antisymmetric_matrix_2x2<double> lam_const = lam;
+
+  const double* lcomp_const(lam_const);
+
+  //============================================================================
 
 }
 

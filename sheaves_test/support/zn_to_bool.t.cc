@@ -4,26 +4,19 @@
 // Copyright (c) 2012 Limit Point Systems, Inc.
 //
 
-/// @example support/zn_to_bool.t.cc
-/// class ZN_TO_BOOL tester
+/// Unit test for class zn_to_bool.
+
+#include "zn_to_bool.h"
 
 #include "assert_contract.h"
-
-#ifndef ZN_TO_BOOL_H
-#include "zn_to_bool.h"
-#endif
-
-#include "index_iterator.h"
-
-#ifndef BLOCK_H
 #include "block.h"
-#endif
-
+#include "index_iterator.h"
 #include "std_iostream.h"
 
 using namespace sheaf;
 
-int main()
+int
+main()
 {
 
   int true_array[3] = {0,4,32};
