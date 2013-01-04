@@ -16,7 +16,7 @@
 #
 if(WIN64MSVC OR WIN64INTEL)
     set_property(GLOBAL PROPERTY USE_FOLDERS On)
-	set(FIELDS_IMPORT_LIB fieldsdll CACHE STRING "SheafSystem import library")
+#	set(FIELDS_IMPORT_LIB fieldsdll CACHE STRING "SheafSystem import library")
 endif()
 
 #
@@ -35,16 +35,16 @@ link_directories(${SHEAVES_LIB_OUTPUT_DIR})
 # Linux only for now.
 #
 if(LINUX64INTEL)
-    set(COLOR_B FFFF00 CACHE STRING "Color for uncovered blocks code.")
-    set(COLOR_C 00FF00 CACHE STRING "Color for covered code.")
-    set(COLOR_F FF0000 CACHE STRING "Color for uncovered functions code.")
-    set(COLOR_I FFFFFF CACHE STRING "Color for information lines.")
-    set(COLOR_P FF00FF CACHE STRING "Color for partially covered code.")
-    set(COLOR_U 00FFFF CACHE STRING "Color for unknown code.")
+#    set(COLOR_B FFFF00 CACHE STRING "Color for uncovered blocks code.")
+#    set(COLOR_C 00FF00 CACHE STRING "Color for covered code.")
+#    set(COLOR_F FF0000 CACHE STRING "Color for uncovered functions code.")
+#    set(COLOR_I FFFFFF CACHE STRING "Color for information lines.")
+#    set(COLOR_P FF00FF CACHE STRING "Color for partially covered code.")
+#    set(COLOR_U 00FFFF CACHE STRING "Color for unknown code.")
 
-##    set(UNCOVERED_COLOR DE0829 CACHE STRING "Color for uncovered code.")
-##    set(COVERED_COLOR 319A44 CACHE STRING "Color for covered code.")
-##    set(PARTIAL_COLOR E1EA43 CACHE STRING "Color for partially covered code.")
+    set(UNCOVERED_COLOR DE0829 CACHE STRING "Color for uncovered code.")
+    set(COVERED_COLOR 319A44 CACHE STRING "Color for covered code.")
+    set(PARTIAL_COLOR E1EA43 CACHE STRING "Color for partially covered code.")
     
     # Lop the compiler name off the end of the CXX string
     string(REPLACE "/icpc" "" INTELPATH ${CMAKE_CXX_COMPILER})
@@ -412,18 +412,25 @@ endfunction(add_clean_files)
 function(add_bin_target)
 
     add_custom_target(bin DEPENDS ${ALL_BIN_TARGETS})
-    set_target_properties(bin PROPERTIES FOLDER "Bin Targets")
-        
+    if(WIN64MSVC OR WIN64INTEL)
+        set_target_properties(bin PROPERTIES FOLDER "Bin Targets")
+    endif()
+            
 endfunction(add_bin_target)
 
 #
 # Add component specific bin targets. e.g., "sheaves-bin", "tools-bin", etc.
 #
 function(add_component_bin_target)
-    add_custom_target(${PROJECT_NAME}-bin DEPENDS ${${COMPONENT}_SHARED_LIB} ${${COMPONENT}_UNIT_TESTS} ${${COMPONENT}_EXAMPLES})
+    if(WIN64MSVC OR WIN64INTEL)
+        add_custom_target(${PROJECT_NAME}-bin DEPENDS ${${COMPONENT}_IMPORT_LIB} ${${COMPONENT}_UNIT_TESTS} ${${COMPONENT}_EXAMPLES})
+        set_target_properties(${PROJECT_NAME}-bin PROPERTIES FOLDER "Bin Targets")
+    else()
+        add_custom_target(${PROJECT_NAME}-bin DEPENDS ${${COMPONENT}_SHARED_LIB} ${${COMPONENT}_UNIT_TESTS} ${${COMPONENT}_EXAMPLES})
+    endif()    
     # Add a bin target for this component to the system list. "make bin" will invoke this list.
     set(ALL_BIN_TARGETS ${ALL_BIN_TARGETS} ${PROJECT_NAME}-bin CACHE STRING "Aggregate list of component bin targets" FORCE)
-        set_target_properties(${PROJECT_NAME}-bin PROPERTIES FOLDER "Bin Targets")
+
     mark_as_advanced(ALL_BIN_TARGETS) 
 
 endfunction(add_component_bin_target)
@@ -449,11 +456,16 @@ endfunction(add_check_target)
 #
 function(add_component_check_target)
 
-    add_custom_target(${PROJECT_NAME}-check ALL COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} DEPENDS ${${COMPONENT}_SHARED_LIB} ${${COMPONENT}_UNIT_TESTS})
+    if(WIN64MSVC OR WIN64INTEL)
+        add_custom_target(${PROJECT_NAME}-check ALL COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} DEPENDS ${${COMPONENT}_IMPORT_LIB} ${${COMPONENT}_UNIT_TESTS})
+        set_target_properties(${PROJECT_NAME}-check PROPERTIES FOLDER "Check Targets")
+    else()
+        add_custom_target(${PROJECT_NAME}-check ALL COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} DEPENDS ${${COMPONENT}_SHARED_LIB} ${${COMPONENT}_UNIT_TESTS})
+    endif()
     # Add a check target for this component to the system list. "make check" will invoke this list.
     set(ALL_UNIT_TEST_TARGETS ${ALL_UNIT_TEST_TARGETS} ${${COMPONENT}_UNIT_TESTS} CACHE STRING "Aggregate list of unit test targets" FORCE)
     set(ALL_CHECK_TARGETS ${ALL_CHECK_TARGETS} ${PROJECT_NAME}-check CACHE STRING "Aggregate list of component check targets" FORCE)
-    set_target_properties(${PROJECT_NAME}-check PROPERTIES FOLDER "Check Targets")
+
     mark_as_advanced(ALL_CHECK_TARGETS)
 
 endfunction(add_component_check_target)
@@ -499,9 +511,12 @@ endfunction()
 # Add component specific checklog targets. e.g., "sheaves-checklog", "tools-checklog", etc.
 #
 function(add_component_checklog_target)
-
-    add_custom_target(${PROJECT_NAME}-checklog DEPENDS ${${COMPONENT}_SHARED_LIB} ${${COMPONENT}_LOGS})
-    set_target_properties(${PROJECT_NAME}-checklog PROPERTIES FOLDER "Checklog Targets")
+    if(WIN64MSVC OR WIN64INTEL)
+        add_custom_target(${PROJECT_NAME}-checklog DEPENDS ${${COMPONENT}_IMPORT_LIB} ${${COMPONENT}_LOGS})
+        set_target_properties(${PROJECT_NAME}-checklog PROPERTIES FOLDER "Checklog Targets")
+    else()
+        add_custom_target(${PROJECT_NAME}-checklog DEPENDS ${${COMPONENT}_SHARED_LIB} ${${COMPONENT}_LOGS})
+    endif()
     set(ALL_CHECKLOG_TARGETS ${ALL_CHECKLOG_TARGETS} ${${COMPONENT}_LOGS} CACHE STRING "Aggregate list of component checklog targets" FORCE)
     mark_as_advanced(ALL_CHECKLOG_TARGETS) 
 
@@ -531,11 +546,12 @@ function(add_test_targets)
     endif()
     
     # link_directories only applies to targets created after it is called.
-    if(LINUX64GNU OR LINUX64INTEL)
+    #if(LINUX64GNU OR LINUX64INTEL)
         link_directories(${${COMPONENT}_OUTPUT_DIR} ${HDF5_LIBRARY_DIRS} ${TETGEN_DIR})
-    else()
-        link_directories(${${COMPONENT}_OUTPUT_DIR}/$(OutDir) ${HDF5_LIBRARY_DIRS} ${TETGEN_DIR})
-    endif()    
+   # else()
+        #link_directories(${${COMPONENT}_OUTPUT_DIR}/$(OutDir) ${HDF5_LIBRARY_DIRS} ${TETGEN_DIR})
+   #     link_directories(${${COMPONENT}_OUTPUT_DIR}/$(OutDir) ${HDF5_LIBRARY_DIRS} ${TETGEN_DIR})
+   # endif()    
     
     # Let the user know what's being configured
     status_message("Configuring Unit Tests for ${PROJECT_NAME}")   
