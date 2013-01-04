@@ -32,7 +32,7 @@ if(WIN64INTEL OR WIN64MSVC)
     #
     # Set the cumulative import library (win32) var for this component.
     #
-    set(${COMPONENT}_IMPORT_LIBS ${${COMPONENT}_IMPORT_LIB} ${FIBER_BUNDLES_IMPORT_LIBS} CACHE STRING " Cumulative import libraries (win32) for ${PROJECT_NAME}" FORCE)
+    set(${COMPONENT}_IMPORT_LIBS ${FIBER_BUNDLES_TEST_IMPORT_LIBS} ${${COMPONENT}_IMPORT_LIB} ${GEOMETRY_IMPORT_LIB} CACHE STRING "Cumulative import libraries (win32) for ${PROJECT_NAME}" FORCE)
 
 else()
 
@@ -82,15 +82,15 @@ function(add_library_targets)
 
         # Create the DLL.
         add_library(${${COMPONENT}_DYNAMIC_LIB} SHARED ${${COMPONENT}_SRCS})
-        add_dependencies(${${COMPONENT}_DYNAMIC_LIB} ${FIBER_BUNDLES_TEST_IMPORT_LIBS})
+        add_dependencies(${${COMPONENT}_DYNAMIC_LIB} ${FIBER_BUNDLES_TEST_IMPORT_LIBS} ${GEOMETRY_IMPORT_LIB})
 
         if(${USE_VTK})
-            target_link_libraries(${${COMPONENT}_DYNAMIC_LIB} ${FIBER_BUNDLES_IMPORT_LIBS} ${VTK_LIBS} ${TETGEN_LIB}) 
+            target_link_libraries(${${COMPONENT}_DYNAMIC_LIB} ${FIBER_BUNDLES_IMPORT_LIBS} ${GEOMETRY_IMPORT_LIB} ${VTK_LIBS} ${TETGEN_LIB}) 
         else()
-            target_link_libraries(${${COMPONENT}_DYNAMIC_LIB} ${FIBER_BUNDLES_IMPORT_LIBS} ${TETGEN_LIB})        
+            target_link_libraries(${${COMPONENT}_DYNAMIC_LIB} ${FIBER_BUNDLES_IMPORT_LIBS} ${GEOMETRY_IMPORT_LIB} ${TETGEN_LIB})        
         endif() 
      
-        set_target_properties(${${COMPONENT}_DYNAMIC_LIB} PROPERTIES FOLDER "Component Library Targets")
+        set_target_properties(${${COMPONENT}_DYNAMIC_LIB} PROPERTIES FOLDER "Library Targets")
         # Override cmake's placing of "${${COMPONENT}_DYNAMIC_LIB}_EXPORTS into the preproc symbol table.
         set_target_properties(${${COMPONENT}_DYNAMIC_LIB} PROPERTIES DEFINE_SYMBOL "SHEAF_DLL_EXPORTS")
 

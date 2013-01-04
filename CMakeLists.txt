@@ -70,13 +70,6 @@ add_components()
 create_output_dirs()
 
 #
-# Snapshot target for Visual Studio
-#
-if(WIN64)
-    create_vswin64_snapshot_target()
-endif()
-
-#
 # Add the system check target.
 # Only needs to be called at the system level.
 # use "<component>-check" for component level
@@ -91,7 +84,7 @@ add_check_target()
 # use "<component>-check" for component level
 # tests.
 #
-add_checklog_target()
+#add_checklog_target()
 
 #
 # Add the system coverage target.
@@ -133,25 +126,18 @@ add_bin_target()
 #
 # Configure the environment scripts. 
 #
-configure_file(${CMAKE_MODULE_PATH}/set_env_vars.csh.cmake.in ${CMAKE_BINARY_DIR}/set_env_vars.csh)
-configure_file(${CMAKE_MODULE_PATH}/set_env_vars.sh.cmake.in ${CMAKE_BINARY_DIR}/set_env_vars.sh)
-
-#
-# Cpack Setup
-#
 if(LINUX64)
-    set(CPACK_PACKAGE_VERSION "${LIB_VERSION}") 
-    set(CPACK_GENERATOR "TBZ2")
-    include(CPack)
+    configure_file(${CMAKE_MODULE_PATH}/set_env_vars.csh.cmake.in ${CMAKE_BINARY_DIR}/set_env_vars.csh)
+    configure_file(${CMAKE_MODULE_PATH}/set_env_vars.sh.cmake.in ${CMAKE_BINARY_DIR}/set_env_vars.sh)
 endif()
 
 #
 # If we are using VTK, then append VTK vars to the exports file
 #
-if(${USE_VTK})
-    file(APPEND ${CMAKE_BINARY_DIR}/${EXPORTS_FILE} "\n")
-    file(APPEND ${CMAKE_BINARY_DIR}/${EXPORTS_FILE} "set(USE_VTK ON CACHE BOOL \"Set to link against VTK libs\" FORCE)\n")
-    file(APPEND  ${CMAKE_BINARY_DIR}/${EXPORTS_FILE} "\n")
-endif()
+#if(${USE_VTK})
+#    file(APPEND ${CMAKE_BINARY_DIR}/${EXPORTS_FILE} "\n")
+#    file(APPEND ${CMAKE_BINARY_DIR}/${EXPORTS_FILE} "set(USE_VTK ON CACHE BOOL \"Set to link against VTK libs\" FORCE)\n")
+#    file(APPEND  ${CMAKE_BINARY_DIR}/${EXPORTS_FILE} "\n")
+#endif()
 
 

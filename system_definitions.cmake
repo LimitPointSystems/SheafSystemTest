@@ -58,8 +58,7 @@ execute_process(COMMAND ${CMAKE_COMMAND} -E remove ${CMAKE_BINARY_DIR}/${EXPORTS
 #
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE "Debug-contracts" CACHE STRING
-      "Choose the type of build, options are: ${CMAKE_CONFIGURATION_TYPES}."      
-      FORCE)
+      "Choose the type of build, options are: ${CMAKE_CONFIGURATION_TYPES}.")
 endif(NOT CMAKE_BUILD_TYPE)
 
 #
@@ -113,13 +112,6 @@ if(ENABLE_COVERAGE)
     set(COVERAGE_DIR ${CMAKE_BINARY_DIR}/coverage CACHE STRING "Directory for coverage files")
     execute_process(COMMAND ${CMAKE_COMMAND} -E make_directory ${COVERAGE_DIR})
 endif()
-#
-# Add solvers and tools if linux
-#
-#if(LINUX64GNU OR LINUX64INTEL)
-#    set(COMPONENTS ${COMPONENTS} solvers_test CACHE STRING "List of components in this system" FORCE)
-    #set(COMPONENTS ${COMPONENTS} solvers tools CACHE STRING "List of components in this system" FORCE)
-#endif()
 
 #
 # Default linux installation location is /usr/local
@@ -128,11 +120,7 @@ endif()
 # "lib", "include", and "bin" will be appended to this location.
 # See "add_install_target" in cmake_modules/LPSCommon.cmake for source.
 #
-if(LINUX64GNU OR LINUX64INTEL)
-    set(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR} CACHE STRING "System install location")
-elseif(WIN64MSVC OR WIN64INTEL)
-    set(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR} CACHE STRING "System install location")
-endif()
+set(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR} CACHE STRING "System install location")
 
 #
 # Establish the version number for this build.

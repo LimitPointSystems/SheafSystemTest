@@ -32,7 +32,7 @@ if(WIN64INTEL OR WIN64MSVC)
     #
     # Set the cumulative import library (win32) var for this component.
     #
-    set(${COMPONENT}_IMPORT_LIBS ${${COMPONENT}_IMPORT_LIB} ${SHEAVES_TEST_IMPORT_LIBS} CACHE STRING " Cumulative import libraries (win32) for ${PROJECT_NAME}" FORCE)
+    set(${COMPONENT}_IMPORT_LIBS ${SHEAVES_TEST_IMPORT_LIBS} ${${COMPONENT}_IMPORT_LIB} ${FIBER_BUNDLES_IMPORT_LIB} CACHE STRING " Cumulative import libraries (win32) for ${PROJECT_NAME}" FORCE)
 
 else()
 
@@ -75,12 +75,13 @@ function(add_library_targets)
 
         # Tell the linker where to look for this project's libraries.
         link_directories(${${COMPONENT}_OUTPUT_DIR})
+        
         # Create the DLL.
         add_library(${${COMPONENT}_DYNAMIC_LIB} SHARED ${${COMPONENT}_SRCS})
-        add_dependencies(${${COMPONENT}_DYNAMIC_LIB} ${SHEAVES_TEST_IMPORT_LIBS})
-
-        target_link_libraries(${${COMPONENT}_DYNAMIC_LIB} ${SHEAVES_TEST_IMPORT_LIBS} )
-        set_target_properties(${${COMPONENT}_DYNAMIC_LIB} PROPERTIES FOLDER "Component Library Targets")
+        add_dependencies(${${COMPONENT}_DYNAMIC_LIB} ${SHEAVES_TEST_IMPORT_LIBS} ${FIBER_BUNDLES_IMPORT_LIB} )
+        
+        target_link_libraries(${${COMPONENT}_DYNAMIC_LIB} ${SHEAVES_TEST_IMPORT_LIBS} ${FIBER_BUNDLES_IMPORT_LIB} )
+        set_target_properties(${${COMPONENT}_DYNAMIC_LIB} PROPERTIES FOLDER "Library Targets")
         # Override cmake's placing of "${${COMPONENT}_DYNAMIC_LIB}_EXPORTS into the preproc symbol table.
         set_target_properties(${${COMPONENT}_DYNAMIC_LIB} PROPERTIES DEFINE_SYMBOL "SHEAF_DLL_EXPORTS")
 

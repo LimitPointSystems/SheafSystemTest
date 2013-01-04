@@ -63,7 +63,6 @@ endif()
 # Check for and configure system cxx includes.
 #
 function(check_cxx_includes)
-
    include(CheckIncludeFileCXX)
 
     # C++ Headers for C Library Facilities
@@ -535,7 +534,7 @@ function(add_test_targets)
     if(LINUX64GNU OR LINUX64INTEL)
         link_directories(${${COMPONENT}_OUTPUT_DIR} ${HDF5_LIBRARY_DIRS} ${TETGEN_DIR})
     else()
-        link_directories(${${COMPONENT}_OUTPUT_DIR}/${CMAKE_BUILD_TYPE} ${HDF5_LIBRARY_DIRS} ${TETGEN_DIR})
+        link_directories(${${COMPONENT}_OUTPUT_DIR}/$(OutDir) ${HDF5_LIBRARY_DIRS} ${TETGEN_DIR})
     endif()    
     
     # Let the user know what's being configured
@@ -557,7 +556,7 @@ function(add_test_targets)
             if(WIN64MSVC OR WIN64INTEL)
                 # Supply the *_DLL_IMPORTS directive to preprocessor
                 set_target_properties(${t_file} PROPERTIES COMPILE_DEFINITIONS "SHEAF_DLL_IMPORTS")
-                add_dependencies(${t_file} fieldsdll.dll)
+                add_dependencies(${t_file} ${${COMPONENT}_IMPORT_LIBS})
             else()
                 add_dependencies(${t_file} ${${COMPONENT}_SHARED_LIBS})
             endif()
@@ -629,9 +628,9 @@ function(add_test_targets)
                 # unit_test.hdf.log -> unit_test.hdf -> unit_test.log -> unit_test
                 #
                 if(${USE_VTK})
-                    target_link_libraries(${t_file} ${FIELDS_IMPORT_LIB} ${HDF5_LIBRARIES} ${VTK_LIBS}) 
+                    target_link_libraries(${t_file} ${${COMPONENT}_IMPORT_LIBS} ${HDF5_LIBRARIES} ${VTK_LIBS}) 
                 else()
-                    target_link_libraries(${t_file} ${FIELDS_IMPORT_LIB} ${HDF5_LIBRARIES})                                         
+                    target_link_libraries(${t_file} ${${COMPONENT}_IMPORT_LIBS} ${HDF5_LIBRARIES})                                         
                 endif()
 
                 add_test(NAME ${t_file} WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE} COMMAND $<TARGET_FILE:${t_file}>)                

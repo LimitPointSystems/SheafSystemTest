@@ -30,7 +30,7 @@ if(WIN64INTEL OR WIN64MSVC)
     #
     # Set the cumulative import library (win32) var for this component.
     #
-    set(${COMPONENT}_IMPORT_LIBS ${${COMPONENT}_IMPORT_LIB} ${GEOMETRY_IMPORT_LIBS} CACHE STRING " Cumulative import libraries (win32) for ${PROJECT_NAME}" FORCE)
+    set(${COMPONENT}_IMPORT_LIBS ${GEOMETRY_TEST_IMPORT_LIBS} ${${COMPONENT}_IMPORT_LIB} ${FIELDS_IMPORT_LIB}  CACHE STRING " Cumulative import libraries (win32) for ${PROJECT_NAME}" FORCE)
 
 else()
 
@@ -68,29 +68,33 @@ set(${COMPONENT}_IPATHS ${${COMPONENT}_IPATH} ${GEOMETRY_IPATHS} CACHE STRING " 
 # Create the library targets for this component.
 #
 function(add_library_targets)
-
+    
+    if(${USE_VTK})
+        link_directories(${VTK_LIB_DIR})
+    endif()
+    
     if(WIN64INTEL OR WIN64MSVC)
     
         # Tell the linker where to look for this project's libraries.
         link_directories(${${COMPONENT}_OUTPUT_DIR})
-    
+
         # Create the DLL.
-        # $$HACK: Once we resolve the DLL boundary issue, we only need depend on ${${COMPONENT}_SRCS}
-        #
-        add_library(${${COMPONENT}_DYNAMIC_LIB} SHARED ${${COMPONENT}_SRCS} ${GEOMETRY_SRCS} ${FIBER_BUNDLES_SRCS} ${SHEAVES_SRCS})
+        add_library(${${COMPONENT}_DYNAMIC_LIB} SHARED ${${COMPONENT}_SRCS})
+        add_dependencies(${${COMPONENT}_DYNAMIC_LIB} ${GEOMETRY_TEST_IMPORT_LIBS} ${FIELDS_IMPORT_LIB} )
+
         if(${USE_VTK})
-            target_link_libraries(${${COMPONENT}_DYNAMIC_LIB} ${TETGEN_LIB} ${HDF5_DLL_LIBRARY} ${VTK_LIBS}) 
+            target_link_libraries(${${COMPONENT}_DYNAMIC_LIB} ${GEOMETRY_TEST_IMPORT_LIBS} ${FIELDS_IMPORT_LIB} ${VTK_LIBS} ${TETGEN_LIB}) 
         else()
-            target_link_libraries(${${COMPONENT}_DYNAMIC_LIB} ${TETGEN_LIB} ${HDF5_DLL_LIBRARY})        
-        endif()  
-
-        set_target_properties(${${COMPONENT}_DYNAMIC_LIB} PROPERTIES FOLDER "Component Library Targets")   
-        # Override cmake's placing of "${COMPONENT_LIB}_EXPORTS into the preproc symbol table.
+            target_link_libraries(${${COMPONENT}_DYNAMIC_LIB} ${GEOMETRY_TEST_IMPORT_LIBS} ${FIELDS_IMPORT_LIB} ${TETGEN_LIB})        
+        endif() 
+     
+        set_target_properties(${${COMPONENT}_DYNAMIC_LIB} PROPERTIES FOLDER "Library Targets")
+        # Override cmake's placing of "${${COMPONENT}_DYNAMIC_LIB}_EXPORTS into the preproc symbol table.
         set_target_properties(${${COMPONENT}_DYNAMIC_LIB} PROPERTIES DEFINE_SYMBOL "SHEAF_DLL_EXPORTS")
-
+        
     else() # Linux
         # $$TODO: Why does fields want to link against vtk?
-        link_directories(${VTK_LIB_DIR})   
+       # link_directories(${VTK_LIB_DIR})   
         # Static library
         add_library(${${COMPONENT}_STATIC_LIB} STATIC ${${COMPONENT}_SRCS})
         add_dependencies(${${COMPONENT}_STATIC_LIB} ${GEOMETRY_STATIC_LIBS})
