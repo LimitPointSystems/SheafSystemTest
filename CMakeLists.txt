@@ -131,13 +131,6 @@ if(LINUX64)
     configure_file(${CMAKE_MODULE_PATH}/set_env_vars.sh.cmake.in ${CMAKE_BINARY_DIR}/set_env_vars.sh)
 endif()
 
-#
-# If we are using VTK, then append VTK vars to the exports file
-#
-#if(${USE_VTK})
-#    file(APPEND ${CMAKE_BINARY_DIR}/${EXPORTS_FILE} "\n")
-#    file(APPEND ${CMAKE_BINARY_DIR}/${EXPORTS_FILE} "set(USE_VTK ON CACHE BOOL \"Set to link against VTK libs\" FORCE)\n")
-#    file(APPEND  ${CMAKE_BINARY_DIR}/${EXPORTS_FILE} "\n")
-#endif()
+
 
 

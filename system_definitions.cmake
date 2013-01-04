@@ -64,7 +64,7 @@ endif(NOT CMAKE_BUILD_TYPE)
 #
 # True if we want geometry to link against VTK
 #
-set(USE_VTK CACHE BOOL "Set to link geometry against VTK libs.")
+#set(USE_VTK CACHE BOOL "Set to link geometry against VTK libs.")
 
 #
 # $$HACK Toggle intel compiler warnings.
