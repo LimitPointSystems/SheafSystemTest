@@ -7,7 +7,7 @@
 /// @example
 /// Unit test driver for template class block instantiations.
 
-#include "block.impl.h"
+#include "block.h"
 
 #include "arg_list.h"
 #include "implicit_crg_range.h"

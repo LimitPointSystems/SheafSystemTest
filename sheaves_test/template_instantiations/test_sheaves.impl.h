@@ -26,7 +26,7 @@
 #include "namespace_poset.h"
 #include "subposet_member_iterator.h"
 
-#include "ragged_array.impl.h"
+#include "ragged_array.h"
 #include "rc_any.h"
 #include "record_map.h"
 
@@ -2432,7 +2432,7 @@ test_filtered_depth_first_itr_facet(namespace_poset& xns)
 
   print_subheader("Testing filtered_depth_first_itr()");
 
-  ITR<T> litr0();
+  ITR<T> litr0;
 
   print_subheader("Testing filtered_depth_first_itr(",
                   "        const abstract_poset_member&, const subposet*,...)");

@@ -7,7 +7,7 @@
 /// @example
 /// Unit test driver for template class wsv_block.
 
-#include "wsv_block.impl.h"
+#include "wsv_block.h"
 #include "schema_descriptor.h"
 #include "test_sheaves.impl.h"
 

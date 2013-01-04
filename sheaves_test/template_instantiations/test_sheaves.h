@@ -426,6 +426,7 @@ test_filtered_depth_first_itr_facet(const refinable_poset& xposet);
 ///  name xname.  The original poset contains a single triangle.
 ///  Used for testing. 
 ///
+SHEAF_DLL_SPEC
 void
 make_triangle_poset(namespace_poset& xns, const string& xname);
 

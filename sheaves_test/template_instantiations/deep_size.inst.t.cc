@@ -175,11 +175,10 @@ main(int xargc, char* xargv[])
   // map<int, implicit_index_space_interval*>
 
   map<int, implicit_index_space_interval*> lmap4;
-  implicit_index_space_interval* lptr;
+  implicit_index_space_interval* lptr = 0;
   lmap4[0] = lptr;
   lmap4[1] = lptr;
-  typedef sheaf::no_deep_size_policy<map<int,
-                                         implicit_index_space_interval*> > S6;
+  typedef sheaf::no_deep_size_policy<map<int,implicit_index_space_interval*> > S6;
   lsize = deep_size<int, implicit_index_space_interval*, S6>(lmap4, true);
   cout << "deep_size<int, implicit_index_space_interval*, S6>(lmap4, true) = "
        << lsize << endl;

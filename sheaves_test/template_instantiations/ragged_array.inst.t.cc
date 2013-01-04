@@ -7,7 +7,7 @@
 /// @example
 /// Unit test driver for template class ragged_array.
 
-#include "ragged_array.impl.h"
+#include "ragged_array.h"
 #include "scoped_index.h"
 #include "test_sheaves.impl.h"
 
