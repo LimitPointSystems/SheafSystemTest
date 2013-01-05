@@ -44,7 +44,7 @@ public:
   sec_vd_value_type clip_component(sec_vd_value_type xcomp,
                                    sec_vd_value_type xupper_bound)
   {
-    d_uniform_point_locator<DC, DB>::clip_component(xcomp, xupper_bound);
+	 return d_uniform_point_locator<DC, DB>::clip_component(xcomp, xupper_bound);
   }
 
 };
