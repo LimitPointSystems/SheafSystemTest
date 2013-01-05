@@ -121,6 +121,7 @@ test_fiber_bundles_namespace_poset_facet(fiber_bundles_namespace& xns,
 /// Specialization for sec_rep_descriptor_poset.
 ///
 template<>
+SHEAF_DLL_SPEC
 bool
 test_fiber_bundles_namespace_poset_facet<sec_rep_descriptor_poset>
   (fiber_bundles_namespace& xns, const poset_path& xbase_path);
@@ -129,6 +130,7 @@ test_fiber_bundles_namespace_poset_facet<sec_rep_descriptor_poset>
 /// Specialization for binary_section_space_schema_poset.
 ///
 template<>
+SHEAF_DLL_SPEC
 bool
 test_fiber_bundles_namespace_poset_facet<binary_section_space_schema_poset>
   (fiber_bundles_namespace& xns, const poset_path& xbase_path);
@@ -138,6 +140,7 @@ test_fiber_bundles_namespace_poset_facet<binary_section_space_schema_poset>
 /// Specialization for base_space_poset.
 ///
 template<>
+SHEAF_DLL_SPEC
 bool
 test_fiber_bundles_namespace_poset_facet<base_space_poset>
   (fiber_bundles_namespace& xns);

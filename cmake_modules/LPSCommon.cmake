@@ -16,7 +16,6 @@
 #
 if(WIN64MSVC OR WIN64INTEL)
     set_property(GLOBAL PROPERTY USE_FOLDERS On)
-#	set(FIELDS_IMPORT_LIB fieldsdll CACHE STRING "SheafSystem import library")
 endif()
 
 #

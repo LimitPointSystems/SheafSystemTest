@@ -7,7 +7,7 @@
 /// @example
 /// Unit test driver for template class section_space_factory.
 
-#include "section_space_factory.impl.h"
+#include "section_space_factory.h"
 
 #include "fiber_bundles_namespace.h"
 #include "test_utils.h"

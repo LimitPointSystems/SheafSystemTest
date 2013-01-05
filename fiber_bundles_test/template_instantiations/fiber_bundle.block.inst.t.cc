@@ -7,7 +7,7 @@
 /// @example
 /// Unit test driver for template class block.
 
-#include "block.impl.h"
+#include "block.h"
 
 #include "arg_list.h"
 #include "chart_point_1d.h"
