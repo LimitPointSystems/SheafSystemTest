@@ -71,6 +71,11 @@ endif(NOT CMAKE_BUILD_TYPE)
 #
 set(INTELWARN CACHE BOOL "Toggle Intel compiler warnings")
 
+#
+# Toggle multi-process compilation in win32.
+#
+set(ENABLE_WIN32_MP ON CACHE BOOL "Toggle win32 compiler MP directive. Works for MS and Intel. Default is ON.")
+
 #   
 #  Type of system documentation to build: Dev or User
 #
