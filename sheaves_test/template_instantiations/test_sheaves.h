@@ -260,6 +260,7 @@ test_block_facet();
 /// Specialization for poset_state_handle*.
 ///
 template<>
+SHEAF_DLL_SPEC
 bool
 test_block_facet<poset_state_handle*>();
 
@@ -267,6 +268,7 @@ test_block_facet<poset_state_handle*>();
 /// Specialization for index_space*.
 ///
 template<>
+SHEAF_DLL_SPEC
 bool
 test_block_facet<index_space*>();
 
@@ -426,7 +428,6 @@ test_filtered_depth_first_itr_facet(const refinable_poset& xposet);
 ///  name xname.  The original poset contains a single triangle.
 ///  Used for testing. 
 ///
-SHEAF_DLL_SPEC
 void
 make_triangle_poset(namespace_poset& xns, const string& xname);
 
