@@ -38,7 +38,7 @@ public:
 
   size_type bin_id(const block<size_type>& xid) const
   {
-    array_cylindrical_point_locator::bin_id(xid);
+    return array_cylindrical_point_locator::bin_id(xid);
   }
 };
 
@@ -346,7 +346,7 @@ test_array_cylindrical_point_locator_facet(fiber_bundles_namespace& xns)
   cout << "lis_dlinear_triangles  = " << boolalpha
        << lis_dlinear_triangles  << endl;
 
-  double lpt[DC];
+  double* lpt = new double[DC];
   for(int i=0; i<DC; ++i)
   {
     lpt[i] = i;
@@ -382,7 +382,7 @@ test_array_cylindrical_point_locator_facet(fiber_bundles_namespace& xns)
 
 
   chart_point_3d lchart_point;
-  sec_vd_value_type lvalue0[DC];
+  sec_vd_value_type* lvalue0 = new sec_vd_value_type[DC];
   for(int i=0; i<DC; ++i) lvalue0[i] = i;
   llocator.point_at_value(lvalue0, DC, lchart_point);
 

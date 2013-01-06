@@ -227,8 +227,8 @@ main(int xargc, char* xargv[])
 
   print_header("Begin testing auto_block<block<d_bounding_box<1, 0> > >");
   ltest &= test_auto_block_facet_un<block<d_bounding_box<1, 0> > >();
-  //ltest &= test_auto_block_facet_equal_un<block<d_bounding_box<1, 0> > >();
-  //ltest &= test_auto_block_facet_insertion_un<block<d_bounding_box<1, 0> > >();
+  ltest &= test_auto_block_facet_equal_un<block<d_bounding_box<1, 0> > >();
+  ltest &= test_auto_block_facet_insertion_un<block<d_bounding_box<1, 0> > >();
   //ltest &= test_auto_block_facet_deep_size_un<block<d_bounding_box<1, 0> > >();
   print_footer("End testing auto_block<block<d_bounding_box<1, 0> > >");
  
@@ -236,8 +236,8 @@ main(int xargc, char* xargv[])
 
   print_header("Begin testing auto_block<block<d_bounding_box<1, 1> > >");
   ltest &= test_auto_block_facet_un<block<d_bounding_box<1, 1> > >();
-  //ltest &= test_auto_block_facet_equal_un<block<d_bounding_box<1, 1> > >();
-  //ltest &= test_auto_block_facet_insertion_un<block<d_bounding_box<1, 1> > >();
+  ltest &= test_auto_block_facet_equal_un<block<d_bounding_box<1, 1> > >();
+  ltest &= test_auto_block_facet_insertion_un<block<d_bounding_box<1, 1> > >();
   //ltest &= test_auto_block_facet_deep_size_un<block<d_bounding_box<1, 1> > >();
   print_footer("End testing auto_block<block<d_bounding_box<1, 1> > >");
 
@@ -245,8 +245,8 @@ main(int xargc, char* xargv[])
 
   print_header("Begin testing auto_block<block<d_bounding_box<2, 0> > >");
   ltest &= test_auto_block_facet_un<block<d_bounding_box<2, 0> > >();
-  //ltest &= test_auto_block_facet_equal_un<block<d_bounding_box<2, 0> > >();
-  //ltest &= test_auto_block_facet_insertion_un<block<d_bounding_box<2, 0> > >();
+  ltest &= test_auto_block_facet_equal_un<block<d_bounding_box<2, 0> > >();
+  ltest &= test_auto_block_facet_insertion_un<block<d_bounding_box<2, 0> > >();
   //ltest &= test_auto_block_facet_deep_size_un<block<d_bounding_box<2, 0> > >();
   print_footer("End testing auto_block<block<d_bounding_box<2, 0> > >");
 
@@ -254,8 +254,8 @@ main(int xargc, char* xargv[])
 
   print_header("Begin testing auto_block<block<d_bounding_box<2, 2> > >");
   ltest &= test_auto_block_facet_un<block<d_bounding_box<2, 2> > >();
-  //ltest &= test_auto_block_facet_equal_un<block<d_bounding_box<2, 2> > >();
-  //ltest &= test_auto_block_facet_insertion_un<block<d_bounding_box<2, 2> > >();
+  ltest &= test_auto_block_facet_equal_un<block<d_bounding_box<2, 2> > >();
+  ltest &= test_auto_block_facet_insertion_un<block<d_bounding_box<2, 2> > >();
   //ltest &= test_auto_block_facet_deep_size_un<block<d_bounding_box<2, 2> > >();
   print_footer("End testing auto_block<block<d_bounding_box<2, 2> > >");
 
@@ -263,8 +263,8 @@ main(int xargc, char* xargv[])
 
   print_header("Begin testing auto_block<block<d_bounding_box<3, 0> > >");
   ltest &= test_auto_block_facet_un<block<d_bounding_box<3, 0> > >();
-  //ltest &= test_auto_block_facet_equal_un<block<d_bounding_box<3, 0> > >();
-  //ltest &= test_auto_block_facet_insertion_un<block<d_bounding_box<3, 0> > >();
+  ltest &= test_auto_block_facet_equal_un<block<d_bounding_box<3, 0> > >();
+  ltest &= test_auto_block_facet_insertion_un<block<d_bounding_box<3, 0> > >();
   //ltest &= test_auto_block_facet_deep_size_un<block<d_bounding_box<3, 0> > >();
   print_footer("End testing auto_block<block<d_bounding_box<3, 0> > >");
 
@@ -272,8 +272,8 @@ main(int xargc, char* xargv[])
 
   print_header("Begin testing auto_block<block<d_bounding_box<3, 1> > >");
   ltest &= test_auto_block_facet_un<block<d_bounding_box<3, 1> > >();
-  //ltest &= test_auto_block_facet_equal_un<block<d_bounding_box<3, 1> > >();
-  //ltest &= test_auto_block_facet_insertion_un<block<d_bounding_box<3, 1> > >();
+  ltest &= test_auto_block_facet_equal_un<block<d_bounding_box<3, 1> > >();
+  ltest &= test_auto_block_facet_insertion_un<block<d_bounding_box<3, 1> > >();
   //ltest &= test_auto_block_facet_deep_size_un<block<d_bounding_box<3, 1> > >();
   print_footer("End testing auto_block<block<d_bounding_box<3, 1> > >");
 
@@ -281,8 +281,8 @@ main(int xargc, char* xargv[])
 
   print_header("Begin testing auto_block<block<d_bounding_box<3, 2> > >");
   ltest &= test_auto_block_facet_un<block<d_bounding_box<3, 2> > >();
-  //ltest &= test_auto_block_facet_equal_un<block<d_bounding_box<3, 2> > >();
-  //ltest &= test_auto_block_facet_insertion_un<block<d_bounding_box<3, 2> > >();
+  ltest &= test_auto_block_facet_equal_un<block<d_bounding_box<3, 2> > >();
+  ltest &= test_auto_block_facet_insertion_un<block<d_bounding_box<3, 2> > >();
   //ltest &= test_auto_block_facet_deep_size_un<block<d_bounding_box<3, 2> > >();
   print_footer("End testing auto_block<block<d_bounding_box<3, 2> > >");
 
@@ -290,8 +290,8 @@ main(int xargc, char* xargv[])
 
   print_header("Begin testing auto_block<block<d_bounding_box<3, 3> > >");
   ltest &= test_auto_block_facet_un<block<d_bounding_box<3, 3> > >();
-  //ltest &= test_auto_block_facet_equal_un<block<d_bounding_box<3, 3> > >();
-  //ltest &= test_auto_block_facet_insertion_un<block<d_bounding_box<3, 3> > >();
+  ltest &= test_auto_block_facet_equal_un<block<d_bounding_box<3, 3> > >();
+  ltest &= test_auto_block_facet_insertion_un<block<d_bounding_box<3, 3> > >();
   //ltest &= test_auto_block_facet_deep_size_un<block<d_bounding_box<3, 3> > >();
   print_footer("End testing auto_block<block<d_bounding_box<3, 3> > >");
 
@@ -299,8 +299,8 @@ main(int xargc, char* xargv[])
 
   print_header("Begin testing auto_block<block<d_bounding_box<4, 4> > >");
   ltest &= test_auto_block_facet_un<block<d_bounding_box<4, 4> > >();
-  //ltest &= test_auto_block_facet_equal_un<block<d_bounding_box<4, 4> > >();
-  //ltest &= test_auto_block_facet_insertion_un<block<d_bounding_box<4, 4> > >();
+  ltest &= test_auto_block_facet_equal_un<block<d_bounding_box<4, 4> > >();
+  ltest &= test_auto_block_facet_insertion_un<block<d_bounding_box<4, 4> > >();
   //ltest &= test_auto_block_facet_deep_size_un<block<d_bounding_box<4, 4> > >();
   print_footer("End testing auto_block<block<d_bounding_box<4, 4> > >");
 
