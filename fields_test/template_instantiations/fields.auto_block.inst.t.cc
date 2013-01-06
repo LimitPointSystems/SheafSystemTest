@@ -7,9 +7,8 @@
 /// @example
 /// Unit test driver for template class auto_block.
 
-#include "auto_block.impl.h"
+#include "auto_block.h"
 
-//#include "block.impl.h"
 #include "fields.h"
 
 #include "barycentric_refiner_family.h"
