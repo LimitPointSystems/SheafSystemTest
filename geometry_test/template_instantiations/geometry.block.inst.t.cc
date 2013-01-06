@@ -7,14 +7,14 @@
 /// @example
 /// Unit test driver for template class block.
 
-#include "auto_block.impl.h"
-#include "block.impl.h"
+#include "auto_block.h"
+#include "block.h"
 #include "geometry.h"
 #include "test_utils.h"
 #include "test_sheaves.impl.h"
-#include "d_tree_point_locator_node.impl.h"
-#include "d_bounding_box.impl.h"
-#include "db0_point_locator.impl.h"
+#include "d_tree_point_locator_node.h"
+#include "d_bounding_box.h"
+#include "db0_point_locator.h"
 #include "kd_plane.h"
 #include "kd_bounding_box.h"
 #include "std_slist.h"

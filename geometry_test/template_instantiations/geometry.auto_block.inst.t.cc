@@ -7,8 +7,8 @@
 /// @example
 /// Unit test driver for template class auto_block.
 
-#include "auto_block.impl.h"
-#include "block.impl.h"
+#include "auto_block.h"
+#include "block.h"
 #include "geometry.h"
 
 #include "d_bounding_box.h"
