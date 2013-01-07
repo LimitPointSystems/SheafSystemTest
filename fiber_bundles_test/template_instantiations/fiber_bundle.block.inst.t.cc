@@ -45,7 +45,7 @@ main(int xargc, char* xargv[])
 
   // arg_list::arg_type
 
-  print_header("Begin testing block<arg_list::arg_type>");
+/*  print_header("Begin testing block<arg_list::arg_type>");
   ltest &= test_block_facet<arg_list::arg_type>();
   ltest &= test_block_facet_equal<arg_list::arg_type>();
   ltest &= test_block_facet_insertion<arg_list::arg_type>();
@@ -77,7 +77,7 @@ main(int xargc, char* xargv[])
   ltest &= test_block_facet_equal<scoped_index*>();
   ltest &= test_block_facet_insertion<scoped_index*>();
   ltest &= test_block_facet_deep_size<scoped_index*>();
-  print_footer("End testing block<scoped_index*>");
+  print_footer("End testing block<scoped_index*>");*/
 
   // chart_point_1d
 
@@ -234,12 +234,12 @@ main(int xargc, char* xargv[])
 
   // block<scoped_index>*
 
-  print_header("Begin testing block<block<scoped_index>*>");
+/*  print_header("Begin testing block<block<scoped_index>*>");
   ltest &= test_block_facet<block<scoped_index>*>();
   ltest &= test_block_facet_equal<block<scoped_index>*>();
   ltest &= test_block_facet_insertion<block<scoped_index>*>();
   //ltest &= test_block_facet_deep_size<block<scoped_index>*>();
-  print_footer("End testing block<block<scoped_index>*>");
+  print_footer("End testing block<block<scoped_index>*>");*/
 
   // discretization_context
 

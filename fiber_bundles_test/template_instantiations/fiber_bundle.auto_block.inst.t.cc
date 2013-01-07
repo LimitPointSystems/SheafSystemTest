@@ -7,9 +7,9 @@
 /// @example
 /// Unit test driver for template class auto_block.
 
-#include "auto_block.impl.h"
+#include "auto_block.h"
 
-#include "block.impl.h"
+#include "block.h"
 #include "fiber_bundle.h"
 #include "arg_list.h"
 #include "chart_point_1d.h"
@@ -47,7 +47,7 @@ main(int xargc, char* xargv[])
 
   // arg_list::arg_type
 
-  print_header("Begin testing auto_block<arg_list::arg_type>");
+/*  print_header("Begin testing auto_block<arg_list::arg_type>");
   ltest &= test_auto_block_facet_un<arg_list::arg_type>();
   ltest &= test_auto_block_facet_equal_un<arg_list::arg_type>();
   ltest &= test_auto_block_facet_insertion_un<arg_list::arg_type>();
@@ -79,7 +79,7 @@ main(int xargc, char* xargv[])
   ltest &= test_auto_block_facet_equal_all<scoped_index*>();
   ltest &= test_auto_block_facet_insertion_all<scoped_index*>();
   ltest &= test_auto_block_facet_deep_size_all<scoped_index*>();
-  print_footer("End testing auto_block<scoped_index*>");
+  print_footer("End testing auto_block<scoped_index*>");*/
 
   // chart_point_1d
 
@@ -236,12 +236,12 @@ main(int xargc, char* xargv[])
 
   // block<scoped_index>*
 
-  print_header("Begin testing auto_block<block<scoped_index>*>");
+/*  print_header("Begin testing auto_block<block<scoped_index>*>");
   ltest &= test_auto_block_facet_all<block<scoped_index>*>();
   ltest &= test_auto_block_facet_equal_all<block<scoped_index>*>();
   ltest &= test_auto_block_facet_insertion_all<block<scoped_index>*>();
   ltest &= test_auto_block_facet_deep_size_all<block<scoped_index>*>();
-  print_footer("End testing auto_block<block<scoped_index>*>");
+  print_footer("End testing auto_block<block<scoped_index>*>");*/
 
   // discretization_context
 
