@@ -73,7 +73,9 @@ add_component_check_target()
 #
 # Component specific coverage target
 #
-add_component_coverage_target()
+if(ENABLE_COVERAGE)
+    add_component_coverage_target()
+endif()
 
 #
 # Component specific bin target

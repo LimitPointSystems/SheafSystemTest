@@ -75,7 +75,7 @@ create_output_dirs()
 # use "<component>-check" for component level
 # tests.
 #
-add_check_target()
+#add_check_target()
 
 #
 # Add the system checklog target. Action is
@@ -92,7 +92,7 @@ add_check_target()
 # use "<component>-coverage" for component level
 # coverage results.
 #
-if(${ENABLE_COVERAGE})
+if(ENABLE_COVERAGE)
     add_coverage_target()
 endif()
 
@@ -102,7 +102,7 @@ endif()
 # currently there is no notion of building a single
 # component's documentation.
 #
-add_doc_targets()
+#add_doc_targets()
 
 #
 # Add files to the clean target
@@ -126,7 +126,7 @@ add_bin_target()
 #
 # Configure the environment scripts. 
 #
-if(LINUX64)
+if(LINUX64GNU OR LINUX64INTEL)
     configure_file(${CMAKE_MODULE_PATH}/set_env_vars.csh.cmake.in ${CMAKE_BINARY_DIR}/set_env_vars.csh)
     configure_file(${CMAKE_MODULE_PATH}/set_env_vars.sh.cmake.in ${CMAKE_BINARY_DIR}/set_env_vars.sh)
 endif()

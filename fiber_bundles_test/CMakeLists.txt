@@ -70,7 +70,7 @@ add_component_checklog_target()
 #
 # Component specific coverage target
 #
-if(${ENABLE_COVERAGE})
+if(ENABLE_COVERAGE)
     add_component_coverage_target()
 endif()
 

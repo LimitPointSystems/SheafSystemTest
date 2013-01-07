@@ -61,11 +61,8 @@ if(NOT CMAKE_BUILD_TYPE)
       "Choose the type of build, options are: ${CMAKE_CONFIGURATION_TYPES}.")
 endif(NOT CMAKE_BUILD_TYPE)
 
-#
-# True if we want geometry to link against VTK
-#
-#set(USE_VTK CACHE BOOL "Set to link geometry against VTK libs.")
-
+set(ALL_BIN_TARGETS CACHE STRING "Aggregate list of component bin targets")
+    
 #
 # $$HACK Toggle intel compiler warnings.
 #
@@ -116,6 +113,9 @@ set(ENABLE_COVERAGE OFF CACHE BOOL "Set to ON to compile with Intel coverage sup
 if(ENABLE_COVERAGE)
     set(COVERAGE_DIR ${CMAKE_BINARY_DIR}/coverage CACHE STRING "Directory for coverage files")
     execute_process(COMMAND ${CMAKE_COMMAND} -E make_directory ${COVERAGE_DIR})
+    # Configure the list of files for which we generate coverage data. Use only the SheafSystem
+    # and ignore sheaves/std.
+    configure_file(${CMAKE_MODULE_PATH}/coverage_files.lst.in ${CMAKE_BINARY_DIR}/coverage_files.lst)
 endif()
 
 #
@@ -150,14 +150,6 @@ include(${CMAKE_MODULE_PATH}/target_declarations.cmake)
 # Prerequisite discovery
 #
 include(${CMAKE_MODULE_PATH}/find_prerequisites.cmake)
-
-# Set the Coverage dir variable (used by compiler) and create the coverage dir.
-set(COVERAGE_DIR ${CMAKE_BINARY_DIR}/coverage CACHE STRING "Directory for coverage files")
-execute_process(COMMAND ${CMAKE_COMMAND} -E make_directory ${COVERAGE_DIR})
-
-# Configure the list of files for which we generate coverage data. Use only the SheafSystem
-# and ignore sheaves/std.
-configure_file(${CMAKE_MODULE_PATH}/coverage_files.lst.in ${CMAKE_BINARY_DIR}/coverage_files.lst)
 
 #
 # Utility function to add a component to a system.
@@ -201,7 +193,7 @@ function(clear_component_variables comp)
     # clear the ipath var so consecutive cmake runs don't
     # list the same include paths n times.
     unset(${COMP}_IPATH CACHE)
-
+    
 endfunction(clear_component_variables)
 
 #

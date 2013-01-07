@@ -10,6 +10,7 @@
 # This file contains declarations and functions unique to this component.
 #
 include_directories(${FIELDS_IPATHS})
+#include_directories(${FIELDS_IPATHS})
 #
 # Include functions and definitions common to all components.
 # 
