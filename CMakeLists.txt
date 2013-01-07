@@ -126,7 +126,7 @@ add_bin_target()
 #
 # Configure the environment scripts. 
 #
-if(LINUX64)
+if(LINUX64GNU OR LINUX64INTEL)
     configure_file(${CMAKE_MODULE_PATH}/set_env_vars.csh.cmake.in ${CMAKE_BINARY_DIR}/set_env_vars.csh)
     configure_file(${CMAKE_MODULE_PATH}/set_env_vars.sh.cmake.in ${CMAKE_BINARY_DIR}/set_env_vars.sh)
 endif()
