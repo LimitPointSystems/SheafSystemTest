@@ -7,7 +7,7 @@
 /// @example
 /// Unit test driver for template class block.
 
-#include "block.impl.h"
+#include "block.h"
 
 #include "barycentric_refiner_family.h"
 #include "edge_centered_polygon_refiner.h"

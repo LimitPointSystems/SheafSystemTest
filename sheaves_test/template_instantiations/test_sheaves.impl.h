@@ -265,7 +265,7 @@ test_auto_block_facet()
 
   print_subheader("Test auto_block(index_type xub, size_type xct, const T* xitems)");
 
-  T l0, l1, l2, l3, l4;
+  T l0 = T(), l1 = T(), l2 = T(), l3 = T(), l4 = T();
   T litems[5] =  {l0, l1, l4, l3, l4};
   T0 lblock1(10, 5, litems);
 
