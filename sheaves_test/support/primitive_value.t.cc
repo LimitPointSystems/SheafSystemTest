@@ -296,7 +296,9 @@ main(int xargc, char* xargv[])
 
   print_header("Testing primitive_value facet for type",
                " \"namespace_relative_member_index_pod_type\"");
-  namespace_relative_member_index_pod_type lpod0 = 0;
+  namespace_relative_member_index_pod_type lpod0;
+  lpod0.poset_id = 0;
+  lpod0.member_id = 0;
   ltest &= test_primitive_value_facet<namespace_relative_member_index_pod_type>(lpod0);
 
 
@@ -308,7 +310,9 @@ main(int xargc, char* xargv[])
 
   print_header("Testing primitive_value facet for type",
                " \"namespace_relative_subposet_index_pod_type\"");
-  namespace_relative_subposet_index_pod_type lpod1 = 0;
+  namespace_relative_subposet_index_pod_type lpod1;
+  lpod1.poset_id = 0;
+  lpod1.subposet_id = 0;
   ltest &= test_primitive_value_facet<namespace_relative_subposet_index_pod_type>(lpod1);
 
 
