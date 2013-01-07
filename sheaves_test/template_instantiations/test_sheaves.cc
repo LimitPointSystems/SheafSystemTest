@@ -32,6 +32,7 @@
 //===========================================================================
 
 template<>
+SHEAF_DLL_SPEC
 bool
 sheaf::
 test_block_facet<sheaf::poset_state_handle*>()
@@ -107,6 +108,7 @@ test_block_facet<sheaf::poset_state_handle*>()
 //===========================================================================
 
 template<>
+SHEAF_DLL_SPEC
 bool
 sheaf::
 test_block_facet<sheaf::index_space*>()
@@ -187,6 +189,7 @@ test_block_facet<sheaf::index_space*>()
 //============================================================================
 
 template <>
+SHEAF_DLL_SPEC
 bool
 sheaf::
 test_wsv_block_facet<bool>()
@@ -271,6 +274,7 @@ test_wsv_block_facet<bool>()
 //============================================================================
 
 template <>
+SHEAF_DLL_SPEC
 bool
 sheaf::
 test_wsv_block_facet<sheaf::schema_descriptor>()
@@ -352,6 +356,7 @@ test_wsv_block_facet<sheaf::schema_descriptor>()
 // ABSTRACT_POSET_MEMBER FACET
 //=============================================================================
 
+SHEAF_DLL_SPEC
 bool
 sheaf::
 test_abstract_poset_member_facet()
@@ -416,6 +421,7 @@ test_abstract_poset_member_facet()
 // GENERAL FACET
 //============================================================================
 
+SHEAF_DLL_SPEC
 void
 sheaf::
 make_triangle_poset(namespace_poset& xns, const string& xname)

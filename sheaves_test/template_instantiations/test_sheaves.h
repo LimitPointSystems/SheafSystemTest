@@ -308,6 +308,7 @@ test_wsv_block_facet();
 /// Specialization for wsv_block<bool>.
 ///
 template<>
+SHEAF_DLL_SPEC
 bool
 test_wsv_block_facet<bool>();
 
@@ -315,6 +316,7 @@ test_wsv_block_facet<bool>();
 /// Specialization for wsv_block<schema_descriptor>.
 ///
 template<>
+SHEAF_DLL_SPEC
 bool
 test_wsv_block_facet<schema_descriptor>();
 
@@ -381,6 +383,7 @@ test_deep_size(const T& xobject);
 ///
 ///
 ///
+SHEAF_DLL_SPEC
 bool
 test_abstract_poset_member_facet();
 
@@ -428,6 +431,7 @@ test_filtered_depth_first_itr_facet(const refinable_poset& xposet);
 ///  name xname.  The original poset contains a single triangle.
 ///  Used for testing. 
 ///
+SHEAF_DLL_SPEC
 void
 make_triangle_poset(namespace_poset& xns, const string& xname);
 
