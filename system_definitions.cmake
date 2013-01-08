@@ -15,8 +15,13 @@
 #
 set(COMPONENTS sheaves_test fiber_bundles_test geometry_test fields_test CACHE STRING "List of components in this system" FORCE)
 
+#
+# Set the cmake module path.
+#
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_modules CACHE STRING "Location of Cmake modules")
+
 # Set backward compatibility so we can link to modules. If not, we can't link to the bindings libs.
-set(CMAKE_BACKWARDS_COMPATIBILITY 2.2 CACHE STRING "backward compat so we can link to bindings libs")
+#set(CMAKE_BACKWARDS_COMPATIBILITY 2.2 CACHE STRING "backward compat so we can link to bindings libs")
 
 #
 # Platform definitions
@@ -44,9 +49,9 @@ set(EXPORTS_FILE ${PROJECT_NAME}-exports.cmake CACHE STRING "System exports file
 # Windows has a notion of Debug and Release builds. For practical purposes, "Release" is
 # equivalent to "not Debug". We'll carry that notion through to linux/gcc as well for now, with
 # "Release" equivalent to "!-g"
-set(CMAKE_CONFIGURATION_TYPES Debug-contracts Debug-no-contracts Release-contracts Release-no-contracts CACHE
-    STRING "Supported configuration types"
-    FORCE)
+#set(CMAKE_CONFIGURATION_TYPES Debug-contracts Debug-no-contracts Release-contracts Release-no-contracts CACHE
+#    STRING "Supported configuration types"
+#    FORCE)
 
 #
 # Delete the exports file at the start of each cmake run
@@ -56,9 +61,12 @@ execute_process(COMMAND ${CMAKE_COMMAND} -E remove ${CMAKE_BINARY_DIR}/${EXPORTS
 #
 # Set the default build type.
 #
+
 if(NOT CMAKE_BUILD_TYPE)
+
   set(CMAKE_BUILD_TYPE "Debug-contracts" CACHE STRING
-      "Choose the type of build, options are: ${CMAKE_CONFIGURATION_TYPES}.")
+      "Choose the type of build, options are: ${CMAKE_CONFIGURATION_TYPES}." FORCE)
+message(STATUS "CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE}")
 endif(NOT CMAKE_BUILD_TYPE)
 
 set(ALL_BIN_TARGETS CACHE STRING "Aggregate list of component bin targets")
@@ -134,11 +142,6 @@ set(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR} CACHE STRING "System install locati
 #
 set(LIB_VERSION 1.1.1 CACHE STRING "Library version number for release purposes")
 mark_as_advanced(LIB_VERSION)
-
-#
-# Set the cmake module path.
-#
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_modules CACHE STRING "Location of Cmake modules")
 
 #
 # Targets with global scope are declared and optionally defined in 
