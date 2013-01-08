@@ -75,7 +75,7 @@ create_output_dirs()
 # use "<component>-check" for component level
 # tests.
 #
-#add_check_target()
+add_check_target()
 
 #
 # Add the system checklog target. Action is
