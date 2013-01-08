@@ -23,6 +23,14 @@
 #include "std_string.h"
 #endif
 
+#ifndef SEC_TUPLE_H
+#include "sec_tuple.h"
+#endif
+
+#ifndef SEC_E2_H
+#include "sec_e2.h"
+#endif
+
 namespace sheaf
 {
 class poset_path;
@@ -262,6 +270,13 @@ make_test_base_space(fiber_bundles_namespace& xns,
                      const size_type& xj_size,
                      const size_type& xk_size);
 
+///
+/// Make a structured_block_(xdim)d base space for testing.
+///
+SHEAF_DLL_SPEC
+poset_path
+make_test_base_space(int xdim, fiber_bundles_namespace& xns);
+
 //==============================================================================
 // SECTION FACET
 //==============================================================================
@@ -306,6 +321,56 @@ new_host_space(fiber_bundles_namespace& xns,
 	       const poset_path& xrep_path,
 	       const poset_path& xbase_path);
 
+
+//==============================================================================
+// Miscellaneous tests not associated with templated vector, tensor, etc
+// functions
+//==============================================================================
+
+//$$TODO: Need to rename these functions:
+
+///
+///
+///
+template <typename S>
+void
+test_section_common_unattached();
+
+///
+///
+///
+template<typename S>
+void
+test_section_common_attached(fiber_bundles_namespace& xns, int xdim);
+
+///
+///
+///
+template<typename S>
+void
+test_section_common_attached_2(fiber_bundles_namespace& xns, int xdim);
+
+///
+///
+///
+template<typename SB, typename SD>
+void
+test_section_common_attached(fiber_bundles_namespace& xns, int xdim);
+
+///
+/// Specialization for sec_tuple.
+///
+template <>
+void
+test_section_common_unattached<sec_tuple>();
+
+///
+/// Specialization for sec_tuple base and sec_e2 derived.
+///
+template<>
+void
+test_section_common_attached<sec_tuple, sec_e2>
+    (fiber_bundles_namespace& xns, int xdim);
 
 } // namespace fiber_bundle
 

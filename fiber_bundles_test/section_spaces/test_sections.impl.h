@@ -1341,7 +1341,494 @@ new_host_space(fiber_bundles_namespace& xns,
   return result;
 }
 
-} // namespace fiber_bundle
 
+//==============================================================================
+//==============================================================================
+
+//$$TODO: Clean these functions up.
+//$$TODO: Reduce the repeated code by refactoring, etc.
+
+//$$SCRIBBLE: Some classes implement operator<< (eg: sec_e3) which requires
+//            "state_is_read_accessible() == true"; so we don't attempt to
+//            prine class objects here.
+
+template <typename S>
+void
+test_section_common_unattached()
+{
+  // Preconditions:
+
+  // Body:
+
+  //==========================================================================
+
+  cout << boolalpha;
+
+  typedef typename S::fiber_type F;
+
+  //static const string& static_class_name();
+
+  print_subheader("Test static const string& static_class_name()");
+
+  const string& lname = S::static_class_name();
+  cout << "  lname = " << lname << endl;
+
+  //==========================================================================
+
+  //S();
+  print_subheader("Test default constructor: " + lname + "()");
+
+  S lsection;
+  //cout << "  lsection = " << lsection << endl;
+
+  //S(const S& xother);
+  print_subheader("Test copy constructor: " + lname
+                  + "(const " + lname +"& xother)");
+
+  S lsection_copy(lsection);
+  //cout << "  lsection_copy = " << lsection_copy << endl;
+
+  //S& operator=(const S& xother);
+  print_subheader("Test assignment operator: " + lname 
+                  + "& operator=(const " + lname + "& xother)");
+ 
+  S lsection_assign = lsection;
+  // cout << "  lsection_assign = " << lsection_assign << endl;
+
+  //S& operator=(const ed_lite& xother);
+
+  ////ed_lite led_lite;
+  ////S& lsection_lite_assign = led_lite;
+
+  //virtual const fiber_type& fiber_prototype() const;
+  print_subheader("Test virtual const fiber_type& fiber_prototype() const"); 
+
+  const F& lfiber_type = lsection.fiber_prototype();
+
+  // Can't print because it's not attached.
+  //cout << "  lfiber_type = " << lfiber_type << endl;
+
+  //virtual S* clone() const;
+  print_subheader("Test virtual " + lname +"* clone() const"); 
+
+  S* lsection_clone = lsection.clone();
+  //cout << "  *lsection_clone = " << *lsection_clone << endl;
+
+  // Not attached; so won't work;
+  //S* lsection_clone2 = lsection.clone(false, false);
+
+  //virtual const string& class_name() const;
+  print_subheader("Test virtual const string& class_name() const"); 
+
+  const string& lclass_name = lsection.class_name();
+  cout << "  lclass_name = " << lclass_name << endl;
+
+  //bool fiber_is_ancestor_of(const any* xother) const;
+  print_subheader("Test bool fiber_is_ancestor_of(const any* xother) const"); 
+
+  bool lfiber_is_ancestor_of = lsection.fiber_is_ancestor_of(lsection_clone);
+  cout << "  lfiber_is_ancestor_of = " << lfiber_is_ancestor_of << endl;
+
+  //bool is_ancestor_of(const any* xother) const;
+  print_subheader("Test bool is_ancestor_of(const any* xother) const"); 
+
+  bool lis_ancestor_of = lsection.is_ancestor_of(lsection_clone);
+  cout << "  lis_ancestor_of = " << lis_ancestor_of << endl;
+
+  //bool invariant() const;
+  print_subheader("Test bool invariant() const"); 
+
+  bool linvariant = lsection.invariant();
+  cout << "  linvariant = " << linvariant  << endl;
+
+  // Postconditions:
+
+  // Exit:
+
+  return;
+
+}
+
+template<typename S>
+void
+test_section_common_attached(fiber_bundles_namespace& xns, int xdim)
+{
+  // Preconditions:
+
+  require(xns.state_is_read_write_accessible());
+  require(1<=xdim && xdim<=3);
+
+  // Body:
+
+  typedef typename S::fiber_type F;
+  typedef typename F::volatile_type V;
+
+  //==========================================================================
+
+  // Make a base space.
+
+  const poset_path& lbase_path = make_test_base_space(xdim, xns);
+
+  S lvector[2];
+  make_test_sections(xns, lbase_path,
+                     "test_section_space", "vector",
+                     lvector, 2);
+
+  lvector[0].get_read_write_access();
+  lvector[1].get_read_write_access();
+
+  poset_path lpath0 = lvector[0].path();
+  poset_path lpath1 = lvector[1].path();
+
+  cout << endl;
+  cout << "+++++ lpath0 = " << lpath0 << endl;
+  cout << "+++++ lpath1 = " << lpath1 << endl;
+
+  scoped_index lindex0 = lvector[0].index();
+  scoped_index lindex1 = lvector[1].index();
+
+  cout << "+++++ lindex0 = " << lindex0 << endl;
+  cout << "+++++ lindex1 = " << lindex1 << endl;
+  cout << endl;
+
+  print_subheader("Test operator<<");
+  cout << lvector[0] << endl;
+
+  //============================================================================
+
+  sec_rep_space* lhost = lvector[0].host();
+
+  //S(const sec_rep_space* xhost, const scoped_index& xindex);
+
+  S lsec2(lhost, lindex0);
+
+  lsec2.detach_from_state();
+
+  //S(const sec_rep_space* xhost, const string& xname);
+
+  S lsec3(lhost, lpath0.member_name());
+
+  lsec3.detach_from_state();
+
+  //S(const namespace_poset* xnamespace,
+  //  const poset_path& xpath,
+  //  bool xauto_access = true);
+
+  S lsec0(&xns, lpath0, true);
+
+  lsec0.detach_from_state();
+
+  //explicit S(const sec_rep_space_member* xother);
+
+  S lsec1(&lvector[0]);
+
+  // Don't detach here so we can use it below.
+  //lsec1.detach_from_state();
+
+  //S(sec_rep_space* xhost,
+  //  section_dof_map* xdof_map = 0,
+  //  bool xauto_access = true);
+
+  S lsec4(lhost);
+
+  lsec4.detach_from_state();
+
+  //virtual S& operator=(const abstract_poset_member& xother);
+
+  abstract_poset_member* lapm = &lsec1;
+  lsec1 = *lapm;
+
+  //==========================================================================
+
+  //S& operator=(V& xfiber);
+
+  V lfiber_lite;
+  lsec1 = lfiber_lite;
+
+  //S& operator=(const F& xfiber);
+
+  typename F::host_type& lfiber_host = xns.new_fiber_space<F>();
+  lfiber_host.get_read_write_access(true);
+
+  F lfiber(&lfiber_host);
+  lsec1 = lfiber;
+
+  lsec1.detach_from_state();
+  lfiber.detach_from_state();
+
+  //==========================================================================
+
+  // Cleanup.
+
+  lvector[0].detach_from_state();
+  lvector[1].detach_from_state();
+
+  //==========================================================================
+
+  // Postconditions:
+
+  // Exit:
+
+  return;
+
+}
+
+template<typename S>
+void
+test_section_common_attached_2(fiber_bundles_namespace& xns, int xdim)
+{
+  // Preconditions:
+
+  require(xns.state_is_read_write_accessible());
+  require(1<=xdim && xdim<=3);
+
+  // Body:
+
+  typedef typename S::fiber_type F;
+  typedef typename F::volatile_type V;
+
+  //==========================================================================
+
+  // Make a base space.
+
+  const poset_path& lbase_path = make_test_base_space(xdim, xns);
+
+  S lvector[2];
+  make_test_sections(xns, lbase_path,
+                     "test_section_space", "vector",
+                     lvector, 2);
+
+  lvector[0].get_read_write_access();
+  lvector[1].get_read_write_access();
+
+  poset_path lpath0 = lvector[0].path();
+  poset_path lpath1 = lvector[1].path();
+
+  cout << endl;
+  cout << "+++++ lpath0 = " << lpath0 << endl;
+  cout << "+++++ lpath1 = " << lpath1 << endl;
+
+  scoped_index lindex0 = lvector[0].index();
+  scoped_index lindex1 = lvector[1].index();
+
+  cout << "+++++ lindex0 = " << lindex0 << endl;
+  cout << "+++++ lindex1 = " << lindex1 << endl;
+  cout << endl;
+
+  print_subheader("Test operator<<");
+  cout << lvector[0] << endl;
+
+  //============================================================================
+
+  sec_rep_space* lhost = lvector[0].host();
+
+  //S(const sec_rep_space* xhost, const scoped_index& xindex);
+
+  S lsec2(lhost, lindex0);
+
+  lsec2.detach_from_state();
+
+  //S(const sec_rep_space* xhost, const string& xname);
+
+  S lsec3(lhost, lpath0.member_name());
+
+  lsec3.detach_from_state();
+
+  //S(const namespace_poset* xnamespace,
+  //  const poset_path& xpath,
+  //  bool xauto_access = true);
+
+  S lsec0(&xns, lpath0, true);
+
+  lsec0.detach_from_state();
+
+//   //explicit S(const sec_rep_space_member* xother);
+
+//   S lsec1(&lvector[0]);
+
+  //S(const sec_rep_space_member& xother);
+
+  S lsec1(lvector[0]);
+
+  // Don't detach here so we can use it below.
+  //lsec1.detach_from_state();
+
+  //S(sec_rep_space* xhost,
+  //  section_dof_map* xdof_map = 0,
+  //  bool xauto_access = true);
+
+  S lsec4(lhost);
+
+  lsec4.detach_from_state();
+
+  //virtual S& operator=(const abstract_poset_member& xother);
+
+  abstract_poset_member* lapm = &lsec1;
+  lsec1 = *lapm;
+
+  //==========================================================================
+
+  //S& operator=(V& xfiber);
+
+  V lfiber_lite;
+  lsec1 = lfiber_lite;
+
+  //S& operator=(const F& xfiber);
+
+  typename F::host_type& lfiber_host = xns.new_fiber_space<F>();
+  lfiber_host.get_read_write_access(true);
+
+  F lfiber(&lfiber_host);
+  lsec1 = lfiber;
+
+  lsec1.detach_from_state();
+  lfiber.detach_from_state();
+
+  //==========================================================================
+
+  // Cleanup.
+
+  lvector[0].detach_from_state();
+  lvector[1].detach_from_state();
+
+  //==========================================================================
+
+  // Postconditions:
+
+  // Exit:
+
+  return;
+
+}
+
+//$$SCRIBBLE: Cleanup and comment.
+
+template<typename SB, typename SD>
+void
+test_section_common_attached(fiber_bundles_namespace& xns, int xdim)
+{
+  // Preconditions:
+
+  require(xns.state_is_read_write_accessible());
+  require(1<=xdim && xdim<=3);
+
+  // Body:
+
+  typedef typename SD::fiber_type F;
+  typedef typename F::volatile_type V;
+
+  //==========================================================================
+
+  // Make a base space.
+
+  const poset_path& lbase_path = make_test_base_space(xdim, xns);
+
+  SD lvector[2];
+  make_test_sections(xns, lbase_path,
+                     "test_section_space", "vector",
+                     lvector, 2);
+
+  lvector[0].get_read_write_access();
+  lvector[1].get_read_write_access();
+
+  poset_path lpath0 = lvector[0].path();
+  poset_path lpath1 = lvector[1].path();
+
+  cout << "+++++ lpath0 = " << lpath0 << endl;
+  cout << "+++++ lpath1 = " << lpath1 << endl;
+
+  scoped_index lindex0 = lvector[0].index();
+  scoped_index lindex1 = lvector[1].index();
+
+  cout << "+++++ lindex0 = " << lindex0 << endl;
+  cout << "+++++ lindex1 = " << lindex1 << endl;
+
+  sec_rep_space* lhost = lvector[0].host();
+
+  //SB(const sec_rep_space* xhost, const scoped_index& xindex);
+
+  SB lsec2(lhost, lindex0);
+
+  lsec2.detach_from_state();
+
+  //SB(const sec_rep_space* xhost, const string& xname);
+
+  SB lsec3(lhost, lpath0.member_name());
+
+  lsec3.detach_from_state();
+
+  //SB(const namespace_poset* xnamespace,
+  //     const poset_path& xpath,
+  //     bool xauto_access = true);
+
+  SB lsec0(&xns, lpath0, true);
+
+  lsec0.detach_from_state();
+
+  //explicit SB(const sec_rep_space_member* xother);
+
+  SB lsec1(&lvector[0]);
+
+  // Don't detach here so we can use it below.
+  //lsec1.detach_from_state();
+
+  //SB(sec_rep_space* xhost,
+  //   section_dof_map* xdof_map = 0,
+  //   bool xauto_access = true);
+
+  SB lsec4(lhost);
+
+  lsec4.detach_from_state();
+
+  //virtual SB& operator=(const abstract_poset_member& xother);
+
+  abstract_poset_member* lapm = &lsec1;
+  lsec1 = *lapm;
+
+  //==========================================================================
+
+  //SB& operator=(V& xfiber);
+
+//   V lfiber_lite;
+//   lsec1 = lfiber_lite;
+
+  //SB& operator=(const F& xfiber);
+
+  typename F::host_type& lfiber_host = xns.new_fiber_space<F>();
+  lfiber_host.get_read_write_access(true);
+
+  F lfiber(&lfiber_host);
+  lsec1 = lfiber;
+
+  lsec1.detach_from_state();
+  lfiber.detach_from_state();
+
+  //==========================================================================
+
+  //SB& operator=(const SB& xother)
+
+//   SB lbase = lvector[0];
+//   lbase = lvector[1];
+
+//   lbase.detach_from_state();
+
+  //==========================================================================
+
+  // Cleanup.
+
+  lvector[0].detach_from_state();
+  lvector[1].detach_from_state();
+
+  //==========================================================================
+
+  // Postconditions:
+
+  // Exit:
+
+  return;
+
+}
+
+} // namespace fiber_bundle
 
 #endif // ifndef TEST_SECTIONS_IMPL_H
