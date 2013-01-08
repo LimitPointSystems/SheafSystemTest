@@ -33,7 +33,7 @@ main(int xargc, char *xargv[])
   //============================================================================
 
   test_section_common_unattached<sec_at3>();
-//   test_section_common_attached<sec_at3, sec_e3>(lns, 3);
+  test_section_common_attached<sec_at3, sec_at3_e3>(lns, 3);
 
   //============================================================================
 
