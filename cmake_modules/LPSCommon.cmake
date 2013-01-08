@@ -33,16 +33,16 @@ link_directories(${SHEAVES_LIB_OUTPUT_DIR})
 # Linux only for now.
 #
 if(LINUX64INTEL)
-#    set(COLOR_B FFFF00 CACHE STRING "Color for uncovered blocks code.")
-#    set(COLOR_C 00FF00 CACHE STRING "Color for covered code.")
-#    set(COLOR_F FF0000 CACHE STRING "Color for uncovered functions code.")
-#    set(COLOR_I FFFFFF CACHE STRING "Color for information lines.")
-#    set(COLOR_P FF00FF CACHE STRING "Color for partially covered code.")
-#    set(COLOR_U 00FFFF CACHE STRING "Color for unknown code.")
+    set(COLOR_B FFFF00 CACHE STRING "Color for uncovered blocks code.")
+    set(COLOR_C 00FF00 CACHE STRING "Color for covered code.")
+    set(COLOR_F FF0000 CACHE STRING "Color for uncovered functions code.")
+    set(COLOR_I FFFFFF CACHE STRING "Color for information lines.")
+    set(COLOR_P FF00FF CACHE STRING "Color for partially covered code.")
+    set(COLOR_U 00FFFF CACHE STRING "Color for unknown code.")
 
-    set(UNCOVERED_COLOR DE0829 CACHE STRING "Color for uncovered code.")
-    set(COVERED_COLOR 319A44 CACHE STRING "Color for covered code.")
-    set(PARTIAL_COLOR E1EA43 CACHE STRING "Color for partially covered code.")
+#    set(UNCOVERED_COLOR DE0829 CACHE STRING "Color for uncovered code.")
+#    set(COVERED_COLOR 319A44 CACHE STRING "Color for covered code.")
+#    set(PARTIAL_COLOR E1EA43 CACHE STRING "Color for partially covered code.")
     
     # Lop the compiler name off the end of the CXX string
     string(REPLACE "/icpc" "" INTELPATH ${CMAKE_CXX_COMPILER})
