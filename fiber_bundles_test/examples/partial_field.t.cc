@@ -4,8 +4,10 @@
 // Copyright (c) 2012 Limit Point Systems, Inc.
 //
 
-/// @example examples/partial_field.t.cc
-/// Test driver for partial fields.
+// Test driver for partial fields.
+
+// $$OBSOLETE No longer part of the tests.  Code remains only as
+//            a reference for future development.
 
 #include "binary_section_space_schema_poset.h"
 #include "discretization_iterator.h"

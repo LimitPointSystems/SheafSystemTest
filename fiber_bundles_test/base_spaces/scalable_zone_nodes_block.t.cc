@@ -4,6 +4,11 @@
 // Copyright (c) 2012 Limit Point Systems, Inc.
 //
 
+/// @deprecated Use the individual zone_nodes_block examples:
+/// base_spaces/zone_nodes_block_1d.t.cc
+/// base_spaces/zone_nodes_block_2d.t.cc
+/// base_spaces/zone_nodes_block_3d.t.cc
+
 /// @example base_spaces/scalable_zone_nodes_block.t.cc
 /// Test driver for timing zone_nodes_block performance.
 

@@ -4,7 +4,10 @@
 // Copyright (c) 2012 Limit Point Systems, Inc.
 //
 
-/// Unit test driver for class mesh_partition.
+// Unit test driver for class mesh_partition.
+
+// $$OBSOLETE No longer part of the tests.  Code remains only as
+//            a reference for future development.
 
 #include "mesh_partition.h"
 

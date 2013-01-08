@@ -4,7 +4,10 @@
 // Copyright (c) 2012 Limit Point Systems, Inc.
 //
 
-/// Unit test driver for class mesh_decomposition.
+// Unit test driver for class mesh_decomposition.
+
+// $$OBSOLETE No longer part of the tests.  Code remains only as
+//            a reference for future development.
 
 #include "mesh_decomposition.h"
 

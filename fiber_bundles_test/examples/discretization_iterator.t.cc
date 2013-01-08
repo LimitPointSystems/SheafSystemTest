@@ -4,8 +4,10 @@
 // Copyright (c) 2012 Limit Point Systems, Inc.
 //
 
-/// @example examples/discretization_iterator.t.cc
-/// Test driver for CTB dof tuple stuff.
+// Test driver for CTB dof tuple stuff.
+
+// $$OBSOLETE No longer part of the tests.  Code remains only as
+//            a reference for future development.
 
 #include "abstract_poset_member.h"
 #include "at0.h"

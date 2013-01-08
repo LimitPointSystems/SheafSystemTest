@@ -4,8 +4,10 @@
 // Copyright (c) 2012 Limit Point Systems, Inc.
 //
 
-/// @example fiber_bundles/examples/scalable_iterator.t.cc
-/// Test driver for timing iterator performance.
+// Test driver for timing iterator performance.
+
+// $$OBSOLETE No longer part of the tests.  Code remains only as
+//            a reference for future development.
 
 #include "fiber_bundles_namespace.h"
 #include "plot.h"

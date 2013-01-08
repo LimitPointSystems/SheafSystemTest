@@ -32,13 +32,16 @@ collect_includes()
 #
 set(UNIT_TEST_SRCS
     at0.t.cc 
-    partial_field.t.cc 
     fields3d.t.cc 
     torus.t.cc
     recipe.t.cc 
-    discretization_iterator.t.cc 
-	scalable_entire_read_write.t.cc 
-	scalable_iterator.t.cc
+# The following files are no longer part of the build.
+# they are deprecated and only remain around as a reference
+# for future development.
+#    partial_field.t.cc 
+#    discretization_iterator.t.cc 
+#    scalable_entire_read_write.t.cc 
+#    scalable_iterator.t.cc
 )
 
 collect_unit_test_sources()

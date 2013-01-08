@@ -4,15 +4,15 @@
 // Copyright (c) 2012 Limit Point Systems, Inc.
 //
 
-/// @example base_spaces/scalable_structured_block_2d.t.cc
-/// Test driver for timing structured_block_2d performance.
+/// @example base_spaces/scalable_zone_nodes_block_1d.t.cc
+/// Test driver for timing zone_nodes_block performance in one dimension.
 
 #define TEST_SECTION // Test the construction and assignment of a scalar section
 #define TEST_ITR // Test the pre and post order iterators, connectivity and adjacency iterators and upper and lower cover iterators.
 #define TEST_IO // Test the io system
 #define USE_RUSAGE // Use getrusage to test memory performance.  Otherwise, use the deep size function of the block.
 
-#include "structured_block_2d.h"
+#include "zone_nodes_block.h"
 #include "block_scaling_test.impl.h"
 
 using namespace fiber_bundle;
@@ -60,15 +60,9 @@ main(int xargc, char* xargv[])
 #endif
 
 #ifdef TEST_IO
-
-#ifdef TEST_SECTION
   ltime_plot_types[tid++] = plot::LINEAR;
-#else
-  ltime_plot_types[tid++] = plot::CONSTANT;
-#endif // TEST_SECTION
   ltime_plot_types[tid++] = plot::LINEAR;
-
-#endif // TEST_IO
+#endif
 
 #ifdef USE_RUSAGE
   plot::plot_type lmem_plot_types[7];
@@ -78,7 +72,7 @@ main(int xargc, char* xargv[])
 
   lmem_plot_types[0] = plot::LINEAR;
   lmem_plot_types[1] = plot::CONSTANT;
-  lmem_plot_types[2] = plot::CONSTANT;
+  lmem_plot_types[2] = plot::LINEAR;
   lmem_plot_types[3] = plot::LINEAR;
   lmem_plot_types[4] = plot::CONSTANT;
   lmem_plot_types[5] = plot::CONSTANT;
@@ -86,8 +80,7 @@ main(int xargc, char* xargv[])
   lmem_plot_types[6] = plot::LINEAR;
 #endif
 
-  test_scaling<structured_block_2d, 2>(xargc, xargv, ltime_plot_types,
-				       lmem_plot_types);
+  test_scaling<zone_nodes_block, 1>(xargc, xargv, ltime_plot_types,lmem_plot_types);
   
   // Postconditions:
 

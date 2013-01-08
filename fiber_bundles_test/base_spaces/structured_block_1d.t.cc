@@ -22,7 +22,6 @@
 
 using namespace fiber_bundle;
 
-
 int
 main(int xargc, char* xargv[])
 {
@@ -121,19 +120,6 @@ main(int xargc, char* xargv[])
   lprop = lfiber;
 
   cout << lprop_space << endl << endl;
-
-  //============================================================================
-  // Miscellaneous coverage tests.
-  //============================================================================
-
-  const unary_index_space& lid_space = lblock0.id_space();
-
-  ragged_array<unary_index>* lneighbor_list = lid_space.neighbor_list();
-
-  cout << "lid_space = " << lid_space << endl;
-
-  //============================================================================
-
 
   // Clean-up.
 
