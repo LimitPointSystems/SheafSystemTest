@@ -51,6 +51,14 @@ if(LINUX64INTEL)
     # The profmerge executable
     set(PROFMERGE "${INTELPATH}/profmerge" CACHE STRING "Intel dynamic profile merge utility." )
     set(CODECOV_ARGS -spi ${SHEAFSYSTEM_HOME}/build/coverage/pgopti.spi -bcolor ${UNCOVERED_COLOR} -ccolor ${COVERED_COLOR} -pcolor ${PARTIAL_COLOR} -demang -prj CACHE STRING "Arguments for Intel codecov utility.")
+    set(INTEL_LIBPATH "${INTELPATH}/lib/intel64" CACHE STRING "Intel C++ compiler library path." )
+elseif(LINUX64GNU)
+    message(STATUS "IN GNU CLAUSE")
+    # Lop the compiler name off the end of the CXX string to get the gnu root.
+    string(REPLACE "bin/g++" "" GNUPATH ${CMAKE_CXX_COMPILER})
+    # The compiler library path.
+    set(GNU_LIBPATH "${GNUPATH}lib64" CACHE STRING "GNU C++ compiler library path." )
+
 endif()
 
 #------------------------------------------------------------------------------
