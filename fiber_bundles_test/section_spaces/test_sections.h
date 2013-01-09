@@ -361,6 +361,7 @@ test_section_common_attached(fiber_bundles_namespace& xns, int xdim);
 /// Specialization for sec_tuple.
 ///
 template <>
+SHEAF_DLL_SPEC
 void
 test_section_common_unattached<sec_tuple>();
 
@@ -368,6 +369,7 @@ test_section_common_unattached<sec_tuple>();
 /// Specialization for sec_tuple base and sec_e2 derived.
 ///
 template<>
+SHEAF_DLL_SPEC
 void
 test_section_common_attached<sec_tuple, sec_e2>
     (fiber_bundles_namespace& xns, int xdim);

@@ -5,7 +5,7 @@
 // Copyright (c) 2012 Limit Point Systems, Inc.
 //
 
-// Specialization and explicit instantiation for class template block_scaling_test.
+// Implementation of functions for the block scaling tests.
 
 #include "block_scaling_test.h"
 #include "sec_at0.h"
