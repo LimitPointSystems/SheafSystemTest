@@ -27,8 +27,15 @@
 
 namespace fiber_bundle
 {
-class fiber_bundles_namespace;
-  
+  class fiber_bundles_namespace;
+  class point_block_1d;
+  class point_block_2d;
+  class point_block_3d;
+  class structured_block_1d;
+  class structured_block_2d;
+  class structured_block_3d;
+  class zone_nodes_block;
+
   using namespace sheaf;
 
 
@@ -40,14 +47,6 @@ class fiber_bundles_namespace;
   template<typename T>
   T*
   make_block(fiber_bundles_namespace* xns, size_type xsizes[], size_type xdi);
-
-  ///
-  /// Creates a scalar section for base space of type T.
-  /// This function exists so that it can be specialized for point blocks.
-  ///
-  template<typename T>
-  sec_at0::host_type& make_scalar_section_space(fiber_bundles_namespace& xns,
-						T& xblock);
 
   ///
   /// Creates a block of type T with index bounds given 
@@ -78,6 +77,69 @@ class fiber_bundles_namespace;
   void
   pools_size(size_type& xhandle_ct, size_type& xhandle_deep_size);
  
+  ///
+  /// Creates a scalar section for base space of type T.
+  /// This function exists so that it can be specialized for point blocks.
+  ///
+  SHEAF_DLL_SPEC 
+  sec_rep_space&
+  make_scalar_section_space(fiber_bundles_namespace& xns,
+		                    point_block_1d& xblock);
+
+  ///
+  /// Creates a scalar section for base space of type T.
+  /// This function exists so that it can be specialized for point blocks.
+  ///
+  SHEAF_DLL_SPEC 
+  sec_rep_space&
+  make_scalar_section_space(fiber_bundles_namespace& xns,
+			                point_block_2d& xblock);
+
+  ///
+  /// Creates a scalar section for base space of type T.
+  /// This function exists so that it can be specialized for point blocks.
+  ///
+  SHEAF_DLL_SPEC 
+  sec_rep_space&
+  make_scalar_section_space(fiber_bundles_namespace& xns,
+			                point_block_3d& xblock);
+
+  ///
+  /// Creates a scalar section for base space of type T.
+  /// This function exists so that it can be specialized for point blocks.
+  ///
+  SHEAF_DLL_SPEC 
+  sec_rep_space&
+  make_scalar_section_space(fiber_bundles_namespace& xns,
+			                structured_block_1d& xblock);
+
+  ///
+  /// Creates a scalar section for base space of type T.
+  /// This function exists so that it can be specialized for point blocks.
+  ///
+  SHEAF_DLL_SPEC 
+  sec_rep_space&
+  make_scalar_section_space(fiber_bundles_namespace& xns,
+			                structured_block_2d& xblock);
+
+  ///
+  /// Creates a scalar section for base space of type T.
+  /// This function exists so that it can be specialized for point blocks.
+  ///
+  SHEAF_DLL_SPEC 
+  sec_rep_space&
+  make_scalar_section_space(fiber_bundles_namespace& xns,
+			                structured_block_3d& xblock);
+
+  ///
+  /// Creates a scalar section for base space of type T.
+  /// This function exists so that it can be specialized for point blocks.
+  ///
+  SHEAF_DLL_SPEC 
+  sec_rep_space&
+  make_scalar_section_space(fiber_bundles_namespace& xns,
+			                zone_nodes_block& xblock);
+
 } // namespace fiber_bundle
 
 #endif // ifndef BLOCK_SCALING_TEST_H

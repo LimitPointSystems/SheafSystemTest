@@ -7,7 +7,7 @@
 
 // Specialization and explicit instantiation for class template block_scaling_test.
 
-#include "block_scaling_test.impl.h"
+#include "block_scaling_test.h"
 #include "sec_at0.h"
 #include "point_block_1d.h"
 #include "point_block_2d.h"
@@ -16,6 +16,7 @@
 #include "structured_block_2d.h"
 #include "structured_block_3d.h"
 #include "zone_nodes_block.h"
+#include "test_sections.impl.h"
 
 #include "array_index_space_state.h"
 #include "hash_index_space_state.h"
@@ -29,10 +30,10 @@
 #include "singleton_index_space_state.h"
 #include "reserved_primary_index_space_state.h"
 
-namespace fiber_bundle
-{
+using namespace fiber_bundle; // Workaround for MS C++ bug.
 
 void
+fiber_bundle::
 pools_size(size_type& xhandle_ct, size_type& xhandle_deep_size)
 {
   // Preconditions:
@@ -97,13 +98,8 @@ pools_size(size_type& xhandle_ct, size_type& xhandle_deep_size)
   return;
 }
   
-// ===========================================================
-// SPECIALIZATION FOR POINT_BLOCK_1D
-// ===========================================================
-
-template <>
-SHEAF_DLL_SPEC 
-sec_at0::host_type&
+fiber_bundle::sec_rep_space&
+fiber_bundle::
 make_scalar_section_space(fiber_bundles_namespace& xns,
 			  point_block_1d& xblock)
 {
@@ -114,7 +110,7 @@ make_scalar_section_space(fiber_bundles_namespace& xns,
   // Body:
 
 
-  sec_at0::host_type& result =
+  sec_rep_space& result =
     new_host_space<sec_at0>(xns, "property_section_space",
 			    "sec_rep_descriptors/vertex_vertex_constant",
 			    xblock.path(false));
@@ -126,13 +122,8 @@ make_scalar_section_space(fiber_bundles_namespace& xns,
   return result;
 }
 
-// ===========================================================
-// SPECIALIZATION FOR POINT_BLOCK_2D
-// =========================================================== 
-
-template <>
-SHEAF_DLL_SPEC 
-sec_at0::host_type&
+fiber_bundle::sec_rep_space&
+fiber_bundle::
 make_scalar_section_space(fiber_bundles_namespace& xns,
 			  point_block_2d& xblock)
 {
@@ -143,7 +134,7 @@ make_scalar_section_space(fiber_bundles_namespace& xns,
   // Body:
 
 
-  sec_at0::host_type& result =
+  sec_rep_space& result =
     new_host_space<sec_at0>(xns, "property_section_space",
 			    "sec_rep_descriptors/vertex_vertex_constant",
 			    xblock.path(false));
@@ -155,13 +146,8 @@ make_scalar_section_space(fiber_bundles_namespace& xns,
   return result;
 }
 
-// ===========================================================
-// SPECIALIZATION FOR POINT_BLOCK_3D
-// ===========================================================
-
-template <>
-SHEAF_DLL_SPEC 
-sec_at0::host_type&
+fiber_bundle::sec_rep_space&
+fiber_bundle::
 make_scalar_section_space(fiber_bundles_namespace& xns,
 			  point_block_3d& xblock)
 {
@@ -172,7 +158,7 @@ make_scalar_section_space(fiber_bundles_namespace& xns,
   // Body:
 
 
-  sec_at0::host_type& result =
+  sec_rep_space& result =
     new_host_space<sec_at0>(xns, "property_section_space",
 			    "sec_rep_descriptors/vertex_vertex_constant",
 			    xblock.path(false));
@@ -184,13 +170,8 @@ make_scalar_section_space(fiber_bundles_namespace& xns,
   return result;
 }
 
-// ===========================================================
-// SPECIALIZATION FOR STRUCTURED_BLOCK_1D
-// ===========================================================
-
-template <>
-SHEAF_DLL_SPEC 
-sec_at0::host_type&
+fiber_bundle::sec_rep_space&
+fiber_bundle::
 make_scalar_section_space(fiber_bundles_namespace& xns,
 			  structured_block_1d& xblock)
 {
@@ -201,7 +182,7 @@ make_scalar_section_space(fiber_bundles_namespace& xns,
   // Body:
 
 
-  sec_at0::host_type& result =
+  sec_rep_space& result =
     new_host_space<sec_at0>(xns, "property_section_space",
 			    xblock.path(false));
 
@@ -213,13 +194,8 @@ make_scalar_section_space(fiber_bundles_namespace& xns,
 }
 
 
-// ===========================================================
-// SPECIALIZATION FOR STRUCTURED_BLOCK_2D
-// ===========================================================
-
-template <>
-SHEAF_DLL_SPEC 
-sec_at0::host_type&
+fiber_bundle::sec_rep_space&
+fiber_bundle::
 make_scalar_section_space(fiber_bundles_namespace& xns,
 			  structured_block_2d& xblock)
 {
@@ -230,7 +206,7 @@ make_scalar_section_space(fiber_bundles_namespace& xns,
   // Body:
 
 
-  sec_at0::host_type& result =
+  sec_rep_space& result =
     new_host_space<sec_at0>(xns, "property_section_space",
 			    xblock.path(false));
 
@@ -242,13 +218,8 @@ make_scalar_section_space(fiber_bundles_namespace& xns,
 }
 
 
-// ===========================================================
-// SPECIALIZATION FOR STRUCTURED_BLOCK_3D
-// ===========================================================
-
-template <>
-SHEAF_DLL_SPEC 
-sec_at0::host_type&
+fiber_bundle::sec_rep_space&
+fiber_bundle::
 make_scalar_section_space(fiber_bundles_namespace& xns,
 			  structured_block_3d& xblock)
 {
@@ -259,7 +230,7 @@ make_scalar_section_space(fiber_bundles_namespace& xns,
   // Body:
 
 
-  sec_at0::host_type& result =
+  sec_rep_space& result =
     new_host_space<sec_at0>(xns, "property_section_space",
 			    xblock.path(false));
 
@@ -271,13 +242,8 @@ make_scalar_section_space(fiber_bundles_namespace& xns,
 }
 
 
-// ===========================================================
-// SPECIALIZATION FOR ZONE_NODES_BLOCK
-// ===========================================================
-
-template <>
-SHEAF_DLL_SPEC 
-sec_at0::host_type&
+fiber_bundle::sec_rep_space&
+fiber_bundle::
 make_scalar_section_space(fiber_bundles_namespace& xns,
 			  zone_nodes_block& xblock)
 {
@@ -288,7 +254,7 @@ make_scalar_section_space(fiber_bundles_namespace& xns,
   // Body:
 
 
-  sec_at0::host_type& result =
+  sec_rep_space& result =
     new_host_space<sec_at0>(xns, "property_section_space",
 			    xblock.path(false));
 
@@ -299,4 +265,3 @@ make_scalar_section_space(fiber_bundles_namespace& xns,
   return result;
 }
 
-}

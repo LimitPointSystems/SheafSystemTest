@@ -36,6 +36,10 @@
 #include "preorder_itr.h"
 #endif
 
+#ifndef SEC_AT0
+#include "sec_at0.h"
+#endif
+
 #ifndef STD_STRING_H
 #include "std_string.h"
 #endif
@@ -50,10 +54,6 @@
 
 #ifndef STORAGE_AGENT_H
 #include "storage_agent.h"
-#endif
-
-#ifndef TEST_SECTIONS_IMPL_H
-#include "test_sections.impl.h"
 #endif
 
 #ifdef _WIN32
@@ -163,7 +163,7 @@ time_block(string xname, size_type xsizes[], size_type xdi, plot& xtime_plot, pl
   lwatch.reset();
   lwatch.start();
   
-  sec_at0::host_type& lprop_space = make_scalar_section_space<T>(lns, *lblock);
+  sec_rep_space& lprop_space = make_scalar_section_space(lns, *lblock);
  
   sec_at0 lprop(&lprop_space);
   lprop.get_read_write_access();
