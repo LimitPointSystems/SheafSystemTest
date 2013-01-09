@@ -425,7 +425,8 @@ test_section_common_unattached<fiber_bundle::sec_tuple>()
   cout << boolalpha;
 
   typedef sec_tuple S;
-  typedef typename S::fiber_type F;
+
+  typedef S::fiber_type F;
 
   //static const string& static_class_name();
 
@@ -531,8 +532,8 @@ test_section_common_attached<fiber_bundle::sec_tuple, fiber_bundle::sec_e2>
   typedef sec_tuple SB; // base
   typedef sec_e2 SD;    //derived
 
-  typedef typename SD::fiber_type F;
-  typedef typename F::volatile_type V;
+  typedef SD::fiber_type F;
+  typedef F::volatile_type V;
 
   //==========================================================================
 
@@ -551,14 +552,8 @@ test_section_common_attached<fiber_bundle::sec_tuple, fiber_bundle::sec_e2>
   poset_path lpath0 = lvector[0].path();
   poset_path lpath1 = lvector[1].path();
 
-  cout << "+++++ lpath0 = " << lpath0 << endl;
-  cout << "+++++ lpath1 = " << lpath1 << endl;
-
   scoped_index lindex0 = lvector[0].index();
   scoped_index lindex1 = lvector[1].index();
-
-  cout << "+++++ lindex0 = " << lindex0 << endl;
-  cout << "+++++ lindex1 = " << lindex1 << endl;
 
   sec_rep_space* lhost = lvector[0].host();
 
