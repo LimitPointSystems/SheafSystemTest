@@ -1,4 +1,4 @@
-// $RCSfile: section_pusher_0d.t.cc,v $ $Revision: 1.9 $ $Date: 2012/03/01 00:41:11 $
+// $RCSfile$ $Revision$ $Date$
 
 //
 // Copyright (c) 2012 Limit Point Systems, Inc.
@@ -69,14 +69,15 @@ void test_dc_1_a()
 
   // Set the property to the disc id.
 
-  index_space_iterator* ldisc_itr = src->property().schema().discretization_id_space().iterator(true);
-  while (!ldisc_itr->is_done())
+  index_space_iterator& ldisc_itr =
+    src->property().schema().discretization_id_space().get_iterator();
+  while(!ldisc_itr.is_done())
   {
-    sec_vd_dof_type ldof = ldisc_itr->pod();
-    src->property().put_fiber(ldisc_itr->pod(), &ldof, sizeof(sec_vd_dof_type));
-    ldisc_itr->next();
+    sec_vd_dof_type ldof = ldisc_itr.pod();
+    src->property().put_fiber(ldisc_itr.pod(), &ldof, sizeof(sec_vd_dof_type));
+    ldisc_itr.next();
   }
-  delete ldisc_itr;
+  src->property().schema().discretization_id_space().release_iterator(ldisc_itr);
 
   cout << *src << endl;
 
@@ -134,14 +135,15 @@ void test_dc_1_b()
 
   // Set the property to the disc id.
 
-  index_space_iterator* ldisc_itr = src->property().schema().discretization_id_space().iterator(true);
-  while (!ldisc_itr->is_done())
+  index_space_iterator& ldisc_itr =
+    src->property().schema().discretization_id_space().get_iterator();
+  while(!ldisc_itr.is_done())
   {
-    sec_vd_dof_type ldof = ldisc_itr->pod();
-    src->property().put_fiber(ldisc_itr->pod(), &ldof, sizeof(sec_vd_dof_type));
-    ldisc_itr->next();
+    sec_vd_dof_type ldof = ldisc_itr.pod();
+    src->property().put_fiber(ldisc_itr.pod(), &ldof, sizeof(sec_vd_dof_type));
+    ldisc_itr.next();
   }
-  delete ldisc_itr;
+  src->property().schema().discretization_id_space().release_iterator(ldisc_itr);
 
   // Push the src field to the dst field and print the result.
   // Given the coordinates above, the destation should get the same
@@ -197,14 +199,15 @@ void test_dc_1_c()
 
   // Set the property to the disc id.
 
-  index_space_iterator* ldisc_itr = src->property().schema().discretization_id_space().iterator(true);
-  while (!ldisc_itr->is_done())
+  index_space_iterator& ldisc_itr =
+    src->property().schema().discretization_id_space().get_iterator();
+  while(!ldisc_itr.is_done())
   {
-    sec_vd_dof_type ldof = ldisc_itr->pod();
-    src->property().put_fiber(ldisc_itr->pod(), &ldof, sizeof(sec_vd_dof_type));
-    ldisc_itr->next();
+    sec_vd_dof_type ldof = ldisc_itr.pod();
+    src->property().put_fiber(ldisc_itr.pod(), &ldof, sizeof(sec_vd_dof_type));
+    ldisc_itr.next();
   }
-  delete ldisc_itr;
+  src->property().schema().discretization_id_space().release_iterator(ldisc_itr);
 
   // Push the src field to the dst field and print the result.
   // Given the coordinates above, the destation should get the same
@@ -260,14 +263,15 @@ void test_dc_1_d()
 
   // Set the property to the disc id.
 
-  index_space_iterator* ldisc_itr = src->property().schema().discretization_id_space().iterator(true);
-  while (!ldisc_itr->is_done())
+  index_space_iterator& ldisc_itr =
+    src->property().schema().discretization_id_space().get_iterator();
+  while(!ldisc_itr.is_done())
   {
-    sec_vd_dof_type ldof = ldisc_itr->pod();
-    src->property().put_fiber(ldisc_itr->pod(), &ldof, sizeof(sec_vd_dof_type));
-    ldisc_itr->next();
+    sec_vd_dof_type ldof = ldisc_itr.pod();
+    src->property().put_fiber(ldisc_itr.pod(), &ldof, sizeof(sec_vd_dof_type));
+    ldisc_itr.next();
   }
-  delete ldisc_itr;
+  src->property().schema().discretization_id_space().release_iterator(ldisc_itr);
 
   // Push the src field to the dst field and print the result.
   // Given the coordinates above, the destation should get the same
@@ -323,14 +327,15 @@ void test_dc_1_e()
 
   // Set the property to the disc id.
 
-  index_space_iterator* ldisc_itr = src->property().schema().discretization_id_space().iterator(true);
-  while (!ldisc_itr->is_done())
+  index_space_iterator& ldisc_itr =
+    src->property().schema().discretization_id_space().get_iterator();
+  while(!ldisc_itr.is_done())
   {
-    sec_vd_dof_type ldof = ldisc_itr->pod();
-    src->property().put_fiber(ldisc_itr->pod(), &ldof, sizeof(sec_vd_dof_type));
-    ldisc_itr->next();
+    sec_vd_dof_type ldof = ldisc_itr.pod();
+    src->property().put_fiber(ldisc_itr.pod(), &ldof, sizeof(sec_vd_dof_type));
+    ldisc_itr.next();
   }
-  delete ldisc_itr;
+  src->property().schema().discretization_id_space().release_iterator(ldisc_itr);
 				     
   // Push the src field to the dst field and print the result.
   // Given the coordinates above, the destation should get the same
@@ -389,14 +394,15 @@ void test_dc_2_a()
 
   // Set the property to the disc id.
 
-  index_space_iterator* ldisc_itr = src->property().schema().discretization_id_space().iterator(true);
-  while (!ldisc_itr->is_done())
+  index_space_iterator& ldisc_itr =
+    src->property().schema().discretization_id_space().get_iterator();
+  while(!ldisc_itr.is_done())
   {
-    sec_vd_dof_type ldof = ldisc_itr->pod();
-    src->property().put_fiber(ldisc_itr->pod(), &ldof, sizeof(sec_vd_dof_type));
-    ldisc_itr->next();
+    sec_vd_dof_type ldof = ldisc_itr.pod();
+    src->property().put_fiber(ldisc_itr.pod(), &ldof, sizeof(sec_vd_dof_type));
+    ldisc_itr.next();
   }
-  delete ldisc_itr;
+  src->property().schema().discretization_id_space().release_iterator(ldisc_itr);
 
   // Push the src field to the dst field and print the result.
   // Given the coordinates above, the destation should get the same
@@ -455,14 +461,15 @@ void test_dc_2_b()
 
   // Set the property to the disc id.
 
-  index_space_iterator* ldisc_itr = src->property().schema().discretization_id_space().iterator(true);
-  while (!ldisc_itr->is_done())
+  index_space_iterator& ldisc_itr =
+    src->property().schema().discretization_id_space().get_iterator();
+  while(!ldisc_itr.is_done())
   {
-    sec_vd_dof_type ldof = ldisc_itr->pod();
-    src->property().put_fiber(ldisc_itr->pod(), &ldof, sizeof(sec_vd_dof_type));
-    ldisc_itr->next();
+    sec_vd_dof_type ldof = ldisc_itr.pod();
+    src->property().put_fiber(ldisc_itr.pod(), &ldof, sizeof(sec_vd_dof_type));
+    ldisc_itr.next();
   }
-  delete ldisc_itr;
+  src->property().schema().discretization_id_space().release_iterator(ldisc_itr);
 
   // Push the src field to the dst field and print the result.
   // Given the coordinates above, the destation should get the same
@@ -521,14 +528,15 @@ void test_dc_2_c()
 
   // Set the property to the disc id.
 
-  index_space_iterator* ldisc_itr = src->property().schema().discretization_id_space().iterator(true);
-  while (!ldisc_itr->is_done())
+  index_space_iterator& ldisc_itr =
+    src->property().schema().discretization_id_space().get_iterator();
+  while(!ldisc_itr.is_done())
   {
-    sec_vd_dof_type ldof = ldisc_itr->pod();
-    src->property().put_fiber(ldisc_itr->pod(), &ldof, sizeof(sec_vd_dof_type));
-    ldisc_itr->next();
+    sec_vd_dof_type ldof = ldisc_itr.pod();
+    src->property().put_fiber(ldisc_itr.pod(), &ldof, sizeof(sec_vd_dof_type));
+    ldisc_itr.next();
   }
-  delete ldisc_itr;
+  src->property().schema().discretization_id_space().release_iterator(ldisc_itr);
 
   // Push the src field to the dst field and print the result.
   // Given the coordinates above, the destation should get the same
@@ -587,14 +595,15 @@ void test_dc_2_d()
 
   // Set the property to the disc id.
 
-  index_space_iterator* ldisc_itr = src->property().schema().discretization_id_space().iterator(true);
-  while (!ldisc_itr->is_done())
+  index_space_iterator& ldisc_itr =
+    src->property().schema().discretization_id_space().get_iterator();
+  while(!ldisc_itr.is_done())
   {
-    sec_vd_dof_type ldof = ldisc_itr->pod();
-    src->property().put_fiber(ldisc_itr->pod(), &ldof, sizeof(sec_vd_dof_type));
-    ldisc_itr->next();
+    sec_vd_dof_type ldof = ldisc_itr.pod();
+    src->property().put_fiber(ldisc_itr.pod(), &ldof, sizeof(sec_vd_dof_type));
+    ldisc_itr.next();
   }
-  delete ldisc_itr;
+  src->property().schema().discretization_id_space().release_iterator(ldisc_itr);
 
   // Push the src field to the dst field and print the result.
   // Given the coordinates above, the destation should get the same
@@ -652,14 +661,15 @@ void test_dc_2_e()
 
   // Set the property to the disc id.
 
-  index_space_iterator* ldisc_itr = src->property().schema().discretization_id_space().iterator(true);
-  while (!ldisc_itr->is_done())
+  index_space_iterator& ldisc_itr =
+    src->property().schema().discretization_id_space().get_iterator();
+  while(!ldisc_itr.is_done())
   {
-    sec_vd_dof_type ldof = ldisc_itr->pod();
-    src->property().put_fiber(ldisc_itr->pod(), &ldof, sizeof(sec_vd_dof_type));
-    ldisc_itr->next();
+    sec_vd_dof_type ldof = ldisc_itr.pod();
+    src->property().put_fiber(ldisc_itr.pod(), &ldof, sizeof(sec_vd_dof_type));
+    ldisc_itr.next();
   }
-  delete ldisc_itr;
+  src->property().schema().discretization_id_space().release_iterator(ldisc_itr);
 
   // Push the src field to the dst field and print the result.
   // Given the coordinates above, the destation should get the same
@@ -721,14 +731,15 @@ void test_dc_3_a()
 
   // Set the property to the disc id.
 
-  index_space_iterator* ldisc_itr = src->property().schema().discretization_id_space().iterator(true);
-  while (!ldisc_itr->is_done())
+  index_space_iterator& ldisc_itr =
+    src->property().schema().discretization_id_space().get_iterator();
+  while(!ldisc_itr.is_done())
   {
-    sec_vd_dof_type ldof = ldisc_itr->pod();
-    src->property().put_fiber(ldisc_itr->pod(), &ldof, sizeof(sec_vd_dof_type));
-    ldisc_itr->next();
+    sec_vd_dof_type ldof = ldisc_itr.pod();
+    src->property().put_fiber(ldisc_itr.pod(), &ldof, sizeof(sec_vd_dof_type));
+    ldisc_itr.next();
   }
-  delete ldisc_itr;
+  src->property().schema().discretization_id_space().release_iterator(ldisc_itr);
 
   // Push the src field to the dst field and print the result.
   // Given the coordinates above, the destation should get the same
@@ -790,14 +801,15 @@ void test_dc_3_b()
 
   // Set the property to the disc id.
 
-  index_space_iterator* ldisc_itr = src->property().schema().discretization_id_space().iterator(true);
-  while (!ldisc_itr->is_done())
+  index_space_iterator& ldisc_itr =
+    src->property().schema().discretization_id_space().get_iterator();
+  while(!ldisc_itr.is_done())
   {
-    sec_vd_dof_type ldof = ldisc_itr->pod();
-    src->property().put_fiber(ldisc_itr->pod(), &ldof, sizeof(sec_vd_dof_type));
-    ldisc_itr->next();
+    sec_vd_dof_type ldof = ldisc_itr.pod();
+    src->property().put_fiber(ldisc_itr.pod(), &ldof, sizeof(sec_vd_dof_type));
+    ldisc_itr.next();
   }
-  delete ldisc_itr;
+  src->property().schema().discretization_id_space().release_iterator(ldisc_itr);
 
   // Push the src field to the dst field and print the result.
   // Given the coordinates above, the destation should get the same
@@ -859,14 +871,15 @@ void test_dc_3_c()
 
   // Set the property to the disc id.
 
-  index_space_iterator* ldisc_itr = src->property().schema().discretization_id_space().iterator(true);
-  while (!ldisc_itr->is_done())
+  index_space_iterator& ldisc_itr =
+    src->property().schema().discretization_id_space().get_iterator();
+  while(!ldisc_itr.is_done())
   {
-    sec_vd_dof_type ldof = ldisc_itr->pod();
-    src->property().put_fiber(ldisc_itr->pod(), &ldof, sizeof(sec_vd_dof_type));
-    ldisc_itr->next();
+    sec_vd_dof_type ldof = ldisc_itr.pod();
+    src->property().put_fiber(ldisc_itr.pod(), &ldof, sizeof(sec_vd_dof_type));
+    ldisc_itr.next();
   }
-  delete ldisc_itr;
+  src->property().schema().discretization_id_space().release_iterator(ldisc_itr);
 
   // Push the src field to the dst field and print the result.
   // Given the coordinates above, the destation should get the same
@@ -928,14 +941,15 @@ void test_dc_3_d()
 
   // Set the property to the disc id.
 
-  index_space_iterator* ldisc_itr = src->property().schema().discretization_id_space().iterator(true);
-  while (!ldisc_itr->is_done())
+  index_space_iterator& ldisc_itr =
+    src->property().schema().discretization_id_space().get_iterator();
+  while(!ldisc_itr.is_done())
   {
-    sec_vd_dof_type ldof = ldisc_itr->pod();
-    src->property().put_fiber(ldisc_itr->pod(), &ldof, sizeof(sec_vd_dof_type));
-    ldisc_itr->next();
+    sec_vd_dof_type ldof = ldisc_itr.pod();
+    src->property().put_fiber(ldisc_itr.pod(), &ldof, sizeof(sec_vd_dof_type));
+    ldisc_itr.next();
   }
-  delete ldisc_itr;
+  src->property().schema().discretization_id_space().release_iterator(ldisc_itr);
 
   // Push the src field to the dst field and print the result.
   // Given the coordinates above, the destation should get the same
@@ -996,14 +1010,15 @@ void test_dc_3_e()
 
   // Set the property to the disc id.
 
-  index_space_iterator* ldisc_itr = src->property().schema().discretization_id_space().iterator(true);
-  while (!ldisc_itr->is_done())
+  index_space_iterator& ldisc_itr =
+    src->property().schema().discretization_id_space().get_iterator();
+  while(!ldisc_itr.is_done())
   {
-    sec_vd_dof_type ldof = ldisc_itr->pod();
-    src->property().put_fiber(ldisc_itr->pod(), &ldof, sizeof(sec_vd_dof_type));
-    ldisc_itr->next();
+    sec_vd_dof_type ldof = ldisc_itr.pod();
+    src->property().put_fiber(ldisc_itr.pod(), &ldof, sizeof(sec_vd_dof_type));
+    ldisc_itr.next();
   }
-  delete ldisc_itr;
+  src->property().schema().discretization_id_space().release_iterator(ldisc_itr);
 
   // Push the src field to the dst field and print the result.
   // Given the coordinates above, the destation should get the same

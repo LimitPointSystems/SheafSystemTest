@@ -23,6 +23,8 @@
 
 #include "test_sheaves.h"
 
+#include "name_map.h"
+
 #include "namespace_poset.h"
 #include "subposet_member_iterator.h"
 
@@ -1454,7 +1456,7 @@ test_name_multimap_facet()
     cout << "Inserting \"" << itr.name() << "\" at index:  "
          << itr.index() << endl;
 
-    lmap.put_entry(itr.index().pod(), itr.name(), false);
+    lmap.put_entry(itr.index(), itr.name(), false);
 
     lnum_entries++;
 
@@ -1671,7 +1673,7 @@ test_name_map_facet()
     // but every name has exactly one index.
 
     cout << "Inserting \"" << itr.name() << "\" at index:  "
-         << itr.index() << endl;
+         << itr.index().pod() << endl;
 
     lmap.put_entry(itr.index().pod(), itr.name());
     lnum_entries++;
@@ -2244,7 +2246,7 @@ test_depth_first_itr_facet(namespace_poset& xns)
   }
 
   //ITR<T> litr(lanchor, const string& xfilter_name);
-  ITR<T> litr_xx(lanchor, "__vertices");
+  ITR<T> litr_xx(lanchor, "__vertices", sheaf::DOWN, sheaf::NOT_STRICT);
 
   const subposet& lfilter = litr_xx.filter();
 
@@ -2252,20 +2254,20 @@ test_depth_first_itr_facet(namespace_poset& xns)
   cout << "lfilter.index() = " << lfilter.index() << endl;
 
   //ITR<T> litr(lanchor, scoped_index xfilter_index);
-  ITR<T> litr_yy(lanchor, lfilter.index());
+  ITR<T> litr_yy(lanchor, lfilter.index(), sheaf::DOWN, sheaf::NOT_STRICT);
 
   //ITR<T> litr(lanchor); == litr(lanchor, 0, sheaf::DOWN, sheaf::NOT_STRICT)
-  ITR<T> litr_zz(lanchor, lvertices, sheaf::DOWN, sheaf::NOT_STRICT);
-  ITR<T> litr_zz2(lanchor, lvertices, sheaf::UP, sheaf::NOT_STRICT);
-  ITR<T> litr_zz3(lanchor, lvertices, sheaf::UP, sheaf::STRICT);
-  ITR<T> litr_zz4(lanchor, lvertices, sheaf::DOWN, sheaf::STRICT);
+  ITR<T> litr_zz(lanchor, *lvertices, sheaf::DOWN, sheaf::NOT_STRICT);
+  ITR<T> litr_zz2(lanchor, *lvertices, sheaf::UP, sheaf::NOT_STRICT);
+  ITR<T> litr_zz3(lanchor, *lvertices, sheaf::UP, sheaf::STRICT);
+  ITR<T> litr_zz4(lanchor, *lvertices, sheaf::DOWN, sheaf::STRICT);
 
   //////////////////////////////////////////////////////////////////////////////
 
   print_subheader("Testing filtered_depth_first_itr(",
                   "        const abstract_poset_member&, const subposet*,)");
 
-  ITR<T> litr(lanchor);
+  ITR<T> litr(lanchor, sheaf::DOWN, sheaf::NOT_STRICT);
 
   print_subheader("Testing depth_first_itr<T>::reserve_has_visited(pod_index_type xub)");
 
@@ -2305,11 +2307,6 @@ test_depth_first_itr_facet(namespace_poset& xns)
 
   bool lis_maximal = litr.is_maximal();
   cout << "lis_maximal = " << boolalpha << lis_maximal << endl;
-
-  print_subheader("Testing bool depth_first_itr<T>::link_is_implicit()");
-
-  bool llink_is_implicit = litr.link_is_implicit();
-  cout << "llink_is_implicit = " << boolalpha << llink_is_implicit << endl;
 
 
   //============================================================================
@@ -2437,19 +2434,19 @@ test_filtered_depth_first_itr_facet(namespace_poset& xns)
   print_subheader("Testing filtered_depth_first_itr(",
                   "        const abstract_poset_member&, const subposet*,...)");
 
-  ITR<T> litr(lanchor);
+  ITR<T> litr(lanchor, sheaf::DOWN, sheaf::NOT_STRICT);
 
 
   print_subheader("Testing filtered_depth_first_itr<T>(",
                   "        const abstract_poset_member&, const string& xfilter_name,)");
 
-  ITR<T> litr2(lanchor, lposet->whole().name());
+  ITR<T> litr2(lanchor, lposet->whole().name(), sheaf::DOWN, sheaf::NOT_STRICT);
 
 
   print_subheader("Testing filtered_depth_first_itr<T>(",
                   "        const abstract_poset_member&, scoped_index xfilter_index,)");
 
-  ITR<T> litr3(lanchor, lposet->whole().index());
+  ITR<T> litr3(lanchor, lposet->whole().index(), sheaf::DOWN, sheaf::NOT_STRICT);
 
   print_subheader("Testing filtered_depth_first_itr<T>(",
                   "        const filtered_depth_first_itr& xother)");

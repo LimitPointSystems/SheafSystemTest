@@ -323,7 +323,7 @@ namespace
     lresult &= test_base_space_factory<T>(xns, xhost_name, lbase_host->path());
 
 
-//     lblock.detach_from_state();
+    lblock.detach_from_state();
 //     lmesh->release_access();
 
     //==========================================================================

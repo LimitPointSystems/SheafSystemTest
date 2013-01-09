@@ -308,6 +308,13 @@ test_field_factory_2(fiber_bundles_namespace& xns)
 
   //============================================================================
 
+  // Clean-up
+
+  lbase.detach_from_state();
+  lbase_type->detach_from_state();
+  delete lbase_type;
+  lbase_mbr->detach_from_state();
+  delete lbase_mbr;
 
   // Postconditions:
 

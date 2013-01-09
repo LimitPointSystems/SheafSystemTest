@@ -81,8 +81,6 @@ make_coordinates(fiber_bundles_namespace* xns, size_type xi_size, size_type xj_s
   sec_e3& result = *(new sec_e3(&lcoords_space));
   result.get_read_write_access();
   
-  index_space& ldisc_id_space = result.schema().discretization_id_space();
-  
   e3_lite lfiber;
   
   pod_index_type lv_id = 0;

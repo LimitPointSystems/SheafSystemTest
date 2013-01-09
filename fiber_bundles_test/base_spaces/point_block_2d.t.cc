@@ -1,5 +1,5 @@
 
-// $RCSfile: point_block_2d.t.cc,v $ $Revision: 1.15 $ $Date: 2012/03/01 00:40:31 $
+// $RCSfile$ $Revision$ $Date$
 
 //
 // Copyright (c) 2012 Limit Point Systems, Inc.

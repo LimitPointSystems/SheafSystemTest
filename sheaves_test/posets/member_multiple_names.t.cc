@@ -167,7 +167,7 @@ int main(int xargc, char *xargv[])
 
   // Print the names for mbr0 to stdout
 
-  psh->all_member_names(scoped_index(2), mbr_names);
+  psh->all_member_names(2, mbr_names);
 
   cout << "For index 2, member name(s) are: " << " ";
 
@@ -182,7 +182,7 @@ int main(int xargc, char *xargv[])
 
   // Print the names for mbr1 to stdout.
 
-  psh->all_member_names(scoped_index(3), mbr_names);
+  psh->all_member_names(3, mbr_names);
 
   cout << "For index 3, member name(s) are:" << " ";
 
@@ -197,7 +197,7 @@ int main(int xargc, char *xargv[])
 
   // Print the names for mbr2 to stdout
 
-  psh->all_member_names(scoped_index(4), mbr_names);
+  psh->all_member_names(4, mbr_names);
 
   cout << "For index 4, member name(s) are:" << " ";
 

@@ -10,10 +10,8 @@
 #include "block.h"
 
 #include "arg_list.h"
-#include "implicit_crg_range.h"
-#include "index_map.h"
-#include "index_space.h"
-#include "mutable_index_map.h"
+#include "crg_interval.h"
+#include "mutable_index_space_handle.h"
 #include "poset_dof_map.h"
 #include "poset_path.h"
 #include "primitive_value.h"
@@ -260,23 +258,23 @@ main(int xargc, char* xargv[])
   ltest &= test_block_facet_deep_size<double*>();
   print_footer("End testing block<double*>");
 
-  // index_map*
+  // index_space_handle*
 
-  print_header("Begin testing block<index_map*>");
-  ltest &= test_block_facet<index_map*>();
-  ltest &= test_block_facet_equal<index_map*>();
-  ltest &= test_block_facet_insertion<index_map*>();
-  ltest &= test_block_facet_deep_size<index_map*>();
-  print_footer("End testing block<index_map*>");
+  print_header("Begin testing block<index_space_handle*>");
+  ltest &= test_block_facet<index_space_handle*>();
+  ltest &= test_block_facet_equal<index_space_handle*>();
+  ltest &= test_block_facet_insertion<index_space_handle*>();
+  ltest &= test_block_facet_deep_size<index_space_handle*>();
+  print_footer("End testing block<index_space_handle*>");
 
-  // mutable_index_map*
+  // mutable_index_space_handle*
 
-  print_header("Begin testing block<mutable_index_map*>");
-  ltest &= test_block_facet<mutable_index_map*>();
-  ltest &= test_block_facet_equal<mutable_index_map*>();
-  ltest &= test_block_facet_insertion<mutable_index_map*>();
-  ltest &= test_block_facet_deep_size<mutable_index_map*>();
-  print_footer("End testing block<mutable_index_map*>");
+  print_header("Begin testing block<mutable_index_space_handle*>");
+  ltest &= test_block_facet<mutable_index_space_handle*>();
+  ltest &= test_block_facet_equal<mutable_index_space_handle*>();
+  ltest &= test_block_facet_insertion<mutable_index_space_handle*>();
+  ltest &= test_block_facet_deep_size<mutable_index_space_handle*>();
+  print_footer("End testing block<mutable_index_space_handle*>");
 
   // block<double>
 
@@ -349,24 +347,6 @@ main(int xargc, char* xargv[])
   ltest &= test_block_facet_insertion<poset_state_handle*>();
   //ltest &= test_block_facet_deep_size<poset_state_handle*>();
   print_footer("End testing block<poset_state_handle*>");
-
-  // index_space*
-
-  print_header("Begin testing block<index_space*>");
-  ltest &= test_block_facet<index_space*>();
-  //ltest &= test_block_facet_equal<index_space*>();
-  ltest &= test_block_facet_insertion<index_space*>();
-  //ltest &= test_block_facet_deep_size<index_space*>();
-  print_footer("End testing block<index_space*>");
-
-  // list<scoped_index>
-
-  print_header("Begin testing block<list<scoped_index> >");
-  ltest &= test_block_facet<list<scoped_index > >();
-  //ltest &= test_block_facet_equal<list<scoped_index> >();
-  //ltest &= test_block_facet_insertion<list<scoped_index> >();
-  ltest &= test_block_facet_deep_size<list<scoped_index> >();
-  print_footer("End testing block<list<scoped_index> >");
 
   // set<int>
 

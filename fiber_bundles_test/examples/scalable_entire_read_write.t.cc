@@ -4,8 +4,10 @@
 // Copyright (c) 2012 Limit Point Systems, Inc.
 //
 
-/// @example examples/scalable_entire_read_write.t.cc
-/// Test driver for timing write_ and read_entire.
+// Test driver for timing write_ and read_entire.
+
+// $$OBSOLETE No longer part of the tests.  Code remains only as
+//            a reference for future development.
 
 #include "deep_size.h"
 #include "fiber_bundles_namespace.h"

@@ -8,7 +8,6 @@
 /// Unit test driver for template class name_multimap.
 
 #include "name_multimap.h"
-#include "scoped_index.h"
 #include "test_sheaves.impl.h"
 
 using namespace sheaf;
@@ -30,13 +29,6 @@ main(int xargc, char* xargv[])
   ltest &= test_any_facet<name_multimap<pod_index_type> >();
   ltest &= test_name_multimap_facet<pod_index_type>();
   print_footer("End testing name_multimap<pod_index_type>");
-
-  // scoped_index
-
-  print_header("Begin testing name_multimap<scoped_index>");
-  ltest &= test_any_facet<name_multimap<scoped_index> >();
-  ltest &= test_name_multimap_facet<scoped_index>();
-  print_footer("End testing name_multimap<scoped_index>");
 
   int lresult = ltest ? 0 : 1;
 

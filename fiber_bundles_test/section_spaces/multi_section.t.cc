@@ -1,4 +1,4 @@
-// $RCSfile: multi_section.t.cc,v $ $Revision: 1.22 $ $Date: 2012/03/01 00:40:53 $
+// $RCSfile$ $Revision$ $Date$
 
 //
 // Copyright (c) 2012 Limit Point Systems, Inc.
@@ -57,20 +57,20 @@ structured_block_1d* make_1d_base_space(fiber_bundles_namespace& xns)
   subposet lparts(lbase_host);
   lparts.put_name("parts", true, false);
 
-  mutable_index_map& lele_map = lbase_host->elements().id_map();
+  const index_space_handle& lele_space = lbase_host->elements().id_space();
 
   scoped_index lexpansion[2];
 
-  lexpansion[0] = lele_map.range_id(0);
-  lexpansion[1] = lele_map.range_id(1);
+  lexpansion[0].put(lele_space, 0);
+  lexpansion[1].put(lele_space, 1);
 
   base_space_member lpart0(lbase_host, lexpansion, 2, tern::NEITHER, false);
   lpart0.put_name("part0", true, true);
   lparts.insert_member(lpart0.index());
   lpart0.detach_from_state();
 
-  lexpansion[0] = lele_map.range_id(2);
-  lexpansion[1] = lele_map.range_id(3);
+  lexpansion[0].put(lele_space, 2);
+  lexpansion[1].put(lele_space, 3);
 
   base_space_member lpart1(lbase_host, lexpansion, 2, tern::NEITHER, false);
   lpart1.put_name("part1", true, true);
@@ -150,16 +150,16 @@ void make_section(sec_at0_space& xhost)
   lsec.put_name("single_valued_section", true, true);
 
   sec_at0::fiber_type::volatile_type lfiber = 0.0;
-  index_space_iterator* litr =
-    lsec.schema().discretization_id_space().iterator(true);
-  while(!litr->is_done())
+  index_space_iterator& litr =
+    lsec.schema().discretization_id_space().get_iterator();
+  while(!litr.is_done())
   {
-    lsec.put_fiber(litr->pod(), lfiber);
+    lsec.put_fiber(litr.pod(), lfiber);
    
     lfiber[0] += 1.0;
-    litr->next();
+    litr.next();
   }
-  delete litr;
+  lsec.schema().discretization_id_space().release_iterator(litr);
 
   lsec.detach_from_state();
 
@@ -189,16 +189,16 @@ void make_multi_section(sec_at0_space& xhost)
   lsec0.put_name("section_on_part0", true, false);
 
   sec_at0::fiber_type::volatile_type lfiber0 = 0.0;
-  index_space_iterator* litr0 =
-    lsec0.schema().discretization_id_space().iterator(true);
-  while(!litr0->is_done())
+  index_space_iterator& litr0 =
+    lsec0.schema().discretization_id_space().get_iterator();
+  while(!litr0.is_done())
   {
-    lsec0.put_fiber(litr0->pod(), lfiber0);
+    lsec0.put_fiber(litr0.pod(), lfiber0);
    
     lfiber0[0] += 1.0;
-    litr0->next();
+    litr0.next();
   }
-  delete litr0;
+  lsec0.schema().discretization_id_space().release_iterator(litr0);
 
   base_space_member lpart1(&xhost.schema().host()->base_space(), "part1");
 
@@ -206,16 +206,16 @@ void make_multi_section(sec_at0_space& xhost)
   lsec1.put_name("section_on_part1", true, false);
 
   sec_at0::fiber_type::volatile_type lfiber1 = 0.0;
-  index_space_iterator* litr1 =
-    lsec1.schema().discretization_id_space().iterator(true);
-  while(!litr1->is_done())
+  index_space_iterator& litr1 =
+    lsec1.schema().discretization_id_space().get_iterator();
+  while(!litr1.is_done())
   {
-    lsec1.put_fiber(litr1->pod(), lfiber1);
+    lsec1.put_fiber(litr1.pod(), lfiber1);
    
     lfiber1[0] += 1.0;
-    litr1->next();
+    litr1.next();
   }
-  delete litr1;
+  lsec1.schema().discretization_id_space().release_iterator(litr1);
 
   // Make the multi-section.
 
@@ -261,22 +261,22 @@ void instantiate_multi_section(sec_at0_space& xhost)
 
   sec_at0 lbranch;
 
-  preorder_iterator litr(lmulti_section, "jims");
+  preorder_iterator litr(lmulti_section, "jims", DOWN, NOT_STRICT);
 
   while(!litr.is_done())
   {
     lbranch.attach_to_state(&xhost, litr.index());
     sec_at0::fiber_type::volatile_type lfiber = 0.0;
-    index_space_iterator* ldisc_itr =
-      lbranch.schema().discretization_id_space().iterator(true);
-    while(!ldisc_itr->is_done())
+    index_space_iterator& ldisc_itr =
+      lbranch.schema().discretization_id_space().get_iterator();
+    while(!ldisc_itr.is_done())
     {
-      lbranch.put_fiber(ldisc_itr->pod(), lfiber);
+      lbranch.put_fiber(ldisc_itr.pod(), lfiber);
    
       lfiber[0] += 1.0;
-      ldisc_itr->next();
+      ldisc_itr.next();
     }
-    delete ldisc_itr;
+    lbranch.schema().discretization_id_space().release_iterator(ldisc_itr);
 
     litr.truncate();
   }
@@ -322,22 +322,22 @@ structured_block_3d* make_3d_base_space(fiber_bundles_namespace& xns)
   subposet lparts(lbase_host);
   lparts.put_name("parts", true, false);
 
-  mutable_index_map& lele_map = lbase_host->elements().id_map();
+  const index_space_handle& lele_space = lbase_host->elements().id_space();
 
   scoped_index lexpansion[3];
 
-  lexpansion[0] = lele_map.range_id(0);
-  lexpansion[1] = lele_map.range_id(1);
-  lexpansion[2] = lele_map.range_id(2);
+  lexpansion[0].put(lele_space, 0);
+  lexpansion[1].put(lele_space, 1);
+  lexpansion[2].put(lele_space, 2);
 
   base_space_member lpart0(lbase_host, lexpansion, 3, tern::NEITHER, false);
   lpart0.put_name("part0", true, true);
   lparts.insert_member(lpart0.index());
   lpart0.detach_from_state();
 
-  lexpansion[0] = lele_map.range_id(3);
-  lexpansion[1] = lele_map.range_id(4);
-  lexpansion[2] = lele_map.range_id(5);
+  lexpansion[0].put(lele_space, 3);
+  lexpansion[1].put(lele_space, 4);
+  lexpansion[2].put(lele_space, 5);
 
   base_space_member lpart1(lbase_host, lexpansion, 3, tern::NEITHER, false);
   lpart1.put_name("part1", true, true);
@@ -417,16 +417,16 @@ void make_3d_section(sec_at0_space& xhost)
   lsec.put_name("single_valued_section", true, true);
 
   sec_at0::fiber_type::volatile_type lfiber = 0.0;
-  index_space_iterator* litr =
-    lsec.schema().discretization_id_space().iterator(true);
-  while(!litr->is_done())
+  index_space_iterator& litr =
+    lsec.schema().discretization_id_space().get_iterator();
+  while(!litr.is_done())
   {
-    lsec.put_fiber(litr->pod(), lfiber);
+    lsec.put_fiber(litr.pod(), lfiber);
    
     lfiber[0] += 1.0;
-    litr->next();
+    litr.next();
   }
-  delete litr;
+  lsec.schema().discretization_id_space().release_iterator(litr);
 
   lsec.detach_from_state();
 
@@ -459,22 +459,22 @@ void instantiate_3d_multi_section(sec_at0_space& xhost)
 
   sec_at0 lbranch;
 
-  preorder_iterator litr(lmulti_section, "jims");
+  preorder_iterator litr(lmulti_section, "jims", DOWN, NOT_STRICT);
   while(!litr.is_done())
   {
     lbranch.attach_to_state(&xhost, litr.index());
 
     sec_at0::fiber_type::volatile_type lfiber = 0.0;
-    index_space_iterator* ldisc_itr =
-      lbranch.schema().discretization_id_space().iterator(true);
-    while(!ldisc_itr->is_done())
+    index_space_iterator& ldisc_itr =
+      lbranch.schema().discretization_id_space().get_iterator();
+    while(!ldisc_itr.is_done())
     {
-      lbranch.put_fiber(ldisc_itr->pod(), lfiber);
+      lbranch.put_fiber(ldisc_itr.pod(), lfiber);
    
       lfiber[0] += 1.0;
-      ldisc_itr->next();
+      ldisc_itr.next();
     }
-    delete ldisc_itr;
+    lbranch.schema().discretization_id_space().release_iterator(ldisc_itr);
 
     litr.truncate();
   }

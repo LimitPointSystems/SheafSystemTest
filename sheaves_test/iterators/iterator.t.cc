@@ -1,4 +1,4 @@
-// $RCSfile: iterator.t.cc,v $ $Revision: 1.27 $ $Date: 2012/03/01 00:41:26 $
+// $RCSfile$ $Revision$ $Date$
 
 //
 // Copyright (c) 2012 Limit Point Systems, Inc.
@@ -77,30 +77,23 @@ make_refinable_triangle()
 
   vertices = new subposet(refinable_triangle);
   vertices->put_name("__vertices", true, false);
-  //   vertices->insert_member(6);
-  //   vertices->insert_member(7);
-  //   vertices->insert_member(8);
-  vertices->insert_member(scoped_index(6));
-  vertices->insert_member(scoped_index(7));
-  vertices->insert_member(scoped_index(8));
+  vertices->insert_member(6);
+  vertices->insert_member(7);
+  vertices->insert_member(8);
 
   // Just the edges
 
   edges = new subposet(refinable_triangle);
   edges->put_name("__edges", true, false);
-  //   edges->insert_member(3);
-  //   edges->insert_member(4);
-  //   edges->insert_member(5);
-  edges->insert_member(scoped_index(3));
-  edges->insert_member(scoped_index(4));
-  edges->insert_member(scoped_index(5));
+  edges->insert_member(3);
+  edges->insert_member(4);
+  edges->insert_member(5);
 
   // Just the triangles
 
   elements = new subposet(refinable_triangle);
   elements->put_name("__elements", true, false);
-  //   elements->insert_member(4);
-  elements->insert_member(scoped_index(4));
+  elements->insert_member(4);
 
   // All cells of dimension 0, 1, or 2
 
@@ -286,10 +279,10 @@ test_level_0_before_refinement()
   //refinable_triangle->put_version(0);
 
   cout << "\n##### begin unfiltered POSTORDER_MEMBER_ITERATOR test at version 0 #####\n";
-  postorder_member_iterator post_itr(refinable_triangle->top());
+  postorder_member_iterator post_itr(refinable_triangle->top(), DOWN, NOT_STRICT);
   while(!post_itr.is_done())
   {
-    cout << " " << post_itr.item().index();
+    cout << " " << post_itr.item().index().pod();
     post_itr.next();
   }
   cout << "\nshould be:\n";
@@ -302,7 +295,7 @@ test_level_0_before_refinement()
   post_itr.reset();
   while(!post_itr.is_done())
   {
-    cout << " " << post_itr.item().index();
+    cout << " " << post_itr.item().index().pod();
     post_itr.next();
   }
   cout << "\nshould be:\n";
@@ -317,7 +310,7 @@ test_level_0_before_refinement()
   post_itr.reset();
   while(!post_itr.is_done())
   {
-    cout << " " << post_itr.item().index();
+    cout << " " << post_itr.item().index().pod();
     post_itr.next();
   }
   cout << "\nshould be:\n";
@@ -333,7 +326,7 @@ test_level_0_before_refinement()
   post_itr.reset();
   while(!post_itr.is_done())
   {
-    cout << " " << post_itr.item().index();
+    cout << " " << post_itr.item().index().pod();
     post_itr.next();
   }
   cout << "\nshould be:\n";
@@ -345,22 +338,22 @@ test_level_0_before_refinement()
   while(!post_itr.is_done())
   {
     cout << " "
-    << post_itr.lesser_index()
+    << post_itr.lesser_index().pod()
     << "->"
-    << post_itr.greater_index();
+    << post_itr.greater_index().pod();
     post_itr.next();
   }
 
   cout << "\nshould be:\n";
-  cout << " 6->-1 7->-1 8->-1\n";
+  cout << " 6->" << invalid_pod_index() << " 7->" << invalid_pod_index() << " 8->" << invalid_pod_index() << "\n";
   cout << "##### end   filtered link POSTORDER_MEMBER_ITERATOR test at version 0 #####\n\n";
 
 
   cout << "##### begin unfiltered PREORDER_MEMBER_ITERATOR test at version 0 #####\n";
-  preorder_member_iterator pre_itr(refinable_triangle->top());
+  preorder_member_iterator pre_itr(refinable_triangle->top(), DOWN, NOT_STRICT);
   while(!pre_itr.is_done())
   {
-    cout << " " << pre_itr.item().index();
+    cout << " " << pre_itr.item().index().pod();
     pre_itr.next();
   }
   cout << "\nshould be:\n";
@@ -370,11 +363,11 @@ test_level_0_before_refinement()
 
   cout << "##### begin filtered PREORDER_MEMBER_ITERATOR test at version 0 #####\n";
   pre_itr.put_anchor(&(refinable_triangle->top()));
-  pre_itr.put_filter(n_cells);
+  pre_itr.put_filter(*n_cells);
   pre_itr.reset();
   while(!pre_itr.is_done())
   {
-    cout << " " << pre_itr.item().index();
+    cout << " " << pre_itr.item().index().pod();
     pre_itr.next();
   }
   cout << "\nshould be:\n";
@@ -386,11 +379,11 @@ test_level_0_before_refinement()
   pre_itr.reset();
   while(!pre_itr.is_done())
   {
-    cout << " " << pre_itr.lesser_index() << "->" << pre_itr.greater_index();
+    cout << " " << pre_itr.lesser_index().pod() << "->" << pre_itr.greater_index().pod();
     pre_itr.next();
   }
   cout << "\nshould be:\n";
-  cout << " 3->-1 6->3 7->3 4->-1 8->4 5->-1\n";
+  cout << " 3->" << invalid_pod_index() << " 6->3 7->3 4->" << invalid_pod_index() << " 8->4 5->" << invalid_pod_index() << "\n";
   cout << "##### end   filtered link PREORDER_MEMBER_ITERATOR test at version 0 #####\n\n";
 
 
@@ -398,7 +391,7 @@ test_level_0_before_refinement()
   pre_itr.reset();
   while(!pre_itr.is_done())
   {
-    cout << " " << pre_itr.item().index();
+    cout << " " << pre_itr.item().index().pod();
     pre_itr.truncate();
   }
   cout << "\nshould be:\n";
@@ -412,7 +405,7 @@ test_level_0_before_refinement()
   pre_itr.reset();
   while(!pre_itr.is_done())
   {
-    cout << " " << pre_itr.item().index();
+    cout << " " << pre_itr.item().index().pod();
     pre_itr.next();
   }
   cout << "\nshould be:\n";
@@ -421,10 +414,10 @@ test_level_0_before_refinement()
 
 
   cout << "##### begin strict up set PREORDER_MEMBER_ITERATOR test at version 0 #####\n";
-  preorder_member_iterator strict_itr(v0, "", sheaf::UP, sheaf::STRICT);
+  preorder_member_iterator strict_itr(v0, "", UP, STRICT);
   while(!strict_itr.is_done())
   {
-    cout << " " << strict_itr.item().index();
+    cout << " " << strict_itr.item().index().pod();
     strict_itr.next();
   }
   cout << "\nshould be:\n";
@@ -438,10 +431,7 @@ test_level_0_before_refinement()
 
   subposet lmins(refinable_triangle);
 
-  preorder_member_iterator ext_itr(refinable_triangle->top(),
-                                   "",
-                                   sheaf::UP,
-                                   sheaf::STRICT);
+  preorder_member_iterator ext_itr(refinable_triangle->top(), "", UP, STRICT);
 
   subposet_member_iterator* sp_itr = n_cells->member_iterator();
   while(!sp_itr->is_done())
@@ -466,7 +456,7 @@ test_level_0_before_refinement()
       ext_itr.reset(sheaf::NO_RESET);
       while(!ext_itr.is_done())
       {
-        lmins.remove_member(ext_itr.item().index());
+        lmins.remove_member(ext_itr.item().index().pod());
         ext_itr.next();
       }
     }
@@ -479,7 +469,7 @@ test_level_0_before_refinement()
 
   while(!lmins_itr->is_done())
   {
-    cout << " " << lmins_itr->index();
+    cout << " " << lmins_itr->index().pod();
     lmins_itr->next();
   }
 
@@ -496,7 +486,10 @@ test_level_0_before_refinement()
 
 
   cout << "\n##### begin unfiltered FILTERED_DEPTH_FIRST_ITERATOR postvisit test at version 0 #####\n";
-  filtered_depth_first_iterator depth_first_itr(refinable_triangle->top());
+  filtered_depth_first_iterator depth_first_itr(refinable_triangle->top(),
+						DOWN,
+						NOT_STRICT,
+						depth_first_iterator::TRIORDER);
   while(!depth_first_itr.is_done())
   {
     switch(depth_first_itr.action())
@@ -506,7 +499,7 @@ test_level_0_before_refinement()
     case filtered_depth_first_iterator::LINK_ACTION:
       break;
     case filtered_depth_first_iterator::POSTVISIT_ACTION:
-      cout << " " << depth_first_itr.index();
+      cout << " " << depth_first_itr.index().pod();
       break;
     default:
       break;
@@ -527,7 +520,7 @@ test_level_0_before_refinement()
     case filtered_depth_first_iterator::PREVISIT_ACTION:
       break;
     case filtered_depth_first_iterator::LINK_ACTION:
-      cout << " " << depth_first_itr.lesser_index() << "->" << depth_first_itr.greater_index();
+      cout << " " << depth_first_itr.lesser_index().pod() << "->" << depth_first_itr.greater_index().pod();
       break;
     case filtered_depth_first_iterator::POSTVISIT_ACTION:
       break;
@@ -554,7 +547,7 @@ test_level_0_before_refinement()
     case filtered_depth_first_iterator::LINK_ACTION:
       break;
     case filtered_depth_first_iterator::POSTVISIT_ACTION:
-      cout << " " << depth_first_itr.index();
+      cout << " " << depth_first_itr.index().pod();
       break;
     default:
       break;
@@ -579,7 +572,7 @@ test_level_0_before_refinement()
     case filtered_depth_first_iterator::LINK_ACTION:
       break;
     case filtered_depth_first_iterator::POSTVISIT_ACTION:
-      cout << " " << depth_first_itr.index();
+      cout << " " << depth_first_itr.index().pod();
       break;
     default:
       break;
@@ -606,7 +599,7 @@ test_level_0_before_refinement()
     case filtered_depth_first_iterator::LINK_ACTION:
       break;
     case filtered_depth_first_iterator::POSTVISIT_ACTION:
-      cout << " " << depth_first_itr.index();
+      cout << " " << depth_first_itr.index().pod();
       break;
     default:
       break;
@@ -628,7 +621,7 @@ test_level_0_before_refinement()
     case filtered_depth_first_iterator::LINK_ACTION:
       break;
     case filtered_depth_first_iterator::POSTVISIT_ACTION:
-      cout << " " << depth_first_itr.lesser_index() << "->" << depth_first_itr.greater_index();
+      cout << " " << depth_first_itr.lesser_index().pod() << "->" << depth_first_itr.greater_index().pod();
       break;
     default:
       break;
@@ -637,7 +630,7 @@ test_level_0_before_refinement()
   }
 
   cout << "\nshould be:\n";
-  cout << " 6->-1 7->-1 8->-1\n";
+  cout << " 6->" << invalid_pod_index() << " 7->" << invalid_pod_index() << " 8->" << invalid_pod_index() << "\n";
   cout << "##### end   filtered link FILTERED_DEPTH_FIRST_ITERATOR test at version 0 #####\n\n";
 
 
@@ -650,7 +643,7 @@ test_level_0_before_refinement()
     case filtered_depth_first_iterator::PREVISIT_ACTION:
       break;
     case filtered_depth_first_iterator::LINK_ACTION:
-      cout << " " << depth_first_itr.lesser_index() << "->" << depth_first_itr.greater_index();
+      cout << " " << depth_first_itr.lesser_index().pod() << "->" << depth_first_itr.greater_index().pod();
       break;
     case filtered_depth_first_iterator::POSTVISIT_ACTION:
       break;
@@ -667,14 +660,14 @@ test_level_0_before_refinement()
 
   cout << "##### begin unfiltered FILTERED_DEPTH_FIRST_ITERATOR preorder test at version 0 #####\n";
   depth_first_itr.put_anchor(&(refinable_triangle->top()));
-  depth_first_itr.put_filter(&(refinable_triangle->whole()));
+  depth_first_itr.put_filter(refinable_triangle->whole());
   depth_first_itr.reset();
   while(!depth_first_itr.is_done())
   {
     switch(depth_first_itr.action())
     {
     case filtered_depth_first_iterator::PREVISIT_ACTION:
-      cout << " " << depth_first_itr.index();
+      cout << " " << depth_first_itr.index().pod();
       break;
     case filtered_depth_first_iterator::LINK_ACTION:
       break;
@@ -692,14 +685,14 @@ test_level_0_before_refinement()
 
   cout << "##### begin filtered FILTERED_DEPTH_FIRST_ITERATOR preorder test at version 0 #####\n";
   depth_first_itr.put_anchor(&(refinable_triangle->top()));
-  depth_first_itr.put_filter(n_cells);
+  depth_first_itr.put_filter(*n_cells);
   depth_first_itr.reset();
   while(!depth_first_itr.is_done())
   {
     switch(depth_first_itr.action())
     {
     case filtered_depth_first_iterator::PREVISIT_ACTION:
-      cout << " " << depth_first_itr.index();
+      cout << " " << depth_first_itr.index().pod();
       break;
     case filtered_depth_first_iterator::LINK_ACTION:
       break;
@@ -722,7 +715,7 @@ test_level_0_before_refinement()
     switch(depth_first_itr.action())
     {
     case filtered_depth_first_iterator::PREVISIT_ACTION:
-      cout << " " << depth_first_itr.lesser_index() << "->" << depth_first_itr.greater_index();
+      cout << " " << depth_first_itr.lesser_index().pod() << "->" << depth_first_itr.greater_index().pod();
       break;
     case filtered_depth_first_iterator::LINK_ACTION:
       break;
@@ -734,7 +727,7 @@ test_level_0_before_refinement()
     depth_first_itr.next();
   }
   cout << "\nshould be:\n";
-  cout << " 3->-1 6->3 7->3 4->-1 8->4 5->-1\n";
+  cout << " 3->" << invalid_pod_index() << " 6->3 7->3 4->" << invalid_pod_index() << " 8->4 5->" << invalid_pod_index() << "\n";
   cout << "##### end   filtered link FILTERED_DEPTH_FIRST_ITERATOR preorder test at version 0 #####\n\n";
 
 
@@ -745,7 +738,7 @@ test_level_0_before_refinement()
     switch(depth_first_itr.action())
     {
     case filtered_depth_first_iterator::PREVISIT_ACTION:
-      cout << " " << depth_first_itr.index();
+      cout << " " << depth_first_itr.index().pod();
       break;
     case filtered_depth_first_iterator::LINK_ACTION:
       break;
@@ -770,7 +763,7 @@ test_level_0_before_refinement()
     switch(depth_first_itr.action())
     {
     case filtered_depth_first_iterator::PREVISIT_ACTION:
-      cout << " " << depth_first_itr.index();
+      cout << " " << depth_first_itr.index().pod();
       break;
     case filtered_depth_first_iterator::LINK_ACTION:
       break;
@@ -787,13 +780,17 @@ test_level_0_before_refinement()
 
 
   cout << "##### begin strict up set FILTERED_DEPTH_FIRST_ITERATOR preorder test at version 0 #####\n";
-  filtered_depth_first_iterator strict_depth_first_itr(v0, "", UP, STRICT);
+  filtered_depth_first_iterator strict_depth_first_itr(v0,
+						       "",
+						       UP,
+						       STRICT,
+						       depth_first_iterator::TRIORDER);
   while(!strict_depth_first_itr.is_done())
   {
     switch(strict_depth_first_itr.action())
     {
     case filtered_depth_first_iterator::PREVISIT_ACTION:
-      cout << " " << strict_depth_first_itr.index();
+      cout << " " << strict_depth_first_itr.index().pod();
       break;
     case filtered_depth_first_iterator::LINK_ACTION:
       break;
@@ -815,7 +812,11 @@ test_level_0_before_refinement()
 
   subposet ldfi_mins(refinable_triangle);
 
-  filtered_depth_first_iterator ext_depth_first_itr(refinable_triangle->top(), "", UP, STRICT);
+  filtered_depth_first_iterator ext_depth_first_itr(refinable_triangle->top(),
+						    "",
+						    UP,
+						    STRICT,
+						    depth_first_iterator::TRIORDER);
 
   sp_itr = n_cells->member_iterator();
   while(!sp_itr->is_done())
@@ -842,7 +843,7 @@ test_level_0_before_refinement()
       {
         if(ext_depth_first_itr.action() == filtered_depth_first_iterator::PREVISIT_ACTION)
         {
-          ldfi_mins.remove_member(ext_depth_first_itr.index());
+          ldfi_mins.remove_member(ext_depth_first_itr.index().pod());
         }
         ext_depth_first_itr.next();
       }
@@ -854,7 +855,7 @@ test_level_0_before_refinement()
 
   while(!ldfi_mins_itr->is_done())
   {
-    cout << " " << ldfi_mins_itr->index();
+    cout << " " << ldfi_mins_itr->index().pod();
     ldfi_mins_itr->next();
   }
 
@@ -871,7 +872,7 @@ test_level_0_before_refinement()
 
 
   cout << "\n##### begin unfiltered TRIORDER_ITERATOR postvisit test at version 0 #####\n";
-  triorder_iterator tri_itr(refinable_triangle->top());
+  triorder_iterator tri_itr(refinable_triangle->top(), DOWN, NOT_STRICT);
   while(!tri_itr.is_done())
   {
     switch(tri_itr.action())
@@ -881,7 +882,7 @@ test_level_0_before_refinement()
     case triorder_iterator::LINK_ACTION:
       break;
     case triorder_iterator::POSTVISIT_ACTION:
-      cout << " " << tri_itr.index();
+      cout << " " << tri_itr.index().pod();
       break;
     default:
       break;
@@ -902,7 +903,7 @@ test_level_0_before_refinement()
     case triorder_iterator::PREVISIT_ACTION:
       break;
     case triorder_iterator::LINK_ACTION:
-      cout << " " << tri_itr.lesser_index() << "->" << tri_itr.greater_index();
+      cout << " " << tri_itr.lesser_index().pod() << "->" << tri_itr.greater_index().pod();
       break;
     case triorder_iterator::POSTVISIT_ACTION:
       break;
@@ -929,7 +930,7 @@ test_level_0_before_refinement()
     case triorder_iterator::LINK_ACTION:
       break;
     case triorder_iterator::POSTVISIT_ACTION:
-      cout << " " << tri_itr.index();
+      cout << " " << tri_itr.index().pod();
       break;
     default:
       break;
@@ -955,7 +956,7 @@ test_level_0_before_refinement()
     case triorder_iterator::LINK_ACTION:
       break;
     case triorder_iterator::POSTVISIT_ACTION:
-      cout << " " << tri_itr.index();
+      cout << " " << tri_itr.index().pod();
       break;
     default:
       break;
@@ -982,7 +983,7 @@ test_level_0_before_refinement()
     case triorder_iterator::LINK_ACTION:
       break;
     case triorder_iterator::POSTVISIT_ACTION:
-      cout << " " << tri_itr.index();
+      cout << " " << tri_itr.index().pod();
       break;
     default:
       break;
@@ -1004,7 +1005,7 @@ test_level_0_before_refinement()
     case triorder_iterator::LINK_ACTION:
       break;
     case triorder_iterator::POSTVISIT_ACTION:
-      cout << " " << tri_itr.lesser_index() << "->" << tri_itr.greater_index();
+      cout << " " << tri_itr.lesser_index().pod() << "->" << tri_itr.greater_index().pod();
       break;
     default:
       break;
@@ -1013,7 +1014,7 @@ test_level_0_before_refinement()
   }
 
   cout << "\nshould be:\n";
-  cout << " 6->-1 7->-1 8->-1\n";
+  cout << " 6->" << invalid_pod_index() << " 7->" << invalid_pod_index() << " 8->" << invalid_pod_index() << "\n";
   cout << "##### end   filtered link TRIORDER_ITERATOR test at version 0 #####\n\n";
 
 
@@ -1026,7 +1027,7 @@ test_level_0_before_refinement()
     case triorder_iterator::PREVISIT_ACTION:
       break;
     case triorder_iterator::LINK_ACTION:
-      cout << " " << tri_itr.lesser_index() << "->" << tri_itr.greater_index();
+      cout << " " << tri_itr.lesser_index().pod() << "->" << tri_itr.greater_index().pod();
       break;
     case triorder_iterator::POSTVISIT_ACTION:
       break;
@@ -1043,14 +1044,14 @@ test_level_0_before_refinement()
 
   cout << "##### begin unfiltered TRIORDER_ITERATOR preorder test at version 0 #####\n";
   tri_itr.put_anchor(&(refinable_triangle->top()));
-  tri_itr.put_filter(&(refinable_triangle->whole()));
+  tri_itr.put_filter(refinable_triangle->whole());
   tri_itr.reset();
   while(!tri_itr.is_done())
   {
     switch(tri_itr.action())
     {
     case triorder_iterator::PREVISIT_ACTION:
-      cout << " " << tri_itr.index();
+      cout << " " << tri_itr.index().pod();
       break;
     case triorder_iterator::LINK_ACTION:
       break;
@@ -1068,14 +1069,14 @@ test_level_0_before_refinement()
 
   cout << "##### begin filtered TRIORDER_ITERATOR preorder test at version 0 #####\n";
   tri_itr.put_anchor(&(refinable_triangle->top()));
-  tri_itr.put_filter(n_cells);
+  tri_itr.put_filter(*n_cells);
   tri_itr.reset();
   while(!tri_itr.is_done())
   {
     switch(tri_itr.action())
     {
     case triorder_iterator::PREVISIT_ACTION:
-      cout << " " << tri_itr.index();
+      cout << " " << tri_itr.index().pod();
       break;
     case triorder_iterator::LINK_ACTION:
       break;
@@ -1098,7 +1099,7 @@ test_level_0_before_refinement()
     switch(tri_itr.action())
     {
     case triorder_iterator::PREVISIT_ACTION:
-      cout << " " << tri_itr.lesser_index() << "->" << tri_itr.greater_index();
+      cout << " " << tri_itr.lesser_index().pod() << "->" << tri_itr.greater_index().pod();
       break;
     case triorder_iterator::LINK_ACTION:
       break;
@@ -1110,7 +1111,7 @@ test_level_0_before_refinement()
     tri_itr.next();
   }
   cout << "\nshould be:\n";
-  cout << " 3->-1 6->3 7->3 4->-1 8->4 5->-1\n";
+  cout << " 3->" << invalid_pod_index() << " 6->3 7->3 4->" << invalid_pod_index() << " 8->4 5->" << invalid_pod_index() << "\n";
   cout << "##### end   filtered link TRIORDER_ITERATOR preorder test at version 0 #####\n\n";
 
 
@@ -1121,7 +1122,7 @@ test_level_0_before_refinement()
     switch(tri_itr.action())
     {
     case triorder_iterator::PREVISIT_ACTION:
-      cout << " " << tri_itr.index();
+      cout << " " << tri_itr.index().pod();
       break;
     case triorder_iterator::LINK_ACTION:
       break;
@@ -1146,7 +1147,7 @@ test_level_0_before_refinement()
     switch(tri_itr.action())
     {
     case triorder_iterator::PREVISIT_ACTION:
-      cout << " " << tri_itr.index();
+      cout << " " << tri_itr.index().pod();
       break;
     case triorder_iterator::LINK_ACTION:
       break;
@@ -1169,7 +1170,7 @@ test_level_0_before_refinement()
     switch(strict_tri_itr.action())
     {
     case triorder_iterator::PREVISIT_ACTION:
-      cout << " " << strict_tri_itr.index();
+      cout << " " << strict_tri_itr.index().pod();
       break;
     case triorder_iterator::LINK_ACTION:
       break;
@@ -1218,7 +1219,7 @@ test_level_0_before_refinement()
       {
         if(ext_tri_itr.action() == triorder_iterator::PREVISIT_ACTION)
         {
-          ltoi_mins.remove_member(ext_tri_itr.index());
+          ltoi_mins.remove_member(ext_tri_itr.index().pod());
         }
         ext_tri_itr.next();
       }
@@ -1230,7 +1231,7 @@ test_level_0_before_refinement()
 
   while(!ltoi_mins_itr->is_done())
   {
-    cout << " " << ltoi_mins_itr->index();
+    cout << " " << ltoi_mins_itr->index().pod();
     ltoi_mins_itr->next();
   }
 
@@ -1243,7 +1244,7 @@ test_level_0_before_refinement()
   ltoi_mins.delete_state();
 
   cout << "\n##### begin unfiltered BIORDER_ITERATOR postvisit test at version 0 #####\n";
-  biorder_iterator bi_itr(refinable_triangle->top());
+  biorder_iterator bi_itr(refinable_triangle->top(), DOWN, NOT_STRICT);
   while(!bi_itr.is_done())
   {
     switch(bi_itr.action())
@@ -1251,7 +1252,7 @@ test_level_0_before_refinement()
     case biorder_iterator::PREVISIT_ACTION:
       break;
     case biorder_iterator::POSTVISIT_ACTION:
-      cout << " " << bi_itr.index();
+      cout << " " << bi_itr.index().pod();
       break;
     default:
       break;
@@ -1273,7 +1274,7 @@ test_level_0_before_refinement()
     case biorder_iterator::PREVISIT_ACTION:
       break;
     case biorder_iterator::POSTVISIT_ACTION:
-      cout << " " << bi_itr.index();
+      cout << " " << bi_itr.index().pod();
       break;
     default:
       break;
@@ -1296,7 +1297,7 @@ test_level_0_before_refinement()
     case biorder_iterator::PREVISIT_ACTION:
       break;
     case biorder_iterator::POSTVISIT_ACTION:
-      cout << " " << bi_itr.index();
+      cout << " " << bi_itr.index().pod();
       break;
     default:
       break;
@@ -1321,7 +1322,7 @@ test_level_0_before_refinement()
     case biorder_iterator::PREVISIT_ACTION:
       break;
     case biorder_iterator::POSTVISIT_ACTION:
-      cout << " " << bi_itr.index();
+      cout << " " << bi_itr.index().pod();
       break;
     default:
       break;
@@ -1335,14 +1336,14 @@ test_level_0_before_refinement()
 
   cout << "##### begin unfiltered BIORDER_ITERATOR preorder test at version 0 #####\n";
   bi_itr.put_anchor(&(refinable_triangle->top()));
-  bi_itr.put_filter(&(refinable_triangle->whole()));
+  bi_itr.put_filter(refinable_triangle->whole());
   bi_itr.reset();
   while(!bi_itr.is_done())
   {
     switch(bi_itr.action())
     {
     case biorder_iterator::PREVISIT_ACTION:
-      cout << " " << bi_itr.index();
+      cout << " " << bi_itr.index().pod();
       break;
     case biorder_iterator::POSTVISIT_ACTION:
       break;
@@ -1358,14 +1359,14 @@ test_level_0_before_refinement()
 
   cout << "##### begin filtered BIORDER_ITERATOR preorder test at version 0 #####\n";
   bi_itr.put_anchor(&(refinable_triangle->top()));
-  bi_itr.put_filter(n_cells);
+  bi_itr.put_filter(*n_cells);
   bi_itr.reset();
   while(!bi_itr.is_done())
   {
     switch(bi_itr.action())
     {
     case biorder_iterator::PREVISIT_ACTION:
-      cout << " " << bi_itr.index();
+      cout << " " << bi_itr.index().pod();
       break;
     case biorder_iterator::POSTVISIT_ACTION:
       break;
@@ -1386,7 +1387,7 @@ test_level_0_before_refinement()
     switch(bi_itr.action())
     {
     case biorder_iterator::PREVISIT_ACTION:
-      cout << " " << bi_itr.index();
+      cout << " " << bi_itr.index().pod();
       break;
     case biorder_iterator::POSTVISIT_ACTION:
       break;
@@ -1409,7 +1410,7 @@ test_level_0_before_refinement()
     switch(bi_itr.action())
     {
     case biorder_iterator::PREVISIT_ACTION:
-      cout << " " << bi_itr.index();
+      cout << " " << bi_itr.index().pod();
       break;
     case biorder_iterator::POSTVISIT_ACTION:
       break;
@@ -1430,7 +1431,7 @@ test_level_0_before_refinement()
     switch(strict_bi_itr.action())
     {
     case biorder_iterator::PREVISIT_ACTION:
-      cout << " " << strict_bi_itr.index();
+      cout << " " << strict_bi_itr.index().pod();
       break;
     case biorder_iterator::POSTVISIT_ACTION:
       break;
@@ -1477,7 +1478,7 @@ test_level_0_before_refinement()
       {
         if(ext_bi_itr.action() == biorder_iterator::PREVISIT_ACTION)
         {
-          lboi_mins.remove_member(ext_bi_itr.index());
+          lboi_mins.remove_member(ext_bi_itr.index().pod());
         }
         ext_bi_itr.next();
       }
@@ -1489,7 +1490,7 @@ test_level_0_before_refinement()
 
   while(!lboi_mins_itr->is_done())
   {
-    cout << " " << lboi_mins_itr->index();
+    cout << " " << lboi_mins_itr->index().pod();
     lboi_mins_itr->next();
   }
 
@@ -1503,7 +1504,7 @@ test_level_0_before_refinement()
   lboi_mins_itr->reset();
   while(!lboi_mins_itr->is_done())
   {
-    cout << " " << lboi_mins_itr->index();
+    cout << " " << lboi_mins_itr->index().pod();
     lboi_mins_itr->next();
   }
 
@@ -1517,10 +1518,10 @@ test_level_0_before_refinement()
 
 
   cout << "\n##### begin unfiltered LINKORDER_ITERATOR linkorder test at version 0 #####\n";
-  linkorder_iterator link_itr(refinable_triangle->top());
+  linkorder_iterator link_itr(refinable_triangle->top(), DOWN, NOT_STRICT);
   while(!link_itr.is_done())
   {
-    cout << " " << link_itr.lesser_index() << "->" << link_itr.greater_index();
+    cout << " " << link_itr.lesser_index().pod() << "->" << link_itr.greater_index().pod();
     link_itr.next();
   }
 
@@ -1535,7 +1536,7 @@ test_level_0_before_refinement()
   link_itr.reset();
   while(!link_itr.is_done())
   {
-    cout << " " << link_itr.lesser_index() << "->" << link_itr.greater_index();
+    cout << " " << link_itr.lesser_index().pod() << "->" << link_itr.greater_index().pod();
     link_itr.next();
   }
 
@@ -1566,10 +1567,10 @@ test_level_0_after_refinement()
 
   cout << "\n##### begin unfiltered POSTORDER_MEMBER_ITERATOR test at version 0 #####\n";
 
-  postorder_member_iterator post_itr(refinable_triangle->top());
+  postorder_member_iterator post_itr(refinable_triangle->top(), DOWN, NOT_STRICT);
   while(!post_itr.is_done())
   {
-    cout << " " << post_itr.item().index();
+    cout << " " << post_itr.item().index().pod();
     post_itr.next();
   }
 
@@ -1582,7 +1583,7 @@ test_level_0_after_refinement()
   post_itr.reset();
   while(!post_itr.is_done())
   {
-    cout << " " << post_itr.item().index();
+    cout << " " << post_itr.item().index().pod();
     post_itr.next();
   }
 
@@ -1599,7 +1600,7 @@ test_level_0_after_refinement()
   post_itr.reset();
   while(!post_itr.is_done())
   {
-    cout << " " << post_itr.item().index();
+    cout << " " << post_itr.item().index().pod();
     post_itr.next();
   }
 
@@ -1615,7 +1616,7 @@ test_level_0_after_refinement()
   post_itr.reset();
   while(!post_itr.is_done())
   {
-    cout << " " << post_itr.item().index();
+    cout << " " << post_itr.item().index().pod();
     post_itr.next();
   }
 
@@ -1628,9 +1629,9 @@ test_level_0_after_refinement()
   while(!post_itr.is_done())
   {
     cout << " "
-    << post_itr.lesser_index()
+    << post_itr.lesser_index().pod()
     << "->"
-    << post_itr.greater_index();
+    << post_itr.greater_index().pod();
     post_itr.next();
   }
 
@@ -1641,10 +1642,10 @@ test_level_0_after_refinement()
 
   cout << "##### begin unfiltered PREORDER_MEMBER_ITERATOR test at version 0 #####\n";
 
-  preorder_member_iterator pre_itr(refinable_triangle->top());
+  preorder_member_iterator pre_itr(refinable_triangle->top(), DOWN, NOT_STRICT);
   while(!pre_itr.is_done())
   {
-    cout << " " << pre_itr.item().index();
+    cout << " " << pre_itr.item().index().pod();
     pre_itr.next();
   }
 
@@ -1654,11 +1655,11 @@ test_level_0_after_refinement()
   << "##### begin filtered PREORDER_MEMBER_ITERATOR test at version 0 #####\n";
 
   pre_itr.put_anchor(&(refinable_triangle->top()));
-  pre_itr.put_filter(n_cells);
+  pre_itr.put_filter(*n_cells);
   pre_itr.reset();
   while(!pre_itr.is_done())
   {
-    cout << " " << pre_itr.item().index();
+    cout << " " << pre_itr.item().index().pod();
     pre_itr.next();
   }
 
@@ -1670,7 +1671,7 @@ test_level_0_after_refinement()
   pre_itr.reset();
   while(!pre_itr.is_done())
   {
-    cout << " " << pre_itr.lesser_index() << "->" << pre_itr.greater_index();
+    cout << " " << pre_itr.lesser_index().pod() << "->" << pre_itr.greater_index().pod();
     pre_itr.next();
   }
 
@@ -1684,7 +1685,7 @@ test_level_0_after_refinement()
   pre_itr.reset();
   while(!pre_itr.is_done())
   {
-    cout << " " << pre_itr.item().index();
+    cout << " " << pre_itr.item().index().pod();
     pre_itr.truncate();
   }
 
@@ -1700,7 +1701,7 @@ test_level_0_after_refinement()
   pre_itr.reset();
   while(!pre_itr.is_done())
   {
-    cout << " " << pre_itr.item().index();
+    cout << " " << pre_itr.item().index().pod();
     pre_itr.next();
   }
 
@@ -1711,10 +1712,10 @@ test_level_0_after_refinement()
 
   // Iterate over strict up set of vertex 0
 
-  preorder_member_iterator strict_itr(v0, "", sheaf::UP, sheaf::STRICT);
+  preorder_member_iterator strict_itr(v0, "", UP, STRICT);
   while(!strict_itr.is_done())
   {
-    cout << " " << strict_itr.item().index();
+    cout << " " << strict_itr.item().index().pod();
     strict_itr.next();
   }
 
@@ -1727,10 +1728,7 @@ test_level_0_after_refinement()
 
   subposet lmins(refinable_triangle);
 
-  preorder_member_iterator ext_itr(refinable_triangle->top(),
-                                   "",
-                                   sheaf::UP,
-                                   sheaf::STRICT);
+  preorder_member_iterator ext_itr(refinable_triangle->top(), "", UP, STRICT);
 
   subposet_member_iterator* sp_itr = n_cells->member_iterator();
   while(!sp_itr->is_done())
@@ -1755,7 +1753,7 @@ test_level_0_after_refinement()
       ext_itr.reset(sheaf::NO_RESET);
       while(!ext_itr.is_done())
       {
-        lmins.remove_member(ext_itr.item().index());
+        lmins.remove_member(ext_itr.item().index().pod());
         ext_itr.next();
       }
     }
@@ -1768,7 +1766,7 @@ test_level_0_after_refinement()
 
   while(!lmins_itr->is_done())
   {
-    cout << " " << lmins_itr->index();
+    cout << " " << lmins_itr->index().pod();
     lmins_itr->next();
   }
 
@@ -1802,10 +1800,10 @@ test_level_1()
 
   cout << "\n##### begin unfiltered POSTORDER_MEMBER_ITERATOR test at version 1 #####\n";
 
-  postorder_member_iterator post_itr(refinable_triangle->top());
+  postorder_member_iterator post_itr(refinable_triangle->top(), DOWN, NOT_STRICT);
   while(!post_itr.is_done())
   {
-    cout << " " << post_itr.item().index();
+    cout << " " << post_itr.item().index().pod();
     post_itr.next();
   }
 
@@ -1818,7 +1816,7 @@ test_level_1()
   post_itr.reset();
   while(!post_itr.is_done())
   {
-    cout << " " << post_itr.item().index();
+    cout << " " << post_itr.item().index().pod();
     post_itr.next();
   }
 
@@ -1835,7 +1833,7 @@ test_level_1()
   post_itr.reset();
   while(!post_itr.is_done())
   {
-    cout << " " << post_itr.item().index();
+    cout << " " << post_itr.item().index().pod();
     post_itr.next();
   }
 
@@ -1851,7 +1849,7 @@ test_level_1()
   post_itr.reset();
   while(!post_itr.is_done())
   {
-    cout << " " << post_itr.item().index();
+    cout << " " << post_itr.item().index().pod();
     post_itr.next();
   }
 
@@ -1864,9 +1862,9 @@ test_level_1()
   while(!post_itr.is_done())
   {
     cout << " "
-    << post_itr.lesser_index()
+    << post_itr.lesser_index().pod()
     << "->"
-    << post_itr.greater_index();
+    << post_itr.greater_index().pod();
     post_itr.next();
   }
 
@@ -1875,10 +1873,10 @@ test_level_1()
   << "##### end   filtered link POSTORDER_MEMBER_ITERATOR test at version 1 #####\n\n"
   << "##### begin unfiltered PREORDER_MEMBER_ITERATOR test at version 1 #####\n";
 
-  preorder_member_iterator pre_itr(refinable_triangle->top());
+  preorder_member_iterator pre_itr(refinable_triangle->top(), DOWN, NOT_STRICT);
   while(!pre_itr.is_done())
   {
-    cout << " " << pre_itr.item().index();
+    cout << " " << pre_itr.item().index().pod();
     pre_itr.next();
   }
 
@@ -1888,11 +1886,11 @@ test_level_1()
   << "##### begin filtered PREORDER_MEMBER_ITERATOR test at version 1 #####\n";
 
   pre_itr.put_anchor(&(refinable_triangle->top()));
-  pre_itr.put_filter(n_cells);
+  pre_itr.put_filter(*n_cells);
   pre_itr.reset();
   while(!pre_itr.is_done())
   {
-    cout << " " << pre_itr.item().index();
+    cout << " " << pre_itr.item().index().pod();
     pre_itr.next();
   }
 
@@ -1904,7 +1902,7 @@ test_level_1()
   pre_itr.reset();
   while(!pre_itr.is_done())
   {
-    cout << " " << pre_itr.lesser_index() << "->" << pre_itr.greater_index();
+    cout << " " << pre_itr.lesser_index().pod() << "->" << pre_itr.greater_index().pod();
     pre_itr.next();
   }
 
@@ -1918,7 +1916,7 @@ test_level_1()
   pre_itr.reset();
   while(!pre_itr.is_done())
   {
-    cout << " " << pre_itr.item().index();
+    cout << " " << pre_itr.item().index().pod();
     pre_itr.truncate();
   }
 
@@ -1934,7 +1932,7 @@ test_level_1()
   pre_itr.reset();
   while(!pre_itr.is_done())
   {
-    cout << " " << pre_itr.item().index();
+    cout << " " << pre_itr.item().index().pod();
     pre_itr.next();
   }
 
@@ -1946,10 +1944,10 @@ test_level_1()
   // Iterate over strict up set of vertex 0
 
   pre_itr.put_descending(false);
-  preorder_member_iterator strict_itr(v0);
+  preorder_member_iterator strict_itr(v0, DOWN, NOT_STRICT);
   while(!strict_itr.is_done())
   {
-    cout << " " << strict_itr.item().index();
+    cout << " " << strict_itr.item().index().pod();
     strict_itr.next();
   }
 
@@ -1962,10 +1960,7 @@ test_level_1()
 
   subposet lmins(refinable_triangle);  // a new subposet to hold the result
 
-  preorder_member_iterator ext_itr(refinable_triangle->top(),
-                                   "",
-                                   sheaf::UP,
-                                   sheaf::STRICT);
+  preorder_member_iterator ext_itr(refinable_triangle->top(), "", UP, STRICT);
 
   subposet_member_iterator* sp_itr = n_cells->member_iterator();
 
@@ -1998,7 +1993,7 @@ test_level_1()
       ext_itr.reset(sheaf::NO_RESET);
       while(!ext_itr.is_done())
       {
-        lmins.remove_member(ext_itr.item().index());
+        lmins.remove_member(ext_itr.item().index().pod());
         ext_itr.next();
       }
     }
@@ -2009,7 +2004,7 @@ test_level_1()
 
   while(!lmins_itr->is_done())
   {
-    cout << " " << lmins_itr->index();
+    cout << " " << lmins_itr->index().pod();
     lmins_itr->next();
   }
 
@@ -2024,7 +2019,7 @@ test_level_1()
   lmins_itr->reset();
   while(!lmins_itr->is_done())
   {
-    cout << " " << lmins_itr->index();
+    cout << " " << lmins_itr->index().pod();
     lmins_itr->next();
   }
 

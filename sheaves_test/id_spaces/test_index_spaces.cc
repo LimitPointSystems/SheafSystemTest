@@ -1,6 +1,6 @@
-// $RCSfile: test_index_spaces.cc,v $ $Revision: 1.11 $ $Date: 2012/07/04 16:42:20 $
+// $RCSfile$ $Revision$ $Date$
 
-// $Name: coverage-mod-0-1 $
+// $Name$
 //
 // Copyright (c) 2012 Limit Point Systems, Inc. 
 //
@@ -9,18 +9,16 @@
 /// Implementation for id space test functions.
 
 #include "test_index_spaces.h"
-#include "test_utils.h"
 
 #include "arg_list.h"
 #include "assert_contract.h"
 #include "block.h"
-#include "gluable_sum_index_space.h"
-#include "index_map_iterator.h"
-#include "index_space.h"
+#include "hub_index_space_handle.h"
 #include "index_space_family.h"
 #include "index_space_iterator.h"
-#include "mutable_index_map.h"
+#include "mutable_index_space_handle.h"
 #include "scoped_index.h"
+#include "std_iomanip.h"
 #include "std_iostream.h"
 #include "std_strstream.h"
 
@@ -28,12 +26,12 @@
 // INDEX_SPACE FACET
 // ===========================================================
 
-sheaf::index_space&
+sheaf::index_space_handle&
 sheaf::
 make_id_space(index_space_family& xid_spaces,
 	      const string& xname,
-	      const string& xspace_class_name,
-	      const arg_list& xspace_args)
+	      const string& xstate_class_name,
+	      const arg_list& xstate_args)
 {
   // Preconditions:
 
@@ -42,38 +40,123 @@ make_id_space(index_space_family& xid_spaces,
   // Doen't matter if the id space is persistent or not, it is not
   // going to be written to a file.
 
-  xid_spaces.new_secondary_id_space(xname, xspace_class_name,
-				    xspace_args, true);
+  pod_index_type lspace_id =
+    xid_spaces.new_secondary_state(xname, xstate_class_name,
+				   xstate_args, true);
 
-  index_space& result = xid_spaces.id_space(xname);
+  index_space_handle& result = xid_spaces.get_handle(lspace_id);
 
-  print_subheader("Creating new id space");
+  print_out_subheader("Creating new id space");
   cout << "index:        " << result.index() << endl;
   cout << "name:         " << result.name() << endl;
-  cout << "space:        " << xspace_class_name << endl;
-  cout << "map:          " << (string) xspace_args.value("map_class_name") << endl;
+  cout << "space:        " << xstate_class_name << endl;
   cout << endl;
+
+  assertion(check_id_spaces(xid_spaces, lspace_id, 1));
   
   // Postconditions:
 
   // Exit:
 
   return result;
-} 
+}
+
+sheaf::pod_index_type
+sheaf::
+make_id_space_interval(index_space_family& xid_spaces,
+		       const string& xinterval_class_name,
+		       const arg_list& xinterval_args,
+		       size_type xub)
+{
+  // Preconditions:
+
+  // Body:
+
+  pod_index_type lbegin =
+    xid_spaces.new_secondary_interval(xinterval_class_name,
+				      xinterval_args,
+				      xub);
+
+  print_out_subheader("Creating new id space interval");
+  cout << "begin:        " << lbegin << endl;
+  cout << "ub:           " << xub << endl;
+  cout << "interval:     " << xinterval_class_name << endl;
+  cout << endl;
+
+  assertion(check_id_spaces(xid_spaces, lbegin, xub));
+  
+  // Postconditions:
+
+  // Exit:
+
+  return lbegin;
+}
+
+bool
+sheaf::
+check_id_spaces(index_space_family& xid_spaces,
+		pod_index_type xbegin, size_type xct)
+{
+  bool result = true;
+
+  for(pod_index_type i = 0; i < xct; i++)
+  {
+    // Test id space order iteration (i.e., domain order).
+
+    pod_index_type lspace_id = xbegin + i;
+
+    index_space_handle& lid_space = xid_spaces.get_handle(lspace_id);
+    index_space_iterator& itr = lid_space.get_iterator();
+    pod_index_type lprevious = -1;
+    pod_index_type lcurrent;
+    while(!itr.is_done())
+    {
+      lcurrent = itr.pod();
+      if(is_valid(lcurrent))
+      {
+	if(lcurrent <= lprevious)
+	{
+	  cerr << "ERROR: Id space order not preserved." << endl;
+	  cerr << "       space id = " << lspace_id << endl;
+	  cerr << "       current  = " << lcurrent << endl;
+	  cerr << "       previous = " << lprevious << endl << endl;
+	  result = false;
+	}
+
+	if(itr.hub_pod() != lid_space.hub_pod(lcurrent))
+	{
+	  cerr << "ERROR: Hub id in the space is not equal to the iterator." << endl;
+	  cerr << "       space id        = " << lspace_id << endl;
+	  cerr << "       current         = " << lcurrent << endl;
+	  cerr << "       lspace.hub_pod  = " << lid_space.hub_pod(lcurrent) << endl;
+	  cerr << "       itr.hub_pod     = " << itr.hub_pod() << endl << endl;
+	}
+      }
+      else
+      {
+	cerr << "ERROR: Invalid id in id space order." << endl;
+	cerr << "       space id = " << lspace_id << endl << endl;
+	result = false;
+      }
+
+      itr.next();
+    }
+    lid_space.release_iterator(itr);
+    xid_spaces.release_handle(lid_space);
+  }
+  
+  return result;
+}
 
 void
 sheaf::
-print_map_extrema(const index_space& xspace)
+print_out_map_extrema(const index_space_handle& xid_space)
 {
-  print_subheader("Map extrema for id space, '" + xspace.name() + "'");
+  print_out_subheader("Extrema for id space, '" + xid_space.name() + "'");
 
-  const index_map& lmap = xspace.id_map();
-
-  cout << "ct:           " << lmap.ct() << endl;
-  cout << "domain_begin: " << lmap.domain_begin() << endl;
-  cout << "domain_end:   " << lmap.domain_end() << endl;
-  cout << "range_begin:  " << lmap.range_begin() << endl;
-  cout << "range_end:    " << lmap.range_end() << endl;
+  cout << "ct:    " << xid_space.ct() << endl;
+  cout << "begin: " << xid_space.begin() << endl;
+  cout << "end:   " << xid_space.end() << endl;
   cout << endl;
 }
 
@@ -85,16 +168,16 @@ void
 sheaf::
 delete_id(index_space_family& xid_spaces, pod_index_type xid)
 {
-  // Output the operation.
+  // Print the operation.
 
   strstream lstr;
   lstr << "delete_id(" << xid << ")";
 
-  print_action(lstr.str());
+  print_out_action(lstr.str());
 
   // Delete the id.
 
-  xid_spaces.top_id_space().delete_id(xid);
+  xid_spaces.delete_id(xid);
 }
 
 // ===========================================================
@@ -103,97 +186,114 @@ delete_id(index_space_family& xid_spaces, pod_index_type xid)
 
 void
 sheaf::
-insert_entry(mutable_index_map& xmap,
-	     pod_index_type xdomain_id,
-	     pod_index_type xrange_id)
+insert(mutable_index_space_handle& xid_space,
+       pod_index_type xid,
+       pod_index_type xhub_id)
 {
-  // Output the operation.
+  // Print the operation.
 
   strstream lstr;
-  lstr << "insert_entry(" << xdomain_id << ", " << xrange_id << ")";
+  lstr << "insert_entry(" << xid << ", " << xhub_id << ")";
 
-  print_action(lstr.str());
+  print_out_action(lstr.str());
 
   // Insert the entry.
 
-  xmap.insert_entry(xdomain_id, xrange_id);
+  xid_space.insert(xid, xhub_id);
 }
 
 void
 sheaf::
-push_back(mutable_index_map& xmap,
-	  pod_index_type xrange_id)
+push_back(mutable_index_space_handle& xid_space,
+	  pod_index_type xhub_id)
 {
-  // Output the operation.
+  // Print the operation.
 
   strstream lstr;
-  lstr << "push_back(" << xrange_id << ")";
+  lstr << "push_back(" << xhub_id << ")";
 
-  print_action(lstr.str());
+  print_out_action(lstr.str());
 
   // Push back the range id.
 
-  xmap.push_back(xrange_id);
+  xid_space.push_back(xhub_id);
 }
   
 void
 sheaf::
-remove_entry(mutable_index_map& xmap,
-	     pod_index_type xid,
-	     bool xis_range_id,
-	     bool xupdate_extrema)
+remove(mutable_index_space_handle& xid_space,
+       pod_index_type xid,
+       bool xupdate_extrema)
 {
-  // Output the operation.
+  // Print the operation.
 
   strstream lstr;
-  lstr << "remove_entry(" << xid << ", "
-       << (xis_range_id ? "true" : "false") << ", " 
+  lstr << "remove(" << xid << ", "
        << (xupdate_extrema ? "true" : "false") << ")";
 
-  print_action(lstr.str());
+  print_out_action(lstr.str());
 
   // Remove the id.
 
-  xmap.remove_entry(xid, xis_range_id, xupdate_extrema);
+  xid_space.remove(xid, xupdate_extrema);
 }
 
 void
 sheaf::
-update_extrema(mutable_index_map& xmap)
+remove_hub(mutable_index_space_handle& xid_space,
+	   pod_index_type xhub_id,
+	   bool xupdate_extrema)
 {
-  // Output the operation.
+  // Print the operation.
 
-  print_action("update_extrema()");
+  strstream lstr;
+  lstr << "remove_hub(" << xhub_id << ", "
+       << (xupdate_extrema ? "true" : "false") << ")";
+
+  print_out_action(lstr.str());
+
+  // Remove the id.
+
+  xid_space.remove_hub(xhub_id, xupdate_extrema);
+}
+
+void
+sheaf::
+update_extrema(mutable_index_space_handle& xid_space)
+{
+  // Print the operation.
+
+  print_out_action("update_extrema()");
 
   // Update the extrema.
 
-  xmap.update_extrema();
+  xid_space.update_extrema();
 }
 
 void
 sheaf::
-gather(mutable_index_map& xmap)
+gather(mutable_index_space_handle& xid_space)
 {
-  // Output the operation.
+  // Print the operation.
 
-  print_action("gather()");
+  print_out_action("gather()");
 
   // Gather the map.
 
-  xmap.gather();
+  xid_space.gather();
 }
 
 void
 sheaf::
-clear(mutable_index_map& xmap)
+clear(mutable_index_space_handle& xid_space)
 {
-  // Output the operation.
+  // Print the operation.
 
-  print_action("clear()");
+  print_out_action("clear()");
 
   // Clear the map.
 
-  xmap.clear();
+  xid_space.clear();
 }
 
 // ===========================================================
@@ -202,24 +302,15 @@ clear(mutable_index_map& xmap)
 
 void
 sheaf::
-test_domain_id_iterator(const index_space& xspace)
+test_iterator(const index_space_handle& xid_space)
 {
   // Preconditions:
 
   // Body:
 
-  print_subheader("Iterating over domain ids");
-  index_map_iterator* lmap_itr = xspace.id_map().iterator(true);
-  while(!lmap_itr->is_done())
-  {
-    cout << "domain id: " << lmap_itr->domain_id();
-    cout << "\trange id: " << lmap_itr->range_id();
-    cout << endl;
-    lmap_itr->next();
-  }
-  cout << endl;
-
-  delete lmap_itr;
+  index_space_iterator& itr = xid_space.get_iterator();
+  test_iterator(itr);
+  xid_space.release_iterator(itr);
 
   // Postconditions:
 
@@ -230,24 +321,35 @@ test_domain_id_iterator(const index_space& xspace)
 
 void
 sheaf::
-test_range_id_iterator(const index_space& xspace)
+test_iterator(index_space_iterator& xitr)
 {
   // Preconditions:
 
   // Body:
 
-  print_subheader("Iterating over range ids");
-  index_map_iterator* lmap_itr = xspace.id_map().iterator(false);
-  while(!lmap_itr->is_done())
+  string lname;
+
+  if(xitr.name().empty())
   {
-    cout << "range id: " << lmap_itr->range_id();
-    cout << "\tdomain id: " << lmap_itr->domain_id();
+    strstream lstr;
+    lstr << xitr.index();
+    lstr >> lname;
+  }
+  else
+  {
+    lname = xitr.name();
+  }
+
+  print_out_subheader("Iterating over id space: '" + lname + "'");
+
+  while(!xitr.is_done())
+  {
+    cout << "id: " << setw(14) << left << xitr.pod();
+    cout << "hub id: " << xitr.hub_pod();
     cout << endl;
-    lmap_itr->next();
+    xitr.next();
   }
   cout << endl;
-
-  delete lmap_itr;
 
   // Postconditions:
 
@@ -256,109 +358,66 @@ test_range_id_iterator(const index_space& xspace)
   return;
 }
 
-void
-sheaf::
-test_space_iterator(const index_space& xspace, bool xis_host_order)
-{
-  // Preconditions:
-
-  // Body:
-
-  string lmessage =
-    xis_host_order ?
-    "Iterator over id space in host id order" :
-    "Iterator over id space in top id order";
-
-  print_subheader(lmessage);
-
-  index_space_iterator* lspace_itr = xspace.iterator(xis_host_order);
-  while(!lspace_itr->is_done())
-  {
-    if(xis_host_order)
-    {
-      cout << "id: " << lspace_itr->id();
-      cout << "\ttop id: " << lspace_itr->top_id();
-    }
-    else
-    {
-      cout << "top id: " << lspace_itr->top_id();
-      cout << "\tid: " << lspace_itr->id();
-    }
-    
-    cout << endl;
-    lspace_itr->next();
-  }
-  cout << endl;
-
-  delete lspace_itr;
-
-  // Postconditions:
-
-  // Exit:
-
-  return;
-}  
-  
 // ===========================================================
 // Convenience functions
 // ===========================================================
 
-// void
-// sheaf::
-// print_header(const string& xtext)
-// {
-//   // Preconditions:
+void
+sheaf::
+print_out_header(const string& xtext)
+{
+  // Preconditions:
 
-//   // Body:
+  // Body:
 
-//   static const string nl("\n");
-//   static const string s = "=======================================";
-//   static const string sep = s + s;
+  static const string nl("\n");
+  static const string s = "=======================================";
+  static const string sep = s + s;
 
-//   cout << nl << sep << nl << xtext << nl << sep << nl;
-//   cout << endl;
+  cout << nl << sep << nl << xtext << nl << sep << nl;
+  cout << endl;
 
-//   // Postconditions:
+  // Postconditions:
 
-//   // Exit:  
+  // Exit:  
 
-//   return;
-// }
+  return;
+}
 
-// void
-// sheaf::
-// print_subheader(const string& xtext)
-// {
-//   // Preconditions:
+void
+sheaf::
+print_out_subheader(const string& xtext)
+{
+  // Preconditions:
 
-//   // Body:
+  // Body:
 
-//   static const string nl("\n");
+  static const string nl("\n");
 
-//   cout << nl << "======== " << xtext << " ========" << nl;
-//   cout << endl;
+  cout << nl << "======== " << xtext << " ========" << nl;
+  cout << endl;
 
-//   // Postconditions:
+  // Postconditions:
 
-//   // Exit:
+  // Exit:
 
-//   return;
-// }
+  return;
+}
 
-// void
-// sheaf::
-// print_action(const string& xtext)
-// {
-//   // Preconditons:
+void
+sheaf::
+print_out_action(const string& xtext)
+{
+  // Preconditons:
 
-//   // Body:
+  // Body:
 
-//   cout << ">>>>>>>> " << xtext << endl;
+  cout << ">>>>>>>> " << xtext << endl;
 
-//   // Postconditions:
+  // Postconditions:
 
-//   // Exit:
+  // Exit:
 
-//   return;
-// }
+  return;
+}
 

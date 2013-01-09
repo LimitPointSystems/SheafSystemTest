@@ -4,7 +4,10 @@
 // Copyright (c) 2012 Limit Point Systems, Inc.
 //
 
-/// Unit test driver for class zone_partition.
+// Unit test driver for class zone_partition.
+
+// $$OBSOLETE No longer part of the tests.  Code remains only as
+//            a reference for future development.
 
 #include "zone_partition.h"
 
