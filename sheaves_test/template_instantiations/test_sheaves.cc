@@ -60,8 +60,11 @@ test_block_facet<sheaf::poset_state_handle*>()
   cout << lblock0 << endl;
 
   print_subheader("Test new block<T>");
+  cout << "Got to 63" << endl;
   block<T>* lblock_ptr = new block<T>();
+  cout << "Got to 65" << endl;
   cout << *lblock_ptr << endl;
+  cout << "Got to 67" << endl;
   delete lblock_ptr;
 
 
@@ -69,7 +72,7 @@ test_block_facet<sheaf::poset_state_handle*>()
 
   poset_state_handle* lpshs[5] = {lpsh, lpsh, lpsh, lpsh, lpsh};
   block<T> lblock1(10, 5, lpshs);
-
+  cout << "Got to 75" << endl;
   cout << lblock1 << endl;
 
   print_subheader("Test block(const block& xother)");

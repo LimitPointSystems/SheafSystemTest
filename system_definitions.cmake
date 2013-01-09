@@ -46,13 +46,6 @@ endif()
 
 set(EXPORTS_FILE ${PROJECT_NAME}-exports.cmake CACHE STRING "System exports file name")
 
-# Windows has a notion of Debug and Release builds. For practical purposes, "Release" is
-# equivalent to "not Debug". We'll carry that notion through to linux/gcc as well for now, with
-# "Release" equivalent to "!-g"
-#set(CMAKE_CONFIGURATION_TYPES Debug-contracts Debug-no-contracts Release-contracts Release-no-contracts CACHE
-#    STRING "Supported configuration types"
-#    FORCE)
-
 #
 # Delete the exports file at the start of each cmake run
 #
@@ -63,10 +56,7 @@ execute_process(COMMAND ${CMAKE_COMMAND} -E remove ${CMAKE_BINARY_DIR}/${EXPORTS
 #
 
 if(NOT CMAKE_BUILD_TYPE)
-
-  set(CMAKE_BUILD_TYPE "Debug-contracts" CACHE STRING
-      "Choose the type of build, options are: ${CMAKE_CONFIGURATION_TYPES}." FORCE)
-message(STATUS "CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE}")
+    set(CMAKE_BUILD_TYPE "Debug-contracts" CACHE STRING "Choose the type of build, options are: ${CMAKE_CONFIGURATION_TYPES}." FORCE)
 endif(NOT CMAKE_BUILD_TYPE)
 
 set(ALL_BIN_TARGETS CACHE STRING "Aggregate list of component bin targets")
@@ -79,7 +69,7 @@ set(INTELWARN CACHE BOOL "Toggle Intel compiler warnings")
 #
 # Toggle multi-process compilation in win32.
 #
-set(ENABLE_WIN32_MP ON CACHE BOOL "Toggle win32 compiler MP directive. Works for MS and Intel. Default is ON.")
+set(ENABLE_WIN32_MP OFF CACHE BOOL "Toggle win32 compiler MP directive. Works for MS and Intel. Default is OFF.")
 
 #   
 #  Type of system documentation to build: Dev or User

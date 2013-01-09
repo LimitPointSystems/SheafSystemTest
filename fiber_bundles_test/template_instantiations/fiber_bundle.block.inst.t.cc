@@ -43,41 +43,6 @@ main(int xargc, char* xargv[])
 
   bool ltest = true;
 
-  // arg_list::arg_type
-
-/*  print_header("Begin testing block<arg_list::arg_type>");
-  ltest &= test_block_facet<arg_list::arg_type>();
-  ltest &= test_block_facet_equal<arg_list::arg_type>();
-  ltest &= test_block_facet_insertion<arg_list::arg_type>();
-  ltest &= test_block_facet_deep_size<arg_list::arg_type>();
-  print_footer("End testing block<arg_list::arg_type>");
-
-  // double
-
-  print_header("Begin testing block<double>");
-  ltest &= test_block_facet<double>();
-  ltest &= test_block_facet_equal<double>();
-  ltest &= test_block_facet_insertion<double>();
-  ltest &= test_block_facet_deep_size<double>();
-  print_footer("End testing block<double>");
-
-  // scoped_index
-
-  print_header("Begin testing block<scoped_index>");
-  ltest &= test_block_facet<scoped_index>();
-  ltest &= test_block_facet_equal<scoped_index>();
-  ltest &= test_block_facet_insertion<scoped_index>();
-  ltest &= test_block_facet_deep_size<scoped_index>();
-  print_footer("End testing block<scoped_index>");
-
-  // scoped_index*
-
-  print_header("Begin testing block<scoped_index*>");
-  ltest &= test_block_facet<scoped_index*>();
-  ltest &= test_block_facet_equal<scoped_index*>();
-  ltest &= test_block_facet_insertion<scoped_index*>();
-  ltest &= test_block_facet_deep_size<scoped_index*>();
-  print_footer("End testing block<scoped_index*>");*/
 
   // chart_point_1d
 

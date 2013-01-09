@@ -8,6 +8,9 @@
 
 project(tools)
 
+include(CTest)
+
+
 cmake_minimum_required(VERSION 2.8.3)
 
 #
@@ -56,9 +59,13 @@ create_output_dirs()
 add_bindings_targets()
 
 #
-# Testing targets
+# Add the unit test targets
 #
-add_test_targets()
+if(WIN64MSVC OR WIN64INTEL)
+    add_win32_test_targets()
+else()
+    add_linux_test_targets()
+endif()
 
 #
 # Add the example targets
@@ -74,20 +81,21 @@ add_component_check_target()
 # Component specific coverage target
 #
 if(ENABLE_COVERAGE)
+status_message("Creating coverage target for ${PROJECT_NAME}")
     add_component_coverage_target()
 endif()
 
 #
 # Component specific bin target
 #
-add_component_bin_target()
+#add_component_bin_target()
 
 #
 # Installation target
 #
-if(LINUX64)
-    add_install_target()
-endif()
+#if(LINUX64)
+#    add_install_target()
+#endif()
 
 #
 # Write this component's lib targets and include paths to an export file.

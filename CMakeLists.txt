@@ -20,7 +20,7 @@ set(CMAKE_CONFIGURATION_TYPES Debug-contracts Debug-no-contracts Release-contrac
 #    
 project(SheafSystemTest)
 
-include(CTest)
+
 
 #
 # Information glaringly omitted from CMake documentation and discussion regarding CTest and CDash:
@@ -75,7 +75,7 @@ create_output_dirs()
 # use "<component>-check" for component level
 # tests.
 #
-#add_check_target()
+add_check_target()
 
 #
 # Add the system checklog target. Action is
@@ -121,7 +121,7 @@ add_tags_target()
 # use "<component>-bin" for component level
 # binaries.
 #
-add_bin_target()
+#add_bin_target()
 
 #
 # Configure the environment scripts. 

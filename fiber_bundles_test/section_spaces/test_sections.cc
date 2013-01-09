@@ -425,7 +425,7 @@ test_section_common_unattached<fiber_bundle::sec_tuple>()
   cout << boolalpha;
 
   typedef sec_tuple S;
-  typedef typename S::fiber_type F;
+  typedef S::fiber_type F;
 
   //static const string& static_class_name();
 
@@ -531,8 +531,8 @@ test_section_common_attached<fiber_bundle::sec_tuple, fiber_bundle::sec_e2>
   typedef sec_tuple SB; // base
   typedef sec_e2 SD;    //derived
 
-  typedef typename SD::fiber_type F;
-  typedef typename F::volatile_type V;
+  typedef SD::fiber_type F;
+  typedef F::volatile_type V;
 
   //==========================================================================
 

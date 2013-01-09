@@ -8,6 +8,9 @@
 
 project(geometry_test)
 
+include(CTest)
+
+
 cmake_minimum_required(VERSION 2.8.3)
 
 #
@@ -49,9 +52,13 @@ create_output_dirs()
 add_library_targets()
 
 #
-# Testing targets
+# Add the unit test targets
 #
-add_test_targets()
+if(WIN64MSVC OR WIN64INTEL)
+    add_win32_test_targets()
+else()
+    add_linux_test_targets()
+endif()
 
 #
 # Add the example targets
@@ -66,7 +73,7 @@ add_component_check_target()
 #
 # Component specific checklog target
 #
-add_component_checklog_target()
+#add_component_checklog_target()
 
 #
 # Component specific coverage target
@@ -79,6 +86,6 @@ endif()
 #
 # Component specific bin target
 #
-add_component_bin_target()
+#add_component_bin_target()
 
 

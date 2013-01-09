@@ -8,6 +8,8 @@
 
 project(fiber_bundles_test)
 
+include(CTest)
+
 cmake_minimum_required(VERSION 2.8.3)
 
 #
@@ -50,7 +52,11 @@ add_library_targets()
 #
 # Add the unit test targets
 #
-add_test_targets()
+if(WIN64MSVC OR WIN64INTEL)
+    add_win32_test_targets()
+else()
+    add_linux_test_targets()
+endif()
 
 #
 # Add the example targets
@@ -65,19 +71,20 @@ add_component_check_target()
 #
 # Component specific checklog target
 #
-add_component_checklog_target()
+#add_component_checklog_target()
 
 #
 # Component specific coverage target
 #
 if(ENABLE_COVERAGE)
+status_message("Creating coverage target for ${PROJECT_NAME}")
     add_component_coverage_target()
 endif()
 
 #
 # Component specific bin target
 #
-add_component_bin_target()
+#add_component_bin_target()
 
 
 
