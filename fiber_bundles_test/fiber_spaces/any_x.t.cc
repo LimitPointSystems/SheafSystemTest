@@ -5,14 +5,12 @@
 // Copyright (c) 2012 Limit Point Systems, Inc.
 //
 
-/// @example any_x.t.cc
-/// Test driver for class any.
+/// Unit test driver for class any.
 
 #include "any_lite.h"
 
 #include "assert_contract.h"
 #include "std_iostream.h"
-// #include "storage_agent.h"
 
 
 using namespace fiber_bundle;
