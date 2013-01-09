@@ -7,10 +7,10 @@
 /// @example base_spaces/scalable_structured_block_3d.t.cc
 /// Test driver for timing structured_block_3d performance.
 
-#define TEST_SECTION // Test the construction and assignment of a scalar section
-#define TEST_ITR // Test the pre and post order iterators, connectivity and adjacency iterators and upper and lower cover iterators.
-#define TEST_IO // Test the io system
-#define USE_RUSAGE // Use getrusage to test memory performance.  Otherwise, use the deep size function of the block.
+//#define TEST_SECTION // Test the construction and assignment of a scalar section
+//#define TEST_ITR // Test the pre and post order iterators, connectivity and adjacency iterators and upper and lower cover iterators.
+//#define TEST_IO // Test the io system
+//#define USE_RUSAGE // Use getrusage to test memory performance.  Otherwise, use the deep size function of the block.
 
 #include "structured_block_3d.h"
 #include "block_scaling_test.impl.h"

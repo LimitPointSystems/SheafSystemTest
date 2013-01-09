@@ -15,6 +15,7 @@
 #include "structured_block_1d.h"
 #include "structured_block_2d.h"
 #include "structured_block_3d.h"
+#include "unstructured_block.h"
 #include "zone_nodes_block.h"
 #include "test_sections.impl.h"
 
@@ -241,11 +242,34 @@ make_scalar_section_space(fiber_bundles_namespace& xns,
   return result;
 }
 
-
 fiber_bundle::sec_rep_space&
 fiber_bundle::
 make_scalar_section_space(fiber_bundles_namespace& xns,
 			  zone_nodes_block& xblock)
+{
+  // Preconditions:
+
+  require(xblock.state_is_read_accessible());
+
+  // Body:
+
+
+  sec_rep_space& result =
+    new_host_space<sec_at0>(xns, "property_section_space",
+			    xblock.path(false));
+
+  // Postconditions:
+
+  // Exit:
+
+  return result;
+}
+
+
+fiber_bundle::sec_rep_space&
+fiber_bundle::
+make_scalar_section_space(fiber_bundles_namespace& xns,
+			  unstructured_block& xblock)
 {
   // Preconditions:
 

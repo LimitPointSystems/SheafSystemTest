@@ -67,12 +67,18 @@ collect_unit_test_sources()
 # Source for non-test executables.
 #
 set(EXAMPLE_SRCS
-#    scalable_point_block_1d.t.cc
-#    scalable_point_block_2d.t.cc
-#    scalable_point_block_3d.t.cc
-#    scalable_structured_block_1d.t.cc
-#    scalable_structured_block_2d.t.cc
-#    scalable_structured_block_3d.t.cc
+    scalable_point_block_1d.t.cc
+    scalable_point_block_2d.t.cc
+    scalable_point_block_3d.t.cc
+    scalable_structured_block_1d.t.cc
+    scalable_structured_block_2d.t.cc
+    scalable_structured_block_3d.t.cc
+    scalable_zone_nodes_block_1d.t.cc
+    scalable_zone_nodes_block_2d.t.cc
+    scalable_zone_nodes_block_3d.t.cc
+    scalable_unstructured_block_1d.t.cc
+    scalable_unstructured_block_2d.t.cc
+    scalable_unstructured_block_3d.t.cc
  )
 
 collect_example_sources()

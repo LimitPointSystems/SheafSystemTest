@@ -134,6 +134,15 @@ namespace fiber_bundle
   make_scalar_section_space(fiber_bundles_namespace& xns,
 			    zone_nodes_block& xblock);
 
+  ///
+  /// Creates a scalar section for a unstructured_block.
+  /// This function exists so that it can be specialized for point blocks.
+  ///
+  SHEAF_DLL_SPEC 
+  sec_rep_space&
+  make_scalar_section_space(fiber_bundles_namespace& xns,
+			    unstructured_block& xblock);
+
 } // namespace fiber_bundle
 
 #endif // ifndef BLOCK_SCALING_TEST_H

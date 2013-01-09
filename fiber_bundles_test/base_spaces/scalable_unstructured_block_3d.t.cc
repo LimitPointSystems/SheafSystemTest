@@ -4,15 +4,17 @@
 // Copyright (c) 2012 Limit Point Systems, Inc.
 //
 
-/// @example base_spaces/scalable_zone_nodes_block_3d.t.cc
-/// Test driver for timing zone_nodes_block performance in three dimensions.
+/// @example base_spaces/scalable_unstructured_block_1d.t.cc
+/// Test driver for timing unstructured_block_1d performance.
+
+// Must set the definitions before including block_scaling_test.impl.h
 
 //#define TEST_SECTION // Test the construction and assignment of a scalar section
 //#define TEST_ITR // Test the pre and post order iterators, connectivity and adjacency iterators and upper and lower cover iterators.
 //#define TEST_IO // Test the io system
-//#define USE_RUSAGE // Use getrusage to test memory performance.  Otherwise, use the deep size function of the block.
+#define USE_RUSAGE // Use getrusage to test memory performance.  Otherwise, use the deep size function of the block.
 
-#include "zone_nodes_block.h"
+#include "unstructured_block.h"
 #include "block_scaling_test.impl.h"
 
 using namespace fiber_bundle;
@@ -38,9 +40,9 @@ main(int xargc, char* xargv[])
   lnum_curves += 2;
 #endif
 
-  plot::plot_type* ltime_plot_types = new plot::plot_type[lnum_curves];
-
   int tid = 0;
+
+  plot::plot_type* ltime_plot_types = new plot::plot_type[lnum_curves];
 
   ltime_plot_types[tid++] = plot::LINEAR;
 
@@ -80,7 +82,8 @@ main(int xargc, char* xargv[])
   lmem_plot_types[6] = plot::LINEAR;
 #endif
 
-  test_scaling<zone_nodes_block, 3>(xargc, xargv, ltime_plot_types,lmem_plot_types);
+  test_scaling<unstructured_block, 3>(xargc, xargv, ltime_plot_types,
+				      lmem_plot_types);
   
   // Postconditions:
 

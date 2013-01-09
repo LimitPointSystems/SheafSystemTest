@@ -23,6 +23,8 @@
 
 #include "test_sheaves.h"
 
+#include "name_map.h"
+
 #include "namespace_poset.h"
 #include "subposet_member_iterator.h"
 
