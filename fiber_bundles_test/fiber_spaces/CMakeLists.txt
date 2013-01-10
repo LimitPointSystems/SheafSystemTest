@@ -82,6 +82,7 @@ set(UNIT_TEST_SRCS
     t4_e3_x.t.cc
     t4_x.t.cc
     tp_x.t.cc
+    tuple_x.t.cc
     vd_x.t.cc   
     basis_transform.t.cc    
     at0_space.t.cc    

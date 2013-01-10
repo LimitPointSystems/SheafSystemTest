@@ -61,7 +61,7 @@ namespace
   }
 
   void
-  test_at2_persistent(fiber_bundles_namespace& xns)
+  test_at2_persistent()
   {
     // Preconditions:
 
@@ -69,79 +69,23 @@ namespace
 
     //==========================================================================
 
-    typedef at2 P;
-    typedef at2_e2 PD;
+    // Create the namespace.
 
-    typename PD::host_type& lhost = xns.new_fiber_space<PD>();
-    lhost.get_read_write_access(true);
-  
-    //test_persistent_type<P>(lhost);
+    fiber_bundles_namespace lns("test_namespace");
+    lns.get_read_write_access();
 
-    P* lfiber = new P(&lhost);
+    // Run tests.
 
-    typename P::host_type* lhost2 = lfiber->host();
-    cout << "lhost2 = " << lhost2 << endl;
+    test_persistent_common<at2, at2_e2>(lns);
 
-    const string lmember_name("test_fiber");
-    lfiber->put_name(lmember_name, true, false);
+    // Write the namespace to standard out.
 
-    const string& lclass_name = lfiber->class_name();
-    cout << "lclass_name = " << lclass_name << endl;
+    //cout << lns << endl;
 
+    // Write the namespace to a file.
 
-    int lfactor_ct = lfiber->factor_ct();
-    cout << "lfactor_ct = " << lfactor_ct << endl;
-
-    //$$SCRIBBLE: Inconsistency amoung classes here???
-    //P* lfiber2 = new P(*lfiber);
-    P* lfiber2 = new P(lfiber);
-
-    P lfiber3 = *lfiber;
-
-    const scoped_index lindex = lfiber->index();
-
-    const poset* lposet = dynamic_cast<poset*>(&lhost);
-    P* lfiber4 = new P(lposet, lmember_name);
-    P* lfiber5 = new P(lposet, lindex);
-
-    P* lfiber6 = lfiber5->clone();
-
-    //==========================================================================
-
-    P lfiber7;
-    lfiber7 = *lfiber6;
-
-    //e1 lother;
-    //lfiber7 = lother;
-
-    //==========================================================================
-
-    // virtual const volatile_type& lite_prototype() const
-
-    typename P::volatile_type lvolatile = lfiber->lite_prototype();
-
-    //virtual volatile_type* lite_type() const;
-
-    typename P::volatile_type* lvolatile_ptr = lfiber->lite_type();
-
-    //==========================================================================
-
-    lfiber->detach_from_state();
-    lfiber2->detach_from_state();
-    lfiber3.detach_from_state();
-    lfiber4->detach_from_state();
-    lfiber5->detach_from_state();
-    lfiber6->detach_from_state();
-
-    lfiber7.detach_from_state();
-
-    delete lfiber;
-    delete lfiber2;
-    delete lfiber4;
-    delete lfiber5;
-    delete lfiber6;
-
-    lhost.release_access();
+    //storage_agent write_agent("test_namespace.hdf");
+    //write_agent.write_entire(lns);
 
     //==========================================================================
 
@@ -162,24 +106,10 @@ main(int xargc, char* xargv[])
 
   // Body:
 
-  // Create the namespace.
-
-  fiber_bundles_namespace lns("test_namespace");
-  lns.get_read_write_access();
-
   // Run tests.
 
   test_at2_volatile();
-  test_at2_persistent(lns);
-
-  // Write the namespace to standard out.
-
-  //cout << lns << endl;
-
-  // Write the namespace to a file.
-
-  //storage_agent write_agent(filename + ".hdf");
-  //write_agent.write_entire(lns);
+  test_at2_persistent();
 
   // Postconditions:
 
@@ -187,3 +117,4 @@ main(int xargc, char* xargv[])
 
   return 0;
 }
+

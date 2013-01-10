@@ -127,28 +127,47 @@
 #include "tp_space.h"
 #endif
 
+#ifndef FIBER_BUNDLES_NAMESPACE_H
+#include "fiber_bundles_namespace.h"
+#endif
+
 namespace fiber_bundle
 {
   ///
   ///
   ///
-  template<typename F>
+  template<typename V>
   void
   test_volatile_common();
 
   ///
   ///
   ///
-  template<typename F>
+  template<typename V>
   void
   test_volatile_row_dofs();
 
   ///
   ///
   ///
-  template<typename F>
+  template<typename V>
   void
   test_volatile_tp_facet();
+
+  ///
+  ///
+  ///
+  template<typename PB, typename PD>
+  void
+  test_persistent_common(fiber_bundles_namespace& xns);
+
+  ///
+  ///
+  ///
+  template<typename PB, typename PD>
+  void
+  test_persistent_common_2(fiber_bundles_namespace& xns);
+
 
 } // namespace fiber_bundle
 

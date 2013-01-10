@@ -21,11 +21,52 @@
 #include "fiber_bundles_namespace.h"
 #include "schema_descriptor.h"
 #include "schema_poset_member.h"
+#include "std_iomanip.h"
 #include "std_iostream.h"
 #include "storage_agent.h"
 #include "wsv_block.h"
 
+#include "namespace_poset_member.h"
+
 using namespace fiber_bundle;
+
+namespace
+{
+
+  class at1_space_child : public at1_space
+  {
+  public:
+    at1_space_child(const at1_space& xother)
+      : at1_space(xother)
+    {
+    }
+
+    at1_space_child(const namespace_poset& xhost,
+                    scoped_index xindex, bool xauto_access)
+      : at1_space(xhost, xindex, xauto_access)
+    {
+    }
+
+    at1_space_child(const namespace_poset& xhost,
+                    const string& xname, bool xauto_access)
+      : at1_space(xhost, xname, xauto_access)
+    {
+    }
+
+    at1_space_child(const namespace_poset_member& xmbr, bool xauto_access)
+      : at1_space(xmbr, xauto_access)
+    {
+    }
+
+    at1_space_child(at1* xtop, at1* xbottom)
+      : at1_space(xtop, xbottom)
+    {
+    }
+
+    virtual ~at1_space_child() {}
+  };
+
+} // end namespace
 
 int main(int xargc, char* xargv[])
 {
@@ -79,7 +120,55 @@ int main(int xargc, char* xargv[])
 
   // Test deep instantiation.
 
-  at1_space& lvector_space2 = lns.new_vector_space<e2>("deep_instantiation_test_e2");
+  at1_space& lvector_space2 =
+    lns.new_vector_space<e2>("deep_instantiation_test_e2");
+
+  //============================================================================
+  //============================================================================
+
+  lvector_space2.get_read_access();
+
+  poset_path lpath = lvector_space2.path();
+  cout << "lpath = " << lpath << endl;
+
+  //at1_space lvector_space3(lvector_space2);
+
+  //at1_space lvector_space4(lns, lvector_space2.index());
+
+  //at1_space lvector_space5(lns, lvector_space2.path().member_name());
+
+  at1_space* lvector_space_clone = lvector_space2.clone();
+  cout << "lvector_space_clone = " << lvector_space_clone << endl;
+
+  bool lis_ancestor_of = lvector_space2.is_ancestor_of(lvector_space_clone);
+  cout << "lis_ancestor_of = " << boolalpha << lis_ancestor_of << endl;
+
+  //at1_space_child lvector_space3(lvector_space2);
+  at1_space_child* lvector_space3 = new at1_space_child(lvector_space2);
+
+  //at1_space_child lvector_space4(lns, lvector_space2.index(), true);
+  at1_space_child* lvector_space4 =
+    new at1_space_child(lns, lvector_space2.index(), true);
+
+  //at1_space_child lvector_space5(lns, lvector_space2.path().poset_name(), true);
+  at1_space_child* lvector_space5 =
+    new at1_space_child(lns, lvector_space2.path().poset_name(), true);
+
+  lns.get_read_access();
+  namespace_poset_member lmbr(&lns, lvector_space2.index());
+  lns.release_access();
+
+  at1_space_child* lvector_space6 =
+    new at1_space_child(lmbr, true);
+
+  lmbr.detach_from_state();
+
+  at1_space_child* lvector_space7 =
+    new at1_space_child(new at1, new at1);
+
+  //at1_space_child lvector_space8 = 
+
+  //============================================================================
   
   //cout << lns << endl;
 

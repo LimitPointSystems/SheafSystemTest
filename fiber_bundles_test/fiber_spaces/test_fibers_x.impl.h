@@ -300,6 +300,205 @@ namespace fiber_bundle
     return;
   }
 
+  template<typename PB, typename PD>
+  void
+  test_persistent_common(fiber_bundles_namespace& xns)
+  {
+    // Preconditions:
+
+    require(xns.state_is_read_write_accessible());
+
+    // Body:
+
+    const string& lfiber_name = PB::static_class_name();
+
+    print_header("Begin testing " + lfiber_name);
+
+    //==========================================================================
+
+    typename PD::host_type& lhost = xns.new_fiber_space<PD>();
+    lhost.get_read_write_access(true);
+  
+    //test_persistent_type<PB>(lhost);
+
+    PB* lfiber = new PB(&lhost);
+
+    typename PB::host_type* lhost2 = lfiber->host();
+    cout << "lhost2 = " << lhost2 << endl;
+
+    const string lmember_name("test_fiber");
+    lfiber->put_name(lmember_name, true, false);
+
+    const string& lclass_name = lfiber->class_name();
+    cout << "lclass_name = " << lclass_name << endl;
+
+
+    int lfactor_ct = lfiber->factor_ct();
+    cout << "lfactor_ct = " << lfactor_ct << endl;
+
+    //$$SCRIBBLE: Inconsistency amoung classes here???
+    //PB* lfiber2 = new PB(*lfiber);
+    PB* lfiber2 = new PB(lfiber);
+
+    PB lfiber3 = *lfiber;
+
+    const scoped_index lindex = lfiber->index();
+
+    const poset* lposet = dynamic_cast<poset*>(&lhost);
+    PB* lfiber4 = new PB(lposet, lmember_name);
+    PB* lfiber5 = new PB(lposet, lindex);
+
+    PB* lfiber6 = lfiber5->clone();
+
+    //==========================================================================
+
+    PB lfiber7;
+    lfiber7 = *lfiber6;
+
+    //e1 lother;
+    //lfiber7 = lother;
+
+    //==========================================================================
+
+    // virtual const volatile_type& lite_prototype() const
+
+    typename PB::volatile_type lvolatile = lfiber->lite_prototype();
+
+    //virtual volatile_type* lite_type() const;
+
+    typename PB::volatile_type* lvolatile_ptr = lfiber->lite_type();
+
+    //==========================================================================
+
+    lfiber->detach_from_state();
+    lfiber2->detach_from_state();
+    lfiber3.detach_from_state();
+    lfiber4->detach_from_state();
+    lfiber5->detach_from_state();
+    lfiber6->detach_from_state();
+
+    lfiber7.detach_from_state();
+
+    delete lfiber;
+    delete lfiber2;
+    delete lfiber4;
+    delete lfiber5;
+    delete lfiber6;
+
+    lhost.release_access();
+
+    //==========================================================================
+
+    print_footer("End testing " + lfiber_name);
+
+    // Postconditions:
+
+    // Exit:
+
+    return;
+
+  }
+
+  template<typename PB, typename PD>
+  void
+  test_persistent_common_2(fiber_bundles_namespace& xns)
+  {
+    // Preconditions:
+
+    require(xns.state_is_read_write_accessible());
+
+    // Body:
+
+    const string& lfiber_name = PB::static_class_name();
+
+    print_header("Begin testing " + lfiber_name);
+
+    //==========================================================================
+
+    typename PD::host_type& lhost = xns.new_fiber_space<PD>();
+    lhost.get_read_write_access(true);
+  
+    //test_persistent_type<PB>(lhost);
+
+    PB* lfiber = new PB(&lhost);
+
+    typename PB::host_type* lhost2 = lfiber->host();
+    cout << "lhost2 = " << lhost2 << endl;
+
+    const string lmember_name("test_fiber");
+    lfiber->put_name(lmember_name, true, false);
+
+    const string& lclass_name = lfiber->class_name();
+    cout << "lclass_name = " << lclass_name << endl;
+
+
+    int lfactor_ct = lfiber->factor_ct();
+    cout << "lfactor_ct = " << lfactor_ct << endl;
+
+    //$$SCRIBBLE: Inconsistency amoung classes here???
+    PB* lfiber2 = new PB(*lfiber);
+    //PB* lfiber2 = new PB(lfiber);
+
+    PB lfiber3 = *lfiber;
+
+    const scoped_index lindex = lfiber->index();
+
+    const poset* lposet = dynamic_cast<poset*>(&lhost);
+    PB* lfiber4 = new PB(lposet, lmember_name);
+    PB* lfiber5 = new PB(lposet, lindex);
+
+    PB* lfiber6 = lfiber5->clone();
+
+    //==========================================================================
+
+    PB lfiber7;
+    lfiber7 = *lfiber6;
+
+    //e1 lother;
+    //lfiber7 = lother;
+
+    //==========================================================================
+
+    // virtual const volatile_type& lite_prototype() const
+
+    typename PB::volatile_type lvolatile = lfiber->lite_prototype();
+
+    //virtual volatile_type* lite_type() const;
+
+    typename PB::volatile_type* lvolatile_ptr = lfiber->lite_type();
+
+    //==========================================================================
+
+    lfiber->detach_from_state();
+    lfiber2->detach_from_state();
+    lfiber3.detach_from_state();
+    lfiber4->detach_from_state();
+    lfiber5->detach_from_state();
+    lfiber6->detach_from_state();
+
+    lfiber7.detach_from_state();
+
+    delete lfiber;
+    delete lfiber2;
+    delete lfiber4;
+    delete lfiber5;
+    delete lfiber6;
+
+    lhost.release_access();
+
+    //==========================================================================
+
+    print_footer("End testing " + lfiber_name);
+
+    // Postconditions:
+
+    // Exit:
+
+    return;
+
+  }
+
+
 } // namespace fiber_bundle
 
 #endif // ifndef TEST_FIBERS_X_IMPL_H

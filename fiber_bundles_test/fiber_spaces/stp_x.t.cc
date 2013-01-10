@@ -9,6 +9,8 @@
 /// Test driver for class stp.
 
 #include "stp.h"
+#include "st2_e2.h"
+#include "stp_space.h"
 
 #include "assert_contract.h"
 #include "fiber_bundles_namespace.h"
@@ -57,6 +59,43 @@ namespace
 
   }
 
+  void
+  test_stp_persistent()
+  {
+    // Preconditions:
+
+    // Body:
+
+    //==========================================================================
+
+    // Create the namespace.
+
+    fiber_bundles_namespace lns("test_namespace");
+    lns.get_read_write_access();
+
+    // Run tests.
+
+    test_persistent_common<stp, st2_e2>(lns);
+
+    // Write the namespace to standard out.
+
+    //cout << lns << endl;
+
+    // Write the namespace to a file.
+
+    //storage_agent write_agent("test_namespace.hdf");
+    //write_agent.write_entire(lns);
+
+    //==========================================================================
+
+    // Postconditions:
+
+    // Exit:
+
+    return;
+
+  }
+
 } // end namespace
 
 int
@@ -66,25 +105,10 @@ main(int xargc, char* xargv[])
 
   // Body:
 
-  //string filename = filename_from_cmdline(*xargv);
-
-  // Create the namespace.
-
-  //fiber_bundles_namespace lns(filename);
-  //lns.get_read_write_access();
-
   // Run tests.
 
   test_stp_volatile();
-
-  // Write the namespace to standard out.
-
-  //cout << lns << endl;
-
-  // Write the namespace to a file.
-
-  //storage_agent write_agent(filename + ".hdf");
-  //write_agent.write_entire(lns);
+  test_stp_persistent();
 
   // Postconditions:
 
