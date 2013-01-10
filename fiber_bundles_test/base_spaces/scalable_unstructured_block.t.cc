@@ -4,6 +4,11 @@
 // Copyright (c) 2012 Limit Point Systems, Inc.
 //
 
+/// @deprecated Use the individual unstructured_block examples:
+/// base_spaces/unstructured_block_1d.t.cc
+/// base_spaces/unstructured_block_2d.t.cc
+/// base_spaces/unstructured_block_3d.t.cc
+
 /// @example base_spaces/scalable_unstructured_block.t.cc
 /// Test driver for timing unstructured_block performance.
 

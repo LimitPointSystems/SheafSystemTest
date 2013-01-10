@@ -249,6 +249,14 @@ main(int xargc, char* xargv[])
 
   bool ltest = true;
 
+  // Make an id space family and a primary term so that scoped ids can be
+  // constructed.
+
+  index_space_family lid_spaces;
+  lid_spaces.new_primary_state(500);
+
+  const index_space_handle& lhub_id_space = lid_spaces.hub_id_space();
+
   //============================================================================
 
 
@@ -317,7 +325,7 @@ main(int xargc, char* xargv[])
 
 
   print_header("Testing primitive_value facet for type \"scoped_index\"");
-  scoped_index lscoped_index(123);
+  scoped_index lscoped_index(lhub_id_space, 123);
   ltest &= test_primitive_value_facet<scoped_index>(lscoped_index);
 
 

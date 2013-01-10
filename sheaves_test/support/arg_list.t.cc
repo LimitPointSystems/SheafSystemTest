@@ -8,6 +8,7 @@
 
 #include "arg_list.h"
 #include "assert_contract.h"
+#include "index_space_family.h"
 #include "namespace_relative_member_index.h"
 #include "namespace_relative_subposet_index.h"
 #include "schema_descriptor.h"
@@ -35,6 +36,19 @@ int
 main()
 {
   arg_list test1;
+
+  // Create and index space family and some ids for testing.
+
+  index_space_family lid_spaces;
+  lid_spaces.new_id(10);
+  lid_spaces.new_id(12);
+  lid_spaces.new_id(14);
+  lid_spaces.new_id(16);
+
+  scoped_index id_10(lid_spaces.hub_id_space(), 10);
+  scoped_index id_12(lid_spaces.hub_id_space(), 12);
+  scoped_index id_14(lid_spaces.hub_id_space(), 14);
+  scoped_index id_16(lid_spaces.hub_id_space(), 16);
 
   // ===========================================================
   // Test each insertion operator individually:
@@ -128,8 +142,8 @@ main()
   // Namespace_relative_member_index insertion operator.
 
   namespace_relative_member_index nrmi_dof;
-  nrmi_dof.poset_id = 10;
-  nrmi_dof.member_id = 12;
+  nrmi_dof.poset_id = id_10;
+  nrmi_dof.member_id = id_12;
   test1 << "nrmi_dof" << nrmi_dof;
   cout << "ct: " << test1.ct() << " should be 1" << endl
   << "arg_list:  " << test1
@@ -140,8 +154,8 @@ main()
   // Namespace_relative_subposet_index insertion operator.
 
   namespace_relative_subposet_index nrsi_dof;
-  nrsi_dof.poset_id = 14;
-  nrsi_dof.subposet_id = 16;
+  nrsi_dof.poset_id = id_14;
+  nrsi_dof.subposet_id = id_16;
   test1 << "nrsi_dof" << nrsi_dof;
   cout << "ct: " << test1.ct() << " should be 1" << endl
   << "arg_list:  " << test1

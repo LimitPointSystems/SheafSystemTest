@@ -363,14 +363,14 @@ make_test_coordinates_1d(fiber_bundle::fiber_bundles_namespace& xns,
   // Set the coordinates dofs;
 
   SEC_TYPE::fiber_type::volatile_type lfiber;
-  index_space_iterator* litr =
-    lcoords->schema().discretization_id_space().iterator(true);
-  for(pod_index_type i=0; !litr->is_done(); litr->next(), ++i)
+  index_space_iterator& litr =
+    lcoords->schema().discretization_id_space().get_iterator();
+  for(pod_index_type i=0; !litr.is_done(); litr.next(), ++i)
   {
     lfiber[0] = 10*i;
-    lcoords->put_fiber(litr->pod(), lfiber);
+    lcoords->put_fiber(litr.pod(), lfiber);
   }
-  delete litr;
+  lcoords->schema().discretization_id_space().release_iterator(litr);
 
   //cout << *lhost << endl;
 
@@ -408,15 +408,15 @@ make_test_coordinates_2d(fiber_bundle::fiber_bundles_namespace& xns,
   // Set the coordinates dofs;
 
   SEC_TYPE::fiber_type::volatile_type lfiber;
-  index_space_iterator* litr =
-    lcoords->schema().discretization_id_space().iterator(true);
-  for(pod_index_type i=0; !litr->is_done(); litr->next(), ++i)
+  index_space_iterator& litr =
+    lcoords->schema().discretization_id_space().get_iterator();
+  for(pod_index_type i=0; !litr.is_done(); litr.next(), ++i)
   {
     lfiber[0] = 10*i;
     lfiber[1] = 20*i;
-    lcoords->put_fiber(litr->pod(), lfiber);
+    lcoords->put_fiber(litr.pod(), lfiber);
   }
-  delete litr;
+  lcoords->schema().discretization_id_space().release_iterator(litr);
   
   //cout << *lhost << endl;
 
@@ -454,16 +454,16 @@ make_test_coordinates_3d(fiber_bundle::fiber_bundles_namespace& xns,
   // Set the coordinates dofs;
 
   SEC_TYPE::fiber_type::volatile_type lfiber;
-  index_space_iterator* litr =
-    lcoords->schema().discretization_id_space().iterator(true);
-  for(pod_index_type i=0; !litr->is_done(); litr->next(), ++i)
+  index_space_iterator& litr =
+    lcoords->schema().discretization_id_space().get_iterator();
+  for(pod_index_type i=0; !litr.is_done(); litr.next(), ++i)
   {
     lfiber[0] = 10*i;
     lfiber[1] = 20*i;
     lfiber[2] = 30*i;
-    lcoords->put_fiber(litr->pod(), lfiber);
+    lcoords->put_fiber(litr.pod(), lfiber);
   }
-  delete litr;
+  lcoords->schema().discretization_id_space().release_iterator(litr);
 
   //cout << *lhost << endl;
 

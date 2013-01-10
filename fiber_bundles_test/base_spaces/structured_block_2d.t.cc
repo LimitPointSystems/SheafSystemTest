@@ -1,5 +1,5 @@
 
-// $RCSfile: structured_block_2d.t.cc,v $ $Revision: 1.26 $ $Date: 2012/03/01 00:40:32 $
+// $RCSfile$ $Revision$ $Date$
 
 //
 // Copyright (c) 2012 Limit Point Systems, Inc.
@@ -10,6 +10,7 @@
 
 #include "chart_point_2d.h"
 #include "fiber_bundles_namespace.h"
+#include "ij_product_structure.h"
 #include "sec_at0.h"
 #include "sec_e2.h"
 #include "sec_e2_uniform.h"
@@ -51,15 +52,25 @@ main(int xargc, char* xargv[])
 
   lmesh->get_read_write_access();
 
-  scoped_index ltmp_id(lblock0.local_id());
+  index_space_handle& lzone_id_space0 = lblock0.get_zone_handle(false);
+  const ij_product_structure& lzone_product0 =
+    lzone_id_space0.product_structure<ij_product_structure>();
+
+  index_space_handle& lzone_id_space1 = lblock1.get_zone_handle(false);
+  const ij_product_structure& lzone_product1 =
+    lzone_id_space1.product_structure<ij_product_structure>();
+
+  pod_index_type lzone_pod;
+  scoped_index lzone_id(lzone_id_space0);
   block<scoped_index> lzone_ids(size_1);
   for(int i=0; i<size_0; ++i)
   {
     lzone_ids.clear();
     for(int j=0; j<size_1; ++j)
     {
-      ltmp_id = lblock0.zone_pod(i,j);
-      lzone_ids.push_back(ltmp_id);
+      lzone_product0.ordinal(i, j, lzone_pod);
+      lzone_id = lzone_pod;
+      lzone_ids.push_back(lzone_id);
     }
     base_space_member lpart(lmesh, lzone_ids.base(), lzone_ids.ct(), tern::TRUE, false);
     stringstream lstrm;
@@ -67,6 +78,9 @@ main(int xargc, char* xargv[])
     lpart.put_name("part"+lstrm.str(), true, true);
     lpart.detach_from_state();
   }
+
+  lblock0.release_zone_handle(lzone_id_space0, false);
+  lblock1.release_zone_handle(lzone_id_space1, false);
 
   // Create a jrm containing the last col of zones
   // in block 0 and the first col of zones in block 2.
@@ -80,12 +94,16 @@ main(int xargc, char* xargv[])
   lzone_ids.clear();
   for(int j=0; j<size_1; ++j)
   {
-    lzone_ids.push_back(lblock0.zone_id(last,j));
+    lzone_product0.ordinal(last, j, lzone_pod);
+    lzone_id = lzone_pod;
+    lzone_ids.push_back(lzone_id);
   }
 
   for(int j=0; j<size_1; ++j)
   {
-    lzone_ids.push_back(lblock1.zone_id(first,j));
+    lzone_product1.ordinal(first, j, lzone_pod);
+    lzone_id = lzone_pod;
+    lzone_ids.push_back(lzone_id);
   }
 
   base_space_member ljrm(lmesh, lzone_ids.base(), lzone_ids.ct(), tern::TRUE, false);

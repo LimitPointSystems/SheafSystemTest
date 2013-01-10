@@ -1,4 +1,4 @@
-// $RCSfile: property_disc_iterator.t.cc,v $ $Revision: 1.9 $ $Date: 2012/03/01 00:41:09 $
+// $RCSfile$ $Revision$ $Date$
 
 //
 // Copyright (c) 2012 Limit Point Systems, Inc.
@@ -67,9 +67,9 @@ void test_property_disc_iterator(field_vd& xfield)
     for(size_type i=0; i<lct; ++i)
     {
       discretization_context& lcontext = lcoord_mbrs[i];
-      cout << "      eval id: " << setw(3) << lcontext.eval_id
+      cout << "      eval id: " << setw(3) << lcontext.eval_id.pod()
       << "   local id: " << setw(3) << lcontext.local_id
-      << "   disc id: " << setw(3) << lcontext.disc_id
+      << "   disc id: " << setw(3) << lcontext.disc_id.pod()
       << endl;
     }
 
@@ -84,9 +84,9 @@ void test_property_disc_iterator(field_vd& xfield)
     for(size_type i=0; i<lct; ++i)
     {
       discretization_context& lcontext = lprop_mbrs[i];
-      cout << "      eval id: " << setw(3) << lcontext.eval_id
+      cout << "      eval id: " << setw(3) << lcontext.eval_id.pod()
       << "   local id: " << setw(3) << lcontext.local_id
-      << "   disc id: " << setw(3) << lcontext.disc_id;
+      << "   disc id: " << setw(3) << lcontext.disc_id.pod();
 
       cout << "   values:";
       for(int i=0; i<ldf; ++i)

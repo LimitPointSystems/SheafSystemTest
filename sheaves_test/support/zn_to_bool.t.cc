@@ -11,6 +11,7 @@
 #include "assert_contract.h"
 #include "block.h"
 #include "index_iterator.h"
+#include "index_space_family.h"
 #include "std_iostream.h"
 
 using namespace sheaf;
@@ -24,6 +25,11 @@ main()
 
   zn_to_bool* x = new zn_to_bool(33);
   assertion(x != 0);
+
+  // Create a scope for the index_iterator.
+
+  index_space_family lid_spaces;
+  lid_spaces.new_primary_state(33);
 
 
   cout << "new zn_tobool should have ct() = 33: ct() = " << x->ct() << endl;
@@ -46,7 +52,7 @@ main()
 
   cout << "the index iterator should visit items 0 4 and 32: ";
 
-  index_iterator itr(x);
+  index_iterator itr(x, lid_spaces.hub_id_space());
   while(!itr.is_done())
   {
     cout << itr.item() << " ";

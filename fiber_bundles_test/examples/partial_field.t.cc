@@ -1,15 +1,17 @@
-// $RCSfile: partial_field.t.cc,v $ $Revision: 1.22 $ $Date: 2012/03/01 00:40:40 $
+// $RCSfile$ $Revision$ $Date$
 
 //
 // Copyright (c) 2012 Limit Point Systems, Inc.
 //
 
-/// @example examples/partial_field.t.cc
-/// Test driver for partial fields.
+// Test driver for partial fields.
+
+// $$OBSOLETE No longer part of the tests.  Code remains only as
+//            a reference for future development.
 
 #include "binary_section_space_schema_poset.h"
 #include "discretization_iterator.h"
-#include "unstructured_block.h"
+#include "structured_block_1d.h"
 #include "sec_e3.h"
 #include "sec_at0_space.h"
 #include "sec_at1_space.h"
@@ -35,43 +37,39 @@ main(int argc, char* argv[])
 
   // Make triangle mesh
 
-  base_space_poset* lbase_host =
-    &lns.new_base_space<unstructured_block>("segment_mesh", "", "", 1, true);
-  lbase_host->get_read_write_access();
+  base_space_poset& lbase_host = lns.new_base_space<structured_block_1d>("segment_mesh");
+  lbase_host.get_read_write_access();
 
   // Make segment block base space
 
-  poset_path lproto_path(unstructured_block::prototypes_poset_name(),
-                         "segment_complex");
-
-  unstructured_block lbase_space(lbase_host, lproto_path, 8);
+  structured_block_1d lbase_space(&lbase_host, 8, true);
   lbase_space.put_name("segment_block", true, false);
 
   // Make two parts.
 
-  subposet lparts(lbase_host);
+  subposet lparts(&lbase_host);
   lparts.put_name("parts", true, false);
 
-  const index_map& lele_map = lbase_host->elements().id_map();
+  const index_space_handle& lele_space = lbase_host.elements().id_space();
 
   scoped_index lexpansion[4];
 
-  lexpansion[0] = lele_map.range_id(0);
-  lexpansion[1] = lele_map.range_id(1);
-  lexpansion[2] = lele_map.range_id(2);
-  lexpansion[3] = lele_map.range_id(3);
+  lexpansion[0].put(lele_space, 0);
+  lexpansion[1].put(lele_space, 1);
+  lexpansion[2].put(lele_space, 2);
+  lexpansion[3].put(lele_space, 3);
 
-  base_space_member lpart0(lbase_host, lexpansion, 4, tern::NEITHER, false);
+  base_space_member lpart0(&lbase_host, lexpansion, 4, tern::NEITHER, false);
   lpart0.put_name("part0", true, true);
   lparts.insert_member(lpart0.index());
   lpart0.detach_from_state();
 
-  lexpansion[0] = lele_map.range_id(4);
-  lexpansion[1] = lele_map.range_id(5);
-  lexpansion[2] = lele_map.range_id(6);
-  lexpansion[3] = lele_map.range_id(7);
+  lexpansion[0].put(lele_space, 4);
+  lexpansion[1].put(lele_space, 5);
+  lexpansion[2].put(lele_space, 6);
+  lexpansion[3].put(lele_space, 7);
 
-  base_space_member lpart1(lbase_host, lexpansion, 4, tern::NEITHER, false);
+  base_space_member lpart1(&lbase_host, lexpansion, 4, tern::NEITHER, false);
   lpart1.put_name("part1", true, true);
   lparts.insert_member(lpart1.index());
   lpart1.detach_from_state();
@@ -141,7 +139,7 @@ main(int argc, char* argv[])
 
   // Create a partial field on domain 0.
 
-  total_poset_member ldomain(lbase_host, "part0");
+  total_poset_member ldomain(&lbase_host, "part0");
 
   sec_e3 lpartial_field;
   lpartial_field.new_jim_state(&lsrs, ldomain);
@@ -160,7 +158,7 @@ main(int argc, char* argv[])
 
   // Create a partial field on domain 1.
 
-  ldomain.attach_to_state(lbase_host, "part1");
+  ldomain.attach_to_state(&lbase_host, "part1");
 
   lpartial_field.new_jim_state(&lsrs, ldomain);
   lpartial_field.put_name("partial_field_on_part1", true, false);
@@ -198,7 +196,7 @@ main(int argc, char* argv[])
 
   lbase_jem.detach_from_state();
   lbase_space.detach_from_state();
-  lbase_host->release_access();
+  lbase_host.release_access();
 
   // Postconditions:
 

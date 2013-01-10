@@ -1,5 +1,5 @@
 
-// $RCSfile: fields.t.cc,v $ $Revision: 1.23 $ $Date: 2012/03/01 00:40:53 $
+// $RCSfile$ $Revision$ $Date$
 
 //
 // Copyright (c) 2012 Limit Point Systems, Inc.
@@ -18,7 +18,6 @@
 #include "index_space_iterator.h"
 #include "postorder_iterator.h"
 #include "poset.h"
-#include "product_index_space.h"
 #include "schema_poset_member.h"
 #include "section_space_schema_poset.h"
 #include "sec_at0.h"
@@ -37,7 +36,8 @@
 #include "std_cstdlib.h"
 #include "std_iostream.h"
 #include "storage_agent.h"
-#include "unstructured_block.h"
+#include "triangle_connectivity.h"
+#include "zone_nodes_block.h"
 
 using namespace fiber_bundle;
 
@@ -272,16 +272,16 @@ make_scalar_section_space(fiber_bundles_namespace& xns,
   sec_at0 lafield(&result, lafld_map);
   lafield.put_name("array_section_dof_map", true, false);
 
-  index_space_iterator* aitr =
-    lafield.schema().row_dof_id_space().iterator(true);
+  index_space_iterator& aitr =
+    lafield.schema().row_dof_id_space().get_iterator();
   double i = 0.0;
-  while(!aitr->is_done())
+  while(!aitr.is_done())
   {
-    lafield.put_dof(aitr->pod(), &i, sizeof(double));
-    aitr->next();
+    lafield.put_dof(aitr.pod(), &i, sizeof(double));
+    aitr.next();
     i += 1.0;
   }
-  delete aitr;
+  lafield.schema().row_dof_id_space().release_iterator(aitr);
 
   // Create a field with a sparse_section_dof_map.
 
@@ -289,15 +289,15 @@ make_scalar_section_space(fiber_bundles_namespace& xns,
   sec_at0 lsfield(&result, lsfld_map);
   lsfield.put_name("sparse_section_dof_map", true, false);
 
-  index_space_iterator* sitr =
-    lsfield.schema().row_dof_id_space().iterator(true);
+  index_space_iterator& sitr =
+    lsfield.schema().row_dof_id_space().get_iterator();
   i = 1.0;
-  while(!sitr->is_done())
+  while(!sitr.is_done())
   {
-    lsfield.put_dof(sitr->pod(), &i, sizeof(double));
-    sitr->next();
+    lsfield.put_dof(sitr.pod(), &i, sizeof(double));
+    sitr.next();
   }
-  delete sitr;
+  lsfield.schema().row_dof_id_space().release_iterator(aitr);
 
   // Detach members so destructor won't complain
 
@@ -363,16 +363,16 @@ make_scalar_section_space_2(fiber_bundles_namespace& xns,
   sec_at0 lafield(&result, lafld_map);
   lafield.put_name("array_section_dof_map", true, false);
 
-  index_space_iterator* aitr =
-    lafield.schema().row_dof_id_space().iterator(true);
+  index_space_iterator& aitr =
+    lafield.schema().row_dof_id_space().get_iterator();
   double i = 0.0;
-  while(!aitr->is_done())
+  while(!aitr.is_done())
   {
-    lafield.put_dof(aitr->pod(), &i, sizeof(double));
-    aitr->next();
+    lafield.put_dof(aitr.pod(), &i, sizeof(double));
+    aitr.next();
     i += 1.0;
   }
-  delete aitr;
+  lafield.schema().row_dof_id_space().release_iterator(aitr);
   
   // Create a field with a sparse_section_dof_map.
 
@@ -380,15 +380,15 @@ make_scalar_section_space_2(fiber_bundles_namespace& xns,
   sec_at0 lsfield(&result, lsfld_map);
   lsfield.put_name("sparse_section_dof_map", true, false);
 
-  index_space_iterator* sitr =
-    lsfield.schema().row_dof_id_space().iterator(true);
+  index_space_iterator& sitr =
+    lsfield.schema().row_dof_id_space().get_iterator();
   i = 1.0;
-  while(!sitr->is_done())
+  while(!sitr.is_done())
   {
-    lsfield.put_dof(sitr->pod(), &i, sizeof(double));
-    sitr->next();
+    lsfield.put_dof(sitr.pod(), &i, sizeof(double));
+    sitr.next();
   }
-  delete sitr;
+  lsfield.schema().row_dof_id_space().release_iterator(aitr);
 
   // Detach members so destructor won't complain
 
@@ -587,20 +587,19 @@ int main(int xargc, char* xargv[])
 
   // Make triangle mesh
 
-  base_space_poset* lmesh =
-    &lns.new_base_space<unstructured_block>("triangle_mesh",
-					    "",
-					    "",
-					    2,
-					    true);
-  lmesh->get_read_write_access();
+  base_space_poset& lmesh =
+    lns.new_base_space<zone_nodes_block>("triangle_mesh",
+					 "",
+					 "",
+					 2,
+					 true);
+  lmesh.get_read_write_access();
 
   // Make triangle block base space
 
-  poset_path lproto_path(unstructured_block::prototypes_poset_name(),
-                         "triangle_complex");
+  triangle_connectivity lconn(edge_ct_x, edge_ct_y);
 
-  unstructured_block lbase(lmesh, lproto_path, edge_ct_x, edge_ct_y, true);
+  zone_nodes_block lbase(lmesh, lconn, true);
   lbase.put_name("triangle_block", true, false);
 
   poset_path lbase_path = lbase.path(true);
@@ -637,7 +636,7 @@ int main(int xargc, char* xargv[])
   // Clean-up
 
   lbase.detach_from_state();
-  lmesh->release_access();
+  lmesh.release_access();
 
   return 0;
 }

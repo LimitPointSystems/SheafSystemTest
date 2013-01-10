@@ -1,5 +1,5 @@
 
-// $RCSfile: structured_block_1d.t.cc,v $ $Revision: 1.28 $ $Date: 2012/03/01 00:40:32 $
+// $RCSfile$ $Revision$ $Date$
 
 //
 // Copyright (c) 2012 Limit Point Systems, Inc.
@@ -21,7 +21,6 @@
 #include "tern.h"
 
 using namespace fiber_bundle;
-
 
 int
 main(int xargc, char* xargv[])
@@ -61,9 +60,15 @@ main(int xargc, char* xargv[])
 
   lmesh->get_read_write_access();
 
+  index_space_handle& lzone_id_space0 = lblock0.get_zone_handle(false);
+  index_space_handle& lzone_id_space1 = lblock1.get_zone_handle(false);
+
   scoped_index ljoin_ids[2];
-  ljoin_ids[0] = lblock0.zone_id(size - 1);
-  ljoin_ids[1] = lblock1.zone_id(0);
+  ljoin_ids[0].put(lzone_id_space0, (size - 1));
+  ljoin_ids[1].put(lzone_id_space1, 0);
+
+  lblock0.release_zone_handle(lzone_id_space0, false);
+  lblock1.release_zone_handle(lzone_id_space1, false);
   
   base_space_member ljoin(lmesh, ljoin_ids, 2, tern::TRUE, false);
   
@@ -115,19 +120,6 @@ main(int xargc, char* xargv[])
   lprop = lfiber;
 
   cout << lprop_space << endl << endl;
-
-  //============================================================================
-  // Miscellaneous coverage tests.
-  //============================================================================
-
-  const unary_index_space& lid_space = lblock0.id_space();
-
-  ragged_array<unary_index>* lneighbor_list = lid_space.neighbor_list();
-
-  cout << "lid_space = " << lid_space << endl;
-
-  //============================================================================
-
 
   // Clean-up.
 

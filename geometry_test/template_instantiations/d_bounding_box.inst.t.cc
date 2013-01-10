@@ -47,6 +47,15 @@ test_d_bounding_box_facet()
 
   // Body:
 
+  // Construct a member and branch scoped ids.
+
+  index_space_family lid_spaces;
+  lid_spaces.new_id(123);
+  lid_spaces.new_id(345);
+
+  scoped_index lmember_id(lid_spaces.hub_id_space(), 123);
+  scoped_index lbranch_id(lid_spaces.hub_id_space(), 345);
+
   bool lresult = true;
 
   print_subheader("Testing d_bounding_box()");
@@ -55,7 +64,6 @@ test_d_bounding_box_facet()
 
   print_subheader("Testing void put_member_id(const scoped_index& xid)");
 
-  scoped_index lmember_id(123);
   lbox.put_member_id(lmember_id);
 
   print_subheader("Testing scoped_index member_id() const");
@@ -65,7 +73,6 @@ test_d_bounding_box_facet()
 
   print_subheader("Testing void put_branch_id(const scoped_index& xid)");
 
-  scoped_index lbranch_id(345);
   lbox.put_branch_id(lbranch_id);
 
   print_subheader("Testing scoped_index branch_id() const");

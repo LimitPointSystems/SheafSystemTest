@@ -22,13 +22,6 @@
 #include "integrable_section_evaluator.h"
 #include "structured_block.h"
 #include "structured_block_1d.h"
-#include "structured_block_1d_crg_range.h"
-#include "structured_block_2d_crg_range.h"
-#include "structured_block_3d_crg_range.h"
-#include "base_space_crg_range.h"
-#include "point_block_crg_range.h"
-#include "zone_nodes_block_crg_range.h"
-#include "homogeneous_block_crg_range.h"
 #include "test_utils.h"
 #include "test_sheaves.impl.h"
 
@@ -133,69 +126,6 @@ main(int xargc, char* xargv[])
   ltest &= test_block_facet_insertion<integrable_section_evaluator*>();
   ltest &= test_block_facet_deep_size<integrable_section_evaluator*>();
   print_footer("End testing block<integrable_section_evaluator*>");
-
-  // structured_block_1d_crg_range*
-
-  print_header("Begin testing block<structured_block_1d_crg_range*>");
-  ltest &= test_block_facet<structured_block_1d_crg_range*>();
-  ltest &= test_block_facet_equal<structured_block_1d_crg_range*>();
-  ltest &= test_block_facet_insertion<structured_block_1d_crg_range*>();
-  ltest &= test_block_facet_deep_size<structured_block_1d_crg_range*>();
-  print_footer("End testing block<structured_block_1d_crg_range*>");
-
-  // structured_block_2d_crg_range*
-
-  print_header("Begin testing block<structured_block_2d_crg_range*>");
-  ltest &= test_block_facet<structured_block_2d_crg_range*>();
-  ltest &= test_block_facet_equal<structured_block_2d_crg_range*>();
-  ltest &= test_block_facet_insertion<structured_block_2d_crg_range*>();
-  ltest &= test_block_facet_deep_size<structured_block_2d_crg_range*>();
-  print_footer("End testing block<structured_block_2d_crg_range*>");
-
-  // structured_block_3d_crg_range*
-
-  print_header("Begin testing block<structured_block_3d_crg_range*>");
-  ltest &= test_block_facet<structured_block_3d_crg_range*>();
-  ltest &= test_block_facet_equal<structured_block_3d_crg_range*>();
-  ltest &= test_block_facet_insertion<structured_block_3d_crg_range*>();
-  ltest &= test_block_facet_deep_size<structured_block_3d_crg_range*>();
-  print_footer("End testing block<structured_block_3d_crg_range*>");
-
-  // base_space_crg_range*
-
-  print_header("Begin testing block<base_space_crg_range*>");
-  ltest &= test_block_facet<base_space_crg_range*>();
-  ltest &= test_block_facet_equal<base_space_crg_range*>();
-  ltest &= test_block_facet_insertion<base_space_crg_range*>();
-  ltest &= test_block_facet_deep_size<base_space_crg_range*>();
-  print_footer("End testing block<base_space_crg_range*>");
-
-  // point_block_crg_range*
-
-  print_header("Begin testing block<point_block_crg_range*>");
-  ltest &= test_block_facet<point_block_crg_range*>();
-  ltest &= test_block_facet_equal<point_block_crg_range*>();
-  ltest &= test_block_facet_insertion<point_block_crg_range*>();
-  ltest &= test_block_facet_deep_size<point_block_crg_range*>();
-  print_footer("End testing block<point_block_crg_range*>");
-
-  // zone_nodes_block_crg_range*
-
-  print_header("Begin testing block<zone_nodes_block_crg_range*>");
-  ltest &= test_block_facet<zone_nodes_block_crg_range*>();
-  ltest &= test_block_facet_equal<zone_nodes_block_crg_range*>();
-  ltest &= test_block_facet_insertion<zone_nodes_block_crg_range*>();
-  ltest &= test_block_facet_deep_size<zone_nodes_block_crg_range*>();
-  print_footer("End testing block<zone_nodes_block_crg_range*>");
-
-  // homogeneous_block_crg_range*
-
-  print_header("Begin testing block<homogeneous_block_crg_range*>");
-  ltest &= test_block_facet<homogeneous_block_crg_range*>();
-  ltest &= test_block_facet_equal<homogeneous_block_crg_range*>();
-  ltest &= test_block_facet_insertion<homogeneous_block_crg_range*>();
-  ltest &= test_block_facet_deep_size<homogeneous_block_crg_range*>();
-  print_footer("End testing block<homogeneous_block_crg_range*>");
 
   // block<scoped_index>*
 

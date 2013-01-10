@@ -1,4 +1,4 @@
-// $RCSfile: tetgen_generator.t.cc,v $ $Revision: 1.4 $ $Date: 2012/03/01 00:41:14 $
+// $RCSfile$ $Revision$ $Date$
 
 //
 // Copyright (c) 2012 Limit Point Systems, Inc.

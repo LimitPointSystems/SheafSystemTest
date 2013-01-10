@@ -1,4 +1,4 @@
-// $RCSfile: subposet.t.cc,v $ $Revision: 1.20 $ $Date: 2012/03/01 00:41:30 $
+// $RCSfile$ $Revision$ $Date$
 
 //
 // Copyright (c) 2012 Limit Point Systems, Inc.
@@ -46,17 +46,17 @@ void max_min_test()
   subposet lsp0(triangle.host());
 
   lsp0.put_name("0-cells", true, false);
-  lsp0.insert_member(scoped_index(6));
-  lsp0.insert_member(scoped_index(7));
-  lsp0.insert_member(scoped_index(8));
+  lsp0.insert_member(6);
+  lsp0.insert_member(7);
+  lsp0.insert_member(8);
 
   // Just the 1-cells
 
   subposet lsp1(triangle.host());
   lsp1.put_name("1-cells", true, false);
-  lsp1.insert_member(scoped_index(3));
-  lsp1.insert_member(scoped_index(4));
-  lsp1.insert_member(scoped_index(5));
+  lsp1.insert_member(3);
+  lsp1.insert_member(4);
+  lsp1.insert_member(5);
 
   // Both the 0-cells and 1-cells
 
@@ -267,7 +267,7 @@ void multiple_names_test(string xfilename)
 
   // cout << "After reading:" << endl << ns << endl;
   
-  poset_state_handle* psh = ns.member_poset(scoped_index(6));
+  poset_state_handle* psh = ns.member_poset(6);
 
   psh->get_read_write_access();
 
@@ -278,7 +278,7 @@ void multiple_names_test(string xfilename)
 
   // Print the names for member 3 to stdout
 
-  subposet sp0(psh, scoped_index(3));
+  subposet sp0(psh, 3);
   sp0.all_names(names);
 
   cout << "For index 3, subposet name(s) are: " << " ";
@@ -294,7 +294,7 @@ void multiple_names_test(string xfilename)
 
   // Print the names for member 4 to stdout
 
-  subposet sp1(psh, scoped_index(4));
+  subposet sp1(psh, 4);
 
   sp1.all_names(names);
 
@@ -311,7 +311,7 @@ void multiple_names_test(string xfilename)
 
   // Print the names for member 5 to stdout.
 
-  subposet sp2(psh, scoped_index(5));
+  subposet sp2(psh, 5);
 
   sp2.all_names(names);
 
