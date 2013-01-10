@@ -26,6 +26,8 @@
 #include "tp.h"
 #include "wsv_block.h"
 
+#include "namespace_poset_member.h"
+
 using namespace fiber_bundle;
 
 namespace
@@ -139,12 +141,118 @@ namespace
 
     return;
   }
+
+  //============================================================================
+
+
+  template <typename T>
+  class space_child : public T
+  {
+  public:
+
+    typedef typename T::member_type M;
+
+    space_child() : T() { }
+
+    space_child(const T& xother) : T(xother) { }
+
+    space_child(const namespace_poset& xhost,
+                scoped_index xindex, bool xauto_access)
+      : T(xhost, xindex, xauto_access)
+    {
+    }
+
+    space_child(const namespace_poset& xhost,
+                const string& xname, bool xauto_access)
+      : T(xhost, xname, xauto_access)
+    {
+    }
+
+    space_child(const namespace_poset_member& xmbr, bool xauto_access)
+      : T(xmbr, xauto_access)
+    {
+    }
+
+    space_child(M* xtop, M* xbottom)
+      : T(xtop, xbottom)
+    {
+    }
+
+    virtual ~space_child() {}
+
+    space_child& operator=(const poset_state_handle& xother)
+    {
+      T::operator=(xother);
+    }
+  };
+
+
+  template <typename T>
+  void test_spaces_common( fiber_bundles_namespace& lns, T& lvector_space2)
+  {
+    // Preconditions:
+
+    // Body:
+
+    typedef typename T::member_type M;
+    typedef space_child<T> TC;
+
+    lvector_space2.get_read_access();
+
+    poset_path lpath = lvector_space2.path();
+    cout << "lpath = " << lpath << endl;
+
+    //T lvector_space3(lvector_space2);
+
+    //T lvector_space4(lns, lvector_space2.index());
+
+    //T lvector_space5(lns, lvector_space2.path().member_name());
+
+    T* lvector_space_clone = lvector_space2.clone();
+    cout << "lvector_space_clone = " << lvector_space_clone << endl;
+
+    bool lis_ancestor_of = lvector_space2.is_ancestor_of(lvector_space_clone);
+    cout << "lis_ancestor_of = " << boolalpha << lis_ancestor_of << endl;
+
+    //TC lvector_space3(lvector_space2);
+    TC* lvector_space3 = new TC(lvector_space2);
+
+    //TC lvector_space4(lns, lvector_space2.index(), true);
+    TC* lvector_space4 = new TC(lns, lvector_space2.index(), true);
+
+    //TC lvector_space5(lns, lvector_space2.path().poset_name(), true);
+    TC* lvector_space5 = new TC(lns, lvector_space2.path().poset_name(), true);
+
+    lns.get_read_access();
+    namespace_poset_member lmbr(&lns, lvector_space2.index());
+    lns.release_access();
+
+    TC* lvector_space6 =
+      new TC(lmbr, true);
+
+    lmbr.detach_from_state();
+
+    TC* lvector_space7 =
+      new TC(new M, new M);
+
+    //at1_space& operator=(const poset_state_handle& xother);
+
+    TC* lvector_space8 = new TC;
+    lvector_space5->get_read_access();
+    poset_state_handle* lpsh = lvector_space5;
+    lvector_space8->operator=(*lpsh);
+
+    // Postconditions:
+
+    // Exit:
   
+  }
 
-}
+} // end unnamed namespace
 
 
-int main(int xargc, char* xargv[])
+int
+main(int xargc, char* xargv[])
 {
   // Preconditions:
 
@@ -162,6 +270,33 @@ int main(int xargc, char* xargv[])
   test_shallow_instantiation(lns, ltensor_schema_path, lvector_schema_path);
 
   test_deep_instantiation(lns, ltensor_schema_path, lvector_schema_path);
+
+  //============================================================================
+
+  //$$SCRIBBLE: Have test_deep_instantiation return lspace so we don't
+  //            need to recreate it.
+
+  // Test member functions common to all "*_space" classes.
+
+  poset_path lpath("deep_instantiation_test_tp_space", "");
+  arg_list ltensor_args = tp_space::make_arg_list(2, "");
+
+  tp_space& lspace = lns.new_tensor_space<tp>(lpath, 
+						ltensor_args, 
+						ltensor_schema_path,
+						"",
+						"",
+						lvector_schema_path);
+
+  test_spaces_common<tp_space>(lns, lspace);
+
+  //int dd(bool xauto_access) const
+
+  int ldd = lspace.dd(true);
+  cout << "ldd = " << ldd << endl;
+  
+  //============================================================================
+
 
   //  cout << lns << endl;
   
