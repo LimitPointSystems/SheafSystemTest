@@ -9,8 +9,7 @@
 #
 # This file contains declarations and functions unique to this component.
 #
-#include_directories(${FIELDS_IPATHS})
-#include_directories(${FIELDS_IPATHS})
+
 #
 # Include functions and definitions common to all components.
 # 
@@ -103,8 +102,7 @@ function(add_library_targets)
         set_target_properties(${${COMPONENT}_DYNAMIC_LIB} PROPERTIES DEFINE_SYMBOL "SHEAF_DLL_EXPORTS")
         
     else() # Linux
-        # $$TODO: Why does fields want to link against vtk?
-       # link_directories(${VTK_LIB_DIR})   
+
         # Static library
         add_library(${${COMPONENT}_STATIC_LIB} STATIC ${${COMPONENT}_SRCS})
         add_dependencies(${${COMPONENT}_STATIC_LIB} ${GEOMETRY_STATIC_LIBS})

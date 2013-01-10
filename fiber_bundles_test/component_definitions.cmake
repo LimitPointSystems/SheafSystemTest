@@ -9,7 +9,6 @@
 #
 # This file contains declarations and functions unique to this component.
 #
-#include_directories(${FIBER_BUNDLES_IPATHS})
 
 #
 # Include functions and definitions common to all components.

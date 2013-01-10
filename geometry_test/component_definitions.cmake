@@ -9,7 +9,7 @@
 #
 # This file contains declarations and functions unique to this component.
 #
-#include_directories(${GEOMETRY_IPATHS})
+
 #
 # Include functions and definitions common to all components.
 # 

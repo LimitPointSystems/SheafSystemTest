@@ -15,8 +15,6 @@
 # .
 include(${CMAKE_MODULE_PATH}/LPSCommon.cmake)
 
-
-
 #
 # Define the clusters for this component.
 #
