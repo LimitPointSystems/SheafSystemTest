@@ -33,12 +33,6 @@ link_directories(${SHEAVES_LIB_OUTPUT_DIR})
 # Linux only for now.
 #
 if(LINUX64INTEL)
-#    set(COLOR_B FFFF00 CACHE STRING "Color for uncovered blocks code.")
-#    set(COLOR_C 00FF00 CACHE STRING "Color for covered code.")
-#    set(COLOR_F FF0000 CACHE STRING "Color for uncovered functions code.")
-#    set(COLOR_I FFFFFF CACHE STRING "Color for information lines.")
-#    set(COLOR_P FF00FF CACHE STRING "Color for partially covered code.")
-#    set(COLOR_U 00FFFF CACHE STRING "Color for unknown code.")
 
     set(UNCOVERED_COLOR DE0829 CACHE STRING "Color for uncovered code.")
     set(COVERED_COLOR 319A44 CACHE STRING "Color for covered code.")
@@ -52,8 +46,9 @@ if(LINUX64INTEL)
     set(PROFMERGE "${INTELPATH}/profmerge" CACHE STRING "Intel dynamic profile merge utility." )
     set(CODECOV_ARGS -spi ${SHEAFSYSTEM_HOME}/build/coverage/pgopti.spi -bcolor ${UNCOVERED_COLOR} -ccolor ${COVERED_COLOR} -pcolor ${PARTIAL_COLOR} -demang -prj CACHE STRING "Arguments for Intel codecov utility.")
     set(INTEL_LIBPATH "${INTELPATH}/lib/intel64" CACHE STRING "Intel C++ compiler library path." )
+
 elseif(LINUX64GNU)
-    message(STATUS "IN GNU CLAUSE")
+
     # Lop the compiler name off the end of the CXX string to get the gnu root.
     string(REPLACE "bin/g++" "" GNUPATH ${CMAKE_CXX_COMPILER})
     # The compiler library path.
@@ -68,7 +63,6 @@ endif()
 #
 set(ENABLE_UNIT_TEST_LOG_TARGETS OFF CACHE BOOL "Enable Unit Test log targets. Runs UT and redirects stdout to file <test>.log.")
 set(ENABLE_UNIT_TEST_HDF_LOG_TARGETS OFF CACHE BOOL "Enable Unit Test hdf5 log targets. If executing <test> produces an HDF file, runs read on the hdf file and redirects output to <test>.hdf.log.")
-
 
 #
 #------------------------------------------------------------------------------
@@ -512,7 +506,6 @@ endfunction(add_component_check_target)
 #
 function(add_component_coverage_target)
 
-#    if(LINUX64INTEL OR WIN64INTEL)
        # if the component unit test list is not empty, generate coverage data.   
         if(NOT ${COMPONENT}_UNIT_TEST_SRCS STREQUAL "")
             add_custom_target(${PROJECT_NAME}-coverage DEPENDS ${PROJECT_NAME}-check
@@ -530,7 +523,6 @@ function(add_component_coverage_target)
             # Append the coverage target to the system wide list
             set(ALL_COVERAGE_TARGETS ${ALL_COVERAGE_TARGETS} ${PROJECT_NAME}-coverage CACHE STRING "Aggregate list of component coverage targets" FORCE)
             mark_as_advanced(ALL_COVERAGE_TARGETS)
-#    endif()
     set_target_properties(${PROJECT_NAME}-coverage PROPERTIES FOLDER "Component Coverage Targets")
     
 endfunction()
