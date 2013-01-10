@@ -9,7 +9,7 @@
 #
 # This file contains declarations and functions unique to this component.
 #
-include_directories(${GEOMETRY_IPATHS})
+#include_directories(${GEOMETRY_IPATHS})
 #
 # Include functions and definitions common to all components.
 # 
@@ -26,6 +26,10 @@ set(clusters coordinates general kd_lattice mesh_generators point_locators
 #
 set_component_vars()
 
+#
+# Add the clusters to the project
+#
+add_clusters("${clusters}")
 
 if(WIN64INTEL OR WIN64MSVC)
 
@@ -60,7 +64,9 @@ endif()
 #
 # Set the cumulative include path for this component.
 #
-set(${COMPONENT}_IPATHS ${FIBER_BUNDLES_IPATHS} ${${COMPONENT}_IPATH} CACHE STRING " Cumulative include paths for ${PROJECT_NAME}" FORCE)
+set(${COMPONENT}_IPATHS ${FIBER_BUNDLES_TEST_IPATHS} ${${COMPONENT}_IPATH} ${GEOMETRY_IPATH} CACHE STRING " Cumulative include paths for ${PROJECT_NAME}" FORCE)
+
+include_directories(${${COMPONENT}_IPATHS})
 
 #------------------------------------------------------------------------------
 # FUNCTION DEFINITION SECTION

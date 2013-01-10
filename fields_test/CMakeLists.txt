@@ -23,20 +23,6 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/component_definitions.cmake)
 status_message("Processing ${PROJECT_NAME}")
 
 #
-# Add the clusters to the project
-#
-add_clusters("${clusters}")
-
-#
-#  Add the component ipath to the include directories.
-#  $$SCRIBBLE: Should be using something like GEOMETRY_TEST_IPATHS here.
-#
-include_directories(BEFORE ${SHEAVES_TEST_IPATH})
-include_directories(BEFORE ${FIBER_BUNDLES_TEST_IPATH}) 
-include_directories(BEFORE ${GEOMETRY_TEST_IPATH})
-include_directories(BEFORE ${FIELDS_TEST_IPATH}) 
-
-#
 # Set compiler flags for all build configurations
 #
 set_compiler_flags()

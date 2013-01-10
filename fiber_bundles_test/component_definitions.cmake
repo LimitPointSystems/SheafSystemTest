@@ -9,7 +9,8 @@
 #
 # This file contains declarations and functions unique to this component.
 #
-include_directories(${FIBER_BUNDLES_IPATHS})
+#include_directories(${FIBER_BUNDLES_IPATHS})
+
 #
 # Include functions and definitions common to all components.
 # 
@@ -26,6 +27,10 @@ set(clusters base_spaces dof_iterators dof_maps evaluators fiber_spaces general
 #
 set_component_vars()
 
+#
+# Add the clusters to the project
+#
+add_clusters("${clusters}")
 
 if(WIN64INTEL OR WIN64MSVC)
 
@@ -60,7 +65,9 @@ endif()
 #
 # Set the cumulative include path for this component.
 #
-set(${COMPONENT}_IPATHS ${${COMPONENT}_IPATH} ${SHEAVES_TEST_IPATHS} CACHE STRING " Cumulative include paths for ${PROJECT_NAME}" FORCE)
+set(${COMPONENT}_IPATHS ${SHEAVES_TEST_IPATHS} ${${COMPONENT}_IPATH} ${FIBER_BUNDLES_IPATH}  CACHE STRING " Cumulative include paths for ${PROJECT_NAME}" FORCE)
+
+include_directories(${${COMPONENT}_IPATHS}) 
 
 #------------------------------------------------------------------------------
 # FUNCTION DEFINITION SECTION
@@ -71,6 +78,7 @@ set(${COMPONENT}_IPATHS ${${COMPONENT}_IPATH} ${SHEAVES_TEST_IPATHS} CACHE STRIN
 #
 function(add_library_targets)
 
+    
     if(WIN64INTEL OR WIN64MSVC)
 
         # Tell the linker where to look for this project's libraries.

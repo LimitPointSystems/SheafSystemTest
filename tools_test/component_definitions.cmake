@@ -10,7 +10,7 @@
 # This file contains declarations and functions unique to this component.
 #
 
-include_directories(${TOOLS_IPATHS})
+#include_directories(${TOOLS_IPATHS})
 
 #
 # Include functions and definitions common to all components.
@@ -78,13 +78,14 @@ set(${COMPONENT}_IPATHS ${FIELDS_IPATHS} ${${COMPONENT}_IPATH} CACHE STRING " Cu
 #
 function(add_library_targets)
 
-        include_directories(${JDK_INC_DIR} ${JDK_PLATFORM_INC_DIR})
-        include_directories(${VTK_INC_DIRS})
-               
-        link_directories(${VTK_LIB_DIR})
-        link_directories(${JDK_LIB_DIR})
-        link_directories(${JVM_LIB_DIR})
-        link_directories(${XAWT_LIB_DIR})
+    include_directories(${${COMPONENT}_IPATHS})
+    include_directories(${JDK_INC_DIR} ${JDK_PLATFORM_INC_DIR})
+    include_directories(${VTK_INC_DIRS})
+           
+    link_directories(${VTK_LIB_DIR})
+    link_directories(${JDK_LIB_DIR})
+    link_directories(${JVM_LIB_DIR})
+    link_directories(${XAWT_LIB_DIR})
         
     if(WIN64INTEL OR WIN64MSVC)
     

@@ -9,7 +9,7 @@
 #
 # This file contains declarations and functions unique to this component.
 #
-include_directories(${FIELDS_IPATHS})
+#include_directories(${FIELDS_IPATHS})
 #include_directories(${FIELDS_IPATHS})
 #
 # Include functions and definitions common to all components.
@@ -25,6 +25,11 @@ set(clusters fields iterators pushers refiners template_instantiations)
 # Initialize all variables for this component.
 #
 set_component_vars()
+
+#
+# Add the clusters to the project
+#
+add_clusters("${clusters}")
 
 if(WIN64INTEL OR WIN64MSVC)
 
@@ -56,11 +61,13 @@ else()
     set(${COMPONENT}_PYTHON_BINDING_LIBS ${${COMPONENT}_PYTHON_BINDING_LIB} ${GEOMETRY_PYTHON_BINDING_LIBS} CACHE STRING " Cumulative Python binding libraries for ${PROJECT_NAME}" FORCE)
 
 endif()
+
 #
 # Set the cumulative include path for this component.
 #
-set(${COMPONENT}_IPATHS ${${COMPONENT}_IPATH} ${GEOMETRY_IPATHS} CACHE STRING " Cumulative include paths for ${PROJECT_NAME}")
+set(${COMPONENT}_IPATHS ${GEOMETRY_TEST_IPATHS} ${${COMPONENT}_IPATH} ${FIELDS_IPATH} CACHE STRING " Cumulative include paths for ${PROJECT_NAME}" FORCE)
 
+include_directories(${${COMPONENT}_IPATHS})
 #------------------------------------------------------------------------------
 # FUNCTION DEFINITION SECTION
 #------------------------------------------------------------------------------
@@ -69,7 +76,9 @@ set(${COMPONENT}_IPATHS ${${COMPONENT}_IPATH} ${GEOMETRY_IPATHS} CACHE STRING " 
 # Create the library targets for this component.
 #
 function(add_library_targets)
-    
+
+    include_directories(${${COMPONENT}_IPATHS})
+        
     if(${USE_VTK})
         link_directories(${VTK_LIB_DIR})
     endif()

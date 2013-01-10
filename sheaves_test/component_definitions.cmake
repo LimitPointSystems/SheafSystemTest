@@ -15,7 +15,7 @@
 # .
 include(${CMAKE_MODULE_PATH}/LPSCommon.cmake)
 
-include_directories(${SHEAVES_IPATHS}) 
+
 
 #
 # Define the clusters for this component.
@@ -28,6 +28,10 @@ set(clusters concurrency dof_iterators dof_maps examples id_spaces io iterators
 #
 set_component_vars()
 
+#
+# Add the clusters to the project
+#
+add_clusters("${clusters}")
 
 #
 # We don't have to use this decision structure. Windows and linux will ignore the other's lib vars. Just keeps things tidy in the CMake GUI.
@@ -58,6 +62,8 @@ endif()
 #
 set(${COMPONENT}_IPATHS ${${COMPONENT}_IPATH} ${SHEAVES_IPATHS} ${CMAKE_BINARY_DIR}/include CACHE STRING " Cumulative include paths for ${PROJECT_NAME}" FORCE)
 
+include_directories(${${COMPONENT}_IPATHS}) 
+
 #
 # Check for the presence of system cxx includes.
 #
@@ -72,6 +78,7 @@ check_cxx_includes()
 # Create the library targets for this component.
 #
 function(add_library_targets)
+ 
     if(WIN64INTEL OR WIN64MSVC)
 
         # Tell the linker where to look for this project's libraries.
