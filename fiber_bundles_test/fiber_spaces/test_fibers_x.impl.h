@@ -498,6 +498,104 @@ namespace fiber_bundle
 
   }
 
+  template <typename T>
+  class space_child : public T
+  {
+  public:
+
+    typedef typename T::member_type M;
+
+    space_child() : T() { }
+
+    space_child(const T& xother) : T(xother) { }
+
+    space_child(const namespace_poset& xhost,
+                scoped_index xindex, bool xauto_access)
+      : T(xhost, xindex, xauto_access)
+    {
+    }
+
+    space_child(const namespace_poset& xhost,
+                const string& xname, bool xauto_access)
+      : T(xhost, xname, xauto_access)
+    {
+    }
+
+    space_child(const namespace_poset_member& xmbr, bool xauto_access)
+      : T(xmbr, xauto_access)
+    {
+    }
+
+    space_child(M* xtop, M* xbottom)
+      : T(xtop, xbottom)
+    {
+    }
+
+    virtual ~space_child() {}
+
+    space_child& operator=(const poset_state_handle& xother)
+    {
+      T::operator=(xother);
+    }
+  };
+
+  template <typename T>
+  void test_spaces_common( fiber_bundles_namespace& xns, T& xvector_space)
+  {
+    // Preconditions:
+
+    // Body:
+
+    typedef typename T::member_type M;
+    typedef space_child<T> TC;
+
+    xvector_space.get_read_access();
+
+    poset_path lpath = xvector_space.path();
+    cout << "lpath = " << lpath << endl;
+
+    //T lspace3(xvector_space);
+
+    //T lspace4(xns, xvector_space.index());
+
+    //T lspace5(xns, xvector_space.path().member_name());
+
+    T* lspace_clone = xvector_space.clone();
+    cout << "lspace_clone = " << lspace_clone << endl;
+
+    bool lis_ancestor_of = xvector_space.is_ancestor_of(lspace_clone);
+    cout << "lis_ancestor_of = " << boolalpha << lis_ancestor_of << endl;
+
+    //TC lspace3(xvector_space);
+    TC* lspace3 = new TC(xvector_space);
+
+    //TC lspace4(xns, xvector_space.index(), true);
+    TC* lspace4 = new TC(xns, xvector_space.index(), true);
+
+    //TC lspace5(xns, xvector_space.path().poset_name(), true);
+    TC* lspace5 = new TC(xns, xvector_space.path().poset_name(), true);
+
+    xns.get_read_access();
+    namespace_poset_member lmbr(&xns, xvector_space.index());
+    xns.release_access();
+    TC* lspace6 = new TC(lmbr, true);
+    lmbr.detach_from_state();
+
+    TC* lspace7 = new TC(new M, new M);
+
+    //at1_space& operator=(const poset_state_handle& xother);
+
+    TC* lspace8 = new TC;
+    lspace5->get_read_access();
+    poset_state_handle* lpsh = lspace5;
+    lspace8->operator=(*lpsh);
+
+    // Postconditions:
+
+    // Exit:
+  
+  }
+
 
 } // namespace fiber_bundle
 

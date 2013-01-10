@@ -131,6 +131,10 @@
 #include "fiber_bundles_namespace.h"
 #endif
 
+#ifndef NAMESPACE_POSET_MEMBER_H
+#include "namespace_poset_member.h"
+#endif
+
 namespace fiber_bundle
 {
   ///
@@ -167,6 +171,13 @@ namespace fiber_bundle
   template<typename PB, typename PD>
   void
   test_persistent_common_2(fiber_bundles_namespace& xns);
+
+  ///
+  ///
+  ///
+  template <typename T>
+  void
+  test_spaces_common( fiber_bundles_namespace& lns, T& lspace);
 
 
 } // namespace fiber_bundle

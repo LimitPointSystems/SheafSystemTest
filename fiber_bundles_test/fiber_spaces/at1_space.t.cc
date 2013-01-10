@@ -11,234 +11,23 @@
 #include "at1_space.h"
 
 #include "arg_list.h"
+#include "assert_contract.h"
 #include "at0.h"
 #include "at0_space.h"
 #include "at1.h"
 #include "at1_space.h"
-#include "assert_contract.h"
-#include "error_message.h"
 #include "e2.h"
+#include "error_message.h"
 #include "fiber_bundles_namespace.h"
 #include "schema_descriptor.h"
 #include "schema_poset_member.h"
 #include "std_iomanip.h"
 #include "std_iostream.h"
 #include "storage_agent.h"
+#include "test_fibers_x.impl.h"
 #include "wsv_block.h"
 
-#include "namespace_poset_member.h"
-
 using namespace fiber_bundle;
-
-namespace
-{
-  template <typename T>
-  class space_child : public T
-  {
-  public:
-
-    typedef typename T::member_type M;
-
-    space_child() : T() { }
-
-    space_child(const T& xother) : T(xother) { }
-
-    space_child(const namespace_poset& xhost,
-                scoped_index xindex, bool xauto_access)
-      : T(xhost, xindex, xauto_access)
-    {
-    }
-
-    space_child(const namespace_poset& xhost,
-                const string& xname, bool xauto_access)
-      : T(xhost, xname, xauto_access)
-    {
-    }
-
-    space_child(const namespace_poset_member& xmbr, bool xauto_access)
-      : T(xmbr, xauto_access)
-    {
-    }
-
-    space_child(M* xtop, M* xbottom)
-      : T(xtop, xbottom)
-    {
-    }
-
-    virtual ~space_child() {}
-
-    space_child& operator=(const poset_state_handle& xother)
-    {
-      T::operator=(xother);
-    }
-  };
-
-
-  template <typename T>
-  void test_spaces_common( fiber_bundles_namespace& lns, T& lvector_space2)
-  {
-    // Preconditions:
-
-    // Body:
-
-    typedef typename T::member_type M;
-    typedef space_child<T> TC;
-
-    lvector_space2.get_read_access();
-
-    poset_path lpath = lvector_space2.path();
-    cout << "lpath = " << lpath << endl;
-
-    //T lvector_space3(lvector_space2);
-
-    //T lvector_space4(lns, lvector_space2.index());
-
-    //T lvector_space5(lns, lvector_space2.path().member_name());
-
-    T* lvector_space_clone = lvector_space2.clone();
-    cout << "lvector_space_clone = " << lvector_space_clone << endl;
-
-    bool lis_ancestor_of = lvector_space2.is_ancestor_of(lvector_space_clone);
-    cout << "lis_ancestor_of = " << boolalpha << lis_ancestor_of << endl;
-
-    //TC lvector_space3(lvector_space2);
-    TC* lvector_space3 = new TC(lvector_space2);
-
-    //TC lvector_space4(lns, lvector_space2.index(), true);
-    TC* lvector_space4 = new TC(lns, lvector_space2.index(), true);
-
-    //TC lvector_space5(lns, lvector_space2.path().poset_name(), true);
-    TC* lvector_space5 = new TC(lns, lvector_space2.path().poset_name(), true);
-
-    lns.get_read_access();
-    namespace_poset_member lmbr(&lns, lvector_space2.index());
-    lns.release_access();
-
-    TC* lvector_space6 =
-      new TC(lmbr, true);
-
-    lmbr.detach_from_state();
-
-    TC* lvector_space7 =
-      new TC(new M, new M);
-
-    //at1_space& operator=(const poset_state_handle& xother);
-
-    TC* lvector_space8 = new TC;
-    lvector_space5->get_read_access();
-    poset_state_handle* lpsh = lvector_space5;
-    lvector_space8->operator=(*lpsh);
-
-    // Postconditions:
-
-    // Exit:
-  
-  }
-
-//   class at1_space_child : public at1_space
-//   {
-//   public:
-//     at1_space_child()
-//       : at1_space()
-//     {
-//     }
-
-//     at1_space_child(const at1_space& xother)
-//       : at1_space(xother)
-//     {
-//     }
-
-//     at1_space_child(const namespace_poset& xhost,
-//                     scoped_index xindex, bool xauto_access)
-//       : at1_space(xhost, xindex, xauto_access)
-//     {
-//     }
-
-//     at1_space_child(const namespace_poset& xhost,
-//                     const string& xname, bool xauto_access)
-//       : at1_space(xhost, xname, xauto_access)
-//     {
-//     }
-
-//     at1_space_child(const namespace_poset_member& xmbr, bool xauto_access)
-//       : at1_space(xmbr, xauto_access)
-//     {
-//     }
-
-//     at1_space_child(at1* xtop, at1* xbottom)
-//       : at1_space(xtop, xbottom)
-//     {
-//     }
-
-//     virtual ~at1_space_child() {}
-
-//     at1_space_child& operator=(const poset_state_handle& xother)
-//     {
-//       at1_space::operator=(xother);
-//     }
-//   };
-
-//   template <typename T>
-//   void test_spaces_common( fiber_bundles_namespace& lns, T& lvector_space2)
-//   {
-//     // Preconditions:
-
-//     // Body:
-
-//     lvector_space2.get_read_access();
-
-//     poset_path lpath = lvector_space2.path();
-//     cout << "lpath = " << lpath << endl;
-
-//     //T lvector_space3(lvector_space2);
-
-//     //T lvector_space4(lns, lvector_space2.index());
-
-//     //T lvector_space5(lns, lvector_space2.path().member_name());
-
-//     T* lvector_space_clone = lvector_space2.clone();
-//     cout << "lvector_space_clone = " << lvector_space_clone << endl;
-
-//     bool lis_ancestor_of = lvector_space2.is_ancestor_of(lvector_space_clone);
-//     cout << "lis_ancestor_of = " << boolalpha << lis_ancestor_of << endl;
-
-//     //at1_space_child lvector_space3(lvector_space2);
-//     at1_space_child* lvector_space3 = new at1_space_child(lvector_space2);
-
-//     //at1_space_child lvector_space4(lns, lvector_space2.index(), true);
-//     at1_space_child* lvector_space4 =
-//       new at1_space_child(lns, lvector_space2.index(), true);
-
-//     //at1_space_child lvector_space5(lns, lvector_space2.path().poset_name(), true);
-//     at1_space_child* lvector_space5 =
-//       new at1_space_child(lns, lvector_space2.path().poset_name(), true);
-
-//     lns.get_read_access();
-//     namespace_poset_member lmbr(&lns, lvector_space2.index());
-//     lns.release_access();
-
-//     at1_space_child* lvector_space6 =
-//       new at1_space_child(lmbr, true);
-
-//     lmbr.detach_from_state();
-
-//     at1_space_child* lvector_space7 =
-//       new at1_space_child(new at1, new at1);
-
-//     //at1_space& operator=(const poset_state_handle& xother);
-
-//     at1_space_child* lvector_space8 = new at1_space_child;
-//     lvector_space5->get_read_access();
-//     poset_state_handle* lpsh = lvector_space5;
-//     lvector_space8->operator=(*lpsh);
-
-//     // Postconditions:
-
-//     // Exit:
-  
-//   }
-
-} // end namespace
 
 int
 main(int xargc, char* xargv[])
