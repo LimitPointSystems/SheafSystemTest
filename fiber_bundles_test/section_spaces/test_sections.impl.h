@@ -1480,16 +1480,8 @@ test_section_common_attached(fiber_bundles_namespace& xns, int xdim)
   poset_path lpath0 = lvector[0].path();
   poset_path lpath1 = lvector[1].path();
 
-  cout << endl;
-  cout << "+++++ lpath0 = " << lpath0 << endl;
-  cout << "+++++ lpath1 = " << lpath1 << endl;
-
   scoped_index lindex0 = lvector[0].index();
   scoped_index lindex1 = lvector[1].index();
-
-  cout << "+++++ lindex0 = " << lindex0 << endl;
-  cout << "+++++ lindex1 = " << lindex1 << endl;
-  cout << endl;
 
   print_subheader("Test operator<<");
   cout << lvector[0] << endl;
@@ -1604,16 +1596,8 @@ test_section_common_attached_2(fiber_bundles_namespace& xns, int xdim)
   poset_path lpath0 = lvector[0].path();
   poset_path lpath1 = lvector[1].path();
 
-  cout << endl;
-  cout << "+++++ lpath0 = " << lpath0 << endl;
-  cout << "+++++ lpath1 = " << lpath1 << endl;
-
   scoped_index lindex0 = lvector[0].index();
   scoped_index lindex1 = lvector[1].index();
-
-  cout << "+++++ lindex0 = " << lindex0 << endl;
-  cout << "+++++ lindex1 = " << lindex1 << endl;
-  cout << endl;
 
   print_subheader("Test operator<<");
   cout << lvector[0] << endl;
@@ -1734,14 +1718,8 @@ test_section_common_attached(fiber_bundles_namespace& xns, int xdim)
   poset_path lpath0 = lvector[0].path();
   poset_path lpath1 = lvector[1].path();
 
-  cout << "+++++ lpath0 = " << lpath0 << endl;
-  cout << "+++++ lpath1 = " << lpath1 << endl;
-
   scoped_index lindex0 = lvector[0].index();
   scoped_index lindex1 = lvector[1].index();
-
-  cout << "+++++ lindex0 = " << lindex0 << endl;
-  cout << "+++++ lindex1 = " << lindex1 << endl;
 
   sec_rep_space* lhost = lvector[0].host();
 
@@ -1789,8 +1767,8 @@ test_section_common_attached(fiber_bundles_namespace& xns, int xdim)
 
   //SB& operator=(V& xfiber);
 
-//   V lfiber_lite;
-//   lsec1 = lfiber_lite;
+  V lfiber_lite;
+  lsec1 = lfiber_lite;
 
   //SB& operator=(const F& xfiber);
 
@@ -1807,10 +1785,10 @@ test_section_common_attached(fiber_bundles_namespace& xns, int xdim)
 
   //SB& operator=(const SB& xother)
 
-//   SB lbase = lvector[0];
-//   lbase = lvector[1];
+  SB lbase = lvector[0];
+  lbase = lvector[1];
 
-//   lbase.detach_from_state();
+  lbase.detach_from_state();
 
   //==========================================================================
 

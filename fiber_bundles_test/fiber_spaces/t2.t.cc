@@ -1,32 +1,30 @@
 
-// $RCSfile: at3_x.t.cc,v $ $Revision: 1.10 $ $Date: 2012/03/01 00:40:41 $
+// $RCSfile: t2.t.cc,v $ $Revision: 1.10 $ $Date: 2012/03/01 00:40:41 $
 
 //
 // Copyright (c) 2012 Limit Point Systems, Inc.
 //
 
-/// @example at3_x.t.cc
-/// Test driver for class at3.
+/// @example t2.t.cc
+/// Unit test driver for class t2.
 
-#include "at3.h"
-#include "at3_e3.h"
-#include "atp_space.h"
+#include "t2.h"
 
 #include "assert_contract.h"
 #include "fiber_bundles_namespace.h"
 #include "std_iomanip.h"
 #include "std_iostream.h"
+#include "t2_e2.h"
 #include "test_fibers.impl.h"
+#include "tp_space.h"
 //#include "storage_agent.h"
-
 
 using namespace fiber_bundle;
 
 namespace
 {
-
   void
-  test_at3_volatile()
+  test_t2_volatile()
   {
     // Preconditions:
 
@@ -34,21 +32,9 @@ namespace
 
     //==========================================================================
 
-    test_volatile_common<at3_lite>();
+    test_volatile_common<t2_lite>();
 
-    test_volatile_class_tp_facet<at3_lite>();
-
-    //==========================================================================
-
-    //at3_lite(const row_dofs_type& xrow_dofs);
-
-     at3_lite::row_dofs_type lrow_dofs;
-     at3_lite lfiber(lrow_dofs);
-
-
-     //at3_lite& operator=(const row_dofs_type& xrow_dofs);
-
-     at3_lite lfiber_assign = lrow_dofs;
+    test_volatile_class_tp_facet<t2_lite>();
 
     //==========================================================================
 
@@ -61,7 +47,7 @@ namespace
   }
 
   void
-  test_at3_persistent()
+  test_t2_persistent()
   {
     // Preconditions:
 
@@ -76,7 +62,7 @@ namespace
 
     // Run tests.
 
-    test_persistent_common<at3, at3_e3>(lns);
+    test_persistent_common_2<t2, t2_e2>(lns);
 
     // Write the namespace to standard out.
 
@@ -108,8 +94,8 @@ main(int xargc, char* xargv[])
 
   // Run tests.
 
-  test_at3_volatile();
-  test_at3_persistent();
+  test_t2_volatile();
+  test_t2_persistent();
 
   // Postconditions:
 

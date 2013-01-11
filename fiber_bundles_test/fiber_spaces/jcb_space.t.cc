@@ -11,19 +11,20 @@
 #include "jcb_space.h"
 
 #include "arg_list.h"
+#include "assert_contract.h"
 #include "at0.h"
 #include "at0_space.h"
 #include "at1_space.h"
-#include "assert_contract.h"
-#include "error_message.h"
 #include "e1.h"
 #include "e3.h"
+#include "error_message.h"
 #include "fiber_bundles_namespace.h"
 #include "jcb_e13.h"
 #include "schema_descriptor.h"
 #include "schema_poset_member.h"
 #include "std_iostream.h"
 #include "storage_agent.h"
+#include "test_fibers.impl.h"
 #include "vd_space.h"
 #include "wsv_block.h"
 
@@ -79,14 +80,18 @@ namespace
 					  ljcb_args, 
 					  jcb_e13::standard_schema_path(), 
 					  true);
-  };
+  }
 
-  void test_deep_instantiation(fiber_bundles_namespace& xns)
+  jcb_space& test_deep_instantiation(fiber_bundles_namespace& xns)
   {
-    jcb_space& lspace = xns.new_jacobian_space<jcb_e13>("deep_instantiation_test_jcb_e13");
-  };
+    jcb_space& lspace =
+      xns.new_jacobian_space<jcb_e13>("deep_instantiation_test_jcb_e13");
 
-} // End unnamed namespace.
+    return lspace;
+  }
+
+ 
+} // end unnamed namespace.
 
   
 
@@ -103,7 +108,15 @@ int main(int xargc, char* xargv[])
   fiber_bundles_namespace lns(filename);
 
   test_shallow_instantiation(lns);
-  test_deep_instantiation(lns);
+  jcb_space& lspace = test_deep_instantiation(lns);
+
+  //============================================================================
+
+  // Test member functions common to all "*_space" classes.
+
+  test_spaces_common<jcb_space>(lns, lspace);
+
+  //============================================================================
   
   //  cout << lns << endl;
 

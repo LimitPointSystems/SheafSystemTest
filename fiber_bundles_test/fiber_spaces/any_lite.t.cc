@@ -1,21 +1,16 @@
 
-// $RCSfile: met_x.t.cc,v $ $Revision: 1.10 $ $Date: 2012/03/01 00:40:41 $
+// $RCSfile: any_lite.t.cc,v $ $Revision: 1.10 $ $Date: 2012/03/01 00:40:41 $
 
 //
 // Copyright (c) 2012 Limit Point Systems, Inc.
 //
 
-/// @example met_x.t.cc
-/// Test driver for class met.
+/// Unit test driver for class any_lite.
 
-#include "met.h"
+#include "any_lite.h"
 
 #include "assert_contract.h"
-#include "fiber_bundles_namespace.h"
-#include "std_iomanip.h"
 #include "std_iostream.h"
-#include "test_fibers_x.impl.h"
-//#include "storage_agent.h"
 
 
 using namespace fiber_bundle;
@@ -23,7 +18,7 @@ using namespace fiber_bundle;
 namespace
 {
   void
-  test_met_volatile()
+  test_any_volatile()
   {
     // Preconditions:
 
@@ -31,9 +26,14 @@ namespace
 
     //==========================================================================
 
-    test_volatile_common<met_lite>();
+    //$$SCRIBBLE: There is not much we can test of class any_lite
+    //            because it is abstract. 
 
-    test_volatile_tp_facet<met_lite>();
+    //static const string& static_class_name();
+
+    const string& lstatic_class_name = any_lite::static_class_name();
+
+    cout << "lstatic_class_name = " << lstatic_class_name << endl;
 
     //==========================================================================
 
@@ -63,7 +63,7 @@ main(int xargc, char* xargv[])
 
   // Run tests.
 
-  test_met_volatile();
+  test_any_volatile();
 
   // Write the namespace to standard out.
 

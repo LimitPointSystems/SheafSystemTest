@@ -1,20 +1,17 @@
 
-// $RCSfile: group_x.t.cc,v $ $Revision: 1.10 $ $Date: 2012/03/01 00:40:41 $
+// $RCSfile: group.t.cc,v $ $Revision: 1.10 $ $Date: 2012/03/01 00:40:41 $
 
 //
 // Copyright (c) 2012 Limit Point Systems, Inc.
 //
 
-/// @example group_x.t.cc
-/// Test driver for class group.
+/// @example group.t.cc
+/// Unit test driver for class group.
 
 #include "group.h"
 
 #include "assert_contract.h"
 #include "std_iomanip.h"
-//#include "test_fibers_x.impl.h"
-//#include "fiber_bundles_namespace.h"
-//#include "storage_agent.h"
 
 using namespace fiber_bundle;
 
@@ -104,25 +101,9 @@ main(int xargc, char* xargv[])
 
   // Body:
 
-  //string filename = filename_from_cmdline(*xargv);
-
-  // Create the namespace.
-
-  //fiber_bundles_namespace ns(filename);
-  //ns.get_read_write_access();
-
   // Run tests.
 
   test_group_volatile();
-
-  // Write the namespace to standard out.
-
-  //cout << ns << endl;
-
-  // Write the namespace to a file.
-
-  //storage_agent write_agent(filename + ".hdf" + ".hdf");
-  //write_agent.write_entire(ns);
 
   // Postconditions:
 

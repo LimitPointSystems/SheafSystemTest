@@ -11,14 +11,15 @@
 #include "vd_space.h"
 
 #include "arg_list.h"
-#include "at0_space.h"
 #include "assert_contract.h"
+#include "at0_space.h"
 #include "error_message.h"
 #include "fiber_bundles_namespace.h"
 #include "schema_descriptor.h"
 #include "schema_poset_member.h"
 #include "std_iostream.h"
 #include "storage_agent.h"
+#include "test_fibers.impl.h"
 #include "vd.h"
 #include "wsv_block.h"
 
@@ -27,7 +28,8 @@ using namespace fiber_bundle;
 namespace
 {
 
-  poset_path make_vector_space_schema(fiber_bundles_namespace& xns)
+  poset_path
+  make_vector_space_schema(fiber_bundles_namespace& xns)
   {
     // Make a vector space schema; copied from e2::make_standard_schema().
 
@@ -46,7 +48,9 @@ namespace
     return result;
   }
 
-  void test_shallow_instantiation(fiber_bundles_namespace& xns, const poset_path& xvector_schema_path)
+  void
+  test_shallow_instantiation(fiber_bundles_namespace& xns,
+                             const poset_path& xvector_schema_path)
   {
     // Make a scalar space, use standard schema.
 
@@ -75,25 +79,26 @@ namespace
     return;
   }
 
-  void test_deep_instantiation(fiber_bundles_namespace& xns, const poset_path& xvector_schema_path)
+  vd_space&
+  test_deep_instantiation(fiber_bundles_namespace& xns,
+                          const poset_path& xvector_schema_path)
   {
-
     poset_path lpath("deep_instantiation_test_vd_space", "");
     arg_list lvector_args = vd_space::make_arg_list("");
 
-
-    vd_space& lspace = xns.new_vector_space<vd>(lpath, lvector_args, xvector_schema_path);
+    vd_space& lspace =
+      xns.new_vector_space<vd>(lpath, lvector_args, xvector_schema_path);
     
-    
-    //    cout << lspace << endl;
+    //cout << lspace << endl;
 
-    return;
+    return lspace;
   }
-  
-} // End unnamed namespace.
+ 
+} // end unnamed namespace.
 
 
-int main(int xargc, char* xargv[])
+int
+main(int xargc, char* xargv[])
 {
   // Preconditions:
 
@@ -109,8 +114,28 @@ int main(int xargc, char* xargv[])
 
   test_shallow_instantiation(lns, lvector_schema_path);
   
-  test_deep_instantiation(lns, lvector_schema_path);
+  vd_space& lspace = test_deep_instantiation(lns, lvector_schema_path);
 
+  //============================================================================
+
+  // Test member functions common to all "*_space" classes.
+
+  test_spaces_common<vd_space>(lns, lspace);
+ 
+  //int factor_ct(int xd) const
+
+  int lfactor_ct = lspace.factor_ct(2);
+  cout << "lfactor_ct = " << lfactor_ct << endl;
+
+  //void print_prereq_paths(ostream &xos, 
+  //			  const vd_space& xspace, 
+  //			  const string& xheading,
+  //			  const string& xindent,
+  //			  bool xauto_access = true);
+
+  print_prereq_paths(cout, lspace, "vd space prereq paths:", "  ");
+ 
+  //============================================================================
 
   lns.get_read_write_access();
   storage_agent sa(filename + ".hdf", sheaf_file::READ_WRITE, true, false);

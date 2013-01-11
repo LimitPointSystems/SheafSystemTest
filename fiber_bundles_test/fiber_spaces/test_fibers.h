@@ -127,6 +127,14 @@
 #include "tp_space.h"
 #endif
 
+#ifndef FIBER_BUNDLES_NAMESPACE_H
+#include "fiber_bundles_namespace.h"
+#endif
+
+#ifndef NAMESPACE_POSET_MEMBER_H
+#include "namespace_poset_member.h"
+#endif
+
 namespace fiber_bundle
 {
 
@@ -1112,6 +1120,103 @@ public:
     return result;
   }
 };
+
+//==============================================================================
+// Tests for member functions of fiber and fiber space classes.
+//==============================================================================
+
+///
+/// Test member functions common to all volatile fiber classes.
+///
+template<typename V>
+void
+test_volatile_common();
+
+///
+/// Test member functions common to all volatile row dofs classes.
+///
+template<typename V>
+void
+test_volatile_row_dofs();
+
+///
+/// Test member functions of the tp facet of the appropriate
+/// volatile  fiber classes.
+///
+template<typename V>
+void
+test_volatile_class_tp_facet();
+
+///
+/// Test member functions common to all persistent fiber classes.
+/// Requires both a base type (PB) and a derived type (PD).
+///
+template<typename PB, typename PD>
+void
+test_persistent_common(fiber_bundles_namespace& xns);
+
+///
+/// Test member functions common to all persistent fiber classes
+//  (slightly different version to the above due to some inconsistences).
+/// Requires both a base type (PB) and a derived type (PD).
+///
+template<typename PB, typename PD>
+void
+test_persistent_common_2(fiber_bundles_namespace& xns);
+
+///
+/// Test member functions common to all fiber space classes.
+///
+template<typename T>
+void
+test_spaces_common(fiber_bundles_namespace& lns, T& lspace);
+
+///
+/// A class derived from fiber space of type T whose sole
+/// purpose is to allow invoking the protected functions
+/// of class T; thus allowing better code coverage.
+///
+template <typename T>
+class derived_space : public T
+{
+public:
+
+  typedef typename T::member_type M;
+
+  derived_space() : T() { }
+
+  derived_space(const T& xother) : T(xother) { }
+
+  derived_space(const namespace_poset& xhost,
+                scoped_index xindex, bool xauto_access)
+    : T(xhost, xindex, xauto_access)
+  {
+  }
+
+  derived_space(const namespace_poset& xhost,
+                const string& xname, bool xauto_access)
+    : T(xhost, xname, xauto_access)
+  {
+  }
+
+  derived_space(const namespace_poset_member& xmbr, bool xauto_access)
+    : T(xmbr, xauto_access)
+  {
+  }
+
+  derived_space(M* xtop, M* xbottom)
+    : T(xtop, xbottom)
+  {
+  }
+
+  virtual ~derived_space() {}
+
+  derived_space& operator=(const poset_state_handle& xother)
+  {
+    T::operator=(xother);
+  }
+};
+
 
 } // namespace fiber_bundle
 
