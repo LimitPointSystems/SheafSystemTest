@@ -16,7 +16,6 @@ set(CLUSTER fiber_spaces)
 # Library sources.
 #
 set(SRCS 
-    test_fibers_x.cc  
     test_fibers.cc
 )
 
@@ -26,7 +25,6 @@ collect_sources()
 # Headers that are NOT associated with a .cc file.
 #
 set(ADDITIONAL_INCS
-    test_fibers_x.impl.h
     test_fibers.impl.h
 )
 
@@ -36,54 +34,53 @@ collect_includes()
 # Source for unit test executables.
 #
 set(UNIT_TEST_SRCS
-    any_x.t.cc
-    group_x.t.cc
-    gln_x.t.cc
-    gl2_x.t.cc
-    gl3_x.t.cc
-    at0_x.t.cc
-    at1_x.t.cc
+    any_lite.t.cc
+    at1.t.cc
     at2_e2_x.t.cc
     at2_e3_x.t.cc
-    at2_x.t.cc
+    at2.t.cc
     at3_e3_x.t.cc
     at3_x.t.cc
-    atp_x.t.cc 
+    atp.t.cc 
     e1_x.t.cc
     e2_x.t.cc
     e3_x.t.cc
     e4_x.t.cc
-    ed_x.t.cc   
+    ed.t.cc   
+    gl2_x.t.cc
+    gl3_x.t.cc
+    gln.t.cc
+    group.t.cc
     jcb_e13_x.t.cc
     jcb_e23_x.t.cc
     jcb_e33_x.t.cc
-    jcb_ed_x.t.cc
-    jcb_x.t.cc
+    jcb_ed.t.cc
+    jcb.t.cc
     met_e1_x.t.cc
     met_e2_x.t.cc
     met_e3_x.t.cc
-    met_ed_x.t.cc
-    met_x.t.cc
+    met_ed.t.cc
+    met.t.cc
     st2_e2_x.t.cc
     st2_e3_x.t.cc
-    st2_x.t.cc
+    st2.t.cc
     st3_e3_x.t.cc
-    st3_x.t.cc
+    st3.t.cc
     st4_e2_x.t.cc
     st4_e3_x.t.cc
-    st4_x.t.cc
-    stp_x.t.cc
+    st4.t.cc
+    stp.t.cc
     t2_e2_x.t.cc
     t2_e3_x.t.cc
-    t2_x.t.cc
+    t2.t.cc
     t3_e3_x.t.cc
-    t3_x.t.cc
+    t3.t.cc
     t4_e2_x.t.cc
     t4_e3_x.t.cc
-    t4_x.t.cc
-    tp_x.t.cc
-    tuple_x.t.cc
-    vd_x.t.cc   
+    t4.t.cc
+    tp.t.cc
+    tuple.t.cc
+    vd.t.cc   
     basis_transform.t.cc    
     at0_space.t.cc    
     at0.t.cc    
