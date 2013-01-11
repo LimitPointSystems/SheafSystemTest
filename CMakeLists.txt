@@ -121,7 +121,7 @@ add_tags_target()
 # use "<component>-bin" for component level
 # binaries.
 #
-#add_bin_target()
+add_bin_target()
 
 #
 # Configure the environment scripts. 

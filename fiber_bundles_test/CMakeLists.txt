@@ -57,6 +57,11 @@ add_example_targets()
 add_component_check_target()
 
 #
+# Component specific check target
+#
+add_component_bin_target()
+
+#
 # Component specific coverage target
 #
 if(ENABLE_COVERAGE)
