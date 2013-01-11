@@ -1,21 +1,21 @@
 
-// $RCSfile: at3_x.t.cc,v $ $Revision: 1.10 $ $Date: 2012/03/01 00:40:41 $
+// $RCSfile: stp.t.cc,v $ $Revision: 1.10 $ $Date: 2012/03/01 00:40:41 $
 
 //
 // Copyright (c) 2012 Limit Point Systems, Inc.
 //
 
-/// @example at3_x.t.cc
-/// Test driver for class at3.
+/// @example stp.t.cc
+/// Unit test driver for class stp.
 
-#include "at3.h"
-#include "at3_e3.h"
-#include "atp_space.h"
+#include "stp.h"
 
 #include "assert_contract.h"
 #include "fiber_bundles_namespace.h"
+#include "st2_e2.h"
 #include "std_iomanip.h"
 #include "std_iostream.h"
+#include "stp_space.h"
 #include "test_fibers.impl.h"
 //#include "storage_agent.h"
 
@@ -24,9 +24,8 @@ using namespace fiber_bundle;
 
 namespace
 {
-
   void
-  test_at3_volatile()
+  test_stp_volatile()
   {
     // Preconditions:
 
@@ -34,21 +33,21 @@ namespace
 
     //==========================================================================
 
-    test_volatile_common<at3_lite>();
+    test_volatile_common<stp_lite>();
 
-    test_volatile_class_tp_facet<at3_lite>();
+    test_volatile_class_tp_facet<stp_lite>();
 
     //==========================================================================
 
-    //at3_lite(const row_dofs_type& xrow_dofs);
+    //stp_lite(const row_dofs_type& xrow_dofs);
 
-     at3_lite::row_dofs_type lrow_dofs;
-     at3_lite lfiber(lrow_dofs);
+    stp_lite::row_dofs_type lrow_dofs;
+    stp_lite lfiber(lrow_dofs);
 
 
-     //at3_lite& operator=(const row_dofs_type& xrow_dofs);
+    //stp_lite& operator=(const row_dofs_type& xrow_dofs);
 
-     at3_lite lfiber_assign = lrow_dofs;
+    stp_lite lfiber_assign = lrow_dofs;
 
     //==========================================================================
 
@@ -61,7 +60,7 @@ namespace
   }
 
   void
-  test_at3_persistent()
+  test_stp_persistent()
   {
     // Preconditions:
 
@@ -76,7 +75,7 @@ namespace
 
     // Run tests.
 
-    test_persistent_common<at3, at3_e3>(lns);
+    test_persistent_common<stp, st2_e2>(lns);
 
     // Write the namespace to standard out.
 
@@ -108,8 +107,8 @@ main(int xargc, char* xargv[])
 
   // Run tests.
 
-  test_at3_volatile();
-  test_at3_persistent();
+  test_stp_volatile();
+  test_stp_persistent();
 
   // Postconditions:
 

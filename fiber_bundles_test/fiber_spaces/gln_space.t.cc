@@ -23,7 +23,7 @@
 #include "schema_poset_member.h"
 #include "std_iostream.h"
 #include "storage_agent.h"
-#include "test_fibers_x.impl.h"
+#include "test_fibers.impl.h"
 #include "vd_space.h"
 #include "wsv_block.h"
 

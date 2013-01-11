@@ -19,7 +19,7 @@
 #include "sec_tuple.h"
 #include "sec_tuple_space.h"
 #include "std_iostream.h"
-#include "test_fibers_x.impl.h"
+#include "test_fibers.impl.h"
 #include "tuple.h"
 #include "tuple_space.h"
 #include "wsv_block.h"

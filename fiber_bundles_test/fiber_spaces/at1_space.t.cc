@@ -24,7 +24,7 @@
 #include "std_iomanip.h"
 #include "std_iostream.h"
 #include "storage_agent.h"
-#include "test_fibers_x.impl.h"
+#include "test_fibers.impl.h"
 #include "wsv_block.h"
 
 using namespace fiber_bundle;
