@@ -425,7 +425,6 @@ test_section_common_unattached<fiber_bundle::sec_tuple>()
   cout << boolalpha;
 
   typedef sec_tuple S;
-
   typedef S::fiber_type F;
 
   //static const string& static_class_name();
