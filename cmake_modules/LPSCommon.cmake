@@ -11,6 +11,8 @@
 # Variable Definition Section
 #------------------------------------------------------------------------------
 
+include(CTest)
+
 #
 # Turn on project folders for Visual Studio.
 #
@@ -41,7 +43,9 @@ if(LINUX64INTEL)
     # Lop the compiler name off the end of the CXX string
     string(REPLACE "/icpc" "" INTELPATH ${CMAKE_CXX_COMPILER})
     # Set the C compiler var
-    string(REPLACE "/icpc" "/icc" CMAKE_C_COMPILER ${CMAKE_CXX_COMPILER})
+#    string(REPLACE "/icpc" "/icc" C_COMPILER ${CMAKE_CXX_COMPILER})
+#    set(CMAKE_C_COMPILER "${C_COMPILER}" CACHE STRING "C Compiler" FORCE)
+    
     # The codecov executable
     set(CODECOV "${INTELPATH}/codecov" CACHE STRING "Intel Code coverage utility.")
     # The profmerge executable
@@ -56,7 +60,8 @@ elseif(LINUX64GNU)
     # The compiler library path.
     set(GNU_LIBPATH "${GNUPATH}lib64" CACHE STRING "GNU C++ compiler library path." )
     # Set the C compiler var
-    string(REPLACE "/g++" "/gcc" CMAKE_C_COMPILER ${CMAKE_CXX_COMPILER})
+#    string(REPLACE "/g++" "/gcc" C_COMPILER ${CMAKE_CXX_COMPILER})
+#    set(CMAKE_C_COMPILER "${C_COMPILER}" CACHE STRING "C Compiler" FORCE)
     
 endif()
 
