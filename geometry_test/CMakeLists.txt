@@ -8,9 +8,6 @@
 
 project(geometry_test)
 
-include(CTest)
-
-
 cmake_minimum_required(VERSION 2.8.3)
 
 #
