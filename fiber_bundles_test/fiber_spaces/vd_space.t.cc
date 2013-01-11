@@ -28,7 +28,8 @@ using namespace fiber_bundle;
 namespace
 {
 
-  poset_path make_vector_space_schema(fiber_bundles_namespace& xns)
+  poset_path
+  make_vector_space_schema(fiber_bundles_namespace& xns)
   {
     // Make a vector space schema; copied from e2::make_standard_schema().
 
@@ -47,7 +48,9 @@ namespace
     return result;
   }
 
-  void test_shallow_instantiation(fiber_bundles_namespace& xns, const poset_path& xvector_schema_path)
+  void
+  test_shallow_instantiation(fiber_bundles_namespace& xns,
+                             const poset_path& xvector_schema_path)
   {
     // Make a scalar space, use standard schema.
 
@@ -76,21 +79,19 @@ namespace
     return;
   }
 
-  void test_deep_instantiation(fiber_bundles_namespace& xns,
-                               const poset_path& xvector_schema_path)
+  vd_space&
+  test_deep_instantiation(fiber_bundles_namespace& xns,
+                          const poset_path& xvector_schema_path)
   {
-
     poset_path lpath("deep_instantiation_test_vd_space", "");
     arg_list lvector_args = vd_space::make_arg_list("");
-
 
     vd_space& lspace =
       xns.new_vector_space<vd>(lpath, lvector_args, xvector_schema_path);
     
-    
-    //    cout << lspace << endl;
+    //cout << lspace << endl;
 
-    return;
+    return lspace;
   }
  
 } // end unnamed namespace.
@@ -113,22 +114,10 @@ main(int xargc, char* xargv[])
 
   test_shallow_instantiation(lns, lvector_schema_path);
   
-  test_deep_instantiation(lns, lvector_schema_path);
+  vd_space& lspace = test_deep_instantiation(lns, lvector_schema_path);
 
   //============================================================================
 
-  //$$SCRIBBLE: Have test_deep_instantiation return lspace so we don't
-  //            need to recreate it.
-
-  // Test member functions common to all "*_space" classes.
-
-  poset_path lpath("deep_instantiation_test_vd_space", "");
-  arg_list lvector_args = vd_space::make_arg_list("");
-
-  vd_space& lspace =
-    lns.new_vector_space<vd>(lpath, lvector_args, lvector_schema_path);
-    
-    
   // Test member functions common to all "*_space" classes.
 
   test_spaces_common<vd_space>(lns, lspace);

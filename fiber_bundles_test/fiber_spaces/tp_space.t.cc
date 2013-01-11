@@ -120,7 +120,7 @@ namespace
     return;
   }
 
-  void test_deep_instantiation(fiber_bundles_namespace& xns, 
+  tp_space& test_deep_instantiation(fiber_bundles_namespace& xns, 
 			       const poset_path& xtensor_schema_path, 
 			       const poset_path& xvector_schema_path)
   {
@@ -139,7 +139,7 @@ namespace
     
     //    cout << lspace << endl;
 
-    return;
+    return lspace;
   }
 
 } // end unnamed namespace
@@ -163,24 +163,12 @@ main(int xargc, char* xargv[])
 
   test_shallow_instantiation(lns, ltensor_schema_path, lvector_schema_path);
 
-  test_deep_instantiation(lns, ltensor_schema_path, lvector_schema_path);
+  tp_space& lspace =
+    test_deep_instantiation(lns, ltensor_schema_path, lvector_schema_path);
 
   //============================================================================
 
-  //$$SCRIBBLE: Have test_deep_instantiation return lspace so we don't
-  //            need to recreate it.
-
   // Test member functions common to all "*_space" classes.
-
-  poset_path lpath("deep_instantiation_test_tp_space", "");
-  arg_list ltensor_args = tp_space::make_arg_list(2, "");
-
-  tp_space& lspace = lns.new_tensor_space<tp>(lpath, 
-						ltensor_args, 
-						ltensor_schema_path,
-						"",
-						"",
-						lvector_schema_path);
 
   test_spaces_common<tp_space>(lns, lspace);
 
@@ -190,7 +178,6 @@ main(int xargc, char* xargv[])
   cout << "ldd = " << ldd << endl;
   
   //============================================================================
-
 
   //  cout << lns << endl;
   

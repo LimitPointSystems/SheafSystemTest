@@ -105,20 +105,6 @@ namespace fiber_bundle
     int ld = lfiber.d();
     cout << "ld = " << ld << endl;
 
-
-    //==========================================================================
-
-
-//     //vd_lite& operator=(const value_type& xvalue);
-
-//     typename V::value_type lvalue = 123.0;
-//     lfiber = lvalue;
-
-//     //bool operator==(const value_type& xvalue) const;
-
-//     bool leqeq = (lfiber == lvalue);
-
-
     //==========================================================================
     // tuple facet
     //==========================================================================
@@ -454,9 +440,6 @@ namespace fiber_bundle
     PB lfiber7;
     lfiber7 = *lfiber6;
 
-    //e1 lother;
-    //lfiber7 = lother;
-
     //==========================================================================
 
     // virtual const volatile_type& lite_prototype() const
@@ -468,6 +451,8 @@ namespace fiber_bundle
     typename PB::volatile_type* lvolatile_ptr = lfiber->lite_type();
 
     //==========================================================================
+
+    // Cleanup.
 
     lfiber->detach_from_state();
     lfiber2->detach_from_state();
@@ -499,96 +484,83 @@ namespace fiber_bundle
   }
 
   template <typename T>
-  class space_child : public T
-  {
-  public:
-
-    typedef typename T::member_type M;
-
-    space_child() : T() { }
-
-    space_child(const T& xother) : T(xother) { }
-
-    space_child(const namespace_poset& xhost,
-                scoped_index xindex, bool xauto_access)
-      : T(xhost, xindex, xauto_access)
-    {
-    }
-
-    space_child(const namespace_poset& xhost,
-                const string& xname, bool xauto_access)
-      : T(xhost, xname, xauto_access)
-    {
-    }
-
-    space_child(const namespace_poset_member& xmbr, bool xauto_access)
-      : T(xmbr, xauto_access)
-    {
-    }
-
-    space_child(M* xtop, M* xbottom)
-      : T(xtop, xbottom)
-    {
-    }
-
-    virtual ~space_child() {}
-
-    space_child& operator=(const poset_state_handle& xother)
-    {
-      T::operator=(xother);
-    }
-  };
-
-  template <typename T>
-  void test_spaces_common( fiber_bundles_namespace& xns, T& xvector_space)
+  void test_spaces_common(fiber_bundles_namespace& xns, T& xspace)
   {
     // Preconditions:
 
     // Body:
 
     typedef typename T::member_type M;
-    typedef space_child<T> TC;
+    typedef derived_space<T> TD;
 
-    xvector_space.get_read_access();
+    //$$SCRIBBLE: xxx_space classes have no static_class_name().
+    //$$TODO: Implement xxx_space classes static_class_name().
+    //string lspace_name = T::static_class_name();
 
-    poset_path lpath = xvector_space.path();
-    cout << "lpath = " << lpath << endl;
+    //$$HACK: To get class name.
+    string lspace_name = M::static_class_name() + "_space";
 
-    //T lspace3(xvector_space);
+    print_header("Begin testing common functions of class " + lspace_name);
 
-    //T lspace4(xns, xvector_space.index());
+    //==========================================================================
 
-    //T lspace5(xns, xvector_space.path().member_name());
+    // Get read access to xspace.
 
-    T* lspace_clone = xvector_space.clone();
-    cout << "lspace_clone = " << lspace_clone << endl;
+    xspace.get_read_access();
 
-    bool lis_ancestor_of = xvector_space.is_ancestor_of(lspace_clone);
-    cout << "lis_ancestor_of = " << boolalpha << lis_ancestor_of << endl;
+    // Get the path for xspace.
 
-    //TC lspace3(xvector_space);
-    TC* lspace3 = new TC(xvector_space);
+    print_subheader("Testing poset_path path() const");
+    poset_path lpath = xspace.path();
+    cout << "  lpath = " << lpath << endl;
 
-    //TC lspace4(xns, xvector_space.index(), true);
-    TC* lspace4 = new TC(xns, xvector_space.index(), true);
+    //virtual at1_space* clone() const;
+    print_subheader("Testing virtual "+lspace_name+"* clone()");
+    T* lspace_clone = xspace.clone();
+    cout << "  lspace_clone = " << lspace_clone << endl;
 
-    //TC lspace5(xns, xvector_space.path().poset_name(), true);
-    TC* lspace5 = new TC(xns, xvector_space.path().poset_name(), true);
+    print_subheader(
+      "Testing virtual bool is_ancestor_of(const any* xother) const");
+    bool lis_ancestor_of = xspace.is_ancestor_of(lspace_clone);
+    cout << "  lis_ancestor_of = " << boolalpha << lis_ancestor_of << endl;
 
+    //T lspace3(xspace);
+    print_subheader("Testing copy constructor");
+    TD* lspace3 = new TD(xspace);
+
+    //T lspace4(xns, xspace.index(), true);
+    print_subheader("Testing " + lspace_name +
+                    "(const namespace_poset& xhost, scoped_index xindex,",
+                    "            bool xauto_access)");
+    TD* lspace4 = new TD(xns, xspace.index(), true);
+
+    //T lspace5(xns, xspace.path().poset_name(), true);
+    print_subheader("Testing "+lspace_name+"(const namespace_poset& xhost,",
+                    "                  const string& xname, bool xauto_access)");
+    TD* lspace5 = new TD(xns, xspace.path().poset_name(), true);
+
+    print_subheader("Testing "+lspace_name+"(const namespace_poset_member& xmbr,",
+                    "             bool xauto_access)");
     xns.get_read_access();
-    namespace_poset_member lmbr(&xns, xvector_space.index());
+    namespace_poset_member lmbr(&xns, xspace.index());
     xns.release_access();
-    TC* lspace6 = new TC(lmbr, true);
+    TD* lspace6 = new TD(lmbr, true);
     lmbr.detach_from_state();
 
-    TC* lspace7 = new TC(new M, new M);
+    //T(M* xtop, M* xbottom);
+    print_subheader("Testing "+lspace_name+"(xtop, xbottom)");
+    TD* lspace7 = new TD(new M, new M);
 
-    //at1_space& operator=(const poset_state_handle& xother);
-
-    TC* lspace8 = new TC;
+    //T& operator=(const poset_state_handle& xother);
+    print_subheader("Testing operator=(const poset_state_handle& xother)");
+    TD* lspace8 = new TD;
     lspace5->get_read_access();
     poset_state_handle* lpsh = lspace5;
     lspace8->operator=(*lpsh);
+
+    //==========================================================================
+
+    print_footer("End testing common functions of class " + lspace_name);
 
     // Postconditions:
 

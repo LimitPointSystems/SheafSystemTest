@@ -41,7 +41,7 @@ main(int xargc, char* xargv[])
   fiber_bundles_namespace lns(filename);
   lns.get_read_write_access();
 
-  // Make a tuple space schema
+  // Make a tuple space schema.
 
   string lmember_names = "x DOUBLE false y DOUBLE false";
 
@@ -60,7 +60,8 @@ main(int xargc, char* xargv[])
   
   poset_path lfiber_space_path("tuple_space_test");
   
-  tuple::host_type& lspace = lns.new_fiber_space<tuple>(lfiber_space_path, largs, lschema_path, true);
+  tuple::host_type& lspace =
+    lns.new_fiber_space<tuple>(lfiber_space_path, largs, lschema_path, true);
 
   //============================================================================
 

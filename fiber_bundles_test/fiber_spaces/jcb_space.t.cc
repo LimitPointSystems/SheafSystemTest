@@ -82,10 +82,12 @@ namespace
 					  true);
   }
 
-  void test_deep_instantiation(fiber_bundles_namespace& xns)
+  jcb_space& test_deep_instantiation(fiber_bundles_namespace& xns)
   {
     jcb_space& lspace =
       xns.new_jacobian_space<jcb_e13>("deep_instantiation_test_jcb_e13");
+
+    return lspace;
   }
 
  
@@ -106,15 +108,9 @@ int main(int xargc, char* xargv[])
   fiber_bundles_namespace lns(filename);
 
   test_shallow_instantiation(lns);
-  test_deep_instantiation(lns);
+  jcb_space& lspace = test_deep_instantiation(lns);
 
   //============================================================================
-
-  //$$SCRIBBLE: Have test_deep_instantiation return lspace so we don't
-  //            need to recreate it.
-
-  jcb_space& lspace =
-    lns.new_jacobian_space<jcb_e13>("deep_instantiation_test_jcb_e13");
 
   // Test member functions common to all "*_space" classes.
 

@@ -108,10 +108,12 @@ namespace
   }
   
 
-  void test_deep_instantiation(fiber_bundles_namespace& xns)
+  gln_space& test_deep_instantiation(fiber_bundles_namespace& xns)
   {
     gln_space& lspace =
       xns.new_group_space<gl2>("deep_instantiation_test_gl2_space");
+
+    return lspace;
   }
 
 } // End unnamed namespace.
@@ -131,15 +133,9 @@ main(int xargc, char* xargv[])
   fiber_bundles_namespace lns(filename);
 
   test_shallow_instantiation(lns);
-  test_deep_instantiation(lns);
+  gln_space& lspace = test_deep_instantiation(lns);
 
   //============================================================================
-
-  //$$SCRIBBLE: Have test_deep_instantiation return lspace so we don't
-  //            need to recreate it.
-
-  gln_space& lspace =
-    lns.new_group_space<gl2>("deep_instantiation_test_gl2_space");
 
   // Test member functions common to all "*_space" classes.
 
