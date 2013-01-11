@@ -135,37 +135,33 @@ void test_array_intervals(size_type xseg_ct)
 
   // Create the zone-vertex connectivity.
 
+  create_connectivity(lid_spaces, lvertex_space_id, xseg_ct);
+  create_adjacency(lid_spaces, lzone_space_id, xseg_ct);
+
+  cout << lid_spaces << endl;
+
+  // Test clearing the non-standard id spaces.
+
+  print_out_header("Test Clearing Non-Standard ID Spaces");
+
+  lid_spaces.clear_id_spaces();
+
+  cout << lid_spaces << endl;
+
+  // Test creating connectivity after clear.
+
+  print_out_header("Test Creating Connectivity after Clear");
+
+  lzone_space_id = lid_spaces.new_primary_state(xseg_ct); // zones/edges
+  lvertex_space_id = lid_spaces.new_primary_state(xseg_ct+1); // vertices
+
   pod_index_type lconn_space_id =
     create_connectivity(lid_spaces, lvertex_space_id, xseg_ct);
+
   pod_index_type ladj_space_id =
     create_adjacency(lid_spaces, lzone_space_id, xseg_ct);
 
   cout << lid_spaces << endl;
-
-  /// @todo Uncomment when clear id spaces is fixed.
-
-  // Test clearing the non-standard id spaces.
-
-  // print_out_header("Test Clearing Non-Standard ID Spaces");
-
-  // lid_spaces.clear_id_spaces();
-
-  // cout << lid_spaces << endl;
-
-  // Test creating connectivity after clear.
-
-  // print_out_header("Test Creating Connectivity after Clear");
-
-  // lzone_space_id = lid_spaces.new_primary_state(xseg_ct); // zones/edges
-  // lvertex_space_id = lid_spaces.new_primary_state(xseg_ct+1); // vertices
-
-  // pod_index_type lconn_space_id =
-    // create_connectivity(lid_spaces, lvertex_space_id, xseg_ct);
-
-  // pod_index_type ladj_space_id =
-    // create_adjacency(lid_spaces, lzone_space_id, xseg_ct);
-
-  // cout << lid_spaces << endl;
 
   // Test deleting entire interval.
 
