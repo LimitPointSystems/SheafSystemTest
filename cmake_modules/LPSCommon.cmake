@@ -34,6 +34,9 @@ link_directories(${SHEAVES_LIB_OUTPUT_DIR})
 # Set the location and name of the Intel coverage utilities
 # Linux only for now.
 #
+
+if(LINUX64INTEL)
+
     set(UNCOVERED_COLOR DE0829 CACHE STRING "Color for uncovered code.")
     set(COVERED_COLOR 319A44 CACHE STRING "Color for covered code.")
     set(PARTIAL_COLOR E1EA43 CACHE STRING "Color for partially covered code.")
