@@ -99,20 +99,6 @@ endif()
 mark_as_advanced(OPTIMIZATION_LEVEL)
 
 #
-# Enable coverage results
-#
-set(ENABLE_COVERAGE OFF CACHE BOOL "Set to ON to compile with Intel coverage support. Default is OFF.")
-
-# Set the Coverage dir variable (used by compiler) and create the coverage dir.
-if(ENABLE_COVERAGE)
-    set(COVERAGE_DIR ${CMAKE_BINARY_DIR}/coverage CACHE STRING "Directory for coverage files")
-    execute_process(COMMAND ${CMAKE_COMMAND} -E make_directory ${COVERAGE_DIR})
-    # Configure the list of files for which we generate coverage data. Use only the SheafSystem
-    # and ignore sheaves/std.
-    configure_file(${CMAKE_MODULE_PATH}/coverage_files.lst.in ${CMAKE_BINARY_DIR}/coverage_files.lst)
-endif()
-
-#
 # Default linux installation location is /usr/local
 # Set a default where the user has write permission ; in this
 # case, the top of the components source tree.
@@ -139,6 +125,20 @@ include(${CMAKE_MODULE_PATH}/target_declarations.cmake)
 # Prerequisite discovery
 #
 include(${CMAKE_MODULE_PATH}/find_prerequisites.cmake)
+
+#
+# Enable coverage results
+#
+set(ENABLE_COVERAGE OFF CACHE BOOL "Set to ON to compile with Intel coverage support. Default is OFF.")
+
+# Set the Coverage dir variable (used by compiler) and create the coverage dir.
+if(ENABLE_COVERAGE)
+    set(COVERAGE_DIR ${CMAKE_BINARY_DIR}/coverage CACHE STRING "Directory for coverage files")
+    execute_process(COMMAND ${CMAKE_COMMAND} -E make_directory ${COVERAGE_DIR})
+    # Configure the list of files for which we generate coverage data. Use only the SheafSystem
+    # and ignore sheaves/std.
+    configure_file(${CMAKE_MODULE_PATH}/coverage_files.lst.in ${CMAKE_BINARY_DIR}/coverage_files.lst)
+endif()
 
 #
 # Utility function to add a component to a system.
