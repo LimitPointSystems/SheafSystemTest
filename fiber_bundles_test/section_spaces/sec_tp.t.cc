@@ -1,13 +1,12 @@
 
-
 //
 // Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
-/// Unit test for class sec_met.
+/// Unit test for class sec_tp.
 
-#include "sec_met.h"
-#include "sec_met_e2.h"
+#include "sec_tp.h"
+#include "sec_t2_e2.h"
 
 #include "fiber_bundles_namespace.h"
 #include "test_sections.impl.h"
@@ -23,19 +22,19 @@ main(int xargc, char *xargv[])
 
   // Body:
 
-  print_header("Begin testing sec_met");
+  print_header("Begin testing sec_tp");
 
   fiber_bundles_namespace lns("test_namespace");
   lns.get_read_write_access();
 
   //============================================================================
 
-  test_section_common_unattached<sec_met>();
-  test_section_common_attached<sec_met, sec_met_e2>(lns, 2);
+  test_section_common_unattached<sec_tp>();
+  test_section_common_attached<sec_tp, sec_t2_e2>(lns, 2);
 
   //============================================================================
 
-  print_footer("Ending testing sec_met");
+  print_footer("Ending testing sec_tp");
 
   // Postconditions:
 

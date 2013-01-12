@@ -1,12 +1,11 @@
 
-
 //
 // Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
-/// Unit test for class sec_jcb_ed.
+/// Unit test for class sec_jcb.
 
-#include "sec_jcb_ed.h"
+#include "sec_jcb.h"
 
 #include "assert_contract.h"
 #include "std_iomanip.h"
@@ -127,15 +126,15 @@ main(int xargc, char *xargv[])
 
   // Body:
 
-  print_header("Begin testing sec_jcb_ed");
+  print_header("Begin testing sec_jcb");
 
   //============================================================================
 
-  test_section<sec_jcb_ed>();
+  test_section<sec_jcb>();
 
   //============================================================================
 
-  print_footer("Ending testing sec_jcb_ed");
+  print_footer("Ending testing sec_jcb");
 
   // Postconditions:
 

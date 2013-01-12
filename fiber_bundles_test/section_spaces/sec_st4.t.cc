@@ -1,13 +1,12 @@
 
-
 //
 // Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
-/// Unit test for class sec_t2.
+/// Unit test for class sec_st4.
 
-#include "sec_t2.h"
-#include "sec_t2_e2.h"
+#include "sec_st4.h"
+#include "sec_st4_e3.h"
 
 #include "fiber_bundles_namespace.h"
 #include "test_sections.impl.h"
@@ -23,19 +22,19 @@ main(int xargc, char *xargv[])
 
   // Body:
 
-  print_header("Begin testing sec_t2");
+  print_header("Begin testing sec_st4");
 
   fiber_bundles_namespace lns("test_namespace");
   lns.get_read_write_access();
 
   //============================================================================
 
-  test_section_common_unattached<sec_t2>();
-  test_section_common_attached<sec_t2, sec_t2_e2>(lns, 2);
+  test_section_common_unattached<sec_st4>();
+  test_section_common_attached<sec_st4, sec_st4_e3>(lns, 3);
 
   //============================================================================
 
-  print_footer("Ending testing sec_t2");
+  print_footer("Ending testing sec_st4");
 
   // Postconditions:
 
