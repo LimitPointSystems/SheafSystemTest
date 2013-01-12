@@ -1,22 +1,132 @@
 
-
-
 //
 // Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example sec_at0.t.cc
-/// Test driver for class at0.
+/// Unit test for class sec_at0.
+
+#include "sec_at0.h"
 
 #include "assert_contract.h"
 #include "fiber_bundles_namespace.h"
-#include "sec_at0.h"
+#include "std_iomanip.h"
+#include "std_iostream.h"
 #include "storage_agent.h"
 #include "test_sections.impl.h"
+#include "test_utils.h"
 
 using namespace fiber_bundle;
 
-///
+//$$TODO: Replace with function in test_sections.
+
+namespace
+{
+  //$$SCRIBBLE: sec_at0 has operator<<; so need state_is_read_accessible().
+
+
+  template<typename S>
+  void
+  test_section()
+  {
+    // Preconditions:
+
+    // Body:
+
+    //==========================================================================
+
+    cout << boolalpha;
+
+    typedef typename S::fiber_type F;
+
+    //static const string& static_class_name();
+
+    print_subheader("Test static const string& static_class_name()");
+
+    const string& lname = S::static_class_name();
+    cout << "  lname = " << lname << endl;
+
+    //==========================================================================
+
+    //S();
+    print_subheader("Test default constructor: " + lname + "()");
+
+    S lsection;
+    //cout << "  lsection = " << lsection << endl;
+
+    //S(const S& xother);
+    print_subheader("Test copy constructor: " + lname
+                    + "(const " + lname +"& xother)");
+
+    S lsection_copy(lsection);
+    //cout << "  lsection_copy = " << lsection_copy << endl;
+
+    //S& operator=(const S& xother);
+    print_subheader("Test assignment operator: " + lname 
+                    + "& operator=(const " + lname + "& xother)");
+ 
+    S lsection_assign = lsection;
+    //cout << "  lsection_assign = " << lsection_assign << endl;
+
+    //S& operator=(const ed_lite& xother);
+
+    ////ed_lite led_lite;
+    ////S& lsection_lite_assign = led_lite;
+
+    //virtual const fiber_type& fiber_prototype() const;
+    print_subheader("Test virtual const fiber_type& fiber_prototype() const"); 
+
+    const F& lfiber_type = lsection.fiber_prototype();
+
+    // Can't print because it's not attached.
+    //cout << "  lfiber_type = " << lfiber_type << endl;
+
+    //virtual S* clone() const;
+    print_subheader("Test virtual " + lname +"* clone() const"); 
+
+    S* lsection_clone = lsection.clone();
+    //cout << "  *lsection_clone = " << *lsection_clone << endl;
+
+    // Not attached; so won't work;
+    //S* lsection_clone2 = lsection.clone(false, false);
+
+    //virtual const string& class_name() const;
+    print_subheader("Test virtual const string& class_name() const"); 
+
+    const string& lclass_name = lsection.class_name();
+    cout << "  lclass_name = " << lclass_name << endl;
+
+    //bool fiber_is_ancestor_of(const any* xother) const;
+    print_subheader("Test bool fiber_is_ancestor_of(const any* xother) const"); 
+
+    bool lfiber_is_ancestor_of = lsection.fiber_is_ancestor_of(lsection_clone);
+    cout << "lfiber_is_ancestor_of = " << lfiber_is_ancestor_of << endl;
+
+    //bool is_ancestor_of(const any* xother) const;
+    print_subheader("Test bool is_ancestor_of(const any* xother) const"); 
+
+    bool lis_ancestor_of = lsection.is_ancestor_of(lsection_clone);
+    cout << "lis_ancestor_of = " << lis_ancestor_of << endl;
+
+    //bool invariant() const;
+    print_subheader("Test bool invariant() const"); 
+
+    bool linvariant = lsection.invariant();
+    cout << "linvariant = " << linvariant  << endl;
+
+    //==========================================================================
+
+
+    // Postconditions:
+
+    // Exit:
+
+    return;
+
+  }
+
+} // end unnamed namespace
+
 int
 main(int xargc, char *xargv[])
 {
@@ -24,40 +134,49 @@ main(int xargc, char *xargv[])
 
   // Body:
 
-  string filename = filename_from_cmdline(*xargv);
+  string lfilename = filename_from_cmdline(*xargv);
 
-  print_header("Testing " + filename);
+  //print_header("Testing " + lfilename);
+  print_header("Begin testing sec_at0");
 
   // Create the namespace.
 
-  fiber_bundles_namespace ns(filename);
-  ns.get_read_write_access();
+  fiber_bundles_namespace lns(lfilename);
+  lns.get_read_write_access();
 
   // Make a base space.
 
   size_type i_size = 2;
   size_type j_size = 2;
 
-  const poset_path& lbase_path = make_test_base_space(ns, i_size, j_size);
+  const poset_path& lbase_path = make_test_base_space(lns, i_size, j_size);
 
   // Run tests.
 
   // Test assignment:
 
-  test_assignment<sec_at0>(ns, lbase_path);
+  test_assignment<sec_at0>(lns, lbase_path);
 
   // Test at0 facet:
 
-  test_sec_at0_facet(ns, lbase_path);
+  test_sec_at0_facet(lns, lbase_path);
+
+  //============================================================================
+
+  test_section<sec_at0>();
+
+  //============================================================================
 
   // Write the namespace to standard out.
 
-  //cout << ns << endl;
+  //cout << lns << endl;
 
   // Write the namespace to a file.
 
-  storage_agent write_agent(filename + ".hdf");
-  write_agent.write_entire(ns);
+  storage_agent write_agent(lfilename + ".hdf");
+  write_agent.write_entire(lns);
+
+  print_footer("Ending testing sec_at0");
 
   // Postconditions:
 

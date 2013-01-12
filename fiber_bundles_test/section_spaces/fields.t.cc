@@ -5,7 +5,7 @@
 //
 
 /// @example section_spaces/fields.t.cc
-/// Test driver for test.
+/// Unit test for test.
 
 #include "abstract_poset_member.h"
 #include "array_section_dof_map.h"

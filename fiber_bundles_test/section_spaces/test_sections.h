@@ -347,7 +347,23 @@ test_section_common_attached(fiber_bundles_namespace& xns, int xdim);
 ///
 template<typename S>
 void
+test_section_common_attached(fiber_bundles_namespace& xns,
+                             poset_path xbase_path);
+
+///
+///
+///
+template<typename S>
+void
 test_section_common_attached_2(fiber_bundles_namespace& xns, int xdim);
+
+///
+///
+///
+template<typename S>
+void
+test_section_common_attached_2(fiber_bundles_namespace& xns,
+                               poset_path xbase_path);
 
 ///
 ///

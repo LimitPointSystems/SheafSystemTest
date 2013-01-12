@@ -5,7 +5,7 @@
 //
 
 /// @example sec_jcb_e33.t.cc
-/// Test driver for class sec_jcb_e33.
+/// Unit test for class sec_jcb_e33.
 
 
 #include "assert_contract.h"

@@ -5,7 +5,7 @@
 //
 
 /// @example sec_met_e2.t.cc
-/// Test driver for class sec_met_e2.
+/// Unit test for class sec_met_e2.
 
 #include "assert_contract.h"
 #include "fiber_bundles_namespace.h"

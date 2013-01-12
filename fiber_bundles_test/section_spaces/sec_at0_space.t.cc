@@ -5,7 +5,7 @@
 //
 
 /// @example sec_at0_space.t.cc
-/// Test driver for sec_at0_space.
+/// Unit test for sec_at0_space.
 
 #define DIAGNOSTIC_OUTPUT
 

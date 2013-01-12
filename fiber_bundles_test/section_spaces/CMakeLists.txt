@@ -34,51 +34,51 @@ collect_includes()
 #
 set(UNIT_TEST_SRCS
     sec_at0_x.t.cc
-    sec_at1_x.t.cc
+    sec_at1.t.cc
     sec_at2_e2_x.t.cc
     sec_at2_e3_x.t.cc
-    sec_at2_x.t.cc
+    sec_at2.t.cc
     sec_at3_e3_x.t.cc
-    sec_at3_x.t.cc
-    sec_atp_x.t.cc
+    sec_at3.t.cc
+    sec_atp.t.cc
     sec_e1_x.t.cc
     sec_e1_uniform_x.t.cc
     sec_e2_x.t.cc
     sec_e2_uniform_x.t.cc
     sec_e3_x.t.cc
     sec_e3_uniform_x.t.cc
-    sec_e4_x.t.cc
-    sec_ed_x.t.cc
+    sec_e4.t.cc
+    sec_ed.t.cc
     sec_jcb_e13_x.t.cc
     sec_jcb_e23_x.t.cc
     sec_jcb_e33_x.t.cc
-    sec_jcb_ed_x.t.cc
-    sec_jcb_x.t.cc
+    sec_jcb_ed.t.cc
+    sec_jcb.t.cc
     sec_met_e1_x.t.cc
     sec_met_e2_x.t.cc
     sec_met_e3_x.t.cc
-    sec_met_ed_x.t.cc
-    sec_met_x.t.cc
+    sec_met_ed.t.cc
+    sec_met.t.cc
     sec_st2_e2_x.t.cc
     sec_st2_e3_x.t.cc
-    sec_st2_x.t.cc
+    sec_st2.t.cc
     sec_st3_e3_x.t.cc
-    sec_st3_x.t.cc
+    sec_st3.t.cc
     sec_st4_e2_x.t.cc
     sec_st4_e3_x.t.cc
-    sec_st4_x.t.cc
-    sec_stp_x.t.cc
+    sec_st4.t.cc
+    sec_stp.t.cc
     sec_t2_e2_x.t.cc
     sec_t2_e3_x.t.cc
-    sec_t2_x.t.cc
+    sec_t2.t.cc
     sec_t3_e3_x.t.cc
-    sec_t3_x.t.cc
+    sec_t3.t.cc
     sec_t4_e2_x.t.cc
     sec_t4_e3_x.t.cc
-    sec_t4_x.t.cc
-    sec_tp_x.t.cc
-    sec_tuple_x.t.cc
-    sec_vd_x.t.cc
+    sec_t4.t.cc
+    sec_tp.t.cc
+    sec_tuple.t.cc
+    sec_vd.t.cc
     fields.t.cc
     multi_section.t.cc
     sec_at0_space.t.cc

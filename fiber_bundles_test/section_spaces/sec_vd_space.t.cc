@@ -5,7 +5,7 @@
 //
 
 /// @example sec_vd_space.t.cc
-/// Test driver for sec_vd_space.
+/// Unit test for sec_vd_space.
 
 #include "sec_vd_space.h"
 

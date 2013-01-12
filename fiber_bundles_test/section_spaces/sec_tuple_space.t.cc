@@ -5,7 +5,7 @@
 //
 
 /// @example sec_tuple_space.t.cc
-/// Test driver for sec_tuple_space.
+/// Unit test for sec_tuple_space.
 
 #include "sec_tuple_space.h"
 
