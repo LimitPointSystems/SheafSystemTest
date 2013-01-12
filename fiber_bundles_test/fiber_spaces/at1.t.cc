@@ -68,14 +68,14 @@ namespace
 
     typedef at1 P;
 
-    typename P::host_type& lhost = xns.new_fiber_space<P>();
+    P::host_type& lhost = xns.new_fiber_space<P>();
     lhost.get_read_write_access(true);
   
     //test_persistent_type<P>(lhost);
 
     P* lfiber = new P(&lhost);
 
-    typename P::host_type* lhost2 = lfiber->host();
+    P::host_type* lhost2 = lfiber->host();
     cout << "lhost2 = " << lhost2 << endl;
 
     const string lmember_name("test_fiber");
@@ -111,11 +111,11 @@ namespace
 
     // virtual const volatile_type& lite_prototype() const
 
-    typename P::volatile_type lvolatile = lfiber->lite_prototype();
+    P::volatile_type lvolatile = lfiber->lite_prototype();
 
     //virtual volatile_type* lite_type() const;
 
-    typename P::volatile_type* lvolatile_ptr = lfiber->lite_type();
+    P::volatile_type* lvolatile_ptr = lfiber->lite_type();
 
     //==========================================================================
 
