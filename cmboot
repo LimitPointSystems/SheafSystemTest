@@ -37,7 +37,7 @@ else
 	exit
 fi
 
-if [ -n $CC ]; then
+if [ ! $CC ]; then
     echo  "   "
     echo  "   It would appear that CC is not set in this terminal.                                 "                                                             
     echo  "   "
