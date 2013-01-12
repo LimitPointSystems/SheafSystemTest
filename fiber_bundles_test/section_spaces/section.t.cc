@@ -190,7 +190,7 @@ make_scalar_section_space(fiber_bundles_namespace& xns,
 
   // Postconditions:
 
-  ensure(!result.state_is_read_accessible());
+  ensure(result.state_is_not_read_accessible());
 
   // Exit
 
@@ -255,7 +255,7 @@ make_coord_section_space(fiber_bundles_namespace& xns,
 
   // Postconditions:
 
-  ensure(!result.state_is_read_accessible());
+  ensure(result.state_is_not_read_accessible());
 
   // Exit
 

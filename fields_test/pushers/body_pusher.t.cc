@@ -300,12 +300,15 @@ void push_2d_uniform_to_points(fiber_bundles_namespace& xns)
   lfactory.coord_rep_path() = "sec_rep_descriptors/vertex_vertex_constant";
   lfactory.prop_rep_path() = "sec_rep_descriptors/vertex_vertex_constant";
   
+  // Specify explicit,unique paths rather than just name, so factory
+  // creates new section schema and spaces rather than trying to find
+  // and existing schema or space.
 
-  field_vd* ldst_field = 
-    lfactory.new_field(xns, 
-		       "dst_2d_points_base_space/dst_2d_points_point_block_2d",
-		       "dst_2d_ponts_coords",
-		       "dst_2d_points_prop");
+  poset_path lbase_path("dst_2d_points_base_space", "dst_2d_points_point_block_2d");
+  poset_path lcoords_path("dst_2d_points_e2", "dst_2d_points_coords");
+  poset_path lprop_path("dst_2d_points_at0", "dst_2d_points_prop");
+
+  field_vd* ldst_field = lfactory.new_field(xns, lbase_path, lcoords_path, lprop_path);
 
   // Push the bodies.
 
