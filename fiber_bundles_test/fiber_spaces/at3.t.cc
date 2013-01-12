@@ -1,29 +1,26 @@
 
-
 //
 // Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
-/// @example at3_x.t.cc
-/// Test driver for class at3.
+/// @example at3.t.cc
+/// Unit test driver for class at3.
 
 #include "at3.h"
-#include "at3_e3.h"
-#include "atp_space.h"
 
 #include "assert_contract.h"
+#include "at3_e3.h"
+#include "atp_space.h"
 #include "fiber_bundles_namespace.h"
 #include "std_iomanip.h"
 #include "std_iostream.h"
 #include "test_fibers.impl.h"
 //#include "storage_agent.h"
 
-
 using namespace fiber_bundle;
 
 namespace
 {
-
   void
   test_at3_volatile()
   {
@@ -43,7 +40,6 @@ namespace
 
      at3_lite::row_dofs_type lrow_dofs;
      at3_lite lfiber(lrow_dofs);
-
 
      //at3_lite& operator=(const row_dofs_type& xrow_dofs);
 
@@ -96,7 +92,7 @@ namespace
 
   }
 
-} // end namespace
+} // end unnamed namespace
 
 int
 main(int xargc, char* xargv[])
