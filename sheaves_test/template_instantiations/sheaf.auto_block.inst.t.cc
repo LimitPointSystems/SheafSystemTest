@@ -1,7 +1,6 @@
-// $RCSfile: sheaves_auto_block.inst.t.cc,v $ $Revision: 1.1.2.4 $ $Date: 2012/10/24 01:57:32 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example
@@ -300,7 +299,8 @@ main(int xargc, char* xargv[])
   ltest &= test_auto_block_facet_equal_all<poset_dof_map*>();
   ltest &= test_auto_block_facet_equal_equal_all<poset_dof_map*>();
   ltest &= test_auto_block_facet_insertion_all<poset_dof_map*>();
-  ltest &= test_auto_block_facet_deep_size_all<poset_dof_map*>();
+  //ltest &= test_auto_block_facet_deep_size_all<poset_dof_map*>();
+  ltest &= test_auto_block_facet_deep_size_zero<poset_dof_map*>();
   print_footer("End testing auto_block<poset_dof_map*>");
 
   // subposet_state*
@@ -310,7 +310,8 @@ main(int xargc, char* xargv[])
   ltest &= test_auto_block_facet_equal_all<subposet_state*>();
   ltest &= test_auto_block_facet_equal_equal_all<subposet_state*>();
   ltest &= test_auto_block_facet_insertion_all<subposet_state*>();
-  ltest &= test_auto_block_facet_deep_size_all<subposet_state*>();
+  //ltest &= test_auto_block_facet_deep_size_all<subposet_state*>();
+  ltest &= test_auto_block_facet_deep_size_zero<subposet_state*>();
   print_footer("End testing auto_block<subposet_state*>");
 
   // subposet

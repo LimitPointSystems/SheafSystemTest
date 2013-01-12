@@ -1,7 +1,6 @@
-// $RCSfile: namespace_poset.inst.t.cc,v $ $Revision: 1.1.2.2 $ $Date: 2012/11/08 17:00:41 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example template_instantiations/namespace_poset.inst.t.cc

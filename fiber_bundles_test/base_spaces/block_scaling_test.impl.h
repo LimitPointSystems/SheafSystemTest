@@ -1,7 +1,6 @@
-// $RCSfile: block_scaling_test.impl.h,v $ $Revision: 1.14.24.1 $ $Date: 2013/01/08 14:59:48 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @file block_scaling_test.impl.h

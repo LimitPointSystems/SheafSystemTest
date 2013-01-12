@@ -1,8 +1,7 @@
-// $RCSfile$ $Revision$ $Date$
 
 // $Name$
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example id_spaces/index_space_family.t.cc

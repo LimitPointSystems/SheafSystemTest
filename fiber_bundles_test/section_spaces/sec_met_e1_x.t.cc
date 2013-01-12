@@ -1,5 +1,4 @@
 
-// $RCSfile: sec_met_e1_x.t.cc,v $ $Revision: 1.11 $ $Date: 2012/03/01 00:40:54 $
 
 //
 // Copyright (c) 2013 Limit Point Systems, Inc.

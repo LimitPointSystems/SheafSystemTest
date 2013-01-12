@@ -1,8 +1,7 @@
 //
-// $RCSfile: tools_java_binding.swg,v $ $Revision: 1.6 $ $Date: 2012/03/01 00:41:42 $
 //
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 //
 // Swig module interface file for tools (java version)

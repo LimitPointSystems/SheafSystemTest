@@ -1,7 +1,6 @@
-// $RCSfile: rc.t.cc,v $ $Revision: 1.16 $ $Date: 2012/03/01 00:41:35 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// class RC_ANY & RC_PTR tester

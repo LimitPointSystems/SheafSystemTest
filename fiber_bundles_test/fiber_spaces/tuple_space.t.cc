@@ -1,8 +1,7 @@
-// $RCSfile: tuple_space.t.cc,v $ $Revision: 1.8 $ $Date: 2012/07/04 16:42:08 $
 
 // $Name: HEAD $
 //
-// Copyright (c) 2012 Limit Point Systems, Inc. 
+// Copyright (c) 2013 Limit Point Systems, Inc. 
 //
 
 /// @example tuple_space.t.cc
@@ -16,16 +15,19 @@
 #include "fiber_bundles_namespace.h"
 #include "schema_descriptor.h"
 #include "schema_poset_member.h"
-#include "std_iostream.h"
-#include "tuple.h"
-#include "tuple_space.h"
 #include "sec_tuple.h"
 #include "sec_tuple_space.h"
+#include "std_iostream.h"
+#include "test_fibers.impl.h"
+#include "tuple.h"
+#include "tuple_space.h"
 #include "wsv_block.h"
+
 
 using namespace fiber_bundle;
 
-int main(int xargc, char* xargv[])
+int
+main(int xargc, char* xargv[])
 {
   // Preconditions:
 
@@ -38,7 +40,7 @@ int main(int xargc, char* xargv[])
   fiber_bundles_namespace lns(filename);
   lns.get_read_write_access();
 
-  // Make a tuple space schema
+  // Make a tuple space schema.
 
   string lmember_names = "x DOUBLE false y DOUBLE false";
 
@@ -57,7 +59,21 @@ int main(int xargc, char* xargv[])
   
   poset_path lfiber_space_path("tuple_space_test");
   
-  tuple::host_type& lspace = lns.new_fiber_space<tuple>(lfiber_space_path, largs, lschema_path, true);
+  tuple::host_type& lspace =
+    lns.new_fiber_space<tuple>(lfiber_space_path, largs, lschema_path, true);
+
+  //============================================================================
+
+  // Test member functions common to all "*_space" classes.
+
+  test_spaces_common<tuple_space>(lns, lspace);
+ 
+  //int lfactor_ct(bool) const
+
+  int lfactor_ct = lspace.factor_ct(true);
+  cout << "lfactor_ct = " << lfactor_ct << endl;
+
+  //============================================================================
   
   cout << lspace << endl;
 

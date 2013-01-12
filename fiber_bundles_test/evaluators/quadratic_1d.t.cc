@@ -1,6 +1,5 @@
-// $RCSfile: quadratic_1d.t.cc,v $ $Revision: 1.14 $ $Date: 2012/03/01 00:40:38 $
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example evaluators/quadratic_1d.t.cc

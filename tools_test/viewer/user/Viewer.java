@@ -2,13 +2,10 @@
 /**
  * Classname: Viewer
  *
- * @author $Author: jebutler $
  *
- * @version $RCSfile: Viewer.java,v $ $Revision: 1.12 $
  *
- * $Date: 2012/03/01 00:41:49 $
  *
- * Copyright (c) 2012 Limit Point Systems, Inc.
+ * Copyright (c) 2013 Limit Point Systems, Inc.
  */
 
 

@@ -1,8 +1,7 @@
 
-// $RCSfile: met_e3_x.t.cc,v $ $Revision: 1.10 $ $Date: 2012/03/01 00:40:41 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example met_e3_x.t.cc
@@ -14,7 +13,7 @@
 #include "fiber_bundles_namespace.h"
 #include "std_iomanip.h"
 #include "std_iostream.h"
-#include "test_fibers_x.impl.h"
+#include "test_fibers.impl.h"
 //#include "storage_agent.h"
 
 
@@ -33,7 +32,7 @@ namespace
 
     test_volatile_common<met_e3_lite>();
 
-    test_volatile_tp_facet<met_e3_lite>();
+    test_volatile_class_tp_facet<met_e3_lite>();
 
     //==========================================================================
 

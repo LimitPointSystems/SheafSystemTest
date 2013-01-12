@@ -1,8 +1,7 @@
-// $RCSfile: member_multiple_names.t.cc,v $ $Revision: 1.15 $ $Date: 2012/07/04 16:42:23 $
 
 // $Name: HEAD $
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example posets/member_multiple_names.t.cc

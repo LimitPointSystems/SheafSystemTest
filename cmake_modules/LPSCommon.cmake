@@ -1,7 +1,6 @@
 #
-# $RCSfile: LPSCommon.cmake,v $ $Revision: 1.23 $ $Date: 2012/07/18 04:18:23 $
 #
-# Copyright (c) 2012 Limit Point Systems, Inc.
+# Copyright (c) 2013 Limit Point Systems, Inc.
 #
 # Contains all that is LPS specific; all flags, all macros, etc.
 #
@@ -10,6 +9,8 @@
 #------------------------------------------------------------------------------ 
 # Variable Definition Section
 #------------------------------------------------------------------------------
+
+include(CTest)
 
 #
 # Turn on project folders for Visual Studio.
@@ -32,6 +33,7 @@ link_directories(${SHEAVES_LIB_OUTPUT_DIR})
 # Set the location and name of the Intel coverage utilities
 # Linux only for now.
 #
+
 if(LINUX64INTEL)
 
     set(UNCOVERED_COLOR DE0829 CACHE STRING "Color for uncovered code.")
@@ -40,6 +42,10 @@ if(LINUX64INTEL)
     
     # Lop the compiler name off the end of the CXX string
     string(REPLACE "/icpc" "" INTELPATH ${CMAKE_CXX_COMPILER})
+    # Set the C compiler var
+#    string(REPLACE "/icpc" "/icc" C_COMPILER ${CMAKE_CXX_COMPILER})
+#    set(CMAKE_C_COMPILER "${C_COMPILER}" CACHE STRING "C Compiler" FORCE)
+    
     # The codecov executable
     set(CODECOV "${INTELPATH}/codecov" CACHE STRING "Intel Code coverage utility.")
     # The profmerge executable
@@ -53,7 +59,10 @@ elseif(LINUX64GNU)
     string(REPLACE "bin/g++" "" GNUPATH ${CMAKE_CXX_COMPILER})
     # The compiler library path.
     set(GNU_LIBPATH "${GNUPATH}lib64" CACHE STRING "GNU C++ compiler library path." )
-
+    # Set the C compiler var
+#    string(REPLACE "/g++" "/gcc" C_COMPILER ${CMAKE_CXX_COMPILER})
+#    set(CMAKE_C_COMPILER "${C_COMPILER}" CACHE STRING "C Compiler" FORCE)
+    
 endif()
 
 #
@@ -61,8 +70,9 @@ endif()
 # Enabling all tests types by default can create a really slow VS project.
 # Toggle the test type(s) you need.
 #
-set(ENABLE_UNIT_TEST_LOG_TARGETS OFF CACHE BOOL "Enable Unit Test log targets. Runs UT and redirects stdout to file <test>.log.")
-set(ENABLE_UNIT_TEST_HDF_LOG_TARGETS OFF CACHE BOOL "Enable Unit Test hdf5 log targets. If executing <test> produces an HDF file, runs read on the hdf file and redirects output to <test>.hdf.log.")
+set(ENABLE_BIN_TARGETS OFF CACHE BOOL "Toggle inclusion of bin targets.")
+set(ENABLE_UNIT_TEST_LOG_TARGETS OFF CACHE BOOL "Toggle inclusion of Unit Test log targets.")
+set(ENABLE_UNIT_TEST_HDF_LOG_TARGETS OFF CACHE BOOL "Toggle inclusion of Unit Test hdf5 log targets.")
 
 #
 #------------------------------------------------------------------------------
@@ -480,16 +490,6 @@ function(add_component_check_target)
         add_custom_target(${PROJECT_NAME}-check COMMAND ${CMAKE_CTEST_COMMAND} -C $(OutDir))        
         add_dependencies(${PROJECT_NAME}-check ${${COMPONENT}_IMPORT_LIB} ${${COMPONENT}_UNIT_TESTS})
         set_target_properties(${PROJECT_NAME}-check PROPERTIES FOLDER "Check Targets")
-        #$$HACK: Get the prereq dlls into the bin dir. Cmake is broken in this respect. See comments in add_win32_test_targets
-        add_custom_command(TARGET ${PROJECT_NAME}-check
-               PRE_BUILD
-               COMMAND ${CMAKE_COMMAND} -E copy_if_different ${SHEAVES_BIN_OUTPUT_DIR}/$(OutDir)/sheavesdll.dll ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(OutDir) 
-               COMMAND ${CMAKE_COMMAND} -E copy_if_different ${SHEAVES_BIN_OUTPUT_DIR}/$(OutDir)/fiber_bundlesdll.dll ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(OutDir) 
-               COMMAND ${CMAKE_COMMAND} -E copy_if_different ${SHEAVES_BIN_OUTPUT_DIR}/$(OutDir)/geometrydll.dll ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(OutDir) 
-               COMMAND ${CMAKE_COMMAND} -E copy_if_different ${SHEAVES_BIN_OUTPUT_DIR}/$(OutDir)/fieldsdll.dll ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(OutDir) 
-               COMMAND ${CMAKE_COMMAND} -E copy_if_different ${HDF5_LIBRARY_DIRS}/hdf5dll.dll ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(OutDir)
-               COMMAND ${CMAKE_COMMAND} -E copy_if_different ${HDF5_LIBRARY_DIRS}/szlibdll.dll ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(OutDir)                
-            )
     else()
         add_custom_target(${PROJECT_NAME}-check COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} DEPENDS ${${COMPONENT}_SHARED_LIB} ${${COMPONENT}_UNIT_TESTS})
     endif()
@@ -616,13 +616,12 @@ function(add_win32_test_targets)
 
             add_test(NAME ${t_file} WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(OutDir) COMMAND $<TARGET_FILE:${t_file}>)                
 
-            # Set the PATH variable for CTest               
-             #set_tests_properties(${t_file} PROPERTIES ENVIRONMENT "PATH=$ENV{PATH};$(OutDir);${SHEAVES_BIN_OUTPUT_DIR}/$(OutDir);${HDF5_LIBRARY_DIRS}")  
-            # Despite all arguments to the contrary by cmake.org personnel, I belive the following WENV mechanism is fundamentally broken for win32.
-            # The 'net is full of folks saying it doesn't work, and the only ones claiming it does seem to work for Kitware.
-            # http://permalink.gmane.org/gmane.comp.programming.tools.cmake.user/33178
-            # http://comments.gmane.org/gmane.comp.programming.tools.cmake.user/33175
-            # set_tests_properties(${t_file} PROPERTIES ENVIRONMENT "PATH=$ENV{PATH};C:\\Users\\relmgr\\modules\\SheafSystemTest\\build\\bin\\Debug-contracts;C:\\Users\\relmgr\\modules\\components-SST-declspec-fix-1\\build\\bin\\Debug-contracts;${HDF5_LIBRARY_DIRS}")
+            # Set the PATH variable for CTest
+            set(TESTPATH "PATH=$ENV{PATH};${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE};${SHEAVES_BIN_OUTPUT_DIR}/${CMAKE_BUILD_TYPE};${HDF5_LIBRARY_DIRS}")            
+            # Unfortunately, Windows uses the semicolon as a path delimiter, but the semicolon has special meaning to Cmake as well. Escape the semicolons in the PATH so cmake
+            # doesn't see them as list item separators.
+            string(REPLACE ";" "\\;" TESTPATH "${TESTPATH}")
+            set_tests_properties(${t_file} PROPERTIES ENVIRONMENT "${TESTPATH}")
 
             # Insert the unit tests into the VS folder "unit test targets"
             set_target_properties(${t_file} PROPERTIES FOLDER "Unit Test Targets/Executables")

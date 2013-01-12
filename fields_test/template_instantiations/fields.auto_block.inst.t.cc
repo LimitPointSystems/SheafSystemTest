@@ -1,7 +1,6 @@
-// $RCSfile: fields_auto_block.inst.t.cc,v $ $Revision: 1.1.2.3 $ $Date: 2012/10/24 02:01:06 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example

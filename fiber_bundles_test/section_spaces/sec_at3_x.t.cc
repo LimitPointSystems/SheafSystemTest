@@ -1,5 +1,4 @@
 
-// $RCSfile: sec_at3_x.t.cc,v $ $Revision: 1.11 $ $Date: 2012/03/01 00:40:54 $
 
 //
 // Copyright (c) 2013 Limit Point Systems, Inc.
@@ -33,7 +32,7 @@ main(int xargc, char *xargv[])
   //============================================================================
 
   test_section_common_unattached<sec_at3>();
-//   test_section_common_attached<sec_at3, sec_e3>(lns, 3);
+  test_section_common_attached<sec_at3, sec_at3_e3>(lns, 3);
 
   //============================================================================
 

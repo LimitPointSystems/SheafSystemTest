@@ -1,8 +1,7 @@
 
-// $RCSfile$ $Revision$ $Date$
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example base_spaces/point_block_1d.t.cc

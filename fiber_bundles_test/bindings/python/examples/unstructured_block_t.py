@@ -1,9 +1,8 @@
 #! /usr/bin/env python
 ##
-## $RCSfile: unstructured_block_t.py,v $ $Revision: 1.6 $ $Date: 2012/03/01 00:40:36 $
 ##
 ##
-## Copyright (c) 2012 Limit Point Systems, Inc.
+## Copyright (c) 2013 Limit Point Systems, Inc.
 ##
 
 from sheaves_python_binding import *

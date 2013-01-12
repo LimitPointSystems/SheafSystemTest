@@ -1,7 +1,6 @@
-// $RCSfile: file_rewrite.t.cc,v $ $Revision: 1.8 $ $Date: 2012/03/01 00:41:22 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example io/file_rewrite.t.cc

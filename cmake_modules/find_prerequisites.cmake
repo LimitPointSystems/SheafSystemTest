@@ -1,8 +1,7 @@
 #
-# $RCSfile: find_prerequisites.cmake,v $ $Revision: 1.9 $ $Date: 2012/07/05 19:18:14 $
 #
 #
-# Copyright (c) 2012 Limit Point Systems, Inc.
+# Copyright (c) 2013 Limit Point Systems, Inc.
 #
 #
 

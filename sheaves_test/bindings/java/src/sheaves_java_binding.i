@@ -1,9 +1,8 @@
 
 //
-// $RCSfile: sheaves_java_binding.i,v $ $Revision: 1.3 $ $Date: 2012/03/01 00:41:16 $
 //
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 //
 // SWIG module interface to sheaves cluster (java version)

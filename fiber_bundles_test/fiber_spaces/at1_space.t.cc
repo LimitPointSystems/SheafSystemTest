@@ -1,8 +1,7 @@
-// $RCSfile: at1_space.t.cc,v $ $Revision: 1.7 $ $Date: 2012/07/04 16:42:08 $
 
 // $Name: HEAD $
 //
-// Copyright (c) 2012 Limit Point Systems, Inc. 
+// Copyright (c) 2013 Limit Point Systems, Inc. 
 //
 
 /// @example at1_space.t.cc
@@ -11,29 +10,32 @@
 #include "at1_space.h"
 
 #include "arg_list.h"
+#include "assert_contract.h"
 #include "at0.h"
 #include "at0_space.h"
 #include "at1.h"
 #include "at1_space.h"
-#include "assert_contract.h"
-#include "error_message.h"
 #include "e2.h"
+#include "error_message.h"
 #include "fiber_bundles_namespace.h"
 #include "schema_descriptor.h"
 #include "schema_poset_member.h"
+#include "std_iomanip.h"
 #include "std_iostream.h"
 #include "storage_agent.h"
+#include "test_fibers.impl.h"
 #include "wsv_block.h"
 
 using namespace fiber_bundle;
 
-int main(int xargc, char* xargv[])
+int
+main(int xargc, char* xargv[])
 {
   // Preconditions:
 
   require(xargc > 0);
  
-  //Body
+  // Body:
 
   string filename = filename_from_cmdline(*xargv);
 
@@ -79,7 +81,16 @@ int main(int xargc, char* xargv[])
 
   // Test deep instantiation.
 
-  at1_space& lvector_space2 = lns.new_vector_space<e2>("deep_instantiation_test_e2");
+  at1_space& lvector_space2 =
+    lns.new_vector_space<e2>("deep_instantiation_test_e2");
+
+  //============================================================================
+
+  // Test member functions common to all "*_space" classes.
+
+  test_spaces_common<at1_space>(lns, lvector_space2);
+  
+  //============================================================================
   
   //cout << lns << endl;
 
@@ -87,7 +98,9 @@ int main(int xargc, char* xargv[])
   storage_agent sa(filename + ".hdf", sheaf_file::READ_WRITE, true, false);
   sa.write_entire(lns);
 
-  // Done.
+  // Postconditions:
+
+  // Exit:
 
   return 0;
 }

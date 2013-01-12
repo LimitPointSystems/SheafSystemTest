@@ -1,7 +1,6 @@
-// $RCSfile: vtk_unstructured_grid_writer.t.cc,v $ $Revision: 1.3 $ $Date: 2012/04/11 06:51:20 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example viewer/common/vtk_unstructured_grid_writer.t.cc

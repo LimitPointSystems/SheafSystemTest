@@ -1,7 +1,6 @@
-// $RCSfile: deep_size.inst.t.cc,v $ $Revision: 1.1.2.1 $ $Date: 2012/11/05 23:33:12 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// Test driver for deep_size function template instantiations.

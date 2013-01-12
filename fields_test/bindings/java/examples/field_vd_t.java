@@ -1,7 +1,6 @@
-// $RCSfile: field_vd_t.java,v $ $Revision: 1.4 $ $Date: 2012/03/01 00:41:02 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 // Test driver for field_vd.java

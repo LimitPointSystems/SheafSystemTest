@@ -1,8 +1,7 @@
 #
-# $RCSfile: target_declarations.cmake,v $ $Revision: 1.11 $ $Date: 2012/07/07 18:27:55 $
 #
 #
-# Copyright (c) 2012 Limit Point Systems, Inc.
+# Copyright (c) 2013 Limit Point Systems, Inc.
 #
 #
 

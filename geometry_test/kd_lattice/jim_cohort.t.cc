@@ -1,4 +1,3 @@
-// $RCSfile: jim_cohort.t.cc,v $ $Revision: 1.2 $ $Date: 2011/10/15 07:04:57 $
 
 //
 // Copyright (c) 2010 Limit Point Systems, Inc.

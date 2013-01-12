@@ -1,10 +1,9 @@
 #! /usr/bin/env python
 
 ##
-## $RCSfile: fiber_bundles_namespace_t.py,v $ $Revision: 1.8 $ $Date: 2012/03/01 00:40:36 $
 ##
 ##
-## Copyright (c) 2012 Limit Point Systems, Inc.
+## Copyright (c) 2013 Limit Point Systems, Inc.
 ##
 
 ##$$TODO: Figure out how to combine these.

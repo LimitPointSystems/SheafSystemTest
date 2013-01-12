@@ -1,8 +1,7 @@
 
-// $RCSfile: test_sections.cc,v $ $Revision: 1.11.36.1 $ $Date: 2012/11/29 21:09:49 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 // Implementation for test_sections non template functions.
@@ -551,14 +550,8 @@ test_section_common_attached<fiber_bundle::sec_tuple, fiber_bundle::sec_e2>
   poset_path lpath0 = lvector[0].path();
   poset_path lpath1 = lvector[1].path();
 
-  cout << "+++++ lpath0 = " << lpath0 << endl;
-  cout << "+++++ lpath1 = " << lpath1 << endl;
-
   scoped_index lindex0 = lvector[0].index();
   scoped_index lindex1 = lvector[1].index();
-
-  cout << "+++++ lindex0 = " << lindex0 << endl;
-  cout << "+++++ lindex1 = " << lindex1 << endl;
 
   sec_rep_space* lhost = lvector[0].host();
 

@@ -1,8 +1,7 @@
 
-// $RCSfile: field_jcb_e23.t.cc,v $ $Revision: 1.5 $ $Date: 2012/03/01 00:41:04 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example field_jcb_e23.t.cc

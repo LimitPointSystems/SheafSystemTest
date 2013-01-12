@@ -1,8 +1,7 @@
 //
-// $RCSfile: fiber_bundles_python_binding.swg,v $ $Revision: 1.5 $ $Date: 2012/03/01 00:40:36 $
 //
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 //
 // Swig module interface for fiber_bundles cluster (python version)

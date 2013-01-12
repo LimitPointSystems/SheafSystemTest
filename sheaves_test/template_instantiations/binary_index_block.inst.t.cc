@@ -1,7 +1,6 @@
-// $RCSfile: binary_index_block.inst.t.cc,v $ $Revision: 1.1.2.2 $ $Date: 2012/10/19 02:23:27 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example

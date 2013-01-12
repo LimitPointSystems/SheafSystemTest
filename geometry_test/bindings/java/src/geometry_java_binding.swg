@@ -1,9 +1,8 @@
 
 //
-// $RCSfile: geometry_java_binding.swg,v $ $Revision: 1.3 $ $Date: 2012/03/01 00:41:13 $
 //
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 //
 // SWIG interface to geometry cluster (java version)

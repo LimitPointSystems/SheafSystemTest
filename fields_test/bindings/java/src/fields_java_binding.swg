@@ -1,9 +1,8 @@
 
 //
-// $RCSfile: fields_java_binding.swg,v $ $Revision: 1.5 $ $Date: 2012/03/01 00:41:02 $
 //
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 //
 // SWIG interface to fields cluster (java version)

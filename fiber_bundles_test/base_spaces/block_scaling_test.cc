@@ -1,8 +1,7 @@
-// $RCSfile: block_scaling_test.cc,v $ $Revision: 1.1.8.2 $ $Date: 2013/01/08 14:59:48 $
 
 // $Name: id-space-merge-4 $
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 // Implementation of functions for the block scaling tests.

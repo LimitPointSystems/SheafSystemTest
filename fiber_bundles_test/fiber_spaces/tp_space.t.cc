@@ -1,8 +1,7 @@
-// $RCSfile: tp_space.t.cc,v $ $Revision: 1.8 $ $Date: 2012/07/04 16:42:08 $
 
 // $Name: HEAD $
 //
-// Copyright (c) 2012 Limit Point Systems, Inc. 
+// Copyright (c) 2013 Limit Point Systems, Inc. 
 //
 
 /// @example tp_space.t.cc
@@ -11,11 +10,11 @@
 #include "tp_space.h"
 
 #include "arg_list.h"
+#include "assert_contract.h"
 #include "at0.h"
 #include "at0_space.h"
 #include "at1.h"
 #include "at1_space.h"
-#include "assert_contract.h"
 #include "error_message.h"
 #include "fiber_bundles_namespace.h"
 #include "poset_path.h"
@@ -23,8 +22,10 @@
 #include "schema_poset_member.h"
 #include "std_iostream.h"
 #include "storage_agent.h"
+#include "test_fibers.impl.h"
 #include "tp.h"
 #include "wsv_block.h"
+
 
 using namespace fiber_bundle;
 
@@ -118,7 +119,7 @@ namespace
     return;
   }
 
-  void test_deep_instantiation(fiber_bundles_namespace& xns, 
+  tp_space& test_deep_instantiation(fiber_bundles_namespace& xns, 
 			       const poset_path& xtensor_schema_path, 
 			       const poset_path& xvector_schema_path)
   {
@@ -137,14 +138,14 @@ namespace
     
     //    cout << lspace << endl;
 
-    return;
+    return lspace;
   }
-  
 
-}
+} // end unnamed namespace
 
 
-int main(int xargc, char* xargv[])
+int
+main(int xargc, char* xargv[])
 {
   // Preconditions:
 
@@ -161,7 +162,21 @@ int main(int xargc, char* xargv[])
 
   test_shallow_instantiation(lns, ltensor_schema_path, lvector_schema_path);
 
-  test_deep_instantiation(lns, ltensor_schema_path, lvector_schema_path);
+  tp_space& lspace =
+    test_deep_instantiation(lns, ltensor_schema_path, lvector_schema_path);
+
+  //============================================================================
+
+  // Test member functions common to all "*_space" classes.
+
+  test_spaces_common<tp_space>(lns, lspace);
+
+  //int dd(bool xauto_access) const
+
+  int ldd = lspace.dd(true);
+  cout << "ldd = " << ldd << endl;
+  
+  //============================================================================
 
   //  cout << lns << endl;
   

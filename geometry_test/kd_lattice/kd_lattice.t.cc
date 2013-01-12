@@ -1,4 +1,3 @@
-// $RCSfile: kd_lattice.t.cc,v $ $Revision: 1.5 $ $Date: 2012/01/20 05:55:55 $
 
 //
 // Copyright (c) 2010 Limit Point Systems, Inc.

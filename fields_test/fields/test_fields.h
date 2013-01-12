@@ -1,8 +1,7 @@
 
-// $RCSfile: test_fields.h,v $ $Revision: 1.10 $ $Date: 2012/09/06 00:57:51 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc. 
+// Copyright (c) 2013 Limit Point Systems, Inc. 
 //
 
 // Interface for fields test functions.

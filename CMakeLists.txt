@@ -1,6 +1,6 @@
 #
 #
-# Copyright (c) 2012 Limit Point Systems, Inc.
+# Copyright (c) 2013 Limit Point Systems, Inc.
 #
 #
 
@@ -11,16 +11,18 @@
 # It does NOT stop cmake from setting all the cache variables associated with those same
 # configurations however.
 
-set(CMAKE_CONFIGURATION_TYPES Debug-contracts Debug-no-contracts Release-contracts Release-no-contracts CACHE
+#set(CMAKE_CONFIGURATION_TYPES Debug-contracts Debug-no-contracts Release-contracts Release-no-contracts CACHE
+#    STRING "Supported configuration types"
+#    FORCE)
+
+set(CMAKE_CONFIGURATION_TYPES Debug-contracts CACHE
     STRING "Supported configuration types"
     FORCE)
-
+    
 #
 # Establish the project name
 #    
 project(SheafSystemTest)
-
-
 
 #
 # Information glaringly omitted from CMake documentation and discussion regarding CTest and CDash:
@@ -76,15 +78,6 @@ create_output_dirs()
 # tests.
 #
 add_check_target()
-
-#
-# Add the system checklog target. Action is
-# identical to "check", but output is redirected to file.
-# Only needs to be called at the system level.
-# use "<component>-check" for component level
-# tests.
-#
-#add_checklog_target()
 
 #
 # Add the system coverage target.

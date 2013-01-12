@@ -1,13 +1,10 @@
 /**
  * Classname: SheafScopePosetPane
  *
- * @author $Author: jebutler $
  *
- * @version $RCSfile: SheafScopePosetPane.java,v $ $Revision: 1.32 $
  *
- * $Date: 2012/03/01 00:41:40 $
  *
- * Copyright (c) 2012 Limit Point Systems, Inc.
+ * Copyright (c) 2013 Limit Point Systems, Inc.
  */
 
 package tools.SheafScope;

@@ -1,13 +1,10 @@
 /**
  * Classname: SheafScope
  *
- * @author $Author: jebutler $
  *
- * @version $RCSfile: SheafScope.java,v $ $Revision: 1.12 $
  *
- *      $Date: 2012/03/01 00:41:40 $
  *
- * Copyright (c) 2012 Limit Point Systems, Inc.
+ * Copyright (c) 2013 Limit Point Systems, Inc.
  */
 
 import tools.SheafScope.SheafScopeApplication;

@@ -1,7 +1,6 @@
-// $RCSfile: itr.t.cc,v $ $Revision: 1.9 $ $Date: 2012/03/01 00:41:26 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example iterators/itr.t.cc

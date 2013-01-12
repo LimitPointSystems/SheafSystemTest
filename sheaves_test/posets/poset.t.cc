@@ -1,7 +1,6 @@
-// $RCSfile$ $Revision$ $Date$
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example posets/poset.t.cc

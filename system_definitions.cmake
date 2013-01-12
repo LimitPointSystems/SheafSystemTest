@@ -1,8 +1,7 @@
 #
-# $RCSfile: system_definitions.cmake,v $ $Revision $ $Date $
 #
 #
-# Copyright (c) 2012 Limit Point Systems, Inc.
+# Copyright (c) 2013 Limit Point Systems, Inc.
 #
 #
 # This file is the system level counterpart to the component_definitions file
@@ -19,9 +18,6 @@ set(COMPONENTS sheaves_test fiber_bundles_test geometry_test fields_test CACHE S
 # Set the cmake module path.
 #
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_modules CACHE STRING "Location of Cmake modules")
-
-# Set backward compatibility so we can link to modules. If not, we can't link to the bindings libs.
-#set(CMAKE_BACKWARDS_COMPATIBILITY 2.2 CACHE STRING "backward compat so we can link to bindings libs")
 
 #
 # Platform definitions

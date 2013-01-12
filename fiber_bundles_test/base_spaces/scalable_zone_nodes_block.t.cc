@@ -1,7 +1,6 @@
-// $RCSfile: scalable_zone_nodes_block.t.cc,v $ $Revision: 1.9 $ $Date: 2012/03/01 00:40:32 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @deprecated Use the individual zone_nodes_block examples:

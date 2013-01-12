@@ -1,13 +1,10 @@
 /**
  * Classname: SheafScopeApplication
  *
- * @author $Author: jebutler $
  *
- * @version $RCSfile: SheafScopeApplication.java,v $ $Revision: 1.12 $
  *
- *      $Date: 2012/03/01 00:41:40 $
  *
- * Copyright (c) 2012 Limit Point Systems, Inc.
+ * Copyright (c) 2013 Limit Point Systems, Inc.
  */
 
 package tools.SheafScope;
@@ -255,7 +252,7 @@ public abstract class SheafScopeApplication extends base_client
   public static void usage(String xappName)
   {
     System.out.println("  ");
-    System.out.println(xappName + " --  Copyright (c) 2012 Limit Point Systems, Inc.");
+    System.out.println(xappName + " --  Copyright (c) 2013 Limit Point Systems, Inc.");
     System.out.println(" ");
     System.out.println("Usage: java " + xappName + " [OPTION]... [FILE]...");
     System.out.println(" ");

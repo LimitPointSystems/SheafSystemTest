@@ -1,14 +1,11 @@
 #
-# $RCSfile: CMakeLists.txt,v $ $Revision: 1.9 $ $Date: 2012/07/05 19:18:16 $
 #
 #
-# Copyright (c) 2012 Limit Point Systems, Inc.
+# Copyright (c) 2013 Limit Point Systems, Inc.
 #
 #
 
 project(fields_test)
-
-include(CTest)
 
 cmake_minimum_required(VERSION 2.8.3)
 

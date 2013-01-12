@@ -1,13 +1,10 @@
 /**
  * Classname: SheafScopeSecRepSpaceTableSelectionListener
  *
- * @author $Author: jebutler $
  *
- * @version $RCSfile: SheafScopeSecRepSpaceTableSelectionListener.java,v $ $Revision: 1.19 $
  *
- * $Date: 2012/03/01 00:41:41 $
  *
- * Copyright (c) 2012 Limit Point Systems, Inc.
+ * Copyright (c) 2013 Limit Point Systems, Inc.
  */
 
 package tools.SheafScope;

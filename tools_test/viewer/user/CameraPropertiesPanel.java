@@ -1,13 +1,10 @@
 /**
  * Classname: CameraPropertiesPanel
  *
- * @author $Author: jebutler $
  *
- * @version $RCSfile: CameraPropertiesPanel.java,v $ $Revision: 1.9 $
  *
- * $Date: 2012/03/01 00:41:48 $
  *
- * Copyright (c) 2012 Limit Point Systems, Inc.
+ * Copyright (c) 2013 Limit Point Systems, Inc.
  */
 
 package tools.viewer.user;

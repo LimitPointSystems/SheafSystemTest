@@ -1,4 +1,3 @@
-// $RCSfile: geometry_namespace.t.cc,v $ $Revision: 1.2 $ $Date: 2011/10/15 07:04:57 $
 
 //
 // CONFIDENTIALITY: 

@@ -1,8 +1,7 @@
-// $RCSfile: at0_space.t.cc,v $ $Revision: 1.7 $ $Date: 2012/07/04 16:42:08 $
 
 // $Name: HEAD $
 //
-// Copyright (c) 2012 Limit Point Systems, Inc. 
+// Copyright (c) 2013 Limit Point Systems, Inc. 
 //
 
 /// @example at0_space.t.cc
@@ -11,8 +10,8 @@
 #include "at0_space.h"
 
 #include "arg_list.h"
-#include "at0.h"
 #include "assert_contract.h"
+#include "at0.h"
 #include "error_message.h"
 #include "fiber_bundles_namespace.h"
 #include "schema_descriptor.h"
@@ -20,10 +19,12 @@
 #include "std_iostream.h"
 #include "storage_agent.h"
 #include "wsv_block.h"
+#include "test_fibers.impl.h"
 
 using namespace fiber_bundle;
 
-int main( int xargc, char* xargv[])
+int
+main( int xargc, char* xargv[])
 {
   // Preconditions:
 
@@ -50,14 +51,10 @@ int main( int xargc, char* xargv[])
 
   //============================================================================
 
-  // any facet
+  // Test member functions common to all "*_space" classes.
 
-  at0_space* lclone = lscalar_space->clone();
-
-  bool is_ancestor_of = lscalar_space->is_ancestor_of(&lscalar_space2);
-
-  bool linvariant = lscalar_space->invariant();
-
+  test_spaces_common<at0_space>(lns, lscalar_space2);
+  
   //============================================================================
 
   //cout << lns << endl;
