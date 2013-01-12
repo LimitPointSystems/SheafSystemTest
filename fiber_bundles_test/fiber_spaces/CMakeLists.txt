@@ -39,7 +39,7 @@ set(UNIT_TEST_SRCS
     at2_e3_x.t.cc
     at2.t.cc
     at3_e3_x.t.cc
-    at3_x.t.cc
+    at3.t.cc
     atp.t.cc 
     e1_x.t.cc
     e2_x.t.cc
