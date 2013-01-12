@@ -1,8 +1,7 @@
 
-// $RCSfile: tuple.t.cc,v $ $Revision: 1.10 $ $Date: 2012/03/01 00:40:41 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example tuple.t.cc

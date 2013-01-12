@@ -1,10 +1,9 @@
 #! /usr/bin/env python
 
 ##
-## $RCSfile: poset_t.py,v $ $Revision: 1.5 $ $Date: 2012/03/01 00:41:16 $
 ##
 ##
-## Copyright (c) 2012 Limit Point Systems, Inc.
+## Copyright (c) 2013 Limit Point Systems, Inc.
 ##
 
 

@@ -1,7 +1,7 @@
 // scalable_partial_write.t.cc,v 1.1.2.4 2003/04/18 00:40:16
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example io/scalable_partial_hex_write.t.cc

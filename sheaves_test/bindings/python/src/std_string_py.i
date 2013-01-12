@@ -1,8 +1,7 @@
 //
-// $RCSfile: std_string_py.i,v $ $Revision: 1.8 $ $Date: 2012/03/01 00:41:17 $
 //
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 //
 // Swig typemaps for std::string (python version)

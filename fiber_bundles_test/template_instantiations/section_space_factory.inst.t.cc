@@ -1,7 +1,6 @@
-// $RCSfile: section_space_factory.inst.t.cc,v $ $Revision: 1.1.2.9 $ $Date: 2012/11/08 17:22:07 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example

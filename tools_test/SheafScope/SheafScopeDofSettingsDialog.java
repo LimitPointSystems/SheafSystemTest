@@ -2,13 +2,10 @@
 /**
  * Classname: SheafScopeDofSettingsDialog
  *
- * @author $Author: jebutler $
  *
- * @version $RCSfile: SheafScopeDofSettingsDialog.java,v $ $Revision: 1.7 $
  *
- *      $Date: 2012/03/01 00:41:40 $
  *
- * Copyright (c) 2012 Limit Point Systems, Inc.
+ * Copyright (c) 2013 Limit Point Systems, Inc.
  */
 
 package tools.SheafScope;

@@ -1,7 +1,6 @@
-// $RCSfile: zn_to_bool.t.cc,v $ $Revision: 1.14 $ $Date: 2012/03/01 00:41:36 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// Unit test for class zn_to_bool.

@@ -1,7 +1,6 @@
-// $RCSfile: poset_dft.t.cc,v $ $Revision: 1.10 $ $Date: 2012/03/01 00:41:38 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example traversers/poset_dft.t.cc

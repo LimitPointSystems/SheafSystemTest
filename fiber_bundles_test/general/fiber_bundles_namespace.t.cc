@@ -1,7 +1,6 @@
-// $RCSfile: fiber_bundles_namespace.t.cc,v $ $Revision: 1.19 $ $Date: 2012/04/16 18:40:33 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example general/fiber_bundles_namespace.t.cc

@@ -1,6 +1,5 @@
 #! /usr/bin/env python
 
-## $RCSfile: section_pusher_1d_t.py,v $ $Revision: 1.2 $ $Date: 2009/12/14 07:21:35 $
 ##
 ##
 ## CONFIDENTIALITY: 

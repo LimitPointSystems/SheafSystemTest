@@ -1,8 +1,7 @@
-// $RCSfile: tuple_space.t.cc,v $ $Revision: 1.8 $ $Date: 2012/07/04 16:42:08 $
 
 // $Name: HEAD $
 //
-// Copyright (c) 2012 Limit Point Systems, Inc. 
+// Copyright (c) 2013 Limit Point Systems, Inc. 
 //
 
 /// @example tuple_space.t.cc

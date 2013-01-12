@@ -1,8 +1,7 @@
 
-// $RCSfile: read_fiber.t.cc,v $ $Revision: 1.25 $ $Date: 2012/03/01 00:40:44 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example read_fiber.t.cc

@@ -1,7 +1,6 @@
-// $RCSfile: hex_connectivity.t.cc,v $ $Revision: 1.4 $ $Date: 2012/03/01 00:40:30 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example base_spaces/hex_connectivity.t.cc

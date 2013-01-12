@@ -1,4 +1,3 @@
-// $RCSfile: d_cells_cohort.t.cc,v $ $Revision: 1.3 $ $Date: 2011/10/22 08:11:42 $
 
 //
 // Copyright (c) 2010 Limit Point Systems, Inc.

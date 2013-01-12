@@ -1,7 +1,6 @@
-// $RCSfile$ $Revision$ $Date$
 
 //
-// Copyrbase_spacesight (c) 2012 Limit Point Systems, Inc.
+// Copyrbase_spacesight (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example base_spaces/scalable_point_block_3d.t.cc

@@ -2,13 +2,10 @@
 /**
  *  Classname: IntegerField
  *
- *  @author $Author: jebutler $
  *
- *  @version $RCSfile: IntegerField.java,v $ $Revision: 1.8 $
  *
- *  $Date: 2012/03/01 00:41:43 $
  *
- *  Copyright (c) 2012 Limit Point Systems, Inc.
+ *  Copyright (c) 2013 Limit Point Systems, Inc.
  */
 
 //$$TODO: Maybe add option to have only positive integers.

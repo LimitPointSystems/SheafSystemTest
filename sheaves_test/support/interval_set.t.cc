@@ -1,7 +1,6 @@
-// $RCSfile: interval_set.t.cc,v $ $Revision: 1.8 $ $Date: 2012/07/04 16:42:27 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// Test driver for class interval_set.

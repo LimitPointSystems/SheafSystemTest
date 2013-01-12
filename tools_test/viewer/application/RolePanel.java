@@ -1,13 +1,10 @@
 /**
  *  Classname: RolePanel
  *
- *  @author $Author: jebutler $
  *
- *  @version $RCSfile: RolePanel.java,v $ $Revision: 1.7 $
  *
- *  $Date: 2012/03/01 00:41:44 $
  *
- *  Copyright (c) 2012 Limit Point Systems, Inc.
+ *  Copyright (c) 2013 Limit Point Systems, Inc.
  */
 
 package tools.viewer.application;

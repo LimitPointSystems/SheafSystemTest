@@ -1,8 +1,7 @@
 
-// $RCSfile: test_fibers.impl.h,v $ $Revision: 1.17.36.1 $ $Date: 2012/11/27 20:16:30 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @file

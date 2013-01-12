@@ -1,4 +1,3 @@
-// $RCSfile: tolerance_comparison.t.cc,v $ $Revision: 1.2 $ $Date: 2012/07/04 16:42:28 $
 
 //
 // Copyright (c) 2013 Limit Point Systems, Inc. 

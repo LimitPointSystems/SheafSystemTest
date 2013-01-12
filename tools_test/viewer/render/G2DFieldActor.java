@@ -2,13 +2,10 @@
 /**
  * Classname: G2DFieldActor
  *
- * @author $Author: jebutler $
  *
- * @version $RCSfile: G2DFieldActor.java,v $ $Revision: 1.8 $
  *
- * $Date: 2012/03/01 00:41:47 $
  *
- * Copyright (c) 2012 Limit Point Systems, Inc.
+ * Copyright (c) 2013 Limit Point Systems, Inc.
  */
 
 

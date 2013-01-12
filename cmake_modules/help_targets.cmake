@@ -1,8 +1,7 @@
 #
-# $RCSfile: help_targets.cmake,v $ $Revision: 1.3 $ $Date: 2012/12/04 16:58:00 $
 #
 #
-# Copyright (c) 2012 Limit Point Systems, Inc.
+# Copyright (c) 2013 Limit Point Systems, Inc.
 #
 #
 

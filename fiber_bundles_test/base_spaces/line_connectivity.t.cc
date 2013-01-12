@@ -1,7 +1,6 @@
-// $RCSfile: line_connectivity.t.cc,v $ $Revision: 1.11 $ $Date: 2012/03/01 00:40:31 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example base_spaces/line_connectivity.t.cc

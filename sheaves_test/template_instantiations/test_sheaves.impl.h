@@ -1,8 +1,7 @@
 
-// $RCSfile: test_sheaves.impl.h,v $ $Revision: 1.1.2.10 $ $Date: 2012/11/16 00:14:32 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @file

@@ -2,13 +2,10 @@
 /**
  * Classname: Actions
  *
- * @author $Author: jebutler $
  *
- * @version $RCSfile: Actions.java,v $ $Revision: 1.9 $
  *
- * $Date: 2012/03/01 00:41:42 $
  *
- * Copyright (c) 2012 Limit Point Systems, Inc.
+ * Copyright (c) 2013 Limit Point Systems, Inc.
  */
 
 package tools.common.gui;

@@ -1,4 +1,3 @@
-// $RCSfile$ $Revision$ $Date$
 
 // $Name$
 //

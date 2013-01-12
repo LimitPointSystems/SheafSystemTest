@@ -1,13 +1,10 @@
 /**
  *  Classname: DemoTheme
  *
- *  @author $Author: jebutler $
  *
- *  @version $RCSfile: DemoTheme.java,v $ $Revision: 1.10 $
  *
- *  $Date: 2012/03/01 00:41:42 $
  *
- *  Copyright (c) 2012 Limit Point Systems, Inc.
+ *  Copyright (c) 2013 Limit Point Systems, Inc.
  */
 
 package tools.common.gui;

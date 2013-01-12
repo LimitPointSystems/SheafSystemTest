@@ -1,8 +1,7 @@
 
-// $RCSfile: test_sections.cc,v $ $Revision: 1.11.36.1 $ $Date: 2012/11/29 21:09:49 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 // Implementation for test_sections non template functions.

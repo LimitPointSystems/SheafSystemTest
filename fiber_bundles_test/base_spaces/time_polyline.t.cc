@@ -1,7 +1,6 @@
-// $RCSfile: time_polyline.t.cc,v $ $Revision: 1.17 $ $Date: 2012/03/01 00:40:32 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example base_spaces/time_polyline.t.cc

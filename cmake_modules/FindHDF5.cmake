@@ -1,8 +1,7 @@
 #
-# $RCSfile: FindHDF5.cmake,v $ $Revision: 1.6 $ $Date: 2012/07/05 19:18:14 $
 #
 #
-# Some portions Copyright (c) 2012 Limit Point Systems, Inc.
+# Some portions Copyright (c) 2013 Limit Point Systems, Inc.
 #
 #
 # - Find HDF5, a library for reading and writing self describing array data.

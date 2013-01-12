@@ -1,8 +1,7 @@
 
-// $RCSfile: field_e2_uniform.t.cc,v $ $Revision: 1.7 $ $Date: 2012/03/01 00:41:03 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// Unit test for class field_e2_uniform.

@@ -1,8 +1,7 @@
 
-// $RCSfile: write_sheaves_namespace.cc,v $ $Revision: 1.21 $ $Date: 2012/03/01 00:41:18 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example examples/write_sheaves_namespace.cc

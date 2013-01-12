@@ -1,8 +1,7 @@
-// $RCSfile: base_space_factory.inst.t.cc,v $ $Revision: 1.15 $ $Date: 2012/07/04 16:42:07 $
 
 // $Name: unit-test-0 $
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 // Unit test driver for template class base_space_factory.

@@ -1,7 +1,6 @@
-// $RCSfile: section_pusher_3d.t.cc,v $ $Revision: 1.7 $ $Date: 2012/03/01 00:41:11 $
 
 //
-// Copyright (c) 2012 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example section_pusher_3d.t.cc

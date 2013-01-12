@@ -1,7 +1,6 @@
 #
-# $RCSfile: LPSCommon.cmake,v $ $Revision: 1.23 $ $Date: 2012/07/18 04:18:23 $
 #
-# Copyright (c) 2012 Limit Point Systems, Inc.
+# Copyright (c) 2013 Limit Point Systems, Inc.
 #
 # Contains all that is LPS specific; all flags, all macros, etc.
 #

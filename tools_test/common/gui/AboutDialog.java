@@ -1,13 +1,10 @@
 /**
  * Classname: AboutDialog.java
  *
- * @author $Author: jebutler $
  *
- * @version $RCSfile: AboutDialog.java,v $ $Revision: 1.8 $
  *
- * $Date: 2012/03/01 00:41:42 $
  *
- * Copyright (c) 2012 Limit Point Systems, Inc.
+ * Copyright (c) 2013 Limit Point Systems, Inc.
  */
 
 

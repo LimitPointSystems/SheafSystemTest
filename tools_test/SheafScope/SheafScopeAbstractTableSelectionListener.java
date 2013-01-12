@@ -1,13 +1,10 @@
 /**
  * Classname: SheafScopeAbstractTableSelectionListener
  *
- * @author $Author: jebutler $
  *
- * @version $RCSfile: SheafScopeAbstractTableSelectionListener.java,v $ $Revision: 1.17 $
  *
- * $Date: 2012/03/01 00:41:40 $
  *
- * Copyright (c) 2012 Limit Point Systems, Inc.
+ * Copyright (c) 2013 Limit Point Systems, Inc.
  */
 
 package tools.SheafScope;
