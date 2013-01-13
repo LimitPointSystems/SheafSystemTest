@@ -1,5 +1,4 @@
 
-
 //
 // Copyright (c) 2013 Limit Point Systems, Inc.
 //
@@ -7,35 +6,35 @@
 /// @example section_spaces/sec_e2_uniform.t.cc
 /// Unit test for class sec_e2_uniform.
 
-#include "assert_contract.h"
 #include "sec_e2_uniform.h"
+
+#include "assert_contract.h"
 #include "std_iostream.h"
 #include "test_sections.impl.h"
+#include "test_utils.h"
 #include "wsv_block.h"
 
 using namespace fiber_bundle;
 
-int main(int argc, char* argv[])
+int
+main(int argc, char* argv[])
 {
   // Preconditions:
 
   // Body:
 
-  size_t i_size = 2;
-  if (argc > 1)
-    i_size = atoi(argv[1]);
+  print_header("Begin testing " + lsection_name);
 
-  size_t j_size = 3;
-  if (argc > 2)
-    j_size = atoi(argv[2]);
+  typedef sec_e2_uniform S;
 
-  const string& section_name = sec_e2_uniform::static_class_name();
+  size_t i_size = (argc > 1) ? atoi(argv[1]) : 2;
+  size_t j_size = (argc > 2) ? atoi(argv[2]) : 3;
 
-  print_header("Testing " + section_name);
+  const string& lsection_name = S::static_class_name();
 
   // Create the namespace.
 
-  fiber_bundles_namespace lns(section_name + ".t");
+  fiber_bundles_namespace lns(lsection_name + ".t");
   lns.get_read_write_access();
 
   // Make a base space.
@@ -44,7 +43,7 @@ int main(int argc, char* argv[])
 
   // Make the section space.
 
-  sec_e2_uniform::host_type& lhost =
+  S::host_type& lhost =
     new_host_space<sec_e2_uniform>(lns, "uniform_coordinates_host", lbase_path);
   
   // Make the section.
@@ -52,18 +51,25 @@ int main(int argc, char* argv[])
   wsv_block<sec_vd_dof_type> llower("-2.0 -3.0");
   wsv_block<sec_vd_dof_type> lupper("2.0 3.0");
 
-  sec_e2_uniform lcoords(&lhost, llower, lupper, true);
+  S lcoords(&lhost, llower, lupper, true);
   lcoords.put_name("uniform_coordinates", true, true);
 
   // Print the result.
 
-  lns.get_read_access();
-  cout << lns << endl;
+  //cout << lns << endl;
 
   // Clean-up
 
-  lns.get_read_write_access(true);
   lcoords.detach_from_state();
+
+  //============================================================================
+
+  test_section_common_unattached<S>();
+  test_section_common_attached<S>(lns, lbase_path);
+
+  //============================================================================
+
+  print_footer("End testing " + lsection_name);
 
   // Postconditions:
 

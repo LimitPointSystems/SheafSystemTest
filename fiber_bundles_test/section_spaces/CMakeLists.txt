@@ -48,19 +48,16 @@ set(UNIT_TEST_SRCS
     sec_atp_space.t.cc
     sec_e1.t.cc
     sec_e1_uniform.t.cc
-    sec_e1_uniform_x.t.cc
     sec_e2.t.cc
     sec_e2_uniform.t.cc
-    sec_e2_uniform_x.t.cc
     sec_e3.t.cc
     sec_e3_uniform.t.cc
-    sec_e3_uniform_x.t.cc
     sec_e4.t.cc
     sec_ed.t.cc
     sec_jcb.t.cc
-    sec_jcb_e13_x.t.cc
-    sec_jcb_e23_x.t.cc
-    sec_jcb_e33_x.t.cc
+    sec_jcb_e13.t.cc
+    sec_jcb_e23.t.cc
+    sec_jcb_e33.t.cc
     sec_jcb_ed.t.cc
     sec_met.t.cc
     sec_met_e1.t.cc
