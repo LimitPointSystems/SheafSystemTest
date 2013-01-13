@@ -61,40 +61,27 @@ set(UNIT_TEST_SRCS
     sec_jcb_ed.t.cc
     sec_met.t.cc
     sec_met_e1.t.cc
-    sec_met_e1_x.t.cc
     sec_met_e2.t.cc
-    sec_met_e2_x.t.cc
     sec_met_e3.t.cc
-    sec_met_e3_x.t.cc
     sec_met_ed.t.cc
     sec_st2.t.cc
     sec_st2_e2.t.cc
-    sec_st2_e2_x.t.cc
     sec_st2_e3.t.cc
-    sec_st2_e3_x.t.cc
     sec_st3.t.cc
     sec_st3_e3.t.cc
-    sec_st3_e3_x.t.cc
     sec_st4.t.cc
     sec_st4_e2.t.cc
-    sec_st4_e2_x.t.cc
     sec_st4_e3.t.cc
-    sec_st4_e3_x.t.cc
     sec_stp.t.cc
     sec_stp_space.t.cc
     sec_t2.t.cc
     sec_t2_e2.t.cc
-    sec_t2_e2_x.t.cc
     sec_t2_e3.t.cc
-    sec_t2_e3_x.t.cc
     sec_t3.t.cc
     sec_t3_e3.t.cc
-    sec_t3_e3_x.t.cc
     sec_t4.t.cc
     sec_t4_e2.t.cc
-    sec_t4_e2_x.t.cc
     sec_t4_e3.t.cc
-    sec_t4_e3_x.t.cc
     sec_tp.t.cc
     sec_tp_space.t.cc
     sec_tuple.t.cc
