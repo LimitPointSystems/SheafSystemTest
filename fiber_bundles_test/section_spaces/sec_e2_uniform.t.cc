@@ -23,14 +23,14 @@ main(int argc, char* argv[])
 
   // Body:
 
-  print_header("Begin testing " + lsection_name);
-
   typedef sec_e2_uniform S;
+
+  const string& lsection_name = S::static_class_name();
+
+  print_header("Begin testing " + lsection_name);
 
   size_t i_size = (argc > 1) ? atoi(argv[1]) : 2;
   size_t j_size = (argc > 2) ? atoi(argv[2]) : 3;
-
-  const string& lsection_name = S::static_class_name();
 
   // Create the namespace.
 
