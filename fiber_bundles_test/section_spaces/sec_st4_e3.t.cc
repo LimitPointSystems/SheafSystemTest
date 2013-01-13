@@ -30,7 +30,7 @@ main(int xargc, char *xargv[])
   // Create the namespace.
 
   fiber_bundles_namespace lns(lfilename);
- l ns.get_read_write_access();
+  lns.get_read_write_access();
 
   // Make a base space.
 

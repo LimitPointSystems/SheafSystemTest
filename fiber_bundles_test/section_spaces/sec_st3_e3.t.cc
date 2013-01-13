@@ -39,7 +39,7 @@ main(int xargc, char *xargv[])
   size_type k_size = 2;
 
   const poset_path& lbase_path =
-    make_test_base_space(ns, i_size, j_size, k_size);
+    make_test_base_space(lns, i_size, j_size, k_size);
 
   // Run tests.
 
