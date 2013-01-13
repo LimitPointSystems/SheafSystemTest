@@ -25,7 +25,7 @@ collect_sources()
 #
 set(ADDITIONAL_INCS
     test_sections.impl.h
-  )
+)
 
 collect_includes()
 
@@ -110,7 +110,6 @@ collect_unit_test_sources()
 # Source for non-test executables.
 #
 set(EXAMPLE_SRCS
-
- )
+)
 
 collect_example_sources()
