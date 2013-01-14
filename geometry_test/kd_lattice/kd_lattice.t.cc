@@ -162,8 +162,11 @@ void make_line(const kd_lattice& xhost, const kd_plane& xp, int xpt_ct, list<e3_
   
 
 
-int main()
+int main(int argc, const char* argv[])
 {
+
+  bool ldo_display = (argc > 1);
+  
   geometry_namespace lns("the_namespace");
 
   lns.get_read_write_access();
@@ -490,9 +493,13 @@ int main()
 
   lkdl.update_section_space_schema();
 
-  //lkdl.display(true);
-  lkdl.display(false, true);
-  lkdl.display_subvolumes(true, true);
+  if(ldo_display)
+  {
+    //lkdl.display(true);
+    lkdl.display(false, true);
+    lkdl.display_subvolumes(true, true);
+  }
+  
   
   return 0;
 }
