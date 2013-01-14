@@ -272,19 +272,19 @@ test_persistent_type(typename P::host_type& xhost)
   const poset* lposet = dynamic_cast<poset*>(&xhost);
   persistent_type* lfiber4 = new persistent_type(lposet, lmember_name);
   persistent_type* lfiber5 = new persistent_type(lposet, lindex);
+  persistent_type* lfiber6 = new persistent_type(lposet, lindex.hub_pod());
 
-  persistent_type* lfiber6 = lfiber5->clone();
+  persistent_type* lfiber7 = lfiber5->clone();
 
-  //////////////////////////////////////////////////////////////////////////////
+  //============================================================================
 
-  //persistent_type lfiber3a = *lfiber;
   persistent_type lfiber3a;
   persistent_type& lfiber3b = lfiber3a.operator=(lfiber3a);
 
-  lfiber3a.detach_from_state();
+  //lfiber3a.detach_from_state();
   lfiber3b.detach_from_state();
 
-  //////////////////////////////////////////////////////////////////////////////
+  //============================================================================
 
   lfiber->detach_from_state();
   //lfiber2->detach_from_state();
@@ -292,12 +292,14 @@ test_persistent_type(typename P::host_type& xhost)
   lfiber4->detach_from_state();
   lfiber5->detach_from_state();
   lfiber6->detach_from_state();
+  lfiber7->detach_from_state();
 
   delete lfiber;
   //delete lfiber2;
   delete lfiber4;
   delete lfiber5;
   delete lfiber6;
+  delete lfiber7;
 
   //============================================================================
 
@@ -3947,6 +3949,12 @@ void test_spaces_common(fiber_bundles_namespace& xns, T& xspace)
                   "(const namespace_poset& xhost, scoped_index xindex,",
                   "            bool xauto_access)");
   TD* lspace4 = new TD(xns, xspace.index(), true);
+
+  //T lspace4(xns, xspace.index().hub_pod(), true);
+  print_subheader("Testing " + lspace_name +
+                  "(const namespace_poset& xhost, pod_index_type xindex,",
+                  "            bool xauto_access)");
+  TD* lspace4a = new TD(xns, xspace.index().hub_pod(), true);
 
   //T lspace5(xns, xspace.path().poset_name(), true);
   print_subheader("Testing "+lspace_name+"(const namespace_poset& xhost,",
