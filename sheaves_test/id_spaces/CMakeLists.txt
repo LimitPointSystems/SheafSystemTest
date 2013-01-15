@@ -24,6 +24,7 @@ collect_sources()
 # Headers that are NOT associated with a .cc file.
 #
 set(ADDITIONAL_INCS
+    test_index_space.impl.h
   )
   
 collect_includes()
@@ -32,8 +33,21 @@ collect_includes()
 # Source for unit test executables.
 #
 set(UNIT_TEST_SRCS
+    array_index_space_x.t.cc
+    explicit_index_space_x.t.cc
+    forwarding_index_space_x.t.cc
+    hash_index_space_x.t.cc
     index_space_family.t.cc
     index_space_interval.t.cc
+    interval_index_space_x.t.cc
+    mutable_index_space_x.t.cc
+    list_index_space_x.t.cc
+    offset_index_space_x.t.cc
+    primary_index_space_x.t.cc
+    primary_sum_index_space_x.t.cc
+    reserved_primary_index_space_x.t.cc
+    singleton_index_space_x.t.cc
+    sum_index_space_x.t.cc
     product_structure.t.cc
 )
 
