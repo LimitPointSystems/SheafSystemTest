@@ -3772,6 +3772,15 @@ test_persistent_common(fiber_bundles_namespace& xns)
 
   //==========================================================================
 
+  array_poset_dof_map& ldof_map = lfiber->dof_map(false);
+
+  //inline char* dofs() inlined in array_poset_dof_map.h;
+  //also obsolete (nut still there).
+
+  char* ldofs = ldof_map.dofs();
+
+  //==========================================================================
+
   lfiber->detach_from_state();
   lfiber2->detach_from_state();
   lfiber3.detach_from_state();
