@@ -17,7 +17,7 @@
 #include "ij_product_structure.h"
 #include "index_space_family.h"
 #include "mutable_index_space_handle.h"
-#include "test_index_spaces.h"
+#include "test_index_spaces.impl.h"
 
 using namespace fiber_bundle;
 
@@ -122,7 +122,13 @@ int main( int argc, char* argv[])
     (make_id_space(lsection_family, "section_space_schema_jims",
 		   "section_space_schema_jims_index_space_state", largs));
 
-  test_iterator(lsection_jims_id_space);
+  // Test the handle and iterator facets.
+
+  pod_index_type lspace_id = lsection_jims_id_space.index();
+
+  test_explicit_handle_facet<section_space_schema_jims_index_space_handle>(lsection_family, lspace_id);
+
+  test_explicit_iterator_facet<section_space_schema_jims_index_space_iterator>(lsection_family, lspace_id);
 
   // Test modifying the base space.
 

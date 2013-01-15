@@ -94,6 +94,13 @@ delete_id(index_space_family& xid_spaces, pod_index_type xid);
 // ===========================================================
 
 ///
+/// Test the mutable facet.
+///
+SHEAF_DLL_SPEC
+void
+test_mutable_facet(index_space_family& xid_spaces, pod_index_type xspace_id);
+
+///
 /// Insert the entry (xid, xhub_id) into xid_space.
 ///
 SHEAF_DLL_SPEC
@@ -150,8 +157,44 @@ void
 clear(mutable_index_space_handle& xid_space);
 
 // ===========================================================
+// HANDLE FACET
+// ===========================================================
+
+///
+/// Test the explicit handle facet.
+/// The template parameter H represents the handle type.
+///
+template <typename H>
+void
+test_explicit_handle_facet(index_space_family& xid_spaces, pod_index_type xspace_id);
+
+///
+/// Test the implicit handle facet.
+/// The template parameter H represents the handle type.
+///
+template <typename H>
+void
+test_implicit_handle_facet(index_space_family& xid_spaces, pod_index_type xspace_id);
+
+// ===========================================================
 // ITERATOR FACET
 // ===========================================================
+
+///
+/// Test the explicit iterator facet.
+/// The template parameter I represents the iterator type.
+///
+template <typename I>
+void
+test_explicit_iterator_facet(index_space_family& xid_spaces, pod_index_type xspace_id);
+
+///
+/// Test the implicit iterator facet.
+/// The template parameter I represents the iterator type.
+///
+template <typename I>
+void
+test_implicit_iterator_facet(index_space_family& xid_spaces, pod_index_type xspace_id);
 
 ///
 /// Test the iterator for xid_space.

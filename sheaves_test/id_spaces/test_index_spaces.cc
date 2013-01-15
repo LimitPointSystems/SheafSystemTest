@@ -185,6 +185,65 @@ delete_id(index_space_family& xid_spaces, pod_index_type xid)
 
 void
 sheaf::
+test_mutable_facet(index_space_family& xid_spaces, pod_index_type xspace_id)
+{
+  // Preconditions:
+
+  // Body:
+
+  print_out_header("Testing Mutable Facet");
+
+  mutable_index_space_handle lhandle(xid_spaces, xspace_id);
+
+  cout << "insert(10, 1)" << endl;
+  scoped_index lid(xid_spaces.hub_id_space(), 1);
+  lhandle.insert(10, lid);
+
+  cout << "push_back(3)" << endl;
+  lid = 3;
+  lhandle.push_back(lid);
+
+//   cout << "push(litr, 5)" << endl;
+//   index_space_iterator& litr = xid_spaces.get_iterator(xspace_id);
+//   lid = 5;
+//   lhandle.push(litr, lid);
+//   xid_spaces.release_iterator(litr);
+  
+  cout << "remove(5, false)" << endl;
+  lhandle.remove(lid, false);
+
+  cout << "remove(3, true)" << endl;
+  lid = 3;
+  lhandle.remove(lid, true);
+
+  cout << "remove_hub(2, true)" << endl;
+  lhandle.remove_hub(2, true);
+
+  cout << "remove_hub(0, false)" << endl;
+  lhandle.remove_hub(0, false);
+
+  cout << "update_extrema()" << endl;
+  lhandle.update_extrema();
+
+  cout << "next_id()  = " << lhandle.next_id() << endl;
+
+  cout << "capacity() = " << lhandle.capacity() << endl;
+
+  cout << "gather()" << endl;
+  lhandle.gather();
+
+  cout << "clear()" << endl;
+  lhandle.clear();
+
+  // Postconditions:
+
+  // Exit:
+
+  return;
+}
+
+void
+sheaf::
 insert(mutable_index_space_handle& xid_space,
        pod_index_type xid,
        pod_index_type xhub_id)
