@@ -1809,6 +1809,12 @@ test_section_common_attached(fiber_bundles_namespace& xns, int xdim)
 
   //==========================================================================
 
+  //inline SB* clone(bool xnew_state, bool xauto_access = true) const
+
+  SB* lclone = lvector[0].clone(false, true);
+
+  //==========================================================================
+
   // Cleanup.
 
   lvector[0].detach_from_state();
