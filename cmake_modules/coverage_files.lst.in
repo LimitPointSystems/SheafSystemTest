@@ -95,5 +95,6 @@
 ~@SHEAFSYSTEM_HOME@/sheaves/iterators/preorder_itr.cc
 ~@SHEAFSYSTEM_HOME@/sheaves/iterators/triorder_itr.cc
 ~@SHEAFSYSTEM_HOME@/sheaves/iterators/triorder_itr.cc
+~@SHEAFSYSTEM_HOME@/sheaves/maps/name_multimap.cc
 ~@SHEAFSYSTEM_HOME@/sheaves/support/ragged_array.cc
 ~@SHEAFSYSTEM_HOME@/sheaves/support/tolerance_comparison.cc

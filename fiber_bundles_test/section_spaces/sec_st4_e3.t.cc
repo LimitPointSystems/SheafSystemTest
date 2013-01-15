@@ -1,21 +1,21 @@
 
-
 //
 // Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example sec_st4_e3.t.cc
-/// Test driver for class sec_st4_e3.
+/// Unit test for class sec_st4_e3.
+
+#include "sec_st4_e3.h"
 
 #include "assert_contract.h"
 #include "fiber_bundles_namespace.h"
-#include "sec_st4_e3.h"
 #include "storage_agent.h"
 #include "test_sections.impl.h"
+#include "test_utils.h"
 
 using namespace fiber_bundle;
 
-///
 int
 main(int xargc, char *xargv[])
 {
@@ -23,15 +23,14 @@ main(int xargc, char *xargv[])
 
   // Body:
 
-  string filename = filename_from_cmdline(*xargv);
+  print_header("Begin testing sec_st4_e3");
 
-  print_header("Testing " + filename);
+  string lfilename = filename_from_cmdline(*xargv);
 
   // Create the namespace.
 
-  fiber_bundles_namespace ns(filename);
-
-  ns.get_read_write_access();
+  fiber_bundles_namespace lns(lfilename);
+  lns.get_read_write_access();
 
   // Make a base space.
 
@@ -40,29 +39,37 @@ main(int xargc, char *xargv[])
   size_type k_size = 2;
 
   const poset_path& lbase_path =
-    make_test_base_space(ns, i_size, j_size, k_size);
+    make_test_base_space(lns, i_size, j_size, k_size);
 
   // Run tests.
 
   // Test assignment:
 
-  test_assignment<sec_st4_e3>(ns, lbase_path);
+  test_assignment<sec_st4_e3>(lns, lbase_path);
 
   // Test vd facet:
 
-  test_sec_vd_facet<sec_st4_e3>(ns, lbase_path);
+  test_sec_vd_facet<sec_st4_e3>(lns, lbase_path);
 
-  //test_sec_stp<sec_st4_e3,...>(ns, lbase_path);
+  //test_sec_stp<sec_st4_e3,...>(lns, lbase_path);
+
+  //============================================================================
+
+  test_section_common_unattached<sec_st4_e3>();
+  test_section_common_attached_2<sec_st4_e3>(lns, lbase_path);
+
+  //============================================================================
 
   // Write the namespace to standard out.
 
-  //cout << ns << endl;
+  //cout << lns << endl;
 
   // Write the namespace to a file.
 
-  storage_agent write_agent(filename + ".hdf");
+  storage_agent write_agent(lfilename + ".t.hdf");
+  write_agent.write_entire(lns);
 
-  write_agent.write_entire(ns);
+  print_footer("Ending testing sec_st4_e3");
 
   // Postconditions:
 

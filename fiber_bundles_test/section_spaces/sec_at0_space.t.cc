@@ -1,19 +1,18 @@
 
-// $Name: HEAD $
 //
 // Copyright (c) 2013 Limit Point Systems, Inc. 
 //
 
 /// @example sec_at0_space.t.cc
-/// Test driver for sec_at0_space.
+/// Unit test for sec_at0_space.
 
 #define DIAGNOSTIC_OUTPUT
 
 #include "sec_at0_space.h"
 
 #include "arg_list.h"
-#include "at0_space.h"
 #include "assert_contract.h"
+#include "at0_space.h"
 #include "base_space_poset.h"
 #include "binary_section_space_schema_member.h"
 #include "binary_section_space_schema_poset.h"
@@ -26,6 +25,7 @@
 #include "storage_agent.h"
 #include "structured_block_1d.h"
 #include "wsv_block.h"
+#include "test_fibers.impl.h"
 
 using namespace fiber_bundle;
 
@@ -156,9 +156,10 @@ namespace
     
   }
 
-  void test_deep_instantiation(fiber_bundles_namespace& xns, 
-			       const poset_path& xbase_space_path,
-			       const poset_path& xfiber_space_schema_path)
+  sec_at0_space& 
+  test_deep_instantiation(fiber_bundles_namespace& xns, 
+			              const poset_path& xbase_space_path,
+			              const poset_path& xfiber_space_schema_path)
   {
     typedef binary_section_space_schema_poset schema_poset_type;
     
@@ -189,17 +190,22 @@ namespace
 					    largs, lschema_path);
 
     cout << lsection_space << endl;
+
+    return lsection_space;
   }
 }
 
 
-int main(int xargc, char* xargv[])
+int
+main(int xargc, char* xargv[])
 {
   // Preconditions:
 
   require(xargc > 0);
   
   // Body:
+
+  print_header("Begin testing sec_at0_space");
 
   string filename = filename_from_cmdline(*xargv);
 
@@ -219,7 +225,16 @@ int main(int xargc, char* xargv[])
 
   // Test deep instantiation
 
-  test_deep_instantiation(lns, lbase_space_path, lfiber_space_schema_path);
+  sec_at0_space& lspace =
+    test_deep_instantiation(lns, lbase_space_path, lfiber_space_schema_path);
+
+  //============================================================================
+
+  // Test member functions common to all "*_space" classes.
+
+  test_spaces_common<sec_at0_space>(lns, lspace);
+  
+  //============================================================================
 
   cout << lns << endl;
 
@@ -227,7 +242,11 @@ int main(int xargc, char* xargv[])
   storage_agent sa(filename + ".hdf", sheaf_file::READ_WRITE, true, false);
   sa.write_entire(lns);
 
-  // Done.
+  print_footer("End testing sec_at0_space");
+
+  // Postconditions:
+
+  // Exit:
 
   return 0;
 }

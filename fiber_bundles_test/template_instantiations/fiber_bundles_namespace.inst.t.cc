@@ -1299,6 +1299,10 @@ main(int xargc, char* xargv[])
   test_new_section_space<sec_e3_uniform>(lns, 3);
   test_new_section_space<sec_met_e3>(lns, 3);
 
+  //test_new_section_space<sec_jcb_e13>(lns, 3);
+  //test_new_section_space<sec_jcb_e23>(lns, 3);
+  //test_new_section_space<sec_jcb_e33>(lns, 3);
+
   //test_new_section_space<sec_at1>(lns, dd);
   //test_new_section_space<sec_at2>(lns, dd);
   //test_new_section_space<sec_st2>(lns, dd);

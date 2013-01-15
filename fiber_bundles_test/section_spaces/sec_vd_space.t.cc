@@ -1,11 +1,10 @@
 
-// $Name: HEAD $
 //
 // Copyright (c) 2013 Limit Point Systems, Inc. 
 //
 
 /// @example sec_vd_space.t.cc
-/// Test driver for sec_vd_space.
+/// Unit test for sec_vd_space.
 
 #include "sec_vd_space.h"
 
@@ -25,6 +24,7 @@
 #include "std_iostream.h"
 #include "storage_agent.h"
 #include "structured_block_1d.h"
+#include "test_fibers.impl.h"
 #include "vd_space.h"
 #include "wsv_block.h"
 
@@ -280,9 +280,10 @@ namespace
       make_vector_section_space(xns, lvector_section_space_schema_path, lscalar_section_space_path);
   }
 
-  void test_deep_instantiation(fiber_bundles_namespace& xns, 
-			       const poset_path& xbase_space_path,
-			       const poset_path& xfiber_space_schema_path)
+  sec_vd_space&
+  test_deep_instantiation(fiber_bundles_namespace& xns, 
+			              const poset_path& xbase_space_path,
+			              const poset_path& xfiber_space_schema_path)
   {
     typedef binary_section_space_schema_poset host_type;
 
@@ -326,6 +327,8 @@ namespace
 				    lvector_schema_path);
 
     cout << lsection_space << endl;
+
+    return lsection_space;
   }
   
     
@@ -337,6 +340,10 @@ int main(int xargc, char* xargv[])
   // Preconditions:
 
   require(xargc > 0);
+
+  // Body:
+
+  print_header("Begin testing sec_vd_space");
 
   string filename = filename_from_cmdline(*xargv);
 
@@ -356,7 +363,16 @@ int main(int xargc, char* xargv[])
 
   // Test deep instantiation
 
-  test_deep_instantiation(lns, lbase_space_path, lfiber_space_schema_path);
+  sec_vd_space& lspace =
+    test_deep_instantiation(lns, lbase_space_path, lfiber_space_schema_path);
+
+  //============================================================================
+
+  // Test member functions common to all "*_space" classes.
+
+  test_spaces_common<sec_vd_space>(lns, lspace);
+  
+  //============================================================================
 
   // Display the namespace.
 
@@ -366,7 +382,11 @@ int main(int xargc, char* xargv[])
   storage_agent sa(filename + ".hdf", sheaf_file::READ_WRITE, true, false);
   sa.write_entire(lns);
 
-  // Done.
+  print_footer("End testing sec_vd_space");
+
+  // Postconditions:
+
+  // Exit:
 
   return 0;
 }

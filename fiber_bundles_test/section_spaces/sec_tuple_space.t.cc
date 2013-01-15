@@ -1,11 +1,10 @@
 
-// $Name: HEAD $
 //
 // Copyright (c) 2013 Limit Point Systems, Inc. 
 //
 
 /// @example sec_tuple_space.t.cc
-/// Test driver for sec_tuple_space.
+/// Unit test for sec_tuple_space.
 
 #include "sec_tuple_space.h"
 
@@ -22,6 +21,7 @@
 #include "std_iostream.h"
 #include "storage_agent.h"
 #include "structured_block_1d.h"
+#include "test_fibers.impl.h"
 #include "tuple_space.h"
 #include "wsv_block.h"
 
@@ -165,7 +165,8 @@ namespace
     poset_path lsection_space_path = make_section_space(xns, lsection_space_schema_path);
   }
 
-  void test_deep_instantiation(fiber_bundles_namespace& xns, 
+  sec_tuple_space&
+  test_deep_instantiation(fiber_bundles_namespace& xns, 
 			       const poset_path& xbase_space_path,
 			       const poset_path& xfiber_space_schema_path)
   {
@@ -207,19 +208,24 @@ namespace
 				       true);
 
     cout << lsection_space << endl;
+
+    return lsection_space;
   }
   
     
 }
 
 
-int main(int xargc, char* xargv[])
+int
+main(int xargc, char* xargv[])
 {
   // Preconditions:
 
   require(xargc > 0);
   
   // Body:
+
+  print_header("Begin testing sec_tuple_space");
 
   string filename = filename_from_cmdline(*xargv);
 
@@ -239,13 +245,26 @@ int main(int xargc, char* xargv[])
 
   // Test deep instantiation
 
-  test_deep_instantiation(lns, lbase_space_path, lfiber_space_schema_path);
+  sec_tuple_space& lspace =
+   test_deep_instantiation(lns, lbase_space_path, lfiber_space_schema_path);
+
+  //============================================================================
+
+  // Test member functions common to all "*_space" classes.
+
+  test_spaces_common<sec_tuple_space>(lns, lspace);
+  
+  //============================================================================
 
   lns.get_read_write_access();
   storage_agent sa(filename + ".hdf", sheaf_file::READ_WRITE, true, false);
   sa.write_entire(lns);
 
-  // Done.
+  print_footer("End testing sec_tuple_space");
+
+  // Postconditions:
+
+  // Exit:
 
   return 0;
 }

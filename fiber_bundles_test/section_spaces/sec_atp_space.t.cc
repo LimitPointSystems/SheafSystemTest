@@ -1,11 +1,10 @@
 
-// $Name: HEAD $
 //
 // Copyright (c) 2013 Limit Point Systems, Inc. 
 //
 
 /// @example sec_atp_space.t.cc
-/// Test driver for sec_atp_space.
+/// Unit test for sec_atp_space.
 
 #include "sec_atp_space.h"
 
@@ -31,6 +30,7 @@
 #include "std_iostream.h"
 #include "storage_agent.h"
 #include "structured_block_1d.h"
+#include "test_fibers.impl.h"
 #include "wsv_block.h"
 
 using namespace fiber_bundle;
@@ -413,7 +413,8 @@ namespace
       make_tensor_section_space(xns, ltensor_section_space_schema_path, lvector_section_space_path);
   }
 
-  void test_deep_instantiation(fiber_bundles_namespace& xns, 
+  sec_atp_space&
+  test_deep_instantiation(fiber_bundles_namespace& xns, 
 			       const poset_path& xbase_space_path,
 			       const poset_path& xvector_fiber_space_schema_path,
 			       const poset_path& xtensor_fiber_space_schema_path)
@@ -476,19 +477,24 @@ namespace
 					    lscalar_schema_path);
 
     cout << lsection_space << endl;
+
+    return lsection_space;
   }
   
     
 }
 
 
-int main(int xargc, char* xargv[])
+int
+main(int xargc, char* xargv[])
 {
   // Preconditions:
 
   require(xargc > 0);
   
   // Body:
+
+  print_header("Begin testing sec_atp_space");
 
   string filename = filename_from_cmdline(*xargv);
 
@@ -512,7 +518,18 @@ int main(int xargc, char* xargv[])
 
   // Test deep instantiation
 
-  test_deep_instantiation(lns, lbase_space_path, lvector_space_schema_path, ltensor_space_schema_path);
+  sec_atp_space& lspace =
+    test_deep_instantiation(lns, lbase_space_path,
+                            lvector_space_schema_path,
+                            ltensor_space_schema_path);
+
+  //============================================================================
+
+  // Test member functions common to all "*_space" classes.
+
+  test_spaces_common<sec_atp_space>(lns, lspace);
+  
+  //============================================================================
 
   // Display the namespace.
 
@@ -522,7 +539,11 @@ int main(int xargc, char* xargv[])
   storage_agent sa(filename + ".hdf", sheaf_file::READ_WRITE, true, false);
   sa.write_entire(lns);
 
-  // Done.
+  print_footer("End testing sec_atp_space");
+
+  // Postconditions:
+
+  // Exit:
 
   return 0;
 }

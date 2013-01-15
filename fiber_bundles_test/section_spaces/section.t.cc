@@ -5,7 +5,7 @@
 //
 
 /// @example section_spaces/section.t.cc
-/// Test driver for cluster section_spaces.
+/// Unit test for cluster section_spaces.
 
 #include "arg_list.h"
 #include "assert_contract.h"

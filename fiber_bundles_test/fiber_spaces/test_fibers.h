@@ -1193,6 +1193,13 @@ public:
   }
 
   derived_space(const namespace_poset& xhost,
+                pod_index_type xindex, bool xauto_access)
+    : T(xhost, xindex, xauto_access)
+  {
+  }
+
+
+  derived_space(const namespace_poset& xhost,
                 const string& xname, bool xauto_access)
     : T(xhost, xname, xauto_access)
   {

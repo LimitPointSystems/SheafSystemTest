@@ -1,21 +1,24 @@
 
-
 //
 // Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example sec_jcb_e13.t.cc
-/// Test driver for class sec_jcb_e13.
+/// Unit test for class sec_jcb_e13.
+
+#include "sec_jcb_e13.h"
 
 #include "assert_contract.h"
 #include "fiber_bundles_namespace.h"
-#include "sec_jcb_e13.h"
+#include "sec_jcb_space.h"
+#include "std_iomanip.h"
+#include "std_iostream.h"
 #include "storage_agent.h"
 #include "test_sections.impl.h"
+#include "test_utils.h"
 
 using namespace fiber_bundle;
 
-///
 int
 main()
 {
@@ -23,14 +26,16 @@ main()
 
   // Body:
 
-  const string& section_name = sec_jcb_e13::static_class_name();
+  typedef sec_jcb_e13 S;
 
-  print_header("Testing " + section_name);
+  const string& lsection_name = S::static_class_name();
+
+  print_header("Begin testing " + lsection_name);
 
   // Create the namespace.
 
-  fiber_bundles_namespace ns(section_name + ".t");
-  ns.get_read_write_access();
+  fiber_bundles_namespace lns(lsection_name + ".t");
+  lns.get_read_write_access();
 
   // Make a base space.
 
@@ -39,34 +44,47 @@ main()
   size_type k_size = 2;
 
   const poset_path& lbase_path =
-    make_test_base_space(ns, i_size, j_size, k_size);
+    make_test_base_space(lns, i_size, j_size, k_size);
 
   // Run tests.
 
-  // Test assignment:
+  //$$SCRIBBLE: Jacobian not complete in fiber_bundles_namespace.
 
-  test_assignment<sec_jcb_e13>(ns, lbase_path);
+//   // Test assignment:
 
-  // Test vd facet:
+//   test_assignment<S>(lns, lbase_path);
 
-  //@issue What does it mean to test the vd facet for jacobians?
-  //       They do derive from sec_vd and therefore should pass
-  //       the vd facet tests.
+//   // Test vd facet:
 
-  test_sec_vd_facet<sec_jcb_e13>(ns, lbase_path);
+//   //@issue What does it mean to test the vd facet for jacobians?
+//   //       They do derive from sec_vd and therefore should pass
+//   //       the vd facet tests.
 
-  // Test jcb facet:
+//    test_sec_vd_facet<S>(lns, lbase_path);
 
-  test_sec_jcb_facet<sec_jcb_e13, sec_e1, sec_e3>(ns, lbase_path);
+//   // Test jcb facet:
+
+//   test_sec_jcb_facet<sec_jcb_e13, sec_e1, sec_e3>(lns, lbase_path);
+
+  //============================================================================
+
+  test_section_common_unattached<S>();
+
+  //$$SCRIBBLE: Jacobian not complete in fiber_bundles_namespace.
+  //test_section_common_attached<S>(lns, lbase_path);
+
+  //============================================================================
 
   // Write the namespace to standard out.
 
-  //cout << ns << endl;
+  //cout << lns << endl;
 
   // Write the namespace to a file.
 
-  //storage_agent write_agent(section_name + ".t.hdf");
-  //write_agent.write_entire(ns);
+  //storage_agent write_agent(lsection_name + ".t.hdf");
+  //write_agent.write_entire(lns);
+
+  print_footer("End testing " + lsection_name);
 
   // Postconditions:
 

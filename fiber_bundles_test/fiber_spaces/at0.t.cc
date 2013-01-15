@@ -1,14 +1,14 @@
 
-
 //
 // Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example at0.t.cc
-/// Test driver for class at0.
+/// Unit test driver for class at0.
+
+#include "at0.h"
 
 #include "assert_contract.h"
-#include "at0.h"
 #include "at0_space.h"
 #include "fiber_bundles_namespace.h"
 #include "storage_agent.h"
@@ -18,7 +18,6 @@ using namespace fiber_bundle;
 
 namespace
 {
-
   void
   test_at0_volatile()
   {
@@ -143,22 +142,22 @@ main(int xargc, char* xargv[])
 
   // Create the namespace.
 
-  fiber_bundles_namespace ns(filename);
-  ns.get_read_write_access();
+  fiber_bundles_namespace lns(filename);
+  lns.get_read_write_access();
 
   // Run tests.
 
   //@issue: What is the vector_space_type for at0?
 
-  test_persistent_scalar_type<at0>(ns);
+  test_persistent_scalar_type<at0>(lns);
 
   test_volatile_type<at0>();
 
-  test_scalar_conversions<at0>(ns);
+  test_scalar_conversions<at0>(lns);
 
   // Test vd facet:
 
-  test_scalar_vd_facet<at0>(ns);
+  test_scalar_vd_facet<at0>(lns);
 
   //============================================================================
 
@@ -173,12 +172,12 @@ main(int xargc, char* xargv[])
 
   // Write the namespace to standard out.
 
-  //cout << ns << endl;
+  //cout << lns << endl;
 
   // Write the namespace to a file.
 
-  storage_agent write_agent(filename + ".hdf" + ".hdf");
-  write_agent.write_entire(ns);
+  storage_agent write_agent(filename + ".hdf");
+  write_agent.write_entire(lns);
 
   // Postconditions:
 
