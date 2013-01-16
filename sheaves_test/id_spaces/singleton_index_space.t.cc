@@ -5,7 +5,7 @@
 // Copyright (c) 2011 Limit Point Systems, Inc. 
 //
 
-/// @example singleton_index_space_x.t.cc
+/// @example singleton_index_space.t.cc
 /// Test driver for singleton id spaces.
 
 #include "assert_contract.h"
@@ -39,7 +39,7 @@ int main( int argc, char* argv[])
 
   // Test handle facet.
 
-  test_explicit_handle_facet<singleton_index_space_handle>(lid_spaces, lspace_id);
+  test_handle_facet<singleton_index_space_handle>(lid_spaces, lspace_id);
 
   print_out_header("Testing miscellaneous handle functions");
 
@@ -48,12 +48,16 @@ int main( int argc, char* argv[])
 
   // Test iterator facet.
 
-  test_explicit_iterator_facet<singleton_index_space_iterator>(lid_spaces, lspace_id);
+  test_iterator_facet<singleton_index_space_iterator>(lid_spaces, lspace_id);
 
   print_out_header("Testing miscellaneous iterator functions");
 
   singleton_index_space_iterator litr(lid_spaces, lspace_id);
   cout << "hub_id() = " << lhandle.hub_id() << endl;
+
+  // Test state facet.
+
+  test_state_facet(lid_spaces, lspace_id, 0, 2);
 
   // Postconditions:
 

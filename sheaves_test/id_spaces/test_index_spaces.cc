@@ -160,6 +160,79 @@ print_out_map_extrema(const index_space_handle& xid_space)
 }
 
 // ===========================================================
+// ID SPACE FAMILY FACET
+// ===========================================================
+
+void
+sheaf::
+test_state_facet(index_space_family& xid_spaces, pod_index_type xspace_id,
+		 pod_index_type xid, pod_index_type xhub_id)
+{
+  // Preconditions:
+
+  // Body:
+
+  scoped_index lhub_id(xid_spaces.hub_id_space(), xhub_id);
+  const string& lname = xid_spaces.name(xspace_id);
+
+  print_out_header("Testing id space family state facet.");
+
+  cout << "ct(xspace_id)                     = " << xid_spaces.ct(xspace_id) << endl;
+  cout << "ct(lname)                         = " << xid_spaces.ct(lname) << endl;
+  cout << "is_empty(xspace_id)               = " << xid_spaces.is_empty(xspace_id) << endl;
+  cout << "is_empty(lname)                   = " << xid_spaces.is_empty(lname) << endl;
+  cout << "begin(xspace_id)                  = " << xid_spaces.begin(xspace_id) << endl;
+  cout << "begin(lname)                      = " << xid_spaces.begin(lname) << endl;
+  cout << "end(xspace_id)                    = " << xid_spaces.end(xspace_id) << endl;
+  cout << "end(lname)                        = " << xid_spaces.end(lname) << endl;
+  cout << "hub_begin(xspace_id)              = " << xid_spaces.hub_begin(xspace_id) << endl;
+  cout << "hub_begin(lname)                  = " << xid_spaces.hub_begin(lname) << endl;
+  cout << "is_gathered(xspace_id)            = " << xid_spaces.is_gathered(xspace_id) << endl;
+  cout << "is_gathered(lname)                = " << xid_spaces.is_gathered(lname) << endl;
+  cout << "contains(xspace_id, xid)          = " << xid_spaces.contains(xspace_id, xid) << endl;
+  cout << "contains(lname, xid)              = " << xid_spaces.contains(lname, xid) << endl;
+  cout << "contains(xspace_id, lhub_id)      = " << xid_spaces.contains(xspace_id, lhub_id) << endl;
+  cout << "contains(lname, lhub_id)          = " << xid_spaces.contains(lname, lhub_id) << endl;
+  cout << "contains(xspace_id, xid, lhub_id) = " << xid_spaces.contains(xspace_id, xid, lhub_id) << endl;
+  cout << "contains(lname, xid, lhub_id)     = " << xid_spaces.contains(lname, xid, lhub_id) << endl;
+  cout << "pod(xspace_id, lhub_id)           = " << xid_spaces.pod(xspace_id, lhub_id) << endl;
+  cout << "pod(lname, lhub_id)               = " << xid_spaces.pod(lname, lhub_id) << endl;
+  cout << "hub_pod(xspace_id, xid)           = " << xid_spaces.hub_pod(xspace_id, xid) << endl;
+  cout << "hub_pod(lname, xid)               = " << xid_spaces.hub_pod(lname, xid) << endl;
+  cout << "primary_sum_pod(xspace_id, xid)   = " << xid_spaces.primary_sum_pod(xspace_id, xid) << endl;
+  cout << "primary_sum_pod(lname, xid)       = " << xid_spaces.primary_sum_pod(lname, xid) << endl;
+  cout << "is_persistent(xspace_id)          = " << xid_spaces.is_persistent(xspace_id) << endl;
+  cout << "is_persistent(lname)              = " << xid_spaces.is_persistent(lname) << endl;
+
+  index_space_handle& lhandle0 = xid_spaces.get_handle(xspace_id);
+  cout << "get_handle(xspace_id)             = " << &lhandle0 << endl;
+  cout << "release_handle(lhandle0)" << endl;
+  xid_spaces.release_handle(lhandle0);
+
+  index_space_handle& lhandle1 = xid_spaces.get_handle(lname);
+  cout << "get_handle(lname)                 = " << &lhandle1 << endl;
+  cout << "release_handle(lhandle1)" << endl;
+  xid_spaces.release_handle(lhandle1);
+
+
+  index_space_iterator& litr0 = xid_spaces.get_iterator(xspace_id);
+  cout << "get_iterator(xspace_id)           = " << &litr0 << endl;
+  cout << "release_iterator(litr0)" << endl;
+  xid_spaces.release_iterator(litr0);
+
+  index_space_iterator& litr1 = xid_spaces.get_iterator(lname);
+  cout << "get_iterator(lname)               = " << &litr1 << endl;
+  cout << "release_iterator(litr1)" << endl;
+  xid_spaces.release_iterator(litr1);
+
+  // Postconditions:
+
+  // Exit:
+
+  return;
+}
+
+// ===========================================================
 // TOP ID SPACE FACET
 // ===========================================================
 

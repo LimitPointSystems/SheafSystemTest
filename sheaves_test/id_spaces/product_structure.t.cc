@@ -39,6 +39,31 @@ namespace
   }
 
   ///
+  /// Test abstract product interface.
+  ///
+  void test_abstract(abstract_product_structure& xproduct,
+		     size_t* xubs, size_type xd)
+  {
+    // Test put_ub().
+
+    xproduct.put_ubs(xubs);
+
+    pod_index_type* ltuple = new pod_index_type[xd];
+    pod_index_type lordinal;
+    for(pod_index_type i=0; i<xproduct.ordinal_ub(); ++i)
+    {
+      xproduct.tuple(i, ltuple);
+      xproduct.ordinal(ltuple, lordinal);
+
+      if(lordinal != i)
+      {
+	cerr << "ERROR: tuple and ordinal does not match for ordinal index: " << i << endl;
+	assertion(lordinal == i);
+      }
+    }
+  }
+
+  ///
   /// Test the ij_product_structure.
   ///
   void test_ij(size_type xi_ub, size_type xj_ub)
@@ -71,6 +96,21 @@ namespace
       print_product(ordinal, i, j);
     }
     cout << endl << endl;
+
+    // Test copy constructor.
+
+    ij_product_structure lproduct2(lproduct);
+
+    // Test put_ubs(xi_ub, xj_ub).
+
+    lproduct2.put_ubs(xi_ub+1, xj_ub+1);
+
+    // Test the abstract interface.
+
+    size_type* lubs = new size_type[2];
+    lubs[0] = xi_ub+2;
+    lubs[1] = xj_ub+2;
+    test_abstract(lproduct, lubs, 2);
   }
 
   ///
@@ -109,6 +149,22 @@ namespace
       print_product(ordinal, i, j, k);
     }
     cout << endl << endl;
+
+    // Test copy constructor.
+
+    ijk_product_structure lproduct2(lproduct);
+
+    // Test put_ubs(xi_ub, xj_ub).
+
+    lproduct2.put_ubs(xi_ub+1, xj_ub+1, xk_ub+1);
+
+    // Test the abstract interface.
+
+    size_type* lubs = new size_type[3];
+    lubs[0] = xi_ub+2;
+    lubs[1] = xj_ub+2;
+    lubs[2] = xk_ub+2;
+    test_abstract(lproduct, lubs, 3);
   }
 }
 

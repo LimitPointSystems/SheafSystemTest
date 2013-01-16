@@ -33,21 +33,25 @@ collect_includes()
 # Source for unit test executables.
 #
 set(UNIT_TEST_SRCS
-    array_index_space_x.t.cc
-    explicit_index_space_x.t.cc
-    forwarding_index_space_x.t.cc
-    hash_index_space_x.t.cc
+    array_index_space.t.cc
+    array_index_space_interval.t.cc
+    constant_index_space_interval.t.cc
+    explicit_index_space.t.cc
+    forwarding_index_space.t.cc
+    hash_index_space.t.cc
     index_space_family.t.cc
     index_space_interval.t.cc
-    interval_index_space_x.t.cc
-    mutable_index_space_x.t.cc
-    list_index_space_x.t.cc
-    offset_index_space_x.t.cc
-    primary_index_space_x.t.cc
-    primary_sum_index_space_x.t.cc
-    reserved_primary_index_space_x.t.cc
-    singleton_index_space_x.t.cc
-    sum_index_space_x.t.cc
+    interval_index_space.t.cc
+    mutable_index_space.t.cc
+    list_index_space.t.cc
+    offset_index_space.t.cc
+    primary_index_space.t.cc
+    primary_sum_index_space.t.cc
+    ragged_array_index_space_interval.t.cc
+    reserved_primary_index_space.t.cc
+    singleton_index_space.t.cc
+    singleton_index_space_interval.t.cc
+    sum_index_space.t.cc
     product_structure.t.cc
 )
 

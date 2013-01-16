@@ -5,7 +5,7 @@
 // Copyright (c) 2011 Limit Point Systems, Inc. 
 //
 
-/// @example primary_sum_index_space_x.t.cc
+/// @example primary_sum_index_space.t.cc
 /// Test driver for primary_sum id spaces.
 
 #include "assert_contract.h"
@@ -34,7 +34,7 @@ int main( int argc, char* argv[])
 
   // Test handle facet.
 
-  test_explicit_handle_facet<sum_index_space_handle>(lid_spaces, lspace_id);
+  test_handle_facet<sum_index_space_handle>(lid_spaces, lspace_id);
 
   print_out_header("Testing miscellaneous handle functions");
 

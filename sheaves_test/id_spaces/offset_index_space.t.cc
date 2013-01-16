@@ -5,7 +5,7 @@
 // Copyright (c) 2011 Limit Point Systems, Inc. 
 //
 
-/// @example offset_index_space_x.t.cc
+/// @example offset_index_space.t.cc
 /// Test driver for offset id spaces.
 
 #include "assert_contract.h"
@@ -39,7 +39,7 @@ int main( int argc, char* argv[])
 
   // Test handle facet.
 
-  test_explicit_handle_facet<offset_index_space_handle>(lid_spaces, lspace_id);
+  test_handle_facet<offset_index_space_handle>(lid_spaces, lspace_id);
 
   print_out_header("Testing miscellaneous handle functions");
 
@@ -48,13 +48,17 @@ int main( int argc, char* argv[])
 
   // Test iterator facet.
 
-  test_explicit_iterator_facet<offset_index_space_iterator>(lid_spaces, lspace_id);
+  test_iterator_facet<offset_index_space_iterator>(lid_spaces, lspace_id);
 
   print_out_header("Testing miscellaneous iterator functions");
 
   offset_index_space_iterator litr(lid_spaces, lspace_id);
   cout << "offset() = " << litr.offset() << endl;
   cout << "ct()     = " << litr.ct() << endl;
+
+  // Test state facet.
+
+  test_state_facet(lid_spaces, lspace_id, 0, 2);
 
   // Postconditions:
 

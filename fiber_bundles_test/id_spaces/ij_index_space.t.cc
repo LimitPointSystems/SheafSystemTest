@@ -10,13 +10,13 @@
 
 #include "arg_list.h"
 #include "ij_adjacency_index_space_interval.h"
+#include "ij_adjacency_implicit_index_space_iterator.h"
 #include "ij_connectivity_index_space_interval.h"
+#include "ij_connectivity_implicit_index_space_iterator.h"
 #include "index_space_family.h"
 #include "offset_index_space_state.h"
-#include "test_index_spaces.h"
-
-//#define NO_CONNECTIVITY
-//#define NO_ADJACENCY
+#include "test_index_spaces.impl.h"
+#include "std_strstream.h"
 
 using namespace fiber_bundle;
 
@@ -56,8 +56,37 @@ int main( int argc, char* argv[])
   largs =
     ij_connectivity_index_space_interval::make_arg_list(1+lzone_size, lj_size);
 
-  make_id_space_interval(lid_spaces, "ij_connectivity_index_space_interval",
-			 largs, lzone_size);
+  pod_index_type lconn_id =
+    make_id_space_interval(lid_spaces, "ij_connectivity_index_space_interval",
+			   largs, lzone_size);
+
+  // Give the id space a name.
+
+  strstream lconn_name;
+  lconn_name << "conn_" << lconn_id;
+
+  lid_spaces.put_name(lconn_id, lconn_name.str());
+
+  // Test iterator facet.
+
+  test_iterator_facet<ij_connectivity_implicit_index_space_iterator>(lid_spaces, lconn_id);
+
+  // Test state facet.
+
+  test_state_facet(lid_spaces, lconn_id, 0, lid_spaces.hub_pod(lconn_id, 0));
+
+  // Miscellaneous interval tests.
+
+  print_out_header("Testing miscellaneous interval functions");
+
+  ij_connectivity_implicit_index_space_iterator lconn_itr(lid_spaces, lconn_id);
+  const ij_connectivity_index_space_interval& lconn_interval =
+    reinterpret_cast<const ij_connectivity_index_space_interval&>(lconn_itr.host());
+
+  cout << "vertex_hub_begin()   = " << lconn_interval.vertex_hub_begin() << endl;
+  cout << "vertex_hub_begin(0)  = " << lconn_interval.vertex_hub_begin(0) << endl;
+  cout << "j_size()             = " << lconn_interval.j_size() << endl;
+  cout << "j_vertex_size()()    = " << lconn_interval.j_vertex_size() << endl;
 
 #endif
 
@@ -68,8 +97,39 @@ int main( int argc, char* argv[])
   largs =
     ij_adjacency_index_space_interval::make_arg_list(1, li_size, lj_size);
 
-  make_id_space_interval(lid_spaces, "ij_adjacency_index_space_interval",
-			 largs, lvertex_size);
+  pod_index_type ladj_id =
+    make_id_space_interval(lid_spaces, "ij_adjacency_index_space_interval",
+			   largs, lvertex_size);
+
+  // Give the id space a name.
+
+  strstream ladj_name;
+  ladj_name << "adj_" << ladj_id;
+
+  lid_spaces.put_name(ladj_id, ladj_name.str());
+
+  // Test iterator facet.
+
+  test_iterator_facet<ij_adjacency_implicit_index_space_iterator>(lid_spaces, ladj_id);
+
+  // Test state facet.
+
+  test_state_facet(lid_spaces, ladj_id, 0, lid_spaces.hub_pod(ladj_id, 0));
+
+  // Miscellaneous interval tests.
+
+  print_out_header("Testing miscellaneous interval functions");
+
+  ij_adjacency_implicit_index_space_iterator ladj_itr(lid_spaces, ladj_id);
+  const ij_adjacency_index_space_interval& ladj_interval =
+    reinterpret_cast<const ij_adjacency_index_space_interval&>(ladj_itr.host());
+
+  cout << "zone_hub_begin()   = " << ladj_interval.zone_hub_begin() << endl;
+  cout << "zone_hub_begin(0)  = " << ladj_interval.zone_hub_begin(0) << endl;
+  cout << "i_size()           = " << ladj_interval.i_size() << endl;
+  cout << "j_size()           = " << ladj_interval.j_size() << endl;
+  cout << "i_vertex_size()    = " << ladj_interval.i_vertex_size() << endl;
+  cout << "j_vertex_size()    = " << ladj_interval.j_vertex_size() << endl;
 
 #endif
 

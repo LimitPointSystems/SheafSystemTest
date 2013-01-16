@@ -79,6 +79,21 @@ void
 print_out_map_extrema(const index_space_handle& xid_space);
 
 // ===========================================================
+// ID SPACE FAMILY FACET
+// ===========================================================
+
+///
+/// Test the id space family's state facet.
+/// This function tests the base interface for id spaces in
+/// the family.  It will test the base interface for index_space_state
+/// and index_space_collection.
+///
+SHEAF_DLL_SPEC
+void
+test_state_facet(index_space_family& xid_spaces, pod_index_type xspace_id,
+		  pod_index_type xid, pod_index_type xhub_id);
+
+// ===========================================================
 // TOP ID SPACE FACET
 // ===========================================================
 
@@ -161,40 +176,24 @@ clear(mutable_index_space_handle& xid_space);
 // ===========================================================
 
 ///
-/// Test the explicit handle facet.
+/// Test the handle facet.
 /// The template parameter H represents the handle type.
 ///
 template <typename H>
 void
-test_explicit_handle_facet(index_space_family& xid_spaces, pod_index_type xspace_id);
-
-///
-/// Test the implicit handle facet.
-/// The template parameter H represents the handle type.
-///
-template <typename H>
-void
-test_implicit_handle_facet(index_space_family& xid_spaces, pod_index_type xspace_id);
+test_handle_facet(index_space_family& xid_spaces, pod_index_type xspace_id);
 
 // ===========================================================
 // ITERATOR FACET
 // ===========================================================
 
 ///
-/// Test the explicit iterator facet.
+/// Test the iterator facet.
 /// The template parameter I represents the iterator type.
 ///
 template <typename I>
 void
-test_explicit_iterator_facet(index_space_family& xid_spaces, pod_index_type xspace_id);
-
-///
-/// Test the implicit iterator facet.
-/// The template parameter I represents the iterator type.
-///
-template <typename I>
-void
-test_implicit_iterator_facet(index_space_family& xid_spaces, pod_index_type xspace_id);
+test_iterator_facet(index_space_family& xid_spaces, pod_index_type xspace_id);
 
 ///
 /// Test the iterator for xid_space.

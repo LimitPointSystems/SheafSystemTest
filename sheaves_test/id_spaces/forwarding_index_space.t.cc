@@ -5,7 +5,7 @@
 // Copyright (c) 2011 Limit Point Systems, Inc. 
 //
 
-/// @example forwarding_index_space_x.t.cc
+/// @example forwarding_index_space.t.cc
 /// Test driver for forwarding id spaces.
 
 #include "assert_contract.h"
@@ -15,6 +15,7 @@
 #include "forwarding_index_space_handle.h"
 #include "constant_index_space_interval.h"
 #include "std_iostream.h"
+#include "std_strstream.h"
 #include "test_index_spaces.impl.h"
 
 using namespace sheaf;
@@ -36,9 +37,22 @@ int main( int argc, char* argv[])
 			   constant_index_space_interval::make_arg_list(2),
 			   2);
 
+  // Give the id space a name.
+
+  strstream lspace_name;
+  lspace_name << "implicit_" << lspace_id;
+
+  lid_spaces.put_name(lspace_id, lspace_name.str());
+
   // Test handle facet.
 
-  test_implicit_handle_facet<forwarding_index_space_handle>(lid_spaces, lspace_id);
+  test_handle_facet<forwarding_index_space_handle>(lid_spaces, lspace_id);
+
+  // Test state facet.
+
+  test_state_facet(lid_spaces, lspace_id, 0, 2);
+
+  // Miscellaneous tests.
 
   print_out_header("Testing miscellaneous handle functions");
 

@@ -126,9 +126,11 @@ int main( int argc, char* argv[])
 
   pod_index_type lspace_id = lsection_jims_id_space.index();
 
-  test_explicit_handle_facet<section_space_schema_jims_index_space_handle>(lsection_family, lspace_id);
+  test_handle_facet<section_space_schema_jims_index_space_handle>(lsection_family, lspace_id);
 
-  test_explicit_iterator_facet<section_space_schema_jims_index_space_iterator>(lsection_family, lspace_id);
+  test_iterator_facet<section_space_schema_jims_index_space_iterator>(lsection_family, lspace_id);
+
+  test_state_facet(lsection_family, lspace_id, 0, lsection_family.hub_pod(lspace_id, 0));
 
   // Test modifying the base space.
 

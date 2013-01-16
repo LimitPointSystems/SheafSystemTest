@@ -5,7 +5,7 @@
 // Copyright (c) 2011 Limit Point Systems, Inc. 
 //
 
-/// @example reserved_primary_index_space_x.t.cc
+/// @example reserved_primary_index_space.t.cc
 /// Test driver for reserved_primary id spaces.
 
 #include "assert_contract.h"
@@ -32,9 +32,13 @@ int main( int argc, char* argv[])
 
   pod_index_type lspace_id = 1;
 
+  // Test state facet.
+
+  test_state_facet(lid_spaces, lspace_id, 1, 1);
+
   // Test handle facet.
 
-  test_explicit_handle_facet<reserved_primary_index_space_handle>(lid_spaces, lspace_id);
+  test_handle_facet<reserved_primary_index_space_handle>(lid_spaces, lspace_id);
 
   print_out_header("Testing miscellaneous handle functions");
 
@@ -46,7 +50,7 @@ int main( int argc, char* argv[])
 
   // Test iterator facet.
 
-  test_explicit_iterator_facet<reserved_primary_index_space_iterator>(lid_spaces, lspace_id);
+  test_iterator_facet<reserved_primary_index_space_iterator>(lid_spaces, lspace_id);
 
   print_out_header("Testing miscellaneous iterator functions");
 
