@@ -48,6 +48,7 @@ set(UNIT_TEST_SRCS
     name_map.inst.t.cc
     name_multimap.inst.t.cc
     sheaf.namespace_poset.inst.t.cc
+    sheaf.list_pool.inst.t.cc
     ragged_array.inst.t.cc
     record_map.inst.t.cc
     wsv_block.inst.t.cc

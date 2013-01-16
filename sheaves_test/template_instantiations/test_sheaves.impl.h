@@ -16,6 +16,7 @@
 
 #include "assert_contract.h"
 #include "block.h"
+#include "list_pool.h"
 #include "std_iostream.h"
 #include "test_sheaves.h"
 #include "test_utils.h"
@@ -2554,6 +2555,66 @@ test_filtered_depth_first_itr_facet(namespace_poset& xns)
 
   return ltest;
 
+}
+
+//==============================================================================
+// LIST_POOL
+//==============================================================================
+
+template<typename T>
+bool
+test_list_pool_facet()
+{
+  // Preconditions:
+
+  // Body:
+
+  print_header("Begin testing \"list_pool\" facet:");
+
+  bool ltest = true;
+
+  // Test default constructor.
+
+  print_subheader("Testing default constuctor.");
+
+  list_pool<T> lpool;
+
+  // Test get with no items.
+
+  print_subheader("Test get() with no free items.");
+
+  T& litem0 = lpool.get();
+
+  // Test pool count.
+
+  print_subheader("Test ct() with one item.");
+
+  cout << "ct() = " << lpool.ct() << endl;
+
+  // Test release.
+
+  print_subheader("Test release(litem0)");
+
+  lpool.release(litem0);
+
+  // Test get with a free item.
+
+  print_subheader("Test get() with a free item.");
+
+  T& litem1 = lpool.get();
+
+  // Test deep_size on the pool.
+
+  print_subheader("Test deep_size.");
+
+  cout << "deep_size(lpool, true)  = " << deep_size(lpool, true) << endl;
+  cout << "deep_size(lpool. false) = " << deep_size(lpool, false) << endl;
+
+  // Postconditions:
+
+  // Exit:
+
+  return ltest;
 }
 
 //==============================================================================
