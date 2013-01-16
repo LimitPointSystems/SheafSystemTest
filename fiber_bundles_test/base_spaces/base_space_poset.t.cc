@@ -143,6 +143,10 @@ main(int xargc, char* xargv[])
   namespace_poset_member lnpm(&lns, lindex);
   const abstract_poset_member* lmbr = &lnpm;
   base_space_poset_derived lbase_derived8(lmbr);
+ 
+  poset_state_handle* lpsh = &lbase_derived4;
+  base_space_poset_derived lassign;
+  lassign = (*lpsh);
 
   base_space_poset_derived* lclone = lbase_derived4.clone();
 
@@ -151,7 +155,8 @@ main(int xargc, char* xargv[])
   lbase_derived6.detach_from_state();
   lbase_derived7.detach_from_state();
   lbase_derived8.detach_from_state();
-  lnpm.detach_from_state();
+  lnpm.detach_from_state(); 
+  lassign.detach_from_state();
 
   //============================================================================
 
@@ -398,6 +403,20 @@ main(int xargc, char* xargv[])
   //const mutable_index_space_handle& d_cells_id_space(int xd) const
   const mutable_index_space_handle& ld_cells_id_space =
     lbase_space_const->d_cells_id_space(1);
+
+//   //void insert_member_in_standard_subposets(pod_index_type xmbr_id);
+//   lbase_space.insert_member_in_standard_subposets(lblock1.index().hub_pod());
+
+//   //void insert_member_in_standard_subposets(const scoped_index& xmbr_id);
+//   lbase_space.insert_member_in_standard_subposets(lblock1.index());
+
+  //============================================================================
+
+  //void put_refinement_depth(pod_index_type xindex, int xdepth);
+  lbase_space.put_refinement_depth(lblock0.index().hub_pod(), 1);
+
+  //void put_refinement_depth(const scoped_index& xindex, int xdepth);
+  lbase_space.put_refinement_depth(lblock0.index(), 2);
 
   //============================================================================
 
