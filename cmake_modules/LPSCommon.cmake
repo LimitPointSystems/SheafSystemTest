@@ -42,10 +42,7 @@ if(LINUX64INTEL)
     
     # Lop the compiler name off the end of the CXX string
     string(REPLACE "/icpc" "" INTELPATH ${CMAKE_CXX_COMPILER})
-    # Set the C compiler var
-#    string(REPLACE "/icpc" "/icc" C_COMPILER ${CMAKE_CXX_COMPILER})
-#    set(CMAKE_C_COMPILER "${C_COMPILER}" CACHE STRING "C Compiler" FORCE)
-    
+
     # The codecov executable
     set(CODECOV "${INTELPATH}/codecov" CACHE STRING "Intel Code coverage utility.")
     # The profmerge executable
@@ -59,10 +56,7 @@ elseif(LINUX64GNU)
     string(REPLACE "bin/g++" "" GNUPATH ${CMAKE_CXX_COMPILER})
     # The compiler library path.
     set(GNU_LIBPATH "${GNUPATH}lib64" CACHE STRING "GNU C++ compiler library path." )
-    # Set the C compiler var
-#    string(REPLACE "/g++" "/gcc" C_COMPILER ${CMAKE_CXX_COMPILER})
-#    set(CMAKE_C_COMPILER "${C_COMPILER}" CACHE STRING "C Compiler" FORCE)
-    
+
 endif()
 
 #
@@ -532,7 +526,7 @@ endfunction()
 #
 function(add_coverage_target)
 
-    add_custom_target(coverage ALL DEPENDS checklog    
+    add_custom_target(coverage ALL DEPENDS check    
         COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${PROFMERGE}
         COMMAND ${CMAKE_COMMAND} -E chdir ${COVERAGE_DIR} ${CODECOV} -comp ${CMAKE_BINARY_DIR}/coverage_files.lst ${CODECOV_ARGS} ${PROJECT_NAME}   
     )
