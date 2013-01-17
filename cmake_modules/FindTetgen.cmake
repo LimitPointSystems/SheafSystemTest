@@ -32,15 +32,20 @@ if(WIN64MSVC OR WIN64INTEL)
           HINTS $ENV{USERPROFILE}/LPS/prerequisites/tetgen/include)
 else()
 	find_library(TETGEN_LIB NAMES tetgen HINTS $ENV{HOME}/LPS/prerequisites/tetgen/lib  /usr/local/tetgen/lib)
-	find_path(TETGEN_LIB_DIR libtetgen.so
-          HINTS $ENV{HOME}/LPS/prerequisites/tetgen/lib /usr/local/tetgen/lib)
-          
+    if(ENABLE_STATIC_PREREQS)
+    	find_path(TETGEN_LIB_DIR libtetgen.a
+              HINTS $ENV{HOME}/LPS/prerequisites/tetgen/lib /usr/local/tetgen/lib)
+	else()
+    	find_path(TETGEN_LIB_DIR libtetgen.so
+              HINTS $ENV{HOME}/LPS/prerequisites/tetgen/lib /usr/local/tetgen/lib)          
+    endif()
+    
 	# And the include path
 	find_path(TETGEN_INC_DIR tetgen.h
           HINTS $ENV{HOME}/LPS/prerequisites/tetgen/include /usr/local/tetgen/include)
 endif()
 
-IF(EXISTS ${TETGEN_LIB})
+if(EXISTS ${TETGEN_LIB})
     set(TETGEN_FOUND 1)
 endif()
 
