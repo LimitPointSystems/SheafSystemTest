@@ -469,7 +469,7 @@ function(add_check_target)
         set_target_properties(check PROPERTIES FOLDER "Check Targets")
 
     else()
-        add_custom_target(check COMMAND  DEPENDS ${ALL_CHECK_TARGETS})
+        add_custom_target(check COMMAND DEPENDS ${ALL_CHECK_TARGETS})
     endif()
 
 endfunction(add_check_target)
@@ -561,8 +561,6 @@ function(add_checklog_target)
     endif()
 
 endfunction(add_checklog_target)
-
-
 
 # 
 # Create a cmake test for each unit test executable.

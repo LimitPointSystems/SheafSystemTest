@@ -14,8 +14,8 @@ set(SHEAF_FOUND 0)
 #
 message(STATUS "Looking for SheafSystem exports file ...")
 # Look for a binary installation of SheafSystem first
-if(EXISTS ${SHEAFSYSTEM_HOME}/${CMAKE_BUILD_TYPE}/config/SheafSystem-exports.cmake.in)
-    set(SHEAFEXPORTSFILE ${SHEAFSYSTEM_HOME}/${CMAKE_BUILD_TYPE}/config/SheafSystem-exports.cmake.in)
+if(EXISTS ${SHEAFSYSTEM_HOME}/config/${CMAKE_BUILD_TYPE}/SheafSystem-exports.cmake.in)
+    set(SHEAFEXPORTSFILE ${SHEAFSYSTEM_HOME}/config/${CMAKE_BUILD_TYPE}/SheafSystem-exports.cmake.in)
     configure_file(${SHEAFEXPORTSFILE} ${CMAKE_BINARY_DIR}/SheafSystem-exports.cmake)
     include(${CMAKE_BINARY_DIR}/SheafSystem-exports.cmake)
     set(SHEAF_FOUND 1)
