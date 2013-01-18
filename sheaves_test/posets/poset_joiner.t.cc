@@ -6,7 +6,6 @@
 /// @example posets/poset_joiner.t.cc
 /// Test dirver for poset_joiner.  Only the subposet interface.
 
-#include "list_cover_set.h"
 #include "sheaves_namespace.h"
 #include "subposet.h"
 #include "poset_joiner.h"
