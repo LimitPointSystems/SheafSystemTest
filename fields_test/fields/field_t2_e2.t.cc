@@ -1,5 +1,4 @@
 
-
 //
 // Copyright (c) 2013 Limit Point Systems, Inc.
 //
@@ -25,7 +24,6 @@
 
 using namespace fields;
 
-///
 int
 main()
 {
@@ -78,9 +76,15 @@ main()
   test_field_contract<field_t2_e2, field_at0>
     (lns, lbase_path, lcoords_path);
 
+  //============================================================================
+
+  test_field_common<field_t2_e2>(lns, lbase_path, lcoords_path);
+
+  //============================================================================
+
   // Write the namespace to standard out.
 
-  //cout << ns << endl;
+  //cout << lns << endl;
 
   // Write the namespace to a file.
 

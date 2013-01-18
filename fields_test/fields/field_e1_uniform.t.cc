@@ -1,5 +1,4 @@
 
-
 //
 // Copyright (c) 2013 Limit Point Systems, Inc.
 //
@@ -55,9 +54,15 @@ main(int xargc, char* xargv[])
 
   test_field_vd_facet<field_e1_uniform>(lns, lbase_path, lcoords_path);
 
+  //============================================================================
+
+  test_field_common<field_e1_uniform>(lns, lbase_path, lcoords_path);
+
+  //============================================================================
+
   // Write the namespace to standard out.
 
-  //cout << ns << endl;
+  //cout << lns << endl;
 
   // Write the namespace to a file.
 

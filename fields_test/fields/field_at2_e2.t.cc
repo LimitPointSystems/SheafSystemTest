@@ -1,5 +1,4 @@
 
-
 //
 // Copyright (c) 2013 Limit Point Systems, Inc.
 //
@@ -21,7 +20,7 @@
 
 using namespace fields;
 
-///
+
 int
 main(int xargc, char *xargv[])
 {
@@ -73,6 +72,12 @@ main(int xargc, char *xargv[])
 
   test_field_wedge_product<field_e2, field_e2, field_at2_e2>
     (lns, lbase_path, lcoords_path);
+
+  //============================================================================
+
+  test_field_common<field_at2_e2>(lns, lbase_path, lcoords_path);
+
+  //============================================================================
 
   // Write the namespace to standard out.
 

@@ -340,6 +340,18 @@ void set_dofs(T& xresult);
 
 //==============================================================================
 
+///
+/// Test some of the common functions in fields which are not tested
+/// elsewhere..
+///
+template<typename F>
+void
+test_field_common(fiber_bundles_namespace& xns,
+                  const poset_path& xbase_path,
+                  const poset_path& xcoords_path);
+
+//==============================================================================
+
 
 } // namespace fields
 
