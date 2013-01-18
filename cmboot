@@ -21,55 +21,14 @@ if ! test -d $builddir; then
    mkdir $builddir
 fi
 
-# If CXX is set, then (in rudimentary fashion) set corresponding CC
-if [ $CXX ]; then
-	
-	compiler=$(basename "$CXX")
-	
-	# if the tail end is icpc, it's intel, otherwise g++
-	if [ $compiler = "icpc" ]; then
-		c_name=$(dirname "$CXX")/icc
- 	else
- 		c_name=$(dirname "$CXX")/gcc
-	fi
-else
+if [ ! $CXX ]; then
 	echo "CXX is not set in your environment. Set it, and then rerun $0"
 	exit
 fi
 
 if [ ! $CC ]; then
-    echo  "   "
-    echo  "   It would appear that CC is not set in this terminal.                                 "                                                             
-    echo  "   "
-    echo  "   Unless you have the environment variable "CC" set to some desired value, Cmake       "
-    echo  "   will detect and use your system's default C compiler. Use of the C compiler          "
-    echo  "   is very minimal in LPS software, but there is potential for error here if the        " 
-    echo  "   detected C compiler doesn't jibe with your CXX setting.                              "
-    echo  "   "
-    echo  "   Since the CXX variable in your environment has the following value:                                "
-    echo  "      "$CXX"                                                                            " 
-    echo  "   CC should probably be set to: "
-    echo  "      "$c_name"   "
-    echo  "   "
-    echo  "   Alternatively, you may specify CC on this script's command line:                     "                                       
-    echo  "   "
-    echo  "      Example   <GNU>: $0 -DCMAKE_C_COMPILER=<CXX bin path>/gcc   "
-    echo  "      Example <Intel>: $0 -DCMAKE_C_COMPILER=<CXX bin path>/icc   "
-    echo  "   " 
-    echo  "   NOTE: CMAKE_C_COMPILER may only be effectively set on an initial cmake run; any subsequent "
-    echo  "   runs will ignore any such directive. If you wish to change the value of CC after the "
-    echo  "   initial run, then you must throw away $builddir/CMakeCache.txt and rerun cmake.      " 
-    echo  "   "
-    echo  "   Hit enter to continue, any other key to abort.                                       "
-    echo  "   "
-    
-	read -s -n 1 response
-	case "$response" in
-		"")
-			;;
-		*)
-			kill 0
-	esac
+	echo "CC is not set in your environment. Set it, and then rerun $0"
+	exit
 fi
 
 while [ ! -z "$1" ]
