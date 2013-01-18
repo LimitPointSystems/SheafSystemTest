@@ -35,7 +35,6 @@ collect_includes()
 set(UNIT_TEST_SRCS
     deep_size.inst.t.cc
     depth_first_itr.inst.t.cc
-    equivalence_relation.inst.t
     filtered_depth_first_itr.inst.t.cc
     postorder_itr.inst.t.cc
     preorder_itr.inst.t.cc

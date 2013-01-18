@@ -675,8 +675,9 @@ function(add_linux_test_targets)
     endif()
     
     # link_directories only applies to targets created after it is called.
-    link_directories(${${COMPONENT}_OUTPUT_DIR} ${SHEAVES_LIB_OUTPUT_DIR} ${HDF5_LIBRARY_DIRS} ${TETGEN_DIR})
-
+   # link_directories(${${COMPONENT}_OUTPUT_DIR} ${SHEAVES_LIB_OUTPUT_DIR} ${HDF5_LIBRARY_DIRS} ${TETGEN_DIR})
+    link_directories(${${COMPONENT}_OUTPUT_DIR} ${SHEAVES_LIB_OUTPUT_DIR})
+    
     # Let the user know what's being configured
     status_message("Configuring Unit Tests for ${PROJECT_NAME}")   
     
@@ -696,6 +697,7 @@ function(add_linux_test_targets)
 
             add_dependencies(${t_file} ${${COMPONENT}_SHARED_LIBS})
 
+            #target_link_libraries(${t_file} ${${COMPONENT}_SHARED_LIBS} ${HDF5_LIBRARIES})
             target_link_libraries(${t_file} ${${COMPONENT}_SHARED_LIBS} ${HDF5_LIBRARIES})
 
             # Add a test target for ${t_file}
