@@ -3,22 +3,16 @@
 // Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
-/// @example field_t4_e3.t.cc
-/// Test driver for class field_t4_e3.
+/// @example field_jcb.t.cc
+/// Test driver for class field_jcb.
 
 #include "assert_contract.h"
-#include "base_space_member.h"
 #include "fiber_bundles_namespace.h"
-#include "field_t4_e3.h"
-#include "field_st4_e3.h"
-#include "sec_at1_space.h"
-#include "sec_t4_e3.h"
+#include "field_jcb_e13.h"
 #include "storage_agent.h"
-#include "sec_stp_space.h"
 #include "test_fields.impl.h"
 
 using namespace fields;
-
 
 int
 main()
@@ -27,7 +21,7 @@ main()
 
   // Body:
 
-  const string& field_name = field_t4_e3::static_class_name();
+  const string& field_name = field_jcb::static_class_name();
   print_header("Testing " + field_name);
 
   // Create the namespace.
@@ -35,11 +29,11 @@ main()
   fiber_bundles_namespace lns(field_name + ".t");
   lns.get_read_write_access();
 
+  // Make a base space.
+
   size_type i_size = 2;
   size_type j_size = 2;
   size_type k_size = 2;
-
-  // Make a base space.
 
   const poset_path& lbase_path =
     make_test_base_space(lns, i_size, j_size, k_size);
@@ -52,26 +46,29 @@ main()
 
   // Test assignment:
 
-  test_field_assignment<field_t4_e3>(lns, lbase_path, lcoords_path);
+//   test_field_assignment<field_jcb_e13>(lns, lbase_path, lcoords_path);
 
-  // Test vd facet:
+//   // Test vd facet:
 
-  test_field_vd_facet<field_t4_e3>(lns, lbase_path, lcoords_path);
+//   //@issue What does it mean to test the vd facet for jacobians?
+//   //       They do derive from field_vd and therefore should pass
+//   //       the vd facet tests.
 
-  //============================================================================
+//   test_field_vd_facet<field_jcb_e13>(lns, lbase_path, lcoords_path);
 
-  test_field_common<field_t4_e3>(lns, lbase_path, lcoords_path);
+//   // Test jcb facet:
 
-  //============================================================================
+//   test_field_jcb_facet<field_jcb_e13, field_e1, field_e3>
+//     (lns, lbase_path, lcoords_path);
 
   // Write the namespace to standard out.
 
-  //cout << lns << endl;
+  //cout << ns << endl;
 
   // Write the namespace to a file.
 
-  storage_agent write_agent(field_name + ".t.hdf");
-  write_agent.write_entire(lns);
+  //storage_agent write_agent(field_name + ".t.hdf");
+  //write_agent.write_entire(lns);
 
   // Postconditions:
 

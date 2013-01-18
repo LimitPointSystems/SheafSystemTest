@@ -15,7 +15,6 @@
 
 using namespace fields;
 
-///
 int
 main()
 {

@@ -47,6 +47,8 @@ set(UNIT_TEST_SRCS
     field_jcb_e13.t.cc
     field_jcb_e23.t.cc
     field_jcb_e33.t.cc
+    field_jcb_ed.t.cc
+    field_jcb.t.cc
     field_met_e1.t.cc
     field_met_e2.t.cc
     field_met_e3.t.cc

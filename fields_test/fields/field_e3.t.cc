@@ -23,7 +23,6 @@
 
 using namespace fields;
 
-///
 int
 main()
 {
@@ -83,6 +82,12 @@ main()
   // Test e3 facet:
 
   test_field_e3_facet(lns, lbase_path, lcoords_path);
+
+  //============================================================================
+
+  test_field_common<field_e3>(lns, lbase_path, lcoords_path);
+
+  //============================================================================
 
   // Write the namespace to standard out.
 

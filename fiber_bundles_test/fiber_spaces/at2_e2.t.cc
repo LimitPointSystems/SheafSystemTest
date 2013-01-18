@@ -195,6 +195,22 @@ main(int xargc, char* xargv[])
 
   test_at2_e2_volatile();
 
+ //  typename at2_e2::host_type& lhost = lns.new_tensor_space<at2_e2>();
+//   lhost.get_read_write_access(true);
+  
+//   at2_e2 lfiber(&lhost);
+//   lfiber.put_name("at2_e2_fiber", true, false);
+  
+//   int lp = lfiber.p(true);
+
+//   //$$SCRIBBLE:  new_*tp(lp, true) does not currently work.
+//   atp* latp = lfiber.new_atp(lp, true);
+//   stp* lstp = lfiber.new_stp(lp, true);
+//   tp* ltp   = lfiber.new_tp(lp, true);
+
+//   lfiber.detach_from_state();
+//   lhost.release_access();
+
   //============================================================================
 
   // Write the namespace to standard out.
