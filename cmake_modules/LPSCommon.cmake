@@ -613,7 +613,6 @@ function(add_win32_test_targets)
             # doesn't see them as list item separators.
             string(REPLACE ";" "\\;" TESTPATH "${TESTPATH}")
             set_tests_properties(${t_file} PROPERTIES ENVIRONMENT "${TESTPATH}")
-            message(STATUS "${TESTPATH}")
             # Insert the unit tests into the VS folder "unit test targets"
             set_target_properties(${t_file} PROPERTIES FOLDER "Unit Test Targets/Executables")
 
