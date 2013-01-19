@@ -46,7 +46,7 @@ namespace
   {
     // Test put_ub().
 
-    xproduct.put_ubs(xubs);
+    xproduct.put_ubs(reinterpret_cast<size_type*>(xubs));
 
     pod_index_type* ltuple = new pod_index_type[xd];
     pod_index_type lordinal;
@@ -110,7 +110,7 @@ namespace
     size_type* lubs = new size_type[2];
     lubs[0] = xi_ub+2;
     lubs[1] = xj_ub+2;
-    test_abstract(lproduct, lubs, 2);
+    test_abstract(lproduct, reinterpret_cast<size_t*>(lubs), 2);
   }
 
   ///
@@ -164,7 +164,7 @@ namespace
     lubs[0] = xi_ub+2;
     lubs[1] = xj_ub+2;
     lubs[2] = xk_ub+2;
-    test_abstract(lproduct, lubs, 3);
+    test_abstract(lproduct, reinterpret_cast<size_t*>(lubs), 3);
   }
 }
 

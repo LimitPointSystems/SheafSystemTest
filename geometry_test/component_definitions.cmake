@@ -87,12 +87,12 @@ function(add_library_targets)
 
         # Create the DLL.
         add_library(${${COMPONENT}_DYNAMIC_LIB} SHARED ${${COMPONENT}_SRCS})
-        add_dependencies(${${COMPONENT}_DYNAMIC_LIB} ${FIBER_BUNDLES_TEST_IMPORT_LIBS} ${GEOMETRY_IMPORT_LIB})
+        add_dependencies(${${COMPONENT}_DYNAMIC_LIB} ${FIBER_BUNDLES_TEST_IMPORT_LIBS} ${GEOMETRY_IMPORT_LIBS})
 
         if(${USE_VTK})
-            target_link_libraries(${${COMPONENT}_DYNAMIC_LIB} ${FIBER_BUNDLES_IMPORT_LIBS} ${GEOMETRY_IMPORT_LIB} ${VTK_LIBS}) 
+            target_link_libraries(${${COMPONENT}_DYNAMIC_LIB} ${FIBER_BUNDLES_IMPORT_LIBS} ${GEOMETRY_IMPORT_LIBS} ${VTK_LIBS}) 
         else()
-            target_link_libraries(${${COMPONENT}_DYNAMIC_LIB} ${FIBER_BUNDLES_IMPORT_LIBS} ${GEOMETRY_IMPORT_LIB})        
+            target_link_libraries(${${COMPONENT}_DYNAMIC_LIB} ${FIBER_BUNDLES_IMPORT_LIBS} ${GEOMETRY_IMPORT_LIBS})        
         endif() 
      
         set_target_properties(${${COMPONENT}_DYNAMIC_LIB} PROPERTIES FOLDER "Library Targets")
