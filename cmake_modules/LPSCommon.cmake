@@ -246,11 +246,21 @@ function(set_compiler_flags)
         endif()
     else()
         if(${USE_VTK})
-            set(CMAKE_CXX_FLAGS_DEBUG-CONTRACTS "${LPS_CXX_FLAGS} -g -DUSE_VTK -limf" CACHE
-                STRING "Flags used by the C++ compiler for Debug-contracts builds" FORCE)
+                if(LINUX64INTEL)
+                    set(CMAKE_CXX_FLAGS_DEBUG-CONTRACTS "${LPS_CXX_FLAGS} -g -DUSE_VTK -limf" CACHE
+                        STRING "Flags used by the C++ compiler for Debug-contracts builds" FORCE)
+                else()
+                    set(CMAKE_CXX_FLAGS_DEBUG-CONTRACTS "${LPS_CXX_FLAGS} -g -DUSE_VTK" CACHE
+                        STRING "Flags used by the C++ compiler for Debug-contracts builds" FORCE)
+                endif()                
         else()         
-            set(CMAKE_CXX_FLAGS_DEBUG-CONTRACTS "${LPS_CXX_FLAGS} -g -limf" CACHE
-                STRING "Flags used by the C++ compiler for Debug-contracts builds" FORCE)
+                if(LINUX64INTEL)
+                    set(CMAKE_CXX_FLAGS_DEBUG-CONTRACTS "${LPS_CXX_FLAGS} -g -limf" CACHE
+                        STRING "Flags used by the C++ compiler for Debug-contracts builds" FORCE)
+                else()
+                    set(CMAKE_CXX_FLAGS_DEBUG-CONTRACTS "${LPS_CXX_FLAGS} -g " CACHE
+                        STRING "Flags used by the C++ compiler for Debug-contracts builds" FORCE)
+                endif() 
         endif()
     endif()
     
@@ -608,7 +618,7 @@ function(add_win32_test_targets)
             add_test(NAME ${t_file} WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(OutDir) COMMAND $<TARGET_FILE:${t_file}>)                
 
             # Set the PATH variable for CTest
-            set(TESTPATH "PATH=$ENV{PATH};${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE};${SHEAFSYSTEM_HOME}/bin/${CMAKE_BUILD_TYPE}")            
+            set(TESTPATH "PATH=$ENV{PATH};${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE};${SHEAFSYSTEM_HOME}/bin/${CMAKE_BUILD_TYPE};${SHEAFSYSTEM_HOME}/bin/VTK")            
             # Unfortunately, Windows uses the semicolon as a path delimiter, but the semicolon has special meaning to Cmake as well. Escape the semicolons in the PATH so cmake
             # doesn't see them as list item separators.
             string(REPLACE ";" "\\;" TESTPATH "${TESTPATH}")
@@ -981,5 +991,18 @@ function(status_message txt)
 
 endfunction()
 
+ # 
+# Convenience routine for diagnostic output during configure phase.
+# Displays list of included directories for module it is called in.
+#
+function(showincs)
+    message(STATUS "Displaying include directories for ${PROJECT_NAME}:")
+    message(STATUS "===================================================")    
+    get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
+    foreach(dir ${dirs})
+        message(STATUS "dir='${dir}'")
+    endforeach() 
+    message(STATUS "===================================================")       
+endfunction()
   
 
