@@ -577,8 +577,18 @@ endfunction(add_checklog_target)
 #
 function(add_win32_test_targets)
 
+    if(VTK_FOUND)
+        get_filename_component(__TMP_DIR "${VTK_DIR}" PATH)
+        get_filename_component(__TMP_DIR "${__TMP_DIR}" PATH)
+        set(VTK_BIN_DIR "${__TMP_DIR}/bin" CACHE PATH "VTK Runtime libraries location." FORCE)
+    endif()
+
     if(${USE_VTK})
         link_directories(${VTK_LIB_DIR})
+    endif()
+    
+    if(EXISTS ${HDF_INCLUDE_DIR})
+        include_directories(${HDF_INCLUDE_DIR})
     endif()
     
     # link_directories only applies to targets created after it is called.
@@ -618,7 +628,11 @@ function(add_win32_test_targets)
             add_test(NAME ${t_file} WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(OutDir) COMMAND $<TARGET_FILE:${t_file}>)                
 
             # Set the PATH variable for CTest
-            set(TESTPATH "PATH=$ENV{PATH};${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE};${SHEAFSYSTEM_HOME}/bin/${CMAKE_BUILD_TYPE};${SHEAFSYSTEM_HOME}/bin/VTK")            
+            if(EXISTS ${SHEAFSYSTEM_HOME}/config/${CMAKE_BUILD_TYPE}/SheafSystem-exports.cmake.in)
+                set(TESTPATH "PATH=$ENV{PATH};${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE};${SHEAFSYSTEM_HOME}/bin/${CMAKE_BUILD_TYPE};${SHEAFSYSTEM_HOME}/bin/VTK")            
+            else()
+                set(TESTPATH "PATH=$ENV{PATH};${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE};${SHEAFSYSTEM_HOME}/build/bin/${CMAKE_BUILD_TYPE};${VTK_BIN_DIR}") 
+            endif()
             # Unfortunately, Windows uses the semicolon as a path delimiter, but the semicolon has special meaning to Cmake as well. Escape the semicolons in the PATH so cmake
             # doesn't see them as list item separators.
             string(REPLACE ";" "\\;" TESTPATH "${TESTPATH}")
