@@ -72,12 +72,18 @@
 include(SelectLibraryConfigurations)
 include(FindPackageHandleStandardArgs)
 
+
 if(LINUX64GNU OR LINUX64INTEL)
-    set(HDF5_ROOT "$ENV{HOME}/LPS/prerequisites/hdf")
+    file(TO_CMAKE_PATH $ENV{HOME} HOME_DIR)
+    set(HDF5_ROOT "${HOME_DIR}/LPS/prerequisites/hdf")
 else()
-    set(HDF5_ROOT "$ENV{USERPROFILE}/LPS/prerequisites/hdf-static")
+    file(TO_CMAKE_PATH $ENV{USERPROFILE} HOME_DIR)
+    set(HDF5_ROOT "${HOME_DIR}/LPS/prerequisites/hdf-static")
 endif()
 
+
+
+message(STATUS "HDF_ROOT is ${HDF5_ROOT}")
 # List of the valid HDF5 components
 set( HDF5_VALID_COMPONENTS 
     C
@@ -194,7 +200,8 @@ else()
     endif()
     
     # seed the initial lists of libraries to find with items we know we need
-    set( HDF5_C_LIBRARY_NAMES_INIT hdf5_hl hdf5 )
+    #set( HDF5_C_LIBRARY_NAMES_INIT hdf5_hl hdf5 )
+        set( HDF5_C_LIBRARY_NAMES_INIT hdf5 )
     set( HDF5_CXX_LIBRARY_NAMES_INIT hdf5_cpp ${HDF5_C_LIBRARY_NAMES_INIT} )
     
     foreach( LANGUAGE ${HDF5_LANGUAGE_BINDINGS} )
@@ -348,10 +355,12 @@ if(WIN32)
 else()
     set(HDF5_WORKING_DIRECTORY ".")
 endif()
+message(STATUS "${HDF5_DIFF_EXECUTABLE}")
 
 execute_process(COMMAND ${HDF5_DIFF_EXECUTABLE} "--version"
-                WORKING_DIRECTORY ${HDF5_WORKING_DIRECTORY}
-                OUTPUT_VARIABLE HDF5_VERSION)
+                    WORKING_DIRECTORY  ${HDF5_ROOT}/bin
+                    OUTPUT_VARIABLE HDF5_VERSION )
+
                 
 # Remove trailing newline
 if(HDF5_VERSION)
