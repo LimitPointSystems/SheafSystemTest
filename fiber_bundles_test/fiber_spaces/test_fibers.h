@@ -1220,7 +1220,7 @@ public:
   derived_space& operator=(const poset_state_handle& xother)
   {
 	 T::operator=(xother);
-	 return this;
+	 return *this;
   }
 };
 
