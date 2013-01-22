@@ -75,7 +75,7 @@ include(FindPackageHandleStandardArgs)
 if(LINUX64GNU OR LINUX64INTEL)
     set(HDF5_ROOT "$ENV{HOME}/LPS/prerequisites/hdf")
 else()
-    set(HDF5_ROOT "$ENV{USERPROFILE}/LPS/prerequisites/hdf")
+    set(HDF5_ROOT "$ENV{USERPROFILE}/LPS/prerequisites/hdf-static")
 endif()
 
 # List of the valid HDF5 components
@@ -351,7 +351,8 @@ endif()
 
 execute_process(COMMAND ${HDF5_DIFF_EXECUTABLE} "--version"
                 WORKING_DIRECTORY ${HDF5_WORKING_DIRECTORY}
-                OUTPUT_VARIABLE HDF5_VERSION )
+                OUTPUT_VARIABLE HDF5_VERSION)
+                
 # Remove trailing newline
 if(HDF5_VERSION)
     string(REPLACE "\n" "" HDF5_VERSION ${HDF5_VERSION})

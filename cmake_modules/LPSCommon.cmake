@@ -582,7 +582,9 @@ function(add_win32_test_targets)
         get_filename_component(__TMP_DIR "${__TMP_DIR}" PATH)
         set(VTK_BIN_DIR "${__TMP_DIR}/bin" CACHE PATH "VTK Runtime libraries location." FORCE)
     endif()
-
+        get_filename_component(__TMP_DIR "${CMAKE_COMMAND}" PATH)
+        set(CTEST_COMMAND "${__TMP_DIR}/ctest.exe" CACHE PATH "" FORCE)
+            
     if(${USE_VTK})
         link_directories(${VTK_LIB_DIR})
     endif()
@@ -639,13 +641,14 @@ function(add_win32_test_targets)
             set_tests_properties(${t_file} PROPERTIES ENVIRONMENT "${TESTPATH}")
             # Insert the unit tests into the VS folder "unit test targets"
             set_target_properties(${t_file} PROPERTIES FOLDER "Unit Test Targets/Executables")
-
             # Tag the test with the name of the current component.
             set_property(TEST ${t_file} PROPERTY LABELS "${PROJECT_NAME}")
 
             if(ENABLE_UNIT_TEST_LOG_TARGETS)
                 # Generate a log file for each .t. "make <test>.log will build and run a given executable.
-                add_custom_target(${t_file}.exe.log  COMMAND ${t_file} > ${t_file}.exe.log DEPENDS ${t_file} WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(OutDir) )
+                #add_custom_target(${t_file}.exe.log  COMMAND ${t_file} > ${t_file}.exe.log DEPENDS ${t_file} WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(OutDir) )
+                add_custom_target(${t_file}.exe.log)
+                add_custom_command(TARGET ${t_file}.exe.log POST_BUILD COMMAND ${CTEST_COMMAND} -C ${PROJECT_NAME} -R "^${t_file}$" > ${t_file}.exe.log WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(OutDir))
                # Insert the unit tests into the VS folder "unit test targets"
                set_target_properties(${t_file}.exe.log PROPERTIES FOLDER "Unit Test Targets/Log Targets")
             endif(ENABLE_UNIT_TEST_LOG_TARGETS)
