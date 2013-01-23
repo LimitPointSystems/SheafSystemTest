@@ -577,11 +577,13 @@ endfunction(add_checklog_target)
 #
 function(add_win32_test_targets)
 
+    # Get the bin dir from vtk
     if(VTK_FOUND)
         get_filename_component(__TMP_DIR "${VTK_DIR}" PATH)
         get_filename_component(__TMP_DIR "${__TMP_DIR}" PATH)
         set(VTK_BIN_DIR "${__TMP_DIR}/bin" CACHE PATH "VTK Runtime libraries location." FORCE)
     endif()
+        # Now get ctest's location
         get_filename_component(__TMP_DIR "${CMAKE_COMMAND}" PATH)
         set(CTEST_COMMAND "${__TMP_DIR}/ctest.exe" CACHE PATH "" FORCE)
             
@@ -592,7 +594,7 @@ function(add_win32_test_targets)
     if(EXISTS ${HDF_INCLUDE_DIR})
         include_directories(${HDF_INCLUDE_DIR})
     endif()
-    showincs()
+
     # link_directories only applies to targets created after it is called.
     link_directories(${${COMPONENT}_OUTPUT_DIR} ${SHEAVES_LIB_OUTPUT_DIR})
 
@@ -629,7 +631,7 @@ function(add_win32_test_targets)
 
             add_test(NAME ${t_file} WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(OutDir) COMMAND $<TARGET_FILE:${t_file}>)                
 
-            # Set the PATH variable for CTest
+            # Set the PATH variable for CTest. If the config dir is oresent, we've got an install.
             if(EXISTS ${SHEAFSYSTEM_HOME}/config/${CMAKE_BUILD_TYPE}/SheafSystem-exports.cmake.in)
                 set(TESTPATH "PATH=$ENV{PATH};${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE};${SHEAFSYSTEM_HOME}/bin/${CMAKE_BUILD_TYPE};${SHEAFSYSTEM_HOME}/bin/VTK")            
             else()
@@ -646,7 +648,6 @@ function(add_win32_test_targets)
 
             if(ENABLE_UNIT_TEST_LOG_TARGETS)
                 # Generate a log file for each .t. "make <test>.log will build and run a given executable.
-                #add_custom_target(${t_file}.exe.log  COMMAND ${t_file} > ${t_file}.exe.log DEPENDS ${t_file} WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(OutDir) )
                 add_custom_target(${t_file}.exe.log)
                 add_custom_command(TARGET ${t_file}.exe.log POST_BUILD COMMAND ${CTEST_COMMAND} -C ${PROJECT_NAME} -R "^${t_file}$" WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(OutDir))
                # Insert the unit tests into the VS folder "unit test targets"
@@ -730,7 +731,6 @@ function(add_linux_test_targets)
             set_property(TEST ${t_file} PROPERTY LABELS "${PROJECT_NAME}") 
 
             # Set the PATH variable for CTest               
-       #     set_tests_properties(${t_file} PROPERTIES ENVIRONMENT "PATH=%PATH%;${CMAKE_CFG_INTDIR};${HDF5_LIBRARY_DIRS};${FIELDS_BIN_DIR}")
              set_tests_properties(${t_file} PROPERTIES ENVIRONMENT "PATH=%PATH%;${CMAKE_CFG_INTDIR};${SHEAVES_BIN_DIR}")           
             # Generate a log file for each .t. "make <test>.log will build and run a given executable.
             add_custom_target(${t_file}.log WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} COMMAND ${t_file} > ${t_file}.log DEPENDS ${t_file} )
@@ -924,7 +924,6 @@ function(export_targets)
     file(APPEND ${CMAKE_BINARY_DIR}/${EXPORTS_FILE} "\n")
 
 endfunction(export_targets)
-
 
 #
 # Append sources to their respective component variables

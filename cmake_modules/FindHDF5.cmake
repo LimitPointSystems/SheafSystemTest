@@ -200,8 +200,7 @@ else()
     endif()
     
     # seed the initial lists of libraries to find with items we know we need
-    #set( HDF5_C_LIBRARY_NAMES_INIT hdf5_hl hdf5 )
-        set( HDF5_C_LIBRARY_NAMES_INIT hdf5 )
+    set( HDF5_C_LIBRARY_NAMES_INIT hdf5 )
     set( HDF5_CXX_LIBRARY_NAMES_INIT hdf5_cpp ${HDF5_C_LIBRARY_NAMES_INIT} )
     
     foreach( LANGUAGE ${HDF5_LANGUAGE_BINDINGS} )
