@@ -801,7 +801,7 @@ function(add_example_targets)
     foreach(t_cc_file ${${COMPONENT}_EXAMPLE_SRCS})
         # link_directories only applies to targets created after it is called.
         if(LINUX64GNU OR LINUX64INTEL)
-            link_directories(${${COMPONENT}_OUTPUT_DIR} ${SHEAVES_LIB_OUTPUT_DIR} ${HDF5_LIBRARY_DIRS} ${TETGEN_DIR})
+            link_directories(${${COMPONENT}_OUTPUT_DIR} ${SHEAVES_LIB_OUTPUT_DIR})
         else()
             link_directories(${${COMPONENT}_OUTPUT_DIR}/${CMAKE_BUILD_TYPE} ${SHEAVES_LIB_OUTPUT_DIR})
         endif()    
@@ -829,8 +829,8 @@ function(add_example_targets)
             # Insert the unit tests into the VS folder "unit_tests"
             set_target_properties(${t_file} PROPERTIES FOLDER "Example Targets")
         else()
-           add_dependencies(${t_file} ${FIELDS_TEST_SHARED_LIBS} ${FIELDS_SHARED_LIBS})
-           target_link_libraries(${t_file} ${${COMPONENT}_SHARED_LIB} ${FIELDS_SHARED_LIBS} ${HDF5_LIBRARIES})
+           add_dependencies(${t_file} ${${COMPONENT}_SHARED_LIBS})
+           target_link_libraries(${t_file} ${${COMPONENT}_SHARED_LIBS})
         endif()
     
         # Supply the *_DLL_IMPORTS directive to preprocessor
