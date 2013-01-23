@@ -7,7 +7,7 @@
 
 #
 # Help targets
-# $$TODO: format output to 80 chars
+
 
 add_custom_target(help
     COMMAND ${CMAKE_COMMAND} -E echo "    "     
@@ -56,7 +56,6 @@ add_custom_target(help-targets
         COMMAND ${CMAKE_COMMAND} -E echo "    bin" 
         COMMAND ${CMAKE_COMMAND} -E echo "    check"
         COMMAND ${CMAKE_COMMAND} -E echo "    coverage"
-        COMMAND ${CMAKE_COMMAND} -E echo "    doc"
 
         COMMAND ${CMAKE_COMMAND} -E echo ""
         COMMAND ${CMAKE_COMMAND} -E echo ""
@@ -117,26 +116,16 @@ add_custom_target(help-targets
         COMMAND ${CMAKE_COMMAND} -E echo "    " 
         COMMAND ${CMAKE_COMMAND} -E echo "        example: make fields_test-coverage"
         COMMAND ${CMAKE_COMMAND} -E echo "        example: make sheaves_test-coverage"
-        COMMAND ${CMAKE_COMMAND} -E echo "    "
-        COMMAND ${CMAKE_COMMAND} -E echo "doc:    "
-        COMMAND ${CMAKE_COMMAND} -E echo "    Constructs system-scope C++ library documentation, placing the output in CMAKE_BINARY_DIR/documentation"
-        COMMAND ${CMAKE_COMMAND} -E echo "    "
-        COMMAND ${CMAKE_COMMAND} -E echo "    Aliases: none."
-        COMMAND ${CMAKE_COMMAND} -E echo "    "
-        COMMAND ${CMAKE_COMMAND} -E echo "    Related commands:"                    
-        COMMAND ${CMAKE_COMMAND} -E echo "        java-docs -- Builds the system bindings and constructs java documentation for same."
-        COMMAND ${CMAKE_COMMAND} -E echo "                     Does not construct the C++ library docs."
-        COMMAND ${CMAKE_COMMAND} -E echo "        alldocs   -- Contructs C++ and java documentation    "
         COMMAND ${CMAKE_COMMAND} -E echo ""
-        COMMAND ${CMAKE_COMMAND} -E echo "[test].t.log:"
-        COMMAND ${CMAKE_COMMAND} -E echo "    Builds and runs [test].t. Redirects output from run into bin/[test].t.log"
-        COMMAND ${CMAKE_COMMAND} -E echo "    "
-        COMMAND ${CMAKE_COMMAND} -E echo "    Aliases: none."
-        COMMAND ${CMAKE_COMMAND} -E echo "    "
-        COMMAND ${CMAKE_COMMAND} -E echo "    Related commands: check"
-        COMMAND ${CMAKE_COMMAND} -E echo "    "
-        COMMAND ${CMAKE_COMMAND} -E echo "       example: make poset.t.log"
-        COMMAND ${CMAKE_COMMAND} -E echo "    "
-        COMMAND ${CMAKE_COMMAND} -E echo "    " 
+#        COMMAND ${CMAKE_COMMAND} -E echo "[test].t.log:"
+#        COMMAND ${CMAKE_COMMAND} -E echo "    Builds and runs [test].t. Redirects output from run into bin/[test].t.log"
+#        COMMAND ${CMAKE_COMMAND} -E echo "    "
+#        COMMAND ${CMAKE_COMMAND} -E echo "    Aliases: none."
+#        COMMAND ${CMAKE_COMMAND} -E echo "    "
+#        COMMAND ${CMAKE_COMMAND} -E echo "    Related commands: check"
+#        COMMAND ${CMAKE_COMMAND} -E echo "    "
+#        COMMAND ${CMAKE_COMMAND} -E echo "       example: make poset.t.log"
+#        COMMAND ${CMAKE_COMMAND} -E echo "    "
+#        COMMAND ${CMAKE_COMMAND} -E echo "    " 
  
 )
