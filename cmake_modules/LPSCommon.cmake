@@ -789,7 +789,7 @@ endfunction(add_linux_test_targets)
 # Create a target for each example.
 #
 function(add_example_targets)
-
+# $$TODO: Decompose into OS specific routines as test_tagets above.
     if(${USE_VTK})
         link_directories(${VTK_LIB_DIR})
     endif()
@@ -799,7 +799,7 @@ function(add_example_targets)
         if(LINUX64GNU OR LINUX64INTEL)
             link_directories(${${COMPONENT}_OUTPUT_DIR} ${SHEAVES_LIB_OUTPUT_DIR} ${HDF5_LIBRARY_DIRS} ${TETGEN_DIR})
         else()
-            link_directories(${${COMPONENT}_OUTPUT_DIR}/${CMAKE_BUILD_TYPE} ${SHEAVES_LIB_OUTPUT_DIR} ${HDF5_LIBRARY_DIRS} ${TETGEN_DIR})
+            link_directories(${${COMPONENT}_OUTPUT_DIR}/${CMAKE_BUILD_TYPE} ${SHEAVES_LIB_OUTPUT_DIR})
         endif()    
         # Let the user know what's being configured
         status_message("Configuring example executables for ${PROJECT_NAME}")   
@@ -816,11 +816,11 @@ function(add_example_targets)
     
         # Make sure the library is up to date
         if(WIN64MSVC OR WIN64INTEL)
-            add_dependencies(${t_file} ${FIELDS_IMPORT_LIB})
+            add_dependencies(${t_file} ${${COMPONENT}_IMPORT_LIBS})
             if(${USE_VTK})
-                target_link_libraries(${t_file} ${FIELDS_IMPORT_LIB} ${HDF5_LIBRARIES} ${VTK_LIBS})
+                target_link_libraries(${t_file} ${${COMPONENT}_IMPORT_LIBS} ${VTK_LIBS})
             else()
-                target_link_libraries(${t_file} ${FIELDS_IMPORT_LIB} ${HDF5_LIBRARIES})
+                target_link_libraries(${t_file} ${${COMPONENT}_IMPORT_LIBS})
             endif()
             # Insert the unit tests into the VS folder "unit_tests"
             set_target_properties(${t_file} PROPERTIES FOLDER "Example Targets")
