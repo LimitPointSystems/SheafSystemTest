@@ -12,21 +12,18 @@
 #include "sheaf_dll_spec.h"
 #endif
 
-#ifndef FIBER_BUNDLE_H
-#include "fiber_bundle.h"
+#ifndef SHEAF_H
+#include "sheaf.h" // for size_type
 #endif
 
 #ifndef PLOT_H
 #include "plot.h"
 #endif
 
-#ifndef SEC_AT0_H
-#include "sec_at0.h"
-#endif
-
 namespace fiber_bundle
 {
   class fiber_bundles_namespace;
+  class sec_rep_space;
   class point_block_1d;
   class point_block_2d;
   class point_block_3d;
@@ -35,11 +32,9 @@ namespace fiber_bundle
   class structured_block_3d;
   class unstructured_block;
   class zone_nodes_block;
-
+  
   using namespace sheaf;
 
-
- 
   ///
   /// Creates a block of type T with index bounds given 
   /// by xsizes and index space dimension given by xdi.
