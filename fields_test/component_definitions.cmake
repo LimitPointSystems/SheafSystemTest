@@ -78,7 +78,11 @@ function(add_library_targets)
     include_directories(${${COMPONENT}_IPATHS})
         
     if(${USE_VTK})
-        link_directories(${VTK_LIB_DIR})
+        if(EXISTS ${VTK_LIB_DIR})
+            link_directories(${VTK_LIB_DIR})
+        else()
+            link_directories(${INSTALLED_VTK_LIB_DIR})
+        endif()
     endif()
     
     if(WIN64INTEL OR WIN64MSVC)

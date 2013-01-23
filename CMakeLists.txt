@@ -11,10 +11,7 @@
 # It does NOT stop cmake from setting all the cache variables associated with those same
 # configurations however.
 
-#set(CMAKE_CONFIGURATION_TYPES Debug-contracts Debug-no-contracts Release-contracts Release-no-contracts CACHE
-#    STRING "Supported configuration types"
-#    FORCE)
-
+#Debug-contracts is the only configuration type we are interested in for testing.
 set(CMAKE_CONFIGURATION_TYPES Debug-contracts CACHE
     STRING "Supported configuration types"
     FORCE)
@@ -90,22 +87,9 @@ if(ENABLE_COVERAGE)
 endif()
 
 #
-# Add the documentation targets (doc, docclean)
-# Doc targets are system level and system scope.
-# currently there is no notion of building a single
-# component's documentation.
-#
-#add_doc_targets()
-
-#
 # Add files to the clean target
 #
 add_clean_files()
-
-#
-# Target to generate emacs tags
-#
-add_tags_target()
 
 #
 # Add the system bin target.

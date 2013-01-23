@@ -77,10 +77,8 @@ check_cxx_includes()
 function(add_library_targets)
  
     if(WIN64INTEL OR WIN64MSVC)
-        showincs()
         # Tell the linker where to look for this project's libraries.
         link_directories(${${COMPONENT}_OUTPUT_DIR})
-       
         # Create the DLL.
         add_library(${${COMPONENT}_DYNAMIC_LIB} SHARED ${${COMPONENT}_SRCS})
         target_link_libraries(${${COMPONENT}_DYNAMIC_LIB} ${SHEAVES_IMPORT_LIBS})
