@@ -640,6 +640,7 @@ function(add_win32_test_targets)
             # Unfortunately, Windows uses the semicolon as a path delimiter, but the semicolon has special meaning to Cmake as well. Escape the semicolons in the PATH so cmake
             # doesn't see them as list item separators.
             string(REPLACE ";" "\\;" TESTPATH "${TESTPATH}")
+			file(TO_NATIVE_PATH "${TESTPATH}" TESTPATH)
             set_tests_properties(${t_file} PROPERTIES ENVIRONMENT "${TESTPATH}")
             # Insert the unit tests into the VS folder "unit test targets"
             set_target_properties(${t_file} PROPERTIES FOLDER "Unit Test Targets/Executables")
