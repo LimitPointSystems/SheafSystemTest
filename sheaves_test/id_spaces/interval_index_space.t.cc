@@ -35,7 +35,7 @@ int main( int argc, char* argv[])
     make_id_space(lid_spaces,
 		  lname,
 		  "interval_index_space_state",
-		  interval_index_space_state::make_arg_list(3)).index();
+		  interval_index_space_state::make_arg_list(true)).index();
 
   interval_index_space_handle lhandle(lid_spaces, lspace_id);
   push_back(lhandle, 0);

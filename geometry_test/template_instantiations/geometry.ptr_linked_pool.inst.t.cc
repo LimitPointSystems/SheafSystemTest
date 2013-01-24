@@ -44,7 +44,7 @@ test_ptr_linked_pool()
 
   // Default case.
  
-  ptr_linked_pool<T> lpool0();
+  ptr_linked_pool<T> lpool0;
 
   // Specify capacity (small number for testing).
 
