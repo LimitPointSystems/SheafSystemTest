@@ -126,6 +126,10 @@ include(${CMAKE_MODULE_PATH}/target_declarations.cmake)
 #
 include(${CMAKE_MODULE_PATH}/find_prerequisites.cmake)
 
+# If SHEAFSYSTEM_HOME contains white space, escape it.
+#string(REGEX REPLACE " " "\\\\ "  SHEAFSYSTEM_HOME "${SHEAFSYSTEM_HOME}")
+file(TO_NATIVE_PATH "${SHEAFSYSTEM_HOME}" SHEAFSYSTEM_HOME)
+
 #
 # Enable coverage results
 #

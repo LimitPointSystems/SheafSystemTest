@@ -68,10 +68,8 @@
 # - The version is checked against what is passed in from CMakeLists.txt.
 #=============================================================================
 
-
 include(SelectLibraryConfigurations)
 include(FindPackageHandleStandardArgs)
-
 
 if(LINUX64GNU OR LINUX64INTEL)
     file(TO_CMAKE_PATH $ENV{HOME} HOME_DIR)
@@ -81,9 +79,6 @@ else()
     set(HDF5_ROOT "${HOME_DIR}/LPS/prerequisites/hdf-static")
 endif()
 
-
-
-message(STATUS "HDF_ROOT is ${HDF5_ROOT}")
 # List of the valid HDF5 components
 set( HDF5_VALID_COMPONENTS 
     C
@@ -354,12 +349,10 @@ if(WIN32)
 else()
     set(HDF5_WORKING_DIRECTORY ".")
 endif()
-message(STATUS "${HDF5_DIFF_EXECUTABLE}")
 
 execute_process(COMMAND ${HDF5_DIFF_EXECUTABLE} "--version"
                     WORKING_DIRECTORY  ${HDF5_ROOT}/bin
                     OUTPUT_VARIABLE HDF5_VERSION )
-
                 
 # Remove trailing newline
 if(HDF5_VERSION)
@@ -384,6 +377,7 @@ if(VSWIN64)
 else()
     set(HDF5_ERROR_MESSAGE "Could not find HDF5. Try running cmake with the -DWITH_HDF=/path/to/hdf option.")
 endif()
+
 find_package_handle_standard_args( HDF5 HDF5_ERROR_MESSAGE
     HDF5_LIBRARIES 
     HDF5_INCLUDE_DIRS
