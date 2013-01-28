@@ -130,6 +130,15 @@ include(${CMAKE_MODULE_PATH}/find_prerequisites.cmake)
 #string(REGEX REPLACE " " "\\\\ "  SHEAFSYSTEM_HOME "${SHEAFSYSTEM_HOME}")
 file(TO_NATIVE_PATH "${SHEAFSYSTEM_HOME}" SHEAFSYSTEM_HOME)
 
+# When we are dealing with an install, the hdf and tetgen include files are
+# in the release include dir. If it's a build directory, then we need to know where
+# the prereqs are. The includes below are defind in SheafSystem-exports.cmake
+# If there's a RELEASE file in SHEAFSYSTEM_HOME, then we are dealing with a release.
+if(NOT EXISTS ${SHEAFSYSTEM_HOME}/RELEASE)
+    include_directories(${HDF_INCLUDE_DIR})
+    include_directories(${TETGEN_INCLUDE_DIR})
+endif()
+
 #
 # Enable coverage results
 #

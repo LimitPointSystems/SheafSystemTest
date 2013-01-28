@@ -722,9 +722,12 @@ function(add_linux_test_targets)
 
             add_dependencies(${t_file} ${${COMPONENT}_SHARED_LIBS})
 
-            #target_link_libraries(${t_file} ${${COMPONENT}_SHARED_LIBS} ${HDF5_LIBRARIES})
-            target_link_libraries(${t_file} ${${COMPONENT}_SHARED_LIBS} ${HDF5_LIBRARIES})
-
+            if(${USE_VTK})
+                target_link_libraries(${t_file} ${${COMPONENT}_SHARED_LIBS} ${VTK_LIBS})
+            else()
+                target_link_libraries(${t_file} ${${COMPONENT}_SHARED_LIBS})
+            endif()
+            
             # Add a test target for ${t_file}
             add_test(NAME ${t_file} WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} COMMAND $<TARGET_FILE:${t_file}>)
 
@@ -1011,7 +1014,7 @@ function(status_message txt)
 
 endfunction()
 
- # 
+# 
 # Convenience routine for diagnostic output during configure phase.
 # Displays list of included directories for module it is called in.
 #

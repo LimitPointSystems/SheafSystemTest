@@ -75,7 +75,7 @@ check_cxx_includes()
 # Create the library targets for this component.
 #
 function(add_library_targets)
- 
+
     if(WIN64INTEL OR WIN64MSVC)
         # Tell the linker where to look for this project's libraries.
         link_directories(${${COMPONENT}_OUTPUT_DIR})
