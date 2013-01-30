@@ -45,7 +45,7 @@ project(SheafSystemTest)
 #
 # Ensure that we have the required cmake version.
 #
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 2.8.6)
 
 #
 # Include variable definitions and functions
