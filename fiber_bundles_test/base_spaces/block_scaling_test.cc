@@ -49,7 +49,6 @@ pools_size(size_type& xhandle_ct, size_type& xhandle_deep_size)
     primary_index_space_state::handle_pool_ct() +
     primary_sum_index_space_state::handle_pool_ct() +
     singleton_index_space_state::handle_pool_ct() +
-    hub_index_space_handle::handle_pool_ct() +
     reserved_primary_index_space_state::handle_pool_ct() +
     section_space_schema_jims_index_space_state::handle_pool_ct() +
     array_index_space_state::iterator_pool_ct() +
@@ -61,7 +60,6 @@ pools_size(size_type& xhandle_ct, size_type& xhandle_deep_size)
     primary_sum_index_space_state::iterator_pool_ct() +
     reserved_primary_index_space_state::iterator_pool_ct() +
     singleton_index_space_state::iterator_pool_ct() +
-    hub_index_space_handle::iterator_pool_ct() +
     section_space_schema_jims_index_space_state::iterator_pool_ct();
 
   // The deep size of the static handles.
@@ -74,7 +72,6 @@ pools_size(size_type& xhandle_ct, size_type& xhandle_deep_size)
     primary_sum_index_space_state::handle_pool_deep_size() +
     singleton_index_space_state::handle_pool_deep_size() +
     reserved_primary_index_space_state::handle_pool_deep_size() +
-    hub_index_space_handle::handle_pool_deep_size() +
     section_space_schema_jims_index_space_state::handle_pool_deep_size() +
     array_index_space_state::iterator_pool_deep_size() +
     hash_index_space_state::iterator_pool_deep_size() +
@@ -85,7 +82,6 @@ pools_size(size_type& xhandle_ct, size_type& xhandle_deep_size)
     primary_sum_index_space_state::iterator_pool_deep_size() +
     reserved_primary_index_space_state::iterator_pool_deep_size() +
     singleton_index_space_state::iterator_pool_deep_size() +
-    hub_index_space_handle::iterator_pool_deep_size() +
     section_space_schema_jims_index_space_state::iterator_pool_deep_size();
 
   // Postconditions:

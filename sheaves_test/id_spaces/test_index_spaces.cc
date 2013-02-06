@@ -199,8 +199,8 @@ test_state_facet(index_space_family& xid_spaces, pod_index_type xspace_id,
   cout << "pod(lname, lhub_id)               = " << xid_spaces.pod(lname, lhub_id) << endl;
   cout << "hub_pod(xspace_id, xid)           = " << xid_spaces.hub_pod(xspace_id, xid) << endl;
   cout << "hub_pod(lname, xid)               = " << xid_spaces.hub_pod(lname, xid) << endl;
-  cout << "primary_sum_pod(xspace_id, xid)   = " << xid_spaces.primary_sum_pod(xspace_id, xid) << endl;
-  cout << "primary_sum_pod(lname, xid)       = " << xid_spaces.primary_sum_pod(lname, xid) << endl;
+  cout << "glued_hub_pod(xspace_id, xid)     = " << xid_spaces.glued_hub_pod(xspace_id, xid) << endl;
+  cout << "glued_hub_pod(lname, xid)         = " << xid_spaces.glued_hub_pod(lname, xid) << endl;
   cout << "is_persistent(xspace_id)          = " << xid_spaces.is_persistent(xspace_id) << endl;
   cout << "is_persistent(lname)              = " << xid_spaces.is_persistent(lname) << endl;
 

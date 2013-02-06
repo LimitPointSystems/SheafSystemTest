@@ -6,14 +6,12 @@
 //
 
 /// @example primary_sum_index_space.t.cc
-/// Test driver for primary_sum id spaces.
+/// Test driver for sum id spaces.
 
 #include "assert_contract.h"
 #include "arg_list.h"
 #include "error_message.h"
 #include "index_space_family.h"
-#include "primary_sum_index_space_handle.h"
-#include "primary_sum_index_space_iterator.h"
 #include "primary_sum_index_space_state.h"
 #include "std_iostream.h"
 #include "test_index_spaces.impl.h"
