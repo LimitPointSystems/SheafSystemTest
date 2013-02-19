@@ -21,6 +21,8 @@
 #include "test_utils.h"
 
 using namespace fiber_bundle; // Workaround for MS C++ bug.
+using namespace fiber_bundle::sec_e3_algebra;
+using namespace fiber_bundle::sec_at0_algebra;
 
 //==============================================================================
 //==============================================================================

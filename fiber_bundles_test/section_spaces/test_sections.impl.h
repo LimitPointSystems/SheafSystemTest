@@ -82,6 +82,38 @@
 #include "sec_e3.h"
 #endif
 
+#ifndef SEC_JCB_E13_H
+#include "sec_jcb_e13.h"
+#endif
+
+#ifndef SEC_JCB_E23_H
+#include "sec_jcb_e23.h"
+#endif
+
+#ifndef SEC_JCB_E33_H
+#include "sec_jcb_e33.h"
+#endif
+
+#ifndef SEC_JCB_E13_H
+#include "sec_jcb_e13.h"
+#endif
+
+#ifndef SEC_JCB_E13_H
+#include "sec_jcb_e13.h"
+#endif
+
+#ifndef SEC_MET_E1_H
+#include "sec_met_e1.h"
+#endif
+
+#ifndef SEC_MET_E2_H
+#include "sec_met_e2.h"
+#endif
+
+#ifndef SEC_MET_E3_H
+#include "sec_met_e3.h"
+#endif
+
 #ifndef SEC_ST2_E2_H
 #include "sec_st2_e2.h"
 #endif
@@ -213,6 +245,8 @@ test_sec_hook_product(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace fiber_bundle::sec_atp_algebra;
+
   const string& lname_0 = S0::static_class_name();
   const string& lname_1 = S1::static_class_name();
   const string& lname_r = SR::static_class_name();
@@ -281,6 +315,8 @@ test_sec_star_operator(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace fiber_bundle::sec_atp_algebra;
+
   const string& lname_0 = S0::static_class_name();
   const string& lname_r = SR::static_class_name();
   const string lop_string = "*" + lname_0 + " = " + lname_r;
@@ -340,6 +376,8 @@ test_sec_wedge_product(fiber_bundles_namespace& xns,
   require(unexecutable("S0, S1, SR are compatible"));
 
   // Body:
+
+  using namespace fiber_bundle::sec_atp_algebra;
 
   const string& lname_0 = S0::static_class_name();
   const string& lname_1 = S1::static_class_name();
@@ -413,6 +451,8 @@ test_sec_ed_facet(fiber_bundles_namespace& xns,
   require(xns.contains_poset_member(xbase_path));
 
   // Body:
+
+  using namespace fiber_bundle::sec_ed_algebra;
 
   typedef S vector_type;
   typedef sec_at0 scalar_type;
@@ -507,6 +547,8 @@ test_sec_jcb_facet(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace fiber_bundle::sec_jcb_algebra;
+
   typedef SJAC jacobian_type;
   typedef SVECTOR vector_type;
   typedef SCOVECTOR covector_type;
@@ -593,6 +635,8 @@ test_sec_met_facet(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace fiber_bundle::sec_met_algebra;
+
   typedef S metric_type;
   typedef typename S::vector_space_type vector_type;
 
@@ -672,6 +716,8 @@ test_sec_tp_facet(fiber_bundles_namespace& xns,
   require(xns.contains_poset_member(xbase_path));
 
   // Body:
+
+  using namespace fiber_bundle::sec_tp_algebra;
 
   typedef S sec_tp_type;
   typedef typename S::vector_space_type sec_vd_type;
@@ -753,6 +799,8 @@ test_sec_tensor_product(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace fiber_bundle::sec_tp_algebra;
+
   const string& lname_0 = S0::static_class_name();
   const string& lname_1 = S1::static_class_name();
   const string& lname_r = SR::static_class_name();
@@ -820,6 +868,8 @@ test_sec_contract(fiber_bundles_namespace& xns,
   require(unexecutable("S0, SR are compatible"));
 
   // Body:
+
+  using namespace fiber_bundle::sec_tp_algebra;
 
   const string& lname_0 = S0::static_class_name();
   print_header("Testing contract for: " + lname_0);
@@ -890,6 +940,8 @@ test_sec_vd_facet(fiber_bundles_namespace& xns,
   require(xns.contains_poset_member(xbase_path));
 
   // Body:
+
+  using namespace fiber_bundle::sec_vd_algebra;
 
   typedef S sec_vd_type;
   string section_name = S::static_class_name();

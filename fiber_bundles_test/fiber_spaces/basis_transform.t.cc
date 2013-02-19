@@ -13,6 +13,7 @@
 #include "st2_e3.h"
 
 using namespace fiber_bundle;
+using namespace fiber_bundle::vd_algebra;
 
 void
 print_ehat(const e3_lite& ehatx,

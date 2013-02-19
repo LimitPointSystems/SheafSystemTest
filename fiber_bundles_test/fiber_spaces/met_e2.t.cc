@@ -20,6 +20,7 @@
 #include "test_fibers.impl.h"
 
 using namespace fiber_bundle;
+using namespace fiber_bundle::met_algebra;
 
 namespace
 {

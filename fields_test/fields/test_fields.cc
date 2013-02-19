@@ -25,6 +25,8 @@
 #include "test_utils.h"
 
 using namespace fields; // Workaround for MS C++ bug.
+using namespace fields::field_e3_algebra;
+using namespace fields::field_at0_algebra;
 
 //==============================================================================
 //==============================================================================

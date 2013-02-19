@@ -20,7 +20,6 @@
 
 using namespace fields;
 
-
 int
 main(int xargc, char *xargv[])
 {
