@@ -62,11 +62,11 @@ namespace
   {
   
     arg_list largs = at0_space::make_arg_list();
-  
-    at0_space* lfiber_space = 
-      new at0_space(xns, "at0_space_test", largs, xfiber_space_schema_path, true);
 
-    poset_path result = lfiber_space->path(true);
+    at0_space& lfiber_space = 
+      xns.new_fiber_space<at0>("at0_space_test", largs, xfiber_space_schema_path, true);
+
+    poset_path result = lfiber_space.path(true);
 
     return result;
   }
@@ -120,18 +120,17 @@ namespace
 
     arg_list largs = sec_at0_space::make_arg_list();
 
-    sec_at0_space* lsection_space =
-      new sec_at0_space(xns,
-			"shallow_instantiation_test_sec_at0",
-			largs, xsection_schema_path,
-			true);
+    sec_at0_space& lsection_space =
+      xns.new_section_space<sec_at0>("shallow_instantiation_test_sec_at0",
+				     largs, xsection_schema_path,
+				     true);
 
-    lsection_space->get_read_access();
+    lsection_space.get_read_access();
     
-    poset_path result = lsection_space->path(false);
-    cout << *lsection_space << endl;
+    poset_path result = lsection_space.path(false);
+    cout << lsection_space << endl;
 
-    lsection_space->release_access();
+    lsection_space.release_access();
 
     return result;
   }  

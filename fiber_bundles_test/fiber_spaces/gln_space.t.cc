@@ -38,13 +38,13 @@ namespace
 
     arg_list lscalar_args = at0_space::make_arg_list();
     poset_path lscalar_schema_path = at0_space::standard_schema_path();
-    at0_space* lscalar_space = new at0_space(xns, 
-					     "at0_space_test", 
-					     lscalar_args,
-					     lscalar_schema_path,
-					     true);
 
-    poset_path lscalar_path = lscalar_space->path();
+    at0_space& lscalar_space =
+      xns.new_fiber_space<at0>("at0_space_test", 
+			      lscalar_args,
+			      lscalar_schema_path,
+			      true);
+    poset_path lscalar_path = lscalar_space.path();
 
     //cout << *lscalar_space << endl;  
 
@@ -53,8 +53,8 @@ namespace
     string lvector_dof_specs = "x DOUBLE false y DOUBLE false";
 
     schema_poset_member lvector_schema(xns,
-				       "vd_space_test_schema",
-				       vd_space::standard_schema_path(),
+				       "at1_space_test_schema",
+				       at1_space::standard_schema_path(),
 				       lvector_dof_specs,
 				       true,
 				       true);
@@ -62,15 +62,13 @@ namespace
     poset_path lvector_schema_path = lvector_schema.path();
     lvector_schema.detach_from_state();
 
-    arg_list lvector_args = vd_space::make_arg_list(lscalar_path);
+    arg_list lvector_args = at1_space::make_arg_list(lscalar_path);
   
-    vd_space* lvector_space = new vd_space(xns, 
-					   "vd_space_test", 
-					   lvector_args, 
-					   lvector_schema_path, 
-					   true);
-  
-    poset_path lvector_path = lvector_space->path();
+    at1_space& lvector_space = xns.new_fiber_space<at1>("at1_space_test", 
+							lvector_args, 
+							lvector_schema_path);
+
+    poset_path lvector_path = lvector_space.path();
 
     //cout << *lvector_space << endl;
 
@@ -98,12 +96,11 @@ namespace
 
     arg_list lgln_args =
       gln_space::make_arg_list(2, lscalar_path, lvector_path);
-  
-    gln_space* lgln_space = new gln_space(xns, 
-					  "gln_space_test", 
-					  lgln_args, 
-					  lgln_schema_path, 
-					  true);
+
+    gln_space& lgln_space =
+      xns.new_fiber_space<gln>("gln_space_test", 
+			       lgln_args, 
+			       lgln_schema_path);
   }
   
 

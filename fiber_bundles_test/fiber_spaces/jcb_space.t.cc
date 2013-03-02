@@ -36,49 +36,51 @@ namespace
 
     // Make a scalar space, use standard schema.
  
-    poset_path lscalar_schema_path = at0_space::standard_schema_path();
     arg_list lscalar_args = at0_space::make_arg_list();
-    at0_space* lscalar_space = new at0_space(xns, 
-					     "jcb_space_test_scalar_space", 
-					     lscalar_args,
-					     lscalar_schema_path,
-					     true);
+    poset_path lscalar_schema_path = at0_space::standard_schema_path();
 
-    poset_path lscalar_path = lscalar_space->path();
+    at0_space& lscalar_space =
+      xns.new_fiber_space<at0>("at0_space_test", 
+			       lscalar_args,
+			       lscalar_schema_path,
+			       true);
+    poset_path lscalar_path = lscalar_space.path();
 
     // Make a domain vector space.
  
     poset_path ldomain_schema_path = e1::standard_schema_path();
     arg_list ldomain_args = at1_space::make_arg_list(lscalar_path);
-    at1_space* ldomain_space = new at1_space(xns, 
-					     "jcb_space_test_domain_space", 
-					     ldomain_args,
-					     ldomain_schema_path,
-					     true);
 
-    poset_path ldomain_path = ldomain_space->path();
+    at1_space& ldomain_space =
+      xns.new_fiber_space<at1>("jcb_space_test_domain_space", 
+			       ldomain_args,
+			       ldomain_schema_path,
+			       true);
+
+    poset_path ldomain_path = ldomain_space.path();
 
     // Make a range vector space.
  
     poset_path lrange_schema_path = e3::standard_schema_path();
     arg_list lrange_args = at1_space::make_arg_list(lscalar_path);
-    at1_space* lrange_space = new at1_space(xns, 
-					    "jcb_space_test_range_space", 
-					    lrange_args,
-					    lrange_schema_path,
-					    true);
 
-    poset_path lrange_path = lrange_space->path();
+    at1_space& lrange_space =
+      xns.new_fiber_space<at1>("jcb_space_test_range_space", 
+			       lrange_args,
+			       lrange_schema_path,
+			       true);
+
+    poset_path lrange_path = lrange_space.path();
 
     // Make a jcb space; use jcb_e13 schema.
 
     arg_list ljcb_args = jcb_space::make_arg_list(ldomain_path, lrange_path);
-  
-    jcb_space* ljcb_space = new jcb_space(xns, 
-					  "jcb_space_test", 
-					  ljcb_args, 
-					  jcb_e13::standard_schema_path(), 
-					  true);
+
+    jcb_space& ljcb_space =
+      xns.new_fiber_space<jcb>("jcb_space_test", 
+			       ljcb_args, 
+			       jcb_e13::standard_schema_path(), 
+			       true);
   }
 
   jcb_space& test_deep_instantiation(fiber_bundles_namespace& xns)

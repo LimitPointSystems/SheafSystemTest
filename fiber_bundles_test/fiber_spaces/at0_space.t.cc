@@ -38,13 +38,13 @@ main( int xargc, char* xargv[])
 
   // Make a scalar space, use standard schema.
 
-//   arg_list lscalar_args = at0_space::make_arg_list();
-//   poset_path lscalar_schema_path = at0_space::standard_schema_path();
-//   at0_space* lscalar_space = new at0_space(lns, 
-// 					   "at0_space_test", 
-// 					   lscalar_args,
-// 					   lscalar_schema_path,
-// 					   true);
+  arg_list lscalar_args = at0_space::make_arg_list();
+  poset_path lscalar_schema_path = at0_space::standard_schema_path();
+  at0_space& lscalar_space =
+    lns.new_fiber_space<at0>("at0_space_test", 
+			     lscalar_args,
+			     lscalar_schema_path,
+			     true);
 
   at0_space& lscalar_space2 =
     lns.new_scalar_space<at0>("deep_instantiation_test_at0");

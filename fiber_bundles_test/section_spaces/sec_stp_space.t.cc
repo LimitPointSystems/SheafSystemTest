@@ -101,19 +101,20 @@ namespace
 
   poset_path make_scalar_fiber_space(fiber_bundles_namespace& xns)
   {
-    // Make the scalar fiber space, use standard schema.
+    // Make a scalar space, use standard schema.
 
     arg_list lscalar_args = at0_space::make_arg_list();
     poset_path lscalar_schema_path = at0_space::standard_schema_path();
-    at0_space* lscalar_space = new at0_space(xns, 
-					     "shallow_instantiation_test_at0_space", 
-					     lscalar_args,
-					     lscalar_schema_path,
-					     true);
 
-    poset_path lscalar_path = lscalar_space->path();
+    at0_space& lscalar_space =
+      xns.new_fiber_space<at0>("shallow_instantiation_test_at0_space", 
+			       lscalar_args,
+			       lscalar_schema_path,
+			       true);
 
-    cout << *lscalar_space << endl;
+    poset_path lscalar_path = lscalar_space.path();
+
+    cout << lscalar_space << endl;
 
     return lscalar_path;
   }
@@ -122,19 +123,19 @@ namespace
 				     const poset_path& xvector_space_schema_path,
 				     const poset_path& xscalar_space_path)
   {
-    // Make the vector fiber space.
+    // Make the vector space.
 
     arg_list lvector_args = at1_space::make_arg_list(xscalar_space_path);
-  
-    at1_space* lvector_space = new at1_space(xns, 
-					     "shallow_instantiation_test_at1_space", 
-					     lvector_args, 
-					     xvector_space_schema_path, 
-					     true);
-  
-    cout << *lvector_space << endl;
 
-    poset_path result = lvector_space->path(true);
+    at1_space& lvector_space =
+      xns.new_fiber_space<at1>("shallow_instantiation_test_at1_space", 
+			       lvector_args, 
+			       xvector_space_schema_path, 
+			       true);
+  
+    cout << lvector_space << endl;
+
+    poset_path result = lvector_space.path(true);
 
     return result;
   }
@@ -146,16 +147,16 @@ namespace
     // Make the tensor fiber space.
 
     arg_list ltensor_args = stp_space::make_arg_list(2, xvector_space_path);
-  
-    stp_space* ltensor_space = new stp_space(xns, 
-					     "shallow_instantiation_test_stp_space", 
-					     ltensor_args, 
-					     xtensor_space_schema_path, 
-					     true);
-  
-    poset_path result = ltensor_space->path(true);
 
-    cout << *ltensor_space << endl;
+    stp_space& ltensor_space =
+      xns.new_fiber_space<stp>("shallow_instantiation_test_stp_space", 
+			       ltensor_args, 
+			       xtensor_space_schema_path, 
+			       true);
+  
+    poset_path result = ltensor_space.path(true);
+
+    cout << ltensor_space << endl;
 
     return result;
   }
@@ -293,18 +294,17 @@ namespace
 
     arg_list largs = sec_at0_space::make_arg_list();
 
-    sec_at0_space* lsection_space =
-      new sec_at0_space(xns,
-			"shallow_instantiation_test_sec_at0_space",
-			largs, xsection_schema_path,
-			true);
+    sec_at0_space& lsection_space =
+      xns.new_section_space<sec_at0>("shallow_instantiation_test_sec_at0_space",
+				     largs, xsection_schema_path,
+				     true);
 
-    lsection_space->get_read_access();
+    lsection_space.get_read_access();
     
-    poset_path result = lsection_space->path(false);
-    cout << *lsection_space << endl;
+    poset_path result = lsection_space.path(false);
+    cout << lsection_space << endl;
 
-    lsection_space->release_access();
+    lsection_space.release_access();
 
     return result;
   }  
@@ -320,19 +320,18 @@ namespace
 
     // Make the vector section space.
 
-    sec_at1_space* lsection_space =
-      new sec_at1_space(xns,
-		       "shallow_instantiation_test_sec_at1_space",
-		       lsection_space_args,
-		       xvector_schema_path,
-		       true);
+    sec_at1_space& lsection_space =
+      xns.new_section_space<sec_at1>("shallow_instantiation_test_sec_at1_space",
+				     lsection_space_args,
+				     xvector_schema_path,
+				     true);
 
-    lsection_space->get_read_access();
+    lsection_space.get_read_access();
     
-    poset_path result = lsection_space->path(false);
-    cout << *lsection_space << endl;
+    poset_path result = lsection_space.path(false);
+    cout << lsection_space << endl;
 
-    lsection_space->release_access();
+    lsection_space.release_access();
 
     return result;
   }
@@ -348,19 +347,18 @@ namespace
 
     // Make the tensor section space.
 
-    sec_stp_space* lsection_space =
-      new sec_stp_space(xns,
-			"shallow_instantiation_test_sec_stp_space",
-			lsection_space_args,
-			xtensor_schema_path,
-			true);
+    sec_stp_space& lsection_space =
+      xns.new_section_space<sec_stp>("shallow_instantiation_test_sec_stp_space",
+				     lsection_space_args,
+				     xtensor_schema_path,
+				     true);
 
-    lsection_space->get_read_access();
+    lsection_space.get_read_access();
     
-    poset_path result = lsection_space->path(false);
-    cout << *lsection_space << endl;
+    poset_path result = lsection_space.path(false);
+    cout << lsection_space << endl;
 
-    lsection_space->release_access();
+    lsection_space.release_access();
 
     return result;
   }

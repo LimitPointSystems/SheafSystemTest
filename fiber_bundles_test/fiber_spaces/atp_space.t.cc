@@ -12,6 +12,7 @@
 #include "arg_list.h"
 #include "assert_contract.h"
 #include "at0_space.h"
+#include "at1_space.h"
 #include "at2_e2.h"
 #include "error_message.h"
 #include "fiber_bundles_namespace.h"
@@ -42,13 +43,13 @@ main(int xargc, char* xargv[])
 
   arg_list lscalar_args = at0_space::make_arg_list();
   poset_path lscalar_schema_path = at0_space::standard_schema_path();
-  at0_space* lscalar_space = new at0_space(lns, 
-					   "at0_space_test", 
-					   lscalar_args,
-					   lscalar_schema_path,
-					   true);
 
-  poset_path lscalar_path = lscalar_space->path();
+  at0_space& lscalar_space =
+    lns.new_fiber_space<at0>("at0_space_test", 
+			     lscalar_args,
+			     lscalar_schema_path,
+			     true);
+  poset_path lscalar_path = lscalar_space.path();
 
   //cout << *lscalar_space << endl;  
 
@@ -57,8 +58,8 @@ main(int xargc, char* xargv[])
   string lvector_dof_specs = "x DOUBLE false y DOUBLE false";
 
   schema_poset_member lvector_schema(lns,
-                              "vd_space_test_schema",
-                              vd_space::standard_schema_path(),
+                              "at1_space_test_schema",
+                              at1_space::standard_schema_path(),
                               lvector_dof_specs,
                               true,
                               true);
@@ -66,15 +67,14 @@ main(int xargc, char* xargv[])
   poset_path lvector_schema_path = lvector_schema.path();
   lvector_schema.detach_from_state();
 
-  arg_list lvector_args = vd_space::make_arg_list(lscalar_path);
+  arg_list lvector_args = at1_space::make_arg_list(lscalar_path);
   
-  vd_space* lvector_space = new vd_space(lns, 
-					 "vd_space_test", 
-					 lvector_args, 
-					 lvector_schema_path, 
-					 true);
-  
-  poset_path lvector_path = lvector_space->path();
+  at1_space& lvector_space = lns.new_fiber_space<at1>("at1_space_test", 
+						      lvector_args, 
+						      lvector_schema_path,
+						      true);
+
+  poset_path lvector_path = lvector_space.path();
 
   //cout << *lvector_space << endl;
 
@@ -98,11 +98,11 @@ main(int xargc, char* xargv[])
 
   arg_list ltensor_args = atp_space::make_arg_list(2, lvector_path);
   
-  vd_space* ltensor_space = new tp_space(lns, 
-					 "atp_space_test", 
-					 ltensor_args, 
-					 ltensor_schema_path, 
-					 true);
+  tp_space& ltensor_space =
+    lns.new_fiber_space<tp>("atp_space_test", 
+			     ltensor_args, 
+			     ltensor_schema_path,
+			     true);
   
   //cout << *ltensor_space << endl;
 
