@@ -258,16 +258,16 @@ test_fiber_bundles_namespace_poset_facet(fiber_bundles_namespace& xns,
   //============================================================================
 
   print_subheader("Testing S* member_poset(const scoped_index&, bool)");
-  S* lspace0 = xns.member_poset<S>(lindex, true);
-  cout << "lspace0 = " << lspace0 << endl;
+  S& lspace0 = xns.member_poset<S>(lindex, true);
+  cout << "lspace0 = " << &lspace0 << endl;
 
   print_subheader("Testing S* member_poset(const string&, bool)");
-  S* lspace1 = xns.member_poset<S>(lname, true);
-  cout << "lspace1 = " << lspace1 << endl;
+  S& lspace1 = xns.member_poset<S>(lname, true);
+  cout << "lspace1 = " << &lspace1 << endl;
 
   print_subheader("Testing S* member_poset(const poset_path& xpath, bool)");
-  S* lspace2 = xns.member_poset<S>(lpath, true);
-  cout << "lspace2 = " << lspace2 << endl;
+  S& lspace2 = xns.member_poset<S>(lpath, true);
+  cout << "lspace2 = " << &lspace2 << endl;
 
  //============================================================================
 

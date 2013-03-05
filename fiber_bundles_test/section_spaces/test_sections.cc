@@ -66,8 +66,8 @@ print_section_space(fiber_bundles_namespace& xns, const string& xname)
 
   // Body:
 
-  sec_rep_space* lspace = xns.member_poset<sec_rep_space>(xname, false);
-  cout << *lspace << endl;
+  sec_rep_space& lspace = xns.member_poset<sec_rep_space>(xname, false);
+  cout << lspace << endl;
 
   // Postconditions:
 

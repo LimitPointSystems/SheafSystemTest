@@ -53,9 +53,9 @@ test_fiber_bundles_namespace_poset_facet<fiber_bundle::sec_rep_descriptor_poset>
 
   typedef fiber_bundle::sec_rep_descriptor_poset P;
 
-  P* lposet = xns.member_poset<P>(lname);
+  P& lposet = xns.member_poset<P>(lname);
 
-  lresult &= test_fiber_bundles_namespace_poset_facet(xns, *lposet);
+  lresult &= test_fiber_bundles_namespace_poset_facet(xns, lposet);
 
   print_footer("End testing " + lname);
 
@@ -98,9 +98,9 @@ test_fiber_bundles_namespace_poset_facet
     xns.new_scalar_section_space_schema<fiber_bundle::sec_at0>
       ("binary_sss_schema", largs);
 
-  P* lposet = xns.member_poset<P>(lschema_path, true);
+  P& lposet = xns.member_poset<P>(lschema_path, true);
 
-  lresult &= test_fiber_bundles_namespace_poset_facet<P>(xns, *lposet);
+  lresult &= test_fiber_bundles_namespace_poset_facet<P>(xns, lposet);
 
   print_footer("End testing " + lname);
 
