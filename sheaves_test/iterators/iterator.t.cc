@@ -48,7 +48,7 @@ copy_std_triangle()
   test_namespace->get_read_access();
 
   refinable_triangle =
-    test_namespace->member_poset<refinable_poset>(string("cells"), true);
+    &test_namespace->member_poset<refinable_poset>(string("cells"), true);
 
   // Postconditions:
 

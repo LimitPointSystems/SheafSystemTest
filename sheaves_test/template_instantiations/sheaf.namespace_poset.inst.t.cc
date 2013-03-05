@@ -58,12 +58,12 @@ main(int xargc, char* xargv[])
   sheaves_namespace::make_triangle(&lns);
 
   // Get the poset with read access.
-  refinable_poset* lposet = lns.member_poset<refinable_poset>(string("cells"), true);
-  lposet->get_read_access();
+  refinable_poset& lposet = lns.member_poset<refinable_poset>(string("cells"), true);
+  lposet.get_read_access();
 
   //Test it.
 
-  ltest &= test_namespace_poset_facet<refinable_poset>(lns, *lposet);
+  ltest &= test_namespace_poset_facet<refinable_poset>(lns, lposet);
 
 
   //============================================================================

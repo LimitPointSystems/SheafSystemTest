@@ -266,18 +266,18 @@ void multiple_names_test(string xfilename)
 
   // cout << "After reading:" << endl << ns << endl;
   
-  poset_state_handle* psh = ns.member_poset(6);
+  poset_state_handle& psh = ns.member_poset(6);
 
-  psh->get_read_write_access();
+  psh.get_read_write_access();
 
   // Print the poset name to stdout.
 
-  cout << "poset name is: " << psh->name() << endl;
+  cout << "poset name is: " << psh.name() << endl;
   cout << endl;
 
   // Print the names for member 3 to stdout
 
-  subposet sp0(psh, 3);
+  subposet sp0(&psh, 3);
   sp0.all_names(names);
 
   cout << "For index 3, subposet name(s) are: " << " ";
@@ -293,7 +293,7 @@ void multiple_names_test(string xfilename)
 
   // Print the names for member 4 to stdout
 
-  subposet sp1(psh, 4);
+  subposet sp1(&psh, 4);
 
   sp1.all_names(names);
 
@@ -310,7 +310,7 @@ void multiple_names_test(string xfilename)
 
   // Print the names for member 5 to stdout.
 
-  subposet sp2(psh, 5);
+  subposet sp2(&psh, 5);
 
   sp2.all_names(names);
 

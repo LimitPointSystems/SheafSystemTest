@@ -173,10 +173,10 @@ namespace
     
     poset_path lschema_path = xns.new_scalar_section_space_schema<sec_at0>("", largs);
     
-    section_space_schema_poset* lsssp =
-      reinterpret_cast<section_space_schema_poset*>(xns.member_poset(lschema_path, true));
+    section_space_schema_poset& lsssp =
+      reinterpret_cast<section_space_schema_poset&>(xns.member_poset(lschema_path, true));
 
-    cout << *lsssp << endl;
+    cout << lsssp << endl;
 
     // Make the section space arguments.
 

@@ -2190,7 +2190,7 @@ test_namespace_poset_facet(namespace_poset& xns,
 
   print_subheader("Test contains_poset<T>(lpath, true);");
 
-  T* lptr = xns.member_poset<T>(lpath, true);
+  T* lptr = &xns.member_poset<T>(lpath, true);
   cout << "xns.member_poset<T>(lpath, true) = " << lptr << endl;
  
 
@@ -2228,21 +2228,21 @@ test_depth_first_itr_facet(namespace_poset& xns)
   {
      make_triangle_poset(xns, lposet_name);
   }
-  refinable_poset* lposet = xns.member_poset<refinable_poset>(lposet_name);
-  lposet->get_read_write_access();
-  const abstract_poset_member& lanchor = lposet->top();
+  refinable_poset& lposet = xns.member_poset<refinable_poset>(lposet_name);
+  lposet.get_read_write_access();
+  const abstract_poset_member& lanchor = lposet.top();
 
   //////////////////////////////////////////////////////////////////////////////
 
   subposet* lvertices;
-  if(!(lposet->includes_subposet("__vertices")))
+  if(!(lposet.includes_subposet("__vertices")))
   {
-    lvertices = new subposet(lposet);
+    lvertices = new subposet(&lposet);
     lvertices->put_name("__vertices", true, false);
   }
   else
   {
-    lvertices = new subposet(lposet, "__vertices");
+    lvertices = new subposet(&lposet, "__vertices");
   }
 
   //ITR<T> litr(lanchor, const string& xfilter_name);
@@ -2348,7 +2348,7 @@ test_depth_first_itr_facet(namespace_poset& xns)
   print_subheader("Testing depth_first_itr<T>::has_visited(",
                   "        const abstract_poset_member* xmbr) const");
 
-  total_poset_member lmbr(lposet, litr.index());
+  total_poset_member lmbr(&lposet, litr.index());
   cout << "lmbr.index() " << lmbr.index() << endl;
   cout << "lmbr.name() " << lmbr.name() << endl;
 
@@ -2379,7 +2379,7 @@ test_depth_first_itr_facet(namespace_poset& xns)
 
   // Cleanup:
 
-  lposet->release_access();
+  lposet.release_access();
 
 
   //============================================================================
@@ -2419,9 +2419,9 @@ test_filtered_depth_first_itr_facet(namespace_poset& xns)
   {
      make_triangle_poset(xns, lposet_name);
   }
-  refinable_poset* lposet = xns.member_poset<refinable_poset>(lposet_name);
-  lposet->get_read_access();
-  const abstract_poset_member& lanchor = lposet->top();
+  refinable_poset& lposet = xns.member_poset<refinable_poset>(lposet_name);
+  lposet.get_read_access();
+  const abstract_poset_member& lanchor = lposet.top();
 
   //============================================================================
 
@@ -2440,13 +2440,13 @@ test_filtered_depth_first_itr_facet(namespace_poset& xns)
   print_subheader("Testing filtered_depth_first_itr<T>(",
                   "        const abstract_poset_member&, const string& xfilter_name,)");
 
-  ITR<T> litr2(lanchor, lposet->whole().name(), sheaf::DOWN, sheaf::NOT_STRICT);
+  ITR<T> litr2(lanchor, lposet.whole().name(), sheaf::DOWN, sheaf::NOT_STRICT);
 
 
   print_subheader("Testing filtered_depth_first_itr<T>(",
                   "        const abstract_poset_member&, scoped_index xfilter_index,)");
 
-  ITR<T> litr3(lanchor, lposet->whole().index(), sheaf::DOWN, sheaf::NOT_STRICT);
+  ITR<T> litr3(lanchor, lposet.whole().index(), sheaf::DOWN, sheaf::NOT_STRICT);
 
   print_subheader("Testing filtered_depth_first_itr<T>(",
                   "        const filtered_depth_first_itr& xother)");
@@ -2531,19 +2531,19 @@ test_filtered_depth_first_itr_facet(namespace_poset& xns)
   print_subheader("Testing filtered_depth_first_itr<T>::put_filter(",
                   "        const string& xfilter_name)");
 
-  litr.put_filter(lposet->whole().name());
+  litr.put_filter(lposet.whole().name());
 
 
   print_subheader("Testing filtered_depth_first_itr<T>::put_filter(",
                   "        const scoped_index& xfilter_index)");
 
-  litr.put_filter(lposet->whole().index());
+  litr.put_filter(lposet.whole().index());
 
   //============================================================================
 
   // Cleanup:
 
-  lposet->release_access();
+  lposet.release_access();
 
   //============================================================================
 

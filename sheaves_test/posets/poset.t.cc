@@ -596,7 +596,7 @@ output_namespace_members(sheaves_namespace& xns)
   {
     if(itr.is_jim())
     {
-      ns_mbr = xns.member_poset(itr.index(), true);
+      ns_mbr = &xns.member_poset(itr.index(), true);
       cout << *ns_mbr << endl;
     }
 
