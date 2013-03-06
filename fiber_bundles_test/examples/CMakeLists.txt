@@ -49,7 +49,6 @@ collect_unit_test_sources()
 # Source for non-test executables.
 #
 set(EXAMPLE_SRCS
-    fiber_bundles_read.cc 
  )
 
 collect_example_sources()
