@@ -42,7 +42,6 @@ collect_unit_test_sources()
 # Source for example executables.
 #
 set(EXAMPLE_SRCS
-    sheaves_read.cc
  #   write_sheaves_namespace.cc
   )
 
