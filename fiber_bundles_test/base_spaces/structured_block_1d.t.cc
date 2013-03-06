@@ -59,15 +59,15 @@ main(int xargc, char* xargv[])
 
   lmesh->get_read_write_access();
 
-  index_space_handle& lzone_id_space0 = lblock0.get_zone_handle(false);
-  index_space_handle& lzone_id_space1 = lblock1.get_zone_handle(false);
+  index_space_handle& lzone_id_space0 = lblock0.get_zone_id_space(false);
+  index_space_handle& lzone_id_space1 = lblock1.get_zone_id_space(false);
 
   scoped_index ljoin_ids[2];
   ljoin_ids[0].put(lzone_id_space0, (size - 1));
   ljoin_ids[1].put(lzone_id_space1, 0);
 
-  lblock0.release_zone_handle(lzone_id_space0, false);
-  lblock1.release_zone_handle(lzone_id_space1, false);
+  lblock0.release_zone_id_space(lzone_id_space0, false);
+  lblock1.release_zone_id_space(lzone_id_space1, false);
   
   base_space_member ljoin(lmesh, ljoin_ids, 2, tern::TRUE, false);
   

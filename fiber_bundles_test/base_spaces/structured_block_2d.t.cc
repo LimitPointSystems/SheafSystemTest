@@ -51,11 +51,11 @@ main(int xargc, char* xargv[])
 
   lmesh->get_read_write_access();
 
-  index_space_handle& lzone_id_space0 = lblock0.get_zone_handle(false);
+  index_space_handle& lzone_id_space0 = lblock0.get_zone_id_space(false);
   const ij_product_structure& lzone_product0 =
     lzone_id_space0.product_structure<ij_product_structure>();
 
-  index_space_handle& lzone_id_space1 = lblock1.get_zone_handle(false);
+  index_space_handle& lzone_id_space1 = lblock1.get_zone_id_space(false);
   const ij_product_structure& lzone_product1 =
     lzone_id_space1.product_structure<ij_product_structure>();
 
@@ -78,8 +78,8 @@ main(int xargc, char* xargv[])
     lpart.detach_from_state();
   }
 
-  lblock0.release_zone_handle(lzone_id_space0, false);
-  lblock1.release_zone_handle(lzone_id_space1, false);
+  lblock0.release_zone_id_space(lzone_id_space0, false);
+  lblock1.release_zone_id_space(lzone_id_space1, false);
 
   // Create a jrm containing the last col of zones
   // in block 0 and the first col of zones in block 2.

@@ -85,7 +85,7 @@ int main( int argc, char* argv[])
     (make_id_space(lbase_family, "base_schema_jims",
 		   "array_index_space_state", largs));
 
-  index_space_handle& lbase_id_space = lbase_family.get_handle(lbase_members_id);
+  index_space_handle& lbase_id_space = lbase_family.get_id_space(lbase_members_id);
   for(pod_index_type i=0; i<lbase_ub/2; i++)
   {
     push_back(lbase_jims_id_space, lbase_id_space.hub_pod(i));
@@ -101,14 +101,14 @@ int main( int argc, char* argv[])
     (make_id_space(lfiber_family, "fiber_schema_jims",
 		   "array_index_space_state", largs));
 
-  index_space_iterator& lfiber_itr = lfiber_family.get_iterator(lfiber_members_id);
+  index_space_iterator& lfiber_itr = lfiber_family.get_id_space_iterator(lfiber_members_id);
   while(!lfiber_itr.is_done())
   {
     push_back(lfiber_jims_id_space, lfiber_itr.hub_pod());
     lfiber_itr.next();
   }
 
-  lfiber_family.release_iterator(lfiber_itr);
+  lfiber_family.release_id_space_iterator(lfiber_itr);
 
   // Create the section space schema jims id space.
 
@@ -147,10 +147,10 @@ int main( int argc, char* argv[])
 
   // Clean-up
 
-  lbase_family.release_handle(lbase_id_space);
-  lbase_family.release_handle(lbase_jims_id_space);
-  lfiber_family.release_handle(lfiber_jims_id_space);
-  lsection_family.release_handle(lsection_jims_id_space);
+  lbase_family.release_id_space(lbase_id_space);
+  lbase_family.release_id_space(lbase_jims_id_space);
+  lfiber_family.release_id_space(lfiber_jims_id_space);
+  lsection_family.release_id_space(lsection_jims_id_space);
   
   // Done.
 

@@ -37,7 +37,7 @@ create_connectivity(index_space_family& xid_spaces,
   size_type lconn_ct = 2*xseg_ct;
   block<pod_index_type> lconn(lconn_ct);
   lconn.set_ct(lconn_ct);
-  index_space_iterator& itr = xid_spaces.get_iterator(xvertex_space_id);
+  index_space_iterator& itr = xid_spaces.get_id_space_iterator(xvertex_space_id);
   for(int i = 0; !itr.is_done(); i+=2)
   {
     pod_index_type lid = itr.hub_pod();
@@ -48,7 +48,7 @@ create_connectivity(index_space_family& xid_spaces,
 
     itr.next();
   }
-  xid_spaces.release_iterator(itr);
+  xid_spaces.release_id_space_iterator(itr);
 
   // Create the id space interval.
 
@@ -83,7 +83,7 @@ create_adjacency(index_space_family& xid_spaces,
 
   ragged_array<pod_index_type> ladj(lids_per_space, lvertex_ct);
 
-  index_space_iterator& itr = xid_spaces.get_iterator(xzone_space_id);
+  index_space_iterator& itr = xid_spaces.get_id_space_iterator(xzone_space_id);
 
   for(ragged_array<pod_index_type>::index_type i = 0; !itr.is_done(); i++)
   {
@@ -102,7 +102,7 @@ create_adjacency(index_space_family& xid_spaces,
     itr.next();
   }
 
-  xid_spaces.release_iterator(itr);
+  xid_spaces.release_id_space_iterator(itr);
 
   // Create the id space interval.
 

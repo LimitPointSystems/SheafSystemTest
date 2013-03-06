@@ -528,7 +528,7 @@ subposet_iterator_test(sheaves_namespace& xns)
 
   // Iterate over the subposets in xns.
 
-  index_space_iterator& lsp_itr = xns.get_subposet_iterator();
+  index_space_iterator& lsp_itr = xns.get_subposet_id_space_iterator();
   scoped_index lsp_id = xns.subposet_id(false);
   while(!lsp_itr.is_done())
   {
@@ -559,7 +559,7 @@ subposet_iterator_test(sheaves_namespace& xns)
     lsp_itr.next();
   }
 
-  xns.release_subposet_iterator(lsp_itr);
+  xns.release_subposet_id_space_iterator(lsp_itr);
 
   // Detach so state won't be deleted when handle
   // goes out of scope.

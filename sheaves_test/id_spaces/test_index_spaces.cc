@@ -43,7 +43,7 @@ make_id_space(index_space_family& xid_spaces,
     xid_spaces.new_secondary_state(xname, xstate_class_name,
 				   xstate_args, true);
 
-  index_space_handle& result = xid_spaces.get_handle(lspace_id);
+  index_space_handle& result = xid_spaces.get_id_space(lspace_id);
 
   print_out_subheader("Creating new id space");
   cout << "index:        " << result.index() << endl;
@@ -104,7 +104,7 @@ check_id_spaces(index_space_family& xid_spaces,
 
     pod_index_type lspace_id = xbegin + i;
 
-    index_space_handle& lid_space = xid_spaces.get_handle(lspace_id);
+    index_space_handle& lid_space = xid_spaces.get_id_space(lspace_id);
     index_space_iterator& itr = lid_space.get_iterator();
     pod_index_type lprevious = -1;
     pod_index_type lcurrent;
@@ -141,7 +141,7 @@ check_id_spaces(index_space_family& xid_spaces,
       itr.next();
     }
     lid_space.release_iterator(itr);
-    xid_spaces.release_handle(lid_space);
+    xid_spaces.release_id_space(lid_space);
   }
   
   return result;
@@ -204,26 +204,26 @@ test_state_facet(index_space_family& xid_spaces, pod_index_type xspace_id,
   cout << "is_persistent(xspace_id)          = " << xid_spaces.is_persistent(xspace_id) << endl;
   cout << "is_persistent(lname)              = " << xid_spaces.is_persistent(lname) << endl;
 
-  index_space_handle& lhandle0 = xid_spaces.get_handle(xspace_id);
-  cout << "get_handle(xspace_id)             = " << &lhandle0 << endl;
-  cout << "release_handle(lhandle0)" << endl;
-  xid_spaces.release_handle(lhandle0);
+  index_space_handle& lhandle0 = xid_spaces.get_id_space(xspace_id);
+  cout << "get_id_space(xspace_id)           = " << &lhandle0 << endl;
+  cout << "release_id_space(lhandle0)" << endl;
+  xid_spaces.release_id_space(lhandle0);
 
-  index_space_handle& lhandle1 = xid_spaces.get_handle(lname);
-  cout << "get_handle(lname)                 = " << &lhandle1 << endl;
-  cout << "release_handle(lhandle1)" << endl;
-  xid_spaces.release_handle(lhandle1);
+  index_space_handle& lhandle1 = xid_spaces.get_id_space(lname);
+  cout << "get_id_space(lname)               = " << &lhandle1 << endl;
+  cout << "release_id_space(lhandle1)" << endl;
+  xid_spaces.release_id_space(lhandle1);
 
 
-  index_space_iterator& litr0 = xid_spaces.get_iterator(xspace_id);
-  cout << "get_iterator(xspace_id)           = " << &litr0 << endl;
-  cout << "release_iterator(litr0)" << endl;
-  xid_spaces.release_iterator(litr0);
+  index_space_iterator& litr0 = xid_spaces.get_id_space_iterator(xspace_id);
+  cout << "get_id_space_iterator(xspace_id)  = " << &litr0 << endl;
+  cout << "release_id_space_iterator(litr0)" << endl;
+  xid_spaces.release_id_space_iterator(litr0);
 
-  index_space_iterator& litr1 = xid_spaces.get_iterator(lname);
-  cout << "get_iterator(lname)               = " << &litr1 << endl;
-  cout << "release_iterator(litr1)" << endl;
-  xid_spaces.release_iterator(litr1);
+  index_space_iterator& litr1 = xid_spaces.get_id_space_iterator(lname);
+  cout << "get_id_space_iterator(lname)      = " << &litr1 << endl;
+  cout << "release_id_space_iterator(litr1)" << endl;
+  xid_spaces.release_id_space_iterator(litr1);
 
   // Postconditions:
 
@@ -277,10 +277,10 @@ test_mutable_facet(index_space_family& xid_spaces, pod_index_type xspace_id)
   lhandle.push_back(lid);
 
 //   cout << "push(litr, 5)" << endl;
-//   index_space_iterator& litr = xid_spaces.get_iterator(xspace_id);
+//   index_space_iterator& litr = xid_spaces.get_id_space_iterator(xspace_id);
 //   lid = 5;
 //   lhandle.push(litr, lid);
-//   xid_spaces.release_iterator(litr);
+//   xid_spaces.release_id_space_iterator(litr);
   
   cout << "remove(5, false)" << endl;
   lhandle.remove(lid, false);
