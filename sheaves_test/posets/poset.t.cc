@@ -262,30 +262,31 @@ void new_jim_test(sheaves_namespace& xns)
 
   // Create vertices id space.
 
-  pod_index_type lid = cells->new_member_id_space("__vertices",
-						  "hash_index_space_state",
-						  largs, true, false);
+  pod_index_type lid =
+    cells->member_id_spaces(false).new_secondary_state("__vertices",
+						       "hash_index_space_state",
+						       largs, true);
   mutable_index_space_handle lv_id_space(cells->member_id_spaces(false), lid);
 
   // Create edge id space.
 
-  lid = cells->new_member_id_space("__edges",
-				   "hash_index_space_state",
-				   largs, true, false);
+  lid = cells->member_id_spaces(false).new_secondary_state("__edges",
+							   "hash_index_space_state",
+							   largs, true);
   mutable_index_space_handle le_id_space(cells->member_id_spaces(false), lid);
 
   // Create triangle id space.
 
-  lid = cells->new_member_id_space("__triangles",
-				   "hash_index_space_state",
-				   largs, true, false);
+  lid = cells->member_id_spaces(false).new_secondary_state("__triangles",
+							   "hash_index_space_state",
+							   largs, true);
   mutable_index_space_handle lt_id_space(cells->member_id_spaces(false), lid);
 
   // Create 1 based vertices id space.
 
-  lid = cells->new_member_id_space("__1_based_vertices",
-				   "hash_index_space_state",
-				   largs, true, false);
+  lid = cells->member_id_spaces(false).new_secondary_state("__1_based_vertices",
+							   "hash_index_space_state",
+							   largs, true);
   mutable_index_space_handle lv1_id_space(cells->member_id_spaces(false), lid);
 
   cells->begin_jim_edit_mode(false);
