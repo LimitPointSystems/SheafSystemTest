@@ -100,7 +100,7 @@ void new_top_level_test(sheaves_namespace& xns)
   R2_schema = &xns.new_schema_poset("R2_schema", true);
   
   wsv_block<schema_descriptor> ldofs_specs("x_component DOUBLE false y_component DOUBLE false");
-  schema_poset_member lschema(xns, "R2_schema", "R2_schema/bottom", ldofs_specs, true, true);
+  schema_poset_member lschema(xns, "R2_schema", "R2_schema/bottom", ldofs_specs, true);
   lschema.detach_from_state();  
 
   // Print out the entire namespace.

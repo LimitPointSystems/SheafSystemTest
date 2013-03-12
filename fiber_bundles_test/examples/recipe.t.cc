@@ -93,7 +93,6 @@ main(int argc, char* argv[])
 			      "Tasks",
 			      tuple_space::standard_schema_path(),
 			      lmember_names,
-			      true,
 			      true);
 
   poset_path lschema_path = lschema.path();

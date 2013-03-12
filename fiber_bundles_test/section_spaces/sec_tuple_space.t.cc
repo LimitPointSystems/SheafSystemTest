@@ -57,7 +57,6 @@ namespace
 				"tuple_space_test_schema",
 				tuple_space::standard_schema_path(),
 				lmember_names,
-				true,
 				true);
 
     poset_path result = lschema.path();

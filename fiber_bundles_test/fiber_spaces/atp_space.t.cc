@@ -61,7 +61,6 @@ main(int xargc, char* xargv[])
                               "at1_space_test_schema",
                               at1_space::standard_schema_path(),
                               lvector_dof_specs,
-                              true,
                               true);
 
   poset_path lvector_schema_path = lvector_schema.path();
@@ -90,7 +89,6 @@ main(int xargc, char* xargv[])
                               "atp_space_test_schema",
                               atp_space::standard_schema_path(),
                               ltensor_dof_specs,
-                              true,
                               true);
 
   poset_path ltensor_schema_path = ltensor_schema.path();

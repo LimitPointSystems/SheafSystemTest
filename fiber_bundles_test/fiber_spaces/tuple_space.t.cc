@@ -48,7 +48,6 @@ main(int xargc, char* xargv[])
                               "tuple_space_test_schema",
                               tuple_space::standard_schema_path(),
                               lmember_names,
-                              true,
                               true);
 
   poset_path lschema_path = lschema.path();

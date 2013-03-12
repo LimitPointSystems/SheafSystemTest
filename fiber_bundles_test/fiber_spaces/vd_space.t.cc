@@ -38,7 +38,6 @@ namespace
 				       "shallow_instantiation_test_vd_space_schema",
 				       vd_space::standard_schema_path(),
 				       ldof_specs,
-				       true,
 				       true);
 
     poset_path result = lvector_schema.path();

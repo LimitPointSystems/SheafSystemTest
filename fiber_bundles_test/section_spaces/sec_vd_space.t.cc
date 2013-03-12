@@ -60,7 +60,6 @@ namespace
 				"shallow_instantiation_test_vd_space_schema",
 				vd_space::standard_schema_path(),
 				lmember_names,
-				true,
 				true);
 
     poset_path result = lschema.path();

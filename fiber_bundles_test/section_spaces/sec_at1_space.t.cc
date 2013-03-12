@@ -60,7 +60,6 @@ namespace
 				"shallow_instantiation_test_at1_space_schema",
 				at1_space::standard_schema_path(),
 				lmember_names,
-				true,
 				true);
 
     poset_path result = lschema.path();

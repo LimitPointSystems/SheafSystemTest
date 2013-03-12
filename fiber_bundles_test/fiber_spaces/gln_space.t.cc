@@ -56,7 +56,6 @@ namespace
 				       "at1_space_test_schema",
 				       at1_space::standard_schema_path(),
 				       lvector_dof_specs,
-				       true,
 				       true);
 
     poset_path lvector_schema_path = lvector_schema.path();
@@ -88,7 +87,6 @@ namespace
 				    "gln_space_test_schema",
 				    gln_space::standard_schema_path(),
 				    lgln_dof_specs,
-				    true,
 				    true);
 
     poset_path lgln_schema_path = lgln_schema.path();

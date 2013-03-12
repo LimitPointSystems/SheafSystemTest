@@ -63,7 +63,6 @@ main(int xargc, char* xargv[])
                               "at1_space_test_schema",
                               at1_space::standard_schema_path(),
                               ldof_specs,
-                              true,
                               true);
 
   poset_path lvector_schema_path = lvector_schema.path();

@@ -42,7 +42,6 @@ namespace
 				       "shallow_instantiation_test_vd_space_schema",
 				       at1_space::standard_schema_path(),
 				       ldof_specs,
-				       true,
 				       true);
 
     poset_path result = lvector_schema.path();
@@ -66,7 +65,6 @@ namespace
 				       "tp_space_test_schema",
 				       tp_space::standard_schema_path(),
 				       ltensor_dof_specs,
-				       true,
 				       true);
 
     poset_path result = ltensor_schema.path();
