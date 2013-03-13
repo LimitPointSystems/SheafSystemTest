@@ -38,7 +38,6 @@ namespace
 				       "shallow_instantiation_test_vd_space_schema",
 				       vd_space::standard_schema_path(),
 				       ldof_specs,
-				       true,
 				       true);
 
     poset_path result = lvector_schema.path();
@@ -55,23 +54,23 @@ namespace
 
     arg_list lscalar_args = at0_space::make_arg_list();
     poset_path lscalar_schema_path = at0_space::standard_schema_path();
-    at0_space* lscalar_space = new at0_space(xns, 
-					     "shallow_instantiation_test_at0_space", 
-					     lscalar_args,
-					     lscalar_schema_path,
-					     true);
 
-    poset_path lscalar_path = lscalar_space->path();
+    at0_space& lscalar_space =
+      xns.new_fiber_space<at0>("at0_space_test", 
+			       lscalar_args,
+			       lscalar_schema_path,
+			       true);
+    poset_path lscalar_path = lscalar_space.path();
 
     //    cout << *lscalar_space << endl;
 
     arg_list lvector_args = vd_space::make_arg_list(lscalar_path);
-  
-    vd_space* lvector_space = new vd_space(xns, 
-					   "shallow_instantiation_test_vd_space", 
-					   lvector_args, 
-					   xvector_schema_path, 
-					   true);
+
+    vd_space& lvector_space =
+      xns.new_fiber_space<vd>("shallow_instantiation_test_vd_space", 
+			      lvector_args, 
+			      xvector_schema_path, 
+			      true);
   
     //    cout << *lvector_space << endl;
 

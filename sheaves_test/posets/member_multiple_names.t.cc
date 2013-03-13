@@ -155,18 +155,18 @@ int main(int xargc, char *xargv[])
 
   ///@hack Obtained the indices 3, 4, and 5 by dumping *psh to stdout.
 
-  poset_state_handle* psh = ns.member_poset("member_multiple_names_test");
+  poset_state_handle& psh = ns.member_poset("member_multiple_names_test");
 
-  psh->get_read_write_access();
+  psh.get_read_write_access();
 
   // Print the poset name to stdout
 
-  cout << "poset name is: " << psh->name() << endl;
+  cout << "poset name is: " << psh.name() << endl;
   cout << endl;
 
   // Print the names for mbr0 to stdout
 
-  psh->all_member_names(2, mbr_names);
+  psh.all_member_names(2, mbr_names);
 
   cout << "For index 2, member name(s) are: " << " ";
 
@@ -181,7 +181,7 @@ int main(int xargc, char *xargv[])
 
   // Print the names for mbr1 to stdout.
 
-  psh->all_member_names(3, mbr_names);
+  psh.all_member_names(3, mbr_names);
 
   cout << "For index 3, member name(s) are:" << " ";
 
@@ -196,7 +196,7 @@ int main(int xargc, char *xargv[])
 
   // Print the names for mbr2 to stdout
 
-  psh->all_member_names(4, mbr_names);
+  psh.all_member_names(4, mbr_names);
 
   cout << "For index 4, member name(s) are:" << " ";
 

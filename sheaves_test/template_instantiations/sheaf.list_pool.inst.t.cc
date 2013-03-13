@@ -24,8 +24,6 @@
 #include "mutable_index_space_handle.h"
 #include "primary_index_space_handle.h"
 #include "primary_index_space_iterator.h"
-#include "primary_sum_index_space_handle.h"
-#include "primary_sum_index_space_iterator.h"
 #include "primitives_index_space_iterator.h"
 #include "ragged_array_implicit_index_space_iterator.h"
 #include "reserved_primary_index_space_handle.h"
@@ -110,14 +108,6 @@ main(int xargc, char* xargv[])
   print_header("Begin testing list_pool<primary_index_space_iterator>");
   ltest &= test_list_pool_facet<primary_index_space_iterator>();
   print_footer("End testing list_pool<primary_index_space_iterator>");
-
-  print_header("Begin testing list_pool<primary_sum_index_space_handle>");
-  ltest &= test_list_pool_facet<primary_sum_index_space_handle>();
-  print_footer("End testing list_pool<primary_sum_index_space_handle>");
-
-  print_header("Begin testing list_pool<primary_sum_index_space_iterator>");
-  ltest &= test_list_pool_facet<primary_sum_index_space_iterator>();
-  print_footer("End testing list_pool<primary_sum_index_space_iterator>");
 
   print_header("Begin testing list_pool<primitives_index_space_iterator>");
   ltest &= test_list_pool_facet<primitives_index_space_iterator>();

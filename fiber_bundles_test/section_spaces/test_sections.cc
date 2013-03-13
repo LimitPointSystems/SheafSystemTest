@@ -21,6 +21,8 @@
 #include "test_utils.h"
 
 using namespace fiber_bundle; // Workaround for MS C++ bug.
+using namespace fiber_bundle::sec_e3_algebra;
+using namespace fiber_bundle::sec_at0_algebra;
 
 //==============================================================================
 //==============================================================================
@@ -64,8 +66,8 @@ print_section_space(fiber_bundles_namespace& xns, const string& xname)
 
   // Body:
 
-  sec_rep_space* lspace = xns.member_poset<sec_rep_space>(xname, false);
-  cout << *lspace << endl;
+  sec_rep_space& lspace = xns.member_poset<sec_rep_space>(xname, false);
+  cout << lspace << endl;
 
   // Postconditions:
 

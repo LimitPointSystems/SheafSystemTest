@@ -21,6 +21,7 @@
 #include "test_fibers.impl.h"
 
 using namespace fiber_bundle;
+using namespace fiber_bundle::st2_algebra;
 
 namespace
 {

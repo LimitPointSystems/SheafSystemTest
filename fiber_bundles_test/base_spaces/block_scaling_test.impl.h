@@ -262,20 +262,20 @@ time_block(string xname, size_type xsizes[], size_type xdi, plot& xtime_plot, pl
   lwatch.reset();
   lwatch.start();
 
-  index_space_iterator& lzone_itr = lblock->get_zone_iterator(false);
+  index_space_iterator& lzone_itr = lblock->get_zone_id_space_iterator(false);
   while(!lzone_itr.is_done())
   {
     index_space_iterator& ladj_itr =
-      lblock->get_connectivity_iterator(lzone_itr.hub_pod(), false);
+      lblock->get_connectivity_id_space_iterator(lzone_itr.hub_pod(), false);
     while(!ladj_itr.is_done())
     {
       ladj_itr.next();
     }
-    lblock->release_connectivity_iterator(ladj_itr, false);
+    lblock->release_connectivity_id_space_iterator(ladj_itr, false);
 
     lzone_itr.next();
   }
-  lblock->release_zone_iterator(lzone_itr, false);
+  lblock->release_zone_id_space_iterator(lzone_itr, false);
     
   lwatch.stop();
   lpoint[pid++] = lwatch.time(stop_watch::MILLISECONDS);
@@ -288,20 +288,20 @@ time_block(string xname, size_type xsizes[], size_type xdi, plot& xtime_plot, pl
   lwatch.reset();
   lwatch.start();
 
-  index_space_iterator& lvertex_itr = lblock->get_vertex_iterator(false);
+  index_space_iterator& lvertex_itr = lblock->get_vertex_id_space_iterator(false);
   while(!lvertex_itr.is_done())
   {
     index_space_iterator& ladj_itr =
-      lblock->get_adjacency_iterator(lvertex_itr.hub_pod(), false);
+      lblock->get_adjacency_id_space_iterator(lvertex_itr.hub_pod(), false);
     while(!ladj_itr.is_done())
     {
       ladj_itr.next();
     }
-    lblock->release_adjacency_iterator(ladj_itr, false);
+    lblock->release_adjacency_id_space_iterator(ladj_itr, false);
 
     lvertex_itr.next();
   }
-  lblock->release_vertex_iterator(lvertex_itr, false);
+  lblock->release_vertex_id_space_iterator(lvertex_itr, false);
 
   lwatch.stop();
   lpoint[pid++] = lwatch.time(stop_watch::MILLISECONDS);
@@ -314,20 +314,20 @@ time_block(string xname, size_type xsizes[], size_type xdi, plot& xtime_plot, pl
   lwatch.reset();
   lwatch.start();
 
-  lzone_itr = lblock->get_zone_iterator(false);
+  lzone_itr = lblock->get_zone_id_space_iterator(false);
   while(!lzone_itr.is_done())
   {
     index_space_iterator& lcover_itr =
-      lblock->host()->get_cover_iterator(LOWER, lzone_itr.hub_pod());
+      lblock->host()->get_cover_id_space_iterator(LOWER, lzone_itr.hub_pod());
     while(!lcover_itr.is_done())
     {
       lcover_itr.next();
     }
-    lblock->release_cover_iterator(lcover_itr);
+    lblock->release_cover_id_space_iterator(lcover_itr);
 
     lzone_itr.next();
   }
-  lblock->release_zone_iterator(lzone_itr, false);
+  lblock->release_zone_id_space_iterator(lzone_itr, false);
     
   lwatch.stop();
   lpoint[pid++] = lwatch.time(stop_watch::MILLISECONDS);
@@ -340,20 +340,20 @@ time_block(string xname, size_type xsizes[], size_type xdi, plot& xtime_plot, pl
   lwatch.reset();
   lwatch.start();
 
-  lvertex_itr = lblock->get_vertex_iterator(false);
+  lvertex_itr = lblock->get_vertex_id_space_iterator(false);
   while(!lvertex_itr.is_done())
   {
     index_space_iterator& lcover_itr =
-      lblock->host()->get_cover_iterator(UPPER, lvertex_itr.hub_pod());
+      lblock->host()->get_cover_id_space_iterator(UPPER, lvertex_itr.hub_pod());
     while(!lcover_itr.is_done())
     {
       lcover_itr.next();
     }
-    lblock->release_cover_iterator(lcover_itr);
+    lblock->release_cover_id_space_iterator(lcover_itr);
 
     lvertex_itr.next();
   }
-  lblock->release_vertex_iterator(lvertex_itr, false);
+  lblock->release_vertex_id_space_iterator(lvertex_itr, false);
 
   lwatch.stop();
   lpoint[pid++] = lwatch.time(stop_watch::MILLISECONDS);

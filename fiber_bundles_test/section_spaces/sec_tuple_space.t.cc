@@ -57,7 +57,6 @@ namespace
 				"tuple_space_test_schema",
 				tuple_space::standard_schema_path(),
 				lmember_names,
-				true,
 				true);
 
     poset_path result = lschema.path();
@@ -72,11 +71,11 @@ namespace
   {
   
     arg_list largs = tuple_space::make_arg_list(2);
-  
-    tuple_space* lfiber_space = 
-      new tuple_space(xns, "tuple_space_test", largs, xfiber_space_schema_path, true);
 
-    poset_path result = lfiber_space->path(true);
+    tuple_space& lfiber_space = 
+      xns.new_fiber_space<tuple>("tuple_space_test", largs, xfiber_space_schema_path, true);
+
+    poset_path result = lfiber_space.path(true);
 
     return result;
   }
@@ -130,18 +129,17 @@ namespace
 
     arg_list largs = sec_tuple_space::make_arg_list(2);
 
-    sec_tuple_space* lsection_space =
-      new sec_tuple_space(xns,
-			  "shallow_instantiation_test_sec_tuple",
-			  largs, xsection_schema_path,
-			  true);
+    sec_tuple_space& lsection_space =
+      xns.new_section_space<sec_tuple>("shallow_instantiation_test_sec_tuple",
+				       largs, xsection_schema_path,
+				       true);
 
-    lsection_space->get_read_access();
+    lsection_space.get_read_access();
     
-    poset_path result = lsection_space->path(false);
-    cout << *lsection_space << endl;
+    poset_path result = lsection_space.path(false);
+    cout << lsection_space << endl;
 
-    lsection_space->release_access();
+    lsection_space.release_access();
 
     return result;
   }  

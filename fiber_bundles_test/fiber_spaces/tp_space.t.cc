@@ -42,7 +42,6 @@ namespace
 				       "shallow_instantiation_test_vd_space_schema",
 				       at1_space::standard_schema_path(),
 				       ldof_specs,
-				       true,
 				       true);
 
     poset_path result = lvector_schema.path();
@@ -66,7 +65,6 @@ namespace
 				       "tp_space_test_schema",
 				       tp_space::standard_schema_path(),
 				       ltensor_dof_specs,
-				       true,
 				       true);
 
     poset_path result = ltensor_schema.path();
@@ -84,35 +82,34 @@ namespace
 
     arg_list lscalar_args = at0_space::make_arg_list();
     poset_path lscalar_schema_path = at0_space::standard_schema_path();
-    at0_space* lscalar_space = new at0_space(xns, 
-					     "at0_space_test", 
-					     lscalar_args,
-					     lscalar_schema_path,
-					     true);
 
-    poset_path lscalar_path = lscalar_space->path();
+    at0_space& lscalar_space =
+      xns.new_fiber_space<at0>("at0_space_test", 
+			       lscalar_args,
+			       lscalar_schema_path,
+			       true);
+    poset_path lscalar_path = lscalar_space.path();
 
     //    cout << *lscalar_space << endl;  
 
     arg_list lvector_args = at1_space::make_arg_list(lscalar_path);
   
-    at1_space* lvector_space = new at1_space(xns, 
-					   "at1_space_test", 
-					   lvector_args, 
-					   xvector_schema_path, 
-					   true);
-  
-    poset_path lvector_path = lvector_space->path();
+     at1_space& lvector_space = xns.new_fiber_space<at1>("at1_space_test", 
+							 lvector_args, 
+							 xvector_schema_path,
+							 true);
+
+     poset_path lvector_path = lvector_space.path();
 
     //    cout << *lvector_space << endl;
 
     arg_list ltensor_args = tp_space::make_arg_list(2, lvector_path);
-  
-    vd_space* ltensor_space = new tp_space(xns, 
-					   "tp_space_test", 
-					   ltensor_args, 
-					   xtensor_schema_path, 
-					   true);
+
+    tp_space& ltensor_space =
+      xns.new_fiber_space<tp>("tp_space_test", 
+			      ltensor_args, 
+			      xtensor_schema_path, 
+			      true);
   
     //    cout << *ltensor_space << endl;
 

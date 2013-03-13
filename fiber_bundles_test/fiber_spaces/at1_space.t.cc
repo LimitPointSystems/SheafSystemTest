@@ -45,15 +45,15 @@ main(int xargc, char* xargv[])
 
   arg_list lscalar_args = at0_space::make_arg_list();
   poset_path lscalar_schema_path = at0_space::standard_schema_path();
-  at0_space* lscalar_space = new at0_space(lns, 
-					   "at0_space_test", 
-					   lscalar_args,
-					   lscalar_schema_path,
-					   true);
 
-  poset_path lscalar_path = lscalar_space->path();
+  at0_space& lscalar_space =
+    lns.new_fiber_space<at0>("at0_space_test", 
+			     lscalar_args,
+			     lscalar_schema_path,
+			     true);
+  poset_path lscalar_path = lscalar_space.path();
 
-  //cout << *lscalar_space << endl;
+  //cout << lscalar_space << endl;
 
   // Make a vector space schema; copied from e2::make_standard_schema().
 
@@ -63,19 +63,17 @@ main(int xargc, char* xargv[])
                               "at1_space_test_schema",
                               at1_space::standard_schema_path(),
                               ldof_specs,
-                              true,
                               true);
 
   poset_path lvector_schema_path = lvector_schema.path();
   lvector_schema.detach_from_state();
 
   arg_list lvector_args = at1_space::make_arg_list(lscalar_path);
-  
-  vd_space* lvector_space = new vd_space(lns, 
-					 "at1_space_test", 
-					 lvector_args, 
-					 lvector_schema_path, 
-					 true);
+
+  at1_space& lvector_space = lns.new_fiber_space<at1>("at1_space_test", 
+						      lvector_args, 
+						      lvector_schema_path,
+						      true);
 
   //cout << *lvector_space << endl;
 

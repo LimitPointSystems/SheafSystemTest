@@ -60,7 +60,6 @@ namespace
 				"shallow_instantiation_test_vd_space_schema",
 				vd_space::standard_schema_path(),
 				lmember_names,
-				true,
 				true);
 
     poset_path result = lschema.path();
@@ -76,15 +75,16 @@ namespace
 
     arg_list lscalar_args = at0_space::make_arg_list();
     poset_path lscalar_schema_path = at0_space::standard_schema_path();
-    at0_space* lscalar_space = new at0_space(xns, 
-					     "shallow_instantiation_test_at0_space", 
-					     lscalar_args,
-					     lscalar_schema_path,
-					     true);
 
-    poset_path lscalar_path = lscalar_space->path();
+    at0_space& lscalar_space =
+      xns.new_fiber_space<at0>("shallow_instantiation_test_at0_space", 
+			       lscalar_args,
+			       lscalar_schema_path,
+			       true);
 
-    cout << *lscalar_space << endl;
+    poset_path lscalar_path = lscalar_space.path();
+
+    cout << lscalar_space << endl;
 
     return lscalar_path;
   }
@@ -96,16 +96,16 @@ namespace
     // Make the vector space.
 
     arg_list lvector_args = vd_space::make_arg_list(xscalar_space_schema_path);
-  
-    vd_space* lvector_space = new vd_space(xns, 
-					   "shallow_instantiation_test_vd_space", 
-					   lvector_args, 
-					   xvector_space_schema_path, 
-					   true);
-  
-    cout << *lvector_space << endl;
 
-    poset_path result = lvector_space->path(true);
+    vd_space& lvector_space =
+      xns.new_fiber_space<vd>("shallow_instantiation_test_vd_space", 
+			      lvector_args, 
+			      xvector_space_schema_path, 
+			      true);
+  
+    cout << lvector_space << endl;
+
+    poset_path result = lvector_space.path(true);
 
     return result;
   }
@@ -201,18 +201,17 @@ namespace
 
     arg_list largs = sec_at0_space::make_arg_list();
 
-    sec_at0_space* lsection_space =
-      new sec_at0_space(xns,
-			"shallow_instantiation_test_sec_at0",
-			largs, xsection_schema_path,
-			true);
+    sec_at0_space& lsection_space =
+      xns.new_section_space<sec_at0>("shallow_instantiation_test_sec_at0_space",
+				     largs, xsection_schema_path,
+				     true);
 
-    lsection_space->get_read_access();
+    lsection_space.get_read_access();
     
-    poset_path result = lsection_space->path(false);
-    cout << *lsection_space << endl;
+    poset_path result = lsection_space.path(false);
+    cout << lsection_space << endl;
 
-    lsection_space->release_access();
+    lsection_space.release_access();
 
     return result;
   }  
@@ -228,19 +227,18 @@ namespace
 
     // Make the vector section space.
 
-    sec_vd_space* lsection_space =
-      new sec_vd_space(xns,
-		       "shallow_instantiation_test_sec_vd",
-		       lsection_space_args,
-		       xvector_schema_path,
-		       true);
+    sec_vd_space& lsection_space =
+      xns.new_section_space<sec_vd>("shallow_instantiation_test_sec_vd_space",
+				    lsection_space_args,
+				    xvector_schema_path,
+				    true);
 
-    lsection_space->get_read_access();
+    lsection_space.get_read_access();
     
-    poset_path result = lsection_space->path(false);
-    cout << *lsection_space << endl;
+    poset_path result = lsection_space.path(false);
+    cout << lsection_space << endl;
 
-    lsection_space->release_access();
+    lsection_space.release_access();
 
     return result;
   }  

@@ -903,6 +903,8 @@ test_volatile_hook_product()
 
   // Body:
 
+  using namespace fiber_bundle::atp_algebra;
+
   typedef typename P0::volatile_type V0;
   typedef typename P1::volatile_type V1;
   typedef typename PR::volatile_type VR;
@@ -962,6 +964,8 @@ test_persistent_hook_product(fiber_bundles_namespace& xns)
   require(xns.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace fiber_bundle::atp_algebra;
 
   ///@issue: Has to be the same as P1 & PR.  How do we want to require this?
 
@@ -1038,6 +1042,8 @@ test_volatile_star_operator()
 
   // Body:
 
+  using namespace fiber_bundle::atp_algebra;
+
   typedef typename P0::volatile_type V0;
   typedef typename PR::volatile_type VR;
 
@@ -1082,6 +1088,8 @@ test_persistent_star_operator(fiber_bundles_namespace& xns)
   require(xns.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace fiber_bundle::atp_algebra;
 
 //   ///@issue: Has to be the same as P1 & PR.  How do we want to require this?
 
@@ -1153,6 +1161,8 @@ test_volatile_wedge_product()
 
   // Body:
 
+  using namespace fiber_bundle::atp_algebra;
+
   typedef typename P0::volatile_type V0;
   typedef typename P1::volatile_type V1;
   typedef typename PR::volatile_type VR;
@@ -1214,6 +1224,8 @@ test_persistent_wedge_product(fiber_bundles_namespace& xns)
   require(xns.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace fiber_bundle::atp_algebra;
 
   ///@issue: Has to be the same as P1 & PR.  How do we want to require this?
 
@@ -1279,6 +1291,8 @@ test_volatile_vd_facet()
   // Preconditions:
 
   // Body:
+
+  using namespace fiber_bundle::vd_algebra;
 
   // Get the various class types, etc.
 
@@ -1435,6 +1449,8 @@ test_persistent_vd_facet(typename P::host_type& xhost)
 
   // Body:
 
+  using namespace fiber_bundle::vd_algebra;
+
   // Get the various class types, etc.
 
   typedef P persistent_type;
@@ -1538,6 +1554,8 @@ test_volatile_st2_facet()
 
   // Body:
 
+  using namespace fiber_bundle::st2_algebra;
+
   // Get the various class types, etc.
 
   typedef P persistent_type;
@@ -1598,6 +1616,8 @@ test_persistent_st2_facet(typename P::host_type& xhost)
   require(xhost.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace fiber_bundle::st2_algebra;
 
   // Get the various class types, etc.
 
@@ -1661,6 +1681,8 @@ test_volatile_ed_facet()
 
   // Body:
 
+  using namespace fiber_bundle::ed_algebra;
+
   // Get the various class types, etc.
 
   typedef typename P::volatile_type volatile_type;
@@ -1719,6 +1741,8 @@ test_persistent_ed_facet(typename P::host_type& xhost)
   require(xhost.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace fiber_bundle::ed_algebra;
 
   // Get the various class types, etc.
 
@@ -1939,6 +1963,8 @@ test_volatile_tp_facet()
 
   // Body:
 
+  using namespace fiber_bundle::tp_algebra;
+
   // Get the various class types, etc.
 
   typedef typename P::volatile_type volatile_type;
@@ -2001,6 +2027,8 @@ test_persistent_tp_facet(fiber_bundles_namespace& xns)
   require(xns.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace fiber_bundle::tp_algebra;
 
   // Get the various class types, etc.
 
@@ -2170,6 +2198,8 @@ test_volatile_tensor()
 
   // Body:
 
+  using namespace fiber_bundle::tp_algebra;
+
   typedef typename P0::volatile_type V0;
   typedef typename P1::volatile_type V1;
   typedef typename PR::volatile_type VR;
@@ -2225,6 +2255,8 @@ test_persistent_tensor(fiber_bundles_namespace& xns)
   require(xns.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace fiber_bundle::tp_algebra;
 
   // Form tensor product: P0(X)P1 = PR.
 
@@ -2307,6 +2339,8 @@ test_volatile_contract()
 
   // Body:
 
+  using namespace fiber_bundle::tp_algebra;
+
   typedef typename P0::volatile_type V0;
   typedef typename PR::volatile_type VR;
 
@@ -2357,6 +2391,8 @@ test_persistent_contract(fiber_bundles_namespace& xns)
   require(xns.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace fiber_bundle::tp_algebra;
 
   ///@issue: Has to be the same as P1 & PR.  How do we want to require this?
 
@@ -2493,6 +2529,8 @@ test_volatile_atp_facet()
 
   // Body:
 
+  using namespace fiber_bundle::atp_algebra;
+
   // Get the various class types, etc.
 
   typedef typename P::volatile_type volatile_type;
@@ -2520,6 +2558,9 @@ test_persistent_atp_facet(typename P::host_type& xhost)
   require(xhost.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace fiber_bundle::atp_algebra;
+  using namespace fiber_bundle::vd_algebra;
 
   // Get the various class types, etc.
 
@@ -2681,6 +2722,8 @@ test_volatile_stp_facet()
 
   // Body:
 
+  using namespace fiber_bundle::stp_algebra;
+
   // Get the various class types, etc.
 
   typedef typename P::volatile_type volatile_type;
@@ -2716,6 +2759,9 @@ test_persistent_stp_facet(typename P::host_type& xhost)
   require(xhost.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace fiber_bundle::stp_algebra;
+  using namespace fiber_bundle::vd_algebra;
 
   // Get the various class types, etc.
 
@@ -2862,6 +2908,8 @@ test_volatile_jcb_facet()
 
   // Body:
 
+  using namespace fiber_bundle::jcb_algebra;
+
   // Get the various class types, etc.
 
   typedef typename P::volatile_type volatile_type;
@@ -2945,6 +2993,8 @@ test_persistent_jcb_facet(fiber_bundles_namespace& xns)
   require(xns.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace fiber_bundle::jcb_algebra;
 
   // Get the various class types, etc.
 
@@ -3060,6 +3110,8 @@ test_volatile_met_facet()
 
   // Body:
 
+  using namespace fiber_bundle::met_algebra;
+
   //$$SCRIBBLE: Note that we are presently ONLY testing whether
   //            the correct calculations are being done for
   //            the raise and lower operations.  We are NOT
@@ -3144,6 +3196,8 @@ test_persistent_met_facet(typename P::host_type& xhost,
   require(xhost.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace fiber_bundle::met_algebra;
 
   //$$SCRIBBLE: Note that we are presently ONLY testing whether
   //            the correct calculations are being done for

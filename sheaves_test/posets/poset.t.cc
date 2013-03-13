@@ -100,7 +100,7 @@ void new_top_level_test(sheaves_namespace& xns)
   R2_schema = &xns.new_schema_poset("R2_schema", true);
   
   wsv_block<schema_descriptor> ldofs_specs("x_component DOUBLE false y_component DOUBLE false");
-  schema_poset_member lschema(xns, "R2_schema", "R2_schema/bottom", ldofs_specs, true, true);
+  schema_poset_member lschema(xns, "R2_schema", "R2_schema/bottom", ldofs_specs, true);
   lschema.detach_from_state();  
 
   // Print out the entire namespace.
@@ -262,30 +262,31 @@ void new_jim_test(sheaves_namespace& xns)
 
   // Create vertices id space.
 
-  pod_index_type lid = cells->new_member_id_space("__vertices",
-						  "hash_index_space_state",
-						  largs, true, false);
+  pod_index_type lid =
+    cells->member_id_spaces(false).new_secondary_state("__vertices",
+						       "hash_index_space_state",
+						       largs, true);
   mutable_index_space_handle lv_id_space(cells->member_id_spaces(false), lid);
 
   // Create edge id space.
 
-  lid = cells->new_member_id_space("__edges",
-				   "hash_index_space_state",
-				   largs, true, false);
+  lid = cells->member_id_spaces(false).new_secondary_state("__edges",
+							   "hash_index_space_state",
+							   largs, true);
   mutable_index_space_handle le_id_space(cells->member_id_spaces(false), lid);
 
   // Create triangle id space.
 
-  lid = cells->new_member_id_space("__triangles",
-				   "hash_index_space_state",
-				   largs, true, false);
+  lid = cells->member_id_spaces(false).new_secondary_state("__triangles",
+							   "hash_index_space_state",
+							   largs, true);
   mutable_index_space_handle lt_id_space(cells->member_id_spaces(false), lid);
 
   // Create 1 based vertices id space.
 
-  lid = cells->new_member_id_space("__1_based_vertices",
-				   "hash_index_space_state",
-				   largs, true, false);
+  lid = cells->member_id_spaces(false).new_secondary_state("__1_based_vertices",
+							   "hash_index_space_state",
+							   largs, true);
   mutable_index_space_handle lv1_id_space(cells->member_id_spaces(false), lid);
 
   cells->begin_jim_edit_mode(false);
@@ -528,7 +529,7 @@ subposet_iterator_test(sheaves_namespace& xns)
 
   // Iterate over the subposets in xns.
 
-  index_space_iterator& lsp_itr = xns.get_subposet_iterator();
+  index_space_iterator& lsp_itr = xns.get_subposet_id_space_iterator();
   scoped_index lsp_id = xns.subposet_id(false);
   while(!lsp_itr.is_done())
   {
@@ -559,7 +560,7 @@ subposet_iterator_test(sheaves_namespace& xns)
     lsp_itr.next();
   }
 
-  xns.release_subposet_iterator(lsp_itr);
+  xns.release_subposet_id_space_iterator(lsp_itr);
 
   // Detach so state won't be deleted when handle
   // goes out of scope.
@@ -596,7 +597,7 @@ output_namespace_members(sheaves_namespace& xns)
   {
     if(itr.is_jim())
     {
-      ns_mbr = xns.member_poset(itr.index(), true);
+      ns_mbr = &xns.member_poset(itr.index(), true);
       cout << *ns_mbr << endl;
     }
 

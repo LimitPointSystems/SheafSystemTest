@@ -1,13 +1,9 @@
-
-
 //
 // Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @file
 /// Implementation for test_fibers non template functions.
-
-
 
 #include "test_fibers.impl.h"
 
@@ -18,6 +14,8 @@
 #include "test_utils.h"
 
 #include "gln_space.h"
+
+using namespace fiber_bundle::e3_algebra;
 
 ///
 string

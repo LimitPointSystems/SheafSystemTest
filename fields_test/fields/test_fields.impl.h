@@ -33,6 +33,10 @@
 #include "field_e3.h"
 #endif
 
+#ifndef FIELD_MET_H
+#include "field_met.h"
+#endif
+
 #ifndef INDEX_SPACE_ITERATOR_H
 #include "index_space_iterator.h"
 #endif
@@ -228,6 +232,8 @@ test_field_hook_product(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace fields::field_atp_algebra;
+
   const string& lname_0 = F0::static_class_name();
   const string& lname_1 = F1::static_class_name();
   const string& lname_r = FR::static_class_name();
@@ -286,6 +292,8 @@ test_field_star_operator(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace fields::field_atp_algebra;
+
   const string& lname_0 = F0::static_class_name();
   const string& lname_r = FR::static_class_name();
   const string lop_string = "*" + lname_0 + " = " + lname_r;
@@ -337,6 +345,8 @@ test_field_wedge_product(fiber_bundles_namespace& xns,
   require(unexecutable("F0, F1, FR are compatible"));
 
   // Body:
+
+  using namespace fields::field_atp_algebra;
 
   const string& lname_0 = F0::static_class_name();
   const string& lname_1 = F1::static_class_name();
@@ -400,6 +410,8 @@ test_field_ed_facet(fiber_bundles_namespace& xns,
   require(xns.contains_poset_member(xcoords_path));
 
   // Body:
+
+  using namespace fields::field_ed_algebra;
 
   typedef F vector_type;
   typedef field_at0 scalar_type;
@@ -485,6 +497,8 @@ test_field_jcb_facet(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace fields::field_jcb_algebra;
+
   typedef FJCB jacobian_type;
   typedef FVECTOR vector_type;
   typedef FCOVECTOR covector_type;
@@ -560,6 +574,8 @@ test_field_met_facet(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace fields::field_met_algebra;
+
   typedef F metric_type;
   typedef FVECTOR vector_type;
 
@@ -631,6 +647,8 @@ test_field_st2_facet(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace fields::field_st2_algebra;
+
   typedef F tensor_type;
   typedef field_at0 scalar_type;
 
@@ -698,6 +716,8 @@ test_field_tp_facet(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace fields::field_tp_algebra;
+
   const string& field_name = TP::static_class_name();
   print_header("Testing field_tp facet for " + field_name);
 
@@ -760,6 +780,8 @@ test_field_tensor_product(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace fields::field_tp_algebra;
+
   const string& lname_0 = F0::static_class_name();
   const string& lname_1 = F1::static_class_name();
   const string& lname_r = FR::static_class_name();
@@ -817,6 +839,8 @@ test_field_contract(fiber_bundles_namespace& xns,
   require(unexecutable("F0, FR are compatible"));
 
   // Body:
+
+  using namespace fields::field_tp_algebra;
 
   const string& lname_0 = F0::static_class_name();
   print_header("Testing contract for: " + lname_0);
@@ -879,6 +903,8 @@ test_field_vd_facet(fiber_bundles_namespace& xns,
   require(xns.contains_poset_member(xcoords_path));
 
   // Body:
+
+  using namespace fields::field_vd_algebra;
 
   typedef F field_vd_type;
   string field_name = F::static_class_name();

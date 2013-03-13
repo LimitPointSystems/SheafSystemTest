@@ -194,33 +194,33 @@ main(int xargc, char* xargv[])
   ltest = lbase_space.contains_zone_id_space(lblock0.index(), true);
   cout << "ltest = " << boolalpha << ltest << endl;
 
-  //index_space_handle& get_zone_handle(pod_index_type xmbr_id, bool xauto_access) const;
+  //index_space_handle& get_zone_id_space(pod_index_type xmbr_id, bool xauto_access) const;
 
   index_space_handle& lhandle0 =
-    lbase_space.get_zone_handle(lblock0.index().hub_id(), true);
+    lbase_space.get_zone_id_space(lblock0.index().hub_id(), true);
 
-  //index_space_handle& get_zone_handle(const scoped_index& xmbr_id, bool xauto_access) const;
+  //index_space_handle& get_zone_id_space(const scoped_index& xmbr_id, bool xauto_access) const;
 
   index_space_handle& lhandle1 =
-    lbase_space.get_zone_handle(lblock0.index(), true);
+    lbase_space.get_zone_id_space(lblock0.index(), true);
 
-  //void release_zone_handle(index_space_handle& xid_space, bool xauto_access) const;
+  //void release_zone_id_space(index_space_handle& xid_space, bool xauto_access) const;
 
-  lbase_space.release_zone_handle(lhandle0, true);
+  lbase_space.release_zone_id_space(lhandle0, true);
 
-  //index_space_iterator& get_zone_iterator(pod_index_type xmbr_id, bool xauto_access) const;
+  //index_space_iterator& get_zone_id_space_iterator(pod_index_type xmbr_id, bool xauto_access) const;
 
   index_space_iterator& literator0 =
-    lbase_space.get_zone_iterator(lblock0.index().hub_id(), true);
+    lbase_space.get_zone_id_space_iterator(lblock0.index().hub_id(), true);
 
-  //index_space_iterator& get_zone_iterator(const scoped_index& xmbr_id, bool xauto_access) const;
+  //index_space_iterator& get_zone_id_space_iterator(const scoped_index& xmbr_id, bool xauto_access) const;
 
   index_space_iterator& literator1 =
-    lbase_space.get_zone_iterator(lblock0.index(), true);
+    lbase_space.get_zone_id_space_iterator(lblock0.index(), true);
 
-  //void release_zone_iterator(index_space_iterator& xitr, bool xauto_access) const;
+  //void release_zone_id_space_iterator(index_space_iterator& xitr, bool xauto_access) const;
 
-  lbase_space.release_zone_iterator(literator0, true);
+  lbase_space.release_zone_id_space_iterator(literator0, true);
 
   //============================================================================
 
@@ -234,33 +234,33 @@ main(int xargc, char* xargv[])
   ltest = lbase_space.contains_vertex_id_space(lblock0.index(), true);
   cout << "ltest = " << boolalpha << ltest << endl;
 
-  //index_space_handle& get_vertex_handle(pod_index_type xmbr_id, bool xauto_access) const;
+  //index_space_handle& get_vertex_id_space(pod_index_type xmbr_id, bool xauto_access) const;
 
   index_space_handle& lhandle2 =
-    lbase_space.get_vertex_handle(lblock0.index().hub_id(), true);
+    lbase_space.get_vertex_id_space(lblock0.index().hub_id(), true);
 
-  //index_space_handle& get_vertex_handle(const scoped_index& xmbr_id, bool xauto_access) const;
+  //index_space_handle& get_vertex_id_space(const scoped_index& xmbr_id, bool xauto_access) const;
 
   index_space_handle& lhandle3 =
-    lbase_space.get_vertex_handle(lblock0.index(), true);
+    lbase_space.get_vertex_id_space(lblock0.index(), true);
 
-  //void release_vertex_handle(index_space_handle& xid_space, bool xauto_access) const;
+  //void release_vertex_id_space(index_space_handle& xid_space, bool xauto_access) const;
 
-  lbase_space.release_vertex_handle(lhandle2, true);
+  lbase_space.release_vertex_id_space(lhandle2, true);
 
-  //index_space_iterator& get_vertex_iterator(pod_index_type xmbr_id, bool xauto_access) const;
+  //index_space_iterator& get_vertex_id_space_iterator(pod_index_type xmbr_id, bool xauto_access) const;
 
   index_space_iterator& literator2 =
-    lbase_space.get_vertex_iterator(lblock0.index().hub_id(), true);
+    lbase_space.get_vertex_id_space_iterator(lblock0.index().hub_id(), true);
 
-  //index_space_iterator& get_vertex_iterator(const scoped_index& xmbr_id, bool xauto_access) const;
+  //index_space_iterator& get_vertex_id_space_iterator(const scoped_index& xmbr_id, bool xauto_access) const;
 
   index_space_iterator& literator3 =
-    lbase_space.get_vertex_iterator(lblock0.index(), true);
+    lbase_space.get_vertex_id_space_iterator(lblock0.index(), true);
 
-  //void release_vertex_iterator(index_space_iterator& xitr, bool xauto_access) const;
+  //void release_vertex_id_space_iterator(index_space_iterator& xitr, bool xauto_access) const;
 
-  lbase_space.release_vertex_iterator(literator2, true);
+  lbase_space.release_vertex_id_space_iterator(literator2, true);
 
   //============================================================================
 
@@ -274,33 +274,33 @@ main(int xargc, char* xargv[])
   ltest = lbase_space.contains_connectivity_id_space(lblock0.index(), true);
   cout << "ltest = " << boolalpha << ltest << endl;
 
-//   //index_space_handle& get_connectivity_handle(pod_index_type xmbr_id, bool xauto_access) const;
+//   //index_space_handle& get_connectivity_id_space(pod_index_type xmbr_id, bool xauto_access) const;
 
 //   index_space_handle& lhandle4 =
-//     lbase_space.get_connectivity_handle(lblock0.index().hub_id(), true);
+//     lbase_space.get_connectivity_id_space(lblock0.index().hub_id(), true);
 
-//   //index_space_handle& get_connectivity_handle(const scoped_index& xmbr_id, bool xauto_access) const;
+//   //index_space_handle& get_connectivity_id_space(const scoped_index& xmbr_id, bool xauto_access) const;
 
 //   index_space_handle& lhandle5 =
-//     lbase_space.get_connectivity_handle(lblock0.index(), true);
+//     lbase_space.get_connectivity_id_space(lblock0.index(), true);
 
-//   //void release_connectivity_handle(index_space_handle& xid_space, bool xauto_access) const;
+//   //void release_connectivity_id_space(index_space_handle& xid_space, bool xauto_access) const;
 
-//   lbase_space.release_connectivity_handle(lhandle4, true);
+//   lbase_space.release_connectivity_id_space(lhandle4, true);
 
-//   //index_space_iterator& get_connectivity_iterator(pod_index_type xmbr_id, bool xauto_access) const;
+//   //index_space_iterator& get_connectivity_id_space_iterator(pod_index_type xmbr_id, bool xauto_access) const;
 
 //   index_space_iterator& literator4 =
-//     lbase_space.get_connectivity_iterator(lblock0.index().hub_id(), true);
+//     lbase_space.get_connectivity_id_space_iterator(lblock0.index().hub_id(), true);
 
-//   //index_space_iterator& get_connectivity_iterator(const scoped_index& xmbr_id, bool xauto_access) const;
+//   //index_space_iterator& get_connectivity_id_space_iterator(const scoped_index& xmbr_id, bool xauto_access) const;
 
 //   index_space_iterator& literator5 =
-//     lbase_space.get_connectivity_iterator(lblock0.index(), true);
+//     lbase_space.get_connectivity_id_space_iterator(lblock0.index(), true);
 
-//   //void release_connectivity_iterator(index_space_iterator& xitr, bool xauto_access) const;
+//   //void release_connectivity_id_space_iterator(index_space_iterator& xitr, bool xauto_access) const;
 
-//   lbase_space.release_connectivity_iterator(literator4, true);
+//   lbase_space.release_connectivity_id_space_iterator(literator4, true);
 
   //============================================================================
 
@@ -314,33 +314,33 @@ main(int xargc, char* xargv[])
   ltest = lbase_space.contains_adjacency_id_space(lblock0.index(), true);
   cout << "ltest = " << boolalpha << ltest << endl;
 
-//   //index_space_handle& get_adjacency_handle(pod_index_type xmbr_id, bool xauto_access) const;
+//   //index_space_handle& get_adjacency_id_space(pod_index_type xmbr_id, bool xauto_access) const;
 
 //   index_space_handle& lhandle6 =
-//     lbase_space.get_adjacency_handle(lblock0.index().hub_id(), true);
+//     lbase_space.get_adjacency_id_space(lblock0.index().hub_id(), true);
 
-//   //index_space_handle& get_adjacency_handle(const scoped_index& xmbr_id, bool xauto_access) const;
+//   //index_space_handle& get_adjacency_id_space(const scoped_index& xmbr_id, bool xauto_access) const;
 
 //   index_space_handle& lhandle7 =
-//     lbase_space.get_adjacency_handle(lblock0.index(), true);
+//     lbase_space.get_adjacency_id_space(lblock0.index(), true);
 
-//   //void release_adjacency_handle(index_space_handle& xid_space, bool xauto_access) const;
+//   //void release_adjacency_id_space(index_space_handle& xid_space, bool xauto_access) const;
 
-//   lbase_space.release_adjacency_handle(lhandle6, true);
+//   lbase_space.release_adjacency_id_space(lhandle6, true);
 
-//   //index_space_iterator& get_adjacency_iterator(pod_index_type xmbr_id, bool xauto_access) const;
+//   //index_space_iterator& get_adjacency_id_space_iterator(pod_index_type xmbr_id, bool xauto_access) const;
 
 //   index_space_iterator& literator6 =
-//     lbase_space.get_adjacency_iterator(lblock0.index().hub_id(), true);
+//     lbase_space.get_adjacency_id_space_iterator(lblock0.index().hub_id(), true);
 
-//   //index_space_iterator& get_adjacency_iterator(const scoped_index& xmbr_id, bool xauto_access) const;
+//   //index_space_iterator& get_adjacency_id_space_iterator(const scoped_index& xmbr_id, bool xauto_access) const;
 
 //   index_space_iterator& literator7 =
-//     lbase_space.get_adjacency_iterator(lblock0.index(), true);
+//     lbase_space.get_adjacency_id_space_iterator(lblock0.index(), true);
 
-//   //void release_adjacency_iterator(index_space_iterator& xitr, bool xauto_access) const;
+//   //void release_adjacency_id_space_iterator(index_space_iterator& xitr, bool xauto_access) const;
 
-//   lbase_space.release_adjacency_iterator(literator6, true);
+//   lbase_space.release_adjacency_id_space_iterator(literator6, true);
 
   //============================================================================
 
@@ -354,33 +354,33 @@ main(int xargc, char* xargv[])
   ltest = lbase_space.contains_vertex_client_id_space(lblock0.index(), true);
   cout << "ltest = " << boolalpha << ltest << endl;
 
-//   //index_space_handle& get_vertex_client_handle(pod_index_type xmbr_id, bool xauto_access) const;
+//   //index_space_handle& get_vertex_client_id_space(pod_index_type xmbr_id, bool xauto_access) const;
 
 //   index_space_handle& lhandle8 =
-//     lbase_space.get_vertex_client_handle(lblock0.index().hub_id(), true);
+//     lbase_space.get_vertex_client_id_space(lblock0.index().hub_id(), true);
 
-//   //index_space_handle& get_vertex_client_handle(const scoped_index& xmbr_id, bool xauto_access) const;
+//   //index_space_handle& get_vertex_client_id_space(const scoped_index& xmbr_id, bool xauto_access) const;
 
 //   index_space_handle& lhandle9 =
-//     lbase_space.get_vertex_client_handle(lblock0.index(), true);
+//     lbase_space.get_vertex_client_id_space(lblock0.index(), true);
 
-//   //void release_vertex_client_handle(index_space_handle& xid_space, bool xauto_access) const;
+//   //void release_vertex_client_id_space(index_space_handle& xid_space, bool xauto_access) const;
 
-//   lbase_space.release_vertex_client_handle(lhandle8, true);
+//   lbase_space.release_vertex_client_id_space(lhandle8, true);
 
-//   //index_space_iterator& get_vertex_client_iterator(pod_index_type xmbr_id, bool xauto_access) const;
+//   //index_space_iterator& get_vertex_client_id_space_iterator(pod_index_type xmbr_id, bool xauto_access) const;
 
 //   index_space_iterator& literator8 =
-//     lbase_space.get_vertex_client_iterator(lblock0.index().hub_id(), true);
+//     lbase_space.get_vertex_client_id_space_iterator(lblock0.index().hub_id(), true);
 
-//   //index_space_iterator& get_vertex_client_iterator(const scoped_index& xmbr_id, bool xauto_access) const;
+//   //index_space_iterator& get_vertex_client_id_space_iterator(const scoped_index& xmbr_id, bool xauto_access) const;
 
 //   index_space_iterator& literator9 =
-//     lbase_space.get_vertex_client_iterator(lblock0.index(), true);
+//     lbase_space.get_vertex_client_id_space_iterator(lblock0.index(), true);
 
-//   //void release_vertex_client_iterator(index_space_iterator& xitr, bool xauto_access) const;
+//   //void release_vertex_client_id_space_iterator(index_space_iterator& xitr, bool xauto_access) const;
 
-//   lbase_space.release_vertex_client_iterator(literator9, true);
+//   lbase_space.release_vertex_client_id_space_iterator(literator9, true);
 
   //============================================================================
 

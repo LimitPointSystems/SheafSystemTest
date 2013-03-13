@@ -39,7 +39,7 @@ void create_eqv(index_space_family& xfamily)
 			      lspace_args, true);
 
   mutable_index_space_handle& lspace_reverse =
-    xfamily.get_handle<mutable_index_space_handle>("reverse_space");
+    xfamily.get_id_space<mutable_index_space_handle>("reverse_space");
 
   // Space 200: every other hub id.
 
@@ -48,7 +48,7 @@ void create_eqv(index_space_family& xfamily)
 			      lspace_args, true);
 
   mutable_index_space_handle& lspace_200 =
-    xfamily.get_handle<mutable_index_space_handle>("space_200");
+    xfamily.get_id_space<mutable_index_space_handle>("space_200");
 
   // Space 300: every third hub id.
 
@@ -56,7 +56,7 @@ void create_eqv(index_space_family& xfamily)
 			      lspace_args, true);
 
   mutable_index_space_handle& lspace_300 =
-    xfamily.get_handle<mutable_index_space_handle>("space_300");
+    xfamily.get_id_space<mutable_index_space_handle>("space_300");
 
   // Space 400: every fourth hub id.
 
@@ -64,7 +64,7 @@ void create_eqv(index_space_family& xfamily)
 			      lspace_args, true);
 
   mutable_index_space_handle& lspace_400 =
-    xfamily.get_handle<mutable_index_space_handle>("space_400");
+    xfamily.get_id_space<mutable_index_space_handle>("space_400");
 
   // Populate the id spaces.
 

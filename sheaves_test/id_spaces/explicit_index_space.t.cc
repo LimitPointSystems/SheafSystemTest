@@ -67,7 +67,7 @@ int main( int argc, char* argv[])
   cout << "pod(lid0)            = " << lhandle.pod(lid0) << endl;
   cout << "pod(2)               = " << lhandle.pod(2) << endl;
   cout << "hub_pod(0)           = " << lhandle.hub_pod(0) << endl;
-  cout << "primary_sum_pod(0)   = " << lhandle.primary_sum_pod(0) << endl;
+  cout << "glued_hub_pod(0)     = " << lhandle.glued_hub_pod(0) << endl;
   cout << "is_persistent()      = " << lhandle.is_persistent() << endl;
   cout << "host()               = " << &lhandle.host() << endl;
   cout << "index()              = " << lhandle.index() << endl;

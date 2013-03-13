@@ -46,7 +46,6 @@ set(UNIT_TEST_SRCS
     list_index_space.t.cc
     offset_index_space.t.cc
     primary_index_space.t.cc
-    primary_sum_index_space.t.cc
     ragged_array_index_space_interval.t.cc
     reserved_primary_index_space.t.cc
     singleton_index_space.t.cc

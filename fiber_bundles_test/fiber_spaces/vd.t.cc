@@ -21,6 +21,7 @@
 
 
 using namespace fiber_bundle;
+using namespace fiber_bundle::vd_algebra;
 
 namespace
 {

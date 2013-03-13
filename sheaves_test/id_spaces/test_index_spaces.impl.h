@@ -55,13 +55,13 @@ test_handle_facet(index_space_family& xid_spaces,  pod_index_type xspace_id)
   H lhandle1(xid_spaces, xspace_id);
   cout << lhandle1 << endl;
 
-  // Test index_space_family::get_handle<H> for index.
+  // Test index_space_family::get_id_space<H> for index.
 
-  print_out_subheader("Testing index_space_family::get_handle()");
+  print_out_subheader("Testing index_space_family::get_id_space()");
 
-  H& lhandle2 = xid_spaces.get_handle<H>(xspace_id);
+  H& lhandle2 = xid_spaces.get_id_space<H>(xspace_id);
   cout << lhandle2 << endl;
-  xid_spaces.release_handle(lhandle2);
+  xid_spaces.release_id_space(lhandle2);
 
   // Name constructor.
 
@@ -70,13 +70,13 @@ test_handle_facet(index_space_family& xid_spaces,  pod_index_type xspace_id)
   H lhandle3(xid_spaces, lname);
   cout << lhandle3 << endl;
 
-  // Test index_space_family::get_handle<H> for name.
+  // Test index_space_family::get_id_space<H> for name.
 
-  print_out_subheader("Testing index_space_family::get_handle()");
+  print_out_subheader("Testing index_space_family::get_id_space()");
 
-  H& lhandle4 = xid_spaces.get_handle<H>(lname);
+  H& lhandle4 = xid_spaces.get_id_space<H>(lname);
   cout << lhandle4 << endl;
-  xid_spaces.release_handle(lhandle4);
+  xid_spaces.release_id_space(lhandle4);
 
   // Test clone.
 
