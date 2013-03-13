@@ -819,7 +819,7 @@ function(add_example_targets)
         mark_as_advanced(${COMPONENT}_EXAMPLES)    
         # Add building of executable and link with shared library
         message(STATUS "Creating ${t_file} from ${t_cc_file}")
-        add_executable(${t_file} ALL ${t_cc_file})
+        add_executable(${t_file} ${t_cc_file})
     
         # Make sure the library is up to date
         if(WIN64MSVC OR WIN64INTEL)
