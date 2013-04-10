@@ -117,4 +117,7 @@ else()
     set(OUTDIR "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(Outdir)" CACHE STRING "Visual Studio Output Directory")
 endif() 
 
-
+#
+# Configure the SheafScope batch file. 
+#
+configure_file(${CMAKE_MODULE_PATH}/set_scope_vars.bat.in ${CMAKE_BINARY_DIR}/set_scope_vars.bat) 
