@@ -1,7 +1,7 @@
 
-// $Name$
+
 //
-// Copyright (c) 2011 Limit Point Systems, Inc. 
+// Copyright (c) 2013 Limit Point Systems, Inc. 
 //
 
 /// @example section_space_schema_jims_index_sapce.t.cc

@@ -1,7 +1,7 @@
 
-// $Name$
+
 //
-// Copyright (c) 2011 Limit Point Systems, Inc.
+// Copyright (c) 2013 Limit Point Systems, Inc.
 //
 
 /// @example id_spaces/index_space_interval.t.cc

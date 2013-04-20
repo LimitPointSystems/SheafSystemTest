@@ -1,8 +1,8 @@
-// $RCSfile$ $Revision$ $Date$
 
-// $Name$
+
+
 //
-// Copyright (c) 2011 Limit Point Systems, Inc. 
+// Copyright (c) 2013 Limit Point Systems, Inc. 
 //
 
 /// @example array_index_space_interval.t.cc

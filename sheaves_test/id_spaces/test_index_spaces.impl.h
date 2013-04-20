@@ -1,8 +1,7 @@
-// $RCSfile: class.h,v $ $Revision: 1.4 $ $Date: 2011/04/19 18:00:23 $
 
-// $Name:  $
+
 //
-// Copyright (c) 2011 Limit Point Systems, Inc. 
+// Copyright (c) 2013 Limit Point Systems, Inc. 
 //
 
 /// @file
