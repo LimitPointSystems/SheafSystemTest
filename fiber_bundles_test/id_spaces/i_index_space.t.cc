@@ -9,6 +9,7 @@
 /// a 1-dimensional structured block.
 
 #include "arg_list.h"
+#include "fiber_bundles_namespace.h"
 #include "i_adjacency_index_space_interval.h"
 #include "i_adjacency_implicit_index_space_iterator.h"
 #include "i_connectivity_index_space_interval.h"
@@ -22,6 +23,8 @@ using namespace fiber_bundle;
 
 int main( int argc, char* argv[])
 {
+  fiber_bundles_namespace::initialize_id_space_prototypes();
+
   // Parse input.
 
   size_t li_size = argc > 1 ? atoi(argv[1]) : 4;

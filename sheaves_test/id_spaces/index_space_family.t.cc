@@ -14,6 +14,7 @@
 #include "hash_index_space_state.h"
 #include "hub_index_space_handle.h"
 #include "mutable_index_space_handle.h"
+#include "namespace_poset.h"
 #include "std_strstream.h"
 #include "test_index_spaces.h"
 
@@ -377,6 +378,8 @@ int main(int argc, char** argv)
   size_t lrange_mbr_ct = argc > 1 ? atoi(argv[1]) : 4;
 
   assertion(lrange_mbr_ct >= 4);
+
+  namespace_poset::initialize_id_space_prototypes();
 
   create(lrange_mbr_ct);
   read_all(lrange_mbr_ct);

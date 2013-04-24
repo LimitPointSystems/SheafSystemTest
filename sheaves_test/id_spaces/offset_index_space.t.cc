@@ -15,6 +15,7 @@
 #include "offset_index_space_handle.h"
 #include "offset_index_space_iterator.h"
 #include "offset_index_space_state.h"
+#include "namespace_poset.h"
 #include "std_iostream.h"
 #include "test_index_spaces.impl.h"
 
@@ -25,6 +26,8 @@ int main( int argc, char* argv[])
   // Preconditions:
 
   // Body:
+
+  namespace_poset::initialize_id_space_prototypes();
 
   index_space_family lid_spaces;
   lid_spaces.new_primary_state(6);

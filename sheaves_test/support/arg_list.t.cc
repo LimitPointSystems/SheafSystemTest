@@ -8,6 +8,7 @@
 #include "arg_list.h"
 #include "assert_contract.h"
 #include "index_space_family.h"
+#include "namespace_poset.h"
 #include "namespace_relative_member_index.h"
 #include "namespace_relative_subposet_index.h"
 #include "schema_descriptor.h"
@@ -37,6 +38,8 @@ main()
   arg_list test1;
 
   // Create and index space family and some ids for testing.
+
+  namespace_poset::initialize_id_space_prototypes();
 
   index_space_family lid_spaces;
   lid_spaces.new_id(10);

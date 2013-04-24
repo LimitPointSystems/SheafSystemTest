@@ -15,6 +15,7 @@
 #include "primary_index_space_handle.h"
 #include "primary_index_space_iterator.h"
 #include "primary_index_space_state.h"
+#include "namespace_poset.h"
 #include "std_iostream.h"
 #include "test_index_spaces.impl.h"
 
@@ -25,6 +26,8 @@ int main( int argc, char* argv[])
   // Preconditions:
 
   // Body:
+
+  namespace_poset::initialize_id_space_prototypes();
 
   index_space_family lid_spaces;
   pod_index_type lspace_id = lid_spaces.new_primary_state(6);

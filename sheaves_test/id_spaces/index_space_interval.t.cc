@@ -12,6 +12,7 @@
 #include "hub_index_space_handle.h"
 #include "index_space_family.h"
 #include "index_space_iterator.h"
+#include "namespace_poset.h"
 #include "ragged_array_index_space_interval.h"
 #include "scoped_index.h"
 #include "singleton_implicit_index_space_iterator.h"
@@ -253,6 +254,8 @@ int main(int argc, char** argv)
   size_t lseg_ct = argc > 1 ? atoi(argv[1]) : 5;
 
   assertion(lseg_ct >= 5);
+
+  namespace_poset::initialize_id_space_prototypes();
 
   test_array_intervals(lseg_ct);
 

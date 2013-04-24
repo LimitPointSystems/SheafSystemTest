@@ -136,6 +136,8 @@ test_block_facet<sheaf::index_space_handle*>()
   // Need to create an index space (abstract class).
   // Use index_space_family.hub_id_space().
 
+  namespace_poset::initialize_id_space_prototypes();
+
   sheaf::index_space_family lid_spaces;
   sheaf::hub_index_space_handle& lhub_id_space =
     const_cast<hub_index_space_handle&>(lid_spaces.hub_id_space());

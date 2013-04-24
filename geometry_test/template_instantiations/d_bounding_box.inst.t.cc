@@ -11,6 +11,7 @@
 #include "constant_quad.h"  // concrete section_evaluator
 #include "d_bin_coordinates.h"
 #include "geometry.h"
+#include "geometry_namespace.h"
 #include "test_utils.h"
 
 using namespace geometry;
@@ -47,6 +48,8 @@ test_d_bounding_box_facet()
   // Body:
 
   // Construct a member and branch scoped ids.
+
+  geometry_namespace::initialize_id_space_prototypes();
 
   index_space_family lid_spaces;
   lid_spaces.new_id(123);

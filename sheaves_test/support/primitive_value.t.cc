@@ -8,6 +8,7 @@
 
 #include "primitive_value.h"
 
+#include "namespace_poset.h"
 #include "poset_path.h"
 #include "std_iomanip.h"
 #include "test_utils.h"
@@ -250,6 +251,8 @@ main(int xargc, char* xargv[])
 
   // Make an id space family and a primary term so that scoped ids can be
   // constructed.
+
+  namespace_poset::initialize_id_space_prototypes();
 
   index_space_family lid_spaces;
   lid_spaces.new_primary_state(500);

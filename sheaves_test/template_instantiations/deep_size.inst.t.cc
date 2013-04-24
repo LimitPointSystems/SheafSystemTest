@@ -10,6 +10,7 @@
 #include "deep_size.impl.h"
 
 #include "index_space_family.h"
+#include "namespace_poset.h"
 #include "scoped_index.h"
 #include "std_list.h"
 #include "std_map.h"
@@ -32,6 +33,8 @@ main(int xargc, char* xargv[])
   size_t lsize;
 
   // Create some scoped ids for testing.
+
+  namespace_poset::initialize_id_space_prototypes();
 
   index_space_family lid_spaces;
   lid_spaces.new_id(123);

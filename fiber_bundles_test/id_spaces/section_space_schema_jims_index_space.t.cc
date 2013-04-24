@@ -14,6 +14,7 @@
 #include "assert_contract.h"
 #include "arg_list.h"
 #include "array_index_space_state.h"
+#include "fiber_bundles_namespace.h"
 #include "ij_product_structure.h"
 #include "index_space_family.h"
 #include "mutable_index_space_handle.h"
@@ -29,6 +30,8 @@ int main( int argc, char* argv[])
   size_t lfiber_ub = argc > 2 ? atoi(argv[2]) : 3;
   
   // Body:
+
+  fiber_bundles_namespace::initialize_id_space_prototypes();
 
   assertion(lbase_ub >= 2);
   assertion(lfiber_ub >= 2);
