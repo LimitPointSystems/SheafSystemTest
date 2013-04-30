@@ -12,7 +12,7 @@
 #
 # Establish the list of components in this system
 #
-set(COMPONENTS sheaves_test fiber_bundles_test geometry_test fields_test CACHE STRING "List of components in this system" FORCE)
+set(COMPONENTS sheaves_test fiber_bundles_test geometry_test fields_test tools_test CACHE STRING "List of components in this system" FORCE)
 
 #
 # Set the cmake module path.
