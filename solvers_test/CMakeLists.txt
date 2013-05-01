@@ -7,7 +7,7 @@
 
 project(solvers_test)
 
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 2.8.8)
 
 #
 # Include the functions and variable definitions unigue to this component.

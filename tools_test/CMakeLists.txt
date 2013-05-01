@@ -5,9 +5,9 @@
 #
 #
 
-project(tools)
+project(tools_test)
 
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 2.8.8)
 
 #
 # Include the functions and variable definitions unigue to this component.
@@ -18,21 +18,6 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/component_definitions.cmake)
 # Announce current status.
 #
 status_message("Processing ${PROJECT_NAME}")
-
-#
-# Initialize all variables for this component.
-#
-set_component_vars()
-
-#
-# Add the clusters to the project
-#
-add_clusters("${clusters}")
-
-#
-# examples will corrupt the scope sources. Include it after.
-#
-add_subdirectory(examples)
 
 #
 # Set compiler flags for all build configurations
@@ -47,7 +32,7 @@ create_output_dirs()
 #
 # Add the library targets
 #
-#add_library_targets()
+add_library_targets()
 
 #
 # Add the unit test targets
@@ -82,18 +67,7 @@ status_message("Creating coverage target for ${PROJECT_NAME}")
 endif()
 
 #
-# Component specific bin target
+# Add files to the clean target
 #
-#add_component_bin_target()
+add_clean_files()
 
-#
-# Installation target
-#
-#if(LINUX64)
-#    add_install_target()
-#endif()
-
-#
-# Write this component's lib targets and include paths to an export file.
-#
-export_targets()
