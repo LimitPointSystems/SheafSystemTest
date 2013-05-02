@@ -145,7 +145,6 @@ void multiple_names_test(sheaves_namespace& xns)
 
   // Give the whole and jims subposets alternate names.
 
-  xns.whole().put_name("whole", false, false);
   xns.jims().put_name("join-irreducible-members", false, false);
 
   // Give the components of R2 alternate names.
