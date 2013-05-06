@@ -19,7 +19,7 @@ configure_file(lps_environment.h.cmake.in lps_environment.h)
 set(SRCS
 test_case_2d.cc
 test_case_3d.cc
-test_case_3d_irregular.t.cc
+test_case_3d_irregular.cc
 )
 
 collect_sources()

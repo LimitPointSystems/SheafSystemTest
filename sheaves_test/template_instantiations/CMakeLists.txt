@@ -44,7 +44,6 @@ set(UNIT_TEST_SRCS
     sheaf.abstract_poset_member.inst.t.cc
     sheaf.block.inst.t.cc
     sheaf.auto_block.inst.t.cc
-    name_multimap.inst.t.cc
     sheaf.namespace_poset.inst.t.cc
     sheaf.list_pool.inst.t.cc
     ragged_array.inst.t.cc

@@ -17,9 +17,11 @@ void
 test_int()
 {
   cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
-  cout << "++++ TESTING name_multimap<int> +++++++++++++++++++++" << endl;
+  cout << "++++ TESTING name_multimap                 +++++++++++++++++++++" << endl;
   cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
 
+
+  typedef name_multimap::index_type index_type;
 
   // Make a default namespace
 
@@ -35,8 +37,7 @@ test_int()
 
   // make a new name_multimap
 
-  //name_multimap<scoped_index> nmm;
-  name_multimap<int> nmm;
+  name_multimap nmm;
 
   // iterate over the subposet stuffing the node names into
   // the array.
@@ -67,7 +68,7 @@ test_int()
   nmm.put_entry(6, "beta", false);
   nmm.put_entry(6, "gamma", false);
 
-  name_multimap<int>* cmm = nmm.clone();
+  name_multimap* cmm = nmm.clone();
 
   cout << "Below are the contents of the cloned member" << endl;
   cout << endl;
@@ -78,13 +79,37 @@ test_int()
 
   cout << nmm << endl;
 
-  for (int i=0; i < 7; i++)
+  for (index_type i=0; i < 7; i++)
   {
 
     cout << "Testing -- name is: " << nmm.name(i) << endl;
     cout << "Index " << i << " has " << nmm.name_ct(i) << " names associated with it" << endl;
 
   }
+
+  // Get all the names.
+  
+  cout << endl;
+  cout << "==========================================" << endl;
+  cout << endl;
+  cout << "All names for index 6 (list interface).:" << endl;
+  const name_multimap::name_list_type& nlist = nmm.all_names(6);
+  for(name_multimap::const_name_iterator nitr = nlist.begin(); nitr != nlist.end(); ++nitr)
+  {
+    cout << *nitr << endl;
+  }
+  cout << "==========================================" << endl;
+  cout << endl;
+
+  cout << endl;
+  cout << "==========================================" << endl;
+  cout << endl;
+  cout << "All names for index 6 (block interface).:" << endl;
+  block<string> names;
+  nmm.all_names(6, names);
+  cout << names << endl;
+  cout << "==========================================" << endl;
+  cout << endl;
 
   // Delete some names.
 
@@ -114,7 +139,7 @@ test_int()
 
   // now delete some indices
 
-  for (int i=1; i < ns.member_ct(); i++)
+  for (index_type i=1; i < ns.member_ct(); i++)
   {
     cout << endl;
     cout << "==========================================" << endl;
@@ -126,7 +151,7 @@ test_int()
 
     nmm.delete_index(i);
 
-    for (int j=1; j < ns.member_ct(); j++)
+    for (index_type j=1; j < ns.member_ct(); j++)
     {
 
       // test for the presence of index
@@ -147,7 +172,18 @@ test_int()
     }
   }
 
-  /// @todo exercise remainder of name_multimaps queries and functions.
+  // Contains functions.
+
+  cout << endl;
+  cout << "==========================================" << endl;
+  cout << endl;
+  cout << "Contains name alpha       : " << nmm.contains_name("alpha") << endl;
+  cout << "Contains name beta        : " << nmm.contains_name("beta") << endl;
+  cout << "Contains entry (6, alpha) : " << nmm.contains_entry(6, "alpha") << endl;
+  cout << "Contains entry (6, beta)  : " << nmm.contains_entry(6, "beta") << endl;
+  cout << endl;
+  cout << "==========================================" << endl;
+  cout << endl;
 
 }
 
