@@ -135,7 +135,6 @@ message(STATUS " ")
 include(${CMAKE_MODULE_PATH}/CheckCXX11Features.cmake)
 
 # If SHEAFSYSTEM_HOME contains white space, escape it.
-#string(REGEX REPLACE " " "\\\\ "  SHEAFSYSTEM_HOME "${SHEAFSYSTEM_HOME}")
 file(TO_NATIVE_PATH "${SHEAFSYSTEM_HOME}" SHEAFSYSTEM_HOME)
 
 # When we are dealing with an install, the hdf and tetgen include files are

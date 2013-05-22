@@ -11,7 +11,6 @@
 # It does NOT stop cmake from setting all the cache variables associated with those same
 # configurations however.
 
-
 #
 # Force Windows to do Debug-contracts until we resolve issue with config type at compile time.
 #
@@ -20,7 +19,8 @@ if(${CMAKE_GENERATOR} MATCHES "Visual Studio 9 Win64" OR ${CMAKE_GENERATOR} MATC
     set(CMAKE_CONFIGURATION_TYPES Debug-contracts CACHE STRING "Win32 Supported configuration types" FORCE)
 else()
     set(CMAKE_CONFIGURATION_TYPES Debug-contracts Release-no-contracts CACHE STRING "Supported configuration types" FORCE)
-endif()     
+endif()
+     
 #
 # Establish the project name
 #    
@@ -50,14 +50,13 @@ project(SheafSystemTest)
 #
 # Ensure that we have the required cmake version.
 #
-cmake_minimum_required(VERSION 2.8.6)
+cmake_minimum_required(VERSION 2.8.8)
 
 #
 # Include variable definitions and functions
 # unique to and/or required at the system level.
 #
 include(system_definitions.cmake)
-
 
 #
 # Set the compiler optimization level

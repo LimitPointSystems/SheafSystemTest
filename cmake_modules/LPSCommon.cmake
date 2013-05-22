@@ -582,9 +582,10 @@ function(add_win32_test_targets)
         get_filename_component(__TMP_DIR "${__TMP_DIR}" PATH)
         set(VTK_BIN_DIR "${__TMP_DIR}/bin" CACHE PATH "VTK Runtime libraries location." FORCE)
     endif()
-        # Now get ctest's location
-        get_filename_component(__TMP_DIR "${CMAKE_COMMAND}" PATH)
-        set(CTEST_COMMAND "${__TMP_DIR}/ctest.exe" CACHE PATH "" FORCE)
+    
+    # Now get ctest's location
+    get_filename_component(__TMP_DIR "${CMAKE_COMMAND}" PATH)
+    set(CTEST_COMMAND "${__TMP_DIR}/ctest.exe" CACHE PATH "" FORCE)
             
     if(${USE_VTK})
         link_directories(${VTK_LIB_DIR})
@@ -619,6 +620,7 @@ function(add_win32_test_targets)
             # Supply the *_DLL_IMPORTS directive to preprocessor
             set_target_properties(${t_file} PROPERTIES COMPILE_DEFINITIONS "SHEAF_DLL_IMPORTS")
             add_dependencies(${t_file} ${${COMPONENT}_IMPORT_LIBS})
+
             #
             # unit_test.hdf.log -> unit_test.hdf -> unit_test.log -> unit_test
             #
@@ -629,7 +631,6 @@ function(add_win32_test_targets)
             endif()
 
             add_test(NAME ${t_file} WORKING_DIRECTORY ${OUTDIR} COMMAND $<TARGET_FILE:${t_file}>)                
-           # add_test(NAME ${t_file} COMMAND --config $<CONFIGURATION> $<TARGET_FILE:${t_file}>)  
             # Set the PATH variable for CTest. If the config dir is present, we've got an install.
             if(EXISTS ${SHEAFSYSTEM_HOME}/config/${VS_CONF_TYPE}/SheafSystem-exports.cmake.in)
                 set(TESTPATH "PATH=$ENV{PATH};${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${VS_CONF_TYPE};${SHEAFSYSTEM_HOME}/bin/${VS_CONF_TYPE};${SHEAFSYSTEM_HOME}/bin/VTK")            
@@ -699,7 +700,6 @@ function(add_linux_test_targets)
     endif()
     
     # link_directories only applies to targets created after it is called.
-   # link_directories(${${COMPONENT}_OUTPUT_DIR} ${SHEAVES_LIB_OUTPUT_DIR} ${HDF5_LIBRARY_DIRS} ${TETGEN_DIR})
     link_directories(${${COMPONENT}_OUTPUT_DIR} ${SHEAVES_LIB_OUTPUT_DIR})
     
     # Let the user know what's being configured
@@ -862,8 +862,6 @@ endfunction(add_clusters)
 function(set_component_vars)
 
     if(WIN64MSVC OR WIN64INTEL)
-        # Fields import lib won't exist when it's antecedents are configured. Force it.
-        #set(FIELDS_IMPORT_LIB fieldsdll CACHE STRING "${PROJECT_NAME} import library")
         set(${COMPONENT}_DYNAMIC_LIB ${PROJECT_NAME} CACHE STRING "${PROJECT_NAME} dynamic link library")
         set(${COMPONENT}_IMPORT_LIB ${PROJECT_NAME} CACHE STRING "${PROJECT_NAME} import library")
     else()
