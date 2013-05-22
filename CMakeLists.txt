@@ -11,11 +11,16 @@
 # It does NOT stop cmake from setting all the cache variables associated with those same
 # configurations however.
 
-#Debug-contracts is the only configuration type we are interested in for testing.
-set(CMAKE_CONFIGURATION_TYPES Debug-contracts CACHE
-    STRING "Supported configuration types"
-    FORCE)
-    
+
+#
+# Force Windows to do Debug-contracts until we resolve issue with config type at compile time.
+#
+if(${CMAKE_GENERATOR} MATCHES "Visual Studio 9 Win64" OR ${CMAKE_GENERATOR} MATCHES "Visual Studio 10 Win64" OR ${CMAKE_GENERATOR} MATCHES "Visual Studio 11 Win64")
+    set(VS_CONF_TYPE "Debug-contracts" CACHE STRING "Current VS Configuration type")    
+    set(CMAKE_CONFIGURATION_TYPES Debug-contracts CACHE STRING "Win32 Supported configuration types" FORCE)
+else()
+    set(CMAKE_CONFIGURATION_TYPES Debug-contracts Release-no-contracts CACHE STRING "Supported configuration types" FORCE)
+endif()     
 #
 # Establish the project name
 #    
@@ -52,6 +57,7 @@ cmake_minimum_required(VERSION 2.8.6)
 # unique to and/or required at the system level.
 #
 include(system_definitions.cmake)
+
 
 #
 # Set the compiler optimization level
@@ -113,6 +119,7 @@ endif()
 #
 if(${CMAKE_GENERATOR} MATCHES "Visual Studio 10 Win64" OR ${CMAKE_GENERATOR} MATCHES "Visual Studio 11 Win64")
     set(OUTDIR "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(Configuration)" CACHE STRING "Visual Studio Output Directory")
+#    set(VS_CONF_TYPE "Debug-contracts" CACHE STRING "Current VS Configuration type")    
 else()
     set(OUTDIR "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(Outdir)" CACHE STRING "Visual Studio Output Directory")
 endif() 
