@@ -48,7 +48,7 @@ fi
 	fi
 	
 	echo setting CLASSPATH in this terminal
-	export CLASSPATH=.:@SHEAVES_LIB_OUTPUT_DIR@/SheafScope.jar:@SHEAVES_LIB_OUTPUT_DIR@/solvers_java_binding.jar:@SHEAVES_LIB_OUTPUT_DIR@/tools_java_binding.jar:@SHEAVES_LIB_OUTPUT_DIR@/fields_java_binding.jar:@SHEAVES_LIB_OUTPUT_DIR@/geometry_java_binding.jar:@SHEAVES_LIB_OUTPUT_DIR@/fiber_bundles_java_binding.jar:@SHEAVES_LIB_OUTPUT_DIR@/sheaves_java_binding.jar:@VTK_LIB_DIR@/java/vtk.jar:@JMF_LIB_DIR@/jmf.jar 
+	export CLASSPATH=.:@SHEAVES_LIB_OUTPUT_DIR@/SheafScope.jar:@SHEAVES_LIB_OUTPUT_DIR@/solvers_java_binding.jar:@SHEAVES_LIB_OUTPUT_DIR@/tools_java_binding.jar:@SHEAVES_LIB_OUTPUT_DIR@/fields_java_binding.jar:@SHEAVES_LIB_OUTPUT_DIR@/geometry_java_binding.jar:@SHEAVES_LIB_OUTPUT_DIR@/fiber_bundles_java_binding.jar:@SHEAVES_LIB_OUTPUT_DIR@/sheaves_java_binding.jar:@VTK_LIB_DIR@/java/vtk.jar:@JMF_JAR@ 
 
 	echo setting PATH in this terminal.
 	export PATH=@JDK_BIN_DIR@:$PATH 
