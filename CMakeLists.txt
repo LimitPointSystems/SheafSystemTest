@@ -15,8 +15,8 @@
 # Force Windows to do Debug-contracts until we resolve issue with config type at compile time.
 #
 if(${CMAKE_GENERATOR} MATCHES "Visual Studio 9 Win64" OR ${CMAKE_GENERATOR} MATCHES "Visual Studio 10 Win64" OR ${CMAKE_GENERATOR} MATCHES "Visual Studio 11 Win64")
-    set(VS_CONF_TYPE "Debug-contracts" CACHE STRING "Current VS Configuration type")    
-    set(CMAKE_CONFIGURATION_TYPES Debug-contracts CACHE STRING "Win32 Supported configuration types" FORCE)
+#    set(VS_CONF_TYPE "Debug-contracts" CACHE STRING "Current VS Configuration type")    
+    set(CMAKE_CONFIGURATION_TYPES Debug-contracts Release-no-contracts CACHE STRING "Win32 Supported configuration types" FORCE)
 else()
     set(CMAKE_CONFIGURATION_TYPES Debug-contracts Release-no-contracts CACHE STRING "Supported configuration types" FORCE)
 endif()

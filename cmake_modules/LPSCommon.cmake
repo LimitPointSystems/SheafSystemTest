@@ -474,7 +474,7 @@ endfunction(add_component_bin_target)
 function(add_check_target)
 
     if(WIN64MSVC OR WIN64INTEL)
-        add_custom_target(check ALL COMMAND ${CMAKE_CTEST_COMMAND} -C ${VS_CONF_TYPE} DEPENDS ${${COMPONENT}_EXAMPLES} ${ALL_CHECK_TARGETS})        
+        add_custom_target(check ALL COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_BUILD_TYPE} DEPENDS ${${COMPONENT}_EXAMPLES} ${ALL_CHECK_TARGETS})        
         set_target_properties(check PROPERTIES FOLDER "Check Targets")
 
     else()
@@ -490,7 +490,7 @@ function(add_component_check_target)
 
     if(WIN64MSVC OR WIN64INTEL)
         #add_custom_target(${PROJECT_NAME}-check ALL COMMAND ${CMAKE_CTEST_COMMAND} -C ${OUTDIR} DEPENDS ${${COMPONENT}_IMPORT_LIB} ${${COMPONENT}_UNIT_TESTS})
-        add_custom_target(${PROJECT_NAME}-check COMMAND ${CMAKE_CTEST_COMMAND} -C ${VS_CONF_TYPE})        
+        add_custom_target(${PROJECT_NAME}-check COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_BUILD_TYPE})        
         add_dependencies(${PROJECT_NAME}-check ${${COMPONENT}_IMPORT_LIB} ${${COMPONENT}_UNIT_TESTS})
         set_target_properties(${PROJECT_NAME}-check PROPERTIES FOLDER "Check Targets")
     else()
@@ -632,10 +632,10 @@ function(add_win32_test_targets)
 
             add_test(NAME ${t_file} WORKING_DIRECTORY ${OUTDIR} COMMAND $<TARGET_FILE:${t_file}>)                
             # Set the PATH variable for CTest. If the config dir is present, we've got an install.
-            if(EXISTS ${SHEAFSYSTEM_HOME}/config/${VS_CONF_TYPE}/SheafSystem-exports.cmake.in)
-                set(TESTPATH "PATH=$ENV{PATH};${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${VS_CONF_TYPE};${SHEAFSYSTEM_HOME}/bin/${VS_CONF_TYPE};${SHEAFSYSTEM_HOME}/bin/VTK")            
+            if(EXISTS ${SHEAFSYSTEM_HOME}/config/${CMAKE_BUILD_TYPE}/SheafSystem-exports.cmake.in)
+                set(TESTPATH "PATH=$ENV{PATH};${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE};${SHEAFSYSTEM_HOME}/bin/${CMAKE_BUILD_TYPE};${SHEAFSYSTEM_HOME}/bin/VTK")            
             else()
-                set(TESTPATH "PATH=$ENV{PATH};${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${VS_CONF_TYPE};${SHEAFSYSTEM_HOME}/build/bin/${VS_CONF_TYPE};${VTK_BIN_DIR}")
+                set(TESTPATH "PATH=$ENV{PATH};${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE};${SHEAFSYSTEM_HOME}/build/bin/${CMAKE_BUILD_TYPE};${VTK_BIN_DIR}")
             endif()
             # Unfortunately, Windows uses the semicolon as a path delimiter, but the semicolon has special meaning to Cmake as well. Escape the semicolons in the PATH so cmake
             # doesn't see them as list item separators.
