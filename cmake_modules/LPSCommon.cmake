@@ -490,7 +490,9 @@ function(add_component_check_target)
 
     if(WIN64MSVC OR WIN64INTEL)
     
-        add_custom_target(${PROJECT_NAME}-check COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_BUILD_TYPE})        
+        #add_custom_target(${PROJECT_NAME}-check COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_BUILD_TYPE})
+        add_custom_target(${PROJECT_NAME}-check)
+        add_custom_command(TARGET ${PROJECT_NAME}-check POST_BUILD COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR}) 
         add_dependencies(${PROJECT_NAME}-check ${${COMPONENT}_IMPORT_LIB} ${${COMPONENT}_UNIT_TESTS})
         set_target_properties(${PROJECT_NAME}-check PROPERTIES FOLDER "Check Targets")
 
@@ -632,13 +634,15 @@ function(add_win32_test_targets)
                 target_link_libraries(${t_file} ${${COMPONENT}_IMPORT_LIBS})                                         
             endif()
 
-            add_test(NAME ${t_file} WORKING_DIRECTORY ${OUTDIR} COMMAND $<TARGET_FILE:${t_file}>)                
-            # Set the PATH variable for CTest. If the config dir is present, we've got an install.
-            if(EXISTS ${SHEAFSYSTEM_HOME}/config/${CMAKE_BUILD_TYPE}/SheafSystem-exports.cmake.in)
-                set(TESTPATH "PATH=$ENV{PATH};${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE};${SHEAFSYSTEM_HOME}/bin/${CMAKE_BUILD_TYPE};${SHEAFSYSTEM_HOME}/bin/VTK")            
-            else()
-                set(TESTPATH "PATH=$ENV{PATH};${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE};${SHEAFSYSTEM_HOME}/build/bin/${CMAKE_BUILD_TYPE};${VTK_BIN_DIR}")
-            endif()
+            add_test(NAME ${t_file} COMMAND $<TARGET_FILE:${t_file}>)
+            
+            get_target_property(DC_LIB_LOC sheaves IMPORTED_LOCATION_DEBUG-CONTRACTS)
+            get_filename_component(DC_LIB_PATH "${DC_LIB_LOC}" PATH)
+            get_target_property(RNC_LIB_LOC sheaves IMPORTED_LOCATION_RELEASE-NO-CONTRACTS)
+            get_filename_component(RNC_LIB_PATH "${RNC_LIB_LOC}" PATH)                
+
+            set(TESTPATH "PATH=$ENV{PATH};${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE};${DC_LIB_PATH};${RNC_LIB_PATH}")            
+
             # Unfortunately, Windows uses the semicolon as a path delimiter, but the semicolon has special meaning to Cmake as well. Escape the semicolons in the PATH so cmake
             # doesn't see them as list item separators.
             string(REPLACE ";" "\\;" TESTPATH "${TESTPATH}")
