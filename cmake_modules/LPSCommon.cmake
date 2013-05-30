@@ -618,7 +618,7 @@ function(add_win32_test_targets)
         
         # If the target already exists, don't try to create it.
         if(NOT TARGET ${t_file})
-             message(STATUS "Creating ${t_file} from ${t_cc_file}")
+             status_message("Creating ${t_file} from ${t_cc_file}")
              add_executable(${t_file} ${t_cc_file})
 
             # Supply the *_DLL_IMPORTS directive to preprocessor
@@ -636,12 +636,17 @@ function(add_win32_test_targets)
 
             add_test(NAME ${t_file} COMMAND $<TARGET_FILE:${t_file}>)
             
-            get_target_property(DC_LIB_LOC sheaves IMPORTED_LOCATION_DEBUG-CONTRACTS)
-            get_filename_component(DC_LIB_PATH "${DC_LIB_LOC}" PATH)
-            get_target_property(RNC_LIB_LOC sheaves IMPORTED_LOCATION_RELEASE-NO-CONTRACTS)
-            get_filename_component(RNC_LIB_PATH "${RNC_LIB_LOC}" PATH)                
-
-            set(TESTPATH "PATH=$ENV{PATH};${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE};${DC_LIB_PATH};${RNC_LIB_PATH}")            
+            #
+            # Get the location of the SheafSystem Lib dir from the sheaves export info;
+            # specifically the sheaves lib target.
+            # TODO: We should probably be exporting this info explicitly in the SS exports file.
+            #
+            get_target_property(SS_DC_LIB_LOC sheaves IMPORTED_LOCATION_DEBUG-CONTRACTS)
+            get_filename_component(SS_DC_LIB_PATH "${SS_DC_LIB_LOC}" PATH)
+            get_target_property(SS_RNC_LIB_LOC sheaves IMPORTED_LOCATION_RELEASE-NO-CONTRACTS)
+            get_filename_component(SS_RNC_LIB_PATH "${SS_RNC_LIB_LOC}" PATH)                
+            # Having both directories (DC and RNC) in the path is no problem. Cmake knows what it's looking for.
+            set(TESTPATH "PATH=$ENV{PATH};${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE};${SS_DC_LIB_PATH};${SS_RNC_LIB_PATH}")            
 
             # Unfortunately, Windows uses the semicolon as a path delimiter, but the semicolon has special meaning to Cmake as well. Escape the semicolons in the PATH so cmake
             # doesn't see them as list item separators.
@@ -720,7 +725,7 @@ function(add_linux_test_targets)
         mark_as_advanced(${COMPONENT}_UNIT_TESTS)
         # If the target already exists, don't try to create it.
         if(NOT TARGET ${t_file})
-             message(STATUS "Creating ${t_file} from ${t_cc_file}")
+             status_message("Creating ${t_file} from ${t_cc_file}")
              add_executable(${t_file} ${t_cc_file})
 
             # Make sure the library is up to date
@@ -823,7 +828,7 @@ function(add_example_targets)
         set(${COMPONENT}_EXAMPLES ${${COMPONENT}_EXAMPLES} ${t_file} CACHE STRING "List of example binaries" FORCE)
         mark_as_advanced(${COMPONENT}_EXAMPLES)    
         # Add building of executable and link with shared library
-        message(STATUS "Creating ${t_file} from ${t_cc_file}")
+        status_message("Creating ${t_file} from ${t_cc_file}")
         add_executable(${t_file} ${t_cc_file})
     
         # Make sure the library is up to date
@@ -1007,28 +1012,28 @@ endfunction(collect_example_sources)
 
 # 
 # Convenience routine for diagnostic output during configure phase.
+# Variable of interest goes between the double quotes
 #
-function(status_message txt)
+#function(status_message txt)
 
-    # Let the user know what's being configured
-    message(STATUS " ")
-    message(STATUS "${txt} - ")
-    message(STATUS " ")
+#    message(STATUS " ")
+#    message(STATUS "${txt} - ")
+#    message(STATUS " ")
 
-endfunction()
+#endfunction()
 
 # 
 # Convenience routine for diagnostic output during configure phase.
-# Displays list of included directories for module it is called in.
+# Displays list of included directories for module in which it is called.
 #
 function(showincs)
-    message(STATUS "Displaying include directories for ${PROJECT_NAME}:")
-    message(STATUS "===================================================")    
+    status_message("Displaying include directories for ${PROJECT_NAME}:")
+   status_message("===================================================")    
     get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
     foreach(dir ${dirs})
         message(STATUS "dir='${dir}'")
     endforeach() 
-    message(STATUS "===================================================")       
+    status_message("===================================================")       
 endfunction()
   
 
