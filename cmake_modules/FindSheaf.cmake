@@ -20,6 +20,7 @@ if(LINUX64GNU OR LINUX64INTEL)
         configure_file(${SHEAFEXPORTSFILE} ${CMAKE_BINARY_DIR}/SheafSystem-exports.cmake)
         include(${CMAKE_BINARY_DIR}/SheafSystem-exports.cmake)
         set(SHEAF_FOUND 1)
+        message(STATUS "Found a valid SheafSystem Installation at ${SHEAFSYSTEM_HOME}")
     # Didn't find install. Assume we are dealing with a build tree.    
     elseif(EXISTS ${SHEAFSYSTEM_HOME}/build/SheafSystem-exports.cmake)
         set(SHEAFEXPORTSFILE ${SHEAFSYSTEM_HOME}/build/SheafSystem-exports.cmake CACHE STRING "Location of SheafSystem Exports file" FORCE)

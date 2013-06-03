@@ -61,11 +61,13 @@ set(${COMPONENT}_IPATHS ${${COMPONENT}_IPATH} ${SHEAVES_IPATHS} ${CMAKE_BINARY_D
 
 include_directories(${${COMPONENT}_IPATHS}) 
 
+include_directories(${SHEAVES_IPATHS}) 
 #
 # Check for the presence of system cxx includes.
 #
 check_cxx_includes()
     
+showincs()
 
 #------------------------------------------------------------------------------
 # FUNCTION DEFINITION SECTION
@@ -91,13 +93,11 @@ function(add_library_targets)
         # Static library
         add_library(${${COMPONENT}_STATIC_LIB} STATIC ${${COMPONENT}_SRCS})
         set_target_properties(${${COMPONENT}_STATIC_LIB} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
-        add_dependencies(${${COMPONENT}_STATIC_LIB} ${SHEAVES_STATIC_LIBS})
 
         # Shared library
         add_library(${${COMPONENT}_SHARED_LIB} SHARED ${${COMPONENT}_SRCS})
         set_target_properties(${${COMPONENT}_SHARED_LIB} PROPERTIES OUTPUT_NAME ${PROJECT_NAME} LINKER_LANGUAGE CXX)
         set_target_properties(${${COMPONENT}_SHARED_LIB} PROPERTIES LINK_INTERFACE_LIBRARIES "")        
-        add_dependencies(${${COMPONENT}_SHARED_LIB} ${SHEAVES_SHARED_LIBS})
  
         # Override cmake's placing of "${COMPONENT_LIB}_EXPORTS into the preproc symbol table.
         # CMake apparently detects the presence of cdecl_dllspec in the source and places

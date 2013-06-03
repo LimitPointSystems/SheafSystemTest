@@ -109,7 +109,6 @@ function(add_library_targets)
     
         # Static library
         add_library(${${COMPONENT}_STATIC_LIB} STATIC ${${COMPONENT}_SRCS})
-        add_dependencies(${${COMPONENT}_STATIC_LIB} ${FIBER_BUNDLES_STATIC_LIBS})
         set_target_properties(${${COMPONENT}_STATIC_LIB} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 
          # Shared library

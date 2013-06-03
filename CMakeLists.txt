@@ -14,12 +14,7 @@
 #
 # Force Windows to do Debug-contracts until we resolve issue with config type at compile time.
 #
-#if(${CMAKE_GENERATOR} MATCHES "Visual Studio 9 Win64" OR ${CMAKE_GENERATOR} MATCHES "Visual Studio 10 Win64" OR ${CMAKE_GENERATOR} MATCHES "Visual Studio 11 Win64")
-#    set(VS_CONF_TYPE "Debug-contracts" CACHE STRING "Current VS Configuration type")    
-    set(CMAKE_CONFIGURATION_TYPES Debug-contracts Release-no-contracts CACHE STRING "Supported configuration types" FORCE)
-#else()
-#    set(CMAKE_CONFIGURATION_TYPES Debug-contracts Release-no-contracts CACHE STRING "Supported configuration types" FORCE)
-#endif()
+set(CMAKE_CONFIGURATION_TYPES Debug-contracts Release-no-contracts CACHE STRING "Supported configuration types" FORCE)
 
 set_property(GLOBAL PROPERTY DEBUG_CONFIGURATIONS "Debug-contracts" ) 
 
@@ -57,6 +52,7 @@ project(SheafSystemTest)
 # Ensure that we have the required cmake version.
 #
 cmake_minimum_required(VERSION 2.8.8)
+
 
 #
 # Include variable definitions and functions
@@ -122,14 +118,16 @@ endif()
 #
 # VS9 and (VS10,VS11) handle output locations differently.
 #
-if(${CMAKE_GENERATOR} MATCHES "Visual Studio 10 Win64" OR ${CMAKE_GENERATOR} MATCHES "Visual Studio 11 Win64")
-    set(OUTDIR "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(Configuration)" CACHE STRING "Visual Studio Output Directory")
+#if(${CMAKE_GENERATOR} MATCHES "Visual Studio 10 Win64" OR ${CMAKE_GENERATOR} MATCHES "Visual Studio 11 Win64")
+#    set(OUTDIR "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(Configuration)" CACHE STRING "Visual Studio Output Directory")
 #    set(VS_CONF_TYPE "Debug-contracts" CACHE STRING "Current VS Configuration type")    
-else()
-    set(OUTDIR "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(Outdir)" CACHE STRING "Visual Studio Output Directory")
-endif() 
+#else()
+#    set(OUTDIR "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(Outdir)" CACHE STRING "Visual Studio Output Directory")
+#endif() 
 
 #
 # Configure the SheafScope batch file. 
 #
-configure_file(${CMAKE_MODULE_PATH}/set_scope_vars.bat.in ${CMAKE_BINARY_DIR}/set_scope_vars.bat) 
+#if(WIN64MSVC OR WIN64INTEL)
+    #configure_file(${CMAKE_MODULE_PATH}/set_scope_vars.bat.in ${CMAKE_BINARY_DIR}/set_scope_vars.bat) 
+#endif()
