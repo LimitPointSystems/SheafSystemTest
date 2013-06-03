@@ -66,13 +66,6 @@ set(INTELWARN CACHE BOOL "Toggle Intel compiler warnings")
 #
 set(ENABLE_WIN32_MP OFF CACHE BOOL "Toggle win32 compiler MP directive. Works for MS and Intel. Default is OFF.")
 
-#   
-#  Type of system documentation to build: Dev or User
-#
-if(NOT LPS_DOC_STATE)
-    set(LPS_DOC_STATE Dev CACHE STRING "Type of documentation to build: [Dev|User]")
-endif()
-
 #
 # Set compiler optimization level.
 # Default is zero.

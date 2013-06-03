@@ -387,30 +387,6 @@ function(create_output_dirs)
 
 endfunction()
 
-#
-# Add the documentation targets.
-#
-function(add_doc_targets)
-
-    if(DOXYGEN_FOUND)
-        if(LPS_DOC_STATE MATCHES Dev)
-            add_custom_target(doc 
-                    COMMAND ${CMAKE_COMMAND} -E echo "Generating Developer Documentation ... " 
-                    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/documentation/c++/${PROJECT_NAME}
-                    COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_BINARY_DIR}/dev_doxyfile
-                            )
-        else()
-            add_custom_target(doc 
-                     COMMAND ${CMAKE_COMMAND} -E echo "Generating User Documentation ... "  
-                     COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/documentation/c++/${PROJECT_NAME}
-                     COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_BINARY_DIR}/user_doxyfile
-                             )
-        endif()
-                set_target_properties(doc PROPERTIES FOLDER "Documentation Targets")    
-    endif()
-                    
-endfunction(add_doc_targets)
-
 # 
 #  Append file types to CMake's default clean list.
 #

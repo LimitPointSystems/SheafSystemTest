@@ -71,15 +71,3 @@ endif()
 #
 add_clean_files()
 
-#get_target_property(DC_LIB_LOC sheaves IMPORTED_LOCATION_DEBUG-CONTRACTS)
-#get_filename_component(DC_LIB_PATH "${DC_LIB_LOC}" PATH)
-#get_target_property(RNC_LIB_LOC sheaves IMPORTED_LOCATION_RELEASE-NO-CONTRACTS)
-#get_filename_component(RNC_LIB_PATH "${RNC_LIB_LOC}" PATH)
-
-#message(STATUS "DC_LIB_PATH value is ${DC_LIB_PATH}")
-#set(DC_LIB_PATH2 ${DC_LIB_PATH} CACHE STRING "SheafSystem Debug-contracts lib location)
-
-#get_target_property(RNC_LIB_LOC sheaves IMPORTED_LOCATION_RELEASE-NO-CONTRACTS)
-#get_filename_component(RNC_LIB_PATH "${RNC_LIB_LOC}" PATH)
-#set(RNC_LIB_PATH2 ${RNC_LIB_PATH} CACHE STRING "SheafSystem Release-contracts lib location)
-#message(STATUS "RNC_LIB_PATH value is ${RNC_LIB_PATH}")
