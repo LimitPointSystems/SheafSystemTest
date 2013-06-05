@@ -990,13 +990,13 @@ endfunction(collect_example_sources)
 # Convenience routine for diagnostic output during configure phase.
 # Variable of interest goes between the double quotes
 #
-#function(status_message txt)
+function(status_message txt)
 
-#    message(STATUS " ")
-#    message(STATUS "${txt} - ")
-#    message(STATUS " ")
+    message(STATUS " ")
+    message(STATUS "${txt} - ")
+    message(STATUS " ")
 
-#endfunction()
+endfunction()
 
 # 
 # Convenience routine for diagnostic output during configure phase.
