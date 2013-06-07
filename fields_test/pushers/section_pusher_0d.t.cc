@@ -103,12 +103,12 @@ void test_dc_1_b()
 
   fiber_bundles_namespace lns("section_pusher_0d.t");
   lns.get_read_write_access();
-
+  post_information_message("");
   // An 2 element quad mesh with xmin = -1.0 and xmax = 1.0.
 
   wsv_block<sec_vd_value_type> ldst_lower("-1.0");
   wsv_block<sec_vd_value_type> ldst_upper("1.0");
-
+  post_information_message("");
   field_vd* dst =
     field_factory::new_scalar_field_1d_unstructured(lns,
         "dst",
@@ -116,12 +116,12 @@ void test_dc_1_b()
         ldst_lower,
         ldst_upper,
         field_factory::zero);
-
+  post_information_message("");
   // A point mesh with slighly stretched bounds and property == 0.
 
   wsv_block<sec_vd_value_type> lsrc_lower("-1.1");
   wsv_block<sec_vd_value_type> lsrc_upper("1.1");
-
+  post_information_message("");
   field_vd* src =
     field_factory::new_scalar_field_1d_points(lns,
         "src",
@@ -131,18 +131,23 @@ void test_dc_1_b()
         field_factory::zero);
 
   src->get_read_write_access(false, false);
-
+  post_information_message("");
   // Set the property to the disc id.
 
   index_space_iterator& ldisc_itr =
     src->property().schema().discretization_id_space().get_iterator();
+  post_information_message("");
   while(!ldisc_itr.is_done())
   {
     sec_vd_dof_type ldof = ldisc_itr.pod();
+    cerr <<  ldisc_itr.pod() << "  " << ldof <<  endl;
     src->property().put_fiber(ldisc_itr.pod(), &ldof, sizeof(sec_vd_dof_type));
+    cerr <<  ldisc_itr.pod() << "  " << ldof <<  endl;
     ldisc_itr.next();
   }
+  post_information_message("");
   src->property().schema().discretization_id_space().release_iterator(ldisc_itr);
+  post_information_message("");
 
   // Push the src field to the dst field and print the result.
   // Given the coordinates above, the destation should get the same
@@ -1044,18 +1049,21 @@ int
 main(int argc, char* argv[])
 {
 
+post_information_message("")
   test_dc_1_a();
+post_information_message("")
   test_dc_1_b();
+  post_information_message("")
   test_dc_1_c();
   test_dc_1_d();
   test_dc_1_e();
-
+  post_information_message("")
   test_dc_2_a();
   test_dc_2_b();
   test_dc_2_c();
   test_dc_2_d();
   test_dc_2_e();
-
+  post_information_message("")
   test_dc_3_a();
   test_dc_3_b();
   test_dc_3_c();
