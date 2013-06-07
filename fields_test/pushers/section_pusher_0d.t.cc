@@ -298,8 +298,8 @@ void test_dc_1_e()
 
   // An 2 element uniform mesh with xmin = -1.0 and xmax = 1.0.
 
-  wsv_block<sec_vd_value_type> ldst_lower("-1.0");
-  wsv_block<sec_vd_value_type> ldst_upper("1.0");
+wsv_block<sec_vd_value_type> ldst_lower("-1.0");
+wsv_block<sec_vd_value_type> ldst_upper("1.0");
 
   field_vd* dst =
     field_factory::new_scalar_field_1d_uniform(lns,

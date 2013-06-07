@@ -124,7 +124,6 @@ void test_fine_to_coarse_to_fine_2()
         field_factory::linear_scalar_fcn);
 
   // A 3 element coarse mesh with the same bounds and property == 0.
-
   field_vd* coarse =
     field_factory::new_scalar_field_1d_unstructured(lns,
         "coarse",
@@ -132,7 +131,6 @@ void test_fine_to_coarse_to_fine_2()
         xlower,
         xupper,
         field_factory::zero);
-
 
   // Push the "fine" field to the "coarse" field and
   // print the result compared to the exact value.
@@ -145,7 +143,6 @@ void test_fine_to_coarse_to_fine_2()
                               true);
 
   // Set the coarse field to the exact value and zero out the fine field.
-
   coarse->put_property_dofs(field_factory::linear_scalar_fcn, true);
   fine->put_property_dofs(field_factory::zero, true);
 
@@ -159,7 +156,6 @@ void test_fine_to_coarse_to_fine_2()
                             true,
                             true);
 
-  post_information_message("Leaving test_fine_to_coarse_to_fine_2");
 }
 
 ///

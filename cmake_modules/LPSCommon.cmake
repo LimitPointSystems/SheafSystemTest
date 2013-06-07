@@ -415,6 +415,9 @@ function(add_clean_files)
 
 endfunction(add_clean_files) 
 
+add_custom_command(TARGET clean POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E rm -f ${CMAKE_BINARY_DIR}/bin/ ${CMAKE_CFG_INTDIR}/*
+    )
 # 
 # Establish a system level "bin" target
 #
@@ -450,11 +453,12 @@ endfunction(add_component_bin_target)
 function(add_check_target)
 
     if(WIN64MSVC OR WIN64INTEL)
-        add_custom_target(check ALL COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_BUILD_TYPE} DEPENDS ${${COMPONENT}_EXAMPLES} ${ALL_CHECK_TARGETS})        
+
+        add_custom_target(check  DEPENDS ${ALL_COMP_CHECK_TARGETS})
         set_target_properties(check PROPERTIES FOLDER "Check Targets")
 
     else()
-        add_custom_target(check COMMAND DEPENDS ${ALL_CHECK_TARGETS})
+        add_custom_target(check COMMAND DEPENDS ${ALL_COMP_CHECK_TARGETS})
     endif()
 
 endfunction(add_check_target)
@@ -466,7 +470,6 @@ function(add_component_check_target)
 
     if(WIN64MSVC OR WIN64INTEL)
     
-        #add_custom_target(${PROJECT_NAME}-check COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_BUILD_TYPE})
         add_custom_target(${PROJECT_NAME}-check)
         add_custom_command(TARGET ${PROJECT_NAME}-check POST_BUILD COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR}) 
         add_dependencies(${PROJECT_NAME}-check ${${COMPONENT}_IMPORT_LIB} ${${COMPONENT}_UNIT_TESTS})
@@ -478,9 +481,9 @@ function(add_component_check_target)
     
     # Add a check target for this component to the system list. "make check" will invoke this list.
     set(ALL_UNIT_TEST_TARGETS ${ALL_UNIT_TEST_TARGETS} ${${COMPONENT}_UNIT_TESTS} CACHE STRING "Aggregate list of unit test targets" FORCE)
-    set(ALL_CHECK_TARGETS ${ALL_CHECK_TARGETS} ${PROJECT_NAME}-check CACHE STRING "Aggregate list of component check targets" FORCE)
+    set(ALL_COMP_CHECK_TARGETS ${ALL_COMP_CHECK_TARGETS} ${PROJECT_NAME}-check CACHE STRING "Aggregate list of component check targets" FORCE)
 
-    mark_as_advanced(ALL_CHECK_TARGETS)
+    mark_as_advanced(ALL_COMP_CHECK_TARGETS)
 
 endfunction(add_component_check_target)
 
@@ -623,7 +626,6 @@ function(add_win32_test_targets)
             get_filename_component(SS_RNC_LIB_PATH "${SS_RNC_LIB_LOC}" PATH)                
             # Having both directories (DC and RNC) in the path is no problem. Cmake knows what it's looking for.
             set(TESTPATH "PATH=$ENV{PATH};${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE};${SS_DC_LIB_PATH};${SS_RNC_LIB_PATH}")            
-
             # Unfortunately, Windows uses the semicolon as a path delimiter, but the semicolon has special meaning to Cmake as well. Escape the semicolons in the PATH so cmake
             # doesn't see them as list item separators.
             string(REPLACE ";" "\\;" TESTPATH "${TESTPATH}")
@@ -802,6 +804,7 @@ function(add_example_targets)
         # and not into build/bin/examples (or build/VisualStudio/examples)
         get_filename_component(t_file ${t_file_with_path} NAME)
         set(${COMPONENT}_EXAMPLES ${${COMPONENT}_EXAMPLES} ${t_file} CACHE STRING "List of example binaries" FORCE)
+        
         mark_as_advanced(${COMPONENT}_EXAMPLES)    
         # Add building of executable and link with shared library
         status_message("Creating ${t_file} from ${t_cc_file}")
