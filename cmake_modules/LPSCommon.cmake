@@ -202,7 +202,7 @@ function(set_compiler_flags)
        # compile and link lines.
        set(LPS_CXX_FLAGS "/D_USRDLL ${MP} /GR /nologo /DWIN32 /D_WINDOWS /W1 /EHsc ${OPTIMIZATION} /D_HDF5USEDLL_" CACHE STRING "C++ Compiler Flags" FORCE)
        set(LPS_SHARED_LINKER_FLAGS "/INCREMENTAL:NO /NOLOGO /DLL /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /DYNAMICBASE /NXCOMPAT /MACHINE:X64"  CACHE STRING "Linker Flags" FORCE)
-
+       set(LPS_EXE_LINKER_FLAGS_DEBUG "/DEBUG" CACHE STRING "Debug Linker Flags" FORCE)
     elseif(WIN64INTEL)
        set(LPS_CXX_FLAGS "/D_USRDLL ${MP} /GR /nologo /DWIN32 /D_WINDOWS /W1 /wd2651 /EHsc ${OPTIMIZATION} /Qprof-gen:srcpos /D_HDF5USEDLL_" CACHE STRING "C++ Compiler Flags" FORCE)
        set(LPS_SHARED_LINKER_FLAGS "/INCREMENTAL:NO /NOLOGO /DLL /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /DYNAMICBASE /NXCOMPAT /MACHINE:X64"  CACHE STRING "Linker Flags" FORCE) 
@@ -240,33 +240,45 @@ function(set_compiler_flags)
         if(${USE_VTK})     
             set(CMAKE_CXX_FLAGS_DEBUG-CONTRACTS "${LPS_CXX_FLAGS} /Zi /D\"_ITERATOR_DEBUG_LEVEL=2\" /MDd /DUSE_VTK" CACHE
                 STRING "Flags used by the C++ compiler for Debug-contracts builds" FORCE)
+            set(CMAKE_EXE_LINKER_FLAGS_DEBUG-CONTRACTS ${CMAKE_EXE_LINKER_FLAGS} ${LPS_EXE_LINKER_FLAGS_DEBUG}  CACHE
+                STRING "Flags used by the linker for executables for Debug-contracts builds" FORCE)                
         else()
              set(CMAKE_CXX_FLAGS_DEBUG-CONTRACTS "${LPS_CXX_FLAGS} /Zi /D\"_ITERATOR_DEBUG_LEVEL=2\" /MDd" CACHE
-                STRING "Flags used by the C++ compiler for Debug-contracts builds" FORCE)       
+                STRING "Flags used by the C++ compiler for Debug-contracts builds" FORCE)
+             set(CMAKE_EXE_LINKER_FLAGS_DEBUG-CONTRACTS ${CMAKE_EXE_LINKER_FLAGS} ${LPS_EXE_LINKER_FLAGS_DEBUG}  CACHE
+                STRING "Flags used by the linker for executables for Debug-contracts builds" FORCE)                      
         endif()
     else()
         if(${USE_VTK})
                 if(LINUX64INTEL)
                     set(CMAKE_CXX_FLAGS_DEBUG-CONTRACTS "${LPS_CXX_FLAGS} -g -DUSE_VTK -limf" CACHE
                         STRING "Flags used by the C++ compiler for Debug-contracts builds" FORCE)
+                    set(CMAKE_EXE_LINKER_FLAGS_DEBUG-CONTRACTS ${CMAKE_EXE_LINKER_FLAGS}  CACHE
+                        STRING "Flags used by the linker for executables for Debug-contracts builds" FORCE)                        
                 else()
                     set(CMAKE_CXX_FLAGS_DEBUG-CONTRACTS "${LPS_CXX_FLAGS} -g -DUSE_VTK" CACHE
                         STRING "Flags used by the C++ compiler for Debug-contracts builds" FORCE)
+                    set(CMAKE_EXE_LINKER_FLAGS_DEBUG-CONTRACTS ${CMAKE_EXE_LINKER_FLAGS}  CACHE
+                        STRING "Flags used by the linker for executables for Debug-contracts builds" FORCE)                        
                 endif()                
         else()         
                 if(LINUX64INTEL)
                     set(CMAKE_CXX_FLAGS_DEBUG-CONTRACTS "${LPS_CXX_FLAGS} -g -limf" CACHE
                         STRING "Flags used by the C++ compiler for Debug-contracts builds" FORCE)
+                    set(CMAKE_EXE_LINKER_FLAGS_DEBUG-CONTRACTS ${CMAKE_EXE_LINKER_FLAGS}  CACHE
+                        STRING "Flags used by the linker for executables for Debug-contracts builds" FORCE)                        
                 else()
                     set(CMAKE_CXX_FLAGS_DEBUG-CONTRACTS "${LPS_CXX_FLAGS} -g " CACHE
                         STRING "Flags used by the C++ compiler for Debug-contracts builds" FORCE)
+                    set(CMAKE_EXE_LINKER_FLAGS_DEBUG-CONTRACTS ${CMAKE_EXE_LINKER_FLAGS}  CACHE
+                        STRING "Flags used by the linker for executables for Debug-contracts builds" FORCE)                        
                 endif() 
         endif()
     endif()
     
     # True for all currently supported platforms    
-    set(CMAKE_EXE_LINKER_FLAGS_DEBUG-CONTRACTS ${CMAKE_EXE_LINKER_FLAGS}  CACHE
-        STRING "Flags used by the linker for executables for Debug-contracts builds" FORCE)
+ #   set(CMAKE_EXE_LINKER_FLAGS_DEBUG-CONTRACTS ${CMAKE_EXE_LINKER_FLAGS}  CACHE
+ #       STRING "Flags used by the linker for executables for Debug-contracts builds" FORCE)
     set(CMAKE_SHARED_LINKER_FLAGS_DEBUG-CONTRACTS ${LPS_SHARED_LINKER_FLAGS} CACHE
         STRING "Flags used by the linker for shared libraries for Debug-contracts builds" FORCE)
     mark_as_advanced(CMAKE_CXX_FLAGS_DEBUG-CONTRACTS
@@ -281,23 +293,31 @@ function(set_compiler_flags)
         if(${USE_VTK}) 
             set(CMAKE_CXX_FLAGS_DEBUG-NO-CONTRACTS "${LPS_CXX_FLAGS} /Zi /D\"_ITERATOR_DEBUG_LEVEL=2\" /MDd /DUSE_VTK /DNDEBUG" CACHE
                 STRING "Flags used by the C++ compiler for Debug-no-contracts builds" FORCE)
+           set(CMAKE_EXE_LINKER_FLAGS_DEBUG-NO-CONTRACTS ${CMAKE_EXE_LINKER_FLAGS} ${LPS_EXE_LINKER_FLAGS_DEBUG} CACHE
+                STRING "Flags used by the linker for executables for Debug-no-contracts builds" FORCE)                
          else()   
             set(CMAKE_CXX_FLAGS_DEBUG-NO-CONTRACTS "${LPS_CXX_FLAGS} /Zi /D\"_ITERATOR_DEBUG_LEVEL=2\" /MDd /DNDEBUG" CACHE
                 STRING "Flags used by the C++ compiler for Debug-no-contracts builds" FORCE)
+           set(CMAKE_EXE_LINKER_FLAGS_DEBUG-NO-CONTRACTS ${CMAKE_EXE_LINKER_FLAGS} ${LPS_EXE_LINKER_FLAGS_DEBUG} CACHE
+                STRING "Flags used by the linker for executables for Debug-no-contracts builds" FORCE)                
          endif()
     else()
         if(${USE_VTK})    
             set(CMAKE_CXX_FLAGS_DEBUG-NO-CONTRACTS "${LPS_CXX_FLAGS} -g -DNDEBUG -DUSE_VTK" CACHE
                 STRING "Flags used by the C++ compiler for Debug-no-contracts builds" FORCE)
+           set(CMAKE_EXE_LINKER_FLAGS_DEBUG-NO-CONTRACTS ${CMAKE_EXE_LINKER_FLAGS} CACHE
+                STRING "Flags used by the linker for executables for Debug-no-contracts builds" FORCE)                
         else()
             set(CMAKE_CXX_FLAGS_DEBUG-NO-CONTRACTS "${LPS_CXX_FLAGS} -g -DNDEBUG" CACHE
                 STRING "Flags used by the C++ compiler for Debug-no-contracts builds" FORCE)
+           set(CMAKE_EXE_LINKER_FLAGS_DEBUG-NO-CONTRACTS ${CMAKE_EXE_LINKER_FLAGS} CACHE
+                STRING "Flags used by the linker for executables for Debug-no-contracts builds" FORCE)                
         endif()
     endif()
 
     # True for all currently supported platforms       
-    set(CMAKE_EXE_LINKER_FLAGS_DEBUG-NO-CONTRACTS ${CMAKE_EXE_LINKER_FLAGS} CACHE
-        STRING "Flags used by the linker for executables for Debug-no-contracts builds" FORCE)
+ #   set(CMAKE_EXE_LINKER_FLAGS_DEBUG-NO-CONTRACTS ${CMAKE_EXE_LINKER_FLAGS} CACHE
+  #      STRING "Flags used by the linker for executables for Debug-no-contracts builds" FORCE)
     set(CMAKE_SHARED_LINKER_FLAGS_DEBUG-NO-CONTRACTS ${LPS_SHARED_LINKER_FLAGS} CACHE
         STRING "Flags used by the linker for shared libraries for Debug-no-contracts builds" FORCE)
     mark_as_advanced(CMAKE_CXX_FLAGS_DEBUG-NO-CONTRACTS
