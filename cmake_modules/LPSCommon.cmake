@@ -375,22 +375,35 @@ endfunction(set_compiler_flags)
 # Create the build output directories.
 #
 function(create_output_dirs)
-
-    # Create build/include for STD header files.
-    file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/include)
-    # Create build/lib for libraries.
-    file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-    # Create build/bin for executables.
-    file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-    
-    # These uber-verbose variable names have special meaning to cmake --
-    # the cmake counterpart to what GNU autotools calls a "precious" variable.
-    # Not a good idea to change them to anything shorter and sweeter; so don't.
-
-    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib PARENT_SCOPE)
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib PARENT_SCOPE)
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin PARENT_SCOPE)
-
+    if(WIN64MSVC OR WIN64INTEL)
+        # Create build/include for STD header files.
+        file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/include)
+        # Create build/lib for libraries.
+        file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+        # Create build/bin for executables.
+        file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+        
+        # These uber-verbose variable names have special meaning to cmake --
+        # the cmake counterpart to what GNU autotools calls a "precious" variable.
+        # Not a good idea to change them to anything shorter and sweeter; so don't.
+        set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib CACHE PATH "Static/Import Library Output Directory")
+        set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib CACHE PATH "Shared Library Output Directory")
+        set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin CACHE PATH "Binary Output Directory")
+    else()
+        # These uber-verbose variable names have special meaning to cmake --
+        # the cmake counterpart to what GNU autotools calls a "precious" variable.
+        # Not a good idea to change them to anything shorter and sweeter; so don't.
+        set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib/${CMAKE_BUILD_TYPE} CACHE PATH "Static/Import Library Output Directory")
+        set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib/${CMAKE_BUILD_TYPE} CACHE PATH "Shared Library Output Directory")
+        set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/${CMAKE_BUILD_TYPE} CACHE PATH "Binary Output Directory")
+     
+        # Create dir for static/import libraries.
+        file(MAKE_DIRECTORY ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY})
+        # Create dir for sheared libraries.
+        file(MAKE_DIRECTORY ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
+        # Create dir for executable output.
+        file(MAKE_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
+    endif()
 endfunction()
 
 # 
@@ -435,12 +448,12 @@ endfunction(add_component_bin_target)
 #
 function(add_check_target)
 
- #   if(WIN64MSVC OR WIN64INTEL)
-        add_custom_target(check  DEPENDS ${ALL_COMP_CHECK_TARGETS})
+   if(WIN64MSVC OR WIN64INTEL)
+        add_custom_target(check DEPENDS ${ALL_COMP_CHECK_TARGETS})
         set_target_properties(check PROPERTIES FOLDER "Check Targets")
-#    else()
- #       add_custom_target(check DEPENDS ${ALL_COMP_CHECK_TARGETS})
-  #  endif()
+    else()
+       add_custom_target(check DEPENDS ${ALL_COMP_CHECK_TARGETS})
+  endif()
 
 endfunction(add_check_target)
 
@@ -449,25 +462,21 @@ endfunction(add_check_target)
 #
 function(add_component_check_target)
 
-    if(WIN64MSVC OR WIN64INTEL)
-    
         add_custom_target(${PROJECT_NAME}-check)
-       # add_custom_command(TARGET ${PROJECT_NAME}-check POST_BUILD COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR}  WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} COMMENT " WORKING_DIRECTORY is: ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}") 
         add_custom_command(TARGET ${PROJECT_NAME}-check POST_BUILD COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} )
-        add_dependencies(${PROJECT_NAME}-check ${${COMPONENT}_IMPORT_LIB} ${${COMPONENT}_UNIT_TESTS})
-        set_target_properties(${PROJECT_NAME}-check PROPERTIES FOLDER "Check Targets")
-
-    else()
-        add_custom_target(${PROJECT_NAME}-check COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} 
-            WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE} DEPENDS ${${COMPONENT}_SHARED_LIB} ${${COMPONENT}_UNIT_TESTS})
-    endif()
-    
+        if(WIN64MSVC OR WIN64INTEL)       
+            add_dependencies(${PROJECT_NAME}-check ${${COMPONENT}_IMPORT_LIB} ${${COMPONENT}_UNIT_TESTS})
+            set_target_properties(${PROJECT_NAME}-check PROPERTIES FOLDER "Check Targets")
+        else()
+            add_dependencies(${PROJECT_NAME}-check ${${COMPONENT}_SHARED_LIB} ${${COMPONENT}_UNIT_TESTS})        
+        endif()
+ 
     # Add a check target for this component to the system list. "make check" will invoke this list.
     set(ALL_UNIT_TEST_TARGETS ${ALL_UNIT_TEST_TARGETS} ${${COMPONENT}_UNIT_TESTS} CACHE STRING "Aggregate list of unit test targets" FORCE)
     set(ALL_COMP_CHECK_TARGETS ${ALL_COMP_CHECK_TARGETS} ${PROJECT_NAME}-check CACHE STRING "Aggregate list of component check targets" FORCE)
-
+    mark_as_advanced(ALL_UNIT_TEST_TARGETS)
     mark_as_advanced(ALL_COMP_CHECK_TARGETS)
-
+    
 endfunction(add_component_check_target)
 
 #
@@ -700,7 +709,7 @@ function(add_linux_test_targets)
             endif()
             
             # Add a test target for ${t_file}
-            add_test(NAME ${t_file} WORKING_DIRECTORY $<TARGET_FILE_DIR:${t_file}> COMMAND $<TARGET_FILE:${t_file}> )
+            add_test(NAME ${t_file} WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} COMMAND $<TARGET_FILE:${t_file}>)
 
             # Tag the test with the name of the current component. Query the test for component membership by getting labels property.
             set_property(TEST ${t_file} PROPERTY LABELS "${PROJECT_NAME}") 

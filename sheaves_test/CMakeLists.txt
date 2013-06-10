@@ -24,15 +24,16 @@ status_message("Processing ${PROJECT_NAME}")
 #
 set_compiler_flags()
 
-#
-# Set up output directories
-#
-create_output_dirs()
 
 #
 # Add the library targets
 #
 add_library_targets()
+
+#
+# Set up output directories
+#
+create_output_dirs()
 
 #
 # Add the unit test targets

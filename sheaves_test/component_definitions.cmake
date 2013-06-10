@@ -15,6 +15,11 @@
 include(${CMAKE_MODULE_PATH}/LPSCommon.cmake)
 
 #
+# Check for the presence of system cxx includes.
+#
+check_cxx_includes()
+
+#
 # Define the clusters for this component.
 #
 set(clusters concurrency dof_iterators dof_maps examples id_spaces io iterators 
@@ -62,13 +67,8 @@ set(${COMPONENT}_IPATHS ${${COMPONENT}_IPATH} ${SHEAVES_IPATHS} ${CMAKE_BINARY_D
 include_directories(${${COMPONENT}_IPATHS}) 
 
 include_directories(${SHEAVES_IPATHS}) 
-#
-# Check for the presence of system cxx includes.
-#
-check_cxx_includes()
-    
-showincs()
 
+    
 #------------------------------------------------------------------------------
 # FUNCTION DEFINITION SECTION
 #------------------------------------------------------------------------------
