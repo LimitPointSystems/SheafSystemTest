@@ -39,10 +39,8 @@ if(LINUX64INTEL)
     set(UNCOVERED_COLOR DE0829 CACHE STRING "Color for uncovered code.")
     set(COVERED_COLOR 319A44 CACHE STRING "Color for covered code.")
     set(PARTIAL_COLOR E1EA43 CACHE STRING "Color for partially covered code.")
-    
     # Lop the compiler name off the end of the CXX string
     string(REPLACE "/icpc" "" INTELPATH ${CMAKE_CXX_COMPILER})
-
     # The codecov executable
     set(CODECOV "${INTELPATH}/codecov" CACHE STRING "Intel Code coverage utility.")
     # The profmerge executable
@@ -199,16 +197,13 @@ function(set_compiler_flags)
         endif()
 
     if(WIN64MSVC)
-       
        set(LPS_CXX_FLAGS "/D_USRDLL ${MP} /GR /nologo /DWIN32 /D_WINDOWS /W1 /EHsc /D_HDF5USEDLL_ " CACHE STRING "C++ Compiler Flags")
        set(LPS_SHARED_LINKER_FLAGS "/INCREMENTAL:NO /NOLOGO /DLL /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /DYNAMICBASE /NXCOMPAT /MACHINE:X64"  CACHE STRING "Linker Flags" FORCE)
        set(LPS_EXE_LINKER_FLAGS_DEBUG "/DEBUG" CACHE STRING "Debug Linker Flags" FORCE)
     elseif(WIN64INTEL)
        set(LPS_CXX_FLAGS "/D_USRDLL ${MP} /GR /nologo /DWIN32 /D_WINDOWS /W1 /wd2651 /EHsc ${OPTIMIZATION} /Qprof-gen:srcpos /D_HDF5USEDLL_" CACHE STRING "C++ Compiler Flags" FORCE)
        set(LPS_SHARED_LINKER_FLAGS "/INCREMENTAL:NO /NOLOGO /DLL /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /DYNAMICBASE /NXCOMPAT /MACHINE:X64"  CACHE STRING "Linker Flags" FORCE) 
-       
     elseif(LINUX64INTEL)
-
         if(ENABLE_COVERAGE)
             if(INTELWARN)
                set(LPS_CXX_FLAGS "-ansi -m64 -w1 -wd186,1125 -Wno-deprecated ${OPTIMIZATION} -prof-gen=srcpos")
@@ -221,14 +216,9 @@ function(set_compiler_flags)
             else()
                set(LPS_CXX_FLAGS "-ansi -m64 -w0 -Wno-deprecated ${OPTIMIZATION}")
             endif()
-        endif() # ENABLE_COVERAGE          
-
+        endif(ENABLE_COVERAGE)         
      elseif(LINUX64GNU)
-       #  set(LPS_CXX_FLAGS "-ansi -m64 -Wno-deprecated ${OPTIMIZATION}")
          set(LPS_CXX_FLAGS "-ansi -m64 -Wno-deprecated")            
-    #$$TODO: A 32 bit option is not needed. Do away with this case.
-    else() # Assume 32-bit i686 linux for the present
-       set(LPS_CXX_FLAGS "-ansi -m32 -Wno-deprecated ${OPTIMIZATION}")
     endif()
 
     #                 
@@ -404,36 +394,13 @@ function(create_output_dirs)
 endfunction()
 
 # 
-#  Append file types to CMake's default clean list.
+#  Clean up. Remove everything, not just the build products.
 #
-function(add_clean_files)
-
-    #Define the file types to be included in the clean operation.
-    file(GLOB HDF_FILES ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/*.hdf)
-    file(GLOB LOG_FILES ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/*.log)
-    file(GLOB JAR_FILES ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}/*.jar)
-    # Clean up the mess left by the Intel coverage tool
-    file(GLOB DYN_FILES ${COVERAGE_DIR}/*.dyn)
-    file(GLOB DPI_FILES ${COVERAGE_DIR}/*.dpi)
-    file(GLOB SPI_FILES ${COVERAGE_DIR}/*.spi)
- 
-
-    # Append them to the list
-    list(APPEND CLEAN_FILES ${HDF_FILES})
-    list(APPEND CLEAN_FILES ${LOG_FILES})    
-    list(APPEND CLEAN_FILES ${JAR_FILES})
-    list(APPEND CLEAN_FILES ${DYN_FILES})
-    list(APPEND CLEAN_FILES ${DPI_FILES})
-    list(APPEND CLEAN_FILES ${SPI_FILES})
-    list(APPEND CLEAN_FILES "TAGS")
-    
-    set_directory_properties(PROPERTIES ADDITIONAL_MAKE_CLEAN_FILES "${CLEAN_FILES}")
-
-endfunction(add_clean_files) 
-
 add_custom_command(TARGET clean POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E rm -f ${CMAKE_BINARY_DIR}/bin/ ${CMAKE_CFG_INTDIR}/*
+    COMMAND ${CMAKE_COMMAND} -E rm -f ${CMAKE_BINARY_DIR}/bin/${CMAKE_CFG_INTDIR}/*
+    COMMAND ${CMAKE_COMMAND} -E rm -f ${CMAKE_BINARY_DIR}/lib/${CMAKE_CFG_INTDIR}/*    
     )
+
 # 
 # Establish a system level "bin" target
 #
@@ -468,14 +435,12 @@ endfunction(add_component_bin_target)
 #
 function(add_check_target)
 
-    if(WIN64MSVC OR WIN64INTEL)
-
+ #   if(WIN64MSVC OR WIN64INTEL)
         add_custom_target(check  DEPENDS ${ALL_COMP_CHECK_TARGETS})
         set_target_properties(check PROPERTIES FOLDER "Check Targets")
-
-    else()
-        add_custom_target(check COMMAND DEPENDS ${ALL_COMP_CHECK_TARGETS})
-    endif()
+#    else()
+ #       add_custom_target(check DEPENDS ${ALL_COMP_CHECK_TARGETS})
+  #  endif()
 
 endfunction(add_check_target)
 
@@ -487,12 +452,14 @@ function(add_component_check_target)
     if(WIN64MSVC OR WIN64INTEL)
     
         add_custom_target(${PROJECT_NAME}-check)
-        add_custom_command(TARGET ${PROJECT_NAME}-check POST_BUILD COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR}) 
+       # add_custom_command(TARGET ${PROJECT_NAME}-check POST_BUILD COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR}  WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} COMMENT " WORKING_DIRECTORY is: ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}") 
+        add_custom_command(TARGET ${PROJECT_NAME}-check POST_BUILD COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} )
         add_dependencies(${PROJECT_NAME}-check ${${COMPONENT}_IMPORT_LIB} ${${COMPONENT}_UNIT_TESTS})
         set_target_properties(${PROJECT_NAME}-check PROPERTIES FOLDER "Check Targets")
 
     else()
-        add_custom_target(${PROJECT_NAME}-check COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} DEPENDS ${${COMPONENT}_SHARED_LIB} ${${COMPONENT}_UNIT_TESTS})
+        add_custom_target(${PROJECT_NAME}-check COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} 
+            WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE} DEPENDS ${${COMPONENT}_SHARED_LIB} ${${COMPONENT}_UNIT_TESTS})
     endif()
     
     # Add a check target for this component to the system list. "make check" will invoke this list.
@@ -629,7 +596,7 @@ function(add_win32_test_targets)
                 target_link_libraries(${t_file} ${${COMPONENT}_IMPORT_LIBS})                                         
             endif()
 
-            add_test(NAME ${t_file} COMMAND $<TARGET_FILE:${t_file}>)
+            add_test(NAME ${t_file} WORKING_DIRECTORY $<TARGET_FILE_DIR:${t_file}> COMMAND $<TARGET_FILE:${t_file}> )
             
             #
             # Get the location of the SheafSystem Lib dir from the sheaves export info;
@@ -733,7 +700,7 @@ function(add_linux_test_targets)
             endif()
             
             # Add a test target for ${t_file}
-            add_test(NAME ${t_file} WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} COMMAND $<TARGET_FILE:${t_file}>)
+            add_test(NAME ${t_file} WORKING_DIRECTORY $<TARGET_FILE_DIR:${t_file}> COMMAND $<TARGET_FILE:${t_file}> )
 
             # Tag the test with the name of the current component. Query the test for component membership by getting labels property.
             set_property(TEST ${t_file} PROPERTY LABELS "${PROJECT_NAME}") 

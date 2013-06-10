@@ -4,7 +4,6 @@
 #
 #
 
-
 # Setting CMAKE_CONFIGURATION_TYPES prior to the project function call
 # will eliminate the default configuration types (debug,release,RelWithDebugInfo, et al.) --
 # or at least stop them from appearing in the VS configuration list.
@@ -12,12 +11,18 @@
 # configurations however.
 
 #
-# Force Windows to do Debug-contracts until we resolve issue with config type at compile time.
+# Set the configuration types.
 #
 set(CMAKE_CONFIGURATION_TYPES Debug-contracts Release-no-contracts CACHE STRING "Supported configuration types" FORCE)
 
+#
+# Tell Cmake which configurations it should see asd "Debug"
+#
 set_property(GLOBAL PROPERTY DEBUG_CONFIGURATIONS "Debug-contracts" ) 
 
+#
+# Debug lib should have "_d" appended to filename.
+#
 if(WIN64MSVC OR WIN64INTEL)
     set(CMAKE_DEBUG-CONTRACTS_POSTFIX "_d"CACHE STRING "Debug libs suffix")
 endif() 
@@ -53,7 +58,6 @@ project(SheafSystemTest)
 #
 cmake_minimum_required(VERSION 2.8.8)
 
-
 #
 # Include variable definitions and functions
 # unique to and/or required at the system level.
@@ -76,35 +80,32 @@ add_components()
 create_output_dirs()
 
 #
-# Add the system check target.
-# Only needs to be called at the system level.
-# use "<component>-check" for component level
-# tests. Must be called after component CmakeLists.txt
+# Add the system-level check target.
+# This is an aggregate target and will exercise all the components.
+# Use "<component>-check" for component level tests. 
+# NOTE: add_check_target() must only be called AFTER all component CmakeLists.txt
 # files are read.
 #
 add_check_target()
 
 #
 # Add the system coverage target.
-# Only needs to be called at the system level.
-# use "<component>-coverage" for component level
-# coverage results.
+# This is an aggregate target and will exercise all the components.
+# Use "<component>-coverage" for component level coverage results.
+# NOTE: add_coverage_target() must only be called AFTER all component CmakeLists.txt
+# files are read.
 #
 if(ENABLE_COVERAGE)
     add_coverage_target()
 endif()
 
 #
-# Add files to the clean target
-#
-add_clean_files()
-
-#
 # Add the system bin target.
+# This is an aggregate target and will exercise all the components.
 # All unit tests and examples are built, but not run.
-# Only needs to be called at the system level.
-# use "<component>-bin" for component level
-# binaries.
+# Use "<component>-bin" for component level binary construction.
+# NOTE: add_bin_target() must only be called AFTER all component CmakeLists.txt
+# files are read.
 #
 add_bin_target()
 
@@ -115,7 +116,6 @@ if(LINUX64GNU OR LINUX64INTEL)
     configure_file(${CMAKE_MODULE_PATH}/set_env_vars.csh.cmake.in ${CMAKE_BINARY_DIR}/set_env_vars.csh)
     configure_file(${CMAKE_MODULE_PATH}/set_env_vars.sh.cmake.in ${CMAKE_BINARY_DIR}/set_env_vars.sh)
 endif()
-
 
 #
 # Configure the SheafScope batch file. 

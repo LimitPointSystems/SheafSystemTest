@@ -66,8 +66,4 @@ status_message("Creating coverage target for ${PROJECT_NAME}")
     add_component_coverage_target()
 endif()
 
-#
-# Add files to the clean target
-#
-add_clean_files()
 
