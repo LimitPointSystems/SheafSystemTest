@@ -58,8 +58,8 @@ main(int xargc, char* xargv[])
   
   poset_path lfiber_space_path("tuple_space_test");
   
-  tuple::host_type& lspace =
-    lns.new_fiber_space<tuple>(lfiber_space_path, largs, lschema_path, true);
+  fiber_bundle::tuple::host_type& lspace =
+    lns.new_fiber_space< fiber_bundle::tuple>(lfiber_space_path, largs, lschema_path, true);
 
   //============================================================================
 

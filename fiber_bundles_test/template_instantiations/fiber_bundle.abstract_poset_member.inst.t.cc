@@ -216,7 +216,7 @@ main(int xargc, char* xargv[])
   ltest &= test_persistent_abstract_poset_member_facet<tp, t2_e2>(lns);
   ltest &= test_volatile_abstract_poset_member_facet<tp_lite, t2_e2_lite>();
 
-  ltest &= test_persistent_abstract_poset_member_facet<tuple, t2_e2>(lns);
+  ltest &= test_persistent_abstract_poset_member_facet< fiber_bundle::tuple, t2_e2>(lns);
   //ltest &= test_volatile_abstract_poset_member_facet<tuple_lite, t2_e2_lite>();
   //   tuple_lite has no row_dofs_type.
 

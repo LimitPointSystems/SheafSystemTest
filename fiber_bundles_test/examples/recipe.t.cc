@@ -85,7 +85,7 @@ main(int argc, char* argv[])
   // Create namespace and tuple.
   fiber_bundles_namespace test_namespace("recipe.t");
   test_namespace.get_read_write_access();
-  tuple test_tuple;
+ fiber_bundle:: tuple test_tuple;
 
   string lmember_names = "Work DOUBLE false Who C_STRING false Cost DOUBLE false Details C_STRING false";
 
@@ -105,8 +105,8 @@ main(int argc, char* argv[])
 //   tuple_space* tasks =
 //     new tuple_space(test_namespace, "Recipe", largs, lschema_path, true);
 
-  tuple_space& tasks =
-    test_namespace.new_fiber_space<tuple>("Recipe", largs, lschema_path, true);
+  fiber_bundle:: tuple_space& tasks =
+    test_namespace.new_fiber_space< fiber_bundle::tuple>("Recipe", largs, lschema_path, true);
 
   // Declare the task_dof struct
 

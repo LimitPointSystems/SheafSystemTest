@@ -69,7 +69,7 @@ main(int xargc, char* xargv[])
   ltest &= test_fiber_bundles_namespace_poset_facet<jcb_e13>(lns);
   ltest &= test_fiber_bundles_namespace_poset_facet<st2_e2>(lns);
   ltest &= test_fiber_bundles_namespace_poset_facet<t2_e2>(lns);
-  ltest &= test_fiber_bundles_namespace_poset_facet<tuple>(lns);
+  ltest &= test_fiber_bundles_namespace_poset_facet< fiber_bundle::tuple>(lns);
   ltest &= test_fiber_bundles_namespace_poset_facet<vd>(lns);
 
   //============================================================================

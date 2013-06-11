@@ -73,7 +73,7 @@ namespace
     arg_list largs = tuple_space::make_arg_list(2);
 
     tuple_space& lfiber_space = 
-      xns.new_fiber_space<tuple>("tuple_space_test", largs, xfiber_space_schema_path, true);
+      xns.new_fiber_space< fiber_bundle::tuple>("tuple_space_test", largs, xfiber_space_schema_path, true);
 
     poset_path result = lfiber_space.path(true);
 
