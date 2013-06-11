@@ -16,7 +16,7 @@
 set(CMAKE_CONFIGURATION_TYPES Debug-contracts Release-no-contracts CACHE STRING "Supported configuration types" FORCE)
 
 #
-# Tell Cmake which configurations it should see asd "Debug"
+# Tell Cmake which configurations it should see and "Debug"
 #
 set_property(GLOBAL PROPERTY DEBUG_CONFIGURATIONS "Debug-contracts" ) 
 
@@ -25,7 +25,9 @@ set_property(GLOBAL PROPERTY DEBUG_CONFIGURATIONS "Debug-contracts" )
 #
 if(WIN64MSVC OR WIN64INTEL)
     set(CMAKE_DEBUG-CONTRACTS_POSTFIX "_d"CACHE STRING "Debug libs suffix")
-endif() 
+else()
+    set(CMAKE_DEBUG-CONTRACTS_POSTFIX "_debug"CACHE STRING "Debug libs suffix")
+endif()
     
 #
 # Establish the project name
