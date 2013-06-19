@@ -48,7 +48,7 @@ collect_unit_test_sources()
 # Source for example executables.
 #
 set(EXAMPLE_SRCS
-
+  log_kd_lattice.t.cc
  )
 
 collect_example_sources()

@@ -172,8 +172,36 @@ void make_line(const kd_lattice& xhost, const kd_plane& xp, int xpt_ct, list<e3_
 int main(int argc, const char* argv[])
 {
 
-  bool ldo_display = (argc > 1);
-  
+  // Process input arguments.
+
+  bool ldo_display = false;
+  bool ldo_logging = false;
+
+  for(int i = 1; i < argc; ++i)
+  {
+    string larg(argv[i]);
+    if(larg == "--help" || larg == "-h")
+    {
+      cout << "usage: model.t [-l] [-d] [-h]" << endl;
+      cout << "-l, --logging \t turns on logging" << endl;
+      cout << "-d, --display \t turns on displaying" << endl;
+      cout << "-h, --help    \t prints this message" << endl << endl;
+      return 0;
+    }
+    else if(larg == "--logging" || larg == "-l")
+    {
+      ldo_logging = true;
+    }
+    else if(larg == "--display" || larg == "-d")
+    {
+      ldo_display = true;
+    }
+    else
+    {
+      cerr << "Unknown input argument: " << larg << endl;
+    }
+  }
+
   geometry_namespace lns("the_namespace");
 
   lns.get_read_write_access();
@@ -185,7 +213,7 @@ int main(int argc, const char* argv[])
   e3_lite llb(-1.0, -1.0, -1.0);
   e3_lite lub(1.0, 1.0, 1.0);
 
-  kd_lattice lkdl(lns, "test_lattice", llb, lub);
+  kd_lattice lkdl(lns, "test_lattice", llb, lub, ldo_logging);
   base_space_poset& lbase = lkdl.base_space();
 
   lkdl.update_section_space_schema();
