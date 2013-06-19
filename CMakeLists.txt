@@ -24,9 +24,9 @@ set_property(GLOBAL PROPERTY DEBUG_CONFIGURATIONS "Debug-contracts" )
 # Debug lib should have "_d" appended to filename.
 #
 if(WIN64MSVC OR WIN64INTEL)
-    set(CMAKE_DEBUG-CONTRACTS_POSTFIX "_d"CACHE STRING "Debug libs suffix")
+    set(CMAKE_DEBUG-CONTRACTS_POSTFIX "_d" CACHE STRING "Debug libs suffix")
 else()
-    set(CMAKE_DEBUG-CONTRACTS_POSTFIX "_debug"CACHE STRING "Debug libs suffix")
+    set(CMAKE_DEBUG-CONTRACTS_POSTFIX "_debug" CACHE STRING "Debug libs suffix")
 endif()
     
 #

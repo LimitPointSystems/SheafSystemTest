@@ -1193,7 +1193,7 @@ main(int xargc, char* xargv[])
 
   ////lns.new_fiber_space<tp>(); //completed_p<F>(xfiber_space_path, xfiber_space_args, xauto_access) >= 0
 
-  lns.new_fiber_space<tuple>();
+  lns.new_fiber_space< fiber_bundle::tuple>();
   lns.new_fiber_space<vd>();
 
   //============================================================================

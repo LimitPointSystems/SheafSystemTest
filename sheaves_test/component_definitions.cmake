@@ -81,8 +81,10 @@ function(add_library_targets)
     if(WIN64INTEL OR WIN64MSVC)
         # Tell the linker where to look for this project's libraries.
         link_directories(${${COMPONENT}_OUTPUT_DIR})
+        
         # Create the DLL.
         add_library(${${COMPONENT}_DYNAMIC_LIB} SHARED ${${COMPONENT}_SRCS})
+        
         target_link_libraries(${${COMPONENT}_DYNAMIC_LIB} ${SHEAVES_IMPORT_LIBS})
         set_target_properties(${${COMPONENT}_DYNAMIC_LIB} PROPERTIES FOLDER "Library Targets")
         # Override cmake's placing of "${${COMPONENT}_DYNAMIC_LIB}_EXPORTS into the preproc symbol table.
