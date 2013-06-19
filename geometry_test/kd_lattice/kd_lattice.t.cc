@@ -121,7 +121,7 @@ using namespace geometry;
 //
 // Creates a line with xpt_ct points in plane xp.
 //
-void make_line(const kd_lattice& xhost, const kd_plane& xp, int xpt_ct, list<e3_lite>& xline)
+void make_line(const kd_lattice& xhost, const kd_plane& xp, int xpt_ct, list<e3_lite>& xline, bool xclose = true)
 {
   cout << endl << "Entering make_line." << endl;
   
@@ -136,16 +136,23 @@ void make_line(const kd_lattice& xhost, const kd_plane& xp, int xpt_ct, list<e3_
   vd_value_type ld = abs(xp.distance());
   
   //  vd_value_type lh = sqrt(lr*lr - ld*ld);
-  vd_value_type lh = lr - ld;
+  //  vd_value_type lh = lr - ld; // only for lpt_ct = 5
   
   const vd_value_type PI = 4.0*atan(1.0);
   
   vd_value_type ldelta = (2.0*PI)/(xpt_ct-1);
+
+  vd_value_type lphi = (PI - ldelta)*0.5;
+  vd_value_type lh = lr - (ld/tan(lphi));
   
   e3_lite lpt;
   lpt[xp.alignment()] = xp.distance();
+
+  int ibeg = xclose ? 0 : 1;
+  int iend = xclose ? xpt_ct : xpt_ct - 1;
   
-  for(int i=0; i<xpt_ct; ++i)
+  
+  for(int i=ibeg; i<iend; ++i)
   {
     lpt[lu_id] = lh*cos(i*ldelta);
     lpt[lv_id] = lh*sin(i*ldelta);
@@ -367,41 +374,43 @@ int main(int argc, const char* argv[])
   else if(ltest_id == 2)
   {
     cout << endl << "########### Creating plane0 and line #############################" << endl << endl;
+
+    const int lpt_ct = 17;
   
     // Create a plane.
 
     list<e3_lite> lline;
-    kd_plane lplane0(Y_AXIS_ALIGNED, 0.0);
+    kd_plane lplane0(Y_AXIS_ALIGNED, 0.25);
 
     lkdl.insert_plane(lplane0);
 
     lkdl.update_section_space_schema();
     //cout << lkdl << endl;
 
-    make_line(lkdl, lplane0, 5, lline);
+    make_line(lkdl, lplane0, lpt_ct, lline, false);
   
     lkdl.insert_line(lline, lplane0);
 
     lkdl.update_section_space_schema();
     //  cout << lkdl << endl;
 
-    // Create a second plane.
+//     // Create a second plane.
 
-    cout << endl << "########### Creating plane1 and line #############################" << endl << endl;
+//     cout << endl << "########### Creating plane1 and line #############################" << endl << endl;
 
-    kd_plane lplane1(X_AXIS_ALIGNED, 0.0);
+//     kd_plane lplane1(X_AXIS_ALIGNED, 0.0);
 
-    lkdl.insert_plane(lplane1);
+//     lkdl.insert_plane(lplane1);
 
-    lkdl.update_section_space_schema();
-    //cout << lkdl << endl;
+//     lkdl.update_section_space_schema();
+//     //cout << lkdl << endl;
 
-    make_line(lkdl, lplane1, 5, lline);
+//     make_line(lkdl, lplane1, lpt_ct, lline);
   
-    lkdl.insert_line(lline, lplane1);
+//     lkdl.insert_line(lline, lplane1);
 
-    lkdl.update_section_space_schema();
-    // cout << lkdl << endl;
+//     lkdl.update_section_space_schema();
+//     // cout << lkdl << endl;
 
     // Create a third plane.
 
@@ -415,7 +424,7 @@ int main(int argc, const char* argv[])
   
     //cout << lkdl << endl;
 
-    make_line(lkdl, lplane2, 5, lline);
+    make_line(lkdl, lplane2, lpt_ct, lline, true);
   
     lkdl.insert_line(lline, lplane2);
 
@@ -440,14 +449,14 @@ int main(int argc, const char* argv[])
 
     //     lkdl.update_section_space_schema();
 
-    e3_lite lregion_lb(-0.3, 0.1, -0.5);
-    e3_lite lregion_ub(0.3,   0.5, 0.5);
+//     e3_lite lregion_lb(-0.3, 0.1, -0.5);
+//     e3_lite lregion_ub(0.3,   0.5, 0.5);
   
-    lkdl.insert_region(lregion_lb, lregion_ub);
+//     lkdl.insert_region(lregion_lb, lregion_ub);
 
-    //    cout << lkdl.base_space() << endl;
+//     //    cout << lkdl.base_space() << endl;
 
-    lkdl.extract_subvolume_surfaces();  
+//     lkdl.extract_subvolume_surfaces();  
 
   }
 
@@ -497,7 +506,7 @@ int main(int argc, const char* argv[])
   {
     //lkdl.display(true);
     lkdl.display(false, true);
-    lkdl.display_subvolumes(true, true);
+    //    lkdl.display_subvolumes(true, true);
   }
   
   
