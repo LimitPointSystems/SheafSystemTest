@@ -25,16 +25,16 @@ set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_modules CACHE STRING "Location o
 
 # OS is 64 bit Windows, compiler is cl 
 if(CMAKE_HOST_SYSTEM_NAME MATCHES "Windows" AND MSVC AND CMAKE_SIZEOF_VOID_P MATCHES "8")
-    set(WIN64MSVC ON CACHE BOOL "MS compiler in use.")
+    set(WIN64MSVC ON CACHE BOOL "MS compiler in use." FORCE)
 # OS is 64 bit Windows, compiler is icl
 elseif(CMAKE_HOST_SYSTEM_NAME MATCHES "Windows" AND CMAKE_CXX_COMPILER_ID MATCHES "Intel" AND CMAKE_SIZEOF_VOID_P MATCHES "8")
-    set(WIN64INTEL ON CACHE BOOL "Intel compiler in use.")
+    set(WIN64INTEL ON CACHE BOOL "Intel compiler in use." FORCE)
 # OS is 64 bit linux, compiler is g++
 elseif(CMAKE_HOST_SYSTEM_NAME MATCHES "Linux" AND CMAKE_COMPILER_IS_GNUCXX AND CMAKE_SIZEOF_VOID_P MATCHES "8")
-    set(LINUX64GNU ON CACHE BOOL "GNU compiler in use.")
+    set(LINUX64GNU ON CACHE BOOL "GNU compiler in use." FORCE)
 # OS is 64 bit linux, compiler is icpc
 elseif(CMAKE_HOST_SYSTEM_NAME MATCHES "Linux" AND CMAKE_CXX_COMPILER_ID MATCHES "Intel" AND CMAKE_SIZEOF_VOID_P MATCHES "8")
-    set(LINUX64INTEL ON CACHE BOOL "Intel compiler in use.")
+    set(LINUX64INTEL ON CACHE BOOL "Intel compiler in use." FORCE)
     message(STATUS "Using Intel compiler")    
 else()
     message(FATAL_ERROR "A 64 bit Windows or Linux environment was not detected; exiting")
