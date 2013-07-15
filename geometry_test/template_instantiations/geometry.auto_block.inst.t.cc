@@ -16,9 +16,6 @@
 #include "test_utils.h"
 #include "test_sheaves.impl.h"
 
-#include "kd_plane.h"
-#include "kd_bounding_box.h"
-
 #include "std_slist.h"
 #include "std_utility.h"
 
@@ -32,28 +29,6 @@ main(int xargc, char* xargv[])
   // Body:
 
   bool ltest = true;
-
-  //============================================================================
-
-  // kd_plane:
-
-  print_header("Begin testing auto_block<kd_plane>");
-  ltest &= test_auto_block_facet_un<kd_plane>();
-  ltest &= test_auto_block_facet_equal_un<kd_plane>();
-  ltest &= test_auto_block_facet_insertion_un<kd_plane>();
-  //ltest &= test_auto_block_facet_deep_size_un<kd_plane>();
-  print_footer("End testing auto_block<kd_plane>");
-
-  // kd_bounding_box:
-
-  print_header("Begin testing auto_block<kd_bounding_box>");
-  ltest &= test_auto_block_facet_un<kd_bounding_box>();
-  ltest &= test_auto_block_facet_equal_un<kd_bounding_box>();
-  ltest &= test_auto_block_facet_insertion_un<kd_bounding_box>();
-  //ltest &= test_auto_block_facet_deep_size_un<kd_bounding_box>();
-  print_footer("End testing auto_block<kd_bounding_box>");
-
-  //============================================================================
 
   // d_bounding_box<1, 0> 
 

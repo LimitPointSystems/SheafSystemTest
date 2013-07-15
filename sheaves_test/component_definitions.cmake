@@ -68,6 +68,10 @@ include_directories(${${COMPONENT}_IPATHS})
 
 include_directories(${SHEAVES_IPATHS}) 
 
+#
+# Set up output directories
+#
+create_output_dirs()
     
 #------------------------------------------------------------------------------
 # FUNCTION DEFINITION SECTION

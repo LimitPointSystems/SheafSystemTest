@@ -71,7 +71,6 @@ include(system_definitions.cmake)
 #
 set_optimization_level()
 
-
 #
 # Add components to the system
 #
@@ -80,7 +79,7 @@ add_components()
 #
 # Set up output directories
 #
-create_output_dirs()
+#create_output_dirs()
 
 #
 # Add the system-level check target.
