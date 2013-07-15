@@ -71,6 +71,7 @@ include(system_definitions.cmake)
 #
 set_optimization_level()
 
+
 #
 # Add components to the system
 #
@@ -119,9 +120,3 @@ if(LINUX64GNU OR LINUX64INTEL)
     configure_file(${CMAKE_MODULE_PATH}/set_env_vars.sh.cmake.in ${CMAKE_BINARY_DIR}/set_env_vars.sh)
 endif()
 
-#
-# Configure the SheafScope batch file. 
-#
-#if(WIN64MSVC OR WIN64INTEL)
-    #configure_file(${CMAKE_MODULE_PATH}/set_scope_vars.bat.in ${CMAKE_BINARY_DIR}/set_scope_vars.bat) 
-#endif()

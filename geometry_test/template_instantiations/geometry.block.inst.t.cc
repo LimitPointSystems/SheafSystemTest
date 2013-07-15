@@ -14,8 +14,6 @@
 #include "d_tree_point_locator_node.h"
 #include "d_bounding_box.h"
 #include "db0_point_locator.h"
-#include "kd_plane.h"
-#include "kd_bounding_box.h"
 #include "std_slist.h"
 
 using namespace geometry;
@@ -28,28 +26,6 @@ main(int xargc, char* xargv[])
   // Body:
 
   bool ltest = true;
-
-  //============================================================================
-
-  // kd_plane:
-
-  print_header("Begin testing block<kd_plane>");
-  ltest &= test_block_facet<kd_plane>();
-  ltest &= test_block_facet_equal<kd_plane>();
-  ltest &= test_block_facet_insertion<kd_plane>();
-  //ltest &= test_block_facet_deep_size<kd_plane>();
-  print_footer("End testing block<kd_plane>");
-
-  // kd_bounding_box:
-
-  print_header("Begin testing block<kd_bounding_box>");
-  ltest &= test_block_facet<kd_bounding_box>();
-  ltest &= test_block_facet_equal<kd_bounding_box>();
-  ltest &= test_block_facet_insertion<kd_bounding_box>();
-  //ltest &= test_block_facet_deep_size<kd_bounding_box>();
-  print_footer("End testing block<kd_bounding_box>");
-
-  //============================================================================
 
   // d_bounding_box<1, 0> 
 

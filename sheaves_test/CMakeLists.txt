@@ -33,7 +33,7 @@ add_library_targets()
 #
 # Set up output directories
 #
-create_output_dirs()
+#create_output_dirs()
 
 #
 # Add the unit test targets

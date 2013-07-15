@@ -27,7 +27,7 @@ set_compiler_flags()
 #
 # Set up output directories
 #
-create_output_dirs()
+#create_output_dirs()
 
 #
 # Add the library targets

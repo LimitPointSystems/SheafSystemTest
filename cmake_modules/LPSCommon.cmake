@@ -27,6 +27,7 @@ string(TOUPPER ${PROJECT_NAME} COMPONENT)
 #
 # Tell the linker where to look for COMPONENT libraries.
 #
+##TODO: This variable should be named "SHEAFSYSTEM_OUTPUT_DIR"
 link_directories(${SHEAVES_LIB_OUTPUT_DIR})
 
 #
