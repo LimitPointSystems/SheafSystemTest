@@ -74,14 +74,14 @@ set(ENABLE_WIN32_MP OFF CACHE BOOL "Toggle win32 compiler MP directive. Works fo
 #$$TODO: We still need provision for user set opt levels. Can't always force "2" on the user.
 
 if(LINUX64GNU OR LINUX64INTEL)
-    if(CMAKE_BUILD_TYPE STREQUAL "Debug-contracts" OR CMAKE_BUILD_TYPE STREQUAL "Debug-no-contracts")
+    if(CMAKE_BUILD_TYPE MATCHES "Debug-contracts" OR CMAKE_BUILD_TYPE MATCHES "Debug-no-contracts")
         set(OPTIMIZATION_LEVEL "0" CACHE STRING "Compiler optimization level. Valid values for are 0,1,2,3, and \"s\(Linux only\)\". Default is 0. \n Linux values translate to -On. \n\n Windows values are: \n\n 0 = /0d \(no optimization\) \n 1 = /O1 \(Minimize Size\) \n 2 = /O2 \(Maximize Speed\) \n 3 = /GL \(Whole Program Optimization\) \n " FORCE)
     else()
         # Optimize for execution speed.
         set(OPTIMIZATION_LEVEL "2" CACHE STRING "Compiler optimization level. Valid values for are 0,1,2,3, and \"s\(Linux only\)\". Default is 0. \n Linux values translate to -On. \n\n Windows values are: \n\n 0 = /0d \(no optimization\) \n 1 = /O1 \(Minimize Size\) \n 2 = /O2 \(Maximize Speed\) \n 3 = /GL \(Whole Program Optimization\) \n " FORCE)
     endif()
 else() # Win32
-    if($(Outdir) STREQUAL "Debug-contracts" OR $(Outdir) STREQUAL "Debug-no-contracts")
+    if($(Outdir) MATCHES "Debug-contracts" OR $(Outdir) MATCHES "Debug-no-contracts")
         set(OPTIMIZATION_LEVEL "0" CACHE STRING "Compiler optimization level. Valid values for are 0,1,2,3, and \"s\(Linux only\)\". Default is 0. \n Linux values translate to -On. \n\n Windows values are: \n\n 0 = /0d \(no optimization\) \n 1 = /O1 \(Minimize Size\) \n 2 = /O2 \(Maximize Speed\) \n 3 = /GL \(Whole Program Optimization\) \n " FORCE)
     else()
         # Optimize for execution speed.
@@ -117,7 +117,6 @@ include(${CMAKE_MODULE_PATH}/target_declarations.cmake)
 # Prerequisite discovery
 #
 include(${CMAKE_MODULE_PATH}/find_prerequisites.cmake)
-
         
 #
 # C++11 features
@@ -125,7 +124,6 @@ include(${CMAKE_MODULE_PATH}/find_prerequisites.cmake)
 message(STATUS " ")
 message(STATUS "Checking for C++11 Compliance - ")
 message(STATUS " ")
-
 include(${CMAKE_MODULE_PATH}/CheckCXX11Features.cmake)
 
 # If SHEAFSYSTEM_HOME contains white space, escape it.
@@ -133,7 +131,7 @@ file(TO_NATIVE_PATH "${SHEAFSYSTEM_HOME}" SHEAFSYSTEM_HOME)
 
 # When we are dealing with an install, the hdf and tetgen include files are
 # in the release include dir. If it's a build directory, then we need to know where
-# the prereqs are. The includes below are defind in SheafSystem-exports.cmake
+# the prereqs are. The includes below are defined in SheafSystem-exports.cmake
 # If there's a RELEASE file in SHEAFSYSTEM_HOME, then we are dealing with a release.
 if(NOT EXISTS ${SHEAFSYSTEM_HOME}/RELEASE)
     include_directories(${HDF_INCLUDE_DIR})
@@ -145,7 +143,7 @@ endif()
 #
 set(ENABLE_COVERAGE OFF CACHE BOOL "Set to ON to compile with Intel coverage support. Default is OFF.")
 
-# Set the Coverage dir variable (used by compiler) and create the coverage dir.
+# Set the Coverage dir variable (used by Intel compiler) and create the coverage dir.
 if(ENABLE_COVERAGE)
     set(COVERAGE_DIR ${CMAKE_BINARY_DIR}/coverage CACHE STRING "Directory for coverage files")
     execute_process(COMMAND ${CMAKE_COMMAND} -E make_directory ${COVERAGE_DIR})
@@ -202,35 +200,35 @@ endfunction(clear_component_variables)
 #
 # Set compiler optimization level.
 #
-function(set_optimization_level)
-
-    if(LINUX64GNU OR LINUX64INTEL)
-        if(${OPTIMIZATION_LEVEL} EQUAL 0)
-            set(OPTIMIZATION "-O0" PARENT_SCOPE)
-        elseif(${OPTIMIZATION_LEVEL} EQUAL 1)
-            set(OPTIMIZATION "-O1" PARENT_SCOPE)
-        elseif(${OPTIMIZATION_LEVEL} EQUAL 2)
-            set(OPTIMIZATION "-O2" PARENT_SCOPE)
-        elseif(${OPTIMIZATION_LEVEL} EQUAL 3)
-            set(OPTIMIZATION "-O3" PARENT_SCOPE)
-        elseif(${OPTIMIZATION_LEVEL} EQUAL s)
-            set(OPTIMIZATION "-Os" PARENT_SCOPE)
-        else()
-            break()
-        endif()   # anything else, exit.
-    elseif(WIN64MSVC OR WIN64INTEL)
-        if(${OPTIMIZATION_LEVEL} EQUAL 0)
-            set(OPTIMIZATION "/Od" PARENT_SCOPE)    
-        elseif(${OPTIMIZATION_LEVEL} EQUAL 1)
-            set(OPTIMIZATION "/O1" PARENT_SCOPE)
-        elseif(${OPTIMIZATION_LEVEL} EQUAL 2)
-            set(OPTIMIZATION "/O2" PARENT_SCOPE)
-        elseif(${OPTIMIZATION_LEVEL} EQUAL 3)
-            set(OPTIMIZATION "/GL" PARENT_SCOPE)    
-        endif()
-    endif()    
-
-endfunction(set_optimization_level)
+#function(set_optimization_level)
+#
+#    if(LINUX64GNU OR LINUX64INTEL)
+#        if(${OPTIMIZATION_LEVEL} EQUAL 0)
+#            set(OPTIMIZATION "-O0" PARENT_SCOPE)
+#        elseif(${OPTIMIZATION_LEVEL} EQUAL 1)
+#            set(OPTIMIZATION "-O1" PARENT_SCOPE)
+#        elseif(${OPTIMIZATION_LEVEL} EQUAL 2)
+#            set(OPTIMIZATION "-O2" PARENT_SCOPE)
+#        elseif(${OPTIMIZATION_LEVEL} EQUAL 3)
+#            set(OPTIMIZATION "-O3" PARENT_SCOPE)
+#        elseif(${OPTIMIZATION_LEVEL} EQUAL s)
+#            set(OPTIMIZATION "-Os" PARENT_SCOPE)
+#        else()
+#            break()
+#        endif()   # anything else, exit.
+#    elseif(WIN64MSVC OR WIN64INTEL)
+#        if(${OPTIMIZATION_LEVEL} EQUAL 0)
+#            set(OPTIMIZATION "/Od" PARENT_SCOPE)    
+#        elseif(${OPTIMIZATION_LEVEL} EQUAL 1)
+#            set(OPTIMIZATION "/O1" PARENT_SCOPE)
+#        elseif(${OPTIMIZATION_LEVEL} EQUAL 2)
+#            set(OPTIMIZATION "/O2" PARENT_SCOPE)
+#        elseif(${OPTIMIZATION_LEVEL} EQUAL 3)
+#            set(OPTIMIZATION "/GL" PARENT_SCOPE)    
+#        endif()
+#    endif()    
+#
+#endfunction(set_optimization_level)
 
 # 
 #  Make emacs tags
