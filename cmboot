@@ -51,6 +51,8 @@ do
 
         echo  "   " 
     	echo  "";;
+   	-D*)
+   		echo $1;;
      *) break;;
   esac
   exit 0
