@@ -1,6 +1,5 @@
 #
 #
-#
 # Copyright (c) 2013 Limit Point Systems, Inc.
 #
 #
@@ -9,14 +8,14 @@
 # Programmer Filename Entry Section
 #------------------------------------------------
 
-set(CLUSTER pushers)
+set(CLUSTER ${CMAKE_CURRENT_BINARY_DIR})
 
 #
 # Library sources.
 #
 set(SRCS
 
-)
+   )
 
 collect_sources()
 
@@ -25,7 +24,7 @@ collect_sources()
 #
 set(ADDITIONAL_INCS
 
-)
+   )
 
 collect_includes()
 
@@ -41,7 +40,7 @@ set(UNIT_TEST_SRCS
     section_pusher_3d.t.cc
 ##    multisection_pusher.t.cc
 ##    multisection_base_space_map.t.cc 
-)
+   )
 
 collect_unit_test_sources()
 
@@ -50,6 +49,6 @@ collect_unit_test_sources()
 #
 set(EXAMPLE_SRCS
 
-)
+   )
 
 collect_example_sources()
