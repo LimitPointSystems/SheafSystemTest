@@ -1,6 +1,5 @@
 #
 #
-#
 # Copyright (c) 2013 Limit Point Systems, Inc.
 #
 #
@@ -9,14 +8,14 @@
 # Programmer Filename Entry Section
 #------------------------------------------------
 
-set(CLUSTER template_instantiations)
+set(CLUSTER ${CMAKE_CURRENT_BINARY_DIR})
 
 #
 # Library sources.
 #
 set(SRCS
     test_geometry_inst.cc
-)
+   )
 
 collect_sources()
 
@@ -25,7 +24,7 @@ collect_sources()
 #
 set(ADDITIONAL_INCS
     test_geometry_inst.impl.h
-)
+   )
   
 collect_includes()
 
@@ -45,7 +44,7 @@ set(UNIT_TEST_SRCS
     geometry.auto_block.inst.t.cc
     geometry.block.inst.t.cc
     geometry.ptr_linked_pool.inst.t.cc
-)
+   )
 
 
 collect_unit_test_sources()
@@ -55,6 +54,6 @@ collect_unit_test_sources()
 #
 set(EXAMPLE_SRCS
 
- )
+   )
 
 collect_example_sources()
