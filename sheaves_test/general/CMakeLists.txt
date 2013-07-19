@@ -1,6 +1,5 @@
 #
 #
-#
 # Copyright (c) 2013 Limit Point Systems, Inc.
 #
 #
@@ -9,14 +8,14 @@
 # Programmer Filename Entry Section
 #------------------------------------------------
 
-set(CLUSTER id_spaces)
+set(CLUSTER ${CMAKE_CURRENT_BINARY_DIR})
 
 #
 # Library sources.
 #
 set(SRCS
     test_utils.cc
-    )
+   )
 
 collect_sources()
 
@@ -24,7 +23,7 @@ collect_sources()
 # Headers that are NOT associated with a .cc file.
 #
 set(ADDITIONAL_INCS
-  )
+   )
   
 collect_includes()
 
@@ -33,7 +32,7 @@ collect_includes()
 #
 set(UNIT_TEST_SRCS
 
-)
+   )
 
 collect_unit_test_sources()
 
@@ -42,6 +41,6 @@ collect_unit_test_sources()
 #
 set(EXAMPLE_SRCS
 
- )
+   )
 
 collect_example_sources()
