@@ -1,6 +1,5 @@
 #
 #
-#
 # Copyright (c) 2013 Limit Point Systems, Inc.
 #
 #
@@ -9,14 +8,14 @@
 # Programmer Filename Entry Section
 #------------------------------------------------
 
-set(CLUSTER fiber_spaces)
+set(CLUSTER ${CMAKE_CURRENT_BINARY_DIR})
 
 #
 # Library sources.
 #
 set(SRCS 
     test_fibers.cc
-)
+   )
 
 collect_sources()
 
@@ -25,7 +24,7 @@ collect_sources()
 #
 set(ADDITIONAL_INCS
     test_fibers.impl.h
-)
+   )
 
 collect_includes()
 
@@ -91,7 +90,7 @@ set(UNIT_TEST_SRCS
     tuple_space.t.cc    
     vd.t.cc   
     vd_space.t.cc
-)
+   )
 
 collect_unit_test_sources()
 
@@ -100,6 +99,6 @@ collect_unit_test_sources()
 #
 set(EXAMPLE_SRCS
 
-)
+   )
 
 collect_example_sources()
