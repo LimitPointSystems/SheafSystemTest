@@ -1,6 +1,5 @@
 #
 #
-#
 # Copyright (c) 2013 Limit Point Systems, Inc.
 #
 #
@@ -9,14 +8,14 @@
 # Programmer Filename Entry Section
 #------------------------------------------------
 
-set(CLUSTER section_spaces)
+set(CLUSTER ${CMAKE_CURRENT_BINARY_DIR})
 
 #
 # Library sources.
 #
 set(SRCS
     test_sections.cc
-)
+   )
 
 collect_sources()
 
@@ -25,7 +24,7 @@ collect_sources()
 #
 set(ADDITIONAL_INCS
     test_sections.impl.h
-)
+   )
 
 collect_includes()
 
@@ -89,7 +88,7 @@ set(UNIT_TEST_SRCS
     sec_vd.t.cc
     sec_vd_space.t.cc
     section.t.cc
-)
+   )
 
 collect_unit_test_sources()
 
@@ -97,6 +96,6 @@ collect_unit_test_sources()
 # Source for non-test executables.
 #
 set(EXAMPLE_SRCS
-)
+   )
 
 collect_example_sources()

@@ -1,6 +1,5 @@
 #
 #
-#
 # Copyright (c) 2013 Limit Point Systems, Inc.
 #
 #
@@ -9,14 +8,14 @@
 # Programmer Filename Entry Section
 #------------------------------------------------
 
-set(CLUSTER id_spaces)
+set(CLUSTER ${CMAKE_CURRENT_BINARY_DIR})
 
 #
 # Library sources.
 #
 set(SRCS
     test_index_spaces.cc
-    )
+   )
 
 collect_sources()
 
@@ -25,7 +24,7 @@ collect_sources()
 #
 set(ADDITIONAL_INCS
     test_index_space.impl.h
-  )
+   )
   
 collect_includes()
 
@@ -52,7 +51,7 @@ set(UNIT_TEST_SRCS
     singleton_index_space_interval.t.cc
     sum_index_space.t.cc
     product_structure.t.cc
-)
+   )
 
 collect_unit_test_sources()
 
@@ -61,6 +60,6 @@ collect_unit_test_sources()
 #
 set(EXAMPLE_SRCS
 
- )
+   )
 
 collect_example_sources()

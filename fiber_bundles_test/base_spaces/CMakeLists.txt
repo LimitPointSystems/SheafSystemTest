@@ -1,6 +1,5 @@
 #
 #
-#
 # Copyright (c) 2013 Limit Point Systems, Inc.
 #
 #
@@ -9,14 +8,14 @@
 # Programmer Filename Entry Section
 #------------------------------------------------
 
-set(CLUSTER base_spaces)
+set(CLUSTER ${CMAKE_CURRENT_BINARY_DIR})
 
 #
 # Library sources.
 #
 set(SRCS
     block_scaling_test.cc
-)
+   )
 
 collect_sources()
 
@@ -25,7 +24,7 @@ collect_sources()
 #
 set(ADDITIONAL_INCS
     block_scaling_test.impl.h
-  )
+   )
 
 collect_includes() 
 
@@ -59,7 +58,7 @@ set(UNIT_TEST_SRCS
 #    processor_decomposition.t.cc
 #    adjacency_extractor.t.cc
 #    connectivity_extractor.t.cc
-)
+   )
 
 collect_unit_test_sources()
 
@@ -79,7 +78,7 @@ set(EXAMPLE_SRCS
     scalable_unstructured_block_1d.t.cc
     scalable_unstructured_block_2d.t.cc
     scalable_unstructured_block_3d.t.cc
- )
+   )
 
 collect_example_sources()
 

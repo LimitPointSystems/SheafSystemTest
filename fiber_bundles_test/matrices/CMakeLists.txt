@@ -1,6 +1,5 @@
 #
 #
-#
 # Copyright (c) 2013 Limit Point Systems, Inc.
 #
 #
@@ -9,14 +8,14 @@
 # Programmer Filename Entry Section
 #------------------------------------------------
 
-set(CLUSTER matrices)
+set(CLUSTER ${CMAKE_CURRENT_BINARY_DIR})
 
 #
 # Library sources.
 #
 set(SRCS
 
-)
+   )
 
 collect_sources()
 
@@ -25,7 +24,7 @@ collect_sources()
 #
 set(ADDITIONAL_INCS
 
-  )
+   )
 
 collect_includes()
 
@@ -46,7 +45,7 @@ set(UNIT_TEST_SRCS
     symmetric_matrix_2x2.t.cc
     symmetric_matrix_3x3.t.cc
     svd.t.cc
-)
+   )
 
 collect_unit_test_sources()
 
@@ -55,6 +54,6 @@ collect_unit_test_sources()
 #
 set(EXAMPLE_SRCS
 
- )
+   )
 
 collect_example_sources()

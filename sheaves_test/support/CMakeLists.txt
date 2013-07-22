@@ -1,6 +1,5 @@
 #
 #
-#
 # Copyright (c) 2013 Limit Point Systems, Inc.
 #
 #
@@ -9,14 +8,14 @@
 # Programmer Filename Entry Section
 #------------------------------------------------
 
-set(CLUSTER support)
+set(CLUSTER ${CMAKE_CURRENT_BINARY_DIR})
 
 #
 # Library sources.
 #
 set(SRCS
 
-)
+   )
 
 collect_sources()
 
@@ -25,7 +24,7 @@ collect_sources()
 #
 set(ADDITIONAL_INCS
 
-  )
+   )
   
 collect_includes()
 
@@ -44,7 +43,7 @@ set(UNIT_TEST_SRCS
     stop_watch.t.cc
     tolerance_comparison.t.cc
     zn_to_bool.t.cc
-)
+   )
 
 collect_unit_test_sources()
 
@@ -53,6 +52,6 @@ collect_unit_test_sources()
 #
 set(EXAMPLE_SRCS
 
- )
+   )
 
 collect_example_sources()

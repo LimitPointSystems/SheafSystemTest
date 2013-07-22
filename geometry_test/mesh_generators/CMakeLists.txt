@@ -1,8 +1,5 @@
 #
 #
-
-#
-#
 # Copyright (c) 2013 Limit Point Systems, Inc.
 #
 #
@@ -18,7 +15,7 @@ set(CLUSTER ${CMAKE_CURRENT_BINARY_DIR})
 #
 set(SRCS
 
-)
+   )
 
 collect_sources()
 
@@ -27,7 +24,7 @@ collect_sources()
 #
 set(ADDITIONAL_INCS
 
-  )
+   )
 
 collect_includes()
 
@@ -43,7 +40,7 @@ set(UNIT_TEST_SRCS
     schonhardt.t.cc
     small_angles.t.cc
     sphere_generator.t.cc
-)
+   )
 
 collect_unit_test_sources()
 
@@ -52,6 +49,6 @@ collect_unit_test_sources()
 #
 set(EXAMPLE_SRCS
 
- )
+   )
 
 collect_example_sources()

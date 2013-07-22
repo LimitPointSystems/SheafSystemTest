@@ -1,6 +1,5 @@
 #
 #
-#
 # Copyright (c) 2013 Limit Point Systems, Inc.
 #
 #
@@ -9,14 +8,14 @@
 # Programmer Filename Entry Section
 #------------------------------------------------
 
-set(CLUSTER template_instantiations)
+set(CLUSTER ${CMAKE_CURRENT_BINARY_DIR})
 
 #
 # Library sources.
 #
 set(SRCS
     test_fields_inst.cc
-)
+   )
 
 collect_sources()
 
@@ -25,7 +24,7 @@ collect_sources()
 #
 set(ADDITIONAL_INCS
     test_fields_inst.impl.h
-)
+   )
   
 collect_includes()
 
@@ -36,7 +35,7 @@ set(UNIT_TEST_SRCS
     field_factory_2.inst.t.cc
     fields.auto_block.inst.t.cc
     fields.block.inst.t.cc
-)
+   )
 
 collect_unit_test_sources()
 
@@ -45,6 +44,6 @@ collect_unit_test_sources()
 #
 set(EXAMPLE_SRCS
 
- )
+   )
 
 collect_example_sources()
