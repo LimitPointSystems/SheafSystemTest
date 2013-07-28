@@ -67,30 +67,6 @@ set(INTELWARN CACHE BOOL "Toggle Intel compiler warnings")
 set(ENABLE_WIN32_MP OFF CACHE BOOL "Toggle win32 compiler MP directive. Works for MS and Intel. Default is OFF.")
 
 #
-# Set compiler optimization level.
-# Default is zero.
-#
-#$$TODO: Make certain optimization values for win32 compilers are valid. Adding win32 clause was "down and dirty".
-#$$TODO: We still need provision for user set opt levels. Can't always force "2" on the user.
-
-if(LINUX64GNU OR LINUX64INTEL)
-    if(CMAKE_BUILD_TYPE MATCHES "Debug-contracts" OR CMAKE_BUILD_TYPE MATCHES "Debug-no-contracts")
-        set(OPTIMIZATION_LEVEL "0" CACHE STRING "Compiler optimization level. Valid values for are 0,1,2,3, and \"s\(Linux only\)\". Default is 0. \n Linux values translate to -On. \n\n Windows values are: \n\n 0 = /0d \(no optimization\) \n 1 = /O1 \(Minimize Size\) \n 2 = /O2 \(Maximize Speed\) \n 3 = /GL \(Whole Program Optimization\) \n " FORCE)
-    else()
-        # Optimize for execution speed.
-        set(OPTIMIZATION_LEVEL "2" CACHE STRING "Compiler optimization level. Valid values for are 0,1,2,3, and \"s\(Linux only\)\". Default is 0. \n Linux values translate to -On. \n\n Windows values are: \n\n 0 = /0d \(no optimization\) \n 1 = /O1 \(Minimize Size\) \n 2 = /O2 \(Maximize Speed\) \n 3 = /GL \(Whole Program Optimization\) \n " FORCE)
-    endif()
-else() # Win32
-    if($(Outdir) MATCHES "Debug-contracts" OR $(Outdir) MATCHES "Debug-no-contracts")
-        set(OPTIMIZATION_LEVEL "0" CACHE STRING "Compiler optimization level. Valid values for are 0,1,2,3, and \"s\(Linux only\)\". Default is 0. \n Linux values translate to -On. \n\n Windows values are: \n\n 0 = /0d \(no optimization\) \n 1 = /O1 \(Minimize Size\) \n 2 = /O2 \(Maximize Speed\) \n 3 = /GL \(Whole Program Optimization\) \n " FORCE)
-    else()
-        # Optimize for execution speed.
-        set(OPTIMIZATION_LEVEL "2" CACHE STRING "Compiler optimization level. Valid values for are 0,1,2,3, and \"s\(Linux only\)\". Default is 0. \n Linux values translate to -On. \n\n Windows values are: \n\n 0 = /0d \(no optimization\) \n 1 = /O1 \(Minimize Size\) \n 2 = /O2 \(Maximize Speed\) \n 3 = /GL \(Whole Program Optimization\) \n " FORCE)
-    endif()
-endif()
-mark_as_advanced(OPTIMIZATION_LEVEL)
-
-#
 # Default linux installation location is /usr/local
 # Set a default where the user has write permission ; in this
 # case, the top of the components source tree.
@@ -101,10 +77,10 @@ set(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR} CACHE STRING "System install locati
 
 #
 # Establish the version number for this build.
-# This is only relevant for releases. 1.1.1 is chosen here
-# simply as a stub.
+# This is only relevant for releases. 0.0.0.0 is chosen here
+# to indicate a non-snapshot build..
 #
-set(LIB_VERSION 1.1.1 CACHE STRING "Library version number for release purposes")
+set(LIB_VERSION 0.0.0.0 CACHE STRING "Library version number for release purposes")
 mark_as_advanced(LIB_VERSION)
 
 #
@@ -196,39 +172,6 @@ function(clear_component_variables comp)
     unset(${COMP}_IPATH CACHE)
     
 endfunction(clear_component_variables)
-
-#
-# Set compiler optimization level.
-#
-#function(set_optimization_level)
-#
-#    if(LINUX64GNU OR LINUX64INTEL)
-#        if(${OPTIMIZATION_LEVEL} EQUAL 0)
-#            set(OPTIMIZATION "-O0" PARENT_SCOPE)
-#        elseif(${OPTIMIZATION_LEVEL} EQUAL 1)
-#            set(OPTIMIZATION "-O1" PARENT_SCOPE)
-#        elseif(${OPTIMIZATION_LEVEL} EQUAL 2)
-#            set(OPTIMIZATION "-O2" PARENT_SCOPE)
-#        elseif(${OPTIMIZATION_LEVEL} EQUAL 3)
-#            set(OPTIMIZATION "-O3" PARENT_SCOPE)
-#        elseif(${OPTIMIZATION_LEVEL} EQUAL s)
-#            set(OPTIMIZATION "-Os" PARENT_SCOPE)
-#        else()
-#            break()
-#        endif()   # anything else, exit.
-#    elseif(WIN64MSVC OR WIN64INTEL)
-#        if(${OPTIMIZATION_LEVEL} EQUAL 0)
-#            set(OPTIMIZATION "/Od" PARENT_SCOPE)    
-#        elseif(${OPTIMIZATION_LEVEL} EQUAL 1)
-#            set(OPTIMIZATION "/O1" PARENT_SCOPE)
-#        elseif(${OPTIMIZATION_LEVEL} EQUAL 2)
-#            set(OPTIMIZATION "/O2" PARENT_SCOPE)
-#        elseif(${OPTIMIZATION_LEVEL} EQUAL 3)
-#            set(OPTIMIZATION "/GL" PARENT_SCOPE)    
-#        endif()
-#    endif()    
-#
-#endfunction(set_optimization_level)
 
 # 
 #  Make emacs tags

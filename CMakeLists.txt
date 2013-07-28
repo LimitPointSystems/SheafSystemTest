@@ -13,7 +13,7 @@
 #
 # Set the configuration types.
 #
-set(CMAKE_CONFIGURATION_TYPES Debug-contracts Release-no-contracts CACHE STRING "Supported configuration types" FORCE)
+set(CMAKE_CONFIGURATION_TYPES Debug-contracts RelWithDebInfo-no-contracts CACHE STRING "Supported configuration types" FORCE)
 
 #
 # Tell Cmake which configurations it should see and "Debug"
