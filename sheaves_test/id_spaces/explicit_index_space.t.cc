@@ -63,9 +63,7 @@ int main( int argc, char* argv[])
   cout << "end()                = " << lhandle.end() << endl;
   cout << "contains(lid0)       = " << lhandle.contains(lid0) << endl;
   cout << "contains(0)          = " << lhandle.contains(0) << endl;
-  cout << "contains_hub(lid0)   = " << lhandle.contains_hub(lid0) << endl;
   cout << "contains_hub(0)      = " << lhandle.contains_hub(0) << endl;
-  cout << "contains(lid0, lid0) = " << lhandle.contains(lid0, lid0) << endl;
   cout << "contains(0, 0)       = " << lhandle.contains(0, 0) << endl;
   cout << "pod(lid0)            = " << lhandle.pod(lid0) << endl;
   cout << "pod(2)               = " << lhandle.pod(2) << endl;
