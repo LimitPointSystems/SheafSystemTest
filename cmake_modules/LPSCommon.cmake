@@ -318,12 +318,29 @@ function(create_output_dirs)
 endfunction()
 
 # 
-#  Clean up. Remove everything, not just the build products.
+#  Append file types to CMake's default clean list.
 #
-add_custom_command(TARGET clean POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E rm -f ${CMAKE_BINARY_DIR}/bin/${CMAKE_CFG_INTDIR}/*
-    COMMAND ${CMAKE_COMMAND} -E rm -f ${CMAKE_BINARY_DIR}/lib/${CMAKE_CFG_INTDIR}/*    
-    )
+function(add_clean_files)
+    
+    #Define the file types to be included in the clean operation.
+    
+    file(GLOB_RECURSE HDF_FILES ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/*.hdf)
+    file(GLOB_RECURSE CSV_FILES ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/*.csv)
+    
+    if(ENABLE_COVERAGE)  
+        # Clean up the mess left by the Intel coverage tool
+        file(GLOB_RECURSE DYN_FILES ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}/*.dyn)
+        file(GLOB_RECURSE DPI_FILES ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}/*.dpi)
+        file(GLOB_RECURSE SPI_FILES ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}/*.spi)
+    endif()                
+
+    # Append them to the list
+    list(APPEND CLEAN_FILES ${HDF_FILES})
+    list(APPEND CLEAN_FILES ${CSV_FILES})
+      
+    set_directory_properties(PROPERTIES ADDITIONAL_MAKE_CLEAN_FILES "${CLEAN_FILES}")
+
+endfunction(add_clean_files) 
 
 # 
 # Establish a system level "bin" target
@@ -601,7 +618,12 @@ function(add_linux_test_targets)
             set_property(TEST ${t_file} PROPERTY LABELS "${PROJECT_NAME}") 
 
             # Set the PATH variable for CTest               
-             set_tests_properties(${t_file} PROPERTIES ENVIRONMENT "PATH=%PATH%;${CMAKE_CFG_INTDIR};${SHEAVES_BIN_DIR}")           
+             set_tests_properties(${t_file} PROPERTIES ENVIRONMENT "PATH=%PATH%;${CMAKE_CFG_INTDIR};${SHEAVES_BIN_DIR}")   
+             
+               add_custom_command(OUTPUT ${t_file}.hdf
+                     COMMAND $<TARGET_FILE:${t_file}>
+                     DEPENDS ${t_file}
+                     )        
             if(ENABLE_UNIT_TEST_LOG_TARGETS)   
                 # Generate a log file for each .t. "make <test>.log will build and run a given executable.
                 add_custom_target(${t_file}.log WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} COMMAND ${t_file} > ${t_file}.log DEPENDS ${t_file} )

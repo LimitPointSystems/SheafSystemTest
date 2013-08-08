@@ -60,5 +60,3 @@ if(ENABLE_COVERAGE)
 status_message("Creating coverage target for ${PROJECT_NAME}")
     add_component_coverage_target()
 endif()
-
-

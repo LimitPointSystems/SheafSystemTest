@@ -24,7 +24,6 @@ status_message("Processing ${PROJECT_NAME}")
 #
 set_compiler_flags()
 
-
 #
 # Add the library targets
 #
@@ -63,8 +62,6 @@ add_component_bin_target()
 # Component specific coverage target
 #
 if(ENABLE_COVERAGE)
-status_message("Creating coverage target for ${PROJECT_NAME}")
-    add_component_coverage_target()
+    status_message("Creating coverage target for ${PROJECT_NAME}")
+        add_component_coverage_target()
 endif()
-
-
