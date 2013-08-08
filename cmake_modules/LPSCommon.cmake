@@ -619,11 +619,7 @@ function(add_linux_test_targets)
 
             # Set the PATH variable for CTest               
              set_tests_properties(${t_file} PROPERTIES ENVIRONMENT "PATH=%PATH%;${CMAKE_CFG_INTDIR};${SHEAVES_BIN_DIR}")   
-             
-               add_custom_command(OUTPUT ${t_file}.hdf
-                     COMMAND $<TARGET_FILE:${t_file}>
-                     DEPENDS ${t_file}
-                     )        
+     
             if(ENABLE_UNIT_TEST_LOG_TARGETS)   
                 # Generate a log file for each .t. "make <test>.log will build and run a given executable.
                 add_custom_target(${t_file}.log WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} COMMAND ${t_file} > ${t_file}.log DEPENDS ${t_file} )
