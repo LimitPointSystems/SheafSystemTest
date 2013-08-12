@@ -41,6 +41,7 @@ total_poset_member *t, *e0, *e1,*e2, *v0, *v1, *v2;
 
 ///
 /// Test creating an empty poset.
+/// Also tests poset with same name as namespace.
 ///
 void empty_poset_test(sheaves_namespace& xns)
 {
@@ -48,7 +49,7 @@ void empty_poset_test(sheaves_namespace& xns)
   arg_list largs = poset::make_args();
 
   poset& empty_poset =
-    xns.new_member_poset<poset>("empty", lschema_path, largs, true);
+    xns.new_member_poset<poset>("poset.t", lschema_path, largs, true);
 }
 
 ///
