@@ -45,11 +45,8 @@ total_poset_member *t, *e0, *e1,*e2, *v0, *v1, *v2;
 ///
 void empty_poset_test(sheaves_namespace& xns)
 {
-  poset_path lschema_path = xns.primitives().schema(true).path(true);  
-  arg_list largs = poset::make_args();
-
-  poset& empty_poset =
-    xns.new_member_poset<poset>("poset.t", lschema_path, largs, true);
+  poset_path lschema_path = xns.primitives().schema(true).path(true);
+  poset::new_table(xns, "poset.t", lschema_path, true);
 }
 
 ///
@@ -182,8 +179,8 @@ void product_rep_test(sheaves_namespace& xns)
 {
   cout << endl << "*** ENTERING PRODUCT_REP_TEST *************************" << endl;
 
-  arg_list largs = poset::make_args();
-  poset& R2 = xns.new_member_poset<poset>("R2", "R2_schema/R2_schema", largs, true);
+  total_poset_member::new_host(xns, "R2", "R2_schema/R2_schema", true);
+  poset& R2 = xns.member_poset<poset>("R2", true);
 
   R2.get_read_write_access();
 
@@ -250,15 +247,16 @@ void new_jim_test(sheaves_namespace& xns)
   // Create a poset; schema will include a single pod_index_type dof.
   
   poset_path lschema_path = xns.primitives().pod_index_type_type().path();
-  arg_list largs = poset::make_args();
 
-  cells = &xns.new_member_poset<poset>("cells", lschema_path, largs, true);
+  poset::new_table(xns, "cells", lschema_path, true);
+  cells = &xns.member_poset<poset>("cells", true);
+  
 
   cells->get_read_write_access();
 
   // Create some id spaces.
 
-  largs = hash_index_space_state::make_arg_list(0);
+  arg_list largs = hash_index_space_state::make_arg_list(0);
 
   // Create vertices id space.
 
