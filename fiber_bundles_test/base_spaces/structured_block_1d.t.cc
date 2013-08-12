@@ -46,18 +46,19 @@ main(int xargc, char* xargv[])
 
   // Make a mesh with 2 blocks.
 
-  base_space_poset* lmesh = &lns.new_base_space<structured_block_1d>("1d_structued_mesh");
+  structured_block_1d::new_host(lns, "1d_structued_mesh", true);
+  base_space_poset& lmesh = lns.member_poset<base_space_poset>("1d_structued_mesh", true);
 
-  structured_block_1d lblock0(lmesh, size, true);
+  structured_block_1d lblock0(&lmesh, size, true);
   lblock0.put_name("1D_structured_block0", true, true);
 
-  structured_block_1d lblock1(lmesh, size, true);
+  structured_block_1d lblock1(&lmesh, size, true);
   lblock1.put_name("1D_structured_block1", true, true);
 
   // Join the last edge of the first block and 
   // the first edge of the second block.
 
-  lmesh->get_read_write_access();
+  lmesh.get_read_write_access();
 
   index_space_handle& lzone_id_space0 = lblock0.get_zone_id_space(false);
   index_space_handle& lzone_id_space1 = lblock1.get_zone_id_space(false);
@@ -69,11 +70,11 @@ main(int xargc, char* xargv[])
   lblock0.release_zone_id_space(lzone_id_space0, false);
   lblock1.release_zone_id_space(lzone_id_space1, false);
   
-  base_space_member ljoin(lmesh, ljoin_ids, 2, tern::TRUE, false);
+  base_space_member ljoin(&lmesh, ljoin_ids, 2, tern::TRUE, false);
   
   poset_path lbase_path = lblock0.path();
 
-  cout << *lmesh << endl;
+  cout << lmesh << endl;
 
   // Test the refinement map.
 

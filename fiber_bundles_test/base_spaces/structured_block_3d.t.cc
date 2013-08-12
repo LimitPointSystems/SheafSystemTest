@@ -38,17 +38,18 @@ main(int xargc, char* xargv[])
 
   lns.get_read_write_access();
 
-  base_space_poset* lmesh = &lns.new_base_space<structured_block_3d>("structured_block_3d_mesh");
+  structured_block_3d::new_host(lns, "3d_structued_mesh", true);
+  base_space_poset& lmesh = lns.member_poset<base_space_poset>("3d_structued_mesh", true);
 
-  structured_block_3d lblock0(lmesh, size_0, size_1, size_2, true);
+  structured_block_3d lblock0(&lmesh, size_0, size_1, size_2, true);
   lblock0.put_name("3d_structured_block0", true, true);
 
-  structured_block_3d lblock1(lmesh, size_0, size_1, size_2, true);
+  structured_block_3d lblock1(&lmesh, size_0, size_1, size_2, true);
   lblock1.put_name("3d_structured_block1", true, true);
 
   // Create some jrms contained in block 0.
 
-  lmesh->get_read_write_access();
+  lmesh.get_read_write_access();
 
   index_space_handle& lzone_id_space0 = lblock0.get_zone_id_space(false);
   const ijk_product_structure& lzone_product0 =
@@ -73,7 +74,7 @@ main(int xargc, char* xargv[])
 	lzone_ids.push_back(lzone_id);
       }
     }
-    base_space_member lpart(lmesh, lzone_ids.base(), lzone_ids.ct(), tern::TRUE, false);
+    base_space_member lpart(&lmesh, lzone_ids.base(), lzone_ids.ct(), tern::TRUE, false);
     stringstream lstrm;
     lstrm << i;
     lpart.put_name("part"+lstrm.str(), true, true);
@@ -108,18 +109,18 @@ main(int xargc, char* xargv[])
     lzone_ids.push_back(lzone_id);
   }
 
-  base_space_member ljrm(lmesh, lzone_ids.base(), lzone_ids.ct(), tern::TRUE, false);
+  base_space_member ljrm(&lmesh, lzone_ids.base(), lzone_ids.ct(), tern::TRUE, false);
   ljrm.put_name("partial range", true, false);
 
   // Move to a new version;
   // tests handling of version subposet names by i/o system.
 
-  lmesh->begin_refine_mode(true);
-  lmesh->end_refine_mode(true);
+  lmesh.begin_refine_mode(true);
+  lmesh.end_refine_mode(true);
   
   poset_path lbase_path = lblock0.path();
 
-  cout << *lmesh << endl;
+  cout << lmesh << endl;
 
 //   // Test the refinement map.
 
@@ -185,7 +186,7 @@ main(int xargc, char* xargv[])
   lblock0.detach_from_state();
   lblock1.detach_from_state();
   ljrm.detach_from_state();
-  lmesh->release_access();
+  lmesh.release_access();
   lcoords.detach_from_state();
   lprop.release_access();
   lprop.detach_from_state();

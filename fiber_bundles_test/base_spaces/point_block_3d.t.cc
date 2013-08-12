@@ -36,15 +36,16 @@ main(int xargc, char* xargv[])
 
   // Make the mesh
 
-  base_space_poset* lmesh = &lns.new_base_space<point_block_3d>("3d_point_mesh");
+  point_block_3d::new_host(lns, "3d_point_mesh", true);
+  base_space_poset& lmesh = lns.member_poset<base_space_poset>("3d_point_mesh", true);
 
-  point_block_3d lblock(lmesh, size_0, size_1, size_2, true);
+  point_block_3d lblock(&lmesh, size_0, size_1, size_2, true);
   lblock.get_read_write_access();
   lblock.put_name("3D_point_block", true, false);
 
   poset_path lbase_path = lblock.path();
 
-  cout << *lmesh << endl;
+  cout << lmesh << endl;
 
   // Make uniform (coordinate) section space.
 

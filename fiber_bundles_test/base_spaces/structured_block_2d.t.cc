@@ -39,17 +39,18 @@ main(int xargc, char* xargv[])
 
   // Make the mesh
 
-  base_space_poset* lmesh = &lns.new_base_space<structured_block_2d>("structured_block_2d_mesh");
+  structured_block_2d::new_host(lns, "2d_structued_mesh", true);
+  base_space_poset& lmesh = lns.member_poset<base_space_poset>("2d_structued_mesh", true);
 
-  structured_block_2d lblock0(lmesh, size_0, size_1, true);
+  structured_block_2d lblock0(&lmesh, size_0, size_1, true);
   lblock0.put_name("2d_structured_block0", true, true);
 
-  structured_block_2d lblock1(lmesh, size_0, size_1, true);
+  structured_block_2d lblock1(&lmesh, size_0, size_1, true);
   lblock1.put_name("2d_structured_block1", true, true);
 
   // Create some jrms contained in block 0..
 
-  lmesh->get_read_write_access();
+  lmesh.get_read_write_access();
 
   index_space_handle& lzone_id_space0 = lblock0.get_zone_id_space(false);
   const ij_product_structure& lzone_product0 =
@@ -71,7 +72,7 @@ main(int xargc, char* xargv[])
       lzone_id = lzone_pod;
       lzone_ids.push_back(lzone_id);
     }
-    base_space_member lpart(lmesh, lzone_ids.base(), lzone_ids.ct(), tern::TRUE, false);
+    base_space_member lpart(&lmesh, lzone_ids.base(), lzone_ids.ct(), tern::TRUE, false);
     stringstream lstrm;
     lstrm << i;
     lpart.put_name("part"+lstrm.str(), true, true);
@@ -105,12 +106,12 @@ main(int xargc, char* xargv[])
     lzone_ids.push_back(lzone_id);
   }
 
-  base_space_member ljrm(lmesh, lzone_ids.base(), lzone_ids.ct(), tern::TRUE, false);
+  base_space_member ljrm(&lmesh, lzone_ids.base(), lzone_ids.ct(), tern::TRUE, false);
   ljrm.put_name("partial range", true, false);
   
   poset_path lbase_path = lblock0.path();
 
-  //  cout << *lmesh << endl;  
+  //  cout << lmesh << endl;  
 
 //   // Test the refinement map.
 
@@ -171,7 +172,7 @@ main(int xargc, char* xargv[])
   lblock0.detach_from_state();
   lblock1.detach_from_state();
   ljrm.detach_from_state();
-  lmesh->release_access();
+  lmesh.release_access();
   lcoords.detach_from_state();
   lprop.release_access();
   lprop.detach_from_state();
@@ -184,7 +185,7 @@ main(int xargc, char* xargv[])
   sa.write_entire(lns);
 
   cout << lns << endl;
-  //cout << *lmesh << endl;  
+  //cout << lmesh << endl;  
 
   return 0;
 }

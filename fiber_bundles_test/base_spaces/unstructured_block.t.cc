@@ -28,22 +28,19 @@ make_unstructured_block_0d(fiber_bundles_namespace* xns,
 
   // Body:
 
-  base_space_poset* lmesh =
-    &xns->new_base_space<unstructured_block>("unstructured_mesh_base_space_0d",
-					     "",
-					     "",
-					     1,
-					     true);
-  lmesh->get_read_write_access();
+  unstructured_block::new_host(*xns, "unstructured_mesh_base_space_0d", 1, true);
+  base_space_poset& lmesh = xns->member_poset<base_space_poset>("unstructured_mesh_base_space_0d");
+
+  lmesh.get_read_write_access();
 
   poset_path lproto_path(unstructured_block::prototypes_poset_name(),
                          "point");
 
-  unstructured_block lblock(lmesh, lproto_path, xi_size);
+  unstructured_block lblock(&lmesh, lproto_path, xi_size);
   lblock.put_name("unstructured_block_0d", true, false);
   lblock.detach_from_state();
 
-  lmesh->release_access();
+  lmesh.release_access();
 }
 
 void
@@ -58,22 +55,19 @@ make_unstructured_block_1d(fiber_bundles_namespace* xns,
 
   // Body:
 
-  base_space_poset* lmesh =
-    &xns->new_base_space<unstructured_block>("unstructured_mesh_base_space_1d",
-					     "",
-					     "",
-					     1,
-					     true);
-  lmesh->get_read_write_access();
+  unstructured_block::new_host(*xns, "unstructured_mesh_base_space_1d", 1, true);
+  base_space_poset& lmesh = xns->member_poset<base_space_poset>("unstructured_mesh_base_space_1d");
+
+  lmesh.get_read_write_access();
 
   poset_path lproto_path(unstructured_block::prototypes_poset_name(),
                          "segment_complex");
 
-  unstructured_block lblock(lmesh, lproto_path, xi_size);
+  unstructured_block lblock(&lmesh, lproto_path, xi_size);
   lblock.put_name("unstructured_block_1d", true, false);
   lblock.detach_from_state();
 
-  lmesh->release_access();
+  lmesh.release_access();
 }
 
 void
@@ -90,20 +84,17 @@ make_unstructured_block_2d(fiber_bundles_namespace* xns,
 
   // Body:
 
-  base_space_poset* lmesh =
-    &xns->new_base_space<unstructured_block>("unstructured_mesh_base_space_2d",
-					     "",
-					     "",
-					     2,
-					     true);
-  lmesh->get_read_write_access();
+  unstructured_block::new_host(*xns, "unstructured_mesh_base_space_2d", 2, true);
+  base_space_poset& lmesh = xns->member_poset<base_space_poset>("unstructured_mesh_base_space_2d");
+
+  lmesh.get_read_write_access();
 
   // Make quad block.
 
   poset_path lquad_proto_path(unstructured_block::prototypes_poset_name(),
                               "quad_complex");
 
-  unstructured_block lquad_block(lmesh, lquad_proto_path, xi_size, xj_size);
+  unstructured_block lquad_block(&lmesh, lquad_proto_path, xi_size, xj_size);
   lquad_block.put_name("unstructured_quad_block_2d", true, false);
   lquad_block.detach_from_state();
 
@@ -112,12 +103,12 @@ make_unstructured_block_2d(fiber_bundles_namespace* xns,
   poset_path ltriangle_proto_path(unstructured_block::prototypes_poset_name(),
                                   "triangle_nodes");
 
-  unstructured_block ltriangle_block(lmesh, ltriangle_proto_path,
+  unstructured_block ltriangle_block(&lmesh, ltriangle_proto_path,
                                      xi_size, xj_size);
   ltriangle_block.put_name("unstructured_triangle_block_2d", true, false);
   ltriangle_block.detach_from_state();
 
-  lmesh->release_access();
+  lmesh.release_access();
 }
 
 void
@@ -136,18 +127,15 @@ make_unstructured_block_3d(fiber_bundles_namespace* xns,
 
   // Body:
 
-  base_space_poset* lmesh =
-    &xns->new_base_space<unstructured_block>("unstructured_mesh_base_space_3d",
-					     "",
-					     "",
-					     3,
-					     true);
-  lmesh->get_read_write_access();
+  unstructured_block::new_host(*xns, "unstructured_mesh_base_space_3d", 3, true);
+  base_space_poset& lmesh = xns->member_poset<base_space_poset>("unstructured_mesh_base_space_3d");
+
+  lmesh.get_read_write_access();
 
   poset_path lproto_path(unstructured_block::prototypes_poset_name(),
                          "hex_nodes");
 
-  unstructured_block lblock(lmesh, lproto_path, xi_size, xj_size, xk_size);
+  unstructured_block lblock(&lmesh, lproto_path, xi_size, xj_size, xk_size);
   lblock.put_name("unstructured_block_3d", true, false);
 
 
@@ -169,7 +157,7 @@ make_unstructured_block_3d(fiber_bundles_namespace* xns,
   // Clean-up.
 
   lblock.detach_from_state();
-  lmesh->release_access();
+  lmesh.release_access();
   lprop.release_access();
   lprop.detach_from_state();
 }
@@ -190,22 +178,19 @@ make_hex_faces_nodes_block(fiber_bundles_namespace* xns,
 
   // Body:
 
-  base_space_poset* lmesh =
-    &xns->new_base_space<unstructured_block>("hex_faces_nodes_base_space",
-					     "",
-					     "",
-					     3,
-					     true);
-  lmesh->get_read_write_access();
+  unstructured_block::new_host(*xns, "hex_faces_nodes_base_space", 3, true);
+  base_space_poset& lmesh = xns->member_poset<base_space_poset>("hex_faces_nodes_base_space");
+
+  lmesh.get_read_write_access();
 
   poset_path lproto_path(unstructured_block::prototypes_poset_name(),
                          "hex_faces_nodes");
 
-  unstructured_block lblock(lmesh, lproto_path, xi_size, xj_size, xk_size);
+  unstructured_block lblock(&lmesh, lproto_path, xi_size, xj_size, xk_size);
   lblock.put_name("hex_faces_nodes_block", true, false);
   lblock.detach_from_state();
 
-  lmesh->release_access();
+  lmesh.release_access();
 }
 
 int
