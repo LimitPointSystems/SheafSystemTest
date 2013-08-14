@@ -336,11 +336,16 @@ int main(int argc, char* argv[])
 
   test_namespace.get_read_write_access();
 
-  base_space_poset* lbase_host =
-    &test_namespace.new_base_space<unstructured_block>("torus_mesh", "", "", 2, true);
-  lbase_host->get_read_write_access();
+  /// @todo Remove.
+//   base_space_poset* lbase_host =
+//     &test_namespace.new_base_space<unstructured_block>("torus_mesh", "", "", 2, true);
 
-  unstructured_block lbase_space(lbase_host,
+  unstructured_block::new_host(test_namespace, "torus_mesh", 2, false);
+  base_space_poset& lbase_host = test_namespace.member_poset<base_space_poset>("torus_mesh", false);
+
+  lbase_host.get_read_write_access();
+
+  unstructured_block lbase_space(&lbase_host,
                                  "base_space_member_prototypes/triangle_nodes",
                                  edge_ct_x,
                                  edge_ct_y,
@@ -365,7 +370,7 @@ int main(int argc, char* argv[])
   // Clean-up
 
   lbase_space.detach_from_state();
-  lbase_host->release_access();
+  lbase_host.release_access();
 
   return 0;
 }

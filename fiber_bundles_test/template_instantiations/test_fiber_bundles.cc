@@ -135,9 +135,13 @@ test_fiber_bundles_namespace_poset_facet<fiber_bundle::base_space_poset>
 
   typedef fiber_bundle::base_space_poset P;
 
-  P* lposet = &xns.new_base_space<fiber_bundle::structured_block_1d>(lname);
+  /// @todo Remove.
+//   P* lposet = &xns.new_base_space<fiber_bundle::structured_block_1d>(lname);
 
-  lresult &= test_fiber_bundles_namespace_poset_facet(xns, *lposet);
+  fiber_bundle::structured_block_1d::new_host(xns, lname, false);
+  P& lposet = xns.member_poset<P>(lname, false);
+
+  lresult &= test_fiber_bundles_namespace_poset_facet(xns, lposet);
 
   print_footer("End testing " + lname);
 

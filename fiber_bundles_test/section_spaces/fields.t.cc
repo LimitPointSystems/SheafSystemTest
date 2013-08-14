@@ -586,12 +586,17 @@ int main(int xargc, char* xargv[])
 
   // Make triangle mesh
 
-  base_space_poset& lmesh =
-    lns.new_base_space<zone_nodes_block>("triangle_mesh",
-					 "",
-					 "",
-					 2,
-					 true);
+  /// @todo Remove.
+//   base_space_poset& lmesh =
+//     lns.new_base_space<zone_nodes_block>("triangle_mesh",
+// 					 "",
+// 					 "",
+// 					 2,
+// 					 true);
+
+  zone_nodes_block::new_host(lns, "triangle_mesh", 2, false);
+  base_space_poset& lmesh = lns.member_poset<base_space_poset>("triangle_mesh", false);
+
   lmesh.get_read_write_access();
 
   // Make triangle block base space

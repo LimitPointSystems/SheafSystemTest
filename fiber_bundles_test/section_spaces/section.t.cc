@@ -275,19 +275,24 @@ test_all(fiber_bundles_namespace& xns)
 
   // Make triangle mesh
 
-  base_space_poset* lmesh = &xns.new_base_space<unstructured_block>("triangle_mesh",
-								    "",
-								    "",
-								    2,
-								    true);
-  lmesh->get_read_write_access();
+  /// @todo Remove.
+//   base_space_poset* lmesh = &xns.new_base_space<unstructured_block>("triangle_mesh",
+// 								    "",
+// 								    "",
+// 								    2,
+// 								    true);
+
+  unstructured_block::new_host(xns, "triangle_mesh", 2, false);
+  base_space_poset& lmesh = xns.member_poset<base_space_poset>("triangle_mesh", false);
+
+  lmesh.get_read_write_access();
 
   // Make triangle block base space
 
   poset_path lproto_path(unstructured_block::prototypes_poset_name(),
                          "triangle_complex");
 
-  unstructured_block lbase(lmesh, lproto_path, edge_ct_x, edge_ct_y, true);
+  unstructured_block lbase(&lmesh, lproto_path, edge_ct_x, edge_ct_y, true);
   lbase.put_name("triangle_block", true, false);
 
   poset_path lbase_path = lbase.path(true);
@@ -303,7 +308,7 @@ test_all(fiber_bundles_namespace& xns)
   // Clean-up
 
   lbase.detach_from_state();
-  lmesh->release_access();
+  lmesh.release_access();
 
   // Postconditions:
 

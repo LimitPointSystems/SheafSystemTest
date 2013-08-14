@@ -34,13 +34,19 @@ make_trimesh(fiber_bundles_namespace* xns, size_type xi_size, size_type xj_size)
 
   // Body:
 
-  base_space_poset* lmesh =
-    &xns->new_base_space<zone_nodes_block>("trimesh_space",
-					   "",
-					   "",
-					   2,
-					   true);
-  lmesh->get_read_write_access();
+  /// @todo Remove.
+
+//   base_space_poset* lmesh =
+//     &xns->new_base_space<zone_nodes_block>("trimesh_space",
+// 					   "",
+// 					   "",
+// 					   2,
+// 					   true);
+
+  zone_nodes_block::new_host(*xns, "trimesh_space", 2, false);
+  base_space_poset& lmesh = xns->member_poset<base_space_poset>("trimesh_space", false);
+
+  lmesh.get_read_write_access();
 
   // Make triangle connectivity.
 
@@ -48,24 +54,24 @@ make_trimesh(fiber_bundles_namespace* xns, size_type xi_size, size_type xj_size)
 
   // Make a trimesh block.
 
-  zone_nodes_block lblock1(*lmesh, lconn, true);
+  zone_nodes_block lblock1(lmesh, lconn, true);
   lblock1.put_name("trimesh1", true, false);
   lblock1.detach_from_state();
 
   // Make a second trimesh block.
 
-  zone_nodes_block lblock2(*lmesh, lconn, true);
+  zone_nodes_block lblock2(lmesh, lconn, true);
   lblock2.put_name("trimesh2", true, false);
   lblock2.detach_from_state();
 
   // Make a third trimesh block.
 
-  zone_nodes_block lblock3(*lmesh, lconn, true);
+  zone_nodes_block lblock3(lmesh, lconn, true);
   lblock3.put_name("trimesh3", true, false);
   lblock3.detach_from_state();
 
-  cout << *lmesh << endl;
-  lmesh->release_access();
+  cout << lmesh << endl;
+  lmesh.release_access();
 
 }
 

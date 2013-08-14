@@ -41,29 +41,33 @@ structured_block_1d* make_1d_base_space(fiber_bundles_namespace& xns)
 
   // Create the host.
 
-  base_space_poset* lbase_host = &xns.new_base_space<structured_block_1d>("1d_base_space");
+  /// @todo Remove.
+//   base_space_poset* lbase_host = &xns.new_base_space<structured_block_1d>("1d_base_space");
 
-  lbase_host->get_read_write_access();
+  structured_block_1d::new_host(xns, "1d_base_space", false);
+  base_space_poset& lbase_host = xns.member_poset<base_space_poset>("1d_base_space", false);
+
+  lbase_host.get_read_write_access();
 
   // Create the mesh itself.
 
   structured_block_1d* result =
-    new structured_block_1d(lbase_host, 4, true);
+    new structured_block_1d(&lbase_host, 4, true);
   result->put_name("mesh", true, false);
 
   // Create a decomposition.
 
-  subposet lparts(lbase_host);
+  subposet lparts(&lbase_host);
   lparts.put_name("parts", true, false);
 
-  const index_space_handle& lele_space = lbase_host->elements().id_space();
+  const index_space_handle& lele_space = lbase_host.elements().id_space();
 
   scoped_index lexpansion[2];
 
   lexpansion[0].put(lele_space, 0);
   lexpansion[1].put(lele_space, 1);
 
-  base_space_member lpart0(lbase_host, lexpansion, 2, tern::NEITHER, false);
+  base_space_member lpart0(&lbase_host, lexpansion, 2, tern::NEITHER, false);
   lpart0.put_name("part0", true, true);
   lparts.insert_member(lpart0.index());
   lpart0.detach_from_state();
@@ -71,7 +75,7 @@ structured_block_1d* make_1d_base_space(fiber_bundles_namespace& xns)
   lexpansion[0].put(lele_space, 2);
   lexpansion[1].put(lele_space, 3);
 
-  base_space_member lpart1(lbase_host, lexpansion, 2, tern::NEITHER, false);
+  base_space_member lpart1(&lbase_host, lexpansion, 2, tern::NEITHER, false);
   lpart1.put_name("part1", true, true);
   lparts.insert_member(lpart1.index());
   lpart1.detach_from_state();
@@ -306,22 +310,26 @@ structured_block_3d* make_3d_base_space(fiber_bundles_namespace& xns)
 
   // Create the host.
 
-  base_space_poset* lbase_host = &xns.new_base_space<structured_block_3d>("3d_base_space");
+  /// @todo Remove.
+//   base_space_poset* lbase_host = &xns.new_base_space<structured_block_3d>("3d_base_space");
 
-  lbase_host->get_read_write_access();
+  structured_block_3d::new_host(xns, "3d_base_space", false);
+  base_space_poset& lbase_host = xns.member_poset<base_space_poset>("3d_base_space", false);
+
+  lbase_host.get_read_write_access();
 
   // Create the mesh itself.
 
   structured_block_3d* result =
-    new structured_block_3d(lbase_host, 3, 2, 1, true);
+    new structured_block_3d(&lbase_host, 3, 2, 1, true);
   result->put_name("mesh", true, false);
 
   // Create a decomposition.
 
-  subposet lparts(lbase_host);
+  subposet lparts(&lbase_host);
   lparts.put_name("parts", true, false);
 
-  const index_space_handle& lele_space = lbase_host->elements().id_space();
+  const index_space_handle& lele_space = lbase_host.elements().id_space();
 
   scoped_index lexpansion[3];
 
@@ -329,7 +337,7 @@ structured_block_3d* make_3d_base_space(fiber_bundles_namespace& xns)
   lexpansion[1].put(lele_space, 1);
   lexpansion[2].put(lele_space, 2);
 
-  base_space_member lpart0(lbase_host, lexpansion, 3, tern::NEITHER, false);
+  base_space_member lpart0(&lbase_host, lexpansion, 3, tern::NEITHER, false);
   lpart0.put_name("part0", true, true);
   lparts.insert_member(lpart0.index());
   lpart0.detach_from_state();
@@ -338,7 +346,7 @@ structured_block_3d* make_3d_base_space(fiber_bundles_namespace& xns)
   lexpansion[1].put(lele_space, 4);
   lexpansion[2].put(lele_space, 5);
 
-  base_space_member lpart1(lbase_host, lexpansion, 3, tern::NEITHER, false);
+  base_space_member lpart1(&lbase_host, lexpansion, 3, tern::NEITHER, false);
   lpart1.put_name("part1", true, true);
   lparts.insert_member(lpart1.index());
   lpart1.detach_from_state();

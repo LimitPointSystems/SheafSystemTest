@@ -36,9 +36,14 @@ namespace
   poset_path make_base_space(fiber_bundles_namespace& xns)
   {
     xns.get_read_write_access();
-    
-    base_space_poset* lhost = &xns.new_base_space<structured_block_1d>("base_space_host");
-    structured_block_1d lmesh(lhost, 2, true);
+
+    /// @todo Remove.
+//     base_space_poset* lhost = &xns.new_base_space<structured_block_1d>("base_space_host");
+
+    structured_block_1d::new_host(xns, "base_space_host", false);
+    base_space_poset& lhost = xns.member_poset<base_space_poset>("base_space_host", false);
+
+    structured_block_1d lmesh(&lhost, 2, true);
     lmesh.put_name("base_space", true, true);
 
     poset_path result = lmesh.path(true);

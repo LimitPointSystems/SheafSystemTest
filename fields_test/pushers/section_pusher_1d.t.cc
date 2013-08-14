@@ -187,8 +187,14 @@ void test_auto_allocated_push()
   
   string lbase_name("coarse_mesh");
 
-  base_space_poset* lbase_host = &lns.new_base_space<structured_block_1d>(lbase_name);
-  structured_block_1d lbase(lbase_host, 3, true);
+  /// @todo Remove.
+
+//   base_space_poset* lbase_host = &lns.new_base_space<structured_block_1d>(lbase_name);
+
+  structured_block_1d::new_host(lns, lbase_name, false);
+  base_space_poset& lbase_host = lns.member_poset<base_space_poset>(lbase_name, false);
+
+  structured_block_1d lbase(&lbase_host, 3, true);
   lbase.put_name(lbase_name, true, true);
 
   sec_rep_space& lhost = lns.new_section_space<sec_e1_uniform>(lpath,

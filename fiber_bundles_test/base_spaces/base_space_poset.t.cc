@@ -105,8 +105,12 @@ main(int xargc, char* xargv[])
 
   // Make a mesh with 2 blocks.
 
-  base_space_poset& lbase_space =
-    lns.new_base_space<structured_block_1d>("1d_structured_mesh");
+  /// @todo Remove.
+//   base_space_poset& lbase_space =
+//     lns.new_base_space<structured_block_1d>("1d_structured_mesh");
+
+  structured_block_1d::new_host(lns, "1d_structured_mesh", false);
+  base_space_poset& lbase_space = lns.member_poset<base_space_poset>("1d_structured_mesh", false);
 
   structured_block_1d lblock0(&lbase_space, 2, true);
   lblock0.put_name("1D_structured_block0", true, true);
