@@ -124,6 +124,28 @@ void print_result(const string& xtext,
   // Exit:
 }
 
+/// @todo Remove.
+// template <typename P>
+// void
+// test_persistent_scalar_type(fiber_bundles_namespace& xns)
+// {
+//   // Preconditions:
+
+//   require(xns.state_is_read_write_accessible());
+
+//   // Body:
+  
+//   typename P::host_type& lhost = xns.new_fiber_space<P>();
+  
+//   lhost.get_read_write_access(true);
+  
+//   test_persistent_type<P>(lhost);
+
+//   lhost.release_access();
+
+//   // Exit:
+// }
+
 template <typename P>
 void
 test_persistent_scalar_type(fiber_bundles_namespace& xns)
@@ -134,8 +156,11 @@ test_persistent_scalar_type(fiber_bundles_namespace& xns)
 
   // Body:
   
-  typename P::host_type& lhost = xns.new_fiber_space<P>();
-  
+  typedef typename P::host_type host_type;
+
+  poset_path lspace_path = P::new_host(xns, "", false);
+  host_type& lhost = xns.member_poset<host_type>(lspace_path, false);
+
   lhost.get_read_write_access(true);
   
   test_persistent_type<P>(lhost);
@@ -145,7 +170,27 @@ test_persistent_scalar_type(fiber_bundles_namespace& xns)
   // Exit:
 }
 
-///
+/// @todo Remove.
+// template <typename P>
+// void
+// test_persistent_vector_type(fiber_bundles_namespace& xns)
+// {
+//   // Preconditions:
+
+//   require(xns.state_is_read_write_accessible());
+
+//   // Body:
+
+//   typename P::host_type& lhost = xns.new_fiber_space<P>();
+//   lhost.get_read_write_access(true);
+  
+//   test_persistent_type<P>(lhost);
+
+//   lhost.release_access();
+
+//   // Exit:
+// }
+
 template <typename P>
 void
 test_persistent_vector_type(fiber_bundles_namespace& xns)
@@ -156,7 +201,11 @@ test_persistent_vector_type(fiber_bundles_namespace& xns)
 
   // Body:
 
-  typename P::host_type& lhost = xns.new_fiber_space<P>();
+  typedef typename P::host_type host_type;
+
+  poset_path lspace_path = P::new_host(xns, "", false);
+  host_type& lhost = xns.member_poset<host_type>(lspace_path, false);
+
   lhost.get_read_write_access(true);
   
   test_persistent_type<P>(lhost);
@@ -166,7 +215,27 @@ test_persistent_vector_type(fiber_bundles_namespace& xns)
   // Exit:
 }
 
-///
+/// @todo Remove.
+// template <typename P>
+// void
+// test_persistent_tensor_type(fiber_bundles_namespace& xns)
+// {
+//   // Preconditions:
+
+//   require(xns.state_is_read_write_accessible());
+
+//   // Body:
+
+//   typename P::host_type& lhost = xns.new_fiber_space<P>();
+//   lhost.get_read_write_access(true);
+  
+//   test_persistent_type<P>(lhost);
+
+//   lhost.release_access();
+
+//   // Exit:
+// }
+
 template <typename P>
 void
 test_persistent_tensor_type(fiber_bundles_namespace& xns)
@@ -177,7 +246,11 @@ test_persistent_tensor_type(fiber_bundles_namespace& xns)
 
   // Body:
 
-  typename P::host_type& lhost = xns.new_fiber_space<P>();
+  typedef typename P::host_type host_type;
+
+  poset_path lspace_path = P::new_host(xns, "", false);
+  host_type& lhost = xns.member_poset<host_type>(lspace_path, false);
+
   lhost.get_read_write_access(true);
   
   test_persistent_type<P>(lhost);
