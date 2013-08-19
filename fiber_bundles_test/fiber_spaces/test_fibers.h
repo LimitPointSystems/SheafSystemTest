@@ -708,11 +708,6 @@ void print_result(const string& xtext,
                   const string& xindent,
                   bool xauto_access);
 
-/// OBSOLETE: Use fiber_bundles_namespace::new_fiber_space.
-/// Creates a new space
-template <typename P>
-typename P::host_type& new_host_space(fiber_bundles_namespace& xns);
-
 //==============================================================================
 // FIBER TRAITS (Used ONLY by the test cases.)
 //==============================================================================

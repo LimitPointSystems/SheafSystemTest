@@ -124,28 +124,6 @@ void print_result(const string& xtext,
   // Exit:
 }
 
-/// @todo Remove.
-// template <typename P>
-// void
-// test_persistent_scalar_type(fiber_bundles_namespace& xns)
-// {
-//   // Preconditions:
-
-//   require(xns.state_is_read_write_accessible());
-
-//   // Body:
-  
-//   typename P::host_type& lhost = xns.new_fiber_space<P>();
-  
-//   lhost.get_read_write_access(true);
-  
-//   test_persistent_type<P>(lhost);
-
-//   lhost.release_access();
-
-//   // Exit:
-// }
-
 template <typename P>
 void
 test_persistent_scalar_type(fiber_bundles_namespace& xns)
@@ -158,8 +136,7 @@ test_persistent_scalar_type(fiber_bundles_namespace& xns)
   
   typedef typename P::host_type host_type;
 
-  poset_path lspace_path = P::new_host(xns, "", false);
-  host_type& lhost = xns.member_poset<host_type>(lspace_path, false);
+  host_type& lhost = P::standard_host(xns, "test_persistent_scalar_type", false);
 
   lhost.get_read_write_access(true);
   
@@ -169,27 +146,6 @@ test_persistent_scalar_type(fiber_bundles_namespace& xns)
 
   // Exit:
 }
-
-/// @todo Remove.
-// template <typename P>
-// void
-// test_persistent_vector_type(fiber_bundles_namespace& xns)
-// {
-//   // Preconditions:
-
-//   require(xns.state_is_read_write_accessible());
-
-//   // Body:
-
-//   typename P::host_type& lhost = xns.new_fiber_space<P>();
-//   lhost.get_read_write_access(true);
-  
-//   test_persistent_type<P>(lhost);
-
-//   lhost.release_access();
-
-//   // Exit:
-// }
 
 template <typename P>
 void
@@ -203,8 +159,7 @@ test_persistent_vector_type(fiber_bundles_namespace& xns)
 
   typedef typename P::host_type host_type;
 
-  poset_path lspace_path = P::new_host(xns, "", false);
-  host_type& lhost = xns.member_poset<host_type>(lspace_path, false);
+  host_type& lhost = P::standard_host(xns, "test_persistent_vector_type", false);
 
   lhost.get_read_write_access(true);
   
@@ -214,27 +169,6 @@ test_persistent_vector_type(fiber_bundles_namespace& xns)
 
   // Exit:
 }
-
-/// @todo Remove.
-// template <typename P>
-// void
-// test_persistent_tensor_type(fiber_bundles_namespace& xns)
-// {
-//   // Preconditions:
-
-//   require(xns.state_is_read_write_accessible());
-
-//   // Body:
-
-//   typename P::host_type& lhost = xns.new_fiber_space<P>();
-//   lhost.get_read_write_access(true);
-  
-//   test_persistent_type<P>(lhost);
-
-//   lhost.release_access();
-
-//   // Exit:
-// }
 
 template <typename P>
 void
@@ -248,8 +182,7 @@ test_persistent_tensor_type(fiber_bundles_namespace& xns)
 
   typedef typename P::host_type host_type;
 
-  poset_path lspace_path = P::new_host(xns, "", false);
-  host_type& lhost = xns.member_poset<host_type>(lspace_path, false);
+  host_type& lhost = P::standard_host(xns, "test_persistent_tensor_type", false);
 
   lhost.get_read_write_access(true);
   
@@ -523,7 +456,7 @@ test_scalar_conversions(fiber_bundles_namespace& xns)
 
   // Body:
 
-  typename P::host_type& lhost = xns.new_scalar_space<P>();
+  typename P::host_type& lhost = P::standard_host(xns, "test_scalar_conversions", false);
   lhost.get_read_write_access(true);
   
   test_conversions<P>(lhost);
@@ -542,7 +475,7 @@ test_vector_conversions(fiber_bundles_namespace& xns)
 
   // Body:
 
-  typename P::host_type& lhost = xns.new_vector_space<P>();
+  typename P::host_type& lhost = P::standard_host(xns, "test_vector_conversions", false);
   lhost.get_read_write_access(true);
   
   test_conversions<P>(lhost);
@@ -561,7 +494,7 @@ test_tensor_conversions(fiber_bundles_namespace& xns)
 
   // Body:
 
-  typename P::host_type& lhost = xns.new_tensor_space<P>();
+  typename P::host_type& lhost = P::standard_host(xns, "test_tensor_conversions", false);
   lhost.get_read_write_access(true);
   
   test_conversions<P>(lhost);
@@ -1042,11 +975,11 @@ test_persistent_hook_product(fiber_bundles_namespace& xns)
 
   ///@issue: Has to be the same as P1 & PR.  How do we want to require this?
 
-  typename P0::host_type& lhost_0 = new_host_space<P0>(xns);
+  typename P0::host_type& lhost_0 = P0::standard_host(xns, "test_persistent_hook_product_P0", false);
   lhost_0.get_read_write_access(true);
-  typename P1::host_type& lhost_1 = new_host_space<P1>(xns);
+  typename P1::host_type& lhost_1 = P1::standard_host(xns, "test_persistent_hook_product_P1", false);
   lhost_1.get_read_write_access(true);
-  typename PR::host_type& lhost_r = new_host_space<PR>(xns);
+  typename PR::host_type& lhost_r = PR::standard_host(xns, "test_persistent_hook_product_PR", false);
   lhost_r.get_read_write_access(true);  
 
   const string lop_string = lhost_0.name() + " _| " + lhost_1.name() + " = " + lhost_r.name();
@@ -1173,9 +1106,11 @@ test_persistent_star_operator(fiber_bundles_namespace& xns)
   const string lop_string = "*" + lname_0 + " = " + lname_r;
   print_header("Testing Hodge star operator for: " + lop_string);
 
-  typename P0::host_type& lhost_0 = new_host_space<P0>(xns);
+  cerr << lop_string << endl;
+
+  typename P0::host_type& lhost_0 = P0::standard_host(xns, "test_persistent_star_operator_P0", false);
   lhost_0.get_read_write_access(true);
-  typename PR::host_type& lhost_r = new_host_space<PR>(xns);
+  typename PR::host_type& lhost_r = PR::standard_host(xns, "test_persistent_star_operator_PR", false);
   lhost_r.get_read_write_access(true);  
 
   P0 x0(&lhost_0);
@@ -1310,12 +1245,12 @@ test_persistent_wedge_product(fiber_bundles_namespace& xns)
   const string lop_string = lname_0 + " ^ " + lname_1 + " = " + lname_r;
   print_header("Testing wedge product for: " + lop_string);
 
-  typename P0::host_type& lhost_0 = new_host_space<P0>(xns);
+  typename P0::host_type& lhost_0 = P0::standard_host(xns, "test_persistent_wedge_product_P0", false);
   lhost_0.get_read_write_access(true);
-  typename P1::host_type& lhost_1 = new_host_space<P1>(xns);
+  typename P1::host_type& lhost_1 = P1::standard_host(xns, "test_persistent_wedge_product_P1", false);
   lhost_1.get_read_write_access(true);
-  typename PR::host_type& lhost_r = new_host_space<PR>(xns);
-  lhost_r.get_read_write_access(true);
+  typename PR::host_type& lhost_r = PR::standard_host(xns, "test_persistent_wedge_product_PR", false);
+  lhost_r.get_read_write_access(true);  
 
   P0 x0(&lhost_0);
   P1 x1(&lhost_1);
@@ -1606,7 +1541,7 @@ test_st2_facet(fiber_bundles_namespace& xns)
 
   print_header("Testing st2 facet for " + P::static_class_name());
 
-  typename P::host_type& lhost = xns.new_tensor_space<P>();
+  typename P::host_type& lhost = P::standard_host(xns, "test_st2_facet", false);
   lhost.get_read_write_access(true);
   
   test_volatile_st2_facet<P>();
@@ -1888,7 +1823,7 @@ test_scalar_vd_facet(fiber_bundles_namespace& xns)
 
   print_header("Testing scalar vd facet for " + P::static_class_name());
 
-  typename P::host_type& lhost = xns.new_scalar_space<P>();
+  typename P::host_type& lhost = P::standard_host(xns, "test_scalar_vd_facet", false);
   lhost.get_read_write_access(true);
 
   test_volatile_vd_facet<P>();
@@ -1914,7 +1849,7 @@ test_vector_vd_facet(fiber_bundles_namespace& xns)
 
   print_header("Testing vector vd facet for " + P::static_class_name());
 
-  typename P::host_type& lhost = xns.new_vector_space<P>();
+  typename P::host_type& lhost = P::standard_host(xns, "test_vector_vd_facet", false);
   lhost.get_read_write_access(true);
 
   test_volatile_vd_facet<P>();
@@ -1940,7 +1875,7 @@ test_tensor_vd_facet(fiber_bundles_namespace& xns)
 
   print_header("Testing tensor vd facet for " + P::static_class_name());
 
-  typename P::host_type& lhost = xns.new_tensor_space<P>();
+  typename P::host_type& lhost = P::standard_host(xns, "test_tensor_vd_facet", false);
   lhost.get_read_write_access(true);
 
   test_volatile_vd_facet<P>();
@@ -1990,7 +1925,7 @@ test_ed_facet(fiber_bundles_namespace& xns)
 
   print_header("Testing ed facet for " + P::static_class_name());
 
-  typename P::host_type& lhost = xns.new_vector_space<P>();
+  typename P::host_type& lhost = P::standard_host(xns, "test_ed_facet", false);
   lhost.get_read_write_access(true);
 
   test_volatile_ed_facet<P>();
@@ -2122,11 +2057,11 @@ test_persistent_tp_facet(fiber_bundles_namespace& xns)
   // Test variance:
   //============================================================================
 
-  typename PT::host_type& lhost = xns.new_tensor_space<PT>();
+  typename PT::host_type& lhost = PT::standard_host(xns, "test_persistent_tp_facet", false);
   lhost.get_read_write_access(true);
-  typename sym_persistent_type::host_type& lsym_host = new_host_space<sym_persistent_type>(xns);
+  typename sym_persistent_type::host_type& lsym_host = sym_persistent_type::standard_host(xns, "test_persistent_tp_facet_sym", false);
   lsym_host.get_read_write_access(true);
-  typename alt_persistent_type::host_type& lalt_host = new_host_space<alt_persistent_type>(xns);
+  typename alt_persistent_type::host_type& lalt_host = alt_persistent_type::standard_host(xns, "test_persistent_tp_facet_alt", false);
   lalt_host.get_read_write_access(true);
 
   persistent_type test01(&lhost);
@@ -2337,12 +2272,12 @@ test_persistent_tensor(fiber_bundles_namespace& xns)
 
   print_subheader("Testing tp facet tensor product for persistent types");
 
-  typename P0::host_type& lhost_0 = new_host_space<P0>(xns);
+  typename P0::host_type& lhost_0 = P0::standard_host(xns, "test_persistent_tensor_P0", false);
   lhost_0.get_read_write_access(true);
-  typename P1::host_type& lhost_1 = new_host_space<P1>(xns);
+  typename P1::host_type& lhost_1 = P1::standard_host(xns, "test_persistent_tensor_P1", false);
   lhost_1.get_read_write_access(true);
-  typename PR::host_type& lhost_r = new_host_space<PR>(xns);
-  lhost_r.get_read_write_access(true);
+  typename PR::host_type& lhost_r = PR::standard_host(xns, "test_persistent_tensor_PR", false);
+  lhost_r.get_read_write_access(true);  
 
   P0 x0(&lhost_0);
   P1 x1(&lhost_1);
@@ -2471,10 +2406,10 @@ test_persistent_contract(fiber_bundles_namespace& xns)
 
   print_subheader("Testing tp facet contract for persistent types");
 
-  typename P0::host_type& lhost_0 = new_host_space<P0>(xns);
+  typename P0::host_type& lhost_0 = P0::standard_host(xns, "test_persistent_contract_P0", false);
   lhost_0.get_read_write_access(true);
-  typename PR::host_type& lhost_r = new_host_space<PR>(xns);
-  lhost_r.get_read_write_access(true);
+  typename PR::host_type& lhost_r = PR::standard_host(xns, "test_persistent_contract_PR", false);
+  lhost_r.get_read_write_access(true);  
 
   P0 ltensor(&lhost_0);
   PR lresult(&lhost_r);
@@ -2546,7 +2481,7 @@ test_vector_atp_facet(fiber_bundles_namespace& xns)
   
   // Body:
 
-  typename P::host_type& lhost = xns.new_vector_space<P>();
+  typename P::host_type& lhost = P::standard_host(xns, "test_vector_atp_facet", false);
   lhost.get_read_write_access(true);
   
   test_atp_facet<P>(lhost);
@@ -2567,7 +2502,7 @@ test_tensor_atp_facet(fiber_bundles_namespace& xns)
   
   // Body:
 
-  typename P::host_type& lhost = xns.new_tensor_space<P>();
+  typename P::host_type& lhost = P::standard_host(xns, "test_tensor_atp_facet", false);
   lhost.get_read_write_access(true);
   
   test_atp_facet<P>(lhost);
@@ -2774,7 +2709,7 @@ test_stp_facet(fiber_bundles_namespace& xns)
 
   print_header("Testing stp facet for " + P::static_class_name());
 
-  typename P::host_type& lhost = xns.new_tensor_space<P>();
+  typename P::host_type& lhost = P::standard_host(xns, "test_stp_facet", false);
   lhost.get_read_write_access(true);
   
   test_volatile_stp_facet<P>();
@@ -3082,11 +3017,11 @@ test_persistent_jcb_facet(fiber_bundles_namespace& xns)
 
   print_subheader("Testing persistent type \"" + lfiber_name +"\"");
 
-  typename persistent_type::host_type& host = new_host_space<persistent_type>(xns);
+  typename persistent_type::host_type& host = persistent_type::standard_host(xns, "test_persistent_jcb_facet", false);
   host.get_read_write_access(true);
-  typename vector_type::host_type& vector_host = new_host_space<vector_type>(xns);
+  typename vector_type::host_type& vector_host = vector_type::standard_host(xns, "test_persistent_jcb_facet_vector", false);
   vector_host.get_read_write_access(true);
-  typename covector_type::host_type& covector_host = new_host_space<covector_type>(xns);
+  typename covector_type::host_type& covector_host = covector_type::standard_host(xns, "test_persistent_jcb_facet_covector", false);
   covector_host.get_read_write_access(true);
 
   persistent_type jacobian(&host);
@@ -3157,12 +3092,12 @@ test_met_facet(fiber_bundles_namespace& xns)
 
   print_header("Testing met facet for " + P::static_class_name());
 
-  typename P::host_type& lhost = xns.new_tensor_space<P>();
+  typename P::host_type& lhost = P::standard_host(xns, "test_met_facet", false);
   lhost.get_read_write_access(true);
 
   typedef typename P::vector_space_type vector_space_type;
 
-  typename vector_space_type::host_type& lvector_space_host = xns.new_vector_space<vector_space_type>();
+  typename vector_space_type::host_type& lvector_space_host = vector_space_type::standard_host(xns, "test_met_facet_vector", false);
   lvector_space_host.get_read_write_access(true);
 
   test_volatile_met_facet<P>();
@@ -3504,83 +3439,6 @@ test_persistent_group_facet(fiber_bundles_namespace& xns)
   // Exit:
 }
 
-template <typename host_type>
-struct new_host_space_impl
-{
-  template <typename fiber_type>
-  static host_type& new_space(fiber_bundles_namespace& xns)
-  {
-    return xns.new_tensor_space<fiber_type>();
-  };
-};
-
-template<>
-struct new_host_space_impl<at1_space>
-{
-  template <typename fiber_type>
-  static at1_space& new_space(fiber_bundles_namespace& xns)
-  {
-    return xns.new_vector_space<fiber_type>();
-  };
-};
-
-template<>
-struct new_host_space_impl<at0_space>
-{
-  template <typename fiber_type>
-  static at0_space& new_space(fiber_bundles_namespace& xns)
-  {
-    return xns.new_scalar_space<fiber_type>();
-  };
-};
-
-template<>
-struct new_host_space_impl<gln_space>
-{
-  template <typename fiber_type>
-  static gln_space& new_space(fiber_bundles_namespace& xns)
-  {
-    return xns.new_group_space<fiber_type>();
-  };
-};
-
-template<>
-struct new_host_space_impl<jcb_space>
-{
-  template <typename fiber_type>
-  static jcb_space& new_space(fiber_bundles_namespace& xns)
-  {
-    return xns.new_jacobian_space<fiber_type>();
-  };
-};
-  
-
-template <typename P>
-typename P::host_type&
-new_host_space(fiber_bundles_namespace& xns)
-{
-  // Preconditions:
-
-  require(xns.state_is_read_write_accessible());
-
-  // Body:
-
-  typedef P fiber_type;
-  typedef typename P::host_type host_type;
-  typedef new_host_space_impl<host_type> impl_type;
-  
-  // Call to function template member of template
-  // requires telling compiler that dependent name is a template.
-
-  host_type& result = impl_type::template new_space<fiber_type>(xns);
-
-  // Postconditions:
-
-  // Exit:
-
-  return result;
-}
-
 //==============================================================================
 // Tests for member functions of fiber and fiber space classes.
 //==============================================================================
@@ -3845,7 +3703,7 @@ test_persistent_common(fiber_bundles_namespace& xns)
 
   //==========================================================================
 
-  typename PD::host_type& lhost = xns.new_fiber_space<PD>();
+  typename PD::host_type& lhost = PD::standard_host(xns, "test_persistent_common", false);
   lhost.get_read_write_access(true);
   
   //test_persistent_type<PB>(lhost);
@@ -3953,7 +3811,7 @@ test_persistent_common_2(fiber_bundles_namespace& xns)
 
   //==========================================================================
 
-  typename PD::host_type& lhost = xns.new_fiber_space<PD>();
+  typename PD::host_type& lhost = PD::standard_host(xns, "test_persistent_common_2", false);
   lhost.get_read_write_access(true);
   
   //test_persistent_type<PB>(lhost);
