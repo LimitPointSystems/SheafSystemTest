@@ -60,12 +60,7 @@ make_base_space()
 {
   // Make the base space.
 
-  /// @todo Remove.
-
-//   _mesh_poset = &_name_space->new_base_space<unstructured_block>("mesh_base_space", "", "", 3, true);
-
-  unstructured_block::new_host(*_name_space, "mesh_base_space", 2, true);
-  _mesh_poset = &_name_space->member_poset<base_space_poset>("mesh_base_space", true);
+  _mesh_poset = &unstructured_block::new_host(*_name_space, "mesh_base_space", 2, true);
 
   _mesh_poset->get_read_write_access();
 

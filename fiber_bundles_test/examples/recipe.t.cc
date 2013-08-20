@@ -101,10 +101,6 @@ main(int argc, char* argv[])
 
   arg_list largs = tuple_space::make_arg_list(4);
   
-  /// @todo Remove.
-//   tuple_space* tasks =
-//     new tuple_space(test_namespace, "Recipe", largs, lschema_path, true);
-
   fiber_bundle:: tuple_space& tasks =
     test_namespace.new_fiber_space< fiber_bundle::tuple>("Recipe", largs, lschema_path, true);
 

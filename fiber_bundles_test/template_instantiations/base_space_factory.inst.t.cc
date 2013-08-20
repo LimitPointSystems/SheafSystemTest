@@ -110,11 +110,7 @@ namespace
 
     // Create a host poset for the mesh.
 
-    /// @todo Remove.
-//     base_space_poset* lbase_host = &xns.new_base_space<T>(xhost_name);
-
-    T::new_host(xns, xhost_name, false);
-    base_space_poset& lbase_host = xns.member_poset<base_space_poset>(xhost_name, false);
+    base_space_poset& lbase_host = T::new_host(xns, xhost_name, false);
 
     lbase_host.get_read_write_access();
 
@@ -158,11 +154,7 @@ namespace
 
     // Create a host poset for the mesh.
 
-    /// @todo Remove.
-//     base_space_poset* lbase_host = &xns.new_base_space<T>(xhost_name);
-
-    T::new_host(xns, xhost_name, false);
-    base_space_poset& lbase_host = xns.member_poset<base_space_poset>(xhost_name, false);
+    base_space_poset& lbase_host = T::new_host(xns, xhost_name, false);
 
     lbase_host.get_read_write_access();
 
@@ -208,11 +200,7 @@ namespace
 
     // Create a host poset for the mesh.
 
-    /// @todo Remove.
-//     base_space_poset* lbase_host = &xns.new_base_space<T>(xhost_name);
-
-    T::new_host(xns, xhost_name, false);
-    base_space_poset& lbase_host = xns.member_poset<base_space_poset>(xhost_name, false);
+    base_space_poset& lbase_host = T::new_host(xns, xhost_name, false);
 
     lbase_host.get_read_write_access();
 
@@ -260,12 +248,7 @@ namespace
 
     // Create a host poset for the mesh.
 
-    /// @todo Remove.
-//     base_space_poset* lbase_host =
-//       &xns.new_base_space<T>(xhost_name, "", "", 2, true);
-
-    T::new_host(xns, xhost_name, 2, false);
-    base_space_poset& lbase_host = xns.member_poset<base_space_poset>(xhost_name, false);
+    base_space_poset& lbase_host = T::new_host(xns, xhost_name, 2, false);
 
     lbase_host.get_read_write_access();
 
@@ -316,12 +299,7 @@ namespace
 
     // Create a host poset for the mesh.
 
-    /// @todo Remove.
-//     base_space_poset* lbase_host =
-//       &xns.new_base_space<T>(xhost_name, "", "", 2, true);
-
-    T::new_host(xns, xhost_name, 2, false);
-    base_space_poset& lbase_host = xns.member_poset<base_space_poset>(xhost_name, false);
+    base_space_poset& lbase_host = T::new_host(xns, xhost_name, 2, false);
 
     lbase_host.get_read_write_access();
 

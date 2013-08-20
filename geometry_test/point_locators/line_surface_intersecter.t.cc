@@ -34,17 +34,7 @@ make_trimesh(fiber_bundles_namespace* xns, size_type xi_size, size_type xj_size)
 
   // Body:
 
-  /// @todo Remove.
-
-//   base_space_poset* lmesh =
-//     &xns->new_base_space<zone_nodes_block>("trimesh_space",
-// 					   "",
-// 					   "",
-// 					   2,
-// 					   true);
-
-  zone_nodes_block::new_host(*xns, "trimesh_space", 2, false);
-  base_space_poset& lmesh = xns->member_poset<base_space_poset>("trimesh_space", false);
+  base_space_poset& lmesh = zone_nodes_block::new_host(*xns, "trimesh_space", 2, false);
 
   lmesh.get_read_write_access();
 

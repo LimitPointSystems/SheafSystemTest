@@ -97,11 +97,7 @@ void make_triangle(fiber_bundles_namespace* xns)
 
   xns->get_read_write_access(true);
 
-  /// @todo Remove.
-//   cells = &xns->new_base_space<base_space_member>("cells", "", "", 2, true);
-
-  base_space_member::new_host(*xns, "cells", 3, false);
-  cells = &xns->member_poset<base_space_poset>("cells", false);
+  cells = &base_space_member::new_host(*xns, "cells", 3, false);
 
   poset_state_handle* lprototypes_poset =
     xns->member_poset(base_space_member::prototypes_poset_name(), false);

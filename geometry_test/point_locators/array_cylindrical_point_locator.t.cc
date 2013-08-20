@@ -87,12 +87,7 @@ make_base_space_1d(fiber_bundles_namespace& xns, const string& xbase_space_name)
 
   typedef structured_block_1d B;
 
-  /// @todo Remove.
-
-//   base_space_poset& lhost = xns.new_base_space<B>(xbase_space_name);
-
-  B::new_host(xns, xbase_space_name, false);
-  base_space_poset& lhost = xns.member_poset<base_space_poset>(xbase_space_name, false);
+  base_space_poset& lhost = B::new_host(xns, xbase_space_name, false);
 
   B lmesh(&lhost, 2, true);
   lmesh.put_name("mesh", true, true);
@@ -123,12 +118,7 @@ make_base_space_2d(fiber_bundles_namespace& xns, const string& xbase_space_name)
 
   typedef structured_block_2d B;
     
-  /// @todo Remove.
-
-//   base_space_poset& lhost = xns.new_base_space<B>(xbase_space_name);
-
-  B::new_host(xns, xbase_space_name, false);
-  base_space_poset& lhost = xns.member_poset<base_space_poset>(xbase_space_name, false);
+  base_space_poset& lhost = B::new_host(xns, xbase_space_name, false);
 
   B lmesh(&lhost, 2, 2, true);
   lmesh.put_name("mesh", true, true);
@@ -159,12 +149,7 @@ make_base_space_3d(fiber_bundles_namespace& xns, const string& xbase_space_name)
 
   typedef structured_block_3d B;
     
-  /// @todo Remove.
-
-//   base_space_poset& lhost = xns.new_base_space<B>(xbase_space_name);
-
-  B::new_host(xns, xbase_space_name, false);
-  base_space_poset& lhost = xns.member_poset<base_space_poset>(xbase_space_name, false);
+  base_space_poset& lhost = B::new_host(xns, xbase_space_name, false);
 
   B lmesh(&lhost, 2, 2, 2, true);
   lmesh.put_name("mesh", true, true);

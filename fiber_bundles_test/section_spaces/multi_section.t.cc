@@ -41,11 +41,7 @@ structured_block_1d* make_1d_base_space(fiber_bundles_namespace& xns)
 
   // Create the host.
 
-  /// @todo Remove.
-//   base_space_poset* lbase_host = &xns.new_base_space<structured_block_1d>("1d_base_space");
-
-  structured_block_1d::new_host(xns, "1d_base_space", false);
-  base_space_poset& lbase_host = xns.member_poset<base_space_poset>("1d_base_space", false);
+  base_space_poset& lbase_host = structured_block_1d::new_host(xns, "1d_base_space", false);
 
   lbase_host.get_read_write_access();
 
@@ -310,11 +306,7 @@ structured_block_3d* make_3d_base_space(fiber_bundles_namespace& xns)
 
   // Create the host.
 
-  /// @todo Remove.
-//   base_space_poset* lbase_host = &xns.new_base_space<structured_block_3d>("3d_base_space");
-
-  structured_block_3d::new_host(xns, "3d_base_space", false);
-  base_space_poset& lbase_host = xns.member_poset<base_space_poset>("3d_base_space", false);
+  base_space_poset& lbase_host = structured_block_3d::new_host(xns, "3d_base_space", false);
 
   lbase_host.get_read_write_access();
 
