@@ -204,7 +204,10 @@ test_persistent_jacobian_type(fiber_bundles_namespace& xns)
 
   // Body:
 
-  typename P::host_type& lhost = xns.new_jacobian_space<P>();
+  typedef typename P::host_type host_type;
+
+  host_type& lhost = P::standard_host(xns, "test_persistent_jacobian_type", false);
+
   lhost.get_read_write_access(true);
   
   test_persistent_type<P>(lhost);
@@ -225,7 +228,10 @@ test_persistent_group_type(fiber_bundles_namespace& xns)
 
   // Body:
 
-  typename P::host_type& lhost = xns.new_group_space<P>();
+  typedef typename P::host_type host_type;
+
+  host_type& lhost = P::standard_host(xns, "test_persistent_group_type", false);
+
   lhost.get_read_write_access(true);
   
   test_persistent_type<P>(lhost);
@@ -513,7 +519,7 @@ test_jacobian_conversions(fiber_bundles_namespace& xns)
 
   // Body:
 
-  typename P::host_type& lhost = xns.new_jacobian_space<P>();
+  typename P::host_type& lhost = P::standard_host(xns, "test_jacobian_conversions", false);
   lhost.get_read_write_access(true);
   
   test_conversions<P>(lhost);
@@ -532,7 +538,7 @@ test_group_conversions(fiber_bundles_namespace& xns)
 
   // Body:
 
-  typename P::host_type& lhost = xns.new_group_space<P>();
+  typename P::host_type& lhost = P::standard_host(xns, "test_group_conversions", false);
   lhost.get_read_write_access(true);
   
   test_conversions<P>(lhost);
@@ -1900,7 +1906,7 @@ test_jacobian_vd_facet(fiber_bundles_namespace& xns)
 
   print_header("Testing jacobian vd facet for " + P::static_class_name());
 
-  typename P::host_type& lhost = xns.new_jacobian_space<P>();
+  typename P::host_type& lhost = P::standard_host(xns, "test_jacobian_vd_facet", false);
   lhost.get_read_write_access(true);
 
   test_volatile_vd_facet<P>();
