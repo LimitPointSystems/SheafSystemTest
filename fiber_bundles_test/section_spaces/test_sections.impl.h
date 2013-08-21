@@ -1156,8 +1156,10 @@ void make_test_sections(fiber_bundles_namespace& xns,
 
   // Create the section space
 
-  host_type& lsection_space =
-    xns.new_section_space<T>(lspace_name, xbase_path);
+//   host_type& lsection_space =
+//     xns.new_section_space<T>(lspace_name, xbase_path);
+
+  host_type& lsection_space = T::standard_host(xns, xbase_path, "", "", "", true);
 
 
   // Also, assign values to the section degrees of freedom.
