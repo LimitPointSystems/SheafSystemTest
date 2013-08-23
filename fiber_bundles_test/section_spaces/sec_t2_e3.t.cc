@@ -51,11 +51,11 @@ main(int xargc, char *xargv[])
 
   test_sec_vd_facet<sec_t2_e3>(lns, lbase_path);
 
-  test_sec_tp_facet<sec_t2_e3>(lns, lbase_path);
+//   test_sec_tp_facet<sec_t2_e3>(lns, lbase_path);
 
-  test_sec_tensor_product<sec_e3, sec_e3, sec_t2_e3>(lns, lbase_path);
+//   test_sec_tensor_product<sec_e3, sec_e3, sec_t2_e3>(lns, lbase_path);
 
-  test_sec_tensor_product<sec_t2_e3, sec_e3, sec_t3_e3>(lns, lbase_path);
+//   test_sec_tensor_product<sec_t2_e3, sec_e3, sec_t3_e3>(lns, lbase_path);
 
   test_sec_contract<sec_t2_e3, sec_at0>(lns, lbase_path);
 
@@ -72,7 +72,7 @@ main(int xargc, char *xargv[])
 
   // Write the namespace to a file.
  
-  storage_agent write_agent(lfilename + ".t.hdf");
+  storage_agent write_agent(lfilename + ".hdf");
   write_agent.write_entire(lns);
 
   print_footer("Ending testing sec_t2_e3");

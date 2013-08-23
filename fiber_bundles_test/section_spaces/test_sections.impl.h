@@ -207,9 +207,7 @@ test_assignment(fiber_bundles_namespace& xns,
   // (also creates the base space, section space, and schema if necessary).
 
   sec_type lvector[2];
-  make_test_sections(xns, xbase_path,
-                     "assignment_test_section_space", "vector",
-                     lvector, 2);
+  make_test_sections(xns, xbase_path, "test_assignment", "vector", lvector, 2);
 
   lvector[0].get_read_write_access();
   lvector[1].get_read_write_access();
@@ -261,19 +259,13 @@ test_sec_hook_product(fiber_bundles_namespace& xns,
   static const int lnum_sections = 2;
 
   S0 ltensor_0[2];
-  make_test_sections(xns, xbase_path,
-                     "tensor_0_section_space", "tensor_0",
-                     ltensor_0, lnum_sections);
+  make_test_sections(xns, xbase_path, "test_hook", "tensor_0", ltensor_0, lnum_sections);
 
   S1 ltensor_1[2];
-  make_test_sections(xns, xbase_path,
-                     "tensor_1_section_space", "tensor_1",
-                     ltensor_1, lnum_sections);
+  make_test_sections(xns, xbase_path, "test_hook", "tensor_1", ltensor_1, lnum_sections);
 
   SR ltensor_r[2];
-  make_test_sections(xns, xbase_path,
-                     "tensor_r_section_space", "tensor_r",
-                     ltensor_r, lnum_sections);
+  make_test_sections(xns, xbase_path, "test_hook", "tensor_r", ltensor_r, lnum_sections);
 
   //============================================================================
 
@@ -283,8 +275,7 @@ test_sec_hook_product(fiber_bundles_namespace& xns,
   print_section(ltensor_1[0]);
 
   hook(ltensor_0[0], ltensor_1[0], ltensor_r[0], true);
-  print_result("hook(ltensor_0[0], ltensor_1[0], ltensor_r[0]):",
-                ltensor_r[0]);
+  print_result("hook(ltensor_0[0], ltensor_1[0], ltensor_r[0]):", ltensor_r[0]);
 
   //============================================================================
 
@@ -330,14 +321,10 @@ test_sec_star_operator(fiber_bundles_namespace& xns,
   static const int lnum_sections = 2;
 
   S0 ltensor_0[2];
-  make_test_sections(xns, xbase_path,
-                     "tensor_0_section_space", "tensor_0",
-                     ltensor_0, lnum_sections);
+  make_test_sections(xns, xbase_path, "test_star", "tensor_0", ltensor_0, lnum_sections); 
 
   SR ltensor_r[2];
-  make_test_sections(xns, xbase_path,
-                     "tensor_r_section_space", "tensor_r",
-                     ltensor_r, lnum_sections);
+  make_test_sections(xns, xbase_path, "test_star", "tensor_r", ltensor_r, lnum_sections);
 
   //============================================================================
 
@@ -346,8 +333,7 @@ test_sec_star_operator(fiber_bundles_namespace& xns,
   print_section(ltensor_0[0]);
 
   star(ltensor_0[0], ltensor_r[0], true);
-  print_result("star(ltensor_0[0], ltensor_r[0]):",
-                ltensor_r[0]);
+  print_result("star(ltensor_0[0], ltensor_r[0]):", ltensor_r[0]);
 
   //============================================================================
 
@@ -393,19 +379,13 @@ test_sec_wedge_product(fiber_bundles_namespace& xns,
   static const int lnum_sections = 2;
 
   S0 ltensor_0[2];
-  make_test_sections(xns, xbase_path,
-                     "tensor_0_section_space", "tensor_0",
-                     ltensor_0, lnum_sections);
+  make_test_sections(xns, xbase_path, "test_wedge", "tensor_0", ltensor_0, lnum_sections);
 
   S1 ltensor_1[2];
-  make_test_sections(xns, xbase_path,
-                     "tensor_1_section_space", "tensor_1",
-                     ltensor_1, lnum_sections);
+  make_test_sections(xns, xbase_path, "test_wedge", "tensor_1", ltensor_1, lnum_sections);
 
   SR ltensor_r[2];
-  make_test_sections(xns, xbase_path,
-                     "tensor_r_section_space", "tensor_r",
-                     ltensor_r, lnum_sections);
+  make_test_sections(xns, xbase_path, "test_wedge", "tensor_r", ltensor_r, lnum_sections);
 
   //============================================================================
 
@@ -415,8 +395,7 @@ test_sec_wedge_product(fiber_bundles_namespace& xns,
   print_section(ltensor_1[0]);
 
   wedge(ltensor_0[0], ltensor_1[0], ltensor_r[0], true);
-  print_result("wedge(ltensor_0[0], ltensor_1[0], ltensor_r[0]):",
-                ltensor_r[0]);
+  print_result("wedge(ltensor_0[0], ltensor_1[0], ltensor_r[0]):", ltensor_r[0]);
 
   //@todo Additional tests.
 
@@ -469,14 +448,10 @@ test_sec_ed_facet(fiber_bundles_namespace& xns,
   static const int num_sections = 4;
 
   vector_type lvector[4];
-  make_test_sections(xns, xbase_path,
-                     "sec_ed_facet_vector_section_space", "vector",
-                     lvector, num_sections);
+  make_test_sections(xns, xbase_path, "test_ed", "vector", lvector, num_sections);
 
   scalar_type lscalar[4];
-  make_test_sections(xns, xbase_path,
-                     "sec_ed_facet_scalar_section_space", "scalar",
-                     lscalar, num_sections);
+  make_test_sections(xns, xbase_path, "test_ed", "scalar", lscalar, num_sections);
 
   //============================================================================
 
@@ -565,19 +540,13 @@ test_sec_jcb_facet(fiber_bundles_namespace& xns,
   static const int num_sections = 3;
 
   jacobian_type ljacobian[3];
-  make_test_sections(xns, xbase_path,
-                     "sec_met_facet_jacobian_section_space", "jacobian",
-                     ljacobian, num_sections);
+  make_test_sections(xns, xbase_path, "test_jcb", "jacobian", ljacobian, num_sections);
 
   vector_type lvector[3];
-  make_test_sections(xns, xbase_path,
-                     "sec_met_facet_vector_section_space", "vector",
-                     lvector, num_sections);
+  make_test_sections(xns, xbase_path, "test_jcb", "vector", lvector, num_sections);
 
   covector_type lcovector[3];
-  make_test_sections(xns, xbase_path,
-                     "sec_met_facet_covector_section_space", "covector",
-                     lcovector, num_sections);
+  make_test_sections(xns, xbase_path, "test_jcb", "covector", lcovector, num_sections);
 
   //============================================================================
 
@@ -652,14 +621,10 @@ test_sec_met_facet(fiber_bundles_namespace& xns,
   static const int num_sections = 3;
 
   metric_type lmetric[3];
-  make_test_sections(xns, xbase_path,
-                     "sec_met_facet_metric_section_space", "metric",
-                     lmetric, num_sections);
+  make_test_sections(xns, xbase_path, "test_met", "metric", lmetric, num_sections);
 
   vector_type lvector[3];
-  make_test_sections(xns, xbase_path,
-                     "sec_met_facet_vector_section_space", "vector",
-                     lvector, num_sections);
+  make_test_sections(xns, xbase_path, "test_met", "vector", lvector, num_sections);
 
   //============================================================================
 
@@ -738,19 +703,13 @@ test_sec_tp_facet(fiber_bundles_namespace& xns,
   static const int num_sections = 2;
 
   sec_tp_type lgen_tensor[2];
-  make_test_sections(xns, xbase_path,
-                     "sec_tp_facet_gen_tensor_section_space", "gen_tensor",
-                     lgen_tensor, num_sections);
+  make_test_sections(xns, xbase_path, "test_tp", "gen_tensor", lgen_tensor, num_sections);
 
   sec_atp_type lalt_tensor[2];
-  make_test_sections(xns, xbase_path,
-                     "sec_atp_facet_gen_tensor_section_space", "alt_tensor",
-                     lalt_tensor, num_sections);
+  make_test_sections(xns, xbase_path, "test_tp", "alt_tensor", lalt_tensor, num_sections);
 
   sec_stp_type lsym_tensor[2];
-  make_test_sections(xns, xbase_path,
-                     "sec_stp_facet_gen_tensor_section_space", "sym_tensor",
-                     lsym_tensor, num_sections);
+  make_test_sections(xns, xbase_path, "test_tp", "sym_tensor", lsym_tensor, num_sections);
 
   //============================================================================
 
@@ -815,19 +774,13 @@ test_sec_tensor_product(fiber_bundles_namespace& xns,
   static const int lnum_sections = 2;
 
   S0 ltensor_0[2];
-  make_test_sections(xns, xbase_path,
-                     "tensor_0_section_space", "tensor_0",
-                     ltensor_0, lnum_sections);
+  make_test_sections(xns, xbase_path, "test_tensor", "tensor_0", ltensor_0, lnum_sections);
 
   S1 ltensor_1[2];
-  make_test_sections(xns, xbase_path,
-                     "tensor_1_section_space", "tensor_1",
-                     ltensor_1, lnum_sections);
+  make_test_sections(xns, xbase_path, "test_tensor", "tensor_1", ltensor_1, lnum_sections);
 
   SR ltensor_r[2];
-  make_test_sections(xns, xbase_path,
-                     "tensor_r_section_space", "tensor_r",
-                     ltensor_r, lnum_sections);
+  make_test_sections(xns, xbase_path, "test_tensor", "tensor_r", ltensor_r, lnum_sections);
 
   //============================================================================
 
@@ -837,8 +790,7 @@ test_sec_tensor_product(fiber_bundles_namespace& xns,
   print_section(ltensor_1[0]);
 
   tensor(ltensor_0[0], ltensor_1[0], ltensor_r[0], true);
-  print_result("tensor(ltensor_0[0], ltensor_1[0], ltensor_r[0]):",
-                ltensor_r[0]);
+  print_result("tensor(ltensor_0[0], ltensor_1[0], ltensor_r[0]):", ltensor_r[0]);
 
   //============================================================================
 
@@ -882,14 +834,10 @@ test_sec_contract(fiber_bundles_namespace& xns,
   static const int lnum_sections = 2;
 
   S0 ltensor_0[2];
-  make_test_sections(xns, xbase_path,
-                     "tensor_0_section_space", "tensor_0",
-                     ltensor_0, lnum_sections);
+  make_test_sections(xns, xbase_path, "test_contract", "tensor_0", ltensor_0, lnum_sections);
 
   SR ltensor_r[2];
-  make_test_sections(xns, xbase_path,
-                     "tensor_r_section_space", "tensor_r",
-                     ltensor_r, lnum_sections);
+  make_test_sections(xns, xbase_path, "test_contract", "tensor_r", ltensor_r, lnum_sections);
 
   //============================================================================
 
@@ -956,14 +904,10 @@ test_sec_vd_facet(fiber_bundles_namespace& xns,
   static const int num_sections = 5;
 
   sec_vd_type lvector[5];
-  make_test_sections(xns, xbase_path,
-                     "sec_vd_facet_vector_section_space", "vector",
-                     lvector, num_sections);
+  make_test_sections(xns, xbase_path, "test_vd", "vector", lvector, num_sections);
 
   sec_at0 lscalar[5];
-  make_test_sections(xns, xbase_path,
-                     "sec_vd_facet_scalar_section_space", "scalar",
-                     lscalar, num_sections);
+  make_test_sections(xns, xbase_path, "test_vd", "scalar", lscalar, num_sections);
 
   //============================================================================
 
@@ -1156,8 +1100,10 @@ void make_test_sections(fiber_bundles_namespace& xns,
 
   // Create the section space
 
-  host_type& lsection_space =
-    xns.new_section_space<T>(lspace_name, xbase_path);
+//   host_type& lsection_space =
+//     xns.new_section_space<T>(lspace_name, xbase_path);
+
+  host_type& lsection_space = T::standard_host(xns, xbase_path, "", xspace_name, "", true);
 
 
   // Also, assign values to the section degrees of freedom.
@@ -1521,9 +1467,7 @@ test_section_common_attached(fiber_bundles_namespace& xns, int xdim)
   const poset_path& lbase_path = make_test_base_space(xdim, xns);
 
   S lvector[2];
-  make_test_sections(xns, lbase_path,
-                     "test_section_space", "vector",
-                     lvector, 2);
+  make_test_sections(xns, lbase_path, "test_common_attached", "vector", lvector, 2);
 
   lvector[0].get_read_write_access();
   lvector[1].get_read_write_access();
@@ -1643,9 +1587,7 @@ test_section_common_attached_2(fiber_bundles_namespace& xns, int xdim)
   const poset_path& lbase_path = make_test_base_space(xdim, xns);
 
   S lvector[2];
-  make_test_sections(xns, lbase_path,
-                     "test_section_space", "vector",
-                     lvector, 2);
+  make_test_sections(xns, lbase_path, "test_common_attached_2", "vector", lvector, 2);
 
   lvector[0].get_read_write_access();
   lvector[1].get_read_write_access();
@@ -1771,9 +1713,7 @@ test_section_common_attached(fiber_bundles_namespace& xns, int xdim)
   const poset_path& lbase_path = make_test_base_space(xdim, xns);
 
   SD lvector[2];
-  make_test_sections(xns, lbase_path,
-                     "test_section_space", "vector",
-                     lvector, 2);
+  make_test_sections(xns, lbase_path, "test_common_attached", "vector", lvector, 2);
 
   lvector[0].get_read_write_access();
   lvector[1].get_read_write_access();
@@ -1907,9 +1847,7 @@ test_section_common_attached_2(fiber_bundles_namespace& xns,
   //const poset_path& lbase_path = make_test_base_space(xdim, xns);
 
   S lvector[2];
-  make_test_sections(xns, xbase_path,
-                     "test_section_space", "vector",
-                     lvector, 2);
+  make_test_sections(xns, xbase_path, "test_common_attached_2", "vector", lvector, 2);
 
   lvector[0].get_read_write_access();
   lvector[1].get_read_write_access();
@@ -2031,9 +1969,7 @@ test_section_common_attached(fiber_bundles_namespace& xns,
   //==========================================================================
 
   S lvector[2];
-  make_test_sections(xns, xbase_path,
-                     "test_section_space", "vector",
-                     lvector, 2);
+  make_test_sections(xns, xbase_path, "test_common_attached", "vector", lvector, 2);
 
   lvector[0].get_read_write_access();
   lvector[1].get_read_write_access();
