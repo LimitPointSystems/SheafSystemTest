@@ -1103,7 +1103,7 @@ void make_test_sections(fiber_bundles_namespace& xns,
 //   host_type& lsection_space =
 //     xns.new_section_space<T>(lspace_name, xbase_path);
 
-  host_type& lsection_space = T::standard_host(xns, xbase_path, "", xspace_name, "", true);
+  host_type& lsection_space = T::standard_host(xns, xbase_path, "", lspace_name, "", true);
 
 
   // Also, assign values to the section degrees of freedom.
@@ -1540,7 +1540,7 @@ test_section_common_attached(fiber_bundles_namespace& xns, int xdim)
 
   //S& operator=(const F& xfiber);
 
-  typename F::host_type& lfiber_host = xns.new_fiber_space<F>();
+  typename F::host_type& lfiber_host = F::standard_host(xns, "test_section_common_attached", false);
   lfiber_host.get_read_write_access(true);
 
   F lfiber(&lfiber_host);
@@ -1664,7 +1664,7 @@ test_section_common_attached_2(fiber_bundles_namespace& xns, int xdim)
 
   //S& operator=(const F& xfiber);
 
-  typename F::host_type& lfiber_host = xns.new_fiber_space<F>();
+  typename F::host_type& lfiber_host = F::standard_host(xns, "test_section_common_attached_2", false);
   lfiber_host.get_read_write_access(true);
 
   F lfiber(&lfiber_host);
@@ -1781,7 +1781,7 @@ test_section_common_attached(fiber_bundles_namespace& xns, int xdim)
 
   //SB& operator=(const F& xfiber);
 
-  typename F::host_type& lfiber_host = xns.new_fiber_space<F>();
+  typename F::host_type& lfiber_host = F::standard_host(xns, "test_section_common_attached", false);
   lfiber_host.get_read_write_access(true);
 
   F lfiber(&lfiber_host);
@@ -1924,7 +1924,7 @@ test_section_common_attached_2(fiber_bundles_namespace& xns,
 
   //S& operator=(const F& xfiber);
 
-  typename F::host_type& lfiber_host = xns.new_fiber_space<F>();
+  typename F::host_type& lfiber_host = F::standard_host(xns, "test_section_common_attached_2", false);
   lfiber_host.get_read_write_access(true);
 
   F lfiber(&lfiber_host);
@@ -2042,7 +2042,7 @@ test_section_common_attached(fiber_bundles_namespace& xns,
 
   //S& operator=(const F& xfiber);
 
-  typename F::host_type& lfiber_host = xns.new_fiber_space<F>();
+  typename F::host_type& lfiber_host = F::standard_host(xns, "test_section_common_attached", false);
   lfiber_host.get_read_write_access(true);
 
   F lfiber(&lfiber_host);

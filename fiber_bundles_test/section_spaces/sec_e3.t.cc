@@ -55,11 +55,11 @@ main(int xargc, char *xargv[])
 
   // Test atp facet:
 
-//   test_sec_hook_product<sec_e3, sec_e3, sec_at0>(lns, lbase_path);
-//   test_sec_hook_product<sec_at2_e3, sec_e3, sec_e3>(lns, lbase_path);
+  test_sec_hook_product<sec_e3, sec_e3, sec_at0>(lns, lbase_path);
+  test_sec_hook_product<sec_at2_e3, sec_e3, sec_e3>(lns, lbase_path);
 
-//   test_sec_wedge_product<sec_e3, sec_e3, sec_at2_e3>(lns, lbase_path);
-//   test_sec_wedge_product<sec_at2_e3, sec_e3, sec_at3_e3>(lns, lbase_path);
+  test_sec_wedge_product<sec_e3, sec_e3, sec_at2_e3>(lns, lbase_path);
+  test_sec_wedge_product<sec_at2_e3, sec_e3, sec_at3_e3>(lns, lbase_path);
 
   // Test ed facet:
 
