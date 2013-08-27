@@ -94,17 +94,15 @@ void test_new_scalar_field_1d_unstructured(fiber_bundles_namespace& xns)
 
   lfactory.base_index_ubs() = "3";
 
-  lfactory.coord_section_space_path() = "test_1d_unstructured_coord_section_space";
   lfactory.coord_lb() = "0";
   lfactory.coord_ub() = "3";
 
-  lfactory.prop_section_space_path() = "test_1d_unstructured_prop_section_space";
-
   field_vd* lfield =
-    lfactory.new_field(xns,
-                       "test_1d_unstructured_base_space/unstructured_block",
-                       "1d_unstructured_coordinates",
-                       "1d_unstructured_property");
+    lfactory.standard_field(xns,
+			    "test_1d_unstructured_base_space/unstructured_block",
+			    "1d_unstructured_coordinates",
+			    "1d_unstructured_property",
+			    true);
 
   lfield->put_property_dofs(zero, true);
 
@@ -128,17 +126,15 @@ void test_new_scalar_field_1d_structured(fiber_bundles_namespace& xns)
 
   lfactory.base_index_ubs() = "3";
 
-  lfactory.coord_section_space_path() = "test_1d_structured_coord_section_space";
   lfactory.coord_lb() = "0";
   lfactory.coord_ub() = "3";
 
-  lfactory.prop_section_space_path() = "test_1d_structured_prop_section_space";
-
   field_vd* lfield =
-    lfactory.new_field(xns,
-                       "test_1d_structured_base_space/structured_block",
-                       "1d_structured_coordinates",
-                       "1d_structured_property");
+    lfactory.standard_field(xns,
+			    "test_1d_structured_base_space/structured_block",
+			    "1d_structured_coordinates",
+			    "1d_structured_property",
+			    true);
 
   lfield->put_property_dofs(zero, true);
 
@@ -163,18 +159,17 @@ void test_new_scalar_field_1d_points(fiber_bundles_namespace& xns)
   lfactory.base_index_ubs() = "4";
 
   lfactory.coord_rep_path() = "sec_rep_descriptors/vertex_vertex_constant";
-  lfactory.coord_section_space_path() = "test_1d_point_coord_section_space";
   lfactory.coord_lb() = "0";
   lfactory.coord_ub() = "3";
 
   lfactory.prop_rep_path() = "sec_rep_descriptors/vertex_vertex_constant";
-  lfactory.prop_section_space_path() = "test_1d_point_prop_section_space";
 
   field_vd* lfield =
-    lfactory.new_field(xns,
-                       "test_1d_point_base_space/point_block",
-                       "1d_point_coordinates",
-                       "1d_point_property");
+    lfactory.standard_field(xns,
+			    "test_1d_point_base_space/point_block",
+			    "1d_point_coordinates",
+			    "1d_point_property",
+			    true);
 
   lfield->put_property_dofs(zero, true);
 
@@ -197,17 +192,16 @@ void test_new_scalar_field_1d_uniform(fiber_bundles_namespace& xns)
 
   lfactory.base_index_ubs() = "3";
 
-  lfactory.coord_section_space_path() = "test_1d_uniform_coord_section_space";
   lfactory.coord_lb() = "0";
   lfactory.coord_ub() = "3";
 
-  lfactory.prop_section_space_path() = "test_1d_uniform_prop_section_space";
 
   field_vd* lfield =
-    lfactory.new_field(xns,
-                       "test_1d_uniform_base_space/structured_block_1d",
-                       "1d_uniform_coordinates",
-                       "1d_uniform_property");
+    lfactory.standard_field(xns,
+			    "test_1d_uniform_base_space/structured_block_1d",
+			    "1d_uniform_coordinates",
+			    "1d_uniform_property",
+			    true);
 
   lfield->put_property_dofs(zero, true);
 
@@ -227,14 +221,12 @@ void test_new_scalar_field_1d_uniform_same_coords(fiber_bundles_namespace& xns)
 {
   field_factory_2<sec_e1_uniform, sec_at0, structured_block_1d> lfactory;
 
-  poset_path lcoord_path("test_1d_uniform_coord_section_space", "coordinates");
-  poset_path lprop_path("test_1d_uniform_prop_section_space", "property2");
-
   field_vd* lfield =
-    lfactory.new_field(xns,
-                       "test_1d_uniform_base_space/structured_block_1d",
-                       lcoord_path,
-                       lprop_path);
+    lfactory.standard_field(xns,
+			    "test_1d_uniform_base_space/structured_block_1d",
+			    "coordinates",
+			    "property2",
+			    true);
 
   lfield->put_property_dofs(zero, true);
 
@@ -257,18 +249,15 @@ void test_new_scalar_field_2d_unstructured(fiber_bundles_namespace& xns)
 
   lfactory.base_index_ubs() = "3 2";
 
-  lfactory.coord_fiber_path() = "e2_test";
-  lfactory.coord_section_space_path() = "test_2d_unstructured_coord_section_space";
   lfactory.coord_lb() = "0 0";
   lfactory.coord_ub() = "3 2";
 
-  lfactory.prop_section_space_path() = "test_2d_unstructured_prop_section_space";
-
   field_vd* lfield =
-    lfactory.new_field(xns,
-                       "test_2d_unstructured_base_space/unstructured_block",
-                       "2d_unstructured_coordinates",
-                       "2d_unstructured_property");
+    lfactory.standard_field(xns,
+			    "test_2d_unstructured_base_space/unstructured_block",
+			    "2d_unstructured_coordinates",
+			    "2d_unstructured_property",
+			    true);
 
   lfield->put_property_dofs(zero, true);
 
@@ -292,18 +281,15 @@ void test_new_scalar_field_2d_structured(fiber_bundles_namespace& xns)
 
   lfactory.base_index_ubs() = "3 2";
 
-  lfactory.coord_fiber_path() = "e2_test";
-  lfactory.coord_section_space_path() = "test_2d_structured_coord_section_space";
   lfactory.coord_lb() = "0 0";
   lfactory.coord_ub() = "3 2";
 
-  lfactory.prop_section_space_path() = "test_2d_structured_prop_section_space";
-
   field_vd* lfield =
-    lfactory.new_field(xns,
-                       "test_2d_structured_base_space/structured_block",
-                       "2d_structured_coordinates",
-                       "2d_structured_property");
+    lfactory.standard_field(xns,
+			    "test_2d_structured_base_space/structured_block",
+			    "2d_structured_coordinates",
+			    "2d_structured_property",
+			    true);
 
   lfield->put_property_dofs(zero, true);
 
@@ -328,19 +314,17 @@ void test_new_scalar_field_2d_points(fiber_bundles_namespace& xns)
   lfactory.base_index_ubs() = "4 3";
 
   lfactory.coord_rep_path() = "sec_rep_descriptors/vertex_vertex_constant";
-  lfactory.coord_fiber_path() = "e2_test";
-  lfactory.coord_section_space_path() = "test_2d_point_coord_section_space";
   lfactory.coord_lb() = "0 0";
   lfactory.coord_ub() = "3 2";
 
   lfactory.prop_rep_path() = "sec_rep_descriptors/vertex_vertex_constant";
-  lfactory.prop_section_space_path() = "test_2d_point_prop_section_space";
 
   field_vd* lfield =
-    lfactory.new_field(xns,
-                       "test_2d_point_base_space/point_block",
-                       "2d_point_coordinates",
-                       "2d_point_property");
+    lfactory.standard_field(xns,
+			    "test_2d_point_base_space/point_block",
+			    "2d_point_coordinates",
+			    "2d_point_property",
+			    true);
 
   lfield->put_property_dofs(zero, true);
 
@@ -363,18 +347,15 @@ void test_new_scalar_field_2d_uniform(fiber_bundles_namespace& xns)
 
   lfactory.base_index_ubs() = "3 2";
 
-  lfactory.coord_fiber_path() = "e2_test";
-  lfactory.coord_section_space_path() = "test_2d_uniform_coord_section_space";
   lfactory.coord_lb() = "0 0";
   lfactory.coord_ub() = "3 2";
 
-  lfactory.prop_section_space_path() = "test_2d_uniform_prop_section_space";
-
   field_vd* lfield =
-    lfactory.new_field(xns,
-                       "test_2d_uniform_base_space/structured_block_2d",
-                       "2d_uniform_coordinates",
-                       "2d_uniform_property");
+    lfactory.standard_field(xns,
+			    "test_2d_uniform_base_space/structured_block_2d",
+			    "2d_uniform_coordinates",
+			    "2d_uniform_property",
+			    true);
 
   lfield->put_property_dofs(zero, true);
 
@@ -397,18 +378,15 @@ void test_new_scalar_field_3d_unstructured(fiber_bundles_namespace& xns)
 
   lfactory.base_index_ubs() = "3 2 1";
 
-  lfactory.coord_fiber_path() = "e3_test";
-  lfactory.coord_section_space_path() = "test_3d_unstructured_coord_section_space";
   lfactory.coord_lb() = "0 0 0";
   lfactory.coord_ub() = "3 2 1";
 
-  lfactory.prop_section_space_path() = "test_3d_unstructured_prop_section_space";
-
   field_vd* lfield =
-    lfactory.new_field(xns,
-                       "test_3d_unstructured_base_space/unstructured_block",
-                       "3d_unstructured_coordinates",
-                       "3d_unstructured_property");
+    lfactory.standard_field(xns,
+			    "test_3d_unstructured_base_space/unstructured_block",
+			    "3d_unstructured_coordinates",
+			    "3d_unstructured_property",
+			    true);
 
   lfield->put_property_dofs(zero, true);
 
@@ -431,17 +409,15 @@ void test_new_scalar_field_3d_structured(fiber_bundles_namespace& xns)
 
   lfactory.base_index_ubs() = "3 2 1";
 
-  lfactory.coord_section_space_path() = "test_3d_structured_coord_section_space";
   lfactory.coord_lb() = "0 0 0";
   lfactory.coord_ub() = "3 2 1";
 
-  lfactory.prop_section_space_path() = "test_3d_structured_prop_section_space";
-
   field_vd* lfield =
-    lfactory.new_field(xns,
-                       "test_3d_structured_base_space/structured_block_3d",
-                       "3d_structured_coordinates",
-                       "3d_structured_property");
+    lfactory.standard_field(xns,
+			    "test_3d_structured_base_space/structured_block_3d",
+			    "3d_structured_coordinates",
+			    "3d_structured_property",
+			    true);
 
   lfield->put_property_dofs(zero, true);
 
@@ -466,18 +442,17 @@ void test_new_scalar_field_3d_points(fiber_bundles_namespace& xns)
   lfactory.base_index_ubs() = "4 3 2";
 
   lfactory.coord_rep_path() = "sec_rep_descriptors/vertex_vertex_constant";
-  lfactory.coord_section_space_path() = "test_3d_point_coord_section_space";
   lfactory.coord_lb() = "0 0 0";
   lfactory.coord_ub() = "3 2 1";
 
   lfactory.prop_rep_path() = "sec_rep_descriptors/vertex_vertex_constant";
-  lfactory.prop_section_space_path() = "test_3d_point_prop_section_space";
 
   field_vd* lfield =
-    lfactory.new_field(xns,
-                       "test_3d_point_base_space/point_block",
-                       "3d_point_coordinates",
-                       "3d_point_property");
+    lfactory.standard_field(xns,
+			    "test_3d_point_base_space/point_block",
+			    "3d_point_coordinates",
+			    "3d_point_property",
+			    true);
 
   lfield->put_property_dofs(zero, true);
 
@@ -500,18 +475,15 @@ void test_new_scalar_field_3d_uniform(fiber_bundles_namespace& xns)
 
   lfactory.base_index_ubs() = "3 2 1";
 
-  lfactory.coord_fiber_path() = "e3_uniform";
-  lfactory.prop_section_space_path() = "test_3d_uniform_prop_section_space";
   lfactory.coord_lb() = "0 0 0";
   lfactory.coord_ub() = "3 2 1";
 
-  lfactory.prop_section_space_path() = "test_3d_uniform_prop_section_space";
-
   field_vd* lfield =
-    lfactory.new_field(xns,
-                       "test_3d_uniform_base_space/structured_block_3d",
-                       "3d_uniform_coordinates",
-                       "3d_uniform_property");
+    lfactory.standard_field(xns,
+			    "test_3d_uniform_base_space/structured_block_3d",
+			    "3d_uniform_coordinates",
+			    "3d_uniform_property",
+			    true);
 
   lfield->put_property_dofs(zero, true);
 

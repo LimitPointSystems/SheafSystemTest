@@ -304,10 +304,8 @@ void push_2d_uniform_to_points(fiber_bundles_namespace& xns)
   // and existing schema or space.
 
   poset_path lbase_path("dst_2d_points_base_space", "dst_2d_points_point_block_2d");
-  poset_path lcoords_path("dst_2d_points_e2", "dst_2d_points_coords");
-  poset_path lprop_path("dst_2d_points_at0", "dst_2d_points_prop");
 
-  field_vd* ldst_field = lfactory.new_field(xns, lbase_path, lcoords_path, lprop_path);
+  field_vd* ldst_field = lfactory.new_field(xns, lbase_path, "dst_2d_points_coords", "dst_2d_points_prop", false);
 
   // Push the bodies.
 
