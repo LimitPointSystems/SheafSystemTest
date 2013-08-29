@@ -16,7 +16,6 @@
 #include "sec_e2.h"
 #include "sec_e3.h"
 #include "sec_rep_space.h"
-#include "section_space_factory.h"
 #include "std_iostream.h"
 #include "std_sstream.h"
 #include "structured_block_1d.h"
