@@ -121,7 +121,7 @@ make_base_space_1d(fiber_bundles_namespace& xns, const string& xbase_space_name)
 
   typedef point_block_1d B;
     
-  base_space_poset& lhost = B::new_host(xns, xbase_space_name, false);
+  base_space_poset& lhost = B::standard_host(xns, xbase_space_name, false);
 
   B lmesh(&lhost, 2, true);
   lmesh.put_name("mesh", true, true);
@@ -152,7 +152,7 @@ make_base_space_2d(fiber_bundles_namespace& xns, const string& xbase_space_name)
 
   typedef point_block_2d B;
     
-  base_space_poset& lhost = B::new_host(xns, xbase_space_name, false);
+  base_space_poset& lhost = B::standard_host(xns, xbase_space_name, false);
 
   B lmesh(&lhost, 2, 2, true);
   lmesh.put_name("mesh", true, true);
@@ -183,7 +183,7 @@ make_base_space_3d(fiber_bundles_namespace& xns, const string& xbase_space_name)
 
   typedef point_block_3d B;
     
-  base_space_poset& lhost = B::new_host(xns, xbase_space_name, false);
+  base_space_poset& lhost = B::standard_host(xns, xbase_space_name, false);
 
   B lmesh(&lhost, 2, 2, 2, true);
   lmesh.put_name("mesh", true, true);

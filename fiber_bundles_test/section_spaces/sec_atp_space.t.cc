@@ -42,7 +42,7 @@ namespace
   {
     xns.get_read_write_access();
 
-    base_space_poset& lhost = structured_block_1d::new_host(xns, "base_space_host", false);
+    base_space_poset& lhost = structured_block_1d::standard_host(xns, "base_space_host", false);
 
     structured_block_1d lmesh(&lhost, 2, true);
     lmesh.put_name("base_space", true, true);

@@ -337,7 +337,7 @@ int main(int argc, char* argv[])
   test_namespace.get_read_write_access();
 
   base_space_poset& lbase_host =
-    unstructured_block::new_host(test_namespace, "torus_mesh", 2, false);
+    unstructured_block::standard_host(test_namespace, "torus_mesh", 2, false);
 
   lbase_host.get_read_write_access();
 

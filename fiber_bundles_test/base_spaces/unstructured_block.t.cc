@@ -28,7 +28,7 @@ make_unstructured_block_0d(fiber_bundles_namespace* xns,
 
   // Body:
 
-  unstructured_block::new_host(*xns, "unstructured_mesh_base_space_0d", 1, true);
+  unstructured_block::standard_host(*xns, "unstructured_mesh_base_space_0d", 1, true);
   base_space_poset& lmesh = xns->member_poset<base_space_poset>("unstructured_mesh_base_space_0d");
 
   lmesh.get_read_write_access();
@@ -55,7 +55,7 @@ make_unstructured_block_1d(fiber_bundles_namespace* xns,
 
   // Body:
 
-  unstructured_block::new_host(*xns, "unstructured_mesh_base_space_1d", 1, true);
+  unstructured_block::standard_host(*xns, "unstructured_mesh_base_space_1d", 1, true);
   base_space_poset& lmesh = xns->member_poset<base_space_poset>("unstructured_mesh_base_space_1d");
 
   lmesh.get_read_write_access();
@@ -84,7 +84,7 @@ make_unstructured_block_2d(fiber_bundles_namespace* xns,
 
   // Body:
 
-  unstructured_block::new_host(*xns, "unstructured_mesh_base_space_2d", 2, true);
+  unstructured_block::standard_host(*xns, "unstructured_mesh_base_space_2d", 2, true);
   base_space_poset& lmesh = xns->member_poset<base_space_poset>("unstructured_mesh_base_space_2d");
 
   lmesh.get_read_write_access();
@@ -127,7 +127,7 @@ make_unstructured_block_3d(fiber_bundles_namespace* xns,
 
   // Body:
 
-  unstructured_block::new_host(*xns, "unstructured_mesh_base_space_3d", 3, true);
+  unstructured_block::standard_host(*xns, "unstructured_mesh_base_space_3d", 3, true);
   base_space_poset& lmesh = xns->member_poset<base_space_poset>("unstructured_mesh_base_space_3d");
 
   lmesh.get_read_write_access();
@@ -178,7 +178,7 @@ make_hex_faces_nodes_block(fiber_bundles_namespace* xns,
 
   // Body:
 
-  unstructured_block::new_host(*xns, "hex_faces_nodes_base_space", 3, true);
+  unstructured_block::standard_host(*xns, "hex_faces_nodes_base_space", 3, true);
   base_space_poset& lmesh = xns->member_poset<base_space_poset>("hex_faces_nodes_base_space");
 
   lmesh.get_read_write_access();

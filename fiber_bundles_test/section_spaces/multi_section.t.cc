@@ -41,7 +41,7 @@ structured_block_1d* make_1d_base_space(fiber_bundles_namespace& xns)
 
   // Create the host.
 
-  base_space_poset& lbase_host = structured_block_1d::new_host(xns, "1d_base_space", false);
+  base_space_poset& lbase_host = structured_block_1d::standard_host(xns, "1d_base_space", false);
 
   lbase_host.get_read_write_access();
 
@@ -306,7 +306,7 @@ structured_block_3d* make_3d_base_space(fiber_bundles_namespace& xns)
 
   // Create the host.
 
-  base_space_poset& lbase_host = structured_block_3d::new_host(xns, "3d_base_space", false);
+  base_space_poset& lbase_host = structured_block_3d::standard_host(xns, "3d_base_space", false);
 
   lbase_host.get_read_write_access();
 

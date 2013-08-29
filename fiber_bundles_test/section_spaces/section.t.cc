@@ -275,7 +275,7 @@ test_all(fiber_bundles_namespace& xns)
 
   // Make triangle mesh
 
-  base_space_poset& lmesh = unstructured_block::new_host(xns, "triangle_mesh", 2, false);
+  base_space_poset& lmesh = unstructured_block::standard_host(xns, "triangle_mesh", 2, false);
 
   lmesh.get_read_write_access();
 

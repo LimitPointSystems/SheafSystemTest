@@ -38,7 +38,7 @@ main(int xargc, char* xargv[])
 
   lns.get_read_write_access();
 
-  structured_block_3d::new_host(lns, "3d_structued_mesh", true);
+  structured_block_3d::standard_host(lns, "3d_structued_mesh", true);
   base_space_poset& lmesh = lns.member_poset<base_space_poset>("3d_structued_mesh", true);
 
   structured_block_3d lblock0(&lmesh, size_0, size_1, size_2, true);

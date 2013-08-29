@@ -126,7 +126,7 @@ make_structured_block_3d(fiber_bundles_namespace* xns,
   // Body:
 
   base_space_poset* lmesh =
-    structured_block_3d::new_host(xns, "structured_mesh_base_space_3d");
+    structured_block_3d::standard_host(xns, "structured_mesh_base_space_3d");
   lmesh->get_read_write_access();
 
   structured_block_3d lblock(lmesh, xi_size, xj_size, xk_size);

@@ -47,7 +47,7 @@ main(int xargc, char* xargv[])
 
   // Make the mesh
 
-  point_block_1d::new_host(lns, "1d_point_mesh", true);
+  point_block_1d::standard_host(lns, "1d_point_mesh", true);
   base_space_poset& lmesh = lns.member_poset<base_space_poset>("1d_point_mesh", true);
 
   point_block_1d lblock(&lmesh, size, true);

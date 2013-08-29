@@ -32,7 +32,7 @@ make_unstructured_block_1d(fiber_bundles_namespace* xns,
 
   // Body:
 
-  zone_nodes_block::new_host(*xns, "zone_nodes_mesh_base_space_1d", 1, true);
+  zone_nodes_block::standard_host(*xns, "zone_nodes_mesh_base_space_1d", 1, true);
   base_space_poset& lmesh = xns->member_poset<base_space_poset>("zone_nodes_mesh_base_space_1d");
 
   lmesh.get_read_write_access();
@@ -65,7 +65,7 @@ make_unstructured_block_2d(fiber_bundles_namespace* xns,
 
   // Body:
 
-  zone_nodes_block::new_host(*xns, "zone_nodes_mesh_base_space_2d", 2, true);
+  zone_nodes_block::standard_host(*xns, "zone_nodes_mesh_base_space_2d", 2, true);
   base_space_poset& lmesh = xns->member_poset<base_space_poset>("zone_nodes_mesh_base_space_2d");
 
   lmesh.get_read_write_access();
@@ -99,7 +99,7 @@ make_unstructured_block_3d(fiber_bundles_namespace* xns,
 
   // Body:
 
-  zone_nodes_block::new_host(*xns, "zone_nodes_mesh_base_space_3d", 3, true);
+  zone_nodes_block::standard_host(*xns, "zone_nodes_mesh_base_space_3d", 3, true);
   base_space_poset& lmesh = xns->member_poset<base_space_poset>("zone_nodes_mesh_base_space_3d");
 
   lmesh.get_read_write_access();
@@ -127,7 +127,7 @@ test_deletion(fiber_bundles_namespace* xns)
 
   // Body:
 
-  zone_nodes_block::new_host(*xns, "test_delete_mesh", 1, true);
+  zone_nodes_block::standard_host(*xns, "test_delete_mesh", 1, true);
   base_space_poset& lmesh = xns->member_poset<base_space_poset>("test_delete_mesh");
 
   lmesh.get_read_write_access();

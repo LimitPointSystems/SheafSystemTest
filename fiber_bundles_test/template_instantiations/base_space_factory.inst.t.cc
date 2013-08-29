@@ -110,7 +110,7 @@ namespace
 
     // Create a host poset for the mesh.
 
-    base_space_poset& lbase_host = T::new_host(xns, xhost_name, false);
+    base_space_poset& lbase_host = T::standard_host(xns, xhost_name, false);
 
     lbase_host.get_read_write_access();
 
@@ -154,7 +154,7 @@ namespace
 
     // Create a host poset for the mesh.
 
-    base_space_poset& lbase_host = T::new_host(xns, xhost_name, false);
+    base_space_poset& lbase_host = T::standard_host(xns, xhost_name, false);
 
     lbase_host.get_read_write_access();
 
@@ -200,7 +200,7 @@ namespace
 
     // Create a host poset for the mesh.
 
-    base_space_poset& lbase_host = T::new_host(xns, xhost_name, false);
+    base_space_poset& lbase_host = T::standard_host(xns, xhost_name, false);
 
     lbase_host.get_read_write_access();
 
@@ -248,7 +248,7 @@ namespace
 
     // Create a host poset for the mesh.
 
-    base_space_poset& lbase_host = T::new_host(xns, xhost_name, 2, false);
+    base_space_poset& lbase_host = T::standard_host(xns, xhost_name, 2, false);
 
     lbase_host.get_read_write_access();
 
@@ -299,7 +299,7 @@ namespace
 
     // Create a host poset for the mesh.
 
-    base_space_poset& lbase_host = T::new_host(xns, xhost_name, 2, false);
+    base_space_poset& lbase_host = T::standard_host(xns, xhost_name, 2, false);
 
     lbase_host.get_read_write_access();
 

@@ -899,7 +899,7 @@ main(int argc, char* argv[])
   // Make triangle mesh
 
   base_space_poset& lmesh =
-    zone_nodes_block::new_host(test_namespace, "triangle_mesh", 2, false);
+    zone_nodes_block::standard_host(test_namespace, "triangle_mesh", 2, false);
 
   lmesh.get_read_write_access();
 

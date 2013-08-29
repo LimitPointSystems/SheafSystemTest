@@ -46,7 +46,7 @@ main(int xargc, char* xargv[])
 
   // Make a mesh with 2 blocks.
 
-  structured_block_1d::new_host(lns, "1d_structued_mesh", true);
+  structured_block_1d::standard_host(lns, "1d_structued_mesh", true);
   base_space_poset& lmesh = lns.member_poset<base_space_poset>("1d_structued_mesh", true);
 
   structured_block_1d lblock0(&lmesh, size, true);

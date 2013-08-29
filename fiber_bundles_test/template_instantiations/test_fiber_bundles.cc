@@ -135,7 +135,7 @@ test_fiber_bundles_namespace_poset_facet<fiber_bundle::base_space_poset>
 
   typedef fiber_bundle::base_space_poset P;
 
-  P& lposet = fiber_bundle::structured_block_1d::new_host(xns, lname, false);
+  P& lposet = fiber_bundle::structured_block_1d::standard_host(xns, lname, false);
 
   lresult &= test_fiber_bundles_namespace_poset_facet(xns, lposet);
 

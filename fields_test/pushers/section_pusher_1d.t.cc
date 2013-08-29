@@ -187,7 +187,7 @@ void test_auto_allocated_push()
   
   string lbase_name("coarse_mesh");
 
-  base_space_poset& lbase_host = structured_block_1d::new_host(lns, lbase_name, false);
+  base_space_poset& lbase_host = structured_block_1d::standard_host(lns, lbase_name, false);
 
   structured_block_1d lbase(&lbase_host, 3, true);
   lbase.put_name(lbase_name, true, true);
