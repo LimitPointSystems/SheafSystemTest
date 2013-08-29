@@ -45,7 +45,7 @@ test_fiber_bundles_namespace_poset_facet<fiber_bundle::sec_rep_descriptor_poset>
 
   // Body:
 
-  const string& lname = xns.standard_sec_rep_descriptor_poset_name();
+  const string& lname = sec_rep_descriptor::standard_host_path().poset_name();
 
   print_header("Begin testing " + lname);
 
