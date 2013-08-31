@@ -101,27 +101,10 @@ sec_at0_space& make_1d_section_space(fiber_bundles_namespace& xns,
 
   // Body:
 
-  string lspace_name("at0_on_1d_base_space");
-  string lschema_name(lspace_name + "_schema");
-
-  // Make the section space schema arguments.
-
-  arg_list largs =
-    binary_section_space_schema_poset::make_arg_list("", xbase_path, "");
-
-  // Make the schema.
-
-  poset_path lschema_path =
-    xns.new_scalar_section_space_schema<sec_at0>(lschema_name, largs);
-
-  // Make the section space arguments.
-
-  largs = sec_at0_space::make_arg_list();
-
   // Make the section space.
 
   sec_at0_space& result =
-    xns.new_scalar_section_space<sec_at0>(lspace_name, largs, lschema_path);
+    sec_at0::standard_host(xns, xbase_path, "", "", "", false);
 
   result.get_read_write_access();
 
@@ -368,27 +351,8 @@ sec_at0_space& make_3d_section_space(fiber_bundles_namespace& xns,
 
   // Body:
 
-  string lspace_name("at0_on_3d_base_space");
-  string lschema_name(lspace_name + "_schema");
-
-  // Make the section space schema arguments.
-
-  arg_list largs =
-    binary_section_space_schema_poset::make_arg_list("", xbase_path, "");
-
-  // Make the schema.
-
-  poset_path lschema_path =
-    xns.new_scalar_section_space_schema<sec_at0>(lschema_name, largs);
-
-  // Make the section space arguments.
-
-  largs = sec_at0_space::make_arg_list();
-
-  // Make the section space.
-
   sec_at0_space& result =
-    xns.new_scalar_section_space<sec_at0>(lspace_name, largs, lschema_path);
+    sec_at0::standard_host(xns, xbase_path, "", "", "", false);
 
   result.get_read_write_access();
 

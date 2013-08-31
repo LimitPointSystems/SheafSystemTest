@@ -141,7 +141,7 @@ namespace
 
     //==========================================================================
 
-    typename PD::host_type& lhost = xns.new_fiber_space<PD>();
+    typename PD::host_type& lhost = PD::standard_host(xns, "", false);
     lhost.get_read_write_access(true);
   
     //test_persistent_type<PB>(lhost);

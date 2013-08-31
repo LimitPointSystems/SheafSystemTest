@@ -151,24 +151,10 @@ make_scalar_section_space(fiber_bundles_namespace& xns,
 
   // Body:
 
-  // Make the section space schema arguments.
-
-  arg_list largs =
-    binary_section_space_schema_poset::make_arg_list("", xbase_path, "");
-
-  // Make the schema.
-
-  poset_path lschema_path =
-    xns.new_scalar_section_space_schema<sec_at0>("at0_on_triangle_mesh_schema", largs);
-
-  // Make the section space arguments.
-
-  largs = sec_at0_space::make_arg_list();
-
   // Make the section space.
 
   sec_at0_space& result =
-    xns.new_scalar_section_space<sec_at0>("at0_on_triangle_mesh", largs, lschema_path);
+    sec_at0::standard_host(xns, xbase_path, "", "", "", false);
 
   result.get_read_write_access();
 
@@ -210,30 +196,10 @@ make_coord_section_space(fiber_bundles_namespace& xns,
 
   // Body:
 
-  // Make the section space schema arguments.
-
-  arg_list largs =
-    binary_section_space_schema_poset::make_arg_list("", xbase_path, "");
-
-  // Make the scalar section space schema.
-
-  poset_path lscalar_schema_path =
-    xns.new_scalar_section_space_schema<sec_at0>("at0_on_triangle_mesh_schema", largs);
-
-  // Make the vector section space schema.
-
-  poset_path lvector_schema_path =
-    xns.new_vector_section_space_schema<sec_e2>("e2_on_triangle_mesh_schema", largs);
-
   // Make the section space.
 
   sec_at1_space& result =
-    xns.new_vector_section_space<sec_e2>("e2_on_triangle_mesh",
-					 "", // xvector_space_args
-					 lvector_schema_path,
-					 "at0_on_triangle_mesh",
-					 "", // xscalar_space_args
-					 lscalar_schema_path);
+    sec_e2::standard_host(xns, xbase_path, "", "", "", false);
 
   result.get_read_write_access();
 

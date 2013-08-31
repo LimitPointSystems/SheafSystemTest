@@ -142,8 +142,7 @@ make_unstructured_block_3d(fiber_bundles_namespace* xns,
   // Make non-uniform (property) section space.
 
   sec_at0::host_type& lprop_space =
-    new_host_space<sec_at0>(*xns, "property_section_space",
-			    lblock.path());
+    sec_at0::standard_host(*xns, lblock.path(false), "", "", "", false);
 
   sec_at0 lprop(&lprop_space);
   lprop.get_read_write_access();

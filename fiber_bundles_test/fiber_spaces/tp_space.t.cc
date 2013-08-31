@@ -32,112 +32,6 @@ using namespace fiber_bundle;
 namespace
 {
 
-  poset_path make_vector_space_schema(fiber_bundles_namespace& xns)
-  {
-    // Make a vector space schema; copied from e2::make_standard_schema().
-
-    string ldof_specs = "x DOUBLE false y DOUBLE false";
-
-    schema_poset_member lvector_schema(xns,
-				       "shallow_instantiation_test_vd_space_schema",
-				       at1_space::standard_schema_path(),
-				       ldof_specs,
-				       true);
-
-    poset_path result = lvector_schema.path();
-    lvector_schema.detach_from_state();
-
-    return result;
-  }
-
-  poset_path make_tensor_space_schema(fiber_bundles_namespace& xns)
-  {
-
-    // Make a tensor space schema; copied from t2_e2::make_standard_schema().
-
-    string ltensor_dof_specs = "xx DOUBLE false ";
-    ltensor_dof_specs       += "xy DOUBLE false ";
-    ltensor_dof_specs       += "yx DOUBLE false ";
-    ltensor_dof_specs       += "yy DOUBLE false";
-
-
-    schema_poset_member ltensor_schema(xns,
-				       "tp_space_test_schema",
-				       tp_space::standard_schema_path(),
-				       ltensor_dof_specs,
-				       true);
-
-    poset_path result = ltensor_schema.path();
-    ltensor_schema.detach_from_state();
-
-    return result;
-  }
-  
-  void test_shallow_instantiation(fiber_bundles_namespace& xns, 
-				  const poset_path& xtensor_schema_path,
-				  const poset_path& xvector_schema_path)
-  {
-
-    // Make a scalar space, use standard schema.
-
-    arg_list lscalar_args = at0_space::make_arg_list();
-    poset_path lscalar_schema_path = at0_space::standard_schema_path();
-
-    at0_space& lscalar_space =
-      xns.new_fiber_space<at0>("at0_space_test", 
-			       lscalar_args,
-			       lscalar_schema_path,
-			       true);
-    poset_path lscalar_path = lscalar_space.path();
-
-    //    cout << *lscalar_space << endl;  
-
-    arg_list lvector_args = at1_space::make_arg_list(lscalar_path);
-  
-     at1_space& lvector_space = xns.new_fiber_space<at1>("at1_space_test", 
-							 lvector_args, 
-							 xvector_schema_path,
-							 true);
-
-     poset_path lvector_path = lvector_space.path();
-
-    //    cout << *lvector_space << endl;
-
-    arg_list ltensor_args = tp_space::make_arg_list(2, lvector_path);
-
-    tp_space& ltensor_space =
-      xns.new_fiber_space<tp>("tp_space_test", 
-			      ltensor_args, 
-			      xtensor_schema_path, 
-			      true);
-  
-    //    cout << *ltensor_space << endl;
-
-    return;
-  }
-
-  tp_space& test_deep_instantiation(fiber_bundles_namespace& xns, 
-			       const poset_path& xtensor_schema_path, 
-			       const poset_path& xvector_schema_path)
-  {
-
-    poset_path lpath("deep_instantiation_test_tp_space", "");
-    arg_list ltensor_args = tp_space::make_arg_list(2, "");
-
-
-    tp_space& lspace = xns.new_tensor_space<tp>(lpath, 
-						ltensor_args, 
-						xtensor_schema_path,
-						"",
-						"",
-						xvector_schema_path);
-    
-    
-    //    cout << lspace << endl;
-
-    return lspace;
-  }
-
 } // end unnamed namespace
 
 
@@ -154,13 +48,7 @@ main(int xargc, char* xargv[])
 
   fiber_bundles_namespace lns(filename);
 
-  poset_path lvector_schema_path = make_vector_space_schema(lns);
-  poset_path ltensor_schema_path = make_tensor_space_schema(lns);
-
-  test_shallow_instantiation(lns, ltensor_schema_path, lvector_schema_path);
-
-  tp_space& lspace =
-    test_deep_instantiation(lns, ltensor_schema_path, lvector_schema_path);
+  tp_space& lspace = t2_e2::standard_host(lns, "", true);
 
   //============================================================================
 

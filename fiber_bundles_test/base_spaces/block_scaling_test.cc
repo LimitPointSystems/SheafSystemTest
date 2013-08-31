@@ -105,11 +105,10 @@ make_scalar_section_space(fiber_bundles_namespace& xns,
 
   // Body:
 
-
   sec_rep_space& result =
-    new_host_space<sec_at0>(xns, "property_section_space",
-			    "sec_rep_descriptors/vertex_vertex_constant",
-			    xblock.path(false));
+    sec_at0::standard_host(xns, xblock.path(false),
+			   "sec_rep_descriptors/vertex_vertex_constant",
+			   "", "", false);
 
   // Postconditions:
 
@@ -131,9 +130,10 @@ make_scalar_section_space(fiber_bundles_namespace& xns,
 
 
   sec_rep_space& result =
-    new_host_space<sec_at0>(xns, "property_section_space",
-			    "sec_rep_descriptors/vertex_vertex_constant",
-			    xblock.path(false));
+    sec_at0::standard_host(xns, xblock.path(false),
+			   "sec_rep_descriptors/vertex_vertex_constant",
+			   "", "", false);
+
 
   // Postconditions:
 
@@ -153,11 +153,10 @@ make_scalar_section_space(fiber_bundles_namespace& xns,
 
   // Body:
 
-
   sec_rep_space& result =
-    new_host_space<sec_at0>(xns, "property_section_space",
-			    "sec_rep_descriptors/vertex_vertex_constant",
-			    xblock.path(false));
+    sec_at0::standard_host(xns, xblock.path(false),
+			   "sec_rep_descriptors/vertex_vertex_constant",
+			   "", "", false);
 
   // Postconditions:
 
@@ -177,10 +176,10 @@ make_scalar_section_space(fiber_bundles_namespace& xns,
 
   // Body:
 
-
   sec_rep_space& result =
-    new_host_space<sec_at0>(xns, "property_section_space",
-			    xblock.path(false));
+    sec_at0::standard_host(xns, xblock.path(false),
+			   "sec_rep_descriptors/vertex_vertex_constant",
+			   "", "", false);
 
   // Postconditions:
 
@@ -201,10 +200,9 @@ make_scalar_section_space(fiber_bundles_namespace& xns,
 
   // Body:
 
-
   sec_rep_space& result =
-    new_host_space<sec_at0>(xns, "property_section_space",
-			    xblock.path(false));
+    sec_at0::standard_host(xns, xblock.path(false),
+			   "", "", "", false);
 
   // Postconditions:
 
@@ -225,10 +223,10 @@ make_scalar_section_space(fiber_bundles_namespace& xns,
 
   // Body:
 
-
   sec_rep_space& result =
-    new_host_space<sec_at0>(xns, "property_section_space",
-			    xblock.path(false));
+    sec_at0::standard_host(xns, xblock.path(false),
+			   "sec_rep_descriptors/vertex_vertex_constant",
+			   "", "", false);
 
   // Postconditions:
 
@@ -248,10 +246,10 @@ make_scalar_section_space(fiber_bundles_namespace& xns,
 
   // Body:
 
-
   sec_rep_space& result =
-    new_host_space<sec_at0>(xns, "property_section_space",
-			    xblock.path(false));
+    sec_at0::standard_host(xns, xblock.path(false),
+			   "sec_rep_descriptors/vertex_vertex_constant",
+			   "", "", false);
 
   // Postconditions:
 
@@ -272,10 +270,10 @@ make_scalar_section_space(fiber_bundles_namespace& xns,
 
   // Body:
 
-
   sec_rep_space& result =
-    new_host_space<sec_at0>(xns, "property_section_space",
-			    xblock.path(false));
+    sec_at0::standard_host(xns, xblock.path(false),
+			   "sec_rep_descriptors/vertex_vertex_constant",
+			   "", "", false);
 
   // Postconditions:
 

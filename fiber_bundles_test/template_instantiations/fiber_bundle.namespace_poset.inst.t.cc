@@ -69,8 +69,13 @@ main(int xargc, char* xargv[])
   ltest &= test_fiber_bundles_namespace_poset_facet<jcb_e13>(lns);
   ltest &= test_fiber_bundles_namespace_poset_facet<st2_e2>(lns);
   ltest &= test_fiber_bundles_namespace_poset_facet<t2_e2>(lns);
-  ltest &= test_fiber_bundles_namespace_poset_facet< fiber_bundle::tuple>(lns);
-  ltest &= test_fiber_bundles_namespace_poset_facet<vd>(lns);
+
+  /// @error The current implementation of test_fiber_bundles_namespace_poset_facet
+  ///        does not support abstract fiber and section types.  It should
+  ///        be restructured to look like test_persistent_abstract_poset_member_facet.
+
+//   ltest &= test_fiber_bundles_namespace_poset_facet< fiber_bundle::tuple>(lns);
+//   ltest &= test_fiber_bundles_namespace_poset_facet<vd>(lns);
 
   //============================================================================
 

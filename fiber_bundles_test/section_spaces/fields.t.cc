@@ -13,7 +13,8 @@
 #include "at0_space.h"
 #include "at1_space.h"
 #include "base_space_factory.h"
-#include "fiber_bundles_namespace.impl.h"
+#include "binary_section_space_schema_poset.h"
+#include "fiber_bundles_namespace.h"
 #include "index_space_iterator.h"
 #include "postorder_iterator.h"
 #include "poset.h"
@@ -26,7 +27,6 @@
 #include "sec_st2_e2.h"
 #include "sec_stp_space.h"
 #include "section_dof_iterator.h"
-#include "section_space_schema_poset.h"
 #include "assert_contract.h"
 #include "sparse_section_dof_map.h"
 #include "st2_e2.h"
@@ -125,30 +125,9 @@ make_coord_section_space(fiber_bundles_namespace& xns,
 
   // Body:
 
-  // Make the section space schema arguments.
-
-  arg_list largs =
-    binary_section_space_schema_poset::make_arg_list("", xbase_path, "");
-
-  // Make the scalar section space schema.
-
-  poset_path lscalar_schema_path =
-    xns.new_scalar_section_space_schema<sec_at0>("at0_on_triangle_mesh_schema", largs);
-
-  // Make the vector section space schema.
-
-  poset_path lvector_schema_path =
-    xns.new_vector_section_space_schema<sec_e2>("e2_on_triangle_mesh_schema", largs);
-
   // Make the section space.
 
-  sec_at1_space& result =
-    xns.new_vector_section_space<sec_e2>("e2_on_triangle_mesh",
-					 "", // xvector_space_args
-					 lvector_schema_path,
-					 "at0_on_triangle_mesh",
-					 "", // xscalar_space_args
-					 lscalar_schema_path);
+  sec_at1_space& result = sec_e2::standard_host(xns, xbase_path, "", "", "", false);
 
   result.get_read_write_access();
 
@@ -236,24 +215,10 @@ make_scalar_section_space(fiber_bundles_namespace& xns,
 
   // Body:
 
-  // Make the section space schema arguments.
-
-  arg_list largs =
-    binary_section_space_schema_poset::make_arg_list("", xbase_path, "");
-
-  // Make the schema.
-
-  poset_path lschema_path =
-    xns.new_scalar_section_space_schema<sec_at0>("at0_on_triangle_mesh_schema", largs);
-
-  // Make the section space arguments.
-
-  largs = sec_at0_space::make_arg_list();
-
   // Make the section space.
 
   sec_at0_space& result =
-    xns.new_scalar_section_space<sec_at0>("at0_on_triangle_mesh", largs, lschema_path);
+    sec_at0::standard_host(xns, xbase_path, "", "", "", false);
 
   result.get_read_write_access();
 
@@ -327,24 +292,10 @@ make_scalar_section_space_2(fiber_bundles_namespace& xns,
 
   // Body:
 
-  // Make the section space schema arguments.
-
-  arg_list largs =
-    binary_section_space_schema_poset::make_arg_list("", xbase_path, "");
-
-  // Make the schema.
-
-  poset_path lschema_path =
-    xns.new_scalar_section_space_schema<sec_at0>("at0_on_triangle_mesh_2_schema", largs);
-
-  // Make the section space arguments.
-
-  largs = sec_at0_space::make_arg_list();
-
   // Make the section space.
 
   sec_at0_space& result =
-    xns.new_scalar_section_space<sec_at0>("at0_on_triangle_mesh_2", largs, lschema_path);
+    sec_at0::standard_host(xns, xbase_path, "", "_2", "", false);
 
   result.get_read_write_access();
 
@@ -484,40 +435,11 @@ make_stress_section_space(fiber_bundles_namespace& xns,
 
   // Body:
 
-  // Make the section space schema arguments.
-
-  arg_list largs =
-    binary_section_space_schema_poset::make_arg_list("", xbase_path, "");
-
-  // Make the scalar section space schema.
-
-  poset_path lscalar_schema_path =
-    xns.new_scalar_section_space_schema<sec_at0>("at0_on_triangle_mesh_schema", largs);
-
-  // Make the vector section space schema.
-
-  poset_path lvector_schema_path =
-    xns.new_vector_section_space_schema<sec_e2>("e2_on_triangle_mesh_schema", largs);
-
-  // Make the tensor section space schema.
-
-  poset_path ltensor_schema_path =
-    xns.new_tensor_section_space_schema<sec_st2_e2>("st2_e2_on_triangle_mesh_schema",
-						    largs, "",
-						    "sec_rep_descriptors/element_element_constant");
-
   // Make the section space.
 
   sec_stp_space& result =
-    xns.new_tensor_section_space<sec_st2_e2>("st2_e2_on_triangle_mesh",
-					     "", // xtensor_space_args
-					     ltensor_schema_path,
-					     "e2_on_triangle_mesh",
-					     "", // xvector_space_args
-					     lvector_schema_path,
-					     "at0_on_triangle_mesh",
-					     "", // xscalar_space_args
-					     lscalar_schema_path);
+    sec_st2_e2::standard_host(xns, xbase_path, "sec_rep_descriptors/element_element_constant", "", "", false);
+
   result.get_read_write_access();
 
   // Create a field with an array_section_dof_map (the default).

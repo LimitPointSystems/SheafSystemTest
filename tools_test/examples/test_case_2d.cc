@@ -100,14 +100,10 @@ make_coordinates()
 
   // Make unstructured (coordinate) sec_rep_space.
 
-  string lname = "coordinate_section_space";
-
   poset_path lpath("sec_rep_descriptors", "vertex_element_dlinear");
 
-  _coordinates_space = &_name_space->new_section_space<sec_e2>(lname,
-							       _block_0->path(),
-							       lpath,
-							       true);
+  _coordinates_space =
+    &sec_e2::standard_host(*_name_space, _block_0->path(true), lpath, "", "", true);
   
   // Add dofs to the coordinate space.
 
@@ -202,14 +198,10 @@ make_scalars()
 
   // Make sec_rep_space.
 
-  string lname = "scalars_section_space";
-
   poset_path lpath("sec_rep_descriptors", "vertex_element_dlinear");
 
-  _scalars_space = &_name_space->new_section_space<sec_at0>(lname,
-							    _block_0->path(),
-							    lpath,
-							    true);
+  _scalars_space =
+    &sec_at0::standard_host(*_name_space, _block_0->path(true), lpath, "", "", true);
   
   // Add dofs to the test space.
 
@@ -317,15 +309,11 @@ make_vectors()
 
   // Make unstructured (vector) sec_rep_space.
 
-  string lname = "vectors_section_space";
-
   poset_path lpath("sec_rep_descriptors", "vertex_element_dlinear");
 
-  _vectors_space = &_name_space->new_section_space<sec_e2>(lname,
-							   _block_0->path(),
-							   lpath,
-							   true);  
-
+  _vectors_space =
+    &sec_e2::standard_host(*_name_space, _block_0->path(true), lpath, "", "", true);
+  
   // Add dofs to the vector space.
 
   _vectors_space->get_read_write_access();
@@ -442,14 +430,11 @@ make_tensors()
 
   // Make unstructured (tensor) sec_rep_space.
 
-  string lname = "tensors_section_space";
-
   poset_path lpath("sec_rep_descriptors", "vertex_element_dlinear");
 
-  _tensors_space = &_name_space->new_section_space<sec_st2_e2>(lname,
-							       _block_0->path(),
-							       lpath,
-							       true);
+  _tensors_space =
+    &sec_st2_e2::standard_host(*_name_space, _block_0->path(true), lpath, "", "", true);
+  
   
   // Add dofs to the tensor space.
 

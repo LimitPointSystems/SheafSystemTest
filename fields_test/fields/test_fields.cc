@@ -339,26 +339,25 @@ make_test_base_space(fiber_bundle::fiber_bundles_namespace& xns,
 //==============================================================================
 
 ///
-const sheaf::poset_path&
+sheaf::poset_path
 fields::
 make_test_coordinates_1d(fiber_bundle::fiber_bundles_namespace& xns,
                          const sheaf::poset_path& xbase_path)
 {
   typedef fiber_bundle::sec_e1 SEC_TYPE;
 
-  static const poset_path lresult("coordinates_section_space",
-                                  "coordinates_section"); 
-
   string lname = "coordinates_section_space";
   poset_path lpath("sec_rep_descriptors", "vertex_element_dlinear");
 
-  sec_rep_space& lhost = xns.new_section_space<SEC_TYPE>(lname, xbase_path, lpath, true);
+  sec_rep_space& lhost = SEC_TYPE::standard_host(xns, xbase_path, lpath, "", "", true);
   lhost.get_read_write_access();
   
   // Make the coordinates section.
 
   SEC_TYPE* lcoords = new SEC_TYPE(&lhost);
   lcoords->put_name("coordinates_section", true, false);
+
+  poset_path lresult = lcoords->path(true);
 
   // Set the coordinates dofs;
 
@@ -384,26 +383,25 @@ make_test_coordinates_1d(fiber_bundle::fiber_bundles_namespace& xns,
 }
 
 ///
-const sheaf::poset_path&
+sheaf::poset_path
 fields::
 make_test_coordinates_2d(fiber_bundle::fiber_bundles_namespace& xns,
                          const sheaf::poset_path& xbase_path)
 {
   typedef fiber_bundle::sec_e2 SEC_TYPE;
 
-  static const poset_path lresult("coordinates_section_space",
-                                  "coordinates_section"); 
-
   string lname = "coordinates_section_space";
   poset_path lpath("sec_rep_descriptors", "vertex_element_dlinear");
 
-  sec_rep_space& lhost = xns.new_section_space<SEC_TYPE>(lname, xbase_path, lpath, true);
+  sec_rep_space& lhost = SEC_TYPE::standard_host(xns, xbase_path, lpath, "", "", true);
   lhost.get_read_write_access();
   
   // Make the coordinates section.
 
   SEC_TYPE* lcoords = new SEC_TYPE(&lhost);
   lcoords->put_name("coordinates_section", true, false);
+
+  poset_path lresult = lcoords->path(true);
 
   // Set the coordinates dofs;
 
@@ -430,20 +428,17 @@ make_test_coordinates_2d(fiber_bundle::fiber_bundles_namespace& xns,
 }
 
 ///
-const sheaf::poset_path&
+sheaf::poset_path
 fields::
 make_test_coordinates_3d(fiber_bundle::fiber_bundles_namespace& xns,
                          const sheaf::poset_path& xbase_path)
 {
   typedef fiber_bundle::sec_e3 SEC_TYPE;
 
-  static const poset_path lresult("coordinates_section_space",
-                                  "coordinates_section"); 
-
   string lname = "coordinates_section_space";
   poset_path lpath("sec_rep_descriptors", "vertex_element_dlinear");
 
-  sec_rep_space& lhost = xns.new_section_space<SEC_TYPE>(lname, xbase_path, lpath, true);
+  sec_rep_space& lhost = SEC_TYPE::standard_host(xns, xbase_path, lpath, "", "", true);
   lhost.get_read_write_access();
   
   // Make the coordinates section.
@@ -451,6 +446,8 @@ make_test_coordinates_3d(fiber_bundle::fiber_bundles_namespace& xns,
   SEC_TYPE* lcoords = new SEC_TYPE(&lhost);
   lcoords->put_name("coordinates_section", true, false);
 
+  poset_path lresult = lcoords->path(true);
+  
   // Set the coordinates dofs;
 
   SEC_TYPE::fiber_type::volatile_type lfiber;

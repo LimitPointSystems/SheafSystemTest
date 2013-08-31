@@ -267,7 +267,7 @@ test_d_array_point_locator_facet(fiber_bundles_namespace& xns)
   // Make names for the spaces:
 
   string lnames[2] = {"base_space",
-                      "coordinates_section_space"};
+                      "_coordinates_section_space"};
 
   make_names_unique(lnames, 2);
  
@@ -286,7 +286,7 @@ test_d_array_point_locator_facet(fiber_bundles_namespace& xns)
    // Create the coordinates section space.
 
   typename S::host_type& lcoords_space =
-    xns.new_section_space<S>(lcoords_space_name, lbase_path);
+    S::standard_host(xns, lbase_path, "", lcoords_space_name, "", false);
 
   lcoords_space.get_read_write_access();
 

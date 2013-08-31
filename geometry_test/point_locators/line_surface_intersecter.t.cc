@@ -68,10 +68,9 @@ make_trimesh(fiber_bundles_namespace* xns, size_type xi_size, size_type xj_size)
 sec_e3&
 make_coordinates(fiber_bundles_namespace* xns, size_type xi_size, size_type xj_size)
 {
-  poset_path lsection_space_path("coordinates_space");
   poset_path lbase_space_path("trimesh_space/top");
   
-  sec_at1_space& lcoords_space = xns->new_section_space<sec_e3>(lsection_space_path, lbase_space_path);
+  sec_at1_space& lcoords_space = sec_e3::standard_host(*xns, lbase_space_path, "", "", "", true);
   
   sec_e3& result = *(new sec_e3(&lcoords_space));
   result.get_read_write_access();
