@@ -34,7 +34,7 @@
 #include "stp_space.h"
 #include "assert_contract.h"
 #include "std_cctype.h"
-#include "fiber_bundles_namespace.impl.h"
+#include "fiber_bundles_namespace.h"
 #include "std_cstdlib.h"
 #include "storage_agent.h"
 #include "st2_e3.h"
@@ -195,19 +195,10 @@ make_scalar_sec_rep_space(fiber_bundles_namespace& xtest_namespace,
 
   // Body:
 
-  // Create the scalar section space
-
-  arg_list largs =
-    binary_section_space_schema_poset::make_arg_list("", xbase.path(false), "");
-
-  poset_path lschema_path =
-    xtest_namespace.new_scalar_section_space_schema<sec_at0>("at0_on_triangle_mesh_schema", largs);
-
-  largs = sec_at0_space::make_arg_list();
+  // Make the section space.
 
   sec_at0::host_type& result =
-    xtest_namespace.new_scalar_section_space<sec_at0>("at0_on_triangle_mesh",
-						      largs, lschema_path);
+    sec_at0::standard_host(xtest_namespace, xbase.path(false), "", "", "", false);
 
   result.get_read_write_access();
 
@@ -252,7 +243,6 @@ make_scalar_sec_rep_space(fiber_bundles_namespace& xtest_namespace,
 sec_e3::host_type&
 make_coord_sec_rep_space(fiber_bundles_namespace& xtest_namespace,
 			 abstract_poset_member& xbase,
-			 sec_at0::host_type& xscalar_space,
 			 int edge_ct_x,
 			 int edge_ct_y)
 {
@@ -260,7 +250,6 @@ make_coord_sec_rep_space(fiber_bundles_namespace& xtest_namespace,
 
   require(xtest_namespace.state_is_read_write_accessible());
   require(xbase.state_is_read_accessible());
-  require(xscalar_space.state_is_read_accessible());
   require(edge_ct_x > 0);
   require(edge_ct_y > 0);
 
@@ -268,19 +257,8 @@ make_coord_sec_rep_space(fiber_bundles_namespace& xtest_namespace,
 
   // Create the coord section space
 
-  arg_list largs =
-    binary_section_space_schema_poset::make_arg_list("", xbase.path(false), "");
-
-  poset_path lschema_path =
-    xtest_namespace.new_vector_section_space_schema<sec_e3>("e3_on_triangle_mesh_schema", largs);
-
   sec_e3::host_type& result =
-    xtest_namespace.new_vector_section_space<sec_e3>("e3_on_triangle_mesh",
-						     "",
-						     lschema_path,
-						     xscalar_space.path(false),
-						     "",
-						     xscalar_space.schema().path(false));
+    sec_e3::standard_host(xtest_namespace, xbase.path(false), "", "", "", false);
 
   result.get_read_write_access();
 
@@ -382,8 +360,6 @@ make_t2_e3_field_dofs(int xedge_ct_x, int xedge_ct_y)
 sec_t2_e3::host_type&
 make_t2_e3_sec_rep_space(fiber_bundles_namespace& xtest_namespace,
 			 abstract_poset_member& xbase,
-			 sec_e3::host_type& xvector_space,
-			 sec_at0::host_type& xscalar_space,
 			 int xedge_ct_x,
 			 int xedge_ct_y)
 {
@@ -391,8 +367,6 @@ make_t2_e3_sec_rep_space(fiber_bundles_namespace& xtest_namespace,
 
   require(xtest_namespace.state_is_read_write_accessible());
   require(xbase.state_is_read_accessible());
-  require(xvector_space.state_is_read_accessible());
-  require(xscalar_space.state_is_read_accessible());
   require(xedge_ct_x > 0);
   require(xedge_ct_y > 0);
 
@@ -400,23 +374,8 @@ make_t2_e3_sec_rep_space(fiber_bundles_namespace& xtest_namespace,
 
   // Create the tensor section space
 
-  arg_list largs =
-    binary_section_space_schema_poset::make_arg_list("sec_rep_descriptors/element_element_constant",
-						     xbase.path(false), "");
-
-  poset_path lschema_path =
-    xtest_namespace.new_tensor_section_space_schema<sec_t2_e3>("t2_e3_on_triangle_mesh_schema", largs);
-
   sec_t2_e3::host_type& result =
-    xtest_namespace.new_tensor_section_space<sec_t2_e3>("t2_e3_on_triangle_mesh",
-							"",
-							lschema_path,
-							xvector_space.path(false),
-							"",
-							xvector_space.schema().path(false),
-							xscalar_space.path(false),
-							"",
-							xscalar_space.schema().path(false));
+    sec_t2_e3::standard_host(xtest_namespace, xbase.path(false), "", "", "", false);
 
   result.get_read_write_access();
 
@@ -518,8 +477,6 @@ make_st2_e3_field_dofs(int xedge_ct_x, int xedge_ct_y)
 sec_st2_e3::host_type&
 make_st2_e3_sec_rep_space(fiber_bundles_namespace& xtest_namespace,
 			  abstract_poset_member& xbase,
-			  sec_e3::host_type& xvector_space,
-			  sec_at0::host_type& xscalar_space,
                           int xedge_ct_x,
                           int xedge_ct_y)
 {
@@ -527,8 +484,6 @@ make_st2_e3_sec_rep_space(fiber_bundles_namespace& xtest_namespace,
 
   require(xtest_namespace.state_is_read_write_accessible());
   require(xbase.state_is_read_accessible());
-  require(xvector_space.state_is_read_accessible());
-  require(xscalar_space.state_is_read_accessible());
   require(xedge_ct_x > 0);
   require(xedge_ct_y > 0);
 
@@ -536,23 +491,8 @@ make_st2_e3_sec_rep_space(fiber_bundles_namespace& xtest_namespace,
 
   // Create the tensor section space
 
-  arg_list largs =
-    binary_section_space_schema_poset::make_arg_list("sec_rep_descriptors/element_element_constant",
-						      xbase.path(false), "");
-
-  poset_path lschema_path =
-    xtest_namespace.new_tensor_section_space_schema<sec_st2_e3>("st2_e3_on_triangle_mesh_schema", largs);
-
   sec_st2_e3::host_type& result =
-    xtest_namespace.new_tensor_section_space<sec_st2_e3>("st2_e3_on_triangle_mesh",
-							 "",
-							 lschema_path,
-							 xvector_space.path(false),
-							 "",
-							 xvector_space.schema().path(false),
-							 xscalar_space.path(false),
-							 "",
-							 xscalar_space.schema().path(false));
+    sec_st2_e3::standard_host(xtest_namespace, xbase.path(false), "", "", "", false);
 
   result.get_read_write_access();
 
@@ -639,8 +579,6 @@ make_at2_e3_field_dofs(int xedge_ct_x, int xedge_ct_y)
 sec_at2_e3::host_type&
 make_at2_e3_sec_rep_space(fiber_bundles_namespace& xtest_namespace,
 			  abstract_poset_member& xbase,
-			  sec_e3::host_type& xvector_space,
-			  sec_at0::host_type& xscalar_space,
                           int xedge_ct_x,
                           int xedge_ct_y)
 {
@@ -648,8 +586,6 @@ make_at2_e3_sec_rep_space(fiber_bundles_namespace& xtest_namespace,
 
   require(xtest_namespace.state_is_read_write_accessible());
   require(xbase.state_is_read_accessible());
-  require(xvector_space.state_is_read_accessible());
-  require(xscalar_space.state_is_read_accessible());
   require(xedge_ct_x > 0);
   require(xedge_ct_y > 0);
 
@@ -657,23 +593,8 @@ make_at2_e3_sec_rep_space(fiber_bundles_namespace& xtest_namespace,
 
   // Create the tensor section space
 
-  arg_list largs =
-    binary_section_space_schema_poset::make_arg_list("sec_rep_descriptors/element_element_constant",
-						      xbase.path(false), "");
-
-  poset_path lschema_path =
-    xtest_namespace.new_tensor_section_space_schema<sec_at2_e3>("at2_e3_on_triangle_mesh_schema", largs);
-
   sec_at2_e3::host_type& result =
-    xtest_namespace.new_tensor_section_space<sec_at2_e3>("at2_e3_on_triangle_mesh",
-							 "",
-							 lschema_path,
-							 xvector_space.path(false),
-							 "",
-							 xvector_space.schema().path(false),
-							 xscalar_space.path(false),
-							 "",
-							 xscalar_space.schema().path(false));
+    sec_at2_e3::standard_host(xtest_namespace, xbase.path(false), "", "", "", false);
 
   result.get_read_write_access();
 
@@ -811,8 +732,6 @@ make_t3_e3_field_dofs(int xedge_ct_x, int xedge_ct_y)
 sec_t3_e3::host_type&
 make_t3_e3_sec_rep_space(fiber_bundles_namespace& xtest_namespace,
 			 abstract_poset_member& xbase,
-			 sec_e3::host_type& xvector_space,
-			 sec_at0::host_type& xscalar_space,
 			 int xedge_ct_x,
 			 int xedge_ct_y)
 {
@@ -820,8 +739,6 @@ make_t3_e3_sec_rep_space(fiber_bundles_namespace& xtest_namespace,
 
   require(xtest_namespace.state_is_read_write_accessible());
   require(xbase.state_is_read_accessible());
-  require(xvector_space.state_is_read_accessible());
-  require(xscalar_space.state_is_read_accessible());
   require(xedge_ct_x > 0);
   require(xedge_ct_y > 0);
 
@@ -829,23 +746,8 @@ make_t3_e3_sec_rep_space(fiber_bundles_namespace& xtest_namespace,
 
   // Create the tensor section space
 
-  arg_list largs =
-    binary_section_space_schema_poset::make_arg_list("sec_rep_descriptors/element_element_constant",
-						      xbase.path(false), "");
-
-  poset_path lschema_path =
-    xtest_namespace.new_tensor_section_space_schema<sec_t3_e3>("t3_e3_on_triangle_mesh_schema", largs);
-
   sec_t3_e3::host_type& result =
-    xtest_namespace.new_tensor_section_space<sec_t3_e3>("t3_e3_on_triangle_mesh",
-							"",
-							lschema_path,
-							xvector_space.path(false),
-							"",
-							xvector_space.schema().path(false),
-							xscalar_space.path(false),
-							"",
-							xscalar_space.schema().path(false));
+    sec_t3_e3::standard_host(xtest_namespace, xbase.path(false), "", "", "", false);
 
   result.get_read_write_access();
 
@@ -911,32 +813,22 @@ main(int argc, char* argv[])
   lbase_space.put_name("triangle_block", true, false);
 
   sec_at0::host_type& lat0_srs =
-    make_scalar_sec_rep_space(test_namespace, lbase_space,
-			      edge_ct_x, edge_ct_y);
+    make_scalar_sec_rep_space(test_namespace, lbase_space, edge_ct_x, edge_ct_y);
 
   sec_e3::host_type& le3_srs =
-    make_coord_sec_rep_space(test_namespace, lbase_space,
-			     lat0_srs, edge_ct_x, edge_ct_y);
+    make_coord_sec_rep_space(test_namespace, lbase_space, edge_ct_x, edge_ct_y);
 
   sec_t2_e3::host_type& lt2_e3_srs =
-    make_t2_e3_sec_rep_space(test_namespace, lbase_space,
-			     le3_srs, lat0_srs,
-			     edge_ct_x, edge_ct_y);
+    make_t2_e3_sec_rep_space(test_namespace, lbase_space, edge_ct_x, edge_ct_y);
 
   sec_st2_e3::host_type& lst2_e3_srs =
-    make_st2_e3_sec_rep_space(test_namespace, lbase_space,
-			      le3_srs, lat0_srs,
-			      edge_ct_x, edge_ct_y);
+    make_st2_e3_sec_rep_space(test_namespace, lbase_space, edge_ct_x, edge_ct_y);
 
   sec_at2_e3::host_type& lat2_e3_srs =
-    make_at2_e3_sec_rep_space(test_namespace, lbase_space,
-			      le3_srs, lat0_srs,
-			      edge_ct_x, edge_ct_y);
+    make_at2_e3_sec_rep_space(test_namespace, lbase_space, edge_ct_x, edge_ct_y);
 
   sec_t3_e3::host_type& lt3_e3_srs =
-    make_t3_e3_sec_rep_space(test_namespace, lbase_space,
-			     le3_srs, lat0_srs,
-			     edge_ct_x, edge_ct_y);
+    make_t3_e3_sec_rep_space(test_namespace, lbase_space, edge_ct_x, edge_ct_y);
 
   cout << test_namespace << endl;
 

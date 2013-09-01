@@ -1100,11 +1100,7 @@ void make_test_sections(fiber_bundles_namespace& xns,
 
   // Create the section space
 
-//   host_type& lsection_space =
-//     xns.new_section_space<T>(lspace_name, xbase_path);
-
   host_type& lsection_space = T::standard_host(xns, xbase_path, "", lspace_name, "", true);
-
 
   // Also, assign values to the section degrees of freedom.
   // Currently these values are not realistic and are the same
@@ -1159,184 +1155,186 @@ set_dofs(T& xresult)
   }
 }
 
+/// @todo Remove.
+
 //==============================================================================
 // SECTION SPACE FACET
 //==============================================================================
 
-template <typename host_type>
-struct SHEAF_DLL_SPEC new_host_space_impl
-{
-  template <typename section_type>
-  static host_type& new_space(fiber_bundles_namespace& xns,
-			      const string& xname,
-			      const poset_path& xrep_path,
-			      const poset_path& xbase_path)
-  {
-    typedef typename section_type::scalar_type scalar_type;
-    typedef typename section_type::vector_space_type vector_type;
-    typedef binary_section_space_schema_poset schema_host_type;
+// template <typename host_type>
+// struct SHEAF_DLL_SPEC new_host_space_impl
+// {
+//   template <typename section_type>
+//   static host_type& new_space(fiber_bundles_namespace& xns,
+// 			      const string& xname,
+// 			      const poset_path& xrep_path,
+// 			      const poset_path& xbase_path)
+//   {
+//     typedef typename section_type::scalar_type scalar_type;
+//     typedef typename section_type::vector_space_type vector_type;
+//     typedef binary_section_space_schema_poset schema_host_type;
 
-    // Make the section space schema arguments.
+//     // Make the section space schema arguments.
 
-    arg_list lsss_args = schema_host_type::make_arg_list(xrep_path, xbase_path, "");
+//     arg_list lsss_args = schema_host_type::make_arg_list(xrep_path, xbase_path, "");
 
-    // Make the scalar section space schema.
+//     // Make the scalar section space schema.
 
-    poset_path lscalar_schema_path =
-      xns.new_scalar_section_space_schema<scalar_type>("", lsss_args);
+//     poset_path lscalar_schema_path =
+//       xns.new_scalar_section_space_schema<scalar_type>("", lsss_args);
 
-    // Make the vector section space schema.
+//     // Make the vector section space schema.
 
-    poset_path lvector_schema_path =
-      xns.new_vector_section_space_schema<vector_type>("", lsss_args);
+//     poset_path lvector_schema_path =
+//       xns.new_vector_section_space_schema<vector_type>("", lsss_args);
 
-    // Make the tensor section space schema.
+//     // Make the tensor section space schema.
 
-    poset_path ltensor_schema_path =
-      xns.new_tensor_section_space_schema<section_type>("", lsss_args);
+//     poset_path ltensor_schema_path =
+//       xns.new_tensor_section_space_schema<section_type>("", lsss_args);
 
-    // Make the section space.
+//     // Make the section space.
 
-    host_type& result =
-      xns.new_tensor_section_space<section_type>(xname, "",
-						 ltensor_schema_path,
-						 "", "",
-						 lvector_schema_path,
-						 "", "",
-						 lscalar_schema_path);
+//     host_type& result =
+//       xns.new_tensor_section_space<section_type>(xname, "",
+// 						 ltensor_schema_path,
+// 						 "", "",
+// 						 lvector_schema_path,
+// 						 "", "",
+// 						 lscalar_schema_path);
 
-    return result;
-  };
-};
+//     return result;
+//   };
+// };
 
-template<>
-struct SHEAF_DLL_SPEC new_host_space_impl<sec_at1_space>
-{
-  template <typename section_type>
-  static sec_at1_space& new_space(fiber_bundles_namespace& xns,
-				  const string& xname,
-				  const poset_path& xrep_path,
-				  const poset_path& xbase_path)
-  {
-    typedef typename section_type::scalar_type scalar_type;
-    typedef binary_section_space_schema_poset schema_host_type;
+// template<>
+// struct SHEAF_DLL_SPEC new_host_space_impl<sec_at1_space>
+// {
+//   template <typename section_type>
+//   static sec_at1_space& new_space(fiber_bundles_namespace& xns,
+// 				  const string& xname,
+// 				  const poset_path& xrep_path,
+// 				  const poset_path& xbase_path)
+//   {
+//     typedef typename section_type::scalar_type scalar_type;
+//     typedef binary_section_space_schema_poset schema_host_type;
 
-    // Make the section space schema arguments.
+//     // Make the section space schema arguments.
 
-    arg_list lsss_args = schema_host_type::make_arg_list(xrep_path, xbase_path, "");
+//     arg_list lsss_args = schema_host_type::make_arg_list(xrep_path, xbase_path, "");
 
-    // Make the scalar section space schema.
+//     // Make the scalar section space schema.
 
-    poset_path lscalar_schema_path =
-      xns.new_scalar_section_space_schema<scalar_type>("", lsss_args);
+//     poset_path lscalar_schema_path =
+//       xns.new_scalar_section_space_schema<scalar_type>("", lsss_args);
 
-    // Make the vector section space schema.
+//     // Make the vector section space schema.
 
-    poset_path lvector_schema_path =
-      xns.new_vector_section_space_schema<section_type>("", lsss_args);
+//     poset_path lvector_schema_path =
+//       xns.new_vector_section_space_schema<section_type>("", lsss_args);
 
-    // Make the section space.
+//     // Make the section space.
 
-    sec_at1_space& result =
-      xns.new_vector_section_space<section_type>(xname, "",
-						 lvector_schema_path,
-						 "", "",
-						 lscalar_schema_path);
+//     sec_at1_space& result =
+//       xns.new_vector_section_space<section_type>(xname, "",
+// 						 lvector_schema_path,
+// 						 "", "",
+// 						 lscalar_schema_path);
 
-    return result;
-  };
-};
+//     return result;
+//   };
+// };
 
-template<>
-struct SHEAF_DLL_SPEC new_host_space_impl<sec_at0_space>
-{
-  template <typename section_type>
-  static sec_at0_space& new_space(fiber_bundles_namespace& xns,
-				  const string& xname,
-				  const poset_path& xrep_path,
-				  const poset_path& xbase_path)
-  {
-    typedef binary_section_space_schema_poset schema_host_type;
+// template<>
+// struct SHEAF_DLL_SPEC new_host_space_impl<sec_at0_space>
+// {
+//   template <typename section_type>
+//   static sec_at0_space& new_space(fiber_bundles_namespace& xns,
+// 				  const string& xname,
+// 				  const poset_path& xrep_path,
+// 				  const poset_path& xbase_path)
+//   {
+//     typedef binary_section_space_schema_poset schema_host_type;
 
-    // Make the section space schema arguments.
+//     // Make the section space schema arguments.
 
-    arg_list lsss_args = schema_host_type::make_arg_list(xrep_path, xbase_path, "");
+//     arg_list lsss_args = schema_host_type::make_arg_list(xrep_path, xbase_path, "");
 
-    // Make the scalar section space schema.
+//     // Make the scalar section space schema.
 
-    poset_path lscalar_schema_path =
-      xns.new_scalar_section_space_schema<section_type>("", lsss_args);
+//     poset_path lscalar_schema_path =
+//       xns.new_scalar_section_space_schema<section_type>("", lsss_args);
 
-    // Make the section space.
+//     // Make the section space.
 
-    sec_at0_space& result =
-      xns.new_scalar_section_space<section_type>(xname, "",
-						 lscalar_schema_path);
+//     sec_at0_space& result =
+//       xns.new_scalar_section_space<section_type>(xname, "",
+// 						 lscalar_schema_path);
 
-    return result;
-  };
-};
+//     return result;
+//   };
+// };
 
-template <typename P>
-typename P::host_type&
-new_host_space(fiber_bundles_namespace& xns,
-	       const string& xname,
-	       const poset_path& xbase_path)
-{
-  // Preconditions:
+// template <typename P>
+// typename P::host_type&
+// new_host_space(fiber_bundles_namespace& xns,
+// 	       const string& xname,
+// 	       const poset_path& xbase_path)
+// {
+//   // Preconditions:
 
-  require(xns.state_is_read_write_accessible());
+//   require(xns.state_is_read_write_accessible());
 
-  // Body:
+//   // Body:
 
-  typedef P section_type;
-  typedef typename P::host_type host_type;
-  typedef new_host_space_impl<host_type> impl_type;
+//   typedef P section_type;
+//   typedef typename P::host_type host_type;
+//   typedef new_host_space_impl<host_type> impl_type;
 
-  poset_path lrep_path = P::standard_rep_path();
+//   poset_path lrep_path = P::standard_rep_path();
 
-  // Call to function template member of template
-  // requires telling compiler that dependent name is a template.
+//   // Call to function template member of template
+//   // requires telling compiler that dependent name is a template.
 
-  host_type& result =
-    impl_type::template new_space<section_type>(xns, xname, lrep_path, xbase_path);
+//   host_type& result =
+//     impl_type::template new_space<section_type>(xns, xname, lrep_path, xbase_path);
 
-  // Postconditions:
+//   // Postconditions:
 
-  // Exit:
+//   // Exit:
 
-  return result;
-}
+//   return result;
+// }
 
-template <typename P>
-typename P::host_type&
-new_host_space(fiber_bundles_namespace& xns,
-	       const string& xname,
-	       const poset_path& xrep_path,
-	       const poset_path& xbase_path)
-{
-  // Preconditions:
+// template <typename P>
+// typename P::host_type&
+// new_host_space(fiber_bundles_namespace& xns,
+// 	       const string& xname,
+// 	       const poset_path& xrep_path,
+// 	       const poset_path& xbase_path)
+// {
+//   // Preconditions:
 
-  require(xns.state_is_read_write_accessible());
+//   require(xns.state_is_read_write_accessible());
 
-  // Body:
+//   // Body:
 
-  typedef P section_type;
-  typedef typename P::host_type host_type;
-  typedef new_host_space_impl<host_type> impl_type;
+//   typedef P section_type;
+//   typedef typename P::host_type host_type;
+//   typedef new_host_space_impl<host_type> impl_type;
   
-  // Call to function template member of template
-  // requires telling compiler that dependent name is a template.
+//   // Call to function template member of template
+//   // requires telling compiler that dependent name is a template.
 
-  host_type& result =
-    impl_type::template new_space<section_type>(xns, xname, xrep_path, xbase_path);
+//   host_type& result =
+//     impl_type::template new_space<section_type>(xns, xname, xrep_path, xbase_path);
 
-  // Postconditions:
+//   // Postconditions:
 
-  // Exit:
+//   // Exit:
 
-  return result;
-}
+//   return result;
+// }
 
 
 //==============================================================================

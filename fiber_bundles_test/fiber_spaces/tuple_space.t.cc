@@ -19,8 +19,8 @@
 #include "sec_tuple_space.h"
 #include "std_iostream.h"
 #include "test_fibers.impl.h"
-#include "tuple.h"
-#include "tuple_space.h"
+#include "e3.h"
+#include "at1_space.h"
 #include "wsv_block.h"
 
 
@@ -40,26 +40,7 @@ main(int xargc, char* xargv[])
   fiber_bundles_namespace lns(filename);
   lns.get_read_write_access();
 
-  // Make a tuple space schema.
-
-  string lmember_names = "x DOUBLE false y DOUBLE false";
-
-  schema_poset_member lschema(lns,
-                              "tuple_space_test_schema",
-                              tuple_space::standard_schema_path(),
-                              lmember_names,
-                              true);
-
-  poset_path lschema_path = lschema.path();
-
-  lschema.detach_from_state();
-
-  arg_list largs = tuple_space::make_arg_list(2);
-  
-  poset_path lfiber_space_path("tuple_space_test");
-  
-  fiber_bundle::tuple::host_type& lspace =
-    lns.new_fiber_space< fiber_bundle::tuple>(lfiber_space_path, largs, lschema_path, true);
+  fiber_bundle::tuple::host_type& lspace = e2::standard_host(lns, "", false);
 
   //============================================================================
 

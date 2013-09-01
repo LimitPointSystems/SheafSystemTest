@@ -192,10 +192,9 @@ void test_auto_allocated_push()
   structured_block_1d lbase(&lbase_host, 3, true);
   lbase.put_name(lbase_name, true, true);
 
-  sec_rep_space& lhost = lns.new_section_space<sec_e1_uniform>(lpath,
-							       lbase.path(),
-							       "",
-							       true);
+  sec_rep_space& lhost =
+    sec_e1_uniform::standard_host(lns, lbase.path(true), "", "_coarse_mesh", "", true);
+
   lhost.get_read_write_access();  
   
   sec_e1_uniform coarse_coords(&lhost, -2.0, 2.0, true);

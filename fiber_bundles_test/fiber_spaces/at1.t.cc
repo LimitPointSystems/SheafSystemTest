@@ -9,6 +9,7 @@
 
 #include "at1.h"
 #include "at1_space.h"
+#include "at0_space.h"
 
 #include "assert_contract.h"
 #include "fiber_bundles_namespace.h"
@@ -65,9 +66,16 @@ namespace
 
     //==========================================================================
 
+    typedef at0 S;
+    poset_path lscalar_space_path = S::standard_host(xns, "", true).path(true);
+
     typedef at1 P;
 
-    P::host_type& lhost = xns.new_fiber_space<P>();
+    P::host_type& lhost = P::new_host(xns,
+				      "test_at1_persistent",
+				      P::standard_schema_path(),
+				      lscalar_space_path,
+				      true);
     lhost.get_read_write_access(true);
   
     //test_persistent_type<P>(lhost);

@@ -100,7 +100,7 @@ test_persistent_abstract_poset_member_facet(fiber_bundles_namespace& xns)
 
   // Create a persistent object.
 
-  typename PD::host_type& lhost = xns.new_fiber_space<PD>();
+  typename PD::host_type& lhost = PD::standard_host(xns, "test_persistent_abstract_poset_member_facet", false);
   lhost.get_read_write_access(true);
   
   PB* ltest = new PB(&lhost);
@@ -285,7 +285,7 @@ test_fiber_bundles_namespace_poset_facet(fiber_bundles_namespace& xns,
 
   // Body:
 
-  const string lname = "test_section_space_" + T::static_class_name();
+  const string lname = "_test_section_space_" + T::static_class_name();
 
   print_footer("End testing " + lname);
 
@@ -293,7 +293,7 @@ test_fiber_bundles_namespace_poset_facet(fiber_bundles_namespace& xns,
 
   typedef typename T::host_type S;
 
-  S& lspace = xns.new_section_space<T>(lname, lbase_path);
+  S& lspace = T::standard_host(xns, lbase_path, "", lname, "", false);
 
   lresult &= test_fiber_bundles_namespace_poset_facet(xns, lspace);
 
@@ -317,7 +317,7 @@ test_fiber_bundles_namespace_poset_facet(fiber_bundles_namespace& xns)
 
   // Body:
 
-  const string lname = T::static_class_name() + "_space";
+  const string lname = "_" + T::static_class_name() + "_space";
 
   print_header("Begin testing " + lname);
 
@@ -325,7 +325,7 @@ test_fiber_bundles_namespace_poset_facet(fiber_bundles_namespace& xns)
 
   typedef typename T::host_type S;
 
-  S& lspace = xns.new_fiber_space<T>(lname);
+  S& lspace = T::standard_host(xns, lname, false);
 
   lresult &= test_fiber_bundles_namespace_poset_facet(xns, lspace);
 
@@ -349,13 +349,13 @@ test_fiber_bundles_namespace_poset_facet(fiber_bundles_namespace& xns,
 
   // Body:
 
-  const string lname = "test_section_space_" + T::static_class_name();
+  const string lname = "_test_section_space_" + T::static_class_name();
 
   print_footer("End testing " + lname);
 
   bool lresult = true;
 
-  S& lspace = xns.new_section_space<T>(lname, lbase_path);
+  S& lspace = T::standard_host(xns, lbase_path, "", lname, "", false);
 
   lresult &= test_fiber_bundles_namespace_poset_facet(xns, lspace);
 

@@ -44,7 +44,7 @@ main(int argc, char* argv[])
   // Make the section space.
 
   S::host_type& lhost =
-    new_host_space<sec_e2_uniform>(lns, "uniform_coordinates_host", lbase_path);
+    S::standard_host(lns, lbase_path, "", "", "", false);
   
   // Make the section.
 

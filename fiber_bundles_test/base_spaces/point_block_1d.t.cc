@@ -61,7 +61,7 @@ main(int xargc, char* xargv[])
   // Make uniform (coordinate) section.
 
   sec_e1_uniform::host_type& luniform_space =
-    new_host_space<sec_e1_uniform>(lns, "coordinates_section_space", lbase_path);
+    sec_e1_uniform::standard_host(lns, lbase_path, "", "", "", false);
 
   sec_e1_uniform lcoords(&luniform_space, 0.0, 1.0, true);
   lcoords.put_name("coordinates", true, true);
@@ -71,9 +71,7 @@ main(int xargc, char* xargv[])
   // Make non-uniform (property) section.
 
   sec_at0::host_type& lprop_space =
-    new_host_space<sec_at0>(lns, "property_section_space",
-			    "sec_rep_descriptors/vertex_vertex_constant",
-			    lbase_path);
+    sec_at0::standard_host(lns, lbase_path, "sec_rep_descriptors/vertex_vertex_constant", "", "", false);
 
   sec_at0 lprop(&lprop_space);
   lprop.get_read_write_access();

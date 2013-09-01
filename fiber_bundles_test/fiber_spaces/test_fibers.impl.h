@@ -3392,7 +3392,7 @@ test_persistent_group_facet(fiber_bundles_namespace& xns)
 
   print_subheader("Testing persistent type \"" + lfiber_name +"\"");
 
-  typename P::host_type& host = xns.new_group_space<P>();
+  typename P::host_type& host = P::standard_host(xns, "test_persistent_group_facet", false);
   host.get_read_write_access();
 
   P test3(&host);

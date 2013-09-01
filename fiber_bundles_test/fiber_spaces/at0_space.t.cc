@@ -36,24 +36,13 @@ main( int xargc, char* xargv[])
 
   fiber_bundles_namespace lns(filename);
 
-  // Make a scalar space, use standard schema.
-
-  arg_list lscalar_args = at0_space::make_arg_list();
-  poset_path lscalar_schema_path = at0_space::standard_schema_path();
-  at0_space& lscalar_space =
-    lns.new_fiber_space<at0>("at0_space_test", 
-			     lscalar_args,
-			     lscalar_schema_path,
-			     true);
-
-  at0_space& lscalar_space2 =
-    lns.new_scalar_space<at0>("deep_instantiation_test_at0");
+  at0_space& lscalar_space = at0::standard_host(lns, "", true);
 
   //============================================================================
 
   // Test member functions common to all "*_space" classes.
 
-  test_spaces_common<at0_space>(lns, lscalar_space2);
+  test_spaces_common<at0_space>(lns, lscalar_space);
   
   //============================================================================
 
