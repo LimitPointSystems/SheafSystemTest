@@ -53,6 +53,10 @@
 #include "sec_ed_invertible.h"
 #endif
 
+#ifndef SEC_REP_DESCRIPTOR_H
+#include "sec_rep_descriptor.h"
+#endif
+
 #ifndef STD_IOMANIP_H
 #include "std_iomanip.h"
 #endif
@@ -1170,8 +1174,8 @@ void make_test_sections(fiber_bundles_namespace& xns,
   // an additional argument to this function. 
 
   static const poset_path
-     lrep_path(fiber_bundles_namespace::standard_sec_rep_descriptor_poset_name(),
-               //"element_element_constant");
+    //     lrep_path(fiber_bundles_namespace::standard_sec_rep_descriptor_poset_name(),
+    lrep_path(sec_rep_descriptor::standard_host_path().poset_name(),
                "vertex_element_dlinear");
 
   // Create xnum_sections sections with names
