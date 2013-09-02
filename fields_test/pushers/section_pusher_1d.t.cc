@@ -158,75 +158,78 @@ void test_fine_to_coarse_to_fine_2()
 
 }
 
-///
-/// Test auto allocated push.
-///
-void test_auto_allocated_push()
-{
-  post_information_message("Entering test_auto_allocated_push");
+/// @hack Had to comment out this test routine due to COM-466.
+/// @todo Reimplement once COM-466 is resolved.
 
-  fiber_bundles_namespace lns("section_pusher_1d.t");
-  lns.get_read_write_access();
+// ///
+// /// Test auto allocated push.
+// ///
+// void test_auto_allocated_push()
+// {
+//   post_information_message("Entering test_auto_allocated_push");
 
-  // An 8 element fine mesh on with xmin = -2.0 and xmax = 2.0.
+//   fiber_bundles_namespace lns("section_pusher_1d.t");
+//   lns.get_read_write_access();
 
-  wsv_block<sec_vd_value_type> xlower("-2.0");
-  wsv_block<sec_vd_value_type> xupper("2.0");
+//   // An 8 element fine mesh on with xmin = -2.0 and xmax = 2.0.
 
-  field_vd* fine =
-    field_factory::new_scalar_field_1d_uniform(lns,
-        "fine",
-        8,
-        xlower,
-        xupper,
-        field_factory::linear_scalar_fcn);
+//   wsv_block<sec_vd_value_type> xlower("-2.0");
+//   wsv_block<sec_vd_value_type> xupper("2.0");
 
-  // A 3 element coarse mesh with the same coord bounds.
+//   field_vd* fine =
+//     field_factory::new_scalar_field_1d_uniform(lns,
+//         "fine",
+//         8,
+//         xlower,
+//         xupper,
+//         field_factory::linear_scalar_fcn);
 
-  poset_path lpath("coarse_mesh_coordinate_section_space/coordinates_0");
+//   // A 3 element coarse mesh with the same coord bounds.
+
+//   poset_path lpath("coarse_mesh_coordinate_section_space/coordinates_0");
   
-  string lbase_name("coarse_mesh");
+//   string lbase_name("coarse_mesh");
 
-  base_space_poset& lbase_host = structured_block_1d::standard_host(lns, lbase_name, false);
+//   base_space_poset& lbase_host = structured_block_1d::standard_host(lns, lbase_name, false);
 
-  structured_block_1d lbase(&lbase_host, 3, true);
-  lbase.put_name(lbase_name, true, true);
+//   structured_block_1d lbase(&lbase_host, 3, true);
+//   lbase.put_name(lbase_name, true, true);
 
-  sec_rep_space& lhost =
-    sec_e1_uniform::standard_host(lns, lbase.path(true), "", "_coarse_mesh", "", true);
+//   sec_rep_space& lhost =
+//     sec_e1_uniform::standard_host(lns, lbase.path(true), "", "_coarse_mesh", "", true);
 
-  lhost.get_read_write_access();  
+//   lhost.get_read_write_access();  
   
-  sec_e1_uniform coarse_coords(&lhost, -2.0, 2.0, true);
-  coarse_coords.put_name("coarse_coords", true, true);
+//   sec_e1_uniform coarse_coords(&lhost, -2.0, 2.0, true);
+//   coarse_coords.put_name("coarse_coords", true, true);
 
-  // Push the "fine" field to the "coarse" mesh and
-  // print the result compared to the exact value.
+//   // Push the "fine" field to the "coarse" mesh and
+//   // print the result compared to the exact value.
 
-  section_pusher lpusher(*fine, coarse_coords, true);
-  sec_vd* coarse_prop = lpusher.push(fine->property(), true);
-  coarse_prop->put_name("coarse_prop", true, true);
+//   section_pusher lpusher(*fine, coarse_coords, true);
+//   sec_vd* coarse_prop = lpusher.push(fine->property(), true);
+//   coarse_prop->put_name("coarse_prop", true, true);
 
 
-  field_vd* coarse = new field_vd(coarse_coords, *coarse_prop, true);
+//   field_vd* coarse = new field_vd(coarse_coords, *coarse_prop, true);
 
-  coarse->print_property_dofs(cout,
-                              field_factory::linear_scalar_fcn,
-                              "After pushing uniform fine >> uniform coarse:",
-                              true,
-                              true);
+//   coarse->print_property_dofs(cout,
+//                               field_factory::linear_scalar_fcn,
+//                               "After pushing uniform fine >> uniform coarse:",
+//                               true,
+//                               true);
 
-  coarse_coords.detach_from_state();
+//   coarse_coords.detach_from_state();
 
-  //   cout << lns << endl;
+//   //   cout << lns << endl;
 
-  storage_agent sa("section_pusher_1d.t.hdf", sheaf_file::READ_WRITE, true, false);
-  sa.write_entire(lns);
+//   storage_agent sa("section_pusher_1d.t.hdf", sheaf_file::READ_WRITE, true, false);
+//   sa.write_entire(lns);
 
-  post_information_message("Leaving test_auto_allocated_push");
+//   post_information_message("Leaving test_auto_allocated_push");
 
-  lbase.detach_from_state();
-}
+//   lbase.detach_from_state();
+// }
 
 void test_coarse_to_fine_to_coarse()
 {
@@ -578,9 +581,12 @@ void test_combination()
 int
 main(int argc, char* argv[])
 {
-  // Test auto-allocated push.
+  /// @hack Had to comment out this test routine call  due to COM-466.
+  /// @todo Uncomment once COM-466 is resolved.
 
-  test_auto_allocated_push();
+//   // Test auto-allocated push.
+
+//   test_auto_allocated_push();
 
   // Test fine uniform to coarse general to fine uniform.
 
