@@ -96,7 +96,7 @@ test_fiber_bundles_namespace_poset_facet
   typedef fiber_bundle::binary_section_space_schema_member M;
   typedef fiber_bundle::sec_at0 S;
 
-  P& lposet = M::standard_host<S>(xns, xbase_path, "", "", false);
+  P& lposet = M::standard_host<S>(xns, xbase_path, sec_at0::standard_rep_path(), "", false);
 
   lresult &= test_fiber_bundles_namespace_poset_facet<P>(xns, lposet);
 
