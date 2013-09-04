@@ -14,6 +14,7 @@
 #include "sheaf_dll_spec.h"
 #endif
 
+#include "arg_list.h"
 #include "assert_contract.h"
 #include "block.h"
 #include "list_pool.h"

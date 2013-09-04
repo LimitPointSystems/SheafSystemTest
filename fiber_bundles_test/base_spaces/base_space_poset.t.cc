@@ -19,74 +19,6 @@ using namespace fiber_bundle;
 
 namespace
 {
-  ///
-  /// Simple derived class to allow access to protected functions
-  /// in base_space_poset.
-  ///
-  class base_space_poset_derived : public base_space_poset
-  {
-  public:
-
-    base_space_poset_derived() {}
-
-    ~base_space_poset_derived() {}
-
-    base_space_poset_derived(const base_space_poset_derived& xother)
-      : base_space_poset(xother)
-    {
-    }
-
-    base_space_poset_derived(const poset& xother)
-      : base_space_poset(xother)
-    {
-    }
-
-    base_space_poset_derived(const namespace_poset* xhost,
-                             pod_index_type xindex)
-      : base_space_poset(xhost, xindex)
-    {
-    }
-
-    base_space_poset_derived(const namespace_poset* xhost,
-                             const scoped_index&  xindex)
-      : base_space_poset(xhost, xindex)
-    {
-    }
-
-    base_space_poset_derived(const namespace_poset* xhost,
-                             const string& xname)
-      : base_space_poset(xhost, xname)
-    {
-    }
-
-    base_space_poset_derived(const abstract_poset_member* xmbr)
-      : base_space_poset(xmbr) 
-
-    {
-    }
-
-    virtual void detach_from_state()
-    {
-      base_space_poset::detach_from_state();
-    }
-
-    virtual base_space_poset_derived* clone() const
-    {
-      base_space_poset* lbsp = base_space_poset::clone();
-      base_space_poset_derived* lresult =
-        dynamic_cast<base_space_poset_derived*>(lbsp);
-      return lresult; 
-    }
-
-    base_space_poset_derived& operator=(const poset_state_handle& xother)
-    {
-      base_space_poset& lbsp = base_space_poset::operator=(xother);
-      base_space_poset_derived* lresult =
-        dynamic_cast<base_space_poset_derived*>(&lbsp);
-      return *lresult; 
-    }
-  };
-
 } //end unnamed namespace
 
 int
@@ -115,50 +47,6 @@ main(int xargc, char* xargv[])
 
   //============================================================================
 
-  string lname = lbase_space.name();
-  scoped_index lindex = lbase_space.index();
-
-
-  //base_space_poset(const namespace_poset* xhost, pod_index_type xindex);
-
-  base_space_poset_derived lbase_derived4(&lns, lindex.hub_pod());
-
-  //base_space_poset(const namespace_poset* xhost, const scoped_index& xindex);
-
-  base_space_poset_derived lbase_derived5(&lns, lindex);
-
-  //base_space_poset(const namespace_poset* xhost, const string& xname);
-
-  base_space_poset_derived lbase_derived6(&lns, lname);
-
-  //base_space_poset(const base_space_poset& xother);
-  base_space_poset_derived lbase_derived7(lbase_derived6);
-
-  //base_space_poset(const poset& xother);
-  //base_space_poset_derived lbase_derived7a(lbase_space);
-
-  //base_space_poset(const abstract_poset_member* xmbr);
-
-  namespace_poset_member lnpm(&lns, lindex);
-  const abstract_poset_member* lmbr = &lnpm;
-  base_space_poset_derived lbase_derived8(lmbr);
- 
-  poset_state_handle* lpsh = &lbase_derived4;
-  base_space_poset_derived lassign;
-  lassign = (*lpsh);
-
-  base_space_poset_derived* lclone = lbase_derived4.clone();
-
-  lbase_derived4.detach_from_state();
-  lbase_derived5.detach_from_state();
-  lbase_derived6.detach_from_state();
-  lbase_derived7.detach_from_state();
-  lbase_derived8.detach_from_state();
-  lnpm.detach_from_state(); 
-  lassign.detach_from_state();
-
-  //============================================================================
-
   //void put_max_db(int xmax_db);
 
   lbase_space.put_max_db(2);
@@ -171,13 +59,6 @@ main(int xargc, char* xargv[])
   //void update_max_db(int xmax_db);
 
   lbase_space.update_max_db(++lmax_db);
-
-  //static arg_list make_args(int xmax_db);
-
-  lbase_space.put_max_db(1);
-
-  arg_list larg_list = base_space_poset::make_args(lmax_db);
-  cout << "larg_list = " << larg_list << endl;
 
   //============================================================================
 
@@ -421,7 +302,7 @@ main(int xargc, char* xargv[])
 
   //virtual bool is_ancestor_of(const any* other) const;
 
-  bool lis_ancestor_of = lbase_space.is_ancestor_of(&lbase_derived4);
+  bool lis_ancestor_of = lbase_space.is_ancestor_of(&lbase_space);
   cout << "lis_ancestor_of = " << boolalpha << lis_ancestor_of << endl;
 
   //============================================================================
