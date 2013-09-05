@@ -3944,12 +3944,16 @@ void test_spaces_common(fiber_bundles_namespace& xns, T& xspace)
   print_subheader("Testing "+lspace_name+"(xtop, xbottom)");
   TD* lspace1 = new TD(new M, new M);
 
+  //T lspace2(xspace);
+  print_subheader("Testing copy constructor");
+  TD* lspace2 = new TD(xspace);
+
   //T& operator=(const poset_state_handle& xother);
   print_subheader("Testing operator=(const poset_state_handle& xother)");
-  TD* lspace2 = new TD;
-  lspace1->get_read_access();
-  poset_state_handle* lpsh = lspace1;
-  lspace2->operator=(*lpsh);
+  TD* lspace3 = new TD;
+  lspace2->get_read_access();
+  poset_state_handle* lpsh = lspace2;
+  lspace3->operator=(*lpsh);
 
   //==========================================================================
 

@@ -60,6 +60,10 @@ main(int xargc, char* xargv[])
 
   lbase_space.update_max_db(++lmax_db);
 
+  //static arg_list make_args(int xmax_db);
+
+  lbase_space.put_max_db(1);
+
   //============================================================================
 
   bool ltest;
