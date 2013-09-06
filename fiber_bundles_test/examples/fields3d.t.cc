@@ -375,7 +375,7 @@ make_t2_e3_sec_rep_space(fiber_bundles_namespace& xtest_namespace,
   // Create the tensor section space
 
   sec_t2_e3::host_type& result =
-    sec_t2_e3::standard_host(xtest_namespace, xbase.path(false), "", "", "", false);
+    sec_t2_e3::standard_host(xtest_namespace, xbase.path(false), "sec_rep_descriptors/element_element_constant", "", "", false);
 
   result.get_read_write_access();
 
@@ -492,7 +492,7 @@ make_st2_e3_sec_rep_space(fiber_bundles_namespace& xtest_namespace,
   // Create the tensor section space
 
   sec_st2_e3::host_type& result =
-    sec_st2_e3::standard_host(xtest_namespace, xbase.path(false), "", "", "", false);
+    sec_st2_e3::standard_host(xtest_namespace, xbase.path(false), "sec_rep_descriptors/element_element_constant", "", "", false);
 
   result.get_read_write_access();
 
@@ -594,7 +594,7 @@ make_at2_e3_sec_rep_space(fiber_bundles_namespace& xtest_namespace,
   // Create the tensor section space
 
   sec_at2_e3::host_type& result =
-    sec_at2_e3::standard_host(xtest_namespace, xbase.path(false), "", "", "", false);
+    sec_at2_e3::standard_host(xtest_namespace, xbase.path(false), "sec_rep_descriptors/element_element_constant", "", "", false);
 
   result.get_read_write_access();
 
@@ -747,7 +747,7 @@ make_t3_e3_sec_rep_space(fiber_bundles_namespace& xtest_namespace,
   // Create the tensor section space
 
   sec_t3_e3::host_type& result =
-    sec_t3_e3::standard_host(xtest_namespace, xbase.path(false), "", "", "", false);
+    sec_t3_e3::standard_host(xtest_namespace, xbase.path(false), "sec_rep_descriptors/element_element_constant", "", "", false);
 
   result.get_read_write_access();
 

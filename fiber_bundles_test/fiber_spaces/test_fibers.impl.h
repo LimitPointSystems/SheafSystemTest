@@ -3940,45 +3940,20 @@ void test_spaces_common(fiber_bundles_namespace& xns, T& xspace)
   bool lis_ancestor_of = xspace.is_ancestor_of(lspace_clone);
   cout << "  lis_ancestor_of = " << boolalpha << lis_ancestor_of << endl;
 
-  //T lspace3(xspace);
-  print_subheader("Testing copy constructor");
-  TD* lspace3 = new TD(xspace);
-
-  //T lspace4(xns, xspace.index(), true);
-  print_subheader("Testing " + lspace_name +
-                  "(const namespace_poset& xhost, scoped_index xindex,",
-                  "            bool xauto_access)");
-  TD* lspace4 = new TD(xns, xspace.index(), true);
-
-  //T lspace4(xns, xspace.index().hub_pod(), true);
-  print_subheader("Testing " + lspace_name +
-                  "(const namespace_poset& xhost, pod_index_type xindex,",
-                  "            bool xauto_access)");
-  TD* lspace4a = new TD(xns, xspace.index().hub_pod(), true);
-
-  //T lspace5(xns, xspace.path().poset_name(), true);
-  print_subheader("Testing "+lspace_name+"(const namespace_poset& xhost,",
-                  "                  const string& xname, bool xauto_access)");
-  TD* lspace5 = new TD(xns, xspace.path().poset_name(), true);
-
-  print_subheader("Testing "+lspace_name+"(const namespace_poset_member& xmbr,",
-                  "             bool xauto_access)");
-  xns.get_read_access();
-  namespace_poset_member lmbr(&xns, xspace.index());
-  xns.release_access();
-  TD* lspace6 = new TD(lmbr, true);
-  lmbr.detach_from_state();
-
   //T(M* xtop, M* xbottom);
   print_subheader("Testing "+lspace_name+"(xtop, xbottom)");
-  TD* lspace7 = new TD(new M, new M);
+  TD* lspace1 = new TD(new M, new M);
+
+  //T lspace2(xspace);
+  print_subheader("Testing copy constructor");
+  TD* lspace2 = new TD(xspace);
 
   //T& operator=(const poset_state_handle& xother);
   print_subheader("Testing operator=(const poset_state_handle& xother)");
-  TD* lspace8 = new TD;
-  lspace5->get_read_access();
-  poset_state_handle* lpsh = lspace5;
-  lspace8->operator=(*lpsh);
+  TD* lspace3 = new TD;
+  lspace2->get_read_access();
+  poset_state_handle* lpsh = lspace2;
+  lspace3->operator=(*lpsh);
 
   //==========================================================================
 

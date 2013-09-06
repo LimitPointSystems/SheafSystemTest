@@ -234,29 +234,6 @@ test_fiber_bundles_namespace_poset_facet(fiber_bundles_namespace& xns,
 
   //============================================================================
 
-  //$$SCRIBBLE: Purposely make these return false (temporarily).
-
-  const string lname2 = "dummy_space_path";
-  const arg_list largs;
-
-  print_subheader("Testing arg_is_auto_read_accessible(const string&, const arg_list&, bool) const");
-  ltest = xns.arg_is_auto_read_accessible<S>(lname2, largs, true);
-  cout << "ltest = " << boolalpha << ltest << endl;
-
-  print_subheader("Testing arg_is_auto_read_write_accessible(const string&, const arg_list&, bool) const");
-  ltest = xns.arg_is_auto_read_write_accessible<S>(lname2, largs, true);
-  cout << "ltest = " << boolalpha << ltest << endl;
-
-  print_subheader("Testing arg_is_auto_read_available(const string&, const arg_list&, bool) const");
-  ltest = xns.arg_is_auto_read_available<S>(lname2, largs, true);
-  cout << "ltest = " << boolalpha << ltest << endl;
-
-  print_subheader("Testing arg_is_auto_read_write_available(const string&, const arg_list&, bool) const");
-  ltest = xns.arg_is_auto_read_write_available<S>(lname2, largs, true);
-  cout << "ltest = " << boolalpha << ltest << endl;
-
-  //============================================================================
-
   print_subheader("Testing S* member_poset(const scoped_index&, bool)");
   S& lspace0 = xns.member_poset<S>(lindex, true);
   cout << "lspace0 = " << &lspace0 << endl;
