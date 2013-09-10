@@ -3907,7 +3907,6 @@ void test_spaces_common(fiber_bundles_namespace& xns, T& xspace)
   // Body:
 
   typedef typename T::member_type M;
-  typedef derived_space<T> TD;
 
   //$$SCRIBBLE: xxx_space classes have no static_class_name().
   //$$TODO: Implement xxx_space classes static_class_name().
@@ -3939,21 +3938,6 @@ void test_spaces_common(fiber_bundles_namespace& xns, T& xspace)
                   "Testing virtual bool is_ancestor_of(const any* xother) const");
   bool lis_ancestor_of = xspace.is_ancestor_of(lspace_clone);
   cout << "  lis_ancestor_of = " << boolalpha << lis_ancestor_of << endl;
-
-  //T(M* xtop, M* xbottom);
-  print_subheader("Testing "+lspace_name+"(xtop, xbottom)");
-  TD* lspace1 = new TD(new M, new M);
-
-  //T lspace2(xspace);
-  print_subheader("Testing copy constructor");
-  TD* lspace2 = new TD(xspace);
-
-  //T& operator=(const poset_state_handle& xother);
-  print_subheader("Testing operator=(const poset_state_handle& xother)");
-  TD* lspace3 = new TD;
-  lspace2->get_read_access();
-  poset_state_handle* lpsh = lspace2;
-  lspace3->operator=(*lpsh);
 
   //==========================================================================
 

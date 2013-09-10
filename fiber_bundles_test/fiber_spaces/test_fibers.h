@@ -1165,61 +1165,6 @@ template<typename T>
 void
 test_spaces_common(fiber_bundles_namespace& lns, T& lspace);
 
-///
-/// A class derived from fiber space of type T whose sole
-/// purpose is to allow invoking the protected functions
-/// of class T; thus allowing better code coverage.
-///
-template <typename T>
-class derived_space : public T
-{
-public:
-
-  typedef typename T::member_type M;
-
-  derived_space() : T() { }
-
-  derived_space(const T& xother) : T(xother) { }
-
-  derived_space(const namespace_poset& xhost,
-                scoped_index xindex, bool xauto_access)
-    : T(xhost, xindex, xauto_access)
-  {
-  }
-
-  derived_space(const namespace_poset& xhost,
-                pod_index_type xindex, bool xauto_access)
-    : T(xhost, xindex, xauto_access)
-  {
-  }
-
-
-  derived_space(const namespace_poset& xhost,
-                const string& xname, bool xauto_access)
-    : T(xhost, xname, xauto_access)
-  {
-  }
-
-  derived_space(const namespace_poset_member& xmbr, bool xauto_access)
-    : T(xmbr, xauto_access)
-  {
-  }
-
-  derived_space(M* xtop, M* xbottom)
-    : T(xtop, xbottom)
-  {
-  }
-
-  virtual ~derived_space() {}
-
-  derived_space& operator=(const poset_state_handle& xother)
-  {
-	 T::operator=(xother);
-	 return *this;
-  }
-};
-
-
 } // namespace fiber_bundle
 
 
