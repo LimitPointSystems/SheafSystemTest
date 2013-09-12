@@ -2,6 +2,18 @@
 //
 // Copyright (c) 2013 Limit Point Systems, Inc.
 //
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//   http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
 
 /// @example examples/recipe.t.cc
 
@@ -27,7 +39,7 @@ main(int argc, char* argv[])
 
      For the Sauce:
      2 onions, cut in half
-     ½ pound tomatillos, halved
+     ï¿½ pound tomatillos, halved
      4 cloves of garlic
      3 tablespoons vegetable oil
      1 dried red chile
@@ -36,15 +48,15 @@ main(int argc, char* argv[])
      freshly ground pepper
 
      For the avocado salsa:
-     1 ½ cups of fresh shucked corn kernels, blanched (or 1 can of corn)
-     1 ½ cups of rehydrated black beans or 1 can rinsed black beans
+     1 ï¿½ cups of fresh shucked corn kernels, blanched (or 1 can of corn)
+     1 ï¿½ cups of rehydrated black beans or 1 can rinsed black beans
      1 large Haas avocado, diced
-     ½ teaspoon cumin
-     ½ tablespoon balsamic vinegar
+     ï¿½ teaspoon cumin
+     ï¿½ tablespoon balsamic vinegar
      1 tablespoon chopped cilantro
      1 roasted red pepper, diced
      1 jalapeno, small diced
-     ½ tablespoon minced garlic
+     ï¿½ tablespoon minced garlic
      juice of 1 lime
      salt 
      freshly ground pepper
@@ -60,7 +72,7 @@ main(int argc, char* argv[])
      For the sauce:
      Preheat the oven to 400 degrees F.
      Place the onions, tomatillos and garlic on a sheet pan and roast 
-     for 30 minutes, stirring occasionally. In a sauté pan, over high 
+     for 30 minutes, stirring occasionally. In a sautï¿½ pan, over high 
      heat, add the oil. When the oil is hot, add the seeded red chile. 
      Cook in the oil 15 seconds per side or until toasted. When the 
      onions, tomatillos and garlic are softened, add to a blender with 
@@ -163,7 +175,7 @@ main(int argc, char* argv[])
   dof.work = 1.0;
   dof.who = "Saucier";
   dof.cost = 0.10;
-  dof.details = "In a sauté pan, over high heat, add the oil.";
+  dof.details = "In a sautï¿½ pan, over high heat, add the oil.";
   s2.put_dof_tuple(&dof,sizeof(dof));
 
   total_poset_member s3(&tasks);
