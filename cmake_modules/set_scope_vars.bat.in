@@ -1,6 +1,0 @@
-
-# Set the path. Our stuff first. "set" is volatile, "setx" persistent across reboots. Path must contain all needed libs.
-set PATH=@SHEAFSYSTEM_HOME@/lib/VTK;@SHEAFSYSTEM_HOME@/bin/Debug-contracts;%PATH%
-# Set the CLASSPATH. Must contain all needed jars.
-# Execute the 'scope
-java @SHEAFSYSTEM_HOME@/bin/Debug-contracts/SheafScope
