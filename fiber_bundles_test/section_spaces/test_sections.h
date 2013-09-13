@@ -308,31 +308,6 @@ template <typename T>
 void set_dofs(T& xresult);
 
 //==============================================================================
-// SECTION SPACE FACET
-//==============================================================================
-
-///
-/// Creates a new section space with xname on base space with xbase_path.
-///
-template <typename P>
-typename P::host_type&
-new_host_space(fiber_bundles_namespace& xns,
-	       const string& xname,
-	       const poset_path& xbase_path);
-
-///
-/// Creates a new section space with xname on base space with xbase_path
-/// and representation descriptor xrep_path.
-///
-template <typename P>
-typename P::host_type&
-new_host_space(fiber_bundles_namespace& xns,
-	       const string& xname,
-	       const poset_path& xrep_path,
-	       const poset_path& xbase_path);
-
-
-//==============================================================================
 // Miscellaneous tests not associated with templated vector, tensor, etc
 // functions
 //==============================================================================

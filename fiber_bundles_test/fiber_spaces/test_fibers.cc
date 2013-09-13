@@ -22,7 +22,6 @@
 
 #include "at0_space.h"
 #include "at1_space.h"
-#include "fiber_bundles_namespace.impl.h"
 #include "std_iostream.h"
 #include "test_utils.h"
 
@@ -175,7 +174,7 @@ test_persistent_e3_facet(fiber_bundles_namespace& xns)
 
   print_subheader("Testing persistent type \"e3\"");
 
-  e3::host_type& host = xns.new_vector_space<e3>();
+  e3::host_type& host = e3::standard_host(xns, "test_persistent_e3_facet", false);
   host.get_read_write_access();
   
   e3 test7(&host);

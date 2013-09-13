@@ -64,6 +64,10 @@
 #include "sec_ed_invertible.h"
 #endif
 
+#ifndef SEC_REP_DESCRIPTOR_H
+#include "sec_rep_descriptor.h"
+#endif
+
 #ifndef STD_IOMANIP_H
 #include "std_iomanip.h"
 #endif
@@ -104,6 +108,10 @@
 
 #ifndef SEC_REP_SPACE_H
 #include "sec_rep_space.h"
+#endif
+
+#ifndef SEC_REP_DESCRIPTOR_H
+#include "sec_rep_descriptor.h"
 #endif
 
 #ifndef BASE_SPACE_POSET_H
@@ -172,7 +180,7 @@ test_field_assignment(fiber_bundles_namespace& xns,
 
   // Create a persistent fiber.
 
-  typename fiber_type::host_type& lhost = xns.new_fiber_space<fiber_type>();
+  typename fiber_type::host_type& lhost = fiber_type::standard_host(xns, "", false);
   lhost.get_read_write_access();
 
   fiber_type lpersistent(lhost, lvolatile, true);
@@ -1181,9 +1189,7 @@ void make_test_sections(fiber_bundles_namespace& xns,
   // an additional argument to this function. 
 
   static const poset_path
-     lrep_path(fiber_bundles_namespace::standard_sec_rep_descriptor_poset_name(),
-               //"element_element_constant");
-               "vertex_element_dlinear");
+    lrep_path(sec_rep_descriptor::standard_host_path().poset_name(), "vertex_element_dlinear");
 
   // Create xnum_sections sections with names
   // xbase_field_name_# where "#" goes from 0 to xnum_sections-1.
@@ -1197,7 +1203,7 @@ void make_test_sections(fiber_bundles_namespace& xns,
   {
     lname.str("");
     lname << xbase_property_name << "_" << i;
-    typename T::host_type& lhost = xns.new_section_space<T>(lspace_name, xbase_path, lrep_path, true);
+    typename T::host_type& lhost = T::standard_host(xns, xbase_path, lrep_path, lspace_name, "", false);
     lhost.get_read_write_access();
     xsections[i] = *(new T(&lhost));
     xsections[i].put_name(lname.str(), true, true);

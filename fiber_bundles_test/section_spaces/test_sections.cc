@@ -303,8 +303,7 @@ make_test_base_space(fiber_bundles_namespace& xns,
 
   static const poset_path lresult("test_mesh", "test_mesh_block"); 
 
-  base_space_poset& lmesh =
-    xns.new_base_space<structured_block_1d>(lresult.poset_name());
+  base_space_poset& lmesh = structured_block_1d::standard_host(xns, lresult.poset_name(), false);
 
   structured_block_1d lblock(&lmesh, xi_size, true);
   lblock.put_name(lresult.member_name(), true, true);
@@ -338,8 +337,7 @@ make_test_base_space(fiber_bundles_namespace& xns,
 
   static const poset_path lresult("test_mesh", "test_mesh_block"); 
 
-  base_space_poset& lmesh =
-    xns.new_base_space<structured_block_2d>(lresult.poset_name());
+  base_space_poset& lmesh = structured_block_2d::standard_host(xns, lresult.poset_name(), false);
 
   structured_block_2d lblock(&lmesh, xi_size, xj_size, true);
   lblock.put_name(lresult.member_name(), true, true);
@@ -373,9 +371,8 @@ make_test_base_space(fiber_bundles_namespace& xns,
 
   static const poset_path lresult("test_mesh", "test_mesh_block"); 
 
-  base_space_poset& lmesh =
-    xns.new_base_space<structured_block_3d>(lresult.poset_name());
-  
+  base_space_poset& lmesh = structured_block_3d::standard_host(xns, lresult.poset_name(), false);
+
   structured_block_3d lblock(&lmesh, xi_size, xj_size, xk_size, true);
   lblock.put_name(lresult.member_name(), true, true);
   lblock.detach_from_state();

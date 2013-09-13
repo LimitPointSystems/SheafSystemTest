@@ -43,13 +43,10 @@ make_unstructured_block_1d(fiber_bundles_namespace* xns,
 
   // Body:
 
-  base_space_poset* lmesh =
-    &xns->new_base_space<zone_nodes_block>("zone_nodes_mesh_base_space_1d",
-					   "",
-					   "",
-					   1,
-					   true);
-  lmesh->get_read_write_access();
+  zone_nodes_block::standard_host(*xns, "zone_nodes_mesh_base_space_1d", 1, true);
+  base_space_poset& lmesh = xns->member_poset<base_space_poset>("zone_nodes_mesh_base_space_1d");
+
+  lmesh.get_read_write_access();
 
   // Make line connectivity.
 
@@ -57,12 +54,12 @@ make_unstructured_block_1d(fiber_bundles_namespace* xns,
 
   // Make block.
 
-  zone_nodes_block lblock(*lmesh, lconn, true);
+  zone_nodes_block lblock(lmesh, lconn, true);
   lblock.put_name("line_block_1d", true, false);
   lblock.detach_from_state();
 
 
-  lmesh->release_access();
+  lmesh.release_access();
 }
 
 void
@@ -79,13 +76,10 @@ make_unstructured_block_2d(fiber_bundles_namespace* xns,
 
   // Body:
 
-  base_space_poset* lmesh =
-    &xns->new_base_space<zone_nodes_block>("zone_nodes_mesh_base_space_2d",
-					   "",
-					   "",
-					   2,
-					   true);
-  lmesh->get_read_write_access();
+  zone_nodes_block::standard_host(*xns, "zone_nodes_mesh_base_space_2d", 2, true);
+  base_space_poset& lmesh = xns->member_poset<base_space_poset>("zone_nodes_mesh_base_space_2d");
+
+  lmesh.get_read_write_access();
 
   // Make quad connectivity.
 
@@ -93,11 +87,11 @@ make_unstructured_block_2d(fiber_bundles_namespace* xns,
 
   // Make quad block.
 
-  zone_nodes_block lblock(*lmesh, lconn, true);
+  zone_nodes_block lblock(lmesh, lconn, true);
   lblock.put_name("quad_block_2d", true, false);
   lblock.detach_from_state();
 
-  lmesh->release_access();
+  lmesh.release_access();
 }
 
 void
@@ -116,13 +110,10 @@ make_unstructured_block_3d(fiber_bundles_namespace* xns,
 
   // Body:
 
-  base_space_poset* lmesh =
-    &xns->new_base_space<zone_nodes_block>("zone_nodes_mesh_base_space_3d",
-					   "",
-					   "",
-					   3,
-					   true);
-  lmesh->get_read_write_access();
+  zone_nodes_block::standard_host(*xns, "zone_nodes_mesh_base_space_3d", 3, true);
+  base_space_poset& lmesh = xns->member_poset<base_space_poset>("zone_nodes_mesh_base_space_3d");
+
+  lmesh.get_read_write_access();
 
   // Make hex connectivity.
 
@@ -130,11 +121,11 @@ make_unstructured_block_3d(fiber_bundles_namespace* xns,
 
   // Make hex block.
 
-  zone_nodes_block lblock(*lmesh, lconn, true);
+  zone_nodes_block lblock(lmesh, lconn, true);
   lblock.put_name("hex_block_3d", true, false);
   lblock.detach_from_state();
 
-  lmesh->release_access();
+  lmesh.release_access();
 }
 
 void
@@ -147,13 +138,10 @@ test_deletion(fiber_bundles_namespace* xns)
 
   // Body:
 
-  base_space_poset* lmesh =
-    &xns->new_base_space<zone_nodes_block>("test_deletion_base_space_1d",
-					   "",
-					   "",
-					   1,
-					   true);
-  lmesh->get_read_write_access();
+  zone_nodes_block::standard_host(*xns, "test_delete_mesh", 1, true);
+  base_space_poset& lmesh = xns->member_poset<base_space_poset>("test_delete_mesh");
+
+  lmesh.get_read_write_access();
 
   // Make line connectivity.
 
@@ -161,46 +149,46 @@ test_deletion(fiber_bundles_namespace* xns)
 
   // Make block.
 
-  zone_nodes_block lblock(*lmesh, lconn, true);
+  zone_nodes_block lblock(lmesh, lconn, true);
   lblock.put_name("test_deletion_line_block_1d", true, false);
   lblock.detach_from_state();
 
-  scoped_index lzone_id(lmesh->elements().id_space(), 1);
+  scoped_index lzone_id(lmesh.elements().id_space(), 1);
 
   cout << "Before deleting zone 1:" << endl;
-  cout << *lmesh << endl;
+  cout << lmesh << endl;
 
-  base_space_member lzone(lmesh, lzone_id);
+  base_space_member lzone(&lmesh, lzone_id);
   lzone.delete_state(true);
 
   cout << "After deleting zone 1:" << endl;
-  cout << *lmesh << endl;
+  cout << lmesh << endl;
 
-  scoped_index lnode_id(lmesh->vertices().id_space(), 1);
+  scoped_index lnode_id(lmesh.vertices().id_space(), 1);
 
   cout << "Before deleting node 1:" << endl;
-  cout << *lmesh << endl;
+  cout << lmesh << endl;
 
-  base_space_member lnode(lmesh, lnode_id);
+  base_space_member lnode(&lmesh, lnode_id);
   lnode.delete_state(true);
 
   cout << "After deleting node 1:" << endl;
-  cout << *lmesh << endl;
+  cout << lmesh << endl;
 
-  //   index_map* lblock_id_map = lmesh->blocks().id_map();
+  //   index_map* lblock_id_map = lmesh.blocks().id_map();
   //   scoped_index lblock_id(0, lblock_id_map);
 
   //   cout << "Before deleting block 0:" << endl;
-  //   cout << *lmesh << endl;
+  //   cout << lmesh << endl;
 
-  //   base_space_member lblk(lmesh, lblock_id);
+  //   base_space_member lblk(&lmesh, lblock_id);
   //   lblk.delete_state(true);
 
   //   cout << "After deleting block 0:" << endl;
-  //   cout << *lmesh << endl;
+  //   cout << lmesh << endl;
 
 
-  lmesh->release_access();
+  lmesh.release_access();
 }
 
 int

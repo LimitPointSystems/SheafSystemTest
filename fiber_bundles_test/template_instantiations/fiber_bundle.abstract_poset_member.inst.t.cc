@@ -99,7 +99,7 @@ main(int xargc, char* xargv[])
   ltest &= test_persistent_abstract_poset_member_facet<at0>(lns);
   ltest &= test_volatile_abstract_poset_member_facet<at0_lite>();
 
-  ltest &= test_persistent_abstract_poset_member_facet<at1>(lns);
+  ltest &= test_persistent_abstract_poset_member_facet<at1, e2>(lns);
   ltest &= test_volatile_abstract_poset_member_facet<at1_lite, e2_lite>();
 
   ltest &= test_persistent_abstract_poset_member_facet<at2, at2_e2>(lns);
@@ -132,7 +132,7 @@ main(int xargc, char* xargv[])
   ltest &= test_persistent_abstract_poset_member_facet<e4>(lns);
   ltest &= test_volatile_abstract_poset_member_facet<e4_lite>();
 
-  ltest &= test_persistent_abstract_poset_member_facet<ed>(lns);
+  ltest &= test_persistent_abstract_poset_member_facet<ed, e2>(lns);
   ltest &= test_volatile_abstract_poset_member_facet<ed_lite, e2_lite>();
 
   ltest &= test_persistent_abstract_poset_member_facet<gl2>(lns);
@@ -141,7 +141,7 @@ main(int xargc, char* xargv[])
   ltest &= test_persistent_abstract_poset_member_facet<gl3>(lns);
   ltest &= test_volatile_abstract_poset_member_facet<gl3_lite>();
 
-  ltest &= test_persistent_abstract_poset_member_facet<gln>(lns);
+  ltest &= test_persistent_abstract_poset_member_facet<gln, gl2>(lns);
   ltest &= test_volatile_abstract_poset_member_facet<gln_lite, gl2_lite>();
 
   ltest &= test_persistent_abstract_poset_member_facet<jcb_e13>(lns);
@@ -153,10 +153,10 @@ main(int xargc, char* xargv[])
   ltest &= test_persistent_abstract_poset_member_facet<jcb_e33>(lns);
   ltest &= test_volatile_abstract_poset_member_facet<jcb_e33_lite>();
 
-  ltest &= test_persistent_abstract_poset_member_facet<jcb_ed>(lns);
+  ltest &= test_persistent_abstract_poset_member_facet<jcb_ed, jcb_e23>(lns);
   ltest &= test_volatile_abstract_poset_member_facet<jcb_ed_lite, jcb_e13_lite>();
 
-  ltest &= test_persistent_abstract_poset_member_facet<jcb>(lns);
+  ltest &= test_persistent_abstract_poset_member_facet<jcb, jcb_e23>(lns);
   ltest &= test_volatile_abstract_poset_member_facet<jcb_lite, jcb_e13_lite>();
 
   ltest &= test_persistent_abstract_poset_member_facet<met_e1>(lns);
@@ -216,13 +216,13 @@ main(int xargc, char* xargv[])
   ltest &= test_persistent_abstract_poset_member_facet<stp, st2_e2>(lns);
   ltest &= test_volatile_abstract_poset_member_facet<stp_lite, st2_e2_lite>();
 
-  ltest &= test_persistent_abstract_poset_member_facet<t2>(lns);
+  ltest &= test_persistent_abstract_poset_member_facet<t2, t2_e2>(lns);
   ltest &= test_volatile_abstract_poset_member_facet<t2_lite, t2_e2_lite>();
 
-  ltest &= test_persistent_abstract_poset_member_facet<t3>(lns);
+  ltest &= test_persistent_abstract_poset_member_facet<t3, t3_e3>(lns);
   ltest &= test_volatile_abstract_poset_member_facet<t3_lite, t3_e3_lite>();
 
-  ltest &= test_persistent_abstract_poset_member_facet<t4>(lns);
+  ltest &= test_persistent_abstract_poset_member_facet<t4, t4_e2>(lns);
   ltest &= test_volatile_abstract_poset_member_facet<t4_lite, t4_e3_lite>();
 
   ltest &= test_persistent_abstract_poset_member_facet<tp, t2_e2>(lns);
@@ -232,7 +232,7 @@ main(int xargc, char* xargv[])
   //ltest &= test_volatile_abstract_poset_member_facet<tuple_lite, t2_e2_lite>();
   //   tuple_lite has no row_dofs_type.
 
-  ltest &= test_persistent_abstract_poset_member_facet<vd>(lns);
+  ltest &= test_persistent_abstract_poset_member_facet<vd, e2>(lns);
   ltest &= test_volatile_abstract_poset_member_facet<vd_lite, e2_lite>();
 
   //============================================================================

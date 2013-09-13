@@ -473,10 +473,8 @@ make_triangle_poset(namespace_poset& xns, const string& xname)
 
 
   const poset_path& lref_path = xns.primitives().int_type().path();
-  arg_list largs = refinable_poset::make_args();
 
-  refinable_poset& ltriangle =
-    xns.new_member_poset<refinable_poset>(xname, lref_path, largs, true);
+  refinable_poset& ltriangle = refinable_poset::new_table(xns, xname, lref_path, false);
 
   ltriangle.begin_jim_edit_mode();
 

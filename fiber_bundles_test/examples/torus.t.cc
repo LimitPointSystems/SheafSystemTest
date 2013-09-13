@@ -139,17 +139,8 @@ make_scalar_sec_rep_space(fiber_bundles_namespace& xtest_namespace,
 
   // Create the scalar section space
 
-  arg_list largs =
-    binary_section_space_schema_poset::make_arg_list("", xbase.path(false), "");
-
-  poset_path lschema_path =
-    xtest_namespace.new_scalar_section_space_schema<sec_at0>("at0_on_triangle_mesh_schema", largs);
-
-  largs = sec_at0_space::make_arg_list();
-
   sec_at0::host_type& result =
-    xtest_namespace.new_scalar_section_space<sec_at0>("at0_on_triangle_mesh",
-						      largs, lschema_path);
+    sec_at0::standard_host(xtest_namespace, xbase.path(false), "", "", "", false);
 
   result.get_read_write_access();
 
@@ -268,7 +259,6 @@ Dof_tuple make_coord_field_dofs(int edge_ct_x, int edge_ct_y)
 sec_e3::host_type&
 make_coord_sec_rep_space(fiber_bundles_namespace& xtest_namespace,
 			 abstract_poset_member& xbase,
-			 sec_at0::host_type& xscalar_space,
 			 int edge_ct_x,
 			 int edge_ct_y)
 {
@@ -276,7 +266,6 @@ make_coord_sec_rep_space(fiber_bundles_namespace& xtest_namespace,
 
   require(xtest_namespace.state_is_read_write_accessible());
   require(xbase.state_is_read_accessible());
-  require(xscalar_space.state_is_read_accessible());
   require(edge_ct_x > 0);
   require(edge_ct_y > 0);
 
@@ -284,19 +273,8 @@ make_coord_sec_rep_space(fiber_bundles_namespace& xtest_namespace,
 
   // Create the coord section space
 
-  arg_list largs =
-    binary_section_space_schema_poset::make_arg_list("", xbase.path(false), "");
-
-  poset_path lschema_path =
-    xtest_namespace.new_vector_section_space_schema<sec_e3>("e3_on_triangle_mesh_schema", largs);
-
   sec_e3::host_type& result =
-    xtest_namespace.new_vector_section_space<sec_e3>("e3_on_triangle_mesh",
-						     "",
-						     lschema_path,
-						     xscalar_space.path(false),
-						     "",
-						     xscalar_space.schema().path(false));
+    sec_e3::standard_host(xtest_namespace, xbase.path(false), "", "", "", false);
 
   result.get_read_write_access();
 
@@ -347,11 +325,12 @@ int main(int argc, char* argv[])
 
   test_namespace.get_read_write_access();
 
-  base_space_poset* lbase_host =
-    &test_namespace.new_base_space<unstructured_block>("torus_mesh", "", "", 2, true);
-  lbase_host->get_read_write_access();
+  base_space_poset& lbase_host =
+    unstructured_block::standard_host(test_namespace, "torus_mesh", 2, false);
 
-  unstructured_block lbase_space(lbase_host,
+  lbase_host.get_read_write_access();
+
+  unstructured_block lbase_space(&lbase_host,
                                  "base_space_member_prototypes/triangle_nodes",
                                  edge_ct_x,
                                  edge_ct_y,
@@ -365,7 +344,7 @@ int main(int argc, char* argv[])
 
   sec_e3::host_type& le3_srs =
     make_coord_sec_rep_space(test_namespace, lbase_space,
-			     lat0_srs, edge_ct_x, edge_ct_y);
+			     edge_ct_x, edge_ct_y);
 
   cout << test_namespace << endl;
 
@@ -376,7 +355,7 @@ int main(int argc, char* argv[])
   // Clean-up
 
   lbase_space.detach_from_state();
-  lbase_host->release_access();
+  lbase_host.release_access();
 
   return 0;
 }

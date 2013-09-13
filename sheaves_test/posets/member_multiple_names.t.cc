@@ -46,12 +46,11 @@ int main(int xargc, char *xargv[])
   sheaves_namespace test_namespace("test_namespace");
   test_namespace.get_read_write_access();
 
-  arg_list largs = poset::make_args();
-
   poset& test_poset =
-    test_namespace.new_member_poset<poset>("member_multiple_names_test",
-					   test_namespace.primitives().schema(true).path(true),
-					   largs, true);
+    poset::new_table(test_namespace,
+		     "member_multiple_names_test",
+		     test_namespace.primitives().schema(true).path(true),
+		     false);
 
   test_poset.get_read_write_access();
 

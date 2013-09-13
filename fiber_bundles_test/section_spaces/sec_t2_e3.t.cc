@@ -84,7 +84,7 @@ main(int xargc, char *xargv[])
 
   // Write the namespace to a file.
  
-  storage_agent write_agent(lfilename + ".t.hdf");
+  storage_agent write_agent(lfilename + ".hdf");
   write_agent.write_entire(lns);
 
   print_footer("Ending testing sec_t2_e3");

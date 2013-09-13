@@ -42,6 +42,7 @@
 #include "sec_e1_uniform.h"
 #include "sec_e2_uniform.h"
 #include "sec_e3_uniform.h"
+#include "sec_ed_invertible.h"
 
 #include "field_vd.h"
 #include "wsv_block.h"
@@ -124,20 +125,20 @@ test_field_factory_2(fiber_bundles_namespace& xns)
 
   // Make names for the spaces:
 
-  string lnames[3] = {"coordinate_section_space",
-                      "property_section_space",
+  string lnames[3] = {"coordinate_space",
+                      "property_space",
                       "base_space"};
 
   make_names_unique(lnames, 3);
   
-  const string& lcoord_space_name = lnames[0];
-  const string& lprop_space_name  = lnames[1];
-  const string& lbase_space_name  = lnames[2];
+  const string& lcoord_name = lnames[0];
+  const string& lprop_name  = lnames[1];
+  const string& lbase_name  = lnames[2];
 
-  cout << "lcoord_space_name = " << lcoord_space_name << endl;
-  cout << "lprop_space_name  = " << lprop_space_name << endl;
-  cout << "lbase_space_name  = " << lbase_space_name << endl;
-  poset_path lbase_space_path(lbase_space_name, "block");
+  cout << "lcoord_name = " << lcoord_name << endl;
+  cout << "lprop_name  = " << lprop_name << endl;
+  cout << "lbase_name  = " << lbase_name << endl;
+  poset_path lbase_space_path(lbase_name, "block");
   cout << "lbase_space_path  = " << lbase_space_path << endl;
 
   //============================================================================
@@ -183,49 +184,48 @@ test_field_factory_2(fiber_bundles_namespace& xns)
 
   lfactory.coord_rep_path() = lrep_path_string;
 
-  print_subheader("Testing coord_section_space_path()");
+  print_subheader("Testing coord_fiber_suffix()");
 
-  lfactory.coord_section_space_path() = lcoord_space_name;
+  lfactory.coord_fiber_suffix() = "_coords_fibers";
+
+  print_subheader("Testing coord_section_suffix()");
+
+  lfactory.coord_section_suffix() = "_coords_sections";
 
   print_subheader("Testing prop_rep_path()");
 
   lfactory.prop_rep_path() = lrep_path_string;
 
-  print_subheader("Testing prop_section_space_path()");
+  print_subheader("Testing prop_fiber_suffix()");
 
-  lfactory.prop_section_space_path() = lprop_space_name;
+  lfactory.prop_fiber_suffix() = "_prop_fibers";
 
-  // new_field (fiber_bundles_namespace &xns, const poset_path &xbase_path,
-  //            const poset_path &xcoord_path, const poset_path &xprop_path)
+  print_subheader("Testing prop_section_suffix()");
 
-  print_subheader("Testing new_field(...) version 3");
+  lfactory.prop_section_suffix() = "_prop_sections";
 
-  field_vd* lfield1 = lfactory.new_field(xns,
-                                         lbase_space_path,
-                                         lcoord_space_name,
-                                         lprop_space_name);
+  // standard_field
 
-  print_subheader("Testing new_field(...) version 2");
+  print_subheader("Testing standard_field(...)");
 
-  // new_field (fiber_bundles_namespace &xns, const poset_path &xbase_path,
-  //            const char *xcoord_name, const char *xprop_name)
+  field_vd* lfield1 = lfactory.standard_field(xns,
+					      lbase_space_path,
+					      lcoord_name,
+					      lprop_name,
+					      true);
+
+  // new_field
+
+  print_subheader("Testing new_field(...)");
+
+  poset_path lcoord2_path(lfield1->coordinates().path(true).poset_name(), lcoord_name + "_2");
+  poset_path lprop2_path(lfield1->property().path(true).poset_name(), lprop_name + "_2");
 
   field_vd* lfield2 = lfactory.new_field(xns,
                                          lbase_space_path,
-                                         lcoord_space_name.c_str(),
-                                         lprop_space_name.c_str());
-
-  print_subheader("Testing new_field(...) version 1");
-
-  // new_field (fiber_bundles_namespace &xns, const poset_path &xbase_path,
-  //            const poset_path &xcoord_path, const poset_path &xprop_path)
-
-  poset_path lcoord_path(lcoord_space_name, "coords");
-  poset_path lprop_path(lprop_space_name, "props");
-  field_vd* lfield3 = lfactory.new_field(xns,
-                                         lbase_space_path,
-                                         lcoord_path,
-                                         lprop_path);
+                                         lcoord2_path,
+                                         lprop2_path,
+					 true);
 
   //============================================================================
 
@@ -265,26 +265,26 @@ test_field_factory_2(fiber_bundles_namespace& xns)
 
   // Call new_field with data for the existing fields.
 
-  print_subheader("Testing new_field(...) version 3 again");
+  // standard_field
 
-  field_vd* lfield1a = lfactory.new_field(xns,
+  print_subheader("Testing standard_field(...)");
+
+  field_vd* lfield3 = lfactory.standard_field(xns,
+					      lbase_space_path,
+					      lcoord_name,
+					      lprop_name,
+					      true);
+
+  // new_field
+
+  print_subheader("Testing new_field(...)");
+
+  field_vd* lfield4 = lfactory.new_field(xns,
                                          lbase_space_path,
-                                         lcoord_space_name,
-                                         lprop_space_name);
+                                         lcoord2_path,
+                                         lprop2_path,
+					 true);
 
-  print_subheader("Testing new_field(...) version 2 again");
-
-  field_vd* lfield2a = lfactory.new_field(xns,
-                                         lbase_space_path,
-                                         lcoord_space_name.c_str(),
-                                         lprop_space_name.c_str());
-
-  print_subheader("Testing new_field(...) version 1 again");
-
-  field_vd* lfield3a = lfactory.new_field(xns,
-                                         lbase_space_path,
-                                         lcoord_path,
-                                         lprop_path);
 
   // Call make_base_space with data for the existing field.
 

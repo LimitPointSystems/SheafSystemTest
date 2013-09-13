@@ -111,7 +111,7 @@ test_persistent_abstract_poset_member_facet(fiber_bundles_namespace& xns)
 
   // Create a persistent object.
 
-  typename PD::host_type& lhost = xns.new_fiber_space<PD>();
+  typename PD::host_type& lhost = PD::standard_host(xns, "test_persistent_abstract_poset_member_facet", false);
   lhost.get_read_write_access(true);
   
   PB* ltest = new PB(&lhost);
@@ -245,29 +245,6 @@ test_fiber_bundles_namespace_poset_facet(fiber_bundles_namespace& xns,
 
   //============================================================================
 
-  //$$SCRIBBLE: Purposely make these return false (temporarily).
-
-  const string lname2 = "dummy_space_path";
-  const arg_list largs;
-
-  print_subheader("Testing arg_is_auto_read_accessible(const string&, const arg_list&, bool) const");
-  ltest = xns.arg_is_auto_read_accessible<S>(lname2, largs, true);
-  cout << "ltest = " << boolalpha << ltest << endl;
-
-  print_subheader("Testing arg_is_auto_read_write_accessible(const string&, const arg_list&, bool) const");
-  ltest = xns.arg_is_auto_read_write_accessible<S>(lname2, largs, true);
-  cout << "ltest = " << boolalpha << ltest << endl;
-
-  print_subheader("Testing arg_is_auto_read_available(const string&, const arg_list&, bool) const");
-  ltest = xns.arg_is_auto_read_available<S>(lname2, largs, true);
-  cout << "ltest = " << boolalpha << ltest << endl;
-
-  print_subheader("Testing arg_is_auto_read_write_available(const string&, const arg_list&, bool) const");
-  ltest = xns.arg_is_auto_read_write_available<S>(lname2, largs, true);
-  cout << "ltest = " << boolalpha << ltest << endl;
-
-  //============================================================================
-
   print_subheader("Testing S* member_poset(const scoped_index&, bool)");
   S& lspace0 = xns.member_poset<S>(lindex, true);
   cout << "lspace0 = " << &lspace0 << endl;
@@ -296,7 +273,7 @@ test_fiber_bundles_namespace_poset_facet(fiber_bundles_namespace& xns,
 
   // Body:
 
-  const string lname = "test_section_space_" + T::static_class_name();
+  const string lname = "_test_section_space_" + T::static_class_name();
 
   print_footer("End testing " + lname);
 
@@ -304,7 +281,7 @@ test_fiber_bundles_namespace_poset_facet(fiber_bundles_namespace& xns,
 
   typedef typename T::host_type S;
 
-  S& lspace = xns.new_section_space<T>(lname, lbase_path);
+  S& lspace = T::standard_host(xns, lbase_path, "", lname, "", false);
 
   lresult &= test_fiber_bundles_namespace_poset_facet(xns, lspace);
 
@@ -328,7 +305,7 @@ test_fiber_bundles_namespace_poset_facet(fiber_bundles_namespace& xns)
 
   // Body:
 
-  const string lname = T::static_class_name() + "_space";
+  const string lname = "_" + T::static_class_name() + "_space";
 
   print_header("Begin testing " + lname);
 
@@ -336,7 +313,7 @@ test_fiber_bundles_namespace_poset_facet(fiber_bundles_namespace& xns)
 
   typedef typename T::host_type S;
 
-  S& lspace = xns.new_fiber_space<T>(lname);
+  S& lspace = T::standard_host(xns, lname, false);
 
   lresult &= test_fiber_bundles_namespace_poset_facet(xns, lspace);
 
@@ -360,13 +337,13 @@ test_fiber_bundles_namespace_poset_facet(fiber_bundles_namespace& xns,
 
   // Body:
 
-  const string lname = "test_section_space_" + T::static_class_name();
+  const string lname = "_test_section_space_" + T::static_class_name();
 
   print_footer("End testing " + lname);
 
   bool lresult = true;
 
-  S& lspace = xns.new_section_space<T>(lname, lbase_path);
+  S& lspace = T::standard_host(xns, lbase_path, "", lname, "", false);
 
   lresult &= test_fiber_bundles_namespace_poset_facet(xns, lspace);
 

@@ -21,8 +21,10 @@
 
 #include "test_fiber_bundles.impl.h"
 
+#include "at0_space.h"
 #include "base_space_poset.h"
 #include "binary_section_space_schema_poset.h"
+#include "binary_section_space_schema_member.impl.h"
 #include "fiber_bundles_namespace.h"
 #include "sec_at0.h"
 #include "sec_rep_descriptor_poset.h"
@@ -56,7 +58,7 @@ test_fiber_bundles_namespace_poset_facet<fiber_bundle::sec_rep_descriptor_poset>
 
   // Body:
 
-  const string& lname = xns.standard_sec_rep_descriptor_poset_name();
+  const string& lname = sec_rep_descriptor::standard_host_path().poset_name();
 
   print_header("Begin testing " + lname);
 
@@ -102,14 +104,10 @@ test_fiber_bundles_namespace_poset_facet
   bool lresult = true;
 
   typedef fiber_bundle::binary_section_space_schema_poset P;
+  typedef fiber_bundle::binary_section_space_schema_member M;
+  typedef fiber_bundle::sec_at0 S;
 
-  arg_list largs = P::make_arg_list("", xbase_path, "");
-
-  poset_path lschema_path =
-    xns.new_scalar_section_space_schema<fiber_bundle::sec_at0>
-      ("binary_sss_schema", largs);
-
-  P& lposet = xns.member_poset<P>(lschema_path, true);
+  P& lposet = M::standard_host<S>(xns, xbase_path, sec_at0::standard_rep_path(), "", false);
 
   lresult &= test_fiber_bundles_namespace_poset_facet<P>(xns, lposet);
 
@@ -146,9 +144,9 @@ test_fiber_bundles_namespace_poset_facet<fiber_bundle::base_space_poset>
 
   typedef fiber_bundle::base_space_poset P;
 
-  P* lposet = &xns.new_base_space<fiber_bundle::structured_block_1d>(lname);
+  P& lposet = fiber_bundle::structured_block_1d::standard_host(xns, lname, false);
 
-  lresult &= test_fiber_bundles_namespace_poset_facet(xns, *lposet);
+  lresult &= test_fiber_bundles_namespace_poset_facet(xns, lposet);
 
   print_footer("End testing " + lname);
 

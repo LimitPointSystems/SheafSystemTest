@@ -36,20 +36,21 @@ main(int xargc, char* xargv[])
 
   // Make the mesh
 
-  base_space_poset* lmesh = &lns.new_base_space<point_block_3d>("3d_point_mesh");
+  point_block_3d::standard_host(lns, "3d_point_mesh", true);
+  base_space_poset& lmesh = lns.member_poset<base_space_poset>("3d_point_mesh", true);
 
-  point_block_3d lblock(lmesh, size_0, size_1, size_2, true);
+  point_block_3d lblock(&lmesh, size_0, size_1, size_2, true);
   lblock.get_read_write_access();
   lblock.put_name("3D_point_block", true, false);
 
   poset_path lbase_path = lblock.path();
 
-  cout << *lmesh << endl;
+  cout << lmesh << endl;
 
   // Make uniform (coordinate) section space.
 
   sec_e3_uniform::host_type& luniform_space =
-    new_host_space<sec_e3_uniform>(lns, "coordinates_section_space", lbase_path);
+    sec_e3_uniform::standard_host(lns, lbase_path, "", "", "", false);
 
   wsv_block<sec_vd_dof_type> llower("0.0 0.0 0.0");
   wsv_block<sec_vd_dof_type> lupper("1.0 1.0 1.0");
@@ -62,9 +63,7 @@ main(int xargc, char* xargv[])
   // Make non-uniform (property) section space.
 
   sec_at0::host_type& lprop_space =
-    new_host_space<sec_at0>(lns, "property_section_space",
-			    "sec_rep_descriptors/vertex_vertex_constant",
-			    lbase_path);
+    sec_at0::standard_host(lns, lbase_path, "sec_rep_descriptors/vertex_vertex_constant", "", "", false);
 
   sec_at0 lprop(&lprop_space);
   lprop.get_read_write_access();

@@ -302,21 +302,21 @@ make_test_base_space(fiber_bundle::fiber_bundles_namespace& xns,
 ///
 /// Make 1d coordinates for testing.
 ///
-const SHEAF_DLL_SPEC sheaf::poset_path& 
+SHEAF_DLL_SPEC sheaf::poset_path 
 make_test_coordinates_1d(fiber_bundle::fiber_bundles_namespace& xns,
                          const sheaf::poset_path& xbase_path);
 
 ///
 /// Make 2d coordinates for testing.
 ///
-const SHEAF_DLL_SPEC sheaf::poset_path&
+SHEAF_DLL_SPEC sheaf::poset_path
 make_test_coordinates_2d(fiber_bundle::fiber_bundles_namespace& xns,
                          const sheaf::poset_path& xbase_path);
 
 ///
 /// Make 3d coordinates for testing.
 ///
-const SHEAF_DLL_SPEC sheaf::poset_path&
+SHEAF_DLL_SPEC sheaf::poset_path
 make_test_coordinates_3d(fiber_bundle::fiber_bundles_namespace& xns,
                          const sheaf::poset_path& xbase_path);
 

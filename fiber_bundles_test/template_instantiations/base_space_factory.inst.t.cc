@@ -121,20 +121,20 @@ namespace
 
     // Create a host poset for the mesh.
 
-    base_space_poset* lbase_host = &xns.new_base_space<T>(xhost_name);
+    base_space_poset& lbase_host = T::standard_host(xns, xhost_name, false);
 
-    lbase_host->get_read_write_access();
+    lbase_host.get_read_write_access();
 
     // Create the mesh.
 
-    T* lmesh = new T(lbase_host, 4, true);
+    T* lmesh = new T(&lbase_host, 4, true);
 
     lmesh->put_name("mesh", true, false);
 
-    cout << "lbase_host->path() = " << lbase_host->path() << endl;
+    cout << "lbase_host.path() = " << lbase_host.path() << endl;
 
  
-    lresult &= test_base_space_factory<T>(xns, xhost_name, lbase_host->path());
+    lresult &= test_base_space_factory<T>(xns, xhost_name, lbase_host.path());
 
     //==========================================================================
 
@@ -165,20 +165,20 @@ namespace
 
     // Create a host poset for the mesh.
 
-    base_space_poset* lbase_host = &xns.new_base_space<T>(xhost_name);
+    base_space_poset& lbase_host = T::standard_host(xns, xhost_name, false);
 
-    lbase_host->get_read_write_access();
+    lbase_host.get_read_write_access();
 
     // Create the mesh.
 
-    T* lmesh = new T(lbase_host, 4, 4, true);
+    T* lmesh = new T(&lbase_host, 4, 4, true);
 
     lmesh->put_name("mesh", true, false);
 
-    cout << "lbase_host->path() = " << lbase_host->path() << endl;
+    cout << "lbase_host.path() = " << lbase_host.path() << endl;
 
 
-    lresult &= test_base_space_factory<T>(xns, xhost_name, lbase_host->path());
+    lresult &= test_base_space_factory<T>(xns, xhost_name, lbase_host.path());
 
     //==========================================================================
 
@@ -211,19 +211,19 @@ namespace
 
     // Create a host poset for the mesh.
 
-    base_space_poset* lbase_host = &xns.new_base_space<T>(xhost_name);
+    base_space_poset& lbase_host = T::standard_host(xns, xhost_name, false);
 
-    lbase_host->get_read_write_access();
+    lbase_host.get_read_write_access();
 
     // Create the mesh.
 
-    T* lmesh = new T(lbase_host, 4, 4, 4, true);
+    T* lmesh = new T(&lbase_host, 4, 4, 4, true);
 
     lmesh->put_name("mesh", true, false);
 
-    cout << "lbase_host->path() = " << lbase_host->path() << endl;
+    cout << "lbase_host.path() = " << lbase_host.path() << endl;
 
-    lresult &= test_base_space_factory<T>(xns, xhost_name, lbase_host->path());
+    lresult &= test_base_space_factory<T>(xns, xhost_name, lbase_host.path());
 
    //==========================================================================
 
@@ -259,23 +259,22 @@ namespace
 
     // Create a host poset for the mesh.
 
-    base_space_poset* lbase_host =
-      &xns.new_base_space<T>(xhost_name, "", "", 2, true);
+    base_space_poset& lbase_host = T::standard_host(xns, xhost_name, 2, false);
 
-    lbase_host->get_read_write_access();
+    lbase_host.get_read_write_access();
 
-    cout << "lbase_host->path() = " << lbase_host->path() << endl;
+    cout << "lbase_host.path() = " << lbase_host.path() << endl;
  
      // Create the mesh and give it a name
 
-    unstructured_block lmesh(lbase_host,
+    unstructured_block lmesh(&lbase_host,
                              "base_space_member_prototypes/triangle_nodes",
                               2, 2, true);
 
     lmesh.put_name("mesh", true, false);
 
 
-    lresult &= test_base_space_factory<T>(xns, xhost_name, lbase_host->path());
+    lresult &= test_base_space_factory<T>(xns, xhost_name, lbase_host.path());
 
     //==========================================================================
 
@@ -311,12 +310,11 @@ namespace
 
     // Create a host poset for the mesh.
 
-    base_space_poset* lbase_host =
-      &xns.new_base_space<T>(xhost_name, "", "", 2, true);
+    base_space_poset& lbase_host = T::standard_host(xns, xhost_name, 2, false);
 
-    lbase_host->get_read_write_access();
+    lbase_host.get_read_write_access();
 
-    cout << "lbase_host->path() = " << lbase_host->path() << endl;
+    cout << "lbase_host.path() = " << lbase_host.path() << endl;
  
      // Create the mesh and give it a name
 
@@ -326,11 +324,11 @@ namespace
 
     // Make quad block.
 
-    zone_nodes_block lblock(*lbase_host, lconn, true);
+    zone_nodes_block lblock(lbase_host, lconn, true);
     lblock.put_name("mesh", true, false);
 
 
-    lresult &= test_base_space_factory<T>(xns, xhost_name, lbase_host->path());
+    lresult &= test_base_space_factory<T>(xns, xhost_name, lbase_host.path());
 
 
     lblock.detach_from_state();

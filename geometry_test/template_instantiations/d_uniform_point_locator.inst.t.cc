@@ -106,7 +106,7 @@ make_base_space_1d(fiber_bundles_namespace& xns, const string& xbase_space_name)
 
   typedef structured_block_1d B;
     
-  base_space_poset& lhost = xns.new_base_space<B>(xbase_space_name);
+  base_space_poset& lhost = B::standard_host(xns, xbase_space_name, false);
 
   B lmesh(&lhost, 2, true);
   lmesh.put_name("mesh", true, true);
@@ -137,7 +137,7 @@ make_base_space_2d(fiber_bundles_namespace& xns, const string& xbase_space_name)
 
   typedef structured_block_2d B;
     
-  base_space_poset& lhost = xns.new_base_space<B>(xbase_space_name);
+  base_space_poset& lhost = B::standard_host(xns, xbase_space_name, false);
 
   B lmesh(&lhost, 2, 2, true);
   lmesh.put_name("mesh", true, true);
@@ -168,7 +168,7 @@ make_base_space_3d(fiber_bundles_namespace& xns, const string& xbase_space_name)
 
   typedef structured_block_3d B;
     
-  base_space_poset& lhost = xns.new_base_space<B>(xbase_space_name);
+  base_space_poset& lhost = B::standard_host(xns, xbase_space_name, false);
 
   B lmesh(&lhost, 2, 2, 2, true);
   lmesh.put_name("mesh", true, true);
@@ -280,7 +280,7 @@ test_d_uniform_point_locator_facet(fiber_bundles_namespace& xns)
   // Make names for the spaces:
 
   string lnames[2] = {"base_space",
-                      "coordinates_section_space"};
+                      "_coordinates_section_space"};
 
   make_names_unique(lnames, 2);
  
@@ -299,7 +299,7 @@ test_d_uniform_point_locator_facet(fiber_bundles_namespace& xns)
    // Create the coordinates section space.
 
   typename S::host_type& lcoords_space =
-    xns.new_section_space<S>(lcoords_space_name, lbase_path);
+    S::standard_host(xns, lbase_path, "", lcoords_space_name, "", false);
 
   lcoords_space.get_read_write_access();
 

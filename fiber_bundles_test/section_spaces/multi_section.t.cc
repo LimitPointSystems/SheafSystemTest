@@ -53,29 +53,29 @@ structured_block_1d* make_1d_base_space(fiber_bundles_namespace& xns)
 
   // Create the host.
 
-  base_space_poset* lbase_host = &xns.new_base_space<structured_block_1d>("1d_base_space");
+  base_space_poset& lbase_host = structured_block_1d::standard_host(xns, "1d_base_space", false);
 
-  lbase_host->get_read_write_access();
+  lbase_host.get_read_write_access();
 
   // Create the mesh itself.
 
   structured_block_1d* result =
-    new structured_block_1d(lbase_host, 4, true);
+    new structured_block_1d(&lbase_host, 4, true);
   result->put_name("mesh", true, false);
 
   // Create a decomposition.
 
-  subposet lparts(lbase_host);
+  subposet lparts(&lbase_host);
   lparts.put_name("parts", true, false);
 
-  const index_space_handle& lele_space = lbase_host->elements().id_space();
+  const index_space_handle& lele_space = lbase_host.elements().id_space();
 
   scoped_index lexpansion[2];
 
   lexpansion[0].put(lele_space, 0);
   lexpansion[1].put(lele_space, 1);
 
-  base_space_member lpart0(lbase_host, lexpansion, 2, tern::NEITHER, false);
+  base_space_member lpart0(&lbase_host, lexpansion, 2, tern::NEITHER, false);
   lpart0.put_name("part0", true, true);
   lparts.insert_member(lpart0.index());
   lpart0.detach_from_state();
@@ -83,7 +83,7 @@ structured_block_1d* make_1d_base_space(fiber_bundles_namespace& xns)
   lexpansion[0].put(lele_space, 2);
   lexpansion[1].put(lele_space, 3);
 
-  base_space_member lpart1(lbase_host, lexpansion, 2, tern::NEITHER, false);
+  base_space_member lpart1(&lbase_host, lexpansion, 2, tern::NEITHER, false);
   lpart1.put_name("part1", true, true);
   lparts.insert_member(lpart1.index());
   lpart1.detach_from_state();
@@ -113,27 +113,10 @@ sec_at0_space& make_1d_section_space(fiber_bundles_namespace& xns,
 
   // Body:
 
-  string lspace_name("at0_on_1d_base_space");
-  string lschema_name(lspace_name + "_schema");
-
-  // Make the section space schema arguments.
-
-  arg_list largs =
-    binary_section_space_schema_poset::make_arg_list("", xbase_path, "");
-
-  // Make the schema.
-
-  poset_path lschema_path =
-    xns.new_scalar_section_space_schema<sec_at0>(lschema_name, largs);
-
-  // Make the section space arguments.
-
-  largs = sec_at0_space::make_arg_list();
-
   // Make the section space.
 
   sec_at0_space& result =
-    xns.new_scalar_section_space<sec_at0>(lspace_name, largs, lschema_path);
+    sec_at0::standard_host(xns, xbase_path, "", "", "", false);
 
   result.get_read_write_access();
 
@@ -318,22 +301,22 @@ structured_block_3d* make_3d_base_space(fiber_bundles_namespace& xns)
 
   // Create the host.
 
-  base_space_poset* lbase_host = &xns.new_base_space<structured_block_3d>("3d_base_space");
+  base_space_poset& lbase_host = structured_block_3d::standard_host(xns, "3d_base_space", false);
 
-  lbase_host->get_read_write_access();
+  lbase_host.get_read_write_access();
 
   // Create the mesh itself.
 
   structured_block_3d* result =
-    new structured_block_3d(lbase_host, 3, 2, 1, true);
+    new structured_block_3d(&lbase_host, 3, 2, 1, true);
   result->put_name("mesh", true, false);
 
   // Create a decomposition.
 
-  subposet lparts(lbase_host);
+  subposet lparts(&lbase_host);
   lparts.put_name("parts", true, false);
 
-  const index_space_handle& lele_space = lbase_host->elements().id_space();
+  const index_space_handle& lele_space = lbase_host.elements().id_space();
 
   scoped_index lexpansion[3];
 
@@ -341,7 +324,7 @@ structured_block_3d* make_3d_base_space(fiber_bundles_namespace& xns)
   lexpansion[1].put(lele_space, 1);
   lexpansion[2].put(lele_space, 2);
 
-  base_space_member lpart0(lbase_host, lexpansion, 3, tern::NEITHER, false);
+  base_space_member lpart0(&lbase_host, lexpansion, 3, tern::NEITHER, false);
   lpart0.put_name("part0", true, true);
   lparts.insert_member(lpart0.index());
   lpart0.detach_from_state();
@@ -350,7 +333,7 @@ structured_block_3d* make_3d_base_space(fiber_bundles_namespace& xns)
   lexpansion[1].put(lele_space, 4);
   lexpansion[2].put(lele_space, 5);
 
-  base_space_member lpart1(lbase_host, lexpansion, 3, tern::NEITHER, false);
+  base_space_member lpart1(&lbase_host, lexpansion, 3, tern::NEITHER, false);
   lpart1.put_name("part1", true, true);
   lparts.insert_member(lpart1.index());
   lpart1.detach_from_state();
@@ -380,27 +363,8 @@ sec_at0_space& make_3d_section_space(fiber_bundles_namespace& xns,
 
   // Body:
 
-  string lspace_name("at0_on_3d_base_space");
-  string lschema_name(lspace_name + "_schema");
-
-  // Make the section space schema arguments.
-
-  arg_list largs =
-    binary_section_space_schema_poset::make_arg_list("", xbase_path, "");
-
-  // Make the schema.
-
-  poset_path lschema_path =
-    xns.new_scalar_section_space_schema<sec_at0>(lschema_name, largs);
-
-  // Make the section space arguments.
-
-  largs = sec_at0_space::make_arg_list();
-
-  // Make the section space.
-
   sec_at0_space& result =
-    xns.new_scalar_section_space<sec_at0>(lspace_name, largs, lschema_path);
+    sec_at0::standard_host(xns, xbase_path, "", "", "", false);
 
   result.get_read_write_access();
 
