@@ -14,6 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+
 /// @example examples/default_namespace_poset.t.cc
 /// Test driver for class namespace_poset
 
