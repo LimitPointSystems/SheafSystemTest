@@ -62,7 +62,7 @@ execute_process(COMMAND ${CMAKE_COMMAND} -E remove ${CMAKE_BINARY_DIR}/${EXPORTS
 # Set the default build type.
 #
 if(NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE "Debug-contracts" CACHE STRING "Choose the type of build, options are: ${CMAKE_CONFIGURATION_TYPES}." FORCE)
+    set(CMAKE_BUILD_TYPE "Debug_contracts" CACHE STRING "Choose the type of build, options are: ${CMAKE_CONFIGURATION_TYPES}." FORCE)
 endif(NOT CMAKE_BUILD_TYPE)
 
 set(ALL_BIN_TARGETS CACHE STRING "Aggregate list of component bin targets")

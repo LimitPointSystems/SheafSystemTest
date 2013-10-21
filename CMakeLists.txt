@@ -23,20 +23,20 @@
 #
 # Set the configuration types.
 #
-set(CMAKE_CONFIGURATION_TYPES Debug-contracts RelWithDebInfo-no-contracts CACHE STRING "Supported configuration types" FORCE)
+set(CMAKE_CONFIGURATION_TYPES Debug_contracts RelWithDebInfo_no_contracts CACHE STRING "Supported configuration types" FORCE)
 
 #
 # Tell Cmake which configurations it should see and "Debug"
 #
-set_property(GLOBAL PROPERTY DEBUG_CONFIGURATIONS "Debug-contracts" ) 
+set_property(GLOBAL PROPERTY DEBUG_CONFIGURATIONS "Debug_contracts" ) 
 
 #
 # Debug lib should have "_d" appended to filename.
 #
 if(WIN32)
-    set(CMAKE_DEBUG-CONTRACTS_POSTFIX "_d" CACHE STRING "Debug libs suffix")
+    set(CMAKE_DEBUG_CONTRACTS_POSTFIX "_d" CACHE STRING "Debug libs suffix")
 else()
-    set(CMAKE_DEBUG-CONTRACTS_POSTFIX "_debug" CACHE STRING "Debug libs suffix")
+    set(CMAKE_DEBUG_CONTRACTS_POSTFIX "_debug" CACHE STRING "Debug libs suffix")
 endif()
     
 #
