@@ -19,7 +19,6 @@
 /// Test driver for forwarding id spaces.
 
 #include "assert_contract.h"
-#include "arg_list.h"
 #include "error_message.h"
 #include "index_space_family.h"
 #include "forwarding_index_space_handle.h"
@@ -39,16 +38,13 @@ int main( int argc, char* argv[])
 
   namespace_poset::initialize_id_space_prototypes();
 
-  index_space_family lid_spaces;
-  lid_spaces.new_primary_state(6);
+  test_index_space_family lid_spaces;
+  lid_spaces.new_primary_space(6);
 
   string lname("test_forwarding_id_space");
 
   pod_index_type lspace_id =
-    make_id_space_interval(lid_spaces,
-			   "constant_index_space_interval",
-			   constant_index_space_interval::make_arg_list(2),
-			   2);
+    constant_index_space_interval::new_space(lid_spaces, 2, 2).begin();
 
   // Give the id space a name.
 

@@ -19,7 +19,6 @@
 /// Test driver for offset id spaces.
 
 #include "assert_contract.h"
-#include "arg_list.h"
 #include "error_message.h"
 #include "index_space_family.h"
 #include "offset_index_space_handle.h"
@@ -39,16 +38,15 @@ int main( int argc, char* argv[])
 
   namespace_poset::initialize_id_space_prototypes();
 
-  index_space_family lid_spaces;
-  lid_spaces.new_primary_state(6);
+  test_index_space_family lid_spaces;
+  lid_spaces.new_primary_space(6);
 
   string lname("test_offset_id_space");
 
-  pod_index_type lspace_id =
-    make_id_space(lid_spaces,
-		  lname,
-		  "offset_index_space_state",
-		  offset_index_space_state::make_arg_list(2, 4)).index();
+  offset_index_space_handle lhandle =
+    offset_index_space_handle::new_space(lid_spaces, lname, 2, 4);
+
+  pod_index_type lspace_id = lhandle.index();
 
   // Test handle facet.
 
@@ -56,7 +54,6 @@ int main( int argc, char* argv[])
 
   print_out_header("Testing miscellaneous handle functions");
 
-  offset_index_space_handle lhandle(lid_spaces, lspace_id);
   cout << "offset() = " << lhandle.offset() << endl;
 
   // Test iterator facet.

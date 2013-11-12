@@ -23,12 +23,10 @@
 #include "section_space_schema_jims_index_space_state.h"
 
 #include "assert_contract.h"
-#include "arg_list.h"
-#include "array_index_space_state.h"
+#include "array_index_space_handle.h"
 #include "fiber_bundles_namespace.h"
 #include "ij_product_structure.h"
 #include "index_space_family.h"
-#include "mutable_index_space_handle.h"
 #include "test_index_spaces.impl.h"
 
 using namespace fiber_bundle;
@@ -51,10 +49,10 @@ int main( int argc, char* argv[])
 
   print_out_header("Create Base Space ID Space");
 
-  index_space_family lbase_family;
+  test_index_space_family lbase_family;
   lbase_family.new_id(); // top
   lbase_family.new_id(); // bottom
-  pod_index_type lbase_members_id = lbase_family.new_primary_state(lbase_ub);
+  pod_index_type lbase_members_id = lbase_family.new_primary_space(lbase_ub);
 
   cout << lbase_family << endl;
 
@@ -62,10 +60,10 @@ int main( int argc, char* argv[])
 
   print_out_header("Create Fiber Schema ID Space");
 
-  index_space_family lfiber_family;
+  test_index_space_family lfiber_family;
   lfiber_family.new_id(); // top
   lfiber_family.new_id(); // bottom
-  pod_index_type lfiber_members_id = lfiber_family.new_primary_state(lfiber_ub);
+  pod_index_type lfiber_members_id = lfiber_family.new_primary_space(lfiber_ub);
 
   cout << lfiber_family << endl;
 
@@ -75,10 +73,10 @@ int main( int argc, char* argv[])
 
   size_type lsection_ub = lbase_family.hub_id_space().end()*lfiber_family.hub_id_space().end();
 
-  index_space_family lsection_family;
+  test_index_space_family lsection_family;
   lsection_family.new_id(); // top
   lsection_family.new_id(); // bottom
-  pod_index_type lsection_members_id = lsection_family.new_primary_state(lsection_ub);
+  pod_index_type lsection_members_id = lsection_family.new_primary_space(lsection_ub);
 
   cout << lsection_family << endl;
 
@@ -93,11 +91,9 @@ int main( int argc, char* argv[])
 
   print_out_header("Create Base Space Jims ID Space");
 
-  arg_list largs = array_index_space_state::make_arg_list(lbase_ub/2);
-  mutable_index_space_handle& lbase_jims_id_space =
-    reinterpret_cast<mutable_index_space_handle&>
-    (make_id_space(lbase_family, "base_schema_jims",
-		   "array_index_space_state", largs));
+  array_index_space_handle lbase_jims_id_space =
+    array_index_space_handle::new_space(lbase_family, "base_schema_jims",
+					false, lbase_ub/2);
 
   index_space_handle& lbase_id_space = lbase_family.get_id_space(lbase_members_id);
   for(pod_index_type i=0; i<lbase_ub/2; i++)
@@ -109,11 +105,9 @@ int main( int argc, char* argv[])
 
   print_out_header("Create Fiber Schema Jims ID Space");
 
-  largs = array_index_space_state::make_arg_list(lfiber_ub);
-  mutable_index_space_handle& lfiber_jims_id_space =
-    reinterpret_cast<mutable_index_space_handle&>
-    (make_id_space(lfiber_family, "fiber_schema_jims",
-		   "array_index_space_state", largs));
+  array_index_space_handle lfiber_jims_id_space =
+    array_index_space_handle::new_space(lfiber_family, "fiber_schema_jims",
+					false, lfiber_ub);
 
   index_space_iterator& lfiber_itr = lfiber_family.get_id_space_iterator(lfiber_members_id);
   while(!lfiber_itr.is_done())
@@ -128,13 +122,12 @@ int main( int argc, char* argv[])
 
   print_out_header("Create Section Space Schema Jims ID Space");
 
-  largs = section_space_schema_jims_index_space_state::
-    make_arg_list(lbase_jims_id_space, lfiber_jims_id_space,
-		  lsection_space_schema_product);
-  section_space_schema_jims_index_space_handle& lsection_jims_id_space =
-    reinterpret_cast<section_space_schema_jims_index_space_handle&>
-    (make_id_space(lsection_family, "section_space_schema_jims",
-		   "section_space_schema_jims_index_space_state", largs));
+  section_space_schema_jims_index_space_handle lsection_jims_id_space =
+    section_space_schema_jims_index_space_handle::new_space(lsection_family,
+							    "section_space_schema_jims",
+							    lbase_jims_id_space,
+							    lfiber_jims_id_space,
+							    lsection_space_schema_product);
 
   // Test the handle and iterator facets.
 
@@ -159,13 +152,6 @@ int main( int argc, char* argv[])
 
   test_iterator(lsection_jims_id_space);
 
-  // Clean-up
-
-  lbase_family.release_id_space(lbase_id_space);
-  lbase_family.release_id_space(lbase_jims_id_space);
-  lfiber_family.release_id_space(lfiber_jims_id_space);
-  lsection_family.release_id_space(lsection_jims_id_space);
-  
   // Done.
 
   return 0;

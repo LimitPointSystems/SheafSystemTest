@@ -19,12 +19,10 @@
 /// test driver for poset cluster
 
 #include "abstract_poset_member.h"
-#include "arg_list.h"
 #include "block.h"
-#include "mutable_index_space_handle.h"
 #include "index_space_iterator.h"
 #include "sheaves_namespace.h"
-#include "hash_index_space_state.h"
+#include "hash_index_space_handle.h"
 #include "namespace_poset_member.h"
 #include "poset.h"
 #include "poset_member.h"
@@ -266,38 +264,29 @@ void new_jim_test(sheaves_namespace& xns)
 
   cells->get_read_write_access();
 
-  // Create some id spaces.
-
-  arg_list largs = hash_index_space_state::make_arg_list(0);
-
   // Create vertices id space.
 
-  pod_index_type lid =
-    cells->member_id_spaces(false).new_secondary_state("__vertices",
-						       "hash_index_space_state",
-						       largs, true);
-  mutable_index_space_handle lv_id_space(cells->member_id_spaces(false), lid);
+  hash_index_space_handle lv_id_space =
+    hash_index_space_handle::new_space(cells->member_id_spaces(false),
+				       "__vertices", true, 0);
 
   // Create edge id space.
 
-  lid = cells->member_id_spaces(false).new_secondary_state("__edges",
-							   "hash_index_space_state",
-							   largs, true);
-  mutable_index_space_handle le_id_space(cells->member_id_spaces(false), lid);
+  hash_index_space_handle le_id_space =
+    hash_index_space_handle::new_space(cells->member_id_spaces(false),
+				       "__edges", true, 0);
 
   // Create triangle id space.
 
-  lid = cells->member_id_spaces(false).new_secondary_state("__triangles",
-							   "hash_index_space_state",
-							   largs, true);
-  mutable_index_space_handle lt_id_space(cells->member_id_spaces(false), lid);
+  hash_index_space_handle lt_id_space =
+    hash_index_space_handle::new_space(cells->member_id_spaces(false),
+				       "__triangles", true, 0);
 
   // Create 1 based vertices id space.
 
-  lid = cells->member_id_spaces(false).new_secondary_state("__1_based_vertices",
-							   "hash_index_space_state",
-							   largs, true);
-  mutable_index_space_handle lv1_id_space(cells->member_id_spaces(false), lid);
+  hash_index_space_handle lv1_id_space =
+    hash_index_space_handle::new_space(cells->member_id_spaces(false),
+				       "__1_based_vertices", true, 0);
 
   cells->begin_jim_edit_mode(false);
 

@@ -43,8 +43,9 @@ main()
   namespace_poset::initialize_id_space_prototypes();
 
   index_space_family lid_spaces;
-  lid_spaces.new_primary_state(33);
-
+  lid_spaces.new_id(0);
+  lid_spaces.new_id(4);
+  lid_spaces.new_id(32);
 
   cout << "new zn_tobool should have ct() = 33: ct() = " << x->ct() << endl;
 

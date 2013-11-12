@@ -19,14 +19,12 @@
 /// Test driver for for the connectivity and adjacency id spaces for
 /// a 2-dimensional structured block.
 
-#include "arg_list.h"
 #include "fiber_bundles_namespace.h"
 #include "ij_adjacency_index_space_interval.h"
 #include "ij_adjacency_implicit_index_space_iterator.h"
 #include "ij_connectivity_index_space_interval.h"
 #include "ij_connectivity_implicit_index_space_iterator.h"
-#include "index_space_family.h"
-#include "offset_index_space_state.h"
+#include "offset_index_space_handle.h"
 #include "test_index_spaces.impl.h"
 #include "std_strstream.h"
 
@@ -50,29 +48,26 @@ int main( int argc, char* argv[])
   size_type lvertex_size = (li_size + 1)*(lj_size + 1);
   size_type lsize = 1 + lzone_size + lvertex_size;
 
-  index_space_family lid_spaces;
-  lid_spaces.new_primary_state(lsize);
+  test_index_space_family lid_spaces;
+  lid_spaces.new_primary_space(lsize);
 
   // Create zone id space.
 
-  arg_list largs = offset_index_space_state::make_arg_list(1, lzone_size);
-  make_id_space(lid_spaces, "zone_id_space", "offset_index_space_state", largs);
+  offset_index_space_handle::new_space(lid_spaces, "zone_id_space",
+				       1, lzone_size);
 
   // Create vertex id space.
 
-  largs = offset_index_space_state::make_arg_list(1+lzone_size, lvertex_size);
-  make_id_space(lid_spaces, "vertex_id_space", "offset_index_space_state", largs);
+  offset_index_space_handle::new_space(lid_spaces, "vertex_id_space",
+				       1+lzone_size, lvertex_size);
 
   // Create connectivity interval.
 
 #ifndef NO_CONNECTIVITY
 
-  largs =
-    ij_connectivity_index_space_interval::make_arg_list(1+lzone_size, lj_size);
-
   pod_index_type lconn_id =
-    make_id_space_interval(lid_spaces, "ij_connectivity_index_space_interval",
-			   largs, lzone_size);
+    ij_connectivity_index_space_interval::new_space(lid_spaces, lzone_size,
+						    1+lzone_size, lj_size).begin();
 
   // Give the id space a name.
 
@@ -108,12 +103,9 @@ int main( int argc, char* argv[])
 
 #ifndef NO_ADJACENCY
 
-  largs =
-    ij_adjacency_index_space_interval::make_arg_list(1, li_size, lj_size);
-
   pod_index_type ladj_id =
-    make_id_space_interval(lid_spaces, "ij_adjacency_index_space_interval",
-			   largs, lvertex_size);
+    ij_adjacency_index_space_interval::new_space(lid_spaces, lvertex_size,
+						 1, li_size, lj_size).begin();
 
   // Give the id space a name.
 

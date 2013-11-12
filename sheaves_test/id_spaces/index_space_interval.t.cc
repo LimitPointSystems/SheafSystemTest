@@ -17,7 +17,6 @@
 /// @example id_spaces/index_space_interval.t.cc
 /// Test driver for class id space intervals.
 
-#include "arg_list.h"
 #include "array_index_space_interval.h"
 #include "hub_index_space_handle.h"
 #include "index_space_family.h"
@@ -63,11 +62,10 @@ create_connectivity(index_space_family& xid_spaces,
 
   // Create the id space interval.
 
-  arg_list largs =
-    array_index_space_interval::make_arg_list(lconn, 2, true);
+  pod_index_type result =
+    array_index_space_interval::new_space(xid_spaces, xseg_ct, lconn, 2, true).begin();
 
-  return xid_spaces.new_secondary_interval("array_index_space_interval",
-					   largs, xseg_ct);
+  return result;;
 }
 
 ///
@@ -117,10 +115,10 @@ create_adjacency(index_space_family& xid_spaces,
 
   // Create the id space interval.
 
-  arg_list largs = ragged_array_index_space_interval::make_arg_list(ladj, true);
+  pod_index_type result =
+    ragged_array_index_space_interval::new_space(xid_spaces, lvertex_ct, ladj, true).begin();
 
-  return xid_spaces.new_secondary_interval("ragged_array_index_space_interval",
-					   largs, lvertex_ct);
+  return result;
 }
 
 ///
@@ -133,15 +131,15 @@ void test_array_intervals(size_type xseg_ct)
 
   // Create the id space family.
 
-  index_space_family lid_spaces;
+  test_index_space_family lid_spaces;
 
   // Add the members
 
   lid_spaces.new_id(); // bottom
   lid_spaces.new_id(); // top
   lid_spaces.update_standard_id_spaces(); //  Used to test the clear id spaces.
-  pod_index_type lzone_space_id = lid_spaces.new_primary_state(xseg_ct); // zones/edges
-  pod_index_type lvertex_space_id = lid_spaces.new_primary_state(xseg_ct+1); // vertices
+  pod_index_type lzone_space_id = lid_spaces.new_primary_space(xseg_ct); // zones/edges
+  pod_index_type lvertex_space_id = lid_spaces.new_primary_space(xseg_ct+1); // vertices
 
   // Create the zone-vertex connectivity.
 
@@ -162,8 +160,8 @@ void test_array_intervals(size_type xseg_ct)
 
   print_out_header("Test Creating Connectivity after Clear");
 
-  lzone_space_id = lid_spaces.new_primary_state(xseg_ct); // zones/edges
-  lvertex_space_id = lid_spaces.new_primary_state(xseg_ct+1); // vertices
+  lzone_space_id = lid_spaces.new_primary_space(xseg_ct); // zones/edges
+  lvertex_space_id = lid_spaces.new_primary_space(xseg_ct+1); // vertices
 
   pod_index_type lconn_space_id =
     create_connectivity(lid_spaces, lvertex_space_id, xseg_ct);
@@ -222,22 +220,20 @@ void test_singleton(size_type xct)
 
   // Create the id space family.
 
-  index_space_family lid_spaces;
+  test_index_space_family lid_spaces;
 
   // Add the members
 
   lid_spaces.new_id(); // top
   lid_spaces.new_id(); // bottom
-  pod_index_type lspace_id = lid_spaces.new_primary_state(xct); // points
+  pod_index_type lspace_id = lid_spaces.new_primary_space(xct); // points
 
   // Create the singleton id space interval.
 
   pod_index_type lhub_offset = lid_spaces.hub_pod(lspace_id, 0);
 
-  arg_list largs = singleton_index_space_interval::make_arg_list(lhub_offset);
-
   pod_index_type lbegin = 
-    lid_spaces.new_secondary_interval("singleton_index_space_interval", largs, xct);
+    singleton_index_space_interval::new_space(lid_spaces, xct, lhub_offset).begin();
 
   cout << lid_spaces << endl;
 

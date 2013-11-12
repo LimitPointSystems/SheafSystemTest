@@ -24,6 +24,10 @@
 #include "sheaf_dll_spec.h"
 #endif
 
+#ifndef INDEX_SPACE_FAMILY_H
+#include "index_space_family.h"
+#endif
+
 #ifndef POD_TYPES_H
 #include "pod_types.h"
 #endif
@@ -39,39 +43,64 @@
 namespace sheaf
 {
 
-class arg_list;
-class index_space_family;
 class index_space_iterator;
 class index_space_handle;
 class mutable_index_space_handle;
 
 // ===========================================================
-// INDEX_SPACE FACET
+// INDEX_SPACE_FAMILY FACET
 // ===========================================================
 
 ///
-/// Create a secondary id space state with name xname, state type
-/// xstate_class_name, and arguments xstate_args in the id space
-/// family xid_spaces. Print the information to standard out.
+/// Implementation of index_space_family that makes the
+/// new_primary_state function public for testing.
 ///
-SHEAF_DLL_SPEC
-index_space_handle&
-make_id_space(index_space_family& xid_spaces,
-	      const string& xname,
-	      const string& xstate_class_name,
-	      const arg_list& xstate_args);
+class SHEAF_DLL_SPEC test_index_space_family : public index_space_family
+{
+public:
 
-///
-/// Create a id space interval with type xid_spaces_class_name,
-/// and arguments xid_spaces_args in the id space family xid_spaces.
-/// Print the information to standard out.
-///
-SHEAF_DLL_SPEC
-pod_index_type
-make_id_space_interval(index_space_family& xid_spaces,
-		       const string& xinterval_class_name,
-		       const arg_list& xinterval_args,
-		       size_type xub);
+  ///
+  /// Default Constructor.
+  ///
+  test_index_space_family()
+    : index_space_family()
+  {
+  };
+
+  ///
+  /// Destructor.
+  ///
+  virtual ~test_index_space_family()
+  {
+  };
+
+  ///
+  /// Creates a new primary id space state with xct number of ids.
+  /// Returns the index of the id space state created.
+  ///
+  pod_type new_primary_space(size_type xct)
+  {
+    return new_primary_state(xct);
+  };
+
+  ///
+  /// Creates a new primary id space state [xid, xid+xct).
+  /// Returns the index of the id space state created.
+  ///
+  pod_type new_primary_space(pod_type xid, size_type xct)
+  {
+    return new_primary_state(xid, xct);
+  };
+
+protected:
+
+private:
+
+};
+
+// ===========================================================
+// INDEX_SPACE FACET
+// ===========================================================
 
 ///
 /// Check the id space with ids [xbegin, xbegin+xct) for correctness.
@@ -124,6 +153,13 @@ delete_id(index_space_family& xid_spaces, pod_index_type xid);
 SHEAF_DLL_SPEC
 void
 test_mutable_facet(index_space_family& xid_spaces, pod_index_type xspace_id);
+
+///
+/// Test the mutable facet.
+///
+SHEAF_DLL_SPEC
+void
+test_mutable_facet(mutable_index_space_handle& xid_space);
 
 ///
 /// Insert the entry (xid, xhub_id) into xid_space.

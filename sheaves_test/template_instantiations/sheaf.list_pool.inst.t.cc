@@ -21,21 +21,23 @@
 #include "block.h"
 
 #include "array_implicit_index_space_iterator.h"
+#include "array_index_space_handle.h"
 #include "array_index_space_iterator.h"
 #include "constant_implicit_index_space_iterator.h"
-#include "explicit_index_space_handle.h"
 #include "forwarding_index_space_handle.h"
+#include "hash_index_space_handle.h"
 #include "hash_index_space_iterator.h"
 #include "hub_index_space_handle.h"
 #include "hub_index_space_iterator.h"
 #include "interval_index_space_handle.h"
 #include "interval_index_space_iterator.h"
+#include "list_index_space_handle.h"
 #include "list_index_space_iterator.h"
 #include "offset_index_space_handle.h"
 #include "offset_index_space_iterator.h"
-#include "mutable_index_space_handle.h"
 #include "primary_index_space_handle.h"
 #include "primary_index_space_iterator.h"
+#include "primitives_index_space_handle.h"
 #include "primitives_index_space_iterator.h"
 #include "ragged_array_implicit_index_space_iterator.h"
 #include "reserved_primary_index_space_handle.h"
@@ -61,6 +63,10 @@ main(int xargc, char* xargv[])
   ltest &= test_list_pool_facet<array_implicit_index_space_iterator>();
   print_footer("End testing list_pool<array_implicit_index_space_iterator>");
 
+  print_header("Begin testing list_pool<array_index_space_handle>");
+  ltest &= test_list_pool_facet<array_index_space_handle>();
+  print_footer("End testing list_pool<array_index_space_handle>");
+
   print_header("Begin testing list_pool<array_index_space_iterator>");
   ltest &= test_list_pool_facet<array_index_space_iterator>();
   print_footer("End testing list_pool<array_index_space_iterator>");
@@ -69,13 +75,13 @@ main(int xargc, char* xargv[])
   ltest &= test_list_pool_facet<constant_implicit_index_space_iterator>();
   print_footer("End testing list_pool<constant_implicit_index_space_iterator>");
 
-  print_header("Begin testing list_pool<explicit_index_space_handle>");
-  ltest &= test_list_pool_facet<explicit_index_space_handle>();
-  print_footer("End testing list_pool<explicit_index_space_handle>");
-
   print_header("Begin testing list_pool<forwarding_index_space_handle>");
   ltest &= test_list_pool_facet<forwarding_index_space_handle>();
   print_footer("End testing list_pool<forwarding_index_space_handle>");
+
+  print_header("Begin testing list_pool<hash_index_space_handle>");
+  ltest &= test_list_pool_facet<hash_index_space_handle>();
+  print_footer("End testing list_pool<hash_index_space_handle>");
 
   print_header("Begin testing list_pool<hash_index_space_iterator>");
   ltest &= test_list_pool_facet<hash_index_space_iterator>();
@@ -97,6 +103,10 @@ main(int xargc, char* xargv[])
   ltest &= test_list_pool_facet<interval_index_space_iterator>();
   print_footer("End testing list_pool<interval_index_space_iterator>");
 
+  print_header("Begin testing list_pool<list_index_space_handle>");
+  ltest &= test_list_pool_facet<list_index_space_handle>();
+  print_footer("End testing list_pool<list_index_space_handle>");
+
   print_header("Begin testing list_pool<list_index_space_iterator>");
   ltest &= test_list_pool_facet<list_index_space_iterator>();
   print_footer("End testing list_pool<list_index_space_iterator>");
@@ -109,10 +119,6 @@ main(int xargc, char* xargv[])
   ltest &= test_list_pool_facet<offset_index_space_iterator>();
   print_footer("End testing list_pool<offset_index_space_iterator>");
 
-  print_header("Begin testing list_pool<mutable_index_space_handle>");
-  ltest &= test_list_pool_facet<mutable_index_space_handle>();
-  print_footer("End testing list_pool<mutable_index_space_handle>");
-
   print_header("Begin testing list_pool<primary_index_space_handle>");
   ltest &= test_list_pool_facet<primary_index_space_handle>();
   print_footer("End testing list_pool<primary_index_space_handle>");
@@ -120,6 +126,10 @@ main(int xargc, char* xargv[])
   print_header("Begin testing list_pool<primary_index_space_iterator>");
   ltest &= test_list_pool_facet<primary_index_space_iterator>();
   print_footer("End testing list_pool<primary_index_space_iterator>");
+
+  print_header("Begin testing list_pool<primitives_index_space_handle>");
+  ltest &= test_list_pool_facet<primitives_index_space_handle>();
+  print_footer("End testing list_pool<primitives_index_space_handle>");
 
   print_header("Begin testing list_pool<primitives_index_space_iterator>");
   ltest &= test_list_pool_facet<primitives_index_space_iterator>();

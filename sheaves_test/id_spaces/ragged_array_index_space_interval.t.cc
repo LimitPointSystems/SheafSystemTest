@@ -19,7 +19,6 @@
 /// Test driver for ragged array id space intervals.
 
 #include "assert_contract.h"
-#include "arg_list.h"
 #include "error_message.h"
 #include "index_space_family.h"
 #include "namespace_poset.h"
@@ -39,8 +38,8 @@ int main( int argc, char* argv[])
 
   namespace_poset::initialize_id_space_prototypes();
 
-  index_space_family lid_spaces;
-  lid_spaces.new_primary_state(6);
+  test_index_space_family lid_spaces;
+  lid_spaces.new_primary_space(6);
 
   string lname("test_ragged_array_id_space_interval");
 
@@ -52,10 +51,7 @@ int main( int argc, char* argv[])
   lids.push_back(5);
 
   pod_index_type lspace_id =
-    make_id_space_interval(lid_spaces,
-			   "ragged_array_index_space_interval",
-			   ragged_array_index_space_interval::make_arg_list(lids, true),
-			   2);
+    ragged_array_index_space_interval::new_space(lid_spaces, 2, lids, true).begin();
 
   // Give the id space a name.
 

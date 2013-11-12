@@ -19,11 +19,9 @@
 
 #include "test_index_spaces.h"
 
-#include "arg_list.h"
 #include "assert_contract.h"
 #include "block.h"
 #include "hub_index_space_handle.h"
-#include "index_space_family.h"
 #include "index_space_iterator.h"
 #include "mutable_index_space_handle.h"
 #include "scoped_index.h"
@@ -34,72 +32,6 @@
 // ===========================================================
 // INDEX_SPACE FACET
 // ===========================================================
-
-sheaf::index_space_handle&
-sheaf::
-make_id_space(index_space_family& xid_spaces,
-	      const string& xname,
-	      const string& xstate_class_name,
-	      const arg_list& xstate_args)
-{
-  // Preconditions:
-
-  // Body:
-
-  // Doen't matter if the id space is persistent or not, it is not
-  // going to be written to a file.
-
-  pod_index_type lspace_id =
-    xid_spaces.new_secondary_state(xname, xstate_class_name,
-				   xstate_args, true);
-
-  index_space_handle& result = xid_spaces.get_id_space(lspace_id);
-
-  print_out_subheader("Creating new id space");
-  cout << "index:        " << result.index() << endl;
-  cout << "name:         " << result.name() << endl;
-  cout << "space:        " << xstate_class_name << endl;
-  cout << endl;
-
-  assertion(check_id_spaces(xid_spaces, lspace_id, 1));
-  
-  // Postconditions:
-
-  // Exit:
-
-  return result;
-}
-
-sheaf::pod_index_type
-sheaf::
-make_id_space_interval(index_space_family& xid_spaces,
-		       const string& xinterval_class_name,
-		       const arg_list& xinterval_args,
-		       size_type xub)
-{
-  // Preconditions:
-
-  // Body:
-
-  pod_index_type lbegin =
-    xid_spaces.new_secondary_interval(xinterval_class_name,
-				      xinterval_args,
-				      xub);
-
-  print_out_subheader("Creating new id space interval");
-  cout << "begin:        " << lbegin << endl;
-  cout << "ub:           " << xub << endl;
-  cout << "interval:     " << xinterval_class_name << endl;
-  cout << endl;
-
-  assertion(check_id_spaces(xid_spaces, lbegin, xub));
-  
-  // Postconditions:
-
-  // Exit:
-
-  return lbegin;
-}
 
 bool
 sheaf::
@@ -274,49 +206,66 @@ test_mutable_facet(index_space_family& xid_spaces, pod_index_type xspace_id)
 
   // Body:
 
-  print_out_header("Testing Mutable Facet");
-
   mutable_index_space_handle lhandle(xid_spaces, xspace_id);
 
+  test_mutable_facet(lhandle);
+
+  // Postconditions:
+
+  // Exit:
+
+  return;
+}
+
+void
+sheaf::
+test_mutable_facet(mutable_index_space_handle& xid_space)
+{
+  // Preconditions:
+
+  // Body:
+
+  print_out_header("Testing Mutable Facet");
+
   cout << "insert(10, 1)" << endl;
-  scoped_index lid(xid_spaces.hub_id_space(), 1);
-  lhandle.insert(10, lid);
+  scoped_index lid(xid_space.hub_id_space(), 1);
+  xid_space.insert(10, lid);
 
   cout << "push_back(3)" << endl;
   lid = 3;
-  lhandle.push_back(lid);
+  xid_space.push_back(lid);
 
 //   cout << "push(litr, 5)" << endl;
 //   index_space_iterator& litr = xid_spaces.get_id_space_iterator(xspace_id);
 //   lid = 5;
-//   lhandle.push(litr, lid);
+//   xid_space.push(litr, lid);
 //   xid_spaces.release_id_space_iterator(litr);
   
   cout << "remove(5, false)" << endl;
-  lhandle.remove(lid, false);
+  xid_space.remove(lid, false);
 
   cout << "remove(3, true)" << endl;
   lid = 3;
-  lhandle.remove(lid, true);
+  xid_space.remove(lid, true);
 
   cout << "remove_hub(2, true)" << endl;
-  lhandle.remove_hub(2, true);
+  xid_space.remove_hub(2, true);
 
   cout << "remove_hub(0, false)" << endl;
-  lhandle.remove_hub(0, false);
+  xid_space.remove_hub(0, false);
 
   cout << "update_extrema()" << endl;
-  lhandle.update_extrema();
+  xid_space.update_extrema();
 
-  cout << "next_id()  = " << lhandle.next_id() << endl;
+  cout << "next_id()  = " << xid_space.next_id() << endl;
 
-  cout << "capacity() = " << lhandle.capacity() << endl;
+  cout << "capacity() = " << xid_space.capacity() << endl;
 
   cout << "gather()" << endl;
-  lhandle.gather();
+  xid_space.gather();
 
   cout << "clear()" << endl;
-  lhandle.clear();
+  xid_space.clear();
 
   // Postconditions:
 

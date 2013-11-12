@@ -18,13 +18,13 @@
 /// @example id_spaces/index_space_family.t.cc
 /// Test driver for class index_space_family.
 
-#include "arg_list.h"
+#include "array_index_space_handle.h"
 #include "array_index_space_state.h"
 #include "index_space_family.h"
 #include "index_space_iterator.h"
+#include "hash_index_space_handle.h"
 #include "hash_index_space_state.h"
 #include "hub_index_space_handle.h"
-#include "mutable_index_space_handle.h"
 #include "namespace_poset.h"
 #include "std_strstream.h"
 #include "test_index_spaces.h"
@@ -46,37 +46,23 @@ void create_eqv(index_space_family& xfamily)
 
   // Reverse space: the range is the reverse of the domain.
 
-  arg_list lspace_args = array_index_space_state::make_arg_list(lub);
-  xfamily.new_secondary_state("reverse_space", "array_index_space_state",
-			      lspace_args, true);
-
-  mutable_index_space_handle& lspace_reverse =
-    xfamily.get_id_space<mutable_index_space_handle>("reverse_space");
+  array_index_space_handle lspace_reverse =
+    array_index_space_handle::new_space(xfamily, "reverse_space", true, lub);
 
   // Space 200: every other hub id.
 
-  lspace_args = hash_index_space_state::make_arg_list(lub);
-  xfamily.new_secondary_state("space_200", "hash_index_space_state",
-			      lspace_args, true);
-
-  mutable_index_space_handle& lspace_200 =
-    xfamily.get_id_space<mutable_index_space_handle>("space_200");
+  hash_index_space_handle lspace_200 =
+    hash_index_space_handle::new_space(xfamily, "space_200", true, lub);
 
   // Space 300: every third hub id.
 
-  xfamily.new_secondary_state("space_300", "hash_index_space_state",
-			      lspace_args, true);
-
-  mutable_index_space_handle& lspace_300 =
-    xfamily.get_id_space<mutable_index_space_handle>("space_300");
+  hash_index_space_handle lspace_300 =
+    hash_index_space_handle::new_space(xfamily, "space_300", true, lub);
 
   // Space 400: every fourth hub id.
 
-  xfamily.new_secondary_state("space_400", "hash_index_space_state",
-			      lspace_args, true);
-
-  mutable_index_space_handle& lspace_400 =
-    xfamily.get_id_space<mutable_index_space_handle>("space_400");
+  hash_index_space_handle lspace_400 =
+    hash_index_space_handle::new_space(xfamily, "space_400", true, lub);
 
   // Populate the id spaces.
 
@@ -128,7 +114,7 @@ void create(size_t xinterval_mbr_ct)
 
   // Create the id space family.
 
-  index_space_family lid_spaces;
+  test_index_space_family lid_spaces;
 
   // Add some members
 
@@ -136,7 +122,7 @@ void create(size_t xinterval_mbr_ct)
   lid_spaces.new_id(); // top
   lid_spaces.new_id(); // id before creating interval.
 
-  lid_spaces.new_primary_state(xinterval_mbr_ct); // interval.
+  lid_spaces.new_primary_space(xinterval_mbr_ct); // interval.
 
   lid_spaces.new_id(); // id after creating interval.
 
@@ -174,7 +160,7 @@ void read_all(size_t xinterval_mbr_ct)
 
   // Create the id space family.
 
-  index_space_family lid_spaces;
+  test_index_space_family lid_spaces;
 
   // Add all members from the file (reconstruct create example above but in
   // random order).
@@ -182,7 +168,7 @@ void read_all(size_t xinterval_mbr_ct)
   lid_spaces.new_id(3); // id after creating interval.
   lid_spaces.new_id(1); // top
 
-  lid_spaces.new_primary_state(RESERVED_TERM_SIZE, xinterval_mbr_ct); // interval
+  lid_spaces.new_primary_space(RESERVED_TERM_SIZE, xinterval_mbr_ct); // interval
 
   lid_spaces.new_id(0); // bottom
   lid_spaces.new_id(2); // id before creating interval.
@@ -190,7 +176,7 @@ void read_all(size_t xinterval_mbr_ct)
   // Add some new members.
 
   lid_spaces.new_id(); // new id
-  lid_spaces.new_primary_state(xinterval_mbr_ct); // new interval
+  lid_spaces.new_primary_space(xinterval_mbr_ct); // new interval
 
   // Create the equivalance maps.
 
@@ -216,7 +202,7 @@ void delete_members(size_t xinterval_mbr_ct)
 
   // Create the id space family.
 
-  index_space_family lid_spaces;
+  test_index_space_family lid_spaces;
 
   // Add some members
 
@@ -224,8 +210,8 @@ void delete_members(size_t xinterval_mbr_ct)
   lid_spaces.new_id(); // top
   lid_spaces.new_id(); // id before creating intervals.
 
-  pod_index_type lterm_id = lid_spaces.new_primary_state(xinterval_mbr_ct); // interval 0
-  lid_spaces.new_primary_state(xinterval_mbr_ct); // interval 1.
+  pod_index_type lterm_id = lid_spaces.new_primary_space(xinterval_mbr_ct); // interval 0
+  lid_spaces.new_primary_space(xinterval_mbr_ct); // interval 1.
 
   lid_spaces.new_id(); // id after creating intervals.
 
@@ -264,14 +250,14 @@ void reserved_ids(size_t xinterval_mbr_ct)
 
   // Create the id space family.
 
-  index_space_family lid_spaces;
+  test_index_space_family lid_spaces;
 
   // Add some members
 
   lid_spaces.new_id(); // bottom
   lid_spaces.new_id(); // top
 
-  lid_spaces.new_primary_state(xinterval_mbr_ct); // interval.
+  lid_spaces.new_primary_space(xinterval_mbr_ct); // interval.
 
   for(int i = 0; i < RESERVED_TERM_SIZE; i++)
   {
@@ -296,13 +282,13 @@ void clear_ids(size_t xinterval_mbr_ct)
 
   // Create the id space family.
 
-  index_space_family lid_spaces;
+  test_index_space_family lid_spaces;
 
   // Create standard members.
 
   lid_spaces.new_id(); // bottom
   lid_spaces.new_id(); // top
-  lid_spaces.new_primary_state(xinterval_mbr_ct);
+  lid_spaces.new_primary_space(xinterval_mbr_ct);
 
   // Set the standard ids.
 
@@ -316,7 +302,7 @@ void clear_ids(size_t xinterval_mbr_ct)
   // Add some non-standard id spaces and ids.
 
   lid_spaces.new_id(); // Non-standard hub id.
-  lid_spaces.new_primary_state(xinterval_mbr_ct); // Non-standard primary id space.
+  lid_spaces.new_primary_space(xinterval_mbr_ct); // Non-standard primary id space.
   create_eqv(lid_spaces); // Non-standard secondary id spaces.
 
   print_out_subheader("Added Non-Standard Id Spaces and Ids.");
@@ -345,13 +331,13 @@ void gather_ids(size_t xinterval_mbr_ct)
 
   // Create the id space family.
 
-  index_space_family lid_spaces;
+  test_index_space_family lid_spaces;
 
   // Create standard members.
 
   lid_spaces.new_id(); // bottom
   lid_spaces.new_id(); // top
-  lid_spaces.new_primary_state(xinterval_mbr_ct);
+  lid_spaces.new_primary_space(xinterval_mbr_ct);
 
   // Create the gathered hub id space.
 
@@ -363,7 +349,7 @@ void gather_ids(size_t xinterval_mbr_ct)
   test_iterator(lid_spaces.gathered_hub_id_space());
 
   lid_spaces.new_id(4); // new member
-  lid_spaces.new_primary_state(300, xinterval_mbr_ct);
+  lid_spaces.new_primary_space(300, xinterval_mbr_ct);
 
   // Create a new member and a new range.
 

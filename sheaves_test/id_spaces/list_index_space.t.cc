@@ -19,10 +19,9 @@
 /// Test driver for list id spaces.
 
 #include "assert_contract.h"
-#include "arg_list.h"
 #include "error_message.h"
 #include "index_space_family.h"
-#include "mutable_index_space_handle.h"
+#include "list_index_space_handle.h"
 #include "list_index_space_iterator.h"
 #include "list_index_space_state.h"
 #include "namespace_poset.h"
@@ -39,18 +38,16 @@ int main( int argc, char* argv[])
 
   namespace_poset::initialize_id_space_prototypes();
 
-  index_space_family lid_spaces;
-  lid_spaces.new_primary_state(6);
+  test_index_space_family lid_spaces;
+  lid_spaces.new_primary_space(6);
 
   string lname("test_list_id_space");
 
-  pod_index_type lspace_id =
-    make_id_space(lid_spaces,
-		  lname,
-		  "list_index_space_state",
-		  list_index_space_state::make_arg_list()).index();
+  mutable_index_space_handle lhandle =
+    list_index_space_handle::new_space(lid_spaces, lname, false);
 
-  mutable_index_space_handle lhandle(lid_spaces, lspace_id);
+  pod_index_type lspace_id = lhandle.index();
+
   push_back(lhandle, 0);
   push_back(lhandle, 2);
   push_back(lhandle, 4);

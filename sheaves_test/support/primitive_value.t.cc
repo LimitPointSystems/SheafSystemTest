@@ -267,7 +267,7 @@ main(int xargc, char* xargv[])
   namespace_poset::initialize_id_space_prototypes();
 
   index_space_family lid_spaces;
-  lid_spaces.new_primary_state(500);
+  lid_spaces.new_id(123);
 
   const index_space_handle& lhub_id_space = lid_spaces.hub_id_space();
 

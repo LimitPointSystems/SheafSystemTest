@@ -54,8 +54,10 @@ pools_size(size_type& xhandle_ct, size_type& xhandle_deep_size)
   // The count of the static handles.
 
   xhandle_ct =
+    array_index_space_state::handle_pool_ct() +
+    hash_index_space_state::handle_pool_ct() +
     interval_index_space_state::handle_pool_ct() +
-    mutable_index_space_state::handle_pool_ct() +
+    list_index_space_state::handle_pool_ct() +
     offset_index_space_state::handle_pool_ct() +
     primary_index_space_state::handle_pool_ct() +
     primary_sum_index_space_state::handle_pool_ct() +
@@ -76,8 +78,10 @@ pools_size(size_type& xhandle_ct, size_type& xhandle_deep_size)
   // The deep size of the static handles.
 
   xhandle_deep_size =
+    array_index_space_state::handle_pool_deep_size() +
+    hash_index_space_state::handle_pool_deep_size() +
     interval_index_space_state::handle_pool_deep_size() +
-    mutable_index_space_state::handle_pool_deep_size() +
+    list_index_space_state::handle_pool_deep_size() +
     offset_index_space_state::handle_pool_deep_size() +
     primary_index_space_state::handle_pool_deep_size() +
     primary_sum_index_space_state::handle_pool_deep_size() +
