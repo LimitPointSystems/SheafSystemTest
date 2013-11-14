@@ -175,8 +175,8 @@ void test_array_intervals(size_type xseg_ct)
 
   print_out_header("Test Deleting Entire Interval");
 
-  lid_spaces.delete_secondary_interval(lconn_space_id);
-  lid_spaces.delete_secondary_interval(ladj_space_id);
+  lid_spaces.delete_space(lconn_space_id);
+  lid_spaces.delete_space(ladj_space_id);
 
   cout << lid_spaces << endl;
 

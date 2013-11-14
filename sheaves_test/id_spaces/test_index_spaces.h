@@ -92,6 +92,14 @@ public:
     return new_primary_state(xid, xct);
   };
 
+  ///
+  /// Delete the primary id space state with id xid.
+  ///
+  void delete_primary_space(pod_type xid)
+  {
+    delete_primary_state(xid);
+  };
+
 protected:
 
 private:

@@ -225,7 +225,7 @@ void delete_members(size_t xinterval_mbr_ct)
 
   // Test deleting.
 
-  lid_spaces.delete_primary_state(lterm_id); // delete interval 0.
+  lid_spaces.delete_primary_space(lterm_id); // delete interval 0.
   lid_spaces.delete_id(3); // delete id after creating intervals.
   lid_spaces.new_id(); // id after first delete.
   lid_spaces.delete_id(2); // delete id before creating intervals.
