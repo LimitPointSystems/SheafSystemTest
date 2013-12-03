@@ -499,6 +499,8 @@ function(add_win32_test_targets)
     # link_directories only applies to targets created after it is called.
     link_directories(${${COMPONENT}_OUTPUT_DIR} ${SHEAVES_LIB_OUTPUT_DIR})
 
+    file(TO_NATIVE_PATH "${SHEAFSYSTEM_HOME}" SS_HOME)
+    
     # Let the user know what's being configured
     status_message("Configuring Unit Tests for ${PROJECT_NAME}")   
     
@@ -590,6 +592,14 @@ function(add_win32_test_targets)
                 endif()                
             endif(ENABLE_UNIT_TEST_HDF_LOG_TARGETS)                                         
         endif()
+        
+        if(EXISTS ${SHEAFSYSTEM_HOME}/RELEASE)
+            # We've got an install. Adjust paths accordingly.
+            configure_file(${CMAKE_MODULE_PATH}/project.install.vcxproj.user.in ${CMAKE_BINARY_DIR}/${t_file}.vcxproj.user @ONLY)
+        else()
+            configure_file(${CMAKE_MODULE_PATH}/project.build.vcxproj.user.in ${CMAKE_BINARY_DIR}/${t_file}.vcxproj.user @ONLY)
+        endif()
+        
     endforeach()
 endfunction(add_win32_test_targets)
 
