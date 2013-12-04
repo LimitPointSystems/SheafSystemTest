@@ -595,9 +595,9 @@ function(add_win32_test_targets)
         
         if(EXISTS ${SHEAFSYSTEM_HOME}/RELEASE)
             # We've got an install. Adjust paths accordingly.
-            configure_file(${CMAKE_MODULE_PATH}/project.install.vcxproj.user.in ${CMAKE_BINARY_DIR}/${t_file}.vcxproj.user @ONLY)
+            configure_file(${CMAKE_MODULE_PATH}/project.install.vcxproj.user.in ${CMAKE_BINARY_DIR}/${PROJECT_NAME}/${t_file}.vcxproj.user @ONLY)
         else()
-            configure_file(${CMAKE_MODULE_PATH}/project.build.vcxproj.user.in ${CMAKE_BINARY_DIR}/${t_file}.vcxproj.user @ONLY)
+            configure_file(${CMAKE_MODULE_PATH}/project.build.vcxproj.user.in ${CMAKE_BINARY_DIR}/${PROJECT_NAME}/${t_file}.vcxproj.user @ONLY)
         endif()
         
     endforeach()
