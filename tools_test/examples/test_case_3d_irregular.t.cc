@@ -20,6 +20,7 @@
 #include "storage_agent.h"
 #include "test_case_3d_irregular.h"
 
+using namespace std;
 using namespace tool;
 
 int main(int argc, char* argv[])

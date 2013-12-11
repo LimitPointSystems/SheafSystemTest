@@ -25,6 +25,7 @@
 #include "storage_agent.h"
 #include "test_sections.impl.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 void

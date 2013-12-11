@@ -59,6 +59,8 @@
 #include "std_iomanip.h"
 #include "std_vector.h"
 
+using namespace std;
+
 namespace
 {
 ///

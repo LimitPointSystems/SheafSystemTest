@@ -23,6 +23,7 @@
 #include "assert_contract.h"
 #include "std_iomanip.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 namespace

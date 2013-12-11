@@ -27,6 +27,7 @@
 #include "std_iostream.h"
 #include "std_iomanip.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 ///

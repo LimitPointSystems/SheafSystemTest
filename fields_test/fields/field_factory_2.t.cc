@@ -37,6 +37,7 @@ class sec_e1;
 class sec_at0;
 }
 
+using namespace std;
 using namespace fields;
 
 namespace

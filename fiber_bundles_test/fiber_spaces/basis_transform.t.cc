@@ -23,6 +23,7 @@
 #include "gl3.h"
 #include "st2_e3.h"
 
+using namespace std;
 using namespace fiber_bundle;
 using namespace fiber_bundle::vd_algebra;
 

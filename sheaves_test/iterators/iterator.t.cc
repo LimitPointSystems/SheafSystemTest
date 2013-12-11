@@ -31,6 +31,7 @@
 #include "triorder_iterator.h"
 #include "biorder_iterator.h"
 #include "linkorder_iterator.h"
+using namespace std;
 using namespace sheaf;
 
 // Global variables:

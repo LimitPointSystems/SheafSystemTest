@@ -29,6 +29,7 @@
 #include "std_strstream.h"
 #include "test_index_spaces.h"
 
+using namespace std;
 using namespace sheaf;
 
 namespace

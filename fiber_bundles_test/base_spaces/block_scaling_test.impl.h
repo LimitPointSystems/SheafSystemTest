@@ -55,6 +55,10 @@
 #include "std_string.h"
 #endif
 
+#ifndef STD_IOMANIP_H
+#include "std_iomanip.h"
+#endif
+
 #ifndef STD_STRSTREAM_H
 #include "std_strstream.h"
 #endif
@@ -92,6 +96,8 @@ T* make_block(fiber_bundles_namespace* xns, size_type xsizes[], size_type xdi)
 
   // Body:
 
+  using namespace std;
+
   poset_path lpath("mesh", "block");
     
   base_space_factory<T> lfactory;
@@ -114,13 +120,15 @@ T* make_block(fiber_bundles_namespace* xns, size_type xsizes[], size_type xdi)
 
 template<typename T>
 void
-time_block(string xname, size_type xsizes[], size_type xdi, plot& xtime_plot, plot& xmem_plot)
+time_block(std::string xname, size_type xsizes[], size_type xdi, plot& xtime_plot, plot& xmem_plot)
 {
   // Preconditions:
 
   // Body:
 
   // Create the name of the namespace.
+
+  using namespace std;
 
   strstream lname_str;
   lname_str << xname;
@@ -507,6 +515,8 @@ test_scaling(int xargc, char* xargv[],
   //  require(max_elements >= 8000);
 
   // Body:
+
+  using namespace std;
 
   string lpath = string(xargv[0]);
   size_t lindex = lpath.find_last_of("/\\");

@@ -26,6 +26,7 @@
 #include "geometry_namespace.h"
 #include "test_utils.h"
 
+using namespace std;
 using namespace geometry;
 
 namespace

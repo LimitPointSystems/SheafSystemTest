@@ -59,6 +59,8 @@ test_any_facet(const T& xobject)
 
   // Body:
 
+  using namespace std;
+
   print_header("Begin testing \"any\" facet:");
 
   print_subheader("Contents of the original object \"xobject\":");
@@ -162,6 +164,8 @@ test_rc_any_facet(const T& xobject)
 
   // Body:
 
+  using namespace std;
+
   print_header("Begin testing \"_rc_any\" facet:");
 
   print_subheader("Test rc_any(const rc_any & xother)");
@@ -259,6 +263,8 @@ test_auto_block_facet()
   // Preconditions:
 
   // Body:
+
+  using namespace std;
 
   print_header("Begin testing \"auto_block\" facet:");
 
@@ -399,6 +405,8 @@ test_auto_block_facet()
 
   // Body:
 
+  using namespace std;
+
   print_header("Begin testing \"auto_block\" facet:");
 
   print_subheader("Test auto_block(index_type xub)");
@@ -534,6 +542,8 @@ test_auto_block_facet_equal()
 
   // Body:
 
+  using namespace std;
+
   print_header("Begin testing auto_block facet equal:");
 
   auto_block<T, S> lblock(5);
@@ -560,6 +570,8 @@ test_auto_block_facet_equal_equal()
   // Preconditions:
 
   // Body:
+
+  using namespace std;
 
   print_header("Begin testing auto_block facet equal_equal:");
 
@@ -588,6 +600,8 @@ test_auto_block_facet_insertion()
 
   // Body:
 
+  using namespace std;
+
   print_header("Begin testing auto_block facet deep_size:");
 
   auto_block<T, S> lblock(5);
@@ -610,6 +624,8 @@ test_auto_block_facet_deep_size()
   // Preconditions:
 
   // Body:
+
+  using namespace std;
 
   print_header("Begin testing \"deep_size\" facet:");
 
@@ -640,6 +656,8 @@ test_auto_block_facet_equal()
 
   // Body:
 
+  using namespace std;
+
   print_header("Begin testing auto_block facet equal:");
 
   auto_block<T, S> lblock(5);
@@ -667,6 +685,8 @@ test_auto_block_facet_insertion()
 
   // Body:
 
+  using namespace std;
+
   print_header("Begin testing auto_block facet deep_size:");
 
   auto_block<T, S> lblock(5);
@@ -690,6 +710,8 @@ test_auto_block_facet_deep_size()
   // Preconditions:
 
   // Body:
+
+  using namespace std;
 
   print_header("Begin testing \"deep_size\" facet:");
 
@@ -1270,6 +1292,8 @@ test_block_facet_equal()
 
   // Body:
 
+  using namespace std;
+
   print_header("Begin testing block facet equal:");
 
   T litems[5];
@@ -1299,6 +1323,8 @@ test_block_facet_insertion()
 
   // Body:
 
+  using namespace std;
+
   print_header("Begin testing block facet insertion:");
 
   T litems[5];
@@ -1322,6 +1348,8 @@ test_block_facet_deep_size()
   // Preconditions:
 
   // Body:
+
+  using namespace std;
 
   print_header("Begin testing \"deep_size\" facet:");
 
@@ -1354,6 +1382,8 @@ test_wsv_block_facet()
   // Preconditions:
 
   // Body:
+
+  using namespace std;
 
   print_header("Begin testing \"wsv_block\" facet:");
 
@@ -1436,6 +1466,8 @@ test_record_map_facet()
   // Preconditions:
 
   // Body:
+
+  using namespace std;
 
   print_header("Begin testing \"record_map\" facet:");
 
@@ -1656,6 +1688,8 @@ test_ragged_array_facet()
 
   // Body:
 
+  using namespace std;
+
   print_header("Begin testing \"ragged_array\" facet:");
 
   print_subheader("Test ragged_array<T>(size_t xct)");
@@ -1757,6 +1791,8 @@ test_deep_size(const T& xobject)
 
   // Body:
 
+  using namespace std;
+
   print_subheader("Test deep_size");
 
   cout << endl;
@@ -1788,6 +1824,8 @@ test_namespace_poset_facet(namespace_poset& xns,
   require(xns.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace std;
 
   print_header("Begin testing \"namespace_poset\" facet:");
 
@@ -1840,6 +1878,8 @@ test_depth_first_itr_facet(namespace_poset& xns)
   require(xns.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace std;
 
   //============================================================================
 
@@ -2032,6 +2072,8 @@ test_filtered_depth_first_itr_facet(namespace_poset& xns)
 
   // Body:
 
+  using namespace std;
+
   //============================================================================
 
   print_header("Begin testing \"filtered_depth_first_itr\" facet");
@@ -2192,6 +2234,8 @@ test_list_pool_facet()
   // Preconditions:
 
   // Body:
+
+  using namespace std;
 
   print_header("Begin testing \"list_pool\" facet:");
 

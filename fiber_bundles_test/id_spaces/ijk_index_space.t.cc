@@ -33,6 +33,7 @@
 //#define NO_CONNECTIVITY
 //#define NO_ADJACENCY
 
+using namespace std;
 using namespace fiber_bundle;
 
 int main( int argc, char* argv[])

@@ -27,6 +27,7 @@
 #include "namespace_poset_schema.h"
 #include "refinable_poset.h"
 
+using namespace std;
 using namespace sheaf;
 
 

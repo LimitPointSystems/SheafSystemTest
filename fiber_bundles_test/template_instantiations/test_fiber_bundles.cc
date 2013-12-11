@@ -31,6 +31,8 @@
 #include "structured_block_1d.h"
 #include "test_utils.h"
 
+using namespace std;
+
 // #include "section_space_schema_poset.h"
 
 //=============================================================================

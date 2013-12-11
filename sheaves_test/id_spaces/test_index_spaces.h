@@ -272,21 +272,21 @@ test_iterator(index_space_iterator& xitr);
 ///
 SHEAF_DLL_SPEC
 void
-print_out_header(const string& xtext);
+print_out_header(const std::string& xtext);
 
 ///
 /// Convenience function to print a "subheader" to standard out.
 ///
 SHEAF_DLL_SPEC
 void
-print_out_subheader(const string& xtext);
+print_out_subheader(const std::string& xtext);
 
 ///
 /// Convenience function to print an "action" to standard out.
 ///
 SHEAF_DLL_SPEC
 void
-print_out_action(const string& xtext);
+print_out_action(const std::string& xtext);
 
 
 // ===========================================================

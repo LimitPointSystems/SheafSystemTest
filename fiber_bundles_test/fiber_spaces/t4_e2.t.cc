@@ -30,6 +30,7 @@
 #include "storage_agent.h"
 #include "test_fibers.impl.h"
 
+using namespace std;
 using namespace fiber_bundle;
 using namespace fiber_bundle::tp_algebra;
 

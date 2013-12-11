@@ -47,6 +47,7 @@
 #include "total_poset_member.h"
 #include "vd.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 //

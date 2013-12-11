@@ -451,7 +451,7 @@ test_list_pool_facet();
 ///
 SHEAF_DLL_SPEC
 void
-make_triangle_poset(namespace_poset& xns, const string& xname);
+make_triangle_poset(namespace_poset& xns, const std::string& xname);
 
 //============================================================================
 //============================================================================

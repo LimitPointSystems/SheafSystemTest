@@ -22,6 +22,7 @@
 #include "schema_descriptor.h"
 #include "test_sheaves.impl.h"
 
+using namespace std;
 using namespace sheaf;
 
 namespace

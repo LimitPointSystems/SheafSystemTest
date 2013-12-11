@@ -33,6 +33,8 @@
 #include "total_poset_member.h"
 #include "wsv_block.h"
 
+using namespace std;
+
 //=============================================================================
 // BLOCK FACET
 //=============================================================================
@@ -436,7 +438,7 @@ test_abstract_poset_member_facet()
 SHEAF_DLL_SPEC
 void
 sheaf::
-make_triangle_poset(namespace_poset& xns, const string& xname)
+make_triangle_poset(namespace_poset& xns, const std::string& xname)
 {
   //$$SCRIBBLE: This functions is a modified copy of the
   //            static make_triangle function in class sheaves_namespace.

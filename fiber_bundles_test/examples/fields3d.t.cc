@@ -55,6 +55,7 @@
 #include "vd.h"
 #include "assert_contract.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 typedef struct

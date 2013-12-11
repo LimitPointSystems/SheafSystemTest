@@ -77,6 +77,7 @@
 #include "vd.h"
 
 
+using namespace std;
 using namespace fiber_bundle;
 
 

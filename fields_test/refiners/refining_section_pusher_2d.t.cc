@@ -36,7 +36,9 @@
 
 //#define DIAGNOSTIC_OUTPUT 1
 
+using namespace std;
 using namespace fields;
+using namespace std;
 using namespace fields;
 
 namespace

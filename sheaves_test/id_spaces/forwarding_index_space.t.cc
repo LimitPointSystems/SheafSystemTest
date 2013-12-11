@@ -28,6 +28,7 @@
 #include "std_strstream.h"
 #include "test_index_spaces.impl.h"
 
+using namespace std;
 using namespace sheaf;
 
 int main( int argc, char* argv[])

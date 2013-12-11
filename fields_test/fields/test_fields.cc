@@ -34,6 +34,7 @@
 #include "structured_block_3d.h"
 #include "test_utils.h"
 
+using namespace std;
 using namespace fields; // Workaround for MS C++ bug.
 using namespace fields::field_e3_algebra;
 using namespace fields::field_at0_algebra;
@@ -48,7 +49,7 @@ using namespace fiber_bundle;
 ///
 void
 fields::
-create_section_space_name(const string& xbase_name, string& xresult)
+create_section_space_name(const std::string& xbase_name, std::string& xresult)
 {
   // Preconditions:
 

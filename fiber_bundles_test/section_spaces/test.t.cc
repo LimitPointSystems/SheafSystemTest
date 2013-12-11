@@ -20,6 +20,7 @@
 #include "structured_block_2d.h"
 #include "test_sections.impl.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 void test()

@@ -41,6 +41,7 @@
 
 #include "sheaf.h"
 
+using namespace std;
 using namespace sheaf;
 
 poset* R2_schema;

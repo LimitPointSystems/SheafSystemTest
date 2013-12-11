@@ -28,6 +28,7 @@
 #include "general_matrix_3x3.h"
 #include "std_iostream.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 ///

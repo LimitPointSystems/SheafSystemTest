@@ -32,6 +32,7 @@
 #include "wsv_block.h"
 #include "test_fibers.impl.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 int

@@ -26,6 +26,7 @@
 #include "stop_watch.h"
 #include "test_utils.h"
 
+using namespace std;
 using namespace sheaf;
 
 namespace

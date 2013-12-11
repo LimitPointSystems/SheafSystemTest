@@ -47,6 +47,8 @@ test_handle_facet(index_space_family& xid_spaces,  pod_index_type xspace_id)
 
   // Body:
 
+  using namespace std;
+
   print_out_header("Testing handle facet");
 
   const string& lname = xid_spaces.name(xspace_id);
@@ -131,6 +133,8 @@ test_iterator_facet(index_space_family& xid_spaces,  pod_index_type xspace_id)
   require(xid_spaces.contains(xspace_id));
 
   // Body:
+
+  using namespace std;
 
   print_out_header("Testing iterator facet");
 

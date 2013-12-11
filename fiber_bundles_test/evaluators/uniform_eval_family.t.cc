@@ -26,6 +26,7 @@
 #include "std_string.h"
 #include "uniform_eval_family.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 int main(int argc, char* argv[])

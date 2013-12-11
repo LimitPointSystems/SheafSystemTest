@@ -36,6 +36,7 @@
 #include "structured_block_3d.h"
 #include "tern.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 namespace

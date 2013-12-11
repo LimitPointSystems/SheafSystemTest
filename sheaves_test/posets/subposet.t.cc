@@ -30,6 +30,7 @@
 #include "storage_agent.h"
 
 
+using namespace std;
 using namespace sheaf;
 
 void max_min_test()

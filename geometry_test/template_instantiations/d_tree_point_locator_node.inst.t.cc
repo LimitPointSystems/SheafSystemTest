@@ -28,6 +28,7 @@
 namespace
 {
 
+using namespace std;
 using namespace geometry;
 
 

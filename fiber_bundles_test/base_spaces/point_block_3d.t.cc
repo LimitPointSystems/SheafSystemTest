@@ -18,6 +18,7 @@
 #include "test_sections.impl.h"
 #include "wsv_block.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 int

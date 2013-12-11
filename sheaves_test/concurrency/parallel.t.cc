@@ -47,7 +47,7 @@ int       size;
 int main(int argc, char **argv)
 {
 
-  cout << "No tests implemented." << endl;
+  std::cout << "No tests implemented." << std::endl;
 
   /*
   assertion(MPI_Init(&argc, &argv) == MPI_SUCCESS);

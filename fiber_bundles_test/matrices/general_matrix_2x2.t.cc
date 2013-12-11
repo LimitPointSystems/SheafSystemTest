@@ -28,6 +28,7 @@
 #include "symmetric_matrix_2x2.h"
 #include "std_cstring.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 ///

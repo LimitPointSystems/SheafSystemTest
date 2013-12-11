@@ -30,6 +30,7 @@
 #include "test_sections.impl.h"
 #include "tern.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 int

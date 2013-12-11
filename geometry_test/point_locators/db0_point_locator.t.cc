@@ -31,6 +31,7 @@
 #include "storage_agent.h"
 #include "field_vd.h"
 
+using namespace std;
 using namespace geometry;
 
 

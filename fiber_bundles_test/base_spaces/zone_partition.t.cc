@@ -32,6 +32,7 @@
 //        and implemented a few of the methods in order to be
 //        able to test a few of the methods.
 
+using namespace std;
 using namespace fiber_bundle;
 
 namespace

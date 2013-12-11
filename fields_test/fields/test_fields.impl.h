@@ -148,6 +148,8 @@ test_field_assignment(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace std;
+
   typedef F field_type;
   typedef typename field_type::property_section_type sec_type;
   typedef typename sec_type::fiber_type fiber_type;
@@ -251,6 +253,7 @@ test_field_hook_product(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace std;
   using namespace fields::field_atp_algebra;
 
   const string& lname_0 = F0::static_class_name();
@@ -311,6 +314,7 @@ test_field_star_operator(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace std;
   using namespace fields::field_atp_algebra;
 
   const string& lname_0 = F0::static_class_name();
@@ -365,6 +369,7 @@ test_field_wedge_product(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace std;
   using namespace fields::field_atp_algebra;
 
   const string& lname_0 = F0::static_class_name();
@@ -430,6 +435,7 @@ test_field_ed_facet(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace std;
   using namespace fields::field_ed_algebra;
 
   typedef F vector_type;
@@ -516,6 +522,7 @@ test_field_jcb_facet(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace std;
   using namespace fields::field_jcb_algebra;
 
   typedef FJCB jacobian_type;
@@ -593,6 +600,7 @@ test_field_met_facet(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace std;
   using namespace fields::field_met_algebra;
 
   typedef F metric_type;
@@ -666,6 +674,7 @@ test_field_st2_facet(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace std;
   using namespace fields::field_st2_algebra;
 
   typedef F tensor_type;
@@ -735,6 +744,7 @@ test_field_tp_facet(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace std;
   using namespace fields::field_tp_algebra;
 
   const string& field_name = TP::static_class_name();
@@ -799,6 +809,7 @@ test_field_tensor_product(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace std;
   using namespace fields::field_tp_algebra;
 
   const string& lname_0 = F0::static_class_name();
@@ -859,6 +870,7 @@ test_field_contract(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace std;
   using namespace fields::field_tp_algebra;
 
   const string& lname_0 = F0::static_class_name();
@@ -923,6 +935,7 @@ test_field_vd_facet(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace std;
   using namespace fields::field_vd_algebra;
 
   typedef F field_vd_type;
@@ -1079,13 +1092,15 @@ test_field_vd_facet(fiber_bundles_namespace& xns,
 //==============================================================================
 
 template <typename T>
-void print_field(const T& xfield, const string& xindent, bool xauto_access)
+void print_field(const T& xfield, const std::string& xindent, bool xauto_access)
 {
   // Preconditions:
 
   require(xfield.property().state_is_auto_read_accessible(xauto_access));
 
   // Body:
+
+  using namespace std;
 
   if(xauto_access)
   {
@@ -1130,9 +1145,9 @@ void print_field(const T& xfield, const string& xindent, bool xauto_access)
 
 ///
 template <typename T>
-void print_result(const string& xtext,
+void print_result(const std::string& xtext,
                   const T& xfield,
-                  const string& xindent,
+                  const std::string& xindent,
                   bool xauto_access)
 {
   // Preconditions:
@@ -1140,6 +1155,8 @@ void print_result(const string& xtext,
   require(precondition_of(print_field(xsection, xindent, xauto_access)));
 
   // Body:
+
+  using namespace std;
 
   cout << xtext << endl;
   print_field(xfield, xindent, xauto_access);
@@ -1158,7 +1175,7 @@ void print_result(const string& xtext,
 template <typename T>
 void make_test_sections(fiber_bundles_namespace& xns,
                         const poset_path& xbase_path,
-                        const string& xbase_property_name,
+                        const std::string& xbase_property_name,
                         T xsections[],
                         int xnum_sections)
 {
@@ -1169,6 +1186,8 @@ void make_test_sections(fiber_bundles_namespace& xns,
   require(unexecutable("xsections dimension is >= num_sections"));
 
   // Body:
+
+  using namespace std;
 
   // Create a section space factory with
   // base_space path = xbase_path and
@@ -1225,7 +1244,7 @@ template <typename F>
 void make_test_fields(fiber_bundles_namespace& xns,
                       const poset_path& xbase_path,
                       const poset_path& xcoords_path,
-                      const string& xbase_property_name,
+                      const std::string& xbase_property_name,
                       F xfields[],
                       int xnum_fields)
 {
@@ -1237,6 +1256,8 @@ void make_test_fields(fiber_bundles_namespace& xns,
   require(unexecutable("xfields dimension is >= num_fields"));
 
   // Body:
+
+  using namespace std;
 
   typedef typename F::property_section_type T;
   T* lsections = new T[xnum_fields];
@@ -1327,6 +1348,8 @@ test_field_common(fiber_bundles_namespace& xns,
   require(xns.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace std;
 
   //============================================================================
 

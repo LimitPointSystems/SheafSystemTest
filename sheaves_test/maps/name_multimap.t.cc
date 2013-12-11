@@ -23,6 +23,7 @@
 #include "subposet_member_iterator.h"
 #include "scoped_index.h"
 
+using namespace std;
 using namespace sheaf;
 
 void

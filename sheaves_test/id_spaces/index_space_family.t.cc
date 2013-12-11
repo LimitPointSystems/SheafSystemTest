@@ -31,6 +31,7 @@
 
 //#define TEST_RELEASE_FAILURE
 
+using namespace std;
 using namespace sheaf;
 
 namespace

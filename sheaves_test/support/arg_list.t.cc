@@ -30,6 +30,7 @@
 #include "scoped_index.h"
 #include "wsv_block.h"
 
+using namespace std;
 using namespace sheaf;
 
 /// @todo Update to match expanded set of primitives.

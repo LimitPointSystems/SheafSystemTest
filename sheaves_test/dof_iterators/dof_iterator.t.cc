@@ -20,6 +20,8 @@
 
 #include "std_iostream.h"
 
+using namespace std;
+
 int main(int argc, char* argv[])
 {
   ///@todo Implement a sheaves only version of this test case.

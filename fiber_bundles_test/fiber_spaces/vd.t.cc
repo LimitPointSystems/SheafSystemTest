@@ -31,6 +31,7 @@
 //#include "storage_agent.h"
 
 
+using namespace std;
 using namespace fiber_bundle;
 using namespace fiber_bundle::vd_algebra;
 

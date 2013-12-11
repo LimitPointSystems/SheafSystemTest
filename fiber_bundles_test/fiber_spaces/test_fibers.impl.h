@@ -59,6 +59,8 @@ void print_fiber(const T& xfiber)
 
   // Body:
 
+  using namespace std;
+
   cout << xfiber << endl;
 
   // Postconditions:
@@ -68,13 +70,15 @@ void print_fiber(const T& xfiber)
 }
 
 template <typename T>
-void print_result(const string& xtext, const T& xfiber)
+void print_result(const std::string& xtext, const T& xfiber)
 {
   // Preconditions:
 
   require(precondition_of(print_fiber(xfiber)));
 
   // Body:
+
+  using namespace std;
 
   cout << xtext;
   print_fiber(xfiber);
@@ -87,13 +91,15 @@ void print_result(const string& xtext, const T& xfiber)
 }
 
 template <typename T>
-void print_fiber(const T& xfiber, const string& xindent, bool xauto_access)
+void print_fiber(const T& xfiber, const std::string& xindent, bool xauto_access)
 {
   // Preconditions:
 
   require(xfiber.state_is_auto_read_accessible(xauto_access));
 
   // Body:
+
+  using namespace std;
 
   if(xauto_access)
   {
@@ -114,9 +120,9 @@ void print_fiber(const T& xfiber, const string& xindent, bool xauto_access)
 }
 
 template <typename T>
-void print_result(const string& xtext,
+void print_result(const std::string& xtext,
                   const T& xfiber,
-                  const string& xindent,
+                  const std::string& xindent,
                   bool xauto_access)
 {
   // Preconditions:
@@ -124,6 +130,8 @@ void print_result(const string& xtext,
   require(precondition_of(print_fiber(xfiber, xindent, xauto_access)));
 
   // Body:
+
+  using namespace std;
 
   cout << xtext;
   print_fiber(xfiber, xindent, xauto_access);
@@ -168,6 +176,8 @@ test_persistent_vector_type(fiber_bundles_namespace& xns)
 
   // Body:
 
+  using namespace std;
+
   typedef typename P::host_type host_type;
 
   host_type& lhost = P::standard_host(xns, "test_persistent_vector_type", false);
@@ -190,6 +200,8 @@ test_persistent_tensor_type(fiber_bundles_namespace& xns)
   require(xns.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace std;
 
   typedef typename P::host_type host_type;
 
@@ -215,6 +227,8 @@ test_persistent_jacobian_type(fiber_bundles_namespace& xns)
 
   // Body:
 
+  using namespace std;
+
   typedef typename P::host_type host_type;
 
   host_type& lhost = P::standard_host(xns, "test_persistent_jacobian_type", false);
@@ -239,6 +253,8 @@ test_persistent_group_type(fiber_bundles_namespace& xns)
 
   // Body:
 
+  using namespace std;
+
   typedef typename P::host_type host_type;
 
   host_type& lhost = P::standard_host(xns, "test_persistent_group_type", false);
@@ -262,6 +278,8 @@ test_persistent_type(typename P::host_type& xhost)
   require(xhost.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace std;
 
   // Get the various class types, etc.
 
@@ -404,6 +422,8 @@ test_volatile_type()
 
   // Body:
 
+  using namespace std;
+
   // Get the various class types, etc.
 
   typedef typename P::volatile_type volatile_type;
@@ -473,6 +493,8 @@ test_scalar_conversions(fiber_bundles_namespace& xns)
 
   // Body:
 
+  using namespace std;
+
   typename P::host_type& lhost = P::standard_host(xns, "test_scalar_conversions", false);
   lhost.get_read_write_access(true);
   
@@ -491,6 +513,8 @@ test_vector_conversions(fiber_bundles_namespace& xns)
   require(xns.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace std;
 
   typename P::host_type& lhost = P::standard_host(xns, "test_vector_conversions", false);
   lhost.get_read_write_access(true);
@@ -511,6 +535,8 @@ test_tensor_conversions(fiber_bundles_namespace& xns)
 
   // Body:
 
+  using namespace std;
+
   typename P::host_type& lhost = P::standard_host(xns, "test_tensor_conversions", false);
   lhost.get_read_write_access(true);
   
@@ -529,6 +555,8 @@ test_jacobian_conversions(fiber_bundles_namespace& xns)
   require(xns.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace std;
 
   typename P::host_type& lhost = P::standard_host(xns, "test_jacobian_conversions", false);
   lhost.get_read_write_access(true);
@@ -549,6 +577,8 @@ test_group_conversions(fiber_bundles_namespace& xns)
 
   // Body:
 
+  using namespace std;
+
   typename P::host_type& lhost = P::standard_host(xns, "test_group_conversions", false);
   lhost.get_read_write_access(true);
   
@@ -567,6 +597,8 @@ test_conversions(typename P::host_type& xhost)
   require(xhost.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace std;
 
   // Get the various class types, etc.
 
@@ -732,6 +764,8 @@ test_virtual_conversions(typename P::host_type& xhost)
 
   // Body:
 
+  using namespace std;
+
   // Get the various class types, etc.
 
   typedef P persistent_type;
@@ -794,6 +828,8 @@ test_matrix_type_conversions()
   // Preconditions:
 
   // Body:
+
+  using namespace std;
 
   // Get the various class types, etc.
 
@@ -905,6 +941,8 @@ test_hook_product(fiber_bundles_namespace& xns)
 
   // Body:
 
+  using namespace std;
+
   print_header("Testing hook (interior) product of atp facet");
 
   test_volatile_hook_product<P0, P1, PR>();
@@ -925,6 +963,8 @@ test_volatile_hook_product()
   // Precontitions:
 
   // Body:
+
+  using namespace std;
 
   using namespace fiber_bundle::atp_algebra;
 
@@ -988,6 +1028,8 @@ test_persistent_hook_product(fiber_bundles_namespace& xns)
 
   // Body:
 
+  using namespace std;
+
   using namespace fiber_bundle::atp_algebra;
 
   ///@issue: Has to be the same as P1 & PR.  How do we want to require this?
@@ -1047,6 +1089,8 @@ test_star_operator(fiber_bundles_namespace& xns)
 
   // Body:
 
+  using namespace std;
+
   print_header("Testing Hodge star operator of atp facet");
 
   test_volatile_star_operator<P0, PR>();
@@ -1064,6 +1108,8 @@ test_volatile_star_operator()
   // Precontitions:
 
   // Body:
+
+  using namespace std;
 
   using namespace fiber_bundle::atp_algebra;
 
@@ -1111,6 +1157,8 @@ test_persistent_star_operator(fiber_bundles_namespace& xns)
   require(xns.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace std;
 
   using namespace fiber_bundle::atp_algebra;
 
@@ -1165,6 +1213,8 @@ test_wedge_product(fiber_bundles_namespace& xns)
 
   // Body:
 
+  using namespace std;
+
   print_header("Testing wedge (exterior) product of atp facet");
 
   test_volatile_wedge_product<P0, P1, PR>();
@@ -1185,6 +1235,8 @@ test_volatile_wedge_product()
   // Preconditions:
 
   // Body:
+
+  using namespace std;
 
   using namespace fiber_bundle::atp_algebra;
 
@@ -1249,6 +1301,8 @@ test_persistent_wedge_product(fiber_bundles_namespace& xns)
   require(xns.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace std;
 
   using namespace fiber_bundle::atp_algebra;
 
@@ -1316,6 +1370,8 @@ test_volatile_vd_facet()
   // Preconditions:
 
   // Body:
+
+  using namespace std;
 
   using namespace fiber_bundle::vd_algebra;
 
@@ -1474,6 +1530,8 @@ test_persistent_vd_facet(typename P::host_type& xhost)
 
   // Body:
 
+  using namespace std;
+
   using namespace fiber_bundle::vd_algebra;
 
   // Get the various class types, etc.
@@ -1556,6 +1614,8 @@ test_st2_facet(fiber_bundles_namespace& xns)
   
   // Body:
 
+  using namespace std;
+
   print_header("Testing st2 facet for " + P::static_class_name());
 
   typename P::host_type& lhost = P::standard_host(xns, "test_st2_facet", false);
@@ -1578,6 +1638,8 @@ test_volatile_st2_facet()
   // Preconditions:
 
   // Body:
+
+  using namespace std;
 
   using namespace fiber_bundle::st2_algebra;
 
@@ -1641,6 +1703,8 @@ test_persistent_st2_facet(typename P::host_type& xhost)
   require(xhost.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace std;
 
   using namespace fiber_bundle::st2_algebra;
 
@@ -1706,6 +1770,8 @@ test_volatile_ed_facet()
 
   // Body:
 
+  using namespace std;
+
   using namespace fiber_bundle::ed_algebra;
 
   // Get the various class types, etc.
@@ -1766,6 +1832,8 @@ test_persistent_ed_facet(typename P::host_type& xhost)
   require(xhost.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace std;
 
   using namespace fiber_bundle::ed_algebra;
 
@@ -1838,6 +1906,8 @@ test_scalar_vd_facet(fiber_bundles_namespace& xns)
 
   // Body:
 
+  using namespace std;
+
   print_header("Testing scalar vd facet for " + P::static_class_name());
 
   typename P::host_type& lhost = P::standard_host(xns, "test_scalar_vd_facet", false);
@@ -1863,6 +1933,8 @@ test_vector_vd_facet(fiber_bundles_namespace& xns)
   require(xns.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace std;
 
   print_header("Testing vector vd facet for " + P::static_class_name());
 
@@ -1890,6 +1962,8 @@ test_tensor_vd_facet(fiber_bundles_namespace& xns)
 
   // Body:
 
+  using namespace std;
+
   print_header("Testing tensor vd facet for " + P::static_class_name());
 
   typename P::host_type& lhost = P::standard_host(xns, "test_tensor_vd_facet", false);
@@ -1915,6 +1989,8 @@ test_jacobian_vd_facet(fiber_bundles_namespace& xns)
 
   // Body:
 
+  using namespace std;
+
   print_header("Testing jacobian vd facet for " + P::static_class_name());
 
   typename P::host_type& lhost = P::standard_host(xns, "test_jacobian_vd_facet", false);
@@ -1939,6 +2015,8 @@ test_ed_facet(fiber_bundles_namespace& xns)
   require(xns.state_is_read_write_accessible());
   
   // Body:
+
+  using namespace std;
 
   print_header("Testing ed facet for " + P::static_class_name());
 
@@ -1970,6 +2048,8 @@ test_tp_facet(fiber_bundles_namespace& xns)
   
   // Body:
 
+  using namespace std;
+
   print_header("Testing tp facet for " + PT::static_class_name());
 
   test_volatile_tp_facet<PT>();
@@ -1987,6 +2067,8 @@ test_volatile_tp_facet()
   // Preconditions:
 
   // Body:
+
+  using namespace std;
 
   using namespace fiber_bundle::tp_algebra;
 
@@ -2052,6 +2134,8 @@ test_persistent_tp_facet(fiber_bundles_namespace& xns)
   require(xns.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace std;
 
   using namespace fiber_bundle::tp_algebra;
 
@@ -2204,6 +2288,8 @@ test_tensor(fiber_bundles_namespace& xns)
 
   // Body:
 
+  using namespace std;
+
   print_header("Testing tp facet tensor product:");
 
   test_volatile_tensor<P0, P1, PR>();
@@ -2222,6 +2308,8 @@ test_volatile_tensor()
   // Preconditions:
 
   // Body:
+
+  using namespace std;
 
   using namespace fiber_bundle::tp_algebra;
 
@@ -2280,6 +2368,8 @@ test_persistent_tensor(fiber_bundles_namespace& xns)
   require(xns.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace std;
 
   using namespace fiber_bundle::tp_algebra;
 
@@ -2345,6 +2435,8 @@ test_contract(fiber_bundles_namespace& xns)
 
   // Body:
 
+  using namespace std;
+
   print_header("Testing tp facet contract:");
 
   test_volatile_contract<P0, PR>();
@@ -2363,6 +2455,8 @@ test_volatile_contract()
   // Preconditions:
 
   // Body:
+
+  using namespace std;
 
   using namespace fiber_bundle::tp_algebra;
 
@@ -2416,6 +2510,8 @@ test_persistent_contract(fiber_bundles_namespace& xns)
   require(xns.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace std;
 
   using namespace fiber_bundle::tp_algebra;
 
@@ -2498,6 +2594,8 @@ test_vector_atp_facet(fiber_bundles_namespace& xns)
   
   // Body:
 
+  using namespace std;
+
   typename P::host_type& lhost = P::standard_host(xns, "test_vector_atp_facet", false);
   lhost.get_read_write_access(true);
   
@@ -2519,6 +2617,8 @@ test_tensor_atp_facet(fiber_bundles_namespace& xns)
   
   // Body:
 
+  using namespace std;
+
   typename P::host_type& lhost = P::standard_host(xns, "test_tensor_atp_facet", false);
   lhost.get_read_write_access(true);
   
@@ -2537,6 +2637,8 @@ test_atp_facet(typename P::host_type& xhost)
 
   // Body:
 
+  using namespace std;
+
   print_header("Testing atp facet for " + P::static_class_name());
 
   test_persistent_atp_facet<P>(xhost);
@@ -2553,6 +2655,8 @@ test_volatile_atp_facet()
   // Preconditions:
 
   // Body:
+
+  using namespace std;
 
   using namespace fiber_bundle::atp_algebra;
 
@@ -2583,6 +2687,8 @@ test_persistent_atp_facet(typename P::host_type& xhost)
   require(xhost.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace std;
 
   using namespace fiber_bundle::atp_algebra;
   using namespace fiber_bundle::vd_algebra;
@@ -2724,6 +2830,8 @@ test_stp_facet(fiber_bundles_namespace& xns)
   
   // Body:
 
+  using namespace std;
+
   print_header("Testing stp facet for " + P::static_class_name());
 
   typename P::host_type& lhost = P::standard_host(xns, "test_stp_facet", false);
@@ -2746,6 +2854,8 @@ test_volatile_stp_facet()
   // Preconditions:
 
   // Body:
+
+  using namespace std;
 
   using namespace fiber_bundle::stp_algebra;
 
@@ -2784,6 +2894,8 @@ test_persistent_stp_facet(typename P::host_type& xhost)
   require(xhost.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace std;
 
   using namespace fiber_bundle::stp_algebra;
   using namespace fiber_bundle::vd_algebra;
@@ -2915,6 +3027,8 @@ test_jcb_facet(fiber_bundles_namespace& xns)
 
   // Body:
 
+  using namespace std;
+
   print_header("Testing jcb facet for " + P::static_class_name());
 
   test_volatile_jcb_facet<P>();
@@ -2932,6 +3046,8 @@ test_volatile_jcb_facet()
   // Preconditions:
 
   // Body:
+
+  using namespace std;
 
   using namespace fiber_bundle::jcb_algebra;
 
@@ -3018,6 +3134,8 @@ test_persistent_jcb_facet(fiber_bundles_namespace& xns)
   require(xns.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace std;
 
   using namespace fiber_bundle::jcb_algebra;
 
@@ -3107,6 +3225,8 @@ test_met_facet(fiber_bundles_namespace& xns)
 
   // Body:
 
+  using namespace std;
+
   print_header("Testing met facet for " + P::static_class_name());
 
   typename P::host_type& lhost = P::standard_host(xns, "test_met_facet", false);
@@ -3134,6 +3254,8 @@ test_volatile_met_facet()
   // Preconditions:
 
   // Body:
+
+  using namespace std;
 
   using namespace fiber_bundle::met_algebra;
 
@@ -3221,6 +3343,8 @@ test_persistent_met_facet(typename P::host_type& xhost,
   require(xhost.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace std;
 
   using namespace fiber_bundle::met_algebra;
 
@@ -3314,6 +3438,8 @@ test_group_facet(fiber_bundles_namespace& xns)
 
   // Body:
 
+  using namespace std;
+
   print_header("Testing group facet for " + P::static_class_name());
 
   test_volatile_group_facet<P>();
@@ -3332,6 +3458,8 @@ test_volatile_group_facet()
   // Preconditions:
 
   // Body:
+
+  using namespace std;
 
   // Get the various class types, etc.
 
@@ -3394,6 +3522,8 @@ test_persistent_group_facet(fiber_bundles_namespace& xns)
   require(xns.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace std;
 
   // Get the various class types, etc.
 
@@ -3467,6 +3597,8 @@ test_volatile_common()
   // Preconditions:
 
   // Body:
+
+  using namespace std;
 
   const string& lfiber_name = V::static_class_name();
 
@@ -3591,6 +3723,8 @@ test_volatile_row_dofs()
 
   // Body:
 
+  using namespace std;
+
   const string& lfiber_name = V::static_class_name();
 
   V lfiber;
@@ -3674,6 +3808,8 @@ test_volatile_class_tp_facet()
 
   // Body:
 
+  using namespace std;
+
   const string& lfiber_name = V::static_class_name();
 
   print_header("Begin testing " + lfiber_name + " tp facet");
@@ -3713,6 +3849,8 @@ test_persistent_common(fiber_bundles_namespace& xns)
   require(xns.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace std;
 
   const string& lfiber_name = PB::static_class_name();
 
@@ -3822,6 +3960,8 @@ test_persistent_common_2(fiber_bundles_namespace& xns)
 
   // Body:
 
+  using namespace std;
+
   const string& lfiber_name = PB::static_class_name();
 
   print_header("Begin testing " + lfiber_name);
@@ -3916,6 +4056,8 @@ void test_spaces_common(fiber_bundles_namespace& xns, T& xspace)
   // Preconditions:
 
   // Body:
+
+  using namespace std;
 
   typedef typename T::member_type M;
 

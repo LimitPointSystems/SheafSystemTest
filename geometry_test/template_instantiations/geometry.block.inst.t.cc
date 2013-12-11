@@ -28,6 +28,7 @@
 #include "db0_point_locator.h"
 #include "std_slist.h"
 
+using namespace std;
 using namespace geometry;
 
 int

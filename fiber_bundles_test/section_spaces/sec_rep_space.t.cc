@@ -45,6 +45,7 @@
 #include "subposet.h"
 #include "subposet_member_iterator.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 // Set this filename in accordance with the OS type.

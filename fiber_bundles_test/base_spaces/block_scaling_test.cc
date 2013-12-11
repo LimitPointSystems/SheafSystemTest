@@ -41,6 +41,7 @@
 #include "singleton_index_space_state.h"
 #include "reserved_primary_index_space_state.h"
 
+using namespace std;
 using namespace fiber_bundle; // Workaround for MS C++ bug.
 
 void

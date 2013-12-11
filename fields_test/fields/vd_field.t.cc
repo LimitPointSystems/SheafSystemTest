@@ -37,6 +37,7 @@
 #include "vd_field.h"
 #include "wsv_block.h"
 
+using namespace std;
 using namespace fields;
 
 namespace

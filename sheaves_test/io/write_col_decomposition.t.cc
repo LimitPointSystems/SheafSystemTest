@@ -35,6 +35,7 @@
 #include "subposet_member_iterator.h"
 #include "total_poset_member.h"
 
+using namespace std;
 using namespace sheaf;
 
 namespace

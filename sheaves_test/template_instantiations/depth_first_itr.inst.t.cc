@@ -24,6 +24,7 @@
 #include "test_sheaves.impl.h"
 #include "test_utils.h"
 
+using namespace std;
 using namespace sheaf;
 
 

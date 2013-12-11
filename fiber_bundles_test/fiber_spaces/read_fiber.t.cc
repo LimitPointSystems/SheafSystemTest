@@ -57,6 +57,7 @@
 #include "tp.h"
 #include "vd.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 // void

@@ -26,6 +26,7 @@
 #include "point_block_1d.h"
 #include "block_scaling_test.impl.h"
 
+using namespace std;
 using namespace fiber_bundle;
 using namespace sheaf;
 

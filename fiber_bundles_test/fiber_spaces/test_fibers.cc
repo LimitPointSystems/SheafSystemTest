@@ -27,12 +27,14 @@
 
 #include "gln_space.h"
 
+using namespace std;
+using namespace fiber_bundle;
 using namespace fiber_bundle::e3_algebra;
 
 ///
-string
+std::string
 fiber_bundle::
-create_vector_space_name(const string& xvector_class_name)
+create_vector_space_name(const std::string& xvector_class_name)
 {
   // Preconditions:
 
@@ -58,12 +60,10 @@ create_vector_space_name(const string& xvector_class_name)
   return result;
 }
 
-using namespace fiber_bundle; // Workaround for MS C++ bug.
-
 ///
 void
 fiber_bundle::
-create_host_name(const string& xbase_name, string& xresult)
+create_host_name(const std::string& xbase_name, std::string& xresult)
 {
   // Preconditions:
 

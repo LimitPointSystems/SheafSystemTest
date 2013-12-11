@@ -23,6 +23,7 @@
 #include "rc_ptr.impl.h"
 #include "std_iostream.h"
 
+using namespace std;
 using namespace sheaf;
 
 namespace

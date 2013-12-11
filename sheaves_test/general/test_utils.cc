@@ -21,9 +21,11 @@
 #include "test_utils.h"
 #include "std_iostream.h"
 
+using namespace std;
+
 void
 sheaf::
-print_header(const string& xtext)
+print_header(const std::string& xtext)
 {
   // Preconditions:
 
@@ -43,7 +45,7 @@ print_header(const string& xtext)
 
 void
 sheaf::
-print_header(const string& xtext, const string& xtext2)
+print_header(const std::string& xtext, const std::string& xtext2)
 {
   // Preconditions:
 
@@ -64,7 +66,7 @@ print_header(const string& xtext, const string& xtext2)
 
 void
 sheaf::
-print_footer(const string& xtext)
+print_footer(const std::string& xtext)
 {
   // Preconditions:
 
@@ -81,7 +83,7 @@ print_footer(const string& xtext)
 
 void
 sheaf::
-print_footer(const string& xtext, const string& xtext2)
+print_footer(const std::string& xtext, const std::string& xtext2)
 {
   // Preconditions:
 
@@ -98,7 +100,7 @@ print_footer(const string& xtext, const string& xtext2)
 
 void
 sheaf::
-print_subheader(const string& xtext)
+print_subheader(const std::string& xtext)
 {
   // Preconditions:
 
@@ -116,7 +118,7 @@ print_subheader(const string& xtext)
 
 void
 sheaf::
-print_subheader(const string& xtext, const string& xtext2)
+print_subheader(const std::string& xtext, const std::string& xtext2)
 {
   // Preconditions:
 
@@ -136,7 +138,7 @@ print_subheader(const string& xtext, const string& xtext2)
 
 void
 sheaf::
-print_action(const string& xtext)
+print_action(const std::string& xtext)
 {
   // Preconditons:
 

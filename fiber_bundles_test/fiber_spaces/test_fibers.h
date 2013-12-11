@@ -693,12 +693,12 @@ void test_matrix_type_conversions();
 /// Convenience function to create a unique host poset name for
 /// vector spaces.
 ///
-string SHEAF_DLL_SPEC create_vector_space_name(const string& xvector_class_name);
+std::string SHEAF_DLL_SPEC create_vector_space_name(const std::string& xvector_class_name);
 
 ///
 /// Convenience function to create a unique host poset name for fibers.
 ///
-void SHEAF_DLL_SPEC create_host_name(const string& xbase_name, string& xresult);
+void SHEAF_DLL_SPEC create_host_name(const std::string& xbase_name, std::string& xresult);
 
 
 
@@ -707,16 +707,16 @@ void SHEAF_DLL_SPEC create_host_name(const string& xbase_name, string& xresult);
 /// operation to standard out.
 ///
 template <typename T>
-void print_result(const string& xtext, const T& xfiber);
+void print_result(const std::string& xtext, const T& xfiber);
 
 ///
 /// Convenience function to "pretty-print" print the result of an
 /// operation to standard out.
 ///
 template <typename T>
-void print_result(const string& xtext,
+void print_result(const std::string& xtext,
                   const T& xfiber,
-                  const string& xindent,
+                  const std::string& xindent,
                   bool xauto_access);
 
 //==============================================================================

@@ -35,6 +35,7 @@
 #include "fiber_bundles_namespace.h"
 #include "test_utils.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 namespace

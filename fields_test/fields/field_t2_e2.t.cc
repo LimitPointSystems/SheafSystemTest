@@ -34,6 +34,7 @@
 #include "storage_agent.h"
 #include "test_fields.impl.h"
 
+using namespace std;
 using namespace fields;
 
 int

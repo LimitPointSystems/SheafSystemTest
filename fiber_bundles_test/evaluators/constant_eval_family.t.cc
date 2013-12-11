@@ -26,6 +26,7 @@
 #include "std_iostream.h"
 #include "std_string.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 int main(int argc, char* argv[])

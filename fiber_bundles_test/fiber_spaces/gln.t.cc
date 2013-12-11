@@ -25,6 +25,7 @@
 #include "test_utils.h"
 //#include "storage_agent.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 namespace

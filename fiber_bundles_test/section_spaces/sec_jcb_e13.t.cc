@@ -29,6 +29,7 @@
 #include "test_sections.impl.h"
 #include "test_utils.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 int

@@ -44,6 +44,7 @@
 #include "subposet_member_iterator.h"
 #include "tern.h"
 
+using namespace std;
 using namespace fields;
 
 namespace

@@ -29,8 +29,10 @@
 #include "storage_agent.h"
 #include "sec_ed_invertible.h"
 #include "field_vd.h"
+#include "std_iomanip.h"
 #include "wsv_block.h"
 
+using namespace std;
 using namespace fields;
 
 namespace

@@ -221,21 +221,21 @@ test_sec_vd_facet(fiber_bundles_namespace& xns,
 ///
 SHEAF_DLL_SPEC 
 void 
-create_section_space_name(const string& xbase_name, string& xresult);
+create_section_space_name(const std::string& xbase_name, std::string& xresult);
 
 ///
 /// Convenience function to print a section space to standard out.
 ///
 SHEAF_DLL_SPEC 
 void 
-print_section_space(fiber_bundles_namespace& xns, const string& xname);
+print_section_space(fiber_bundles_namespace& xns, const std::string& xname);
 
 ///
 /// Convenience function to "pretty-print" print a section to standard out.
 ///
 template <typename T>
 void print_section(const T& xsection,
-                   const string& xindent = "  ",
+                   const std::string& xindent = "  ",
                    bool xauto_access = true);
 
 ///
@@ -243,9 +243,9 @@ void print_section(const T& xsection,
 /// operation to standard out.
 ///
 template <typename T>
-void print_result(const string& xtext,
+void print_result(const std::string& xtext,
                   const T& xsection,
-                  const string& xindent = "  ",
+                  const std::string& xindent = "  ",
                   bool xauto_access = true);
 
 
@@ -297,8 +297,8 @@ make_test_base_space(int xdim, fiber_bundles_namespace& xns);
 template <typename T>
 void make_test_sections(fiber_bundles_namespace& xns,
                         const poset_path& xbase_path,
-                        const string& xspace_name,
-                        const string& xbase_section_name,
+                        const std::string& xspace_name,
+                        const std::string& xbase_section_name,
                         T xsections[],
                         int xnum_sections);
 ///

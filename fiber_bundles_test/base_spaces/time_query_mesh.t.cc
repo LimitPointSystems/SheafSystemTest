@@ -29,6 +29,7 @@
 #include "std_ctime.h"
 #include "stencil_extractor.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 /// @issue const_casts are used to convert literal strings to char *'s

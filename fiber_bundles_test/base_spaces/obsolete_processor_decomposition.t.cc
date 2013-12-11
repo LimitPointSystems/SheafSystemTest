@@ -33,6 +33,7 @@
 #include "storage_agent.h"
 #include "unstructured_block.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 // OBSOLETE: This test driver is obsolete

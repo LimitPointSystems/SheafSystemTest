@@ -20,6 +20,7 @@
 #include "sheaves_namespace.h"
 #include "deep_size.h"
 
+using namespace std;
 using namespace sheaf;
 
 int

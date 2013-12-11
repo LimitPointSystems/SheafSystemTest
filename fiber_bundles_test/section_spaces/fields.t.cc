@@ -49,6 +49,7 @@
 #include "triangle_connectivity.h"
 #include "zone_nodes_block.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 

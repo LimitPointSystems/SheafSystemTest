@@ -28,6 +28,7 @@
 #include "std_iostream.h"
 #include "symmetric_matrix_3x3.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 ///

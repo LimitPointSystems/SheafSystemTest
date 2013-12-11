@@ -31,6 +31,7 @@
 #include "std_iostream.h"
 #include "unstructured_block.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 typedef struct

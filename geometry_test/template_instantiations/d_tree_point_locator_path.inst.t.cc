@@ -23,6 +23,7 @@
 #include "geometry.h"
 #include "test_utils.h"
 
+using namespace std;
 using namespace geometry;
 
 int

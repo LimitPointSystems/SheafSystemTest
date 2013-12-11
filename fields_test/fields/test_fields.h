@@ -251,14 +251,14 @@ test_field_vd_facet(fiber_bundles_namespace& xns,
 ///
 ///  Convenience function to create a unique section space name.
 ///
-void SHEAF_DLL_SPEC create_section_space_name(const string& xbase_name, string& xresult);
+void SHEAF_DLL_SPEC create_section_space_name(const std::string& xbase_name, std::string& xresult);
 
 ///
 /// Convenience function to "pretty-print" print a section to standard out.
 ///
 template <typename T>
 void print_field(const T& xfield,
-                 const string& xindent = "  ",
+                 const std::string& xindent = "  ",
                  bool xauto_access = true);
 
 ///
@@ -266,9 +266,9 @@ void print_field(const T& xfield,
 /// operation to standard out.
 ///
 template <typename T>
-void print_result(const string& xtext,
+void print_result(const std::string& xtext,
                   const T& xfield,
-                  const string& xindent = "  ",
+                  const std::string& xindent = "  ",
                   bool xauto_access = true);
 
 //==============================================================================
@@ -328,7 +328,7 @@ make_test_coordinates_3d(fiber_bundle::fiber_bundles_namespace& xns,
 template <typename T>
 void make_test_sections(fiber_bundles_namespace& xns,
                         const poset_path& xbase_path,
-                        const string& xbase_property_name,
+                        const std::string& xbase_property_name,
                         T xsections[],
                         int xnum_sections);
 
@@ -339,7 +339,7 @@ template <typename F>
 void make_test_fields(fiber_bundles_namespace& xns,
                       const poset_path& xbase_path,
                       const poset_path& xcoords_path,
-                      const string& xbase_property_name,
+                      const std::string& xbase_property_name,
                       F xfields[],
                       int xnum_fields);
 

@@ -31,6 +31,7 @@
 #include "structured_block_3d.h"
 #include "test_utils.h"
 
+using namespace std;
 using namespace fiber_bundle; // Workaround for MS C++ bug.
 using namespace fiber_bundle::sec_e3_algebra;
 using namespace fiber_bundle::sec_at0_algebra;
@@ -41,7 +42,7 @@ using namespace fiber_bundle::sec_at0_algebra;
 ///
 void
 fiber_bundle::
-create_section_space_name(const string& xbase_name, string& xresult)
+create_section_space_name(const std::string& xbase_name, std::string& xresult)
 {
   // Preconditions:
 
@@ -69,7 +70,7 @@ create_section_space_name(const string& xbase_name, string& xresult)
 ///
 void
 fiber_bundle::
-print_section_space(fiber_bundles_namespace& xns, const string& xname)
+print_section_space(fiber_bundles_namespace& xns, const std::string& xname)
 {
   // Preconditions:
 

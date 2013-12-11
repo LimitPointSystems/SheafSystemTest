@@ -29,6 +29,8 @@
 #include "std_iostream.h"
 #include "std_strstream.h"
 
+using namespace std;
+
 // ===========================================================
 // INDEX_SPACE FACET
 // ===========================================================
@@ -454,7 +456,7 @@ test_iterator(index_space_iterator& xitr)
 
 void
 sheaf::
-print_out_header(const string& xtext)
+print_out_header(const std::string& xtext)
 {
   // Preconditions:
 
@@ -476,7 +478,7 @@ print_out_header(const string& xtext)
 
 void
 sheaf::
-print_out_subheader(const string& xtext)
+print_out_subheader(const std::string& xtext)
 {
   // Preconditions:
 
@@ -496,7 +498,7 @@ print_out_subheader(const string& xtext)
 
 void
 sheaf::
-print_out_action(const string& xtext)
+print_out_action(const std::string& xtext)
 {
   // Preconditons:
 

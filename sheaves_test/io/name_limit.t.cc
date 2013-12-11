@@ -24,6 +24,7 @@
 #include "storage_agent.h"
 #include "subposet_member_iterator.h"
 
+using namespace std;
 using namespace sheaf;
 
 

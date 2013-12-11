@@ -37,6 +37,7 @@
 #include "std_iomanip.h"
 #include "std_sstream.h"
 
+using namespace std;
 using namespace geometry;
 
 namespace

@@ -29,6 +29,7 @@
 #include "index_space_family.h"
 #include "test_index_spaces.impl.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 int main( int argc, char* argv[])

@@ -35,6 +35,7 @@
 #include "test_fibers.impl.h"
 #include "tp_space.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 namespace

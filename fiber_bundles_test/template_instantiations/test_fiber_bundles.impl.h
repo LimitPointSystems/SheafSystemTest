@@ -46,6 +46,8 @@ test_volatile_abstract_poset_member_facet()
 
   // Body:
 
+  using namespace std;
+
   bool lresult = true;
 
   const string& lname = VB::static_class_name();
@@ -102,6 +104,8 @@ test_persistent_abstract_poset_member_facet(fiber_bundles_namespace& xns)
   require(lis_base_of == true);
 
   // Body:
+
+  using namespace std;
 
   bool lresult = true;
 
@@ -202,6 +206,8 @@ test_fiber_bundles_namespace_poset_facet(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace std;
+
   bool lresult = true;
 
   print_subheader("Testing bool contains_path(const poset_path&, bool) const");
@@ -273,6 +279,8 @@ test_fiber_bundles_namespace_poset_facet(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace std;
+
   const string lname = "_test_section_space_" + T::static_class_name();
 
   print_footer("End testing " + lname);
@@ -305,6 +313,8 @@ test_fiber_bundles_namespace_poset_facet(fiber_bundles_namespace& xns)
 
   // Body:
 
+  using namespace std;
+
   const string lname = "_" + T::static_class_name() + "_space";
 
   print_header("Begin testing " + lname);
@@ -336,6 +346,8 @@ test_fiber_bundles_namespace_poset_facet(fiber_bundles_namespace& xns,
   require(xns.state_is_read_write_accessible());
 
   // Body:
+
+  using namespace std;
 
   const string lname = "_test_section_space_" + T::static_class_name();
 

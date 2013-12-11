@@ -25,6 +25,7 @@
 #include "error_message.h"
 #include "std_iostream.h"
 
+using namespace std;
 using namespace sheaf;
 
 namespace

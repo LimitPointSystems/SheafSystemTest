@@ -44,6 +44,7 @@
 #include "subposet.h"
 #include "vd.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 //typedef struct {int* node_ids; int node_ids_ub;} Connectivity;

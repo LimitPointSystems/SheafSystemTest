@@ -31,6 +31,7 @@
 #include "std_strstream.h"
 #include "stop_watch.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 typedef struct

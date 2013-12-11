@@ -204,6 +204,8 @@ test_assignment(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace std;
+
   typedef S sec_type;
   string section_name = S::static_class_name();
 
@@ -254,6 +256,7 @@ test_sec_hook_product(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace std;
   using namespace fiber_bundle::sec_atp_algebra;
 
   const string& lname_0 = S0::static_class_name();
@@ -317,6 +320,7 @@ test_sec_star_operator(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace std;
   using namespace fiber_bundle::sec_atp_algebra;
 
   const string& lname_0 = S0::static_class_name();
@@ -374,6 +378,7 @@ test_sec_wedge_product(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace std;
   using namespace fiber_bundle::sec_atp_algebra;
 
   const string& lname_0 = S0::static_class_name();
@@ -442,6 +447,7 @@ test_sec_ed_facet(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace std;
   using namespace fiber_bundle::sec_ed_algebra;
 
   typedef S vector_type;
@@ -533,6 +539,7 @@ test_sec_jcb_facet(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace std;
   using namespace fiber_bundle::sec_jcb_algebra;
 
   typedef SJAC jacobian_type;
@@ -615,6 +622,7 @@ test_sec_met_facet(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace std;
   using namespace fiber_bundle::sec_met_algebra;
 
   typedef S metric_type;
@@ -693,6 +701,7 @@ test_sec_tp_facet(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace std;
   using namespace fiber_bundle::sec_tp_algebra;
 
   typedef S sec_tp_type;
@@ -769,6 +778,7 @@ test_sec_tensor_product(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace std;
   using namespace fiber_bundle::sec_tp_algebra;
 
   const string& lname_0 = S0::static_class_name();
@@ -832,6 +842,7 @@ test_sec_contract(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace std;
   using namespace fiber_bundle::sec_tp_algebra;
 
   const string& lname_0 = S0::static_class_name();
@@ -900,6 +911,7 @@ test_sec_vd_facet(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace std;
   using namespace fiber_bundle::sec_vd_algebra;
 
   typedef S sec_vd_type;
@@ -1013,7 +1025,7 @@ test_sec_vd_facet(fiber_bundles_namespace& xns,
 //==============================================================================
 
 template <typename T>
-void print_section(const T& xsection, const string& xindent, bool xauto_access)
+void print_section(const T& xsection, const std::string& xindent, bool xauto_access)
 {
   // Preconditions:
 
@@ -1021,6 +1033,7 @@ void print_section(const T& xsection, const string& xindent, bool xauto_access)
 
   // Body:
 
+  using namespace std;
   if(xauto_access)
   {
     xsection.get_read_access();
@@ -1061,9 +1074,9 @@ void print_section(const T& xsection, const string& xindent, bool xauto_access)
 }
 
 template <typename T>
-void print_result(const string& xtext,
+void print_result(const std::string& xtext,
                   const T& xsection,
-                  const string& xindent,
+                  const std::string& xindent,
                   bool xauto_access)
 {
   // Preconditions:
@@ -1072,6 +1085,7 @@ void print_result(const string& xtext,
 
   // Body:
 
+  using namespace std;
   cout << xtext << endl;
   print_section(xsection, xindent, xauto_access);
 
@@ -1089,8 +1103,8 @@ void print_result(const string& xtext,
 template <typename T>
 void make_test_sections(fiber_bundles_namespace& xns,
                         const poset_path& xbase_path,
-                        const string& xspace_name,
-                        const string& xbase_section_name,
+                        const std::string& xspace_name,
+                        const std::string& xbase_section_name,
                         T xsections[],
                         int xnum_sections)
 {
@@ -1102,6 +1116,7 @@ void make_test_sections(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace std;
   typedef typename T::host_type host_type;
 
   // Create a unique name for the section space.
@@ -1183,6 +1198,8 @@ test_section_common_unattached()
   // Preconditions:
 
   // Body:
+
+  using namespace std;
 
   //==========================================================================
 
@@ -1283,6 +1300,8 @@ test_section_common_attached(fiber_bundles_namespace& xns, int xdim)
   require(1<=xdim && xdim<=3);
 
   // Body:
+
+  using namespace std;
 
   typedef typename S::fiber_type F;
   typedef typename F::volatile_type V;
@@ -1403,6 +1422,8 @@ test_section_common_attached_2(fiber_bundles_namespace& xns, int xdim)
   require(1<=xdim && xdim<=3);
 
   // Body:
+
+  using namespace std;
 
   typedef typename S::fiber_type F;
   typedef typename F::volatile_type V;
@@ -1529,6 +1550,8 @@ test_section_common_attached(fiber_bundles_namespace& xns, int xdim)
   require(1<=xdim && xdim<=3);
 
   // Body:
+
+  using namespace std;
 
   typedef typename SD::fiber_type F;
   typedef typename F::volatile_type V;
@@ -1664,6 +1687,8 @@ test_section_common_attached_2(fiber_bundles_namespace& xns,
 
   // Body:
 
+  using namespace std;
+
   typedef typename S::fiber_type F;
   typedef typename F::volatile_type V;
 
@@ -1789,6 +1814,8 @@ test_section_common_attached(fiber_bundles_namespace& xns,
   require(xns.contains_member(xbase_path.poset_name()));
 
   // Body:
+
+  using namespace std;
 
   typedef typename S::fiber_type F;
   typedef typename F::volatile_type V;

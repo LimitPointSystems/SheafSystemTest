@@ -376,7 +376,7 @@ void doit5()
 
 int main()
 {
-  cout << "Not compiled with -D_PTHREADS" << endl;
+  std::cout << "Not compiled with -D_PTHREADS" << std::endl;
 
   return 0;
 }

@@ -35,6 +35,7 @@
 #include "assert_contract.h"
 #include "storage_agent.h"
 
+using namespace std;
 using namespace sheaf;
 
 // Creates schema for standard base space types.

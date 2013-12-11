@@ -21,6 +21,8 @@
 #include "test_geometry_inst.impl.h"
 #include "test_utils.h"
 
+using namespace std;
+
 //=============================================================================
 // EXPLICIT INSTANTIATIONS
 //=============================================================================

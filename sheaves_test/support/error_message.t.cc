@@ -21,6 +21,7 @@
 #include "std_iostream.h"
 #include "std_stdexcept.h"
 
+using namespace std;
 using namespace sheaf;
 
 namespace

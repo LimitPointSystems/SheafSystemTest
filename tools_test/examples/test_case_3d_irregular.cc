@@ -41,6 +41,8 @@
 
 ///@todo Cleanup and refactor to eliminate duplicate code.
 
+using namespace std;
+
 // Workaround for Microsoft C++ bug.
 using namespace tool;
 

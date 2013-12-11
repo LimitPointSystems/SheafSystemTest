@@ -25,6 +25,7 @@
 #include "tern.h"
 #include "total_poset_member.h"
 
+using namespace std;
 using namespace sheaf;
 
 ///

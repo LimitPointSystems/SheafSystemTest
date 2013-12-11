@@ -23,6 +23,7 @@
 #include "std_iostream.h"
 
 using namespace std;
+using namespace std;
 using namespace fiber_bundle;
 
 typedef section_evaluator::dof_type dof_type;

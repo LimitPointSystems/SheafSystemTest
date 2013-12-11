@@ -32,6 +32,7 @@
 #include "test_utils.h"
 #include "test_sheaves.impl.h"
 
+using namespace std;
 using namespace fields;
 
 int

@@ -26,6 +26,7 @@
 namespace
 {
 
+using namespace std;
 using namespace sheaf;
 using namespace geometry;
 

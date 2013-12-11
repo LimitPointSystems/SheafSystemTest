@@ -28,6 +28,7 @@
 #include "test_index_spaces.impl.h"
 #include "std_strstream.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 int main( int argc, char* argv[])

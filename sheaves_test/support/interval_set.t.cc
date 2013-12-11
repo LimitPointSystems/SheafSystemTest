@@ -23,6 +23,7 @@
 #include "std_iomanip.h"
 
 
+using namespace std;
 using namespace sheaf;
 
 namespace

@@ -26,6 +26,7 @@
 #include "section_space_schema_poset.h"
 #include "std_iostream.h"
 
+using namespace std;
 using namespace fields;
 
 ///

@@ -21,6 +21,7 @@
 #include "binary_index_block.impl.h"
 #include "test_utils.h"
 
+using namespace std;
 using namespace sheaf;
 
 namespace // unnamed

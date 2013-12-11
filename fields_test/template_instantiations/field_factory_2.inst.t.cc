@@ -50,6 +50,7 @@
 #include "test_utils.h"
 #include "std_sstream.h"
 
+using namespace std;
 using namespace fields;
 
 namespace

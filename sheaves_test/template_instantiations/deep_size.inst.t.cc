@@ -29,6 +29,7 @@
 #include "std_hash_map.h"
 #include "test_utils.h"
 
+using namespace std;
 using namespace sheaf;
 
 int

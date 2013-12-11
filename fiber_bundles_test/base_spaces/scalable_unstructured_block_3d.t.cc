@@ -28,6 +28,7 @@
 #include "unstructured_block.h"
 #include "block_scaling_test.impl.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 int

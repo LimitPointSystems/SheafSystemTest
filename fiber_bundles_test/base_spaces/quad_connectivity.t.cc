@@ -21,6 +21,7 @@
 #include "quad_connectivity.h"
 #include "std_iostream.h"
 
+using namespace std;
 using namespace fiber_bundle;
 
 int main()

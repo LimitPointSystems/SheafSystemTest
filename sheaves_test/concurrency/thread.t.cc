@@ -220,7 +220,7 @@ doit(runnable* r) {
 #include "std_iostream.h"
 
 int main() {
-  cout << "Not built with -D_PTHREADS" << endl;
+  std::cout << "Not built with -D_PTHREADS" << std::endl;
 
   return 0;
 }

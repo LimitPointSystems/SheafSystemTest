@@ -28,6 +28,7 @@
 #include "sec_jcb_e33.h"
 #include "sec_jcb_space.h"
 
+using namespace std;
 using namespace fields;
 
 int
