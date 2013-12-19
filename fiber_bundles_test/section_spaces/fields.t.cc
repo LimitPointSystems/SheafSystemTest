@@ -114,7 +114,7 @@ Dof_tuple make_coord_field_dofs(int edge_ct_x, int edge_ct_y)
     }
   }
 
-  Dof_tuple result = {dofs, dofs_ub*sizeof(double)};
+  Dof_tuple result = {dofs, dofs_ub*static_cast<int>(sizeof(double))};
 
   // Postconditions:
 
@@ -204,7 +204,7 @@ Dof_tuple make_scalar_field_dofs(int edge_ct_x, int edge_ct_y)
     }
   }
 
-  Dof_tuple result = {dofs, dofs_ub*sizeof(double)};
+  Dof_tuple result = {dofs, dofs_ub*static_cast<int>(sizeof(double))};
 
   // Postconditions:
 
@@ -424,7 +424,7 @@ Dof_tuple make_stress_field_dofs(int edge_ct_x, int edge_ct_y)
   }
 
 
-  Dof_tuple result = {dofs, dofs_ub*sizeof(double)};
+  Dof_tuple result = {dofs, dofs_ub*static_cast<int>(sizeof(double))};
 
   // Postconditions:
 

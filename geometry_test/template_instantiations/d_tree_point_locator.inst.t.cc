@@ -378,7 +378,7 @@ test_d_tree_point_locator_facet(fiber_bundles_namespace& xns)
 
   typedef forward_list<const d_bounding_box<DC, DB>*> box_list_type;
   box_list_type lbox_list2 = lroot.box_list();
-  cout << "lbox_list2.size() = " << lbox_list2.size() << endl; 
+  cout << "lbox_list2.empty() = " << lbox_list2.empty() << endl; 
 
   cout << "lroot.is_empty() = " << boolalpha << lroot.is_empty() << endl; 
   cout << "lroot.is_leaf() = " << boolalpha << lroot.is_leaf() << endl; 
