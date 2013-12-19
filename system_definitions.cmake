@@ -43,10 +43,10 @@ elseif(CMAKE_HOST_SYSTEM_NAME MATCHES "Windows" AND CMAKE_CXX_COMPILER_ID MATCHE
 # OS is 64 bit linux, compiler is g++
 elseif(CMAKE_HOST_SYSTEM_NAME MATCHES "Linux" AND CMAKE_COMPILER_IS_GNUCXX AND CMAKE_SIZEOF_VOID_P MATCHES "8")
     set(LINUX64GNU ON CACHE BOOL "GNU compiler in use." FORCE)
+    set(CMAKE_CXX_FLAGS "-std=c++0x")
 # OS is 64 bit linux, compiler is icpc
 elseif(CMAKE_HOST_SYSTEM_NAME MATCHES "Linux" AND CMAKE_CXX_COMPILER_ID MATCHES "Intel" AND CMAKE_SIZEOF_VOID_P MATCHES "8")
     set(LINUX64INTEL ON CACHE BOOL "Intel compiler in use." FORCE)
-    set(CMAKE_CXX_FLAGS "-std=c++0x")
     message(STATUS "Using Intel compiler")    
 else()
     message(FATAL_ERROR "A 64 bit Windows or Linux environment was not detected; exiting")
@@ -106,13 +106,6 @@ include(${CMAKE_MODULE_PATH}/target_declarations.cmake)
 #
 include(${CMAKE_MODULE_PATH}/find_prerequisites.cmake)
         
-#
-# C++11 features
-#
-message(STATUS " ")
-message(STATUS "Checking for C++11 Compliance - ")
-message(STATUS " ")
-include(${CMAKE_MODULE_PATH}/CheckCXX11Features.cmake)
 
 # If SHEAFSYSTEM_HOME contains white space, escape it.
 file(TO_NATIVE_PATH "${SHEAFSYSTEM_HOME}" SHEAFSYSTEM_HOME)
@@ -197,3 +190,115 @@ function(add_tags_target)
     endif()
 
 endfunction(add_tags_target) 
+
+#
+# Set the compiler flags per build configuration
+#
+function(set_compiler_flags)
+   
+       # Clear all cmake's intrinsic vars. If we don't, then their values will be appended to our
+       # compile and link lines.
+       set(CMAKE_CXX_FLAGS "" CACHE STRING "CXX Flags" FORCE)
+       set(CMAKE_SHARED_LINKER_FLAGS "" CACHE STRING "Shared Linker Flags" FORCE)
+       set(CMAKE_SHARED_LINKER_FLAGS_DEBUG "" CACHE STRING "Debug Shared Linker Flags" FORCE)
+       set(CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO "" CACHE STRING "Debug Shared Linker Flags" FORCE)
+       set(CMAKE_SHARED_LINKER_FLAGS_DEBUG "" CACHE STRING "Debug Shared Linker Flags" FORCE)
+       set(CMAKE_EXE_LINKER_FLAGS "" CACHE STRING "Exe Linker Flags" FORCE)
+       set(CMAKE_EXE_LINKER_FLAGS_DEBUG "" CACHE STRING "Exe Linker Flags" FORCE)
+       set(CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO "" CACHE STRING "Exe Linker Flags" FORCE)
+       set(CMAKE_MODULE_LINKER_FLAGS "" CACHE STRING "Module Linker Flags" FORCE)
+       set(CMAKE_MODULE_LINKER_FLAGS_DEBUG "" CACHE STRING "Module Linker Flags" FORCE)
+       set(CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO "" CACHE STRING "Module Linker Flags" FORCE) 
+
+        # Toggle multi-process compilation in Windows
+        # Set in system_definitions.cmake
+        if(ENABLE_WIN32_MP)
+            set(MP "/MP")
+        else()
+            set(MP "")
+        endif()
+
+    if(WIN64MSVC)
+       set(LPS_CXX_FLAGS "/D_USRDLL ${MP} /GR /nologo /DWIN32 /D_WINDOWS /W1 /EHsc /D_HDF5USEDLL_ " CACHE STRING "C++ Compiler Flags")
+       set(LPS_SHARED_LINKER_FLAGS "/INCREMENTAL:NO /NOLOGO /DLL /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /DYNAMICBASE /NXCOMPAT /MACHINE:X64"  CACHE STRING "Linker Flags" FORCE)
+       set(LPS_EXE_LINKER_FLAGS_DEBUG "/DEBUG" CACHE STRING "Debug Linker Flags" FORCE)
+      set(LPS_EXE_LINKER_FLAGS "/INCREMENTAL:NO /NOLOGO /DLL /SUBSYSTEM:CONSOLE /MACHINE:X64" CACHE STRING "Linker Flags for Executables")
+    elseif(WIN64INTEL)
+       set(LPS_CXX_FLAGS "/D_USRDLL ${MP} /GR /nologo /DWIN32 /D_WINDOWS /W1 /wd2651 /EHsc ${OPTIMIZATION} /Qprof-gen:srcpos /D_HDF5USEDLL_" CACHE STRING "C++ Compiler Flags" FORCE)
+       set(LPS_SHARED_LINKER_FLAGS "/INCREMENTAL:NO /NOLOGO /DLL /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /DYNAMICBASE /NXCOMPAT /MACHINE:X64"  CACHE STRING "Linker Flags" FORCE) 
+    elseif(LINUX64INTEL)
+        if(ENABLE_COVERAGE)
+            if(INTELWARN)
+               set(LPS_CXX_FLAGS "-ansi -m64 -w1 -wd186,1125 -Wno-deprecated ${OPTIMIZATION} -prof-gen=srcpos")
+            else()
+               set(LPS_CXX_FLAGS "-ansi -m64 -w0 -Wno-deprecated ${OPTIMIZATION} -prof-gen=srcpos")
+            endif()
+        else()
+            if(INTELWARN)
+               set(LPS_CXX_FLAGS "-ansi -m64 -w1 -wd186,1125 -Wno-deprecated ${OPTIMIZATION}")
+            else()
+               set(LPS_CXX_FLAGS "-ansi -m64 -w0 -Wno-deprecated ${OPTIMIZATION}")
+            endif()
+        endif(ENABLE_COVERAGE)         
+     elseif(LINUX64GNU)
+         set(LPS_CXX_FLAGS "-m64 -Wno-deprecated")            
+    endif()
+
+    #                 
+    # debug-contracts section
+    #
+        
+    # Configuration specific flags 
+    if(WIN64MSVC OR WIN64INTEL)
+         set(CMAKE_CXX_FLAGS_DEBUG_CONTRACTS "${LPS_CXX_FLAGS} /Zi /D\"_ITERATOR_DEBUG_LEVEL=2\" /MDd /LDd /Od" CACHE
+            STRING "Flags used by the C++ compiler for Debug_contracts builds" FORCE)
+         set(CMAKE_EXE_LINKER_FLAGS_DEBUG_CONTRACTS ${CMAKE_EXE_LINKER_FLAGS} ${LPS_EXE_LINKER_FLAGS_DEBUG}  CACHE
+            STRING "Flags used by the linker for executables for Debug_contracts builds" FORCE)                      
+    else()
+        if(LINUX64INTEL)
+            set(CMAKE_CXX_FLAGS_DEBUG_CONTRACTS "${LPS_CXX_FLAGS} -g -limf" CACHE
+                STRING "Flags used by the C++ compiler for Debug_contracts builds" FORCE)
+            set(CMAKE_EXE_LINKER_FLAGS_DEBUG_CONTRACTS ${CMAKE_EXE_LINKER_FLAGS}  CACHE
+                STRING "Flags used by the linker for executables for Debug_contracts builds" FORCE)                        
+        else()
+            set(CMAKE_CXX_FLAGS_DEBUG_CONTRACTS "${LPS_CXX_FLAGS} -g " CACHE
+                STRING "Flags used by the C++ compiler for Debug_contracts builds" FORCE)
+            set(CMAKE_EXE_LINKER_FLAGS_DEBUG_CONTRACTS ${CMAKE_EXE_LINKER_FLAGS}  CACHE
+                STRING "Flags used by the linker for executables for Debug_contracts builds" FORCE)                        
+        endif() 
+    endif()
+    
+    # True for all currently supported platforms    
+    set(CMAKE_SHARED_LINKER_FLAGS_DEBUG_CONTRACTS ${LPS_SHARED_LINKER_FLAGS} CACHE
+        STRING "Flags used by the linker for shared libraries for Debug_contracts builds" FORCE)
+    mark_as_advanced(CMAKE_CXX_FLAGS_DEBUG_CONTRACTS
+                     CMAKE_EXE_LINKER_FLAGS_DEBUG_CONTRACTS CMAKE_SHARED_LINKER_FLAGS_DEBUG_CONTRACTS)
+
+
+    #                 
+    # RelWithDebInfo_no_contracts section
+    #
+
+    # Configuration specific flags         
+    if(WIN64MSVC OR WIN64INTEL)
+        set(CMAKE_CXX_FLAGS_RELWITHDEBINFO_NO_CONTRACTS "${LPS_CXX_FLAGS}  /MD /LD /O2 /DNDEBUG" CACHE
+            STRING "RelWithDebInfo_no_contracts compiler flags" )
+        set(CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO_NO_CONTRACTS "${CMAKE_EXE_LINKER_FLAGS} /DEBUG /NODEFAULTLIB:MSVCRTD  /NXCOMPAT" CACHE
+            STRING "RelWithDebInfo_no_contracts linker flags - executables" )
+        set(CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO_NO_CONTRACTS "${LPS_SHARED_LINKER_FLAGS} /DEBUG /NODEFAULTLIB:MSVCRTD  /NXCOMPAT" CACHE
+            STRING "RelWithDebInfo_no_contracts linker flags - shared libs" )
+    else()
+        set(CMAKE_CXX_FLAGS_RELWITHDEBINFO_NO_CONTRACTS "${LPS_CXX_FLAGS} ${OPTIMIZATION} -DNDEBUG" CACHE
+            STRING "RelWithDebInfo_no_contracts compiler flags" )
+        set(CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO_NO_CONTRACTS "${CMAKE_EXE_LINKER_FLAGS}" CACHE
+            STRING "RelWithDebInfo_no_contracts linker flags - executables" )
+        set(CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO_NO_CONTRACTS "${LPS_SHARED_LINKER_FLAGS}" CACHE
+            STRING "RelWithDebInfo_no_contracts linker flags - shared libs" )
+    endif()
+    
+    # True for all currently supported platforms        
+    mark_as_advanced(CMAKE_CXX_FLAGS_RELWITHDEBINFO_NO_CONTRACTS
+                     CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO_NO_CONTRACTS CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO_NO_CONTRACTS
+                  )
+                  
+endfunction(set_compiler_flags)
