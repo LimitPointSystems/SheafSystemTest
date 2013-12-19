@@ -175,7 +175,7 @@ main(int xargc, char* xargv[])
   lblocks_sp.put_name("blocks", true, false);
 
   total_poset_member lblock;
-  hash_map<int, int> glue_map;
+  unordered_map<int, int> glue_map;
 
   for(int i=0; i<BLOCK_CT; i++)
   {

@@ -131,7 +131,7 @@ test_d_tree_point_locator_node_facet()
   print_subheader("Testing const box_list_type& box_list(",
                   "    d_tree_point_locator_path<DC, DB>& xpath) const");
 
-  typedef slist<const d_bounding_box<DC, DB>*> box_list_type;
+  typedef forward_list<const d_bounding_box<DC, DB>*> box_list_type;
   const box_list_type& lbox_list = lnode.box_list();
 
 

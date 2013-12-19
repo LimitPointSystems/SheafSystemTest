@@ -598,7 +598,7 @@ process_block(poset* xmesh,
                                xconn.node_ids,
                                xconn.node_ids_ub,
                                &xblock,
-                               static_cast<hash_map<int, int>*>(0));
+                               static_cast<unordered_map<int, int>*>(0));
   ltemplate.release_access();
   ltemplate.detach_from_state();
 

@@ -350,7 +350,7 @@ test_d_uniform_point_locator_facet(fiber_bundles_namespace& xns)
 //     lpt[i] = i;
 //   }
 
-//   typedef slist<const d_bounding_box<DC, DB>*> box_list_type;
+//   typedef forward_list<const d_bounding_box<DC, DB>*> box_list_type;
 //   const box_list_type& lbox_list = llocator.box_list(lpt, DC);
 
 

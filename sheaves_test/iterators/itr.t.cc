@@ -35,7 +35,7 @@
 
 #include "zn_to_bool.h"
 #include "std_set.h"
-#include "std_hash_set.h"
+#include "std_unordered_set.h"
 
 // Global variables:
 sheaves_namespace* test_namespace;
@@ -1571,7 +1571,7 @@ test_level_0_before_refinement_zn_to_bool()
 }
 
 void
-test_level_0_before_refinement_hash_set()
+test_level_0_before_refinement_unordered_set()
 {
 
   // preconditions:
@@ -1582,7 +1582,7 @@ test_level_0_before_refinement_hash_set()
 
   //refinable_triangle->put_version(0);
 
-  cout << "\n##### begin unfiltered POSTORDER_MEMBER_ITERATOR test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "\n##### begin unfiltered POSTORDER_MEMBER_ITERATOR test at version 0 for type unordered_set <pod_index_type> #####\n";
   postorder_member_iterator post_itr(refinable_triangle->top());
   while(!post_itr.is_done())
   {
@@ -1591,10 +1591,10 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 0 6 7 3 8 4 5 2 1\n";
-  cout << "##### end unfiltered POSTORDER_MEMBER_ITERATOR test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end unfiltered POSTORDER_MEMBER_ITERATOR test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin unfiltered strict down set POSTORDER_MEMBER_ITERATOR test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin unfiltered strict down set POSTORDER_MEMBER_ITERATOR test at version 0 for type unordered_set <pod_index_type> #####\n";
   post_itr.put_strict(true);
   post_itr.reset();
   while(!post_itr.is_done())
@@ -1604,10 +1604,10 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 0 6 7 3 8 4 5 2\n";
-  cout << "##### end unfiltered strict down set POSTORDER_MEMBER_ITERATOR test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end unfiltered strict down set POSTORDER_MEMBER_ITERATOR test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin unfiltered strict up set POSTORDER_MEMBER_ITERATOR test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin unfiltered strict up set POSTORDER_MEMBER_ITERATOR test at version 0 for type unordered_set <pod_index_type> #####\n";
   total_poset_member v0(refinable_triangle, "v0");
   post_itr.put_descending(false);
   post_itr.put_anchor(&v0);
@@ -1619,10 +1619,10 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 1 2 3 4\n";
-  cout << "##### end unfiltered strict up set POSTORDER_MEMBER_ITERATOR test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end unfiltered strict up set POSTORDER_MEMBER_ITERATOR test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin filtered POSTORDER_MEMBER_ITERATOR test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin filtered POSTORDER_MEMBER_ITERATOR test at version 0 for type unordered_set <pod_index_type> #####\n";
   post_itr.put_descending(true);
   post_itr.put_strict(false);
   post_itr.put_anchor(&(refinable_triangle->top()));
@@ -1635,9 +1635,9 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 6 7 8\n";
-  cout << "##### end filtered POSTORDER_MEMBER_ITERATOR test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end filtered POSTORDER_MEMBER_ITERATOR test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
-  cout << "##### begin filtered link POSTORDER_MEMBER_ITERATOR test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin filtered link POSTORDER_MEMBER_ITERATOR test at version 0 for type unordered_set <pod_index_type> #####\n";
   post_itr.reset();
   while(!post_itr.is_done())
   {
@@ -1650,10 +1650,10 @@ test_level_0_before_refinement_hash_set()
 
   cout << "\nshould be:\n";
   cout << " 6->-1 7->-1 8->-1\n";
-  cout << "##### end filtered link POSTORDER_MEMBER_ITERATOR test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end filtered link POSTORDER_MEMBER_ITERATOR test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin unfiltered PREORDER_MEMBER_ITERATOR test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin unfiltered PREORDER_MEMBER_ITERATOR test at version 0 for type unordered_set <pod_index_type> #####\n";
   preorder_member_iterator pre_itr(refinable_triangle->top());
   while(!pre_itr.is_done())
   {
@@ -1662,10 +1662,10 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 1 2 3 6 0 7 4 8 5\n";
-  cout << "##### end unfiltered PREORDER_MEMBER_ITERATOR test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end unfiltered PREORDER_MEMBER_ITERATOR test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin filtered PREORDER_MEMBER_ITERATOR test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin filtered PREORDER_MEMBER_ITERATOR test at version 0 for type unordered_set <pod_index_type> #####\n";
   pre_itr.put_anchor(&(refinable_triangle->top()));
   pre_itr.put_filter(n_cells);
   pre_itr.reset();
@@ -1676,10 +1676,10 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 3 6 7 4 8 5\n";
-  cout << "##### end filtered PREORDER_MEMBER_ITERATOR test at version at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end filtered PREORDER_MEMBER_ITERATOR test at version at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin filtered link PREORDER_MEMBER_ITERATOR test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin filtered link PREORDER_MEMBER_ITERATOR test at version 0 for type unordered_set <pod_index_type> #####\n";
   pre_itr.reset();
   while(!pre_itr.is_done())
   {
@@ -1688,10 +1688,10 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 3->-1 6->3 7->3 4->-1 8->4 5->-1\n";
-  cout << "##### end filtered link PREORDER_MEMBER_ITERATOR test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end filtered link PREORDER_MEMBER_ITERATOR test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin truncated filtered PREORDER_MEMBER_ITERATOR test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin truncated filtered PREORDER_MEMBER_ITERATOR test at version 0 for type unordered_set <pod_index_type> #####\n";
   pre_itr.reset();
   while(!pre_itr.is_done())
   {
@@ -1700,10 +1700,10 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 3 4 5\n";
-  cout << "##### end truncated filtered PREORDER_MEMBER_ITERATOR test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end truncated filtered PREORDER_MEMBER_ITERATOR test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin strict down set PREORDER_MEMBER_ITERATOR test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin strict down set PREORDER_MEMBER_ITERATOR test at version 0 for type unordered_set <pod_index_type> #####\n";
   pre_itr.put_strict(true);
   pre_itr.put_anchor(&(refinable_triangle->top()));
   pre_itr.reset();
@@ -1714,10 +1714,10 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 2 3 6 0 7 4 8 5\n";
-  cout << "##### end strict down set PREORDER_MEMBER_ITERATOR test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end strict down set PREORDER_MEMBER_ITERATOR test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin strict up set PREORDER_MEMBER_ITERATOR test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin strict up set PREORDER_MEMBER_ITERATOR test at version 0 for type unordered_set <pod_index_type> #####\n";
   preorder_member_iterator strict_itr(v0, "", preorder_member_iterator::UP, preorder_member_iterator::STRICT);
   while(!strict_itr.is_done())
   {
@@ -1726,10 +1726,10 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 3 2 1 4\n";
-  cout << "##### end strict up set PREORDER_MEMBER_ITERATOR test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end strict up set PREORDER_MEMBER_ITERATOR test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin subposet minimals PREORDER_MEMBER_ITERATOR test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin subposet minimals PREORDER_MEMBER_ITERATOR test at version 0 for type unordered_set <pod_index_type> #####\n";
 
   // Find minimal members of subposet n_cells
 
@@ -1782,7 +1782,7 @@ test_level_0_before_refinement_hash_set()
 
   cout << "\nshould be:\n";
   cout << " 6 7 8\n";
-  cout << "##### end subposet minimals PREORDER_MEMBER_ITERATOR test at version 0 for type hash_set <pod_index_type> #####" << endl;
+  cout << "##### end subposet minimals PREORDER_MEMBER_ITERATOR test at version 0 for type unordered_set <pod_index_type> #####" << endl;
 
   // Delete lmins; it was just a temporary.
   lmins.delete_state();
@@ -1792,8 +1792,8 @@ test_level_0_before_refinement_hash_set()
 
 
 
-  cout << "\n##### begin unfiltered FILTERED_DEPTH_FIRST_ITERATOR postvisit test at version 0 for type hash_set <pod_index_type> #####\n";
-  filtered_depth_first_itr< hash_set<pod_index_type> > depth_first_iter(refinable_triangle->top());
+  cout << "\n##### begin unfiltered FILTERED_DEPTH_FIRST_ITERATOR postvisit test at version 0 for type unordered_set <pod_index_type> #####\n";
+  filtered_depth_first_itr< unordered_set<pod_index_type> > depth_first_iter(refinable_triangle->top());
   while(!depth_first_iter.is_done())
   {
 
@@ -1801,12 +1801,12 @@ test_level_0_before_refinement_hash_set()
     {
 
 
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       break;
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::LINK_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::LINK_ACTION:
 
       break;
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       cout << " " << depth_first_iter.index();
       break;
     default:
@@ -1817,21 +1817,21 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 0 6 7 3 8 4 5 2 1\n";
-  cout << "##### end unfiltered FILTERED_DEPTH_FIRST_ITR test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end unfiltered FILTERED_DEPTH_FIRST_ITR test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin unfiltered FILTERED_DEPTH_FIRST_ITR linkorder test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin unfiltered FILTERED_DEPTH_FIRST_ITR linkorder test at version 0 for type unordered_set <pod_index_type> #####\n";
   depth_first_iter.reset();
   while(!depth_first_iter.is_done())
   {
     switch(depth_first_iter.action())
     {
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       break;
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::LINK_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::LINK_ACTION:
       cout << " " << depth_first_iter.lesser_index() << "->" << depth_first_iter.greater_index();
       break;
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       break;
     default:
       break;
@@ -1841,21 +1841,21 @@ test_level_0_before_refinement_hash_set()
 
   cout << "\nshould be:\n";
   cout << " 0->6 6->3 0->7 7->3 3->2 6->4 0->8 8->4 4->2 7->5 8->5 5->2 2->1\n";
-  cout << "##### end unfiltered FILTERED_DEPTH_FIRST_ITR linkorder test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end unfiltered FILTERED_DEPTH_FIRST_ITR linkorder test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin unfiltered strict down set FILTERED_DEPTH_FIRST_ITR postvisit test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin unfiltered strict down set FILTERED_DEPTH_FIRST_ITR postvisit test at version 0 for type unordered_set <pod_index_type> #####\n";
   depth_first_iter.put_strict(true);
   depth_first_iter.reset();
   while(!depth_first_iter.is_done())
   {
     switch(depth_first_iter.action())
     {
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       break;
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::LINK_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::LINK_ACTION:
       break;
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       cout << " " << depth_first_iter.index();
       break;
     default:
@@ -1865,10 +1865,10 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 0 6 7 3 8 4 5 2\n";
-  cout << "##### end unfiltered strict down set FILTERED_DEPTH_FIRST_ITR test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end unfiltered strict down set FILTERED_DEPTH_FIRST_ITR test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin unfiltered strict up set FILTERED_DEPTH_FIRST_ITR postvisit test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin unfiltered strict up set FILTERED_DEPTH_FIRST_ITR postvisit test at version 0 for type unordered_set <pod_index_type> #####\n";
   depth_first_iter.put_descending(false);
   depth_first_iter.put_anchor(&v0);
   depth_first_iter.reset();
@@ -1876,11 +1876,11 @@ test_level_0_before_refinement_hash_set()
   {
     switch(depth_first_iter.action())
     {
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       break;
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::LINK_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::LINK_ACTION:
       break;
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       cout << " " << depth_first_iter.index();
       break;
     default:
@@ -1890,10 +1890,10 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 1 2 3 4\n";
-  cout << "##### end unfiltered strict up set FILTERED_DEPTH_FIRST_ITR test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end unfiltered strict up set FILTERED_DEPTH_FIRST_ITR test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin filtered FILTERED_DEPTH_FIRST_ITR postvisit test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin filtered FILTERED_DEPTH_FIRST_ITR postvisit test at version 0 for type unordered_set <pod_index_type> #####\n";
   depth_first_iter.put_descending(true);
   depth_first_iter.put_strict(false);
   depth_first_iter.put_anchor(&(refinable_triangle->top()));
@@ -1903,11 +1903,11 @@ test_level_0_before_refinement_hash_set()
   {
     switch(depth_first_iter.action())
     {
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       break;
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::LINK_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::LINK_ACTION:
       break;
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       cout << " " << depth_first_iter.index();
       break;
     default:
@@ -1917,19 +1917,19 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 6 7 8\n";
-  cout << "##### end filtered FILTERED_DEPTH_FIRST_ITR test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end filtered FILTERED_DEPTH_FIRST_ITR test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
-  cout << "##### begin filtered link FILTERED_DEPTH_FIRST_ITR postvisit test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin filtered link FILTERED_DEPTH_FIRST_ITR postvisit test at version 0 for type unordered_set <pod_index_type> #####\n";
   depth_first_iter.reset();
   while(!depth_first_iter.is_done())
   {
     switch(depth_first_iter.action())
     {
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       break;
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::LINK_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::LINK_ACTION:
       break;
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       cout << " " << depth_first_iter.lesser_index() << "->" << depth_first_iter.greater_index();
       break;
     default:
@@ -1940,21 +1940,21 @@ test_level_0_before_refinement_hash_set()
 
   cout << "\nshould be:\n";
   cout << " 6->-1 7->-1 8->-1\n";
-  cout << "##### end filtered link FILTERED_DEPTH_FIRST_ITR test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end filtered link FILTERED_DEPTH_FIRST_ITR test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin filtered FILTERED_DEPTH_FIRST_ITR linkorder test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin filtered FILTERED_DEPTH_FIRST_ITR linkorder test at version 0 for type unordered_set <pod_index_type> #####\n";
   depth_first_iter.reset();
   while(!depth_first_iter.is_done())
   {
     switch(depth_first_iter.action())
     {
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       break;
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::LINK_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::LINK_ACTION:
       cout << " " << depth_first_iter.lesser_index() << "->" << depth_first_iter.greater_index();
       break;
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       break;
     default:
       break;
@@ -1964,10 +1964,10 @@ test_level_0_before_refinement_hash_set()
 
   cout << "\nshould be:\n";
   cout << " 0->6 0->7 0->8\n";
-  cout << "##### end filtered FILTERED_DEPTH_FIRST_ITR linkorder test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end filtered FILTERED_DEPTH_FIRST_ITR linkorder test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin unfiltered FILTERED_DEPTH_FIRST_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin unfiltered FILTERED_DEPTH_FIRST_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n";
   depth_first_iter.put_anchor(&(refinable_triangle->top()));
   depth_first_iter.put_filter(&(refinable_triangle->whole()));
   depth_first_iter.reset();
@@ -1975,12 +1975,12 @@ test_level_0_before_refinement_hash_set()
   {
     switch(depth_first_iter.action())
     {
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       cout << " " << depth_first_iter.index();
       break;
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::LINK_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::LINK_ACTION:
       break;
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       break;
     default:
       break;
@@ -1989,10 +1989,10 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 1 2 3 6 0 7 4 8 5\n";
-  cout << "##### end unfiltered FILTERED_DEPTH_FIRST_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end unfiltered FILTERED_DEPTH_FIRST_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin filtered FILTERED_DEPTH_FIRST_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin filtered FILTERED_DEPTH_FIRST_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n";
   depth_first_iter.put_anchor(&(refinable_triangle->top()));
   depth_first_iter.put_filter(n_cells);
   depth_first_iter.reset();
@@ -2000,12 +2000,12 @@ test_level_0_before_refinement_hash_set()
   {
     switch(depth_first_iter.action())
     {
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       cout << " " << depth_first_iter.index();
       break;
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::LINK_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::LINK_ACTION:
       break;
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       break;
     default:
       break;
@@ -2014,21 +2014,21 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 3 6 7 4 8 5\n";
-  cout << "##### end filtered FILTERED_DEPTH_FIRST_ITR preorder test at version at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end filtered FILTERED_DEPTH_FIRST_ITR preorder test at version at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin filtered link FILTERED_DEPTH_FIRST_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin filtered link FILTERED_DEPTH_FIRST_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n";
   depth_first_iter.reset();
   while(!depth_first_iter.is_done())
   {
     switch(depth_first_iter.action())
     {
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       cout << " " << depth_first_iter.lesser_index() << "->" << depth_first_iter.greater_index();
       break;
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::LINK_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::LINK_ACTION:
       break;
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       break;
     default:
       break;
@@ -2037,21 +2037,21 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 3->-1 6->3 7->3 4->-1 8->4 5->-1\n";
-  cout << "##### end filtered link FILTERED_DEPTH_FIRST_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end filtered link FILTERED_DEPTH_FIRST_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin truncated filtered FILTERED_DEPTH_FIRST_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin truncated filtered FILTERED_DEPTH_FIRST_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n";
   depth_first_iter.reset();
   while(!depth_first_iter.is_done())
   {
     switch(depth_first_iter.action())
     {
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       cout << " " << depth_first_iter.index();
       break;
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::LINK_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::LINK_ACTION:
       break;
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       break;
     default:
       break;
@@ -2060,10 +2060,10 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 3 4 5\n";
-  cout << "##### end truncated filtered FILTERED_DEPTH_FIRST_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end truncated filtered FILTERED_DEPTH_FIRST_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin strict down set FILTERED_DEPTH_FIRST_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin strict down set FILTERED_DEPTH_FIRST_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n";
   depth_first_iter.put_strict(true);
   depth_first_iter.put_anchor(&(refinable_triangle->top()));
   depth_first_iter.reset();
@@ -2071,12 +2071,12 @@ test_level_0_before_refinement_hash_set()
   {
     switch(depth_first_iter.action())
     {
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       cout << " " << depth_first_iter.index();
       break;
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::LINK_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::LINK_ACTION:
       break;
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       break;
     default:
       break;
@@ -2085,21 +2085,21 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 2 3 6 0 7 4 8 5\n";
-  cout << "##### end strict down set FILTERED_DEPTH_FIRST_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end strict down set FILTERED_DEPTH_FIRST_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin strict up set FILTERED_DEPTH_FIRST_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n";
-  filtered_depth_first_itr< hash_set<pod_index_type> > strict_depth_first_itr(v0, "", filtered_depth_first_itr< hash_set<pod_index_type> >::UP, filtered_depth_first_itr< hash_set<pod_index_type> >::STRICT);
+  cout << "##### begin strict up set FILTERED_DEPTH_FIRST_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n";
+  filtered_depth_first_itr< unordered_set<pod_index_type> > strict_depth_first_itr(v0, "", filtered_depth_first_itr< unordered_set<pod_index_type> >::UP, filtered_depth_first_itr< unordered_set<pod_index_type> >::STRICT);
   while(!strict_depth_first_itr.is_done())
   {
     switch(strict_depth_first_itr.action())
     {
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       cout << " " << strict_depth_first_itr.index();
       break;
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::LINK_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::LINK_ACTION:
       break;
-    case filtered_depth_first_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case filtered_depth_first_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       break;
     default:
       break;
@@ -2108,19 +2108,19 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 3 2 1 4\n";
-  cout << "##### end strict up set FILTERED_DEPTH_FIRST_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end strict up set FILTERED_DEPTH_FIRST_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin subposet minimals FILTERED_DEPTH_FIRST_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin subposet minimals FILTERED_DEPTH_FIRST_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n";
 
   // Find minimal members of subposet n_cells
 
   subposet ldfi_mins(refinable_triangle);
 
-  filtered_depth_first_itr< hash_set<pod_index_type> > ext_depth_first_itr(refinable_triangle->top(),
+  filtered_depth_first_itr< unordered_set<pod_index_type> > ext_depth_first_itr(refinable_triangle->top(),
       "",
-      filtered_depth_first_itr< hash_set<pod_index_type> >::UP,
-      filtered_depth_first_itr< hash_set<pod_index_type> >::STRICT);
+      filtered_depth_first_itr< unordered_set<pod_index_type> >::UP,
+      filtered_depth_first_itr< unordered_set<pod_index_type> >::STRICT);
 
   sp_itr = n_cells->member_iterator();
   while(!sp_itr->is_done())
@@ -2142,10 +2142,10 @@ test_level_0_before_refinement_hash_set()
       // already been removed from the result.
 
       ext_depth_first_itr.put_anchor(sp_itr);
-      ext_depth_first_itr.reset(filtered_depth_first_itr< hash_set<pod_index_type> >::NO_RESET);
+      ext_depth_first_itr.reset(filtered_depth_first_itr< unordered_set<pod_index_type> >::NO_RESET);
       while(!ext_depth_first_itr.is_done())
       {
-        if(ext_depth_first_itr.action() == filtered_depth_first_itr< hash_set<pod_index_type> >::PREVISIT_ACTION)
+        if(ext_depth_first_itr.action() == filtered_depth_first_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION)
         {
           ldfi_mins.remove_member(ext_depth_first_itr.index());
         }
@@ -2165,7 +2165,7 @@ test_level_0_before_refinement_hash_set()
 
   cout << "\nshould be:\n";
   cout << " 6 7 8\n";
-  cout << "##### end subposet minimals FILTERED_DEPTH_FIRST_ITR preorder test at version 0 for type hash_set <pod_index_type> #####" << endl;
+  cout << "##### end subposet minimals FILTERED_DEPTH_FIRST_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####" << endl;
 
   // Delete ldfi_mins; it was just a temporary.
 
@@ -2175,17 +2175,17 @@ test_level_0_before_refinement_hash_set()
 
 
 
-  cout << "\n##### begin unfiltered TRIORDER_ITR postvisit test at version 0 for type hash_set <pod_index_type> #####\n";
-  triorder_itr< hash_set<pod_index_type> > tri_itr(refinable_triangle->top());
+  cout << "\n##### begin unfiltered TRIORDER_ITR postvisit test at version 0 for type unordered_set <pod_index_type> #####\n";
+  triorder_itr< unordered_set<pod_index_type> > tri_itr(refinable_triangle->top());
   while(!tri_itr.is_done())
   {
     switch(tri_itr.action())
     {
-    case triorder_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       break;
-    case triorder_itr< hash_set<pod_index_type> >::LINK_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::LINK_ACTION:
       break;
-    case triorder_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       cout << " " << tri_itr.index();
       break;
     default:
@@ -2195,21 +2195,21 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 0 6 7 3 8 4 5 2 1\n";
-  cout << "##### end unfiltered TRIORDER_ITR test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end unfiltered TRIORDER_ITR test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin unfiltered TRIORDER_ITR linkorder test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin unfiltered TRIORDER_ITR linkorder test at version 0 for type unordered_set <pod_index_type> #####\n";
   tri_itr.reset();
   while(!tri_itr.is_done())
   {
     switch(tri_itr.action())
     {
-    case triorder_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       break;
-    case triorder_itr< hash_set<pod_index_type> >::LINK_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::LINK_ACTION:
       cout << " " << tri_itr.lesser_index() << "->" << tri_itr.greater_index();
       break;
-    case triorder_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       break;
     default:
       break;
@@ -2219,21 +2219,21 @@ test_level_0_before_refinement_hash_set()
 
   cout << "\nshould be:\n";
   cout << " 0->6 6->3 0->7 7->3 3->2 6->4 0->8 8->4 4->2 7->5 8->5 5->2 2->1\n";
-  cout << "##### end unfiltered TRIORDER_ITR linkorder test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end unfiltered TRIORDER_ITR linkorder test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin unfiltered strict down set TRIORDER_ITR postvisit test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin unfiltered strict down set TRIORDER_ITR postvisit test at version 0 for type unordered_set <pod_index_type> #####\n";
   tri_itr.put_strict(true);
   tri_itr.reset();
   while(!tri_itr.is_done())
   {
     switch(tri_itr.action())
     {
-    case triorder_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       break;
-    case triorder_itr< hash_set<pod_index_type> >::LINK_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::LINK_ACTION:
       break;
-    case triorder_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       cout << " " << tri_itr.index();
       break;
     default:
@@ -2243,10 +2243,10 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 0 6 7 3 8 4 5 2\n";
-  cout << "##### end unfiltered strict down set TRIORDER_ITR test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end unfiltered strict down set TRIORDER_ITR test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin unfiltered strict up set TRIORDER_ITR postvisit test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin unfiltered strict up set TRIORDER_ITR postvisit test at version 0 for type unordered_set <pod_index_type> #####\n";
   tri_itr.put_descending(false);
   tri_itr.put_strict(true);
   tri_itr.put_anchor(&v0);
@@ -2255,11 +2255,11 @@ test_level_0_before_refinement_hash_set()
   {
     switch(tri_itr.action())
     {
-    case triorder_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       break;
-    case triorder_itr< hash_set<pod_index_type> >::LINK_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::LINK_ACTION:
       break;
-    case triorder_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       cout << " " << tri_itr.index();
       break;
     default:
@@ -2269,10 +2269,10 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 1 2 3 4\n";
-  cout << "##### end unfiltered strict up set TRIORDER_ITR test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end unfiltered strict up set TRIORDER_ITR test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin filtered TRIORDER_ITR postvisit test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin filtered TRIORDER_ITR postvisit test at version 0 for type unordered_set <pod_index_type> #####\n";
   tri_itr.put_descending(true);
   tri_itr.put_strict(false);
   tri_itr.put_anchor(&(refinable_triangle->top()));
@@ -2282,11 +2282,11 @@ test_level_0_before_refinement_hash_set()
   {
     switch(tri_itr.action())
     {
-    case triorder_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       break;
-    case triorder_itr< hash_set<pod_index_type> >::LINK_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::LINK_ACTION:
       break;
-    case triorder_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       cout << " " << tri_itr.index();
       break;
     default:
@@ -2296,19 +2296,19 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 6 7 8\n";
-  cout << "##### end filtered TRIORDER_ITR test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end filtered TRIORDER_ITR test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
-  cout << "##### begin filtered link TRIORDER_ITR postvisit test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin filtered link TRIORDER_ITR postvisit test at version 0 for type unordered_set <pod_index_type> #####\n";
   tri_itr.reset();
   while(!tri_itr.is_done())
   {
     switch(tri_itr.action())
     {
-    case triorder_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       break;
-    case triorder_itr< hash_set<pod_index_type> >::LINK_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::LINK_ACTION:
       break;
-    case triorder_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       cout << " " << tri_itr.lesser_index() << "->" << tri_itr.greater_index();
       break;
     default:
@@ -2319,21 +2319,21 @@ test_level_0_before_refinement_hash_set()
 
   cout << "\nshould be:\n";
   cout << " 6->-1 7->-1 8->-1\n";
-  cout << "##### end filtered link TRIORDER_ITR test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end filtered link TRIORDER_ITR test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin filtered TRIORDER_ITR linkorder test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin filtered TRIORDER_ITR linkorder test at version 0 for type unordered_set <pod_index_type> #####\n";
   tri_itr.reset();
   while(!tri_itr.is_done())
   {
     switch(tri_itr.action())
     {
-    case triorder_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       break;
-    case triorder_itr< hash_set<pod_index_type> >::LINK_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::LINK_ACTION:
       cout << " " << tri_itr.lesser_index() << "->" << tri_itr.greater_index();
       break;
-    case triorder_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       break;
     default:
       break;
@@ -2343,10 +2343,10 @@ test_level_0_before_refinement_hash_set()
 
   cout << "\nshould be:\n";
   cout << " 0->6 0->7 0->8\n";
-  cout << "##### end filtered TRIORDER_ITR linkorder test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end filtered TRIORDER_ITR linkorder test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin unfiltered TRIORDER_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin unfiltered TRIORDER_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n";
   tri_itr.put_anchor(&(refinable_triangle->top()));
   tri_itr.put_filter(&(refinable_triangle->whole()));
   tri_itr.reset();
@@ -2354,12 +2354,12 @@ test_level_0_before_refinement_hash_set()
   {
     switch(tri_itr.action())
     {
-    case triorder_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       cout << " " << tri_itr.index();
       break;
-    case triorder_itr< hash_set<pod_index_type> >::LINK_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::LINK_ACTION:
       break;
-    case triorder_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       break;
     default:
       break;
@@ -2368,10 +2368,10 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 1 2 3 6 0 7 4 8 5\n";
-  cout << "##### end unfiltered TRIORDER_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end unfiltered TRIORDER_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin filtered TRIORDER_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin filtered TRIORDER_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n";
   tri_itr.put_anchor(&(refinable_triangle->top()));
   tri_itr.put_filter(n_cells);
   tri_itr.reset();
@@ -2379,12 +2379,12 @@ test_level_0_before_refinement_hash_set()
   {
     switch(tri_itr.action())
     {
-    case triorder_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       cout << " " << tri_itr.index();
       break;
-    case triorder_itr< hash_set<pod_index_type> >::LINK_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::LINK_ACTION:
       break;
-    case triorder_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       break;
     default:
       break;
@@ -2393,21 +2393,21 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 3 6 7 4 8 5\n";
-  cout << "##### end filtered TRIORDER_ITR preorder test at version at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end filtered TRIORDER_ITR preorder test at version at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin filtered link TRIORDER_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin filtered link TRIORDER_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n";
   tri_itr.reset();
   while(!tri_itr.is_done())
   {
     switch(tri_itr.action())
     {
-    case triorder_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       cout << " " << tri_itr.lesser_index() << "->" << tri_itr.greater_index();
       break;
-    case triorder_itr< hash_set<pod_index_type> >::LINK_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::LINK_ACTION:
       break;
-    case triorder_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       break;
     default:
       break;
@@ -2416,21 +2416,21 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 3->-1 6->3 7->3 4->-1 8->4 5->-1\n";
-  cout << "##### end filtered link TRIORDER_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end filtered link TRIORDER_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin truncated filtered TRIORDER_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin truncated filtered TRIORDER_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n";
   tri_itr.reset();
   while(!tri_itr.is_done())
   {
     switch(tri_itr.action())
     {
-    case triorder_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       cout << " " << tri_itr.index();
       break;
-    case triorder_itr< hash_set<pod_index_type> >::LINK_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::LINK_ACTION:
       break;
-    case triorder_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       break;
     default:
       break;
@@ -2439,10 +2439,10 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 3 4 5\n";
-  cout << "##### end truncated filtered TRIORDER_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end truncated filtered TRIORDER_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin strict down set TRIORDER_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin strict down set TRIORDER_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n";
   tri_itr.put_strict(true);
   tri_itr.put_anchor(&(refinable_triangle->top()));
   tri_itr.reset();
@@ -2450,12 +2450,12 @@ test_level_0_before_refinement_hash_set()
   {
     switch(tri_itr.action())
     {
-    case triorder_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       cout << " " << tri_itr.index();
       break;
-    case triorder_itr< hash_set<pod_index_type> >::LINK_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::LINK_ACTION:
       break;
-    case triorder_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       break;
     default:
       break;
@@ -2464,21 +2464,21 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 2 3 6 0 7 4 8 5\n";
-  cout << "##### end strict down set TRIORDER_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end strict down set TRIORDER_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin strict up set TRIORDER_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n";
-  triorder_itr< hash_set<pod_index_type> > strict_tri_itr(v0, "", triorder_itr< hash_set<pod_index_type> >::UP, triorder_itr< hash_set<pod_index_type> >::STRICT);
+  cout << "##### begin strict up set TRIORDER_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n";
+  triorder_itr< unordered_set<pod_index_type> > strict_tri_itr(v0, "", triorder_itr< unordered_set<pod_index_type> >::UP, triorder_itr< unordered_set<pod_index_type> >::STRICT);
   while(!strict_tri_itr.is_done())
   {
     switch(strict_tri_itr.action())
     {
-    case triorder_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       cout << " " << strict_tri_itr.index();
       break;
-    case triorder_itr< hash_set<pod_index_type> >::LINK_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::LINK_ACTION:
       break;
-    case triorder_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case triorder_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       break;
     default:
       break;
@@ -2487,19 +2487,19 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 3 2 1 4\n";
-  cout << "##### end strict up set TRIORDER_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end strict up set TRIORDER_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin subposet minimals TRIORDER_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin subposet minimals TRIORDER_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n";
 
   // Find minimal members of subposet n_cells
 
   subposet ltoi_mins(refinable_triangle);
 
-  triorder_itr< hash_set<pod_index_type> > ext_tri_itr(refinable_triangle->top(),
+  triorder_itr< unordered_set<pod_index_type> > ext_tri_itr(refinable_triangle->top(),
       "",
-      triorder_itr< hash_set<pod_index_type> >::UP,
-      triorder_itr< hash_set<pod_index_type> >::STRICT);
+      triorder_itr< unordered_set<pod_index_type> >::UP,
+      triorder_itr< unordered_set<pod_index_type> >::STRICT);
 
   sp_itr = n_cells->member_iterator();
   while(!sp_itr->is_done())
@@ -2521,10 +2521,10 @@ test_level_0_before_refinement_hash_set()
       // already been removed from the result.
 
       ext_tri_itr.put_anchor(sp_itr);
-      ext_tri_itr.reset(triorder_itr< hash_set<pod_index_type> >::NO_RESET);
+      ext_tri_itr.reset(triorder_itr< unordered_set<pod_index_type> >::NO_RESET);
       while(!ext_tri_itr.is_done())
       {
-        if(ext_tri_itr.action() == triorder_itr< hash_set<pod_index_type> >::PREVISIT_ACTION)
+        if(ext_tri_itr.action() == triorder_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION)
         {
           ltoi_mins.remove_member(ext_tri_itr.index());
         }
@@ -2544,21 +2544,21 @@ test_level_0_before_refinement_hash_set()
 
   cout << "\nshould be:\n";
   cout << " 6 7 8\n";
-  cout << "##### end subposet minimals TRIORDER_ITR preorder test at version 0 for type hash_set <pod_index_type> #####" << endl;
+  cout << "##### end subposet minimals TRIORDER_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####" << endl;
 
   // Delete ltoi_mins; it was just a temporary.
 
   ltoi_mins.delete_state();
 
-  cout << "\n##### begin unfiltered BIORDER_ITR postvisit test at version 0 for type hash_set <pod_index_type> #####\n";
-  biorder_itr< hash_set<pod_index_type> > bi_itr(refinable_triangle->top());
+  cout << "\n##### begin unfiltered BIORDER_ITR postvisit test at version 0 for type unordered_set <pod_index_type> #####\n";
+  biorder_itr< unordered_set<pod_index_type> > bi_itr(refinable_triangle->top());
   while(!bi_itr.is_done())
   {
     switch(bi_itr.action())
     {
-    case biorder_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case biorder_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       break;
-    case biorder_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case biorder_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       cout << " " << bi_itr.index();
       break;
     default:
@@ -2568,19 +2568,19 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 0 6 7 3 8 4 5 2 1\n";
-  cout << "##### end unfiltered BIORDER_ITR test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end unfiltered BIORDER_ITR test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin unfiltered strict down set BIORDER_ITR postvisit test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin unfiltered strict down set BIORDER_ITR postvisit test at version 0 for type unordered_set <pod_index_type> #####\n";
   bi_itr.put_strict(true);
   bi_itr.reset();
   while(!bi_itr.is_done())
   {
     switch(bi_itr.action())
     {
-    case biorder_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case biorder_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       break;
-    case biorder_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case biorder_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       cout << " " << bi_itr.index();
       break;
     default:
@@ -2590,10 +2590,10 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 0 6 7 3 8 4 5 2\n";
-  cout << "##### end unfiltered strict down set BIORDER_ITR test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end unfiltered strict down set BIORDER_ITR test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin unfiltered strict up set BIORDER_ITR postvisit test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin unfiltered strict up set BIORDER_ITR postvisit test at version 0 for type unordered_set <pod_index_type> #####\n";
   bi_itr.put_descending(false);
   bi_itr.put_anchor(&v0);
   bi_itr.reset();
@@ -2601,9 +2601,9 @@ test_level_0_before_refinement_hash_set()
   {
     switch(bi_itr.action())
     {
-    case biorder_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case biorder_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       break;
-    case biorder_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case biorder_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       cout << " " << bi_itr.index();
       break;
     default:
@@ -2613,10 +2613,10 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 1 2 3 4\n";
-  cout << "##### end unfiltered strict up set BIORDER_ITR test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end unfiltered strict up set BIORDER_ITR test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin filtered BIORDER_ITR postvisit test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin filtered BIORDER_ITR postvisit test at version 0 for type unordered_set <pod_index_type> #####\n";
   bi_itr.put_descending(true);
   bi_itr.put_strict(false);
   bi_itr.put_anchor(&(refinable_triangle->top()));
@@ -2626,9 +2626,9 @@ test_level_0_before_refinement_hash_set()
   {
     switch(bi_itr.action())
     {
-    case biorder_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case biorder_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       break;
-    case biorder_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case biorder_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       cout << " " << bi_itr.index();
       break;
     default:
@@ -2638,10 +2638,10 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 6 7 8\n";
-  cout << "##### end filtered BIORDER_ITR test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end filtered BIORDER_ITR test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin unfiltered BIORDER_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin unfiltered BIORDER_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n";
   bi_itr.put_anchor(&(refinable_triangle->top()));
   bi_itr.put_filter(&(refinable_triangle->whole()));
   bi_itr.reset();
@@ -2649,10 +2649,10 @@ test_level_0_before_refinement_hash_set()
   {
     switch(bi_itr.action())
     {
-    case biorder_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case biorder_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       cout << " " << bi_itr.index();
       break;
-    case biorder_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case biorder_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       break;
     default:
       break;
@@ -2661,10 +2661,10 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 1 2 3 6 0 7 4 8 5\n";
-  cout << "##### end unfiltered BIORDER_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end unfiltered BIORDER_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin filtered BIORDER_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin filtered BIORDER_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n";
   bi_itr.put_anchor(&(refinable_triangle->top()));
   bi_itr.put_filter(n_cells);
   bi_itr.reset();
@@ -2672,10 +2672,10 @@ test_level_0_before_refinement_hash_set()
   {
     switch(bi_itr.action())
     {
-    case biorder_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case biorder_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       cout << " " << bi_itr.index();
       break;
-    case biorder_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case biorder_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       break;
     default:
       break;
@@ -2684,19 +2684,19 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 3 6 7 4 8 5\n";
-  cout << "##### end filtered BIORDER_ITR preorder test at version at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end filtered BIORDER_ITR preorder test at version at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin truncated filtered BIORDER_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin truncated filtered BIORDER_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n";
   bi_itr.reset();
   while(!bi_itr.is_done())
   {
     switch(bi_itr.action())
     {
-    case biorder_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case biorder_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       cout << " " << bi_itr.index();
       break;
-    case biorder_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case biorder_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       break;
     default:
       break;
@@ -2705,10 +2705,10 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 3 4 5\n";
-  cout << "##### end truncated filtered BIORDER_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end truncated filtered BIORDER_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin strict down set BIORDER_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin strict down set BIORDER_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n";
   bi_itr.put_strict(true);
   bi_itr.put_anchor(&(refinable_triangle->top()));
   bi_itr.reset();
@@ -2716,10 +2716,10 @@ test_level_0_before_refinement_hash_set()
   {
     switch(bi_itr.action())
     {
-    case biorder_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case biorder_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       cout << " " << bi_itr.index();
       break;
-    case biorder_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case biorder_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       break;
     default:
       break;
@@ -2728,19 +2728,19 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 2 3 6 0 7 4 8 5\n";
-  cout << "##### end strict down set BIORDER_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end strict down set BIORDER_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin strict up set BIORDER_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n";
-  biorder_itr< hash_set<pod_index_type> > strict_bi_itr(v0, "", biorder_itr< hash_set<pod_index_type> >::UP, biorder_itr< hash_set<pod_index_type> >::STRICT);
+  cout << "##### begin strict up set BIORDER_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n";
+  biorder_itr< unordered_set<pod_index_type> > strict_bi_itr(v0, "", biorder_itr< unordered_set<pod_index_type> >::UP, biorder_itr< unordered_set<pod_index_type> >::STRICT);
   while(!strict_bi_itr.is_done())
   {
     switch(strict_bi_itr.action())
     {
-    case biorder_itr< hash_set<pod_index_type> >::PREVISIT_ACTION:
+    case biorder_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION:
       cout << " " << strict_bi_itr.index();
       break;
-    case biorder_itr< hash_set<pod_index_type> >::POSTVISIT_ACTION:
+    case biorder_itr< unordered_set<pod_index_type> >::POSTVISIT_ACTION:
       break;
     default:
       break;
@@ -2749,19 +2749,19 @@ test_level_0_before_refinement_hash_set()
   }
   cout << "\nshould be:\n";
   cout << " 3 2 1 4\n";
-  cout << "##### end strict up set BIORDER_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end strict up set BIORDER_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin subposet minimals BIORDER_ITR preorder test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin subposet minimals BIORDER_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####\n";
 
   // Find minimal members of subposet n_cells
 
   subposet lboi_mins(refinable_triangle);
 
-  biorder_itr< hash_set<pod_index_type> > ext_bi_itr(refinable_triangle->top(),
+  biorder_itr< unordered_set<pod_index_type> > ext_bi_itr(refinable_triangle->top(),
       "",
-      biorder_itr< hash_set<pod_index_type> >::UP,
-      biorder_itr< hash_set<pod_index_type> >::STRICT);
+      biorder_itr< unordered_set<pod_index_type> >::UP,
+      biorder_itr< unordered_set<pod_index_type> >::STRICT);
 
   sp_itr = n_cells->member_iterator();
   while(!sp_itr->is_done())
@@ -2783,10 +2783,10 @@ test_level_0_before_refinement_hash_set()
       // already been removed from the result.
 
       ext_bi_itr.put_anchor(sp_itr);
-      ext_bi_itr.reset(biorder_itr< hash_set<pod_index_type> >::NO_RESET);
+      ext_bi_itr.reset(biorder_itr< unordered_set<pod_index_type> >::NO_RESET);
       while(!ext_bi_itr.is_done())
       {
-        if(ext_bi_itr.action() == biorder_itr< hash_set<pod_index_type> >::PREVISIT_ACTION)
+        if(ext_bi_itr.action() == biorder_itr< unordered_set<pod_index_type> >::PREVISIT_ACTION)
         {
           lboi_mins.remove_member(ext_bi_itr.index());
         }
@@ -2819,7 +2819,7 @@ test_level_0_before_refinement_hash_set()
   }
 
   cout << endl
-  << "##### end subposet minimals BIORDER_ITR preorder test at version 0 for type hash_set <pod_index_type> #####"
+  << "##### end subposet minimals BIORDER_ITR preorder test at version 0 for type unordered_set <pod_index_type> #####"
   << endl;
 
   // Delete lboi_mins; it was just a temporary.
@@ -2827,8 +2827,8 @@ test_level_0_before_refinement_hash_set()
   lboi_mins.delete_state();
 
 
-  cout << "\n##### begin unfiltered LINKORDER_ITR linkorder test at version 0 for type hash_set <pod_index_type> #####\n";
-  linkorder_itr< hash_set<pod_index_type> > link_itr(refinable_triangle->top());
+  cout << "\n##### begin unfiltered LINKORDER_ITR linkorder test at version 0 for type unordered_set <pod_index_type> #####\n";
+  linkorder_itr< unordered_set<pod_index_type> > link_itr(refinable_triangle->top());
   while(!link_itr.is_done())
   {
     cout << " " << link_itr.lesser_index() << "->" << link_itr.greater_index();
@@ -2837,10 +2837,10 @@ test_level_0_before_refinement_hash_set()
 
   cout << "\nshould be:\n";
   cout << " 0->6 6->3 0->7 7->3 3->2 6->4 0->8 8->4 4->2 7->5 8->5 5->2 2->1\n";
-  cout << "##### end unfiltered LINKORDER_ITR linkorder test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end unfiltered LINKORDER_ITR linkorder test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
-  cout << "##### begin filtered LINKORDER_ITR linkorder test at version 0 for type hash_set <pod_index_type> #####\n";
+  cout << "##### begin filtered LINKORDER_ITR linkorder test at version 0 for type unordered_set <pod_index_type> #####\n";
   link_itr.put_anchor(&(refinable_triangle->top()));
   link_itr.put_filter("__vertices");
   link_itr.reset();
@@ -2852,7 +2852,7 @@ test_level_0_before_refinement_hash_set()
 
   cout << "\nshould be:\n";
   cout << " 0->6 0->7 0->8\n";
-  cout << "##### end filtered LINKORDER_ITR linkorder test at version 0 for type hash_set <pod_index_type> #####\n\n";
+  cout << "##### end filtered LINKORDER_ITR linkorder test at version 0 for type unordered_set <pod_index_type> #####\n\n";
 
 
   // Detach so destructor won't complain about needing write access.
@@ -4656,7 +4656,7 @@ main()
 
   test_level_0_before_refinement_set();
 
-  test_level_0_before_refinement_hash_set();
+  test_level_0_before_refinement_unordered_set();
 
   //   test_deletion();
 

@@ -23,7 +23,7 @@
 
 #include "runnable.h"
 
-#include "std_slist.h"
+#include "std_forward_list.h"
 
 #include "thread.h"
 
@@ -34,7 +34,7 @@
 thread_mutex               p_mutex;
 int                        p;
 thread_condition_variable  tcv;
-slist<int>                *list = 0;
+forward_list<int>                *list = 0;
 int                        wait_for_nonzero_value = 0;
 
 class test_lock: public runnable {
@@ -50,7 +50,7 @@ run() {
   p_mutex.lock();
 
   if (list == 0)
-    list = new slist<int>;
+    list = new forward_list<int>;
   list->push_front(list->size());
 
   thread *me = thread::current_thread();

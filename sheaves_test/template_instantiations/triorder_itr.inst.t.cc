@@ -108,12 +108,12 @@ main(int xargc, char* xargv[])
   ltest &= test_filtered_depth_first_itr_facet<triorder_itr, SET >(lns);
   print_footer("End testing triorder_itr<set<pod_index_type> >");
 
-  print_header("Begin testing triorder_itr<hash_set<pod_index_type> >");
-  typedef hash_set<pod_index_type> HASH_SET;
-  ltest &= test_default_constructor_and_destructor<triorder_itr, HASH_SET>();
-  ltest &= test_depth_first_itr_facet<triorder_itr, HASH_SET >(lns);
-  ltest &= test_filtered_depth_first_itr_facet<triorder_itr, HASH_SET >(lns);
-  print_footer("End testing triorder_itr<hash_set<pod_index_type> >");
+  print_header("Begin testing triorder_itr<unordered_set<pod_index_type> >");
+  typedef unordered_set<pod_index_type> UNORDERED_SET;
+  ltest &= test_default_constructor_and_destructor<triorder_itr, UNORDERED_SET>();
+  ltest &= test_depth_first_itr_facet<triorder_itr, UNORDERED_SET >(lns);
+  ltest &= test_filtered_depth_first_itr_facet<triorder_itr, UNORDERED_SET >(lns);
+  print_footer("End testing triorder_itr<unordered_set<pod_index_type> >");
 
   //============================================================================
 

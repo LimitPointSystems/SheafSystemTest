@@ -26,7 +26,7 @@
 #include "scoped_index.h"
 #include "std_list.h"
 #include "std_map.h"
-#include "std_hash_map.h"
+#include "std_unordered_map.h"
 #include "test_utils.h"
 
 using namespace std;
@@ -170,23 +170,23 @@ main(int xargc, char* xargv[])
 
   //lsize = deep_size<int, int, S0 >(map<int, int> const&, bool)
 
-  // hash_map<int, int>
+  // unordered_map<int, int>
 
-  hash_map<int, int> lhash_map;
-  lhash_map[0] = 123;
-  lhash_map[1] = 345;
-  typedef sheaf::no_deep_size_policy<hash_map<int, int> > S1;
-  lsize = deep_size<int, int, S1>(lhash_map, true);
-  cout << "deep_size<int, int, S1>(lhash_map, true) = " << lsize << endl;
+  unordered_map<int, int> lunordered_map;
+  lunordered_map[0] = 123;
+  lunordered_map[1] = 345;
+  typedef sheaf::no_deep_size_policy<unordered_map<int, int> > S1;
+  lsize = deep_size<int, int, S1>(lunordered_map, true);
+  cout << "deep_size<int, int, S1>(lunordered_map, true) = " << lsize << endl;
 
-  // hash_multimap<int, int>
+  // unordered_multimap<int, int>
 
-  hash_multimap<int, int> lhash_multimap;
-  lhash_multimap.insert(make_pair(123, 456));
-  lhash_multimap.insert(make_pair(654, 321));
-  typedef sheaf::no_deep_size_policy<hash_multimap<int, int> > S2;
-  lsize = deep_size<int, int, S2>(lhash_multimap, true);
-  cout << "deep_size<int, int, S2>(lhash_multimap, true) = " << lsize << endl;
+  unordered_multimap<int, int> lunordered_multimap;
+  lunordered_multimap.insert(make_pair(123, 456));
+  lunordered_multimap.insert(make_pair(654, 321));
+  typedef sheaf::no_deep_size_policy<unordered_multimap<int, int> > S2;
+  lsize = deep_size<int, int, S2>(lunordered_multimap, true);
+  cout << "deep_size<int, int, S2>(lunordered_multimap, true) = " << lsize << endl;
 
   // map<int, bool>
 

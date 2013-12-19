@@ -28,7 +28,7 @@
 #include "test_utils.h"
 #include "test_sheaves.impl.h"
 
-#include "std_slist.h"
+#include "std_forward_list.h"
 #include "std_utility.h"
 
 using namespace std;
@@ -293,284 +293,284 @@ main(int xargc, char* xargv[])
 
   //============================================================================
 
-  // slist<d_bounding_box<1, 0> const*> 
+  // forward_list<d_bounding_box<1, 0> const*> 
 
-  print_header("Begin testing auto_block<slist<d_bounding_box<1, 0> const*> >");
-  ltest &= test_auto_block_facet_un<slist<d_bounding_box<1, 0> const*> >();
-  //ltest &= test_auto_block_facet_equal_un<slist<d_bounding_box<1, 0> const*> >();
-  //ltest &= test_auto_block_facet_insertion_un<slist<d_bounding_box<1, 0> const*> >();
-  //ltest &= test_auto_block_facet_deep_size_un<slist<d_bounding_box<1, 0> const*> >();
-  print_footer("End testing auto_block<slist<d_bounding_box<1, 0> const*> >");
+  print_header("Begin testing auto_block<forward_list<d_bounding_box<1, 0> const*> >");
+  ltest &= test_auto_block_facet_un<forward_list<d_bounding_box<1, 0> const*> >();
+  //ltest &= test_auto_block_facet_equal_un<forward_list<d_bounding_box<1, 0> const*> >();
+  //ltest &= test_auto_block_facet_insertion_un<forward_list<d_bounding_box<1, 0> const*> >();
+  //ltest &= test_auto_block_facet_deep_size_un<forward_list<d_bounding_box<1, 0> const*> >();
+  print_footer("End testing auto_block<forward_list<d_bounding_box<1, 0> const*> >");
  
-  // slist<d_bounding_box<1, 1> const*>
+  // forward_list<d_bounding_box<1, 1> const*>
 
-  print_header("Begin testing auto_block<slist<d_bounding_box<1, 1> const*> >");
-  ltest &= test_auto_block_facet_un<slist<d_bounding_box<1, 1> const*> >();
-  //ltest &= test_auto_block_facet_equal_un<slist<d_bounding_box<1, 1> const*> >();
-  //ltest &= test_auto_block_facet_insertion_un<slist<d_bounding_box<1, 1> const*> >();
-  //ltest &= test_auto_block_facet_deep_size_un<slist<d_bounding_box<1, 1> const*> >();
-  print_footer("End testing auto_block<slist<d_bounding_box<1, 1> const*> >");
+  print_header("Begin testing auto_block<forward_list<d_bounding_box<1, 1> const*> >");
+  ltest &= test_auto_block_facet_un<forward_list<d_bounding_box<1, 1> const*> >();
+  //ltest &= test_auto_block_facet_equal_un<forward_list<d_bounding_box<1, 1> const*> >();
+  //ltest &= test_auto_block_facet_insertion_un<forward_list<d_bounding_box<1, 1> const*> >();
+  //ltest &= test_auto_block_facet_deep_size_un<forward_list<d_bounding_box<1, 1> const*> >();
+  print_footer("End testing auto_block<forward_list<d_bounding_box<1, 1> const*> >");
 
-  // slist<d_bounding_box<2, 0> const*> 
+  // forward_list<d_bounding_box<2, 0> const*> 
 
-  print_header("Begin testing auto_block<slist<d_bounding_box<2, 0> const*> >");
-  ltest &= test_auto_block_facet_un<slist<d_bounding_box<2, 0> const*> >();
-  //ltest &= test_auto_block_facet_equal_un<slist<d_bounding_box<2, 0> const*> >();
-  //ltest &= test_auto_block_facet_insertion_un<slist<d_bounding_box<2, 0> const*> >();
-  //ltest &= test_auto_block_facet_deep_size_un<slist<d_bounding_box<2, 0> const*> >();
-  print_footer("End testing auto_block<slist<d_bounding_box<2, 0> const*> >");
+  print_header("Begin testing auto_block<forward_list<d_bounding_box<2, 0> const*> >");
+  ltest &= test_auto_block_facet_un<forward_list<d_bounding_box<2, 0> const*> >();
+  //ltest &= test_auto_block_facet_equal_un<forward_list<d_bounding_box<2, 0> const*> >();
+  //ltest &= test_auto_block_facet_insertion_un<forward_list<d_bounding_box<2, 0> const*> >();
+  //ltest &= test_auto_block_facet_deep_size_un<forward_list<d_bounding_box<2, 0> const*> >();
+  print_footer("End testing auto_block<forward_list<d_bounding_box<2, 0> const*> >");
 
-  // slist<d_bounding_box<2, 2> const*> 
+  // forward_list<d_bounding_box<2, 2> const*> 
 
-  print_header("Begin testing auto_block<slist<d_bounding_box<2, 2> const*> >");
-  ltest &= test_auto_block_facet_un<slist<d_bounding_box<2, 2> const*> >();
-  //ltest &= test_auto_block_facet_equal_un<slist<d_bounding_box<2, 2> const*> >();
-  //ltest &= test_auto_block_facet_insertion_un<slist<d_bounding_box<2, 2> const*> >();
-  //ltest &= test_auto_block_facet_deep_size_un<slist<d_bounding_box<2, 2> const*> >();
-  print_footer("End testing auto_block<slist<d_bounding_box<2, 2> const*> >");
+  print_header("Begin testing auto_block<forward_list<d_bounding_box<2, 2> const*> >");
+  ltest &= test_auto_block_facet_un<forward_list<d_bounding_box<2, 2> const*> >();
+  //ltest &= test_auto_block_facet_equal_un<forward_list<d_bounding_box<2, 2> const*> >();
+  //ltest &= test_auto_block_facet_insertion_un<forward_list<d_bounding_box<2, 2> const*> >();
+  //ltest &= test_auto_block_facet_deep_size_un<forward_list<d_bounding_box<2, 2> const*> >();
+  print_footer("End testing auto_block<forward_list<d_bounding_box<2, 2> const*> >");
 
-  // slist<d_bounding_box<3, 0> const*> 
+  // forward_list<d_bounding_box<3, 0> const*> 
 
-  print_header("Begin testing auto_block<slist<d_bounding_box<3, 0> const*> >");
-  ltest &= test_auto_block_facet_un<slist<d_bounding_box<3, 0> const*> >();
-  //ltest &= test_auto_block_facet_equal_un<slist<d_bounding_box<3, 0> const*> >();
-  //ltest &= test_auto_block_facet_insertion_un<slist<d_bounding_box<3, 0> const*> >();
-  //ltest &= test_auto_block_facet_deep_size_un<slist<d_bounding_box<3, 0> const*> >();
-  print_footer("End testing auto_block<slist<d_bounding_box<3, 0> const*> >");
+  print_header("Begin testing auto_block<forward_list<d_bounding_box<3, 0> const*> >");
+  ltest &= test_auto_block_facet_un<forward_list<d_bounding_box<3, 0> const*> >();
+  //ltest &= test_auto_block_facet_equal_un<forward_list<d_bounding_box<3, 0> const*> >();
+  //ltest &= test_auto_block_facet_insertion_un<forward_list<d_bounding_box<3, 0> const*> >();
+  //ltest &= test_auto_block_facet_deep_size_un<forward_list<d_bounding_box<3, 0> const*> >();
+  print_footer("End testing auto_block<forward_list<d_bounding_box<3, 0> const*> >");
 
-  // slist<d_bounding_box<3, 1> const*> 
+  // forward_list<d_bounding_box<3, 1> const*> 
 
-  print_header("Begin testing auto_block<slist<d_bounding_box<3, 1> const*> >");
-  ltest &= test_auto_block_facet_un<slist<d_bounding_box<3, 1> const*> >();
-  //ltest &= test_auto_block_facet_equal_un<slist<d_bounding_box<3, 1> const*> >();
-  //ltest &= test_auto_block_facet_insertion_un<slist<d_bounding_box<3, 1> const*> >();
-  //ltest &= test_auto_block_facet_deep_size_un<slist<d_bounding_box<3, 1> const*> >();
-  print_footer("End testing auto_block<slist<d_bounding_box<3, 1> const*> >");
+  print_header("Begin testing auto_block<forward_list<d_bounding_box<3, 1> const*> >");
+  ltest &= test_auto_block_facet_un<forward_list<d_bounding_box<3, 1> const*> >();
+  //ltest &= test_auto_block_facet_equal_un<forward_list<d_bounding_box<3, 1> const*> >();
+  //ltest &= test_auto_block_facet_insertion_un<forward_list<d_bounding_box<3, 1> const*> >();
+  //ltest &= test_auto_block_facet_deep_size_un<forward_list<d_bounding_box<3, 1> const*> >();
+  print_footer("End testing auto_block<forward_list<d_bounding_box<3, 1> const*> >");
 
-  // slist<d_bounding_box<3, 2> const*> 
+  // forward_list<d_bounding_box<3, 2> const*> 
 
-  print_header("Begin testing auto_block<slist<d_bounding_box<3, 2> const*> >");
-  ltest &= test_auto_block_facet_un<slist<d_bounding_box<3, 2> const*> >();
-  //ltest &= test_auto_block_facet_equal_un<slist<d_bounding_box<3, 2> const*> >();
-  //ltest &= test_auto_block_facet_insertion_un<slist<d_bounding_box<3, 2> const*> >();
-  //ltest &= test_auto_block_facet_deep_size_un<slist<d_bounding_box<3, 2> const*> >();
-  print_footer("End testing auto_block<slist<d_bounding_box<3, 2> const*> >");
+  print_header("Begin testing auto_block<forward_list<d_bounding_box<3, 2> const*> >");
+  ltest &= test_auto_block_facet_un<forward_list<d_bounding_box<3, 2> const*> >();
+  //ltest &= test_auto_block_facet_equal_un<forward_list<d_bounding_box<3, 2> const*> >();
+  //ltest &= test_auto_block_facet_insertion_un<forward_list<d_bounding_box<3, 2> const*> >();
+  //ltest &= test_auto_block_facet_deep_size_un<forward_list<d_bounding_box<3, 2> const*> >();
+  print_footer("End testing auto_block<forward_list<d_bounding_box<3, 2> const*> >");
 
-  // slist<d_bounding_box<3, 3> const*> 
+  // forward_list<d_bounding_box<3, 3> const*> 
 
-  print_header("Begin testing auto_block<slist<d_bounding_box<3, 3> const*> >");
-  ltest &= test_auto_block_facet_un<slist<d_bounding_box<3, 3> const*> >();
-  //ltest &= test_auto_block_facet_equal_un<slist<d_bounding_box<3, 3> const*> >();
-  //ltest &= test_auto_block_facet_insertion_un<slist<d_bounding_box<3, 3> const*> >();
-  //ltest &= test_auto_block_facet_deep_size_un<slist<d_bounding_box<3, 3> const*> >();
-  print_footer("End testing auto_block<slist<d_bounding_box<3, 3> const*> >");
+  print_header("Begin testing auto_block<forward_list<d_bounding_box<3, 3> const*> >");
+  ltest &= test_auto_block_facet_un<forward_list<d_bounding_box<3, 3> const*> >();
+  //ltest &= test_auto_block_facet_equal_un<forward_list<d_bounding_box<3, 3> const*> >();
+  //ltest &= test_auto_block_facet_insertion_un<forward_list<d_bounding_box<3, 3> const*> >();
+  //ltest &= test_auto_block_facet_deep_size_un<forward_list<d_bounding_box<3, 3> const*> >();
+  print_footer("End testing auto_block<forward_list<d_bounding_box<3, 3> const*> >");
 
-  // slist<d_bounding_box<4, 4> const*> 
+  // forward_list<d_bounding_box<4, 4> const*> 
 
-  print_header("Begin testing auto_block<slist<d_bounding_box<4, 4> const*> >");
-  ltest &= test_auto_block_facet_un<slist<d_bounding_box<4, 4> const*> >();
-  //ltest &= test_auto_block_facet_equal_un<slist<d_bounding_box<4, 4> const*> >();
-  //ltest &= test_auto_block_facet_insertion_un<slist<d_bounding_box<4, 4> const*> >();
-  //ltest &= test_auto_block_facet_deep_size_un<slist<d_bounding_box<4, 4> const*> >();
-  print_footer("End testing auto_block<slist<d_bounding_box<4, 4> const*> >");
+  print_header("Begin testing auto_block<forward_list<d_bounding_box<4, 4> const*> >");
+  ltest &= test_auto_block_facet_un<forward_list<d_bounding_box<4, 4> const*> >();
+  //ltest &= test_auto_block_facet_equal_un<forward_list<d_bounding_box<4, 4> const*> >();
+  //ltest &= test_auto_block_facet_insertion_un<forward_list<d_bounding_box<4, 4> const*> >();
+  //ltest &= test_auto_block_facet_deep_size_un<forward_list<d_bounding_box<4, 4> const*> >();
+  print_footer("End testing auto_block<forward_list<d_bounding_box<4, 4> const*> >");
 
 
   //============================================================================
 
-  // slist<d_bounding_box<1, 0>*> 
+  // forward_list<d_bounding_box<1, 0>*> 
 
-  print_header("Begin testing auto_block<slist<d_bounding_box<1, 0>*> >");
-  ltest &= test_auto_block_facet_un<slist<d_bounding_box<1, 0>*> >();
-  //ltest &= test_auto_block_facet_equal_un<slist<d_bounding_box<1, 0>*> >();
-  //ltest &= test_auto_block_facet_insertion_un<slist<d_bounding_box<1, 0>*> >();
-  //ltest &= test_auto_block_facet_deep_size_un<slist<d_bounding_box<1, 0>*> >();
-  print_footer("End testing auto_block<slist<d_bounding_box<1, 0>*> >");
+  print_header("Begin testing auto_block<forward_list<d_bounding_box<1, 0>*> >");
+  ltest &= test_auto_block_facet_un<forward_list<d_bounding_box<1, 0>*> >();
+  //ltest &= test_auto_block_facet_equal_un<forward_list<d_bounding_box<1, 0>*> >();
+  //ltest &= test_auto_block_facet_insertion_un<forward_list<d_bounding_box<1, 0>*> >();
+  //ltest &= test_auto_block_facet_deep_size_un<forward_list<d_bounding_box<1, 0>*> >();
+  print_footer("End testing auto_block<forward_list<d_bounding_box<1, 0>*> >");
  
-  // slist<d_bounding_box<1, 1>*>
+  // forward_list<d_bounding_box<1, 1>*>
 
-  print_header("Begin testing auto_block<slist<d_bounding_box<1, 1>*> >");
-  ltest &= test_auto_block_facet_un<slist<d_bounding_box<1, 1>*> >();
-  //ltest &= test_auto_block_facet_equal_un<slist<d_bounding_box<1, 1>*> >();
-  //ltest &= test_auto_block_facet_insertion_un<slist<d_bounding_box<1, 1>*> >();
-  //ltest &= test_auto_block_facet_deep_size_un<slist<d_bounding_box<1, 1>*> >();
-  print_footer("End testing auto_block<slist<d_bounding_box<1, 1>*> >");
+  print_header("Begin testing auto_block<forward_list<d_bounding_box<1, 1>*> >");
+  ltest &= test_auto_block_facet_un<forward_list<d_bounding_box<1, 1>*> >();
+  //ltest &= test_auto_block_facet_equal_un<forward_list<d_bounding_box<1, 1>*> >();
+  //ltest &= test_auto_block_facet_insertion_un<forward_list<d_bounding_box<1, 1>*> >();
+  //ltest &= test_auto_block_facet_deep_size_un<forward_list<d_bounding_box<1, 1>*> >();
+  print_footer("End testing auto_block<forward_list<d_bounding_box<1, 1>*> >");
 
-  // slist<d_bounding_box<2, 0>*> 
+  // forward_list<d_bounding_box<2, 0>*> 
 
-  print_header("Begin testing auto_block<slist<d_bounding_box<2, 0>*> >");
-  ltest &= test_auto_block_facet_un<slist<d_bounding_box<2, 0>*> >();
-  //ltest &= test_auto_block_facet_equal_un<slist<d_bounding_box<2, 0>*> >();
-  //ltest &= test_auto_block_facet_insertion_un<slist<d_bounding_box<2, 0>*> >();
-  //ltest &= test_auto_block_facet_deep_size_un<slist<d_bounding_box<2, 0>*> >();
-  print_footer("End testing auto_block<slist<d_bounding_box<2, 0>*> >");
+  print_header("Begin testing auto_block<forward_list<d_bounding_box<2, 0>*> >");
+  ltest &= test_auto_block_facet_un<forward_list<d_bounding_box<2, 0>*> >();
+  //ltest &= test_auto_block_facet_equal_un<forward_list<d_bounding_box<2, 0>*> >();
+  //ltest &= test_auto_block_facet_insertion_un<forward_list<d_bounding_box<2, 0>*> >();
+  //ltest &= test_auto_block_facet_deep_size_un<forward_list<d_bounding_box<2, 0>*> >();
+  print_footer("End testing auto_block<forward_list<d_bounding_box<2, 0>*> >");
 
-  // slist<d_bounding_box<2, 2>*> 
+  // forward_list<d_bounding_box<2, 2>*> 
 
-  print_header("Begin testing auto_block<slist<d_bounding_box<2, 2>*> >");
-  ltest &= test_auto_block_facet_un<slist<d_bounding_box<2, 2>*> >();
-  //ltest &= test_auto_block_facet_equal_un<slist<d_bounding_box<2, 2>*> >();
-  //ltest &= test_auto_block_facet_insertion_un<slist<d_bounding_box<2, 2>*> >();
-  //ltest &= test_auto_block_facet_deep_size_un<slist<d_bounding_box<2, 2>*> >();
-  print_footer("End testing auto_block<slist<d_bounding_box<2, 2>*> >");
+  print_header("Begin testing auto_block<forward_list<d_bounding_box<2, 2>*> >");
+  ltest &= test_auto_block_facet_un<forward_list<d_bounding_box<2, 2>*> >();
+  //ltest &= test_auto_block_facet_equal_un<forward_list<d_bounding_box<2, 2>*> >();
+  //ltest &= test_auto_block_facet_insertion_un<forward_list<d_bounding_box<2, 2>*> >();
+  //ltest &= test_auto_block_facet_deep_size_un<forward_list<d_bounding_box<2, 2>*> >();
+  print_footer("End testing auto_block<forward_list<d_bounding_box<2, 2>*> >");
 
-  // slist<d_bounding_box<3, 0>*> 
+  // forward_list<d_bounding_box<3, 0>*> 
 
-  print_header("Begin testing auto_block<slist<d_bounding_box<3, 0>*> >");
-  ltest &= test_auto_block_facet_un<slist<d_bounding_box<3, 0>*> >();
-  //ltest &= test_auto_block_facet_equal_un<slist<d_bounding_box<3, 0>*> >();
-  //ltest &= test_auto_block_facet_insertion_un<slist<d_bounding_box<3, 0>*> >();
-  //ltest &= test_auto_block_facet_deep_size_un<slist<d_bounding_box<3, 0>*> >();
-  print_footer("End testing auto_block<slist<d_bounding_box<3, 0>*> >");
+  print_header("Begin testing auto_block<forward_list<d_bounding_box<3, 0>*> >");
+  ltest &= test_auto_block_facet_un<forward_list<d_bounding_box<3, 0>*> >();
+  //ltest &= test_auto_block_facet_equal_un<forward_list<d_bounding_box<3, 0>*> >();
+  //ltest &= test_auto_block_facet_insertion_un<forward_list<d_bounding_box<3, 0>*> >();
+  //ltest &= test_auto_block_facet_deep_size_un<forward_list<d_bounding_box<3, 0>*> >();
+  print_footer("End testing auto_block<forward_list<d_bounding_box<3, 0>*> >");
 
-  // slist<d_bounding_box<3, 1>*> 
+  // forward_list<d_bounding_box<3, 1>*> 
 
-  print_header("Begin testing auto_block<slist<d_bounding_box<3, 1>*> >");
-  ltest &= test_auto_block_facet_un<slist<d_bounding_box<3, 1>*> >();
-  //ltest &= test_auto_block_facet_equal_un<slist<d_bounding_box<3, 1>*> >();
-  //ltest &= test_auto_block_facet_insertion_un<slist<d_bounding_box<3, 1>*> >();
-  //ltest &= test_auto_block_facet_deep_size_un<slist<d_bounding_box<3, 1>*> >();
-  print_footer("End testing auto_block<slist<d_bounding_box<3, 1>*> >");
+  print_header("Begin testing auto_block<forward_list<d_bounding_box<3, 1>*> >");
+  ltest &= test_auto_block_facet_un<forward_list<d_bounding_box<3, 1>*> >();
+  //ltest &= test_auto_block_facet_equal_un<forward_list<d_bounding_box<3, 1>*> >();
+  //ltest &= test_auto_block_facet_insertion_un<forward_list<d_bounding_box<3, 1>*> >();
+  //ltest &= test_auto_block_facet_deep_size_un<forward_list<d_bounding_box<3, 1>*> >();
+  print_footer("End testing auto_block<forward_list<d_bounding_box<3, 1>*> >");
 
-  // slist<d_bounding_box<3, 2>*> 
+  // forward_list<d_bounding_box<3, 2>*> 
 
-  print_header("Begin testing auto_block<slist<d_bounding_box<3, 2>*> >");
-  ltest &= test_auto_block_facet_un<slist<d_bounding_box<3, 2>*> >();
-  //ltest &= test_auto_block_facet_equal_un<slist<d_bounding_box<3, 2>*> >();
-  //ltest &= test_auto_block_facet_insertion_un<slist<d_bounding_box<3, 2>*> >();
-  //ltest &= test_auto_block_facet_deep_size_un<slist<d_bounding_box<3, 2>*> >();
-  print_footer("End testing auto_block<slist<d_bounding_box<3, 2>*> >");
+  print_header("Begin testing auto_block<forward_list<d_bounding_box<3, 2>*> >");
+  ltest &= test_auto_block_facet_un<forward_list<d_bounding_box<3, 2>*> >();
+  //ltest &= test_auto_block_facet_equal_un<forward_list<d_bounding_box<3, 2>*> >();
+  //ltest &= test_auto_block_facet_insertion_un<forward_list<d_bounding_box<3, 2>*> >();
+  //ltest &= test_auto_block_facet_deep_size_un<forward_list<d_bounding_box<3, 2>*> >();
+  print_footer("End testing auto_block<forward_list<d_bounding_box<3, 2>*> >");
 
-  // slist<d_bounding_box<3, 3>*> 
+  // forward_list<d_bounding_box<3, 3>*> 
 
-  print_header("Begin testing auto_block<slist<d_bounding_box<3, 3>*> >");
-  ltest &= test_auto_block_facet_un<slist<d_bounding_box<3, 3>*> >();
-  //ltest &= test_auto_block_facet_equal_un<slist<d_bounding_box<3, 3>*> >();
-  //ltest &= test_auto_block_facet_insertion_un<slist<d_bounding_box<3, 3>*> >();
-  //ltest &= test_auto_block_facet_deep_size_un<slist<d_bounding_box<3, 3>*> >();
-  print_footer("End testing auto_block<slist<d_bounding_box<3, 3>*> >");
+  print_header("Begin testing auto_block<forward_list<d_bounding_box<3, 3>*> >");
+  ltest &= test_auto_block_facet_un<forward_list<d_bounding_box<3, 3>*> >();
+  //ltest &= test_auto_block_facet_equal_un<forward_list<d_bounding_box<3, 3>*> >();
+  //ltest &= test_auto_block_facet_insertion_un<forward_list<d_bounding_box<3, 3>*> >();
+  //ltest &= test_auto_block_facet_deep_size_un<forward_list<d_bounding_box<3, 3>*> >();
+  print_footer("End testing auto_block<forward_list<d_bounding_box<3, 3>*> >");
 
-  // slist<d_bounding_box<4, 4>*> 
+  // forward_list<d_bounding_box<4, 4>*> 
 
-  print_header("Begin testing auto_block<slist<d_bounding_box<4, 4>*> >");
-  ltest &= test_auto_block_facet_un<slist<d_bounding_box<4, 4>*> >();
-  //ltest &= test_auto_block_facet_equal_un<slist<d_bounding_box<4, 4>*> >();
-  //ltest &= test_auto_block_facet_insertion_un<slist<d_bounding_box<4, 4>*> >();
-  //ltest &= test_auto_block_facet_deep_size_un<slist<d_bounding_box<4, 4>*> >();
-  print_footer("End testing auto_block<slist<d_bounding_box<4, 4>*> >");
+  print_header("Begin testing auto_block<forward_list<d_bounding_box<4, 4>*> >");
+  ltest &= test_auto_block_facet_un<forward_list<d_bounding_box<4, 4>*> >();
+  //ltest &= test_auto_block_facet_equal_un<forward_list<d_bounding_box<4, 4>*> >();
+  //ltest &= test_auto_block_facet_insertion_un<forward_list<d_bounding_box<4, 4>*> >();
+  //ltest &= test_auto_block_facet_deep_size_un<forward_list<d_bounding_box<4, 4>*> >();
+  print_footer("End testing auto_block<forward_list<d_bounding_box<4, 4>*> >");
 
   //============================================================================
 
-  // slist<d_bounding_box<1, 0> const*> 
+  // forward_list<d_bounding_box<1, 0> const*> 
 
-  print_header("Begin testing auto_block<slist<d_bounding_box<1, 0> const*> >");
-  ltest &= test_auto_block_facet_un<slist<d_bounding_box<1, 0> const*> >();
-  //ltest &= test_auto_block_facet_equal_un<slist<d_bounding_box<1, 0> const*> >();
-  //ltest &= test_auto_block_facet_insertion_un<slist<d_bounding_box<1, 0> const*> >();
-  //ltest &= test_auto_block_facet_deep_size_un<slist<d_bounding_box<1, 0> const*> >();
-  print_footer("End testing auto_block<slist<d_bounding_box<1, 0> const*> >");
+  print_header("Begin testing auto_block<forward_list<d_bounding_box<1, 0> const*> >");
+  ltest &= test_auto_block_facet_un<forward_list<d_bounding_box<1, 0> const*> >();
+  //ltest &= test_auto_block_facet_equal_un<forward_list<d_bounding_box<1, 0> const*> >();
+  //ltest &= test_auto_block_facet_insertion_un<forward_list<d_bounding_box<1, 0> const*> >();
+  //ltest &= test_auto_block_facet_deep_size_un<forward_list<d_bounding_box<1, 0> const*> >();
+  print_footer("End testing auto_block<forward_list<d_bounding_box<1, 0> const*> >");
  
-  // slist<d_bounding_box<1, 1> const*>
+  // forward_list<d_bounding_box<1, 1> const*>
 
-  print_header("Begin testing auto_block<slist<d_bounding_box<1, 1> const*> >");
-  ltest &= test_auto_block_facet_un<slist<d_bounding_box<1, 1> const*> >();
-  //ltest &= test_auto_block_facet_equal_un<slist<d_bounding_box<1, 1> const*> >();
-  //ltest &= test_auto_block_facet_insertion_un<slist<d_bounding_box<1, 1> const*> >();
-  //ltest &= test_auto_block_facet_deep_size_un<slist<d_bounding_box<1, 1> const*> >();
-  print_footer("End testing auto_block<slist<d_bounding_box<1, 1> const*> >");
+  print_header("Begin testing auto_block<forward_list<d_bounding_box<1, 1> const*> >");
+  ltest &= test_auto_block_facet_un<forward_list<d_bounding_box<1, 1> const*> >();
+  //ltest &= test_auto_block_facet_equal_un<forward_list<d_bounding_box<1, 1> const*> >();
+  //ltest &= test_auto_block_facet_insertion_un<forward_list<d_bounding_box<1, 1> const*> >();
+  //ltest &= test_auto_block_facet_deep_size_un<forward_list<d_bounding_box<1, 1> const*> >();
+  print_footer("End testing auto_block<forward_list<d_bounding_box<1, 1> const*> >");
 
-  // slist<d_bounding_box<2, 0> const*> 
+  // forward_list<d_bounding_box<2, 0> const*> 
 
-  print_header("Begin testing auto_block<slist<d_bounding_box<2, 0> const*> >");
-  ltest &= test_auto_block_facet_un<slist<d_bounding_box<2, 0> const*> >();
-  //ltest &= test_auto_block_facet_equal_un<slist<d_bounding_box<2, 0> const*> >();
-  //ltest &= test_auto_block_facet_insertion_un<slist<d_bounding_box<2, 0> const*> >();
-  //ltest &= test_auto_block_facet_deep_size_un<slist<d_bounding_box<2, 0> const*> >();
-  print_footer("End testing auto_block<slist<d_bounding_box<2, 0> const*> >");
+  print_header("Begin testing auto_block<forward_list<d_bounding_box<2, 0> const*> >");
+  ltest &= test_auto_block_facet_un<forward_list<d_bounding_box<2, 0> const*> >();
+  //ltest &= test_auto_block_facet_equal_un<forward_list<d_bounding_box<2, 0> const*> >();
+  //ltest &= test_auto_block_facet_insertion_un<forward_list<d_bounding_box<2, 0> const*> >();
+  //ltest &= test_auto_block_facet_deep_size_un<forward_list<d_bounding_box<2, 0> const*> >();
+  print_footer("End testing auto_block<forward_list<d_bounding_box<2, 0> const*> >");
 
-  // slist<d_bounding_box<2, 2> const*> 
+  // forward_list<d_bounding_box<2, 2> const*> 
 
-  print_header("Begin testing auto_block<slist<d_bounding_box<2, 2> const*> >");
-  ltest &= test_auto_block_facet_un<slist<d_bounding_box<2, 2> const*> >();
-  //ltest &= test_auto_block_facet_equal_un<slist<d_bounding_box<2, 2> const*> >();
-  //ltest &= test_auto_block_facet_insertion_un<slist<d_bounding_box<2, 2> const*> >();
-  //ltest &= test_auto_block_facet_deep_size_un<slist<d_bounding_box<2, 2> const*> >();
-  print_footer("End testing auto_block<slist<d_bounding_box<2, 2> const*> >");
+  print_header("Begin testing auto_block<forward_list<d_bounding_box<2, 2> const*> >");
+  ltest &= test_auto_block_facet_un<forward_list<d_bounding_box<2, 2> const*> >();
+  //ltest &= test_auto_block_facet_equal_un<forward_list<d_bounding_box<2, 2> const*> >();
+  //ltest &= test_auto_block_facet_insertion_un<forward_list<d_bounding_box<2, 2> const*> >();
+  //ltest &= test_auto_block_facet_deep_size_un<forward_list<d_bounding_box<2, 2> const*> >();
+  print_footer("End testing auto_block<forward_list<d_bounding_box<2, 2> const*> >");
 
-  // slist<d_bounding_box<3, 0> const*> 
+  // forward_list<d_bounding_box<3, 0> const*> 
 
-  print_header("Begin testing auto_block<slist<d_bounding_box<3, 0> const*> >");
-  ltest &= test_auto_block_facet_un<slist<d_bounding_box<3, 0> const*> >();
-  //ltest &= test_auto_block_facet_equal_un<slist<d_bounding_box<3, 0> const*> >();
-  //ltest &= test_auto_block_facet_insertion_un<slist<d_bounding_box<3, 0> const*> >();
-  //ltest &= test_auto_block_facet_deep_size_un<slist<d_bounding_box<3, 0> const*> >();
-  print_footer("End testing auto_block<slist<d_bounding_box<3, 0> const*> >");
+  print_header("Begin testing auto_block<forward_list<d_bounding_box<3, 0> const*> >");
+  ltest &= test_auto_block_facet_un<forward_list<d_bounding_box<3, 0> const*> >();
+  //ltest &= test_auto_block_facet_equal_un<forward_list<d_bounding_box<3, 0> const*> >();
+  //ltest &= test_auto_block_facet_insertion_un<forward_list<d_bounding_box<3, 0> const*> >();
+  //ltest &= test_auto_block_facet_deep_size_un<forward_list<d_bounding_box<3, 0> const*> >();
+  print_footer("End testing auto_block<forward_list<d_bounding_box<3, 0> const*> >");
 
-  // slist<d_bounding_box<3, 1> const*> 
+  // forward_list<d_bounding_box<3, 1> const*> 
 
-  print_header("Begin testing auto_block<slist<d_bounding_box<3, 1> const*> >");
-  ltest &= test_auto_block_facet_un<slist<d_bounding_box<3, 1> const*> >();
-  //ltest &= test_auto_block_facet_equal_un<slist<d_bounding_box<3, 1> const*> >();
-  //ltest &= test_auto_block_facet_insertion_un<slist<d_bounding_box<3, 1> const*> >();
-  //ltest &= test_auto_block_facet_deep_size_un<slist<d_bounding_box<3, 1> const*> >();
-  print_footer("End testing auto_block<slist<d_bounding_box<3, 1> const*> >");
+  print_header("Begin testing auto_block<forward_list<d_bounding_box<3, 1> const*> >");
+  ltest &= test_auto_block_facet_un<forward_list<d_bounding_box<3, 1> const*> >();
+  //ltest &= test_auto_block_facet_equal_un<forward_list<d_bounding_box<3, 1> const*> >();
+  //ltest &= test_auto_block_facet_insertion_un<forward_list<d_bounding_box<3, 1> const*> >();
+  //ltest &= test_auto_block_facet_deep_size_un<forward_list<d_bounding_box<3, 1> const*> >();
+  print_footer("End testing auto_block<forward_list<d_bounding_box<3, 1> const*> >");
 
-  // slist<d_bounding_box<3, 2> const*> 
+  // forward_list<d_bounding_box<3, 2> const*> 
 
-  print_header("Begin testing auto_block<slist<d_bounding_box<3, 2> const*> >");
-  ltest &= test_auto_block_facet_un<slist<d_bounding_box<3, 2> const*> >();
-  //ltest &= test_auto_block_facet_equal_un<slist<d_bounding_box<3, 2> const*> >();
-  //ltest &= test_auto_block_facet_insertion_un<slist<d_bounding_box<3, 2> const*> >();
-  //ltest &= test_auto_block_facet_deep_size_un<slist<d_bounding_box<3, 2> const*> >();
-  print_footer("End testing auto_block<slist<d_bounding_box<3, 2> const*> >");
+  print_header("Begin testing auto_block<forward_list<d_bounding_box<3, 2> const*> >");
+  ltest &= test_auto_block_facet_un<forward_list<d_bounding_box<3, 2> const*> >();
+  //ltest &= test_auto_block_facet_equal_un<forward_list<d_bounding_box<3, 2> const*> >();
+  //ltest &= test_auto_block_facet_insertion_un<forward_list<d_bounding_box<3, 2> const*> >();
+  //ltest &= test_auto_block_facet_deep_size_un<forward_list<d_bounding_box<3, 2> const*> >();
+  print_footer("End testing auto_block<forward_list<d_bounding_box<3, 2> const*> >");
 
-  // slist<d_bounding_box<3, 3> const*> 
+  // forward_list<d_bounding_box<3, 3> const*> 
 
-  print_header("Begin testing auto_block<slist<d_bounding_box<3, 3> const*> >");
-  ltest &= test_auto_block_facet_un<slist<d_bounding_box<3, 3> const*> >();
-  //ltest &= test_auto_block_facet_equal_un<slist<d_bounding_box<3, 3> const*> >();
-  //ltest &= test_auto_block_facet_insertion_un<slist<d_bounding_box<3, 3> const*> >();
-  //ltest &= test_auto_block_facet_deep_size_un<slist<d_bounding_box<3, 3> const*> >();
-  print_footer("End testing auto_block<slist<d_bounding_box<3, 3> const*> >");
+  print_header("Begin testing auto_block<forward_list<d_bounding_box<3, 3> const*> >");
+  ltest &= test_auto_block_facet_un<forward_list<d_bounding_box<3, 3> const*> >();
+  //ltest &= test_auto_block_facet_equal_un<forward_list<d_bounding_box<3, 3> const*> >();
+  //ltest &= test_auto_block_facet_insertion_un<forward_list<d_bounding_box<3, 3> const*> >();
+  //ltest &= test_auto_block_facet_deep_size_un<forward_list<d_bounding_box<3, 3> const*> >();
+  print_footer("End testing auto_block<forward_list<d_bounding_box<3, 3> const*> >");
 
-  // slist<d_bounding_box<4, 4> const*> 
+  // forward_list<d_bounding_box<4, 4> const*> 
 
-  print_header("Begin testing auto_block<slist<d_bounding_box<4, 4> const*> >");
-  ltest &= test_auto_block_facet_un<slist<d_bounding_box<4, 4> const*> >();
-  //ltest &= test_auto_block_facet_equal_un<slist<d_bounding_box<4, 4> const*> >();
-  //ltest &= test_auto_block_facet_insertion_un<slist<d_bounding_box<4, 4> const*> >();
-  //ltest &= test_auto_block_facet_deep_size_un<slist<d_bounding_box<4, 4> const*> >();
-  print_footer("End testing auto_block<slist<d_bounding_box<4, 4> const*> >");
+  print_header("Begin testing auto_block<forward_list<d_bounding_box<4, 4> const*> >");
+  ltest &= test_auto_block_facet_un<forward_list<d_bounding_box<4, 4> const*> >();
+  //ltest &= test_auto_block_facet_equal_un<forward_list<d_bounding_box<4, 4> const*> >();
+  //ltest &= test_auto_block_facet_insertion_un<forward_list<d_bounding_box<4, 4> const*> >();
+  //ltest &= test_auto_block_facet_deep_size_un<forward_list<d_bounding_box<4, 4> const*> >();
+  print_footer("End testing auto_block<forward_list<d_bounding_box<4, 4> const*> >");
 
   //============================================================================
 
   //$$SCRIBBLE: db0_point_locator<DC>::vertex_type> is protected.
 
-  // slist<geometry::db0_point_locator<1>::vertex_type>
+  // forward_list<geometry::db0_point_locator<1>::vertex_type>
 
-//   print_header("Begin testing auto_block<slist<db0_point_locator<1>::vertex_type> >");
-//   //ltest &= test_auto_block_facet_un<slist<db0_point_locator<1>::vertex_type> >();
-//   //ltest &= test_auto_block_facet_equal_un<slist<db0_point_locator<1>::vertex_type> >();
-//   //ltest &= test_auto_block_facet_insertion_un<slist<db0_point_locator<1>::vertex_type> >();
-//   //ltest &= test_auto_block_facet_deep_size_un<slist<db0_point_locator<1>::vertex_type >();
-//   print_footer("End testing auto_block<slist<db0_point_locator<1>::vertex_type> >");
+//   print_header("Begin testing auto_block<forward_list<db0_point_locator<1>::vertex_type> >");
+//   //ltest &= test_auto_block_facet_un<forward_list<db0_point_locator<1>::vertex_type> >();
+//   //ltest &= test_auto_block_facet_equal_un<forward_list<db0_point_locator<1>::vertex_type> >();
+//   //ltest &= test_auto_block_facet_insertion_un<forward_list<db0_point_locator<1>::vertex_type> >();
+//   //ltest &= test_auto_block_facet_deep_size_un<forward_list<db0_point_locator<1>::vertex_type >();
+//   print_footer("End testing auto_block<forward_list<db0_point_locator<1>::vertex_type> >");
 
-//   // slist<geometry::db0_point_locator<2>::vertex_type>
+//   // forward_list<geometry::db0_point_locator<2>::vertex_type>
 
-//   print_header("Begin testing auto_block<slist<db0_point_locator<2>::vertex_type> >");
-//   //ltest &= test_auto_block_facet_un<slist<db0_point_locator<2>::vertex_type> >();
-//   //ltest &= test_auto_block_facet_equal_un<slist<db0_point_locator<2>::vertex_type> >();
-//   //ltest &= test_auto_block_facet_insertion_un<slist<db0_point_locator<2>::vertex_type> >();
-//   //ltest &= test_auto_block_facet_deep_size_un<slist<db0_point_locator<2>::vertex_type >();
-//   print_footer("End testing auto_block<slist<db0_point_locator<2>::vertex_type> >");
+//   print_header("Begin testing auto_block<forward_list<db0_point_locator<2>::vertex_type> >");
+//   //ltest &= test_auto_block_facet_un<forward_list<db0_point_locator<2>::vertex_type> >();
+//   //ltest &= test_auto_block_facet_equal_un<forward_list<db0_point_locator<2>::vertex_type> >();
+//   //ltest &= test_auto_block_facet_insertion_un<forward_list<db0_point_locator<2>::vertex_type> >();
+//   //ltest &= test_auto_block_facet_deep_size_un<forward_list<db0_point_locator<2>::vertex_type >();
+//   print_footer("End testing auto_block<forward_list<db0_point_locator<2>::vertex_type> >");
 
-//   // slist<geometry::db0_point_locator<3>::vertex_type>
+//   // forward_list<geometry::db0_point_locator<3>::vertex_type>
 
-//   print_header("Begin testing auto_block<slist<db0_point_locator<3>::vertex_type> >");
-//   //ltest &= test_auto_block_facet_un<slist<db0_point_locator<3>::vertex_type> >();
-//   //ltest &= test_auto_block_facet_equal_un<slist<db0_point_locator<3>::vertex_type> >();
-//   //ltest &= test_auto_block_facet_insertion_un<slist<db0_point_locator<3>::vertex_type> >();
-//   //ltest &= test_auto_block_facet_deep_size_un<slist<db0_point_locator<3>::vertex_type >();
-//   print_footer("End testing auto_block<slist<db0_point_locator<3>::vertex_type> >");
+//   print_header("Begin testing auto_block<forward_list<db0_point_locator<3>::vertex_type> >");
+//   //ltest &= test_auto_block_facet_un<forward_list<db0_point_locator<3>::vertex_type> >();
+//   //ltest &= test_auto_block_facet_equal_un<forward_list<db0_point_locator<3>::vertex_type> >();
+//   //ltest &= test_auto_block_facet_insertion_un<forward_list<db0_point_locator<3>::vertex_type> >();
+//   //ltest &= test_auto_block_facet_deep_size_un<forward_list<db0_point_locator<3>::vertex_type >();
+//   print_footer("End testing auto_block<forward_list<db0_point_locator<3>::vertex_type> >");
 
   //============================================================================
 

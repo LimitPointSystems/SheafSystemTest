@@ -363,7 +363,7 @@ test_array_cylindrical_point_locator_facet(fiber_bundles_namespace& xns)
     lpt[i] = i;
   }
 
-  typedef slist<const d_bounding_box<2, 2>*> box_list_type;
+  typedef forward_list<const d_bounding_box<2, 2>*> box_list_type;
   const box_list_type& lbox_list = llocator.box_list(lpt, 2);
 
   d_bounding_box<2, 2> lbox0;

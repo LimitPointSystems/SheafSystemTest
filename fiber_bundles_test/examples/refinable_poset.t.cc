@@ -147,7 +147,7 @@ make_base_space(namespace_poset* test_namespace,
 
   Connectivity conn = make_mesh_connectivity(edge_ct);
 
-  hash_map<int, int> glue_map;
+  unordered_map<int, int> glue_map;
 
   // Create a block of edges
 
