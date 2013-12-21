@@ -241,7 +241,7 @@ function(set_compiler_flags)
             endif()
         endif(ENABLE_COVERAGE)         
      elseif(LINUX64GNU)
-         set(LPS_CXX_FLAGS "-m64 -Wno-deprecated")            
+        set(LPS_CXX_FLAGS "-m64 -Wno-deprecated -Wno-abi")             
     endif()
 
     #                 
