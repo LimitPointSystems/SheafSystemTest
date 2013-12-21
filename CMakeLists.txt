@@ -20,10 +20,13 @@
 # It does NOT stop cmake from setting all the cache variables associated with those same
 # configurations however.
 
-#
-# Set the configuration types.
-#
-set(CMAKE_CONFIGURATION_TYPES Debug_contracts RelWithDebInfo_no_contracts CACHE STRING "Supported configuration types" FORCE)
+if(WIN32)
+    set(CMAKE_CONFIGURATION_TYPES  Debug_contracts RelWithDebInfo_no_contracts 
+        CACHE STRING "Supported configuration types" FORCE)
+else()
+    set(CMAKE_CONFIGURATION_TYPES Debug_contracts Release_no_contracts 
+         CACHE STRING "Supported configuration types" FORCE)
+endif()
 
 #
 # Tell Cmake which configurations it should see and "Debug"
@@ -45,7 +48,7 @@ endif()
 project(SheafSystemTest)
 
 #
-# Information glaringly omitted from CMake documentation and discussion regarding CTest and CDash:
+# Information omitted from CMake documentation and discussion regarding CTest and CDash:
 #
 # 1. CTestConfig.cmake must be in the top level of your project.
 #
@@ -68,7 +71,7 @@ project(SheafSystemTest)
 #
 # Ensure that we have the required cmake version.
 #
-cmake_minimum_required(VERSION 2.8.8)
+cmake_minimum_required(VERSION 2.8.12)
 
 #
 # Include variable definitions and functions
