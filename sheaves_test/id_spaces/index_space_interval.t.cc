@@ -26,7 +26,6 @@
 #include "scoped_index.h"
 #include "singleton_implicit_index_space_iterator.h"
 #include "singleton_index_space_interval.h"
-#include "std_strstream.h"
 #include "test_index_spaces.h"
 
 using namespace std;

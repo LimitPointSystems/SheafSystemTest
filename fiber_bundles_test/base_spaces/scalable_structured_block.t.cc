@@ -28,7 +28,6 @@
 #include "plot.h"
 #include "structured_block_3d.h"
 #include "storage_agent.h"
-#include "std_strstream.h"
 #include "stop_watch.h"
 
 using namespace std;

@@ -21,7 +21,7 @@
 #include "std_iostream.h"
 #include "std_string.h"
 #include "std_fstream.h"
-#include "std_strstream.h"
+#include "std_sstream.h"
 /*
 #ifdef PARALLEL_MPI
 #include "mpi++.h"
@@ -74,7 +74,7 @@ setup_io() {
  
   string ofile = "parallel.t.cout.";
  
-  ostrstream num;
+  ostringstream num;
  
   num << size << '.' << rank;
   ofile += num.str();

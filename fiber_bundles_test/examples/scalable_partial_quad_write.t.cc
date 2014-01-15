@@ -30,7 +30,6 @@
 #include "fiber_bundles_namespace.h"
 #include "assert_contract.h"
 #include "std_string.h"
-#include "std_strstream.h"
 #include "storage_agent.h"
 #include "stop_watch.h"
 #include "subposet_member_iterator.h"

@@ -25,7 +25,7 @@
 #include "constant_implicit_index_space_iterator.h"
 #include "namespace_poset.h"
 #include "std_iostream.h"
-#include "std_strstream.h"
+#include "std_sstream.h"
 #include "test_index_spaces.impl.h"
 
 using namespace std;
@@ -49,10 +49,13 @@ int main( int argc, char* argv[])
 
   // Give the id space a name.
 
-  strstream lspace_name;
-  lspace_name << "implicit_" << lspace_id;
+  stringstream lspace_str;
+  lspace_str << "implicit_" << lspace_id;
 
-  lid_spaces.put_name(lspace_id, lspace_name.str());
+  string lspace_name;
+  lspace_str >> lspace_name;
+
+  lid_spaces.put_name(lspace_id, lspace_name);
 
   // Test iterator facet.
 

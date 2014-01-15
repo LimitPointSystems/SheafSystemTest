@@ -29,7 +29,6 @@
 #include "ragged_array.h"
 #include "sheaves_namespace.h"
 #include "std_string.h"
-#include "std_strstream.h"
 #include "storage_agent.h"
 #include "subposet_member_iterator.h"
 #include "total_poset_member.h"

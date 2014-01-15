@@ -26,7 +26,7 @@
 #include "unstructured_block.h"
 #include "poset_bounds_descriptor.h"
 #include "std_string.h"
-#include "std_strstream.h"
+#include "std_sstream.h"
 #include "std_ctime.h"
 #include "std_unistd.h"
 #include "storage_agent.h"
@@ -130,12 +130,10 @@ time_read_domain(storage_agent* xsa, int xdomain_ct, int xdomain_id, int xindex)
   poset* p = ns.member_poset<poset>(string("polyline"), false);
   p->get_read_access();
 
-  ///@todo Convert from strstream to stringstream (also delete the "ends").
-
-  strstream domain_id_stream;
+  stringstream domain_id_stream;
   string    domain_name;
 
-  domain_id_stream << "domain_" << xdomain_id << ends;
+  domain_id_stream << "domain_" << xdomain_id;
   domain_id_stream >> domain_name;
 
   poset_member domain(p, domain_name);

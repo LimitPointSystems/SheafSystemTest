@@ -25,7 +25,7 @@
 #include "sheaves_namespace.h"
 #include "assert_contract.h"
 #include "std_string.h"
-#include "std_strstream.h"
+#include "std_sstream.h"
 #include "storage_agent.h"
 #include "subposet_member_iterator.h"
 #include "total_poset_member.h"
@@ -97,7 +97,7 @@ name_mesh_cells(poset* xmesh)
     if(edge_itr->name().empty())
     {
       pod_index_type cid = edges.id_map()->domain_id(edge_itr->index());
-      strstream mbr_name_stream;
+      stringstream mbr_name_stream;
       string mbr_name;
       mbr_name_stream << "edge_" << cid;
       mbr_name_stream >> mbr_name;
@@ -116,7 +116,7 @@ name_mesh_cells(poset* xmesh)
     if(vertex_itr->name().empty())
     {
       pod_index_type cid = vertices.id_map()->domain_id(vertex_itr->index());
-      strstream mbr_name_stream;
+      stringstream mbr_name_stream;
       string mbr_name;
       mbr_name_stream << "vertex_" << cid;
       mbr_name_stream >> mbr_name;

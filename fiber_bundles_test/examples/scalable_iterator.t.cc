@@ -27,7 +27,6 @@
 #include "point_block_3d.h"
 #include "postorder_iterator.h"
 #include "preorder_iterator.h"
-#include "std_strstream.h"
 #include "std_fstream.h"
 #include "stop_watch.h"
 #include "storage_agent.h"

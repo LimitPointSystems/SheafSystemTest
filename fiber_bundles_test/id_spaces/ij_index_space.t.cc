@@ -26,7 +26,7 @@
 #include "ij_connectivity_implicit_index_space_iterator.h"
 #include "offset_index_space_handle.h"
 #include "test_index_spaces.impl.h"
-#include "std_strstream.h"
+#include "std_sstream.h"
 
 using namespace std;
 using namespace fiber_bundle;
@@ -72,10 +72,13 @@ int main( int argc, char* argv[])
 
   // Give the id space a name.
 
-  strstream lconn_name;
-  lconn_name << "conn_" << lconn_id;
+  stringstream lconn_str;
+  lconn_str << "conn_" << lconn_id;
 
-  lid_spaces.put_name(lconn_id, lconn_name.str());
+  string lconn_name;
+  lconn_str >> lconn_name;
+
+  lid_spaces.put_name(lconn_id, lconn_name);
 
   // Test iterator facet.
 
@@ -110,10 +113,13 @@ int main( int argc, char* argv[])
 
   // Give the id space a name.
 
-  strstream ladj_name;
-  ladj_name << "adj_" << ladj_id;
+  stringstream ladj_str;
+  ladj_str << "adj_" << ladj_id;
 
-  lid_spaces.put_name(ladj_id, ladj_name.str());
+  string ladj_name;
+  ladj_str >> ladj_name;
+
+  lid_spaces.put_name(ladj_id, ladj_name);
 
   // Test iterator facet.
 

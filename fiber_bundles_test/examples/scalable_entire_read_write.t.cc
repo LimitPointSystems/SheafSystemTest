@@ -24,7 +24,7 @@
 #include "fiber_bundles_namespace.h"
 #include "hex_connectivity.h"
 #include "plot.h"
-#include "std_strstream.h"
+#include "std_sstream.h"
 #include "storage_agent.h"
 #include "zone_nodes_block.h"
 
@@ -157,7 +157,7 @@ time_write(fiber_bundles_namespace* xns, int xi, int xj, int xk, double* xpoint)
 
   // Body:
 
-  strstream fname_stream;
+  stringstream fname_stream;
 
   fname_stream << "scalable_entire_read_write_" << xi << "_"
   << xj << "_" << xk << ".t.hdf";
@@ -189,7 +189,7 @@ time_read(int xi, int xj, int xk, double* xpoint)
 
   // Body:
 
-  strstream fname_stream;
+  stringstream fname_stream;
 
   fname_stream << "scalable_entire_read_write_" << xi << "_"
   << xj << "_" << xk << ".t.hdf";

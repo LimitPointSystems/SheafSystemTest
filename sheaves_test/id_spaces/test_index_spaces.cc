@@ -27,7 +27,7 @@
 #include "scoped_index.h"
 #include "std_iomanip.h"
 #include "std_iostream.h"
-#include "std_strstream.h"
+#include "std_sstream.h"
 
 using namespace std;
 
@@ -186,10 +186,13 @@ delete_id(index_space_family& xid_spaces, pod_index_type xid)
 {
   // Print the operation.
 
-  strstream lstr;
+  stringstream lstr;
   lstr << "delete_id(" << xid << ")";
 
-  print_out_action(lstr.str());
+  string loutput;
+  lstr >> loutput;
+
+  print_out_action(loutput);
 
   // Delete the id.
 
@@ -284,10 +287,13 @@ insert(mutable_index_space_handle& xid_space,
 {
   // Print the operation.
 
-  strstream lstr;
+  stringstream lstr;
   lstr << "insert_entry(" << xid << ", " << xhub_id << ")";
 
-  print_out_action(lstr.str());
+  string loutput;
+  lstr >> loutput;
+
+  print_out_action(loutput);
 
   // Insert the entry.
 
@@ -301,10 +307,13 @@ push_back(mutable_index_space_handle& xid_space,
 {
   // Print the operation.
 
-  strstream lstr;
+  stringstream lstr;
   lstr << "push_back(" << xhub_id << ")";
 
-  print_out_action(lstr.str());
+  string loutput;
+  lstr >> loutput;
+
+  print_out_action(loutput);
 
   // Push back the range id.
 
@@ -319,11 +328,14 @@ remove(mutable_index_space_handle& xid_space,
 {
   // Print the operation.
 
-  strstream lstr;
+  stringstream lstr;
   lstr << "remove(" << xid << ", "
        << (xupdate_extrema ? "true" : "false") << ")";
 
-  print_out_action(lstr.str());
+  string loutput;
+  lstr >> loutput;
+
+  print_out_action(loutput);
 
   // Remove the id.
 
@@ -338,11 +350,14 @@ remove_hub(mutable_index_space_handle& xid_space,
 {
   // Print the operation.
 
-  strstream lstr;
+  stringstream lstr;
   lstr << "remove_hub(" << xhub_id << ", "
        << (xupdate_extrema ? "true" : "false") << ")";
 
-  print_out_action(lstr.str());
+  string loutput;
+  lstr >> loutput;
+
+  print_out_action(loutput);
 
   // Remove the id.
 
@@ -423,7 +438,7 @@ test_iterator(index_space_iterator& xitr)
 
   if(xitr.name().empty())
   {
-    strstream lstr;
+    stringstream lstr;
     lstr << xitr.index();
     lstr >> lname;
   }

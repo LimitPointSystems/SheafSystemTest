@@ -26,7 +26,6 @@
 #include "hash_index_space_state.h"
 #include "hub_index_space_handle.h"
 #include "namespace_poset.h"
-#include "std_strstream.h"
 #include "test_index_spaces.h"
 
 //#define TEST_RELEASE_FAILURE
