@@ -33,21 +33,27 @@ set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_modules CACHE STRING "Location o
 #
 # Platform definitions
 #
-
 # OS is 64 bit Windows, compiler is cl 
 if(CMAKE_HOST_SYSTEM_NAME MATCHES "Windows" AND MSVC AND CMAKE_SIZEOF_VOID_P MATCHES "8")
-    set(WIN64MSVC ON CACHE BOOL "MS compiler in use." FORCE)
+    set(WIN64MSVC ON CACHE BOOL "MS compiler in use.")
 # OS is 64 bit Windows, compiler is icl
 elseif(CMAKE_HOST_SYSTEM_NAME MATCHES "Windows" AND CMAKE_CXX_COMPILER_ID MATCHES "Intel" AND CMAKE_SIZEOF_VOID_P MATCHES "8")
-    set(WIN64INTEL ON CACHE BOOL "Intel compiler in use." FORCE)
+    set(WIN64INTEL ON CACHE BOOL "Intel compiler in use.")
 # OS is 64 bit linux, compiler is g++
 elseif(CMAKE_HOST_SYSTEM_NAME MATCHES "Linux" AND CMAKE_COMPILER_IS_GNUCXX AND CMAKE_SIZEOF_VOID_P MATCHES "8")
-    set(LINUX64GNU ON CACHE BOOL "GNU compiler in use." FORCE)
-    set(CMAKE_CXX_FLAGS "-std=c++0x")
+    execute_process(COMMAND ${CMAKE_CXX_COMPILER} -dumpversion
+                OUTPUT_VARIABLE GCC_VERSION)
+        if(GCC_VERSION VERSION_EQUAL 4.4 OR GCC_VERSION VERSION_GREATER 4.4 )            
+            set(CMAKE_CXX_FLAGS "-std=c++0x")
+        elseif(GCC_VERSION VERSION_GREATER 4.2.1 AND GCC_VERSION VERSION_LESS 4.4 )            
+            set(CMAKE_CXX_FLAGS "-ansi")
+        elseif(GCC_VERSION VERSION_LESS 4.2.2)
+            message(FATAL "g++ ${GCC_VERSION} is unsupported. Version must be >= 4.2.2")                
+        endif()
+   set(LINUX64GNU ON CACHE BOOL "GNU CXX compiler ${GCC_VERSION} in use.")
 # OS is 64 bit linux, compiler is icpc
 elseif(CMAKE_HOST_SYSTEM_NAME MATCHES "Linux" AND CMAKE_CXX_COMPILER_ID MATCHES "Intel" AND CMAKE_SIZEOF_VOID_P MATCHES "8")
-    set(LINUX64INTEL ON CACHE BOOL "Intel compiler in use." FORCE)
-    message(STATUS "Using Intel compiler")    
+    set(LINUX64INTEL ON CACHE BOOL "Intel compiler in use.")
 else()
     message(FATAL_ERROR "A 64 bit Windows or Linux environment was not detected; exiting")
 endif()
