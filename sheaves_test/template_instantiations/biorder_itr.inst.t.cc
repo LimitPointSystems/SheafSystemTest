@@ -25,6 +25,7 @@
 #include "test_utils.h"
 
 using namespace std;
+using namespace unordered;
 using namespace sheaf;
 
 // 75.00	(9/12)	biorder_itr<zn_to_bool>::biorder_itr()

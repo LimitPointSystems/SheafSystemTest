@@ -376,7 +376,7 @@ test_d_tree_point_locator_facet(fiber_bundles_namespace& xns)
 
   //============================================================================
 
-  typedef forward_list<const d_bounding_box<DC, DB>*> box_list_type;
+  typedef singly_linked_list<const d_bounding_box<DC, DB>*> box_list_type;
   box_list_type lbox_list2 = lroot.box_list();
   cout << "lbox_list2.empty() = " << lbox_list2.empty() << endl; 
 
@@ -414,7 +414,7 @@ test_d_tree_point_locator_facet(fiber_bundles_namespace& xns)
     lpt[i] = i;
   }
 
-  typedef forward_list<const d_bounding_box<DC, DB>*> box_list_type;
+  typedef singly_linked_list<const d_bounding_box<DC, DB>*> box_list_type;
   const box_list_type& lbox_list = llocator.box_list(lpt, DC);
 
   //============================================================================

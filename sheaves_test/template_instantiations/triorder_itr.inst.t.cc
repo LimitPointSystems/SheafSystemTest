@@ -24,6 +24,7 @@
 #include "test_utils.h"
 
 using namespace std;
+using namespace unordered;
 using namespace sheaf;
 
 namespace

@@ -347,7 +347,7 @@ test_d_array_point_locator_facet(fiber_bundles_namespace& xns)
     lpt[i] = i;
   }
 
-  typedef forward_list<const d_bounding_box<DC, DB>*> box_list_type;
+  typedef singly_linked_list<const d_bounding_box<DC, DB>*> box_list_type;
   const box_list_type& lbox_list = llocator.box_list(lpt, DC);
 
 
