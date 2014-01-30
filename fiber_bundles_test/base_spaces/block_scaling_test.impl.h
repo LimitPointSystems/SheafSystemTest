@@ -59,8 +59,8 @@
 #include "std_iomanip.h"
 #endif
 
-#ifndef STD_STRSTREAM_H
-#include "std_strstream.h"
+#ifndef STD_SSTREAM_H
+#include "std_sstream.h"
 #endif
 
 #ifndef STOP_WATCH_H
@@ -130,7 +130,7 @@ time_block(std::string xname, size_type xsizes[], size_type xdi, plot& xtime_plo
 
   using namespace std;
 
-  strstream lname_str;
+  stringstream lname_str;
   lname_str << xname;
   for(int m=0; m<xdi; ++m)
   {
