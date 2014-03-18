@@ -23,7 +23,7 @@
 #
 # Include functions and definitions common to all components.
 # 
-include(${CMAKE_MODULE_PATH}/LPSCommon.cmake)
+include(${CMAKE_MODULE_PATH}/component_functions.cmake)
 
 #
 # Include cmake test functions and macros

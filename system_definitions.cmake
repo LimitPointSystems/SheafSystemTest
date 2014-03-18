@@ -89,7 +89,7 @@ set(ENABLE_WIN32_MP OFF CACHE BOOL "Toggle win32 compiler MP directive. Works fo
 # Set a default where the user has write permission ; in this
 # case, the top of the components source tree.
 # "lib", "include", and "bin" will be appended to this location.
-# See "add_install_target" in cmake_modules/LPSCommon.cmake for source.
+# See "add_install_target" in cmake_modules/component_functions.cmake for source.
 #
 set(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR} CACHE STRING "System install location")
 

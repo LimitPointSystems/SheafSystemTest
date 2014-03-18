@@ -289,7 +289,7 @@ endfunction(add_check_target)
 function(add_component_check_target)
 
         add_custom_target(${PROJECT_NAME}-check)
-        add_custom_command(TARGET ${PROJECT_NAME}-check POST_BUILD COMMAND ${CMAKE_CTEST_COMMAND} -C ${CMAKE_CFG_INTDIR} -O ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.log)
+        add_custom_command(TARGET ${PROJECT_NAME}-check POST_BUILD COMMAND ${CMAKE_CTEST_COMMAND} -T test -C ${CMAKE_CFG_INTDIR} -O ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.log)
         if(WIN64MSVC OR WIN64INTEL)       
             add_dependencies(${PROJECT_NAME}-check ${${COMPONENT}_IMPORT_LIB} ${${COMPONENT}_UNIT_TESTS})
             set_target_properties(${PROJECT_NAME}-check PROPERTIES FOLDER "Check Targets")
