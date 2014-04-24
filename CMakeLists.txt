@@ -127,4 +127,9 @@ if(LINUX64GNU OR LINUX64INTEL)
     configure_file(${CMAKE_MODULE_PATH}/set_env_vars.sh.cmake.in ${CMAKE_BINARY_DIR}/set_env_vars.sh)
 endif()
 
-
+#
+# Markup the RELEASE_NOTES file. 
+#
+#set(RELEASE_DATE)
+#get_date(RELEASE_DATE)
+#configure_file(${CMAKE_SOURCE_DIR}/RELEASE_NOTES.in ${CMAKE_SOURCE_DIR}/RELEASE_NOTES)
