@@ -401,6 +401,7 @@ function(add_win32_test_targets)
         # Remove path information  
         get_filename_component(t_file ${t_file_with_path} NAME)
         
+        # Add the executable to the list
         set(${COMPONENT}_UNIT_TESTS ${${COMPONENT}_UNIT_TESTS} ${t_file} CACHE STRING "List of unit test binaries" FORCE)
         mark_as_advanced(${COMPONENT}_UNIT_TESTS)
         
