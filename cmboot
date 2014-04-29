@@ -72,7 +72,7 @@ done
 
 cd $builddir;
 
-# give a little space
+# Add a blank line for readability's sake.
 echo ""
 
 # Get the SheafSystem home dir from the user.
@@ -80,7 +80,7 @@ echo "Enter fully qualified path to top level of SheafSystem source tree: "
 echo "   Example: /home/user/projects/SheafSystem-my-branch: "
 echo ""
 echo -n "SheafSystem path: "
-read response
+read -e response
 if [ ! -z $response ]; then
 	echo ""
 	echo "Roger that, configuring ..."
