@@ -202,9 +202,9 @@ function(create_output_dirs)
         # These uber-verbose variable names have special meaning to cmake --
         # the cmake counterpart to what GNU autotools calls a "precious" variable.
         # Not a good idea to change them to anything shorter and sweeter; so don't.
-        set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib/${CMAKE_BUILD_TYPE} CACHE PATH "Static/Import Library Output Directory")
-        set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib/${CMAKE_BUILD_TYPE} CACHE PATH "Shared Library Output Directory")
-        set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/${CMAKE_BUILD_TYPE} CACHE PATH "Binary Output Directory")
+        set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib/${CMAKE_BUILD_TYPE} CACHE PATH "Static/Import Library Output Directory" FORCE)
+        set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib/${CMAKE_BUILD_TYPE} CACHE PATH "Shared Library Output Directory" FORCE)
+        set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/${CMAKE_BUILD_TYPE} CACHE PATH "Binary Output Directory" FORCE)
      
         # Create dir for static/import libraries.
         file(MAKE_DIRECTORY ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY})
