@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,10 +22,10 @@
 /// test driver for mutli-valued sections.
 
 #include "average_push_action.h"
-#include "assert_contract.h"
+#include "ComLimitPoint/sheaf/assert_contract.h"
 #include "base_space_member.h"
 #include "base_space_poset.h"
-#include "error_message.h"
+#include "ComLimitPoint/sheaf/error_message.h"
 #include "fiber_bundles_namespace.h"
 #include "field_factory_2.h"
 #include "preorder_iterator.h"
@@ -39,7 +39,7 @@
 #include "sec_rep_space.h"
 #include "std_cmath.h"
 #include "std_sstream.h"
-#include "storage_agent.h"
+#include "ComLimitPoint/sheaf/storage_agent.h"
 #include "subposet.h"
 #include "subposet_member_iterator.h"
 #include "tern.h"

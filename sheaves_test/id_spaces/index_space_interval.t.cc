@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,11 +17,11 @@
 /// @example id_spaces/index_space_interval.t.cc
 /// Test driver for class id space intervals.
 
-#include "array_index_space_interval.h"
+#include "ComLimitPoint/sheaf/array_index_space_interval.h"
 #include "hub_index_space_handle.h"
-#include "index_space_family.h"
+#include "ComLimitPoint/sheaf/index_space_family.h"
 #include "index_space_iterator.h"
-#include "namespace_poset.h"
+#include "ComLimitPoint/sheaf/namespace_poset.h"
 #include "ragged_array_index_space_interval.h"
 #include "scoped_index.h"
 #include "singleton_implicit_index_space_iterator.h"

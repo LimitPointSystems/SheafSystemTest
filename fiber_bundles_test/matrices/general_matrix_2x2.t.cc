@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@
 /// Test driver for class general_matrix_2x2.
 
 #include "antisymmetric_matrix_2x2.h"
-#include "assert_contract.h"
+#include "ComLimitPoint/sheaf/assert_contract.h"
 #include "general_matrix_1x2.h"
 #include "general_matrix_2x1.h"
 #include "general_matrix_2x2.h"

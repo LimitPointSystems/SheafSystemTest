@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 /// @example posets/poset_joiner.t.cc
 /// Test dirver for poset_joiner.  Only the subposet interface.
 
-#include "sheaves_namespace.h"
+#include "ComLimitPoint/sheaf/sheaf_namespace.h"
 #include "subposet.h"
 #include "poset_joiner.h"
 #include "subposet_member_iterator.h"

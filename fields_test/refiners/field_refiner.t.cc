@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@
 /// Test driver for field_refiner.
 
 
-#include "assert_contract.h"
+#include "ComLimitPoint/sheaf/assert_contract.h"
 #include "base_space_member.h"
 #include "base_space_poset.h"
 #include "depth_bound_refinement_policy.h"
@@ -31,7 +31,7 @@
 #include "field_refiner.h"
 #include "sec_ed_invertible.h"
 #include "std_iostream.h"
-#include "storage_agent.h"
+#include "ComLimitPoint/sheaf/storage_agent.h"
 #include "field_vd.h"
 #include "wsv_block.h"
 

@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -39,17 +39,17 @@
 #include "met_e2.h"
 #include "met_e3.h"
 #include "met_ed.h"
-#include "namespace_poset.h"
-#include "poset.h"
+#include "ComLimitPoint/sheaf/namespace_poset.h"
+#include "ComLimitPoint/sheaf/poset.h"
 #include "poset_dof_map.h"
 #include "poset_handle_factory.h"
 #include "sec_rep_space_member.h"
-#include "assert_contract.h"
+#include "ComLimitPoint/sheaf/assert_contract.h"
 #include "st2.h"
 #include "st2_e2.h"
 #include "st2_e3.h"
 #include "std_iostream.h"
-#include "storage_agent.h"
+#include "ComLimitPoint/sheaf/storage_agent.h"
 #include "stp.h"
 #include "subposet.h"
 #include "t2.h"

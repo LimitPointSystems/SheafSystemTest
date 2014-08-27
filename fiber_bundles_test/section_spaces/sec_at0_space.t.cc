@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc. 
+// Copyright (c) 2014 Limit Point Systems, Inc. 
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -23,18 +23,18 @@
 #include "sec_at0_space.h"
 
 #include "arg_list.h"
-#include "assert_contract.h"
+#include "ComLimitPoint/sheaf/assert_contract.h"
 #include "at0_space.h"
 #include "base_space_poset.h"
 #include "binary_section_space_schema_member.h"
 #include "binary_section_space_schema_poset.h"
-#include "error_message.h"
+#include "ComLimitPoint/sheaf/error_message.h"
 #include "fiber_bundles_namespace.h"
 #include "schema_descriptor.h"
-#include "schema_poset_member.h"
+#include "ComLimitPoint/sheaf/schema_poset_member.h"
 #include "sec_at0.h"
 #include "std_iostream.h"
-#include "storage_agent.h"
+#include "ComLimitPoint/sheaf/storage_agent.h"
 #include "structured_block_1d.h"
 #include "wsv_block.h"
 #include "test_fibers.impl.h"

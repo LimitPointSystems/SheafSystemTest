@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,11 +18,11 @@
 /// @example reserved_primary_index_space.t.cc
 /// Test driver for reserved_primary id spaces.
 
-#include "assert_contract.h"
+#include "ComLimitPoint/sheaf/assert_contract.h"
 #include "arg_list.h"
-#include "error_message.h"
-#include "index_space_family.h"
-#include "namespace_poset.h"
+#include "ComLimitPoint/sheaf/error_message.h"
+#include "ComLimitPoint/sheaf/index_space_family.h"
+#include "ComLimitPoint/sheaf/namespace_poset.h"
 #include "reserved_primary_index_space_handle.h"
 #include "reserved_primary_index_space_iterator.h"
 #include "reserved_primary_index_space_state.h"

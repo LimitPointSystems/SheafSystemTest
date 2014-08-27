@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,10 +18,10 @@
 /// @example examples/read_domain.t.cc
 
 #include "std_iostream.h"
-#include "namespace_poset.h"
+#include "ComLimitPoint/sheaf/namespace_poset.h"
 #include "poset_bounds_descriptor.h"
 #include "sec_rep_space.h"
-#include "storage_agent.h"
+#include "ComLimitPoint/sheaf/storage_agent.h"
 
 using namespace std;
 using namespace fiber_bundle;

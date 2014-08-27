@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc. 
+// Copyright (c) 2014 Limit Point Systems, Inc. 
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@
 #include "ijk_connectivity_index_space_interval.h"
 #include "ijk_connectivity_implicit_index_space_iterator.h"
 #include "index_space_iterator.h"
-#include "offset_index_space_handle.h"
+#include "ComLimitPoint/sheaf/offset_index_space_handle.h"
 #include "test_index_spaces.impl.h"
 #include "std_sstream.h"
 

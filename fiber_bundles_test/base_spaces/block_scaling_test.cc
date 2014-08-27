@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -29,11 +29,11 @@
 #include "zone_nodes_block.h"
 #include "test_sections.impl.h"
 
-#include "array_index_space_state.h"
+#include "ComLimitPoint/sheaf/array_index_space_state.h"
 #include "hash_index_space_state.h"
 #include "interval_index_space_state.h"
 #include "list_index_space_state.h"
-#include "offset_index_space_state.h"
+#include "ComLimitPoint/sheaf/offset_index_space_state.h"
 #include "primary_index_space_state.h"
 #include "primary_sum_index_space_state.h"
 #include "primitives_index_space_state.h"

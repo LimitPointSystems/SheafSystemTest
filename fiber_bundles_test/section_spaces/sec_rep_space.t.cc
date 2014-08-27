@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,19 +20,19 @@
 
 
 #include "arg_list.h"
-#include "assert_contract.h"
+#include "ComLimitPoint/sheaf/assert_contract.h"
 #include "base_space_member.h"
 #include "binary_section_space_schema_poset.h"
 #include "block.h"
 #include "fiber_bundles_namespace.h"
 #include "index_space_iterator.h"
-#include "index_iterator.h"
-#include "namespace_poset_member.h"
-#include "poset.h"
-#include "poset_member_iterator.h"
+#include "ComLimitPoint/sheaf/index_iterator.h"
+#include "ComLimitPoint/sheaf/namespace_poset_member.h"
+#include "ComLimitPoint/sheaf/poset.h"
+#include "ComLimitPoint/sheaf/poset_member_iterator.h"
 #include "postorder_member_iterator.h"
-#include "primitives_poset.h"
-#include "primitives_poset_schema.h"
+#include "ComLimitPoint/sheaf/primitives_poset.h"
+#include "ComLimitPoint/sheaf/primitives_poset_schema.h"
 #include "product_index_space.h"
 #include "sec_at1_space.h"
 #include "sec_e2.h"
@@ -41,7 +41,7 @@
 #include "sec_rep_space_member.h"
 #include "section_space_schema_poset.h"
 #include "std_string.h"
-#include "storage_agent.h"
+#include "ComLimitPoint/sheaf/storage_agent.h"
 #include "subposet.h"
 #include "subposet_member_iterator.h"
 

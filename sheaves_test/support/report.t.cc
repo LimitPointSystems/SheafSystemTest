@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@
 #include "report.h"
 
 #include "block.h"
-#include "sheaves_namespace.h"
+#include "ComLimitPoint/sheaf/sheaf_namespace.h"
 #include "std_iomanip.h"
 #include "std_iostream.h"
 #include "stop_watch.h"

@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,12 +18,12 @@
 /// @example template_instantiations/namespace_poset.inst.t.cc
 /// Unit test driver for class namespace_poset template functions.
 
-#include "sheaves_namespace.h"
+#include "ComLimitPoint/sheaf/sheaf_namespace.h"
 #include "test_sheaves.impl.h"
 #include "test_utils.h"
 
-#include "primitives_poset.h"
-#include "primitives_poset_schema.h"
+#include "ComLimitPoint/sheaf/primitives_poset.h"
+#include "ComLimitPoint/sheaf/primitives_poset_schema.h"
 #include "namespace_poset_schema.h"
 #include "refinable_poset.h"
 

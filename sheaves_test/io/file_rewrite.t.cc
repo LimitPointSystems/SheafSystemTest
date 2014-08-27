@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,9 +18,9 @@
 /// @example io/file_rewrite.t.cc
 /// Tests multiple writes of a single namespace to new and existing files.
 
-#include "namespace_poset.h"
+#include "ComLimitPoint/sheaf/namespace_poset.h"
 #include "std_iostream.h"
-#include "storage_agent.h"
+#include "ComLimitPoint/sheaf/storage_agent.h"
 
 string filename;
 

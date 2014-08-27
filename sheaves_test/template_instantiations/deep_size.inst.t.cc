@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,12 +17,12 @@
 
 /// Test driver for deep_size function template instantiations.
 
-//#include "sheaves_namespace.h"
+//#include "ComLimitPoint/sheaf/sheaf_namespace.h"
 
 #include "deep_size.impl.h"
 
-#include "index_space_family.h"
-#include "namespace_poset.h"
+#include "ComLimitPoint/sheaf/index_space_family.h"
+#include "ComLimitPoint/sheaf/namespace_poset.h"
 #include "scoped_index.h"
 #include "std_list.h"
 #include "std_map.h"

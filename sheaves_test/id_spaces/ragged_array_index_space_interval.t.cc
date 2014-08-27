@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,10 +18,10 @@
 /// @example ragged_array_index_space_interval.t.cc
 /// Test driver for ragged array id space intervals.
 
-#include "assert_contract.h"
-#include "error_message.h"
-#include "index_space_family.h"
-#include "namespace_poset.h"
+#include "ComLimitPoint/sheaf/assert_contract.h"
+#include "ComLimitPoint/sheaf/error_message.h"
+#include "ComLimitPoint/sheaf/index_space_family.h"
+#include "ComLimitPoint/sheaf/namespace_poset.h"
 #include "ragged_array_index_space_interval.h"
 #include "ragged_array_implicit_index_space_iterator.h"
 #include "std_iostream.h"

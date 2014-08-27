@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@
 /// Test driver for cluster fiber_spaces.
 
 #include "arg_list.h"
-#include "assert_contract.h"
+#include "ComLimitPoint/sheaf/assert_contract.h"
 #include "at0.h"
 #include "at1.h"
 #include "at2.h"
@@ -46,11 +46,11 @@
 #include "met_e2.h"
 #include "met_e3.h"
 #include "met_ed.h"
-#include "namespace_poset.h"
-#include "namespace_poset_member.h"
-#include "poset.h"
+#include "ComLimitPoint/sheaf/namespace_poset.h"
+#include "ComLimitPoint/sheaf/namespace_poset_member.h"
+#include "ComLimitPoint/sheaf/poset.h"
 #include "postorder_member_iterator.h"
-#include "primitives_poset_schema.h"
+#include "ComLimitPoint/sheaf/primitives_poset_schema.h"
 #include "product_index_space.h"
 #include "schema_descriptor.h"
 #include "sec_rep_descriptor.h"
@@ -61,7 +61,7 @@
 #include "st2_e2.h"
 #include "st2_e3.h"
 #include "std_iostream.h"
-#include "storage_agent.h"
+#include "ComLimitPoint/sheaf/storage_agent.h"
 #include "stp.h"
 #include "subposet.h"
 #include "t2.h"

@@ -1,7 +1,7 @@
 //
 //
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 //
 // Swig module interface file for tools (java version)

@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,12 +21,12 @@
 #ifndef TEST_SHEAVES_IMPL_H
 #define TEST_SHEAVES_IMPL_H
 
-#ifndef SHEAF_DLL_SPEC_H
-#include "sheaf_dll_spec.h"
+#ifndef COM_LIMITPOINT_SHEAF_SHEAF_DLL_SPEC_H
+#include "ComLimitPoint/sheaf/sheaf_dll_spec.h"
 #endif
 
 #include "arg_list.h"
-#include "assert_contract.h"
+#include "ComLimitPoint/sheaf/assert_contract.h"
 #include "block.h"
 #include "list_pool.h"
 #include "std_iostream.h"
@@ -35,7 +35,7 @@
 
 #include "test_sheaves.h"
 
-#include "namespace_poset.h"
+#include "ComLimitPoint/sheaf/namespace_poset.h"
 #include "subposet_member_iterator.h"
 
 #include "ragged_array.h"

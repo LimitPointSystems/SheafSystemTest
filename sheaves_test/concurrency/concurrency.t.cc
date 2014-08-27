@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -26,18 +26,18 @@
 #include "line.h"
 #endif
 
-#ifndef NAMESPACE_POSET_H
-#include "namespace_poset.h"
+#ifndef COM_LIMITPOINT_SHEAF_NAMESPACE_POSET_H
+#include "ComLimitPoint/sheaf/namespace_poset.h"
 #endif
 
 class poset;
 
-#ifndef POSET_MEMBER_H
-#include "abstract_poset_member.h"
+#ifndef COM_LIMITPOINT_SHEAF_POSET_MEMBER_H
+#include "ComLimitPoint/sheaf/abstract_poset_member.h"
 #endif
 
-#ifndef RUNNABLE_H
-#include "runnable.h"
+#ifndef COM_LIMITPOINT_SHEAF_RUNNABLE_H
+#include "ComLimitPoint/sheaf/runnable.h"
 #endif
 
 #ifndef THREAD_H

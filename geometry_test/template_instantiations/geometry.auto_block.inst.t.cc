@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@
 #include "test_utils.h"
 #include "test_sheaves.impl.h"
 
-#include "singly_linked_list.h"
+#include "ComLimitPoint/sheaf/singly_linked_list.h"
 #include "std_utility.h"
 
 using namespace std;

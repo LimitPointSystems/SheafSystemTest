@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 /// @example examples/fields3d.t.cc
 /// Test driver for 3D fields.
 
-#include "abstract_poset_member.h"
+#include "ComLimitPoint/sheaf/abstract_poset_member.h"
 #include "at0.h"
 #include "at0_space.h"
 #include "at1_space.h"
@@ -26,9 +26,9 @@
 #include "binary_section_space_schema_poset.h"
 #include "zone_nodes_block.h"
 #include "triangle_connectivity.h"
-#include "postorder_iterator.h"
-#include "poset.h"
-#include "schema_poset_member.h"
+#include "ComLimitPoint/sheaf/postorder_iterator.h"
+#include "ComLimitPoint/sheaf/poset.h"
+#include "ComLimitPoint/sheaf/schema_poset_member.h"
 #include "sec_at0.h"
 #include "sec_at0_space.h"
 #include "sec_at1_space.h"
@@ -43,17 +43,17 @@
 #include "sec_rep_descriptor.h"
 #include "section_dof_iterator.h"
 #include "stp_space.h"
-#include "assert_contract.h"
+#include "ComLimitPoint/sheaf/assert_contract.h"
 #include "std_cctype.h"
 #include "fiber_bundles_namespace.h"
 #include "std_cstdlib.h"
-#include "storage_agent.h"
+#include "ComLimitPoint/sheaf/storage_agent.h"
 #include "st2_e3.h"
 #include "std_iostream.h"
 #include "tp_space.h"
 #include "subposet.h"
 #include "vd.h"
-#include "assert_contract.h"
+#include "ComLimitPoint/sheaf/assert_contract.h"
 
 using namespace std;
 using namespace fiber_bundle;

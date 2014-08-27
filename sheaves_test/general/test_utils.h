@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,8 +21,8 @@
 #ifndef TEST_UTILS_H
 #define TEST_UTILS_H
 
-#ifndef SHEAF_DLL_SPEC_H
-#include "sheaf_dll_spec.h"
+#ifndef COM_LIMITPOINT_SHEAF_SHEAF_DLL_SPEC_H
+#include "ComLimitPoint/sheaf/sheaf_dll_spec.h"
 #endif
 
 #ifndef STD_STRING_H

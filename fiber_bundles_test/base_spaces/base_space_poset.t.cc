@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,12 +19,12 @@
 /// Unit test for class base_space_poset.
 
 #include "fiber_bundles_namespace.h"
-#include "namespace_poset_member.h"
+#include "ComLimitPoint/sheaf/namespace_poset_member.h"
 #include "std_iomanip.h"
 #include "structured_block_1d.h"
 #include "test_utils.h"
 //#include "poset_path.h"
-//#include "storage_agent.h"
+//#include "ComLimitPoint/sheaf/storage_agent.h"
 //#include "test_sections.impl.h"
 
 using namespace std;

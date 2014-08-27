@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,19 +18,19 @@
 /// @example examples/scalable_partial_quad_write.t.cc
 /// Test driver for test.
 
-#include "abstract_poset_member.h"
+#include "ComLimitPoint/sheaf/abstract_poset_member.h"
 #include "biorder_iterator.h"
 #include "block_decomposition_iterator.h"
 #include "unstructured_block_builder.h"
-#include "poset.h"
+#include "ComLimitPoint/sheaf/poset.h"
 #include "poset_bounds_descriptor.h"
 #include "poset_path.h"
-#include "postorder_iterator.h"
+#include "ComLimitPoint/sheaf/postorder_iterator.h"
 #include "ragged_array.h"
 #include "fiber_bundles_namespace.h"
-#include "assert_contract.h"
+#include "ComLimitPoint/sheaf/assert_contract.h"
 #include "std_string.h"
-#include "storage_agent.h"
+#include "ComLimitPoint/sheaf/storage_agent.h"
 #include "stop_watch.h"
 #include "subposet_member_iterator.h"
 #include "total_poset_member.h"

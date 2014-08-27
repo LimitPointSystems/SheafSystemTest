@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,21 +18,21 @@
 /// @example posets/poset.t.cc
 /// test driver for poset cluster
 
-#include "abstract_poset_member.h"
+#include "ComLimitPoint/sheaf/abstract_poset_member.h"
 #include "block.h"
 #include "index_space_iterator.h"
-#include "sheaves_namespace.h"
+#include "ComLimitPoint/sheaf/sheaf_namespace.h"
 #include "hash_index_space_handle.h"
-#include "namespace_poset_member.h"
-#include "poset.h"
+#include "ComLimitPoint/sheaf/namespace_poset_member.h"
+#include "ComLimitPoint/sheaf/poset.h"
 #include "poset_member.h"
-#include "poset_member_iterator.h"
+#include "ComLimitPoint/sheaf/poset_member_iterator.h"
 #include "postorder_member_iterator.h"
-#include "primitives_poset.h"
-#include "primitives_poset_schema.h"
-#include "assert_contract.h"
+#include "ComLimitPoint/sheaf/primitives_poset.h"
+#include "ComLimitPoint/sheaf/primitives_poset_schema.h"
+#include "ComLimitPoint/sheaf/assert_contract.h"
 #include "std_string.h"
-#include "storage_agent.h"
+#include "ComLimitPoint/sheaf/storage_agent.h"
 #include "subposet.h"
 #include "subposet_member_iterator.h"
 #include "tern.h"

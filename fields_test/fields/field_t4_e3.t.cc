@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,14 +18,14 @@
 /// @example field_t4_e3.t.cc
 /// Test driver for class field_t4_e3.
 
-#include "assert_contract.h"
+#include "ComLimitPoint/sheaf/assert_contract.h"
 #include "base_space_member.h"
 #include "fiber_bundles_namespace.h"
 #include "field_t4_e3.h"
 #include "field_st4_e3.h"
 #include "sec_at1_space.h"
 #include "sec_t4_e3.h"
-#include "storage_agent.h"
+#include "ComLimitPoint/sheaf/storage_agent.h"
 #include "sec_stp_space.h"
 #include "test_fields.impl.h"
 

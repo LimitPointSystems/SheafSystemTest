@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,8 +21,8 @@
 #ifndef TEST_FIBERS_IMPL_H
 #define TEST_FIBERS_IMPL_H
 
-#ifndef SHEAF_DLL_SPEC_H
-#include "sheaf_dll_spec.h"
+#ifndef COM_LIMITPOINT_SHEAF_SHEAF_DLL_SPEC_H
+#include "ComLimitPoint/sheaf/sheaf_dll_spec.h"
 #endif
 
 #ifndef TEST_FIBERS_H
@@ -30,7 +30,7 @@
 #endif
 
 #ifndef ASSERT_CONTRACT_H
-#include "assert_contract.h"
+#include "ComLimitPoint/sheaf/assert_contract.h"
 #endif
 
 #ifndef FIBER_BUNDLES_NAMESPACE_H

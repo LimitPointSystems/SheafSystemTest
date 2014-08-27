@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,19 +19,19 @@
 /// Unit test for cluster section_spaces.
 
 #include "arg_list.h"
-#include "assert_contract.h"
+#include "ComLimitPoint/sheaf/assert_contract.h"
 #include "at0_space.h"
 #include "at1_space.h"
 #include "binary_section_space_schema_poset.h"
 #include "fiber_bundles_namespace.h"
-#include "namespace_poset.h"
+#include "ComLimitPoint/sheaf/namespace_poset.h"
 #include "schema_descriptor.h"
 #include "sec_at0.h"
 #include "sec_at0_space.h"
 #include "sec_at1_space.h"
 #include "sec_e2.h"
 #include "std_iostream.h"
-#include "storage_agent.h"
+#include "ComLimitPoint/sheaf/storage_agent.h"
 #include "unstructured_block.h"
 
 using namespace std;

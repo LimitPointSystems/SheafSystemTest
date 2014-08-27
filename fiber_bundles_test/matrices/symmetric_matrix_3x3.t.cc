@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2013 Limit Point Systems, Inc.
+// Copyright (c) 2014 Limit Point Systems, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 /// @example symmetric_matrix_3x3.t.cc
 /// Test driver for class symmetric_matrix_3x3.
 
-#include "assert_contract.h"
+#include "ComLimitPoint/sheaf/assert_contract.h"
 #include "general_matrix_1x3.h"
 #include "general_matrix_2x3.h"
 #include "general_matrix_3x1.h"
