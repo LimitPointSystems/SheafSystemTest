@@ -426,9 +426,9 @@ function(add_win32_test_targets)
             # specifically the sheaves lib target.
             # TODO: We should probably be exporting this info explicitly in the SS exports file.
             #
-            get_target_property(SS_DC_LIB_LOC sheaves IMPORTED_LOCATION_DEBUG_CONTRACTS)
+            get_target_property(SS_DC_LIB_LOC sheaf IMPORTED_LOCATION_DEBUG_CONTRACTS)
             get_filename_component(SS_DC_LIB_PATH "${SS_DC_LIB_LOC}" PATH)
-            get_target_property(SS_RWDI_LIB_LOC sheaves IMPORTED_LOCATION_RELWITHDEBINFO_NO_CONTRACTS)
+            get_target_property(SS_RWDI_LIB_LOC sheaf IMPORTED_LOCATION_RELWITHDEBINFO_NO_CONTRACTS)
             get_filename_component(SS_RWDI_LIB_PATH "${SS_RWDI_LIB_LOC}" PATH)                
             # Having both directories (DC and RNC) in the path is no problem. Cmake knows what it's looking for.
             set(TESTPATH "PATH=$ENV{PATH};${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE};${SS_DC_LIB_PATH};${SS_RWDI_LIB_PATH}")
