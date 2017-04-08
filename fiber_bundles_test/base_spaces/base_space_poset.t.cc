@@ -297,8 +297,8 @@ main(int xargc, char* xargv[])
   //const subposet& d_cells(int xd) const;
   const subposet& ld_cells = lbase_space_const->d_cells(1);
 
-  //const mutable_index_space_handle& d_cells_id_space(int xd) const
-  const mutable_index_space_handle& ld_cells_id_space =
+  //const scattered_insertion_index_space_handle& d_cells_id_space(int xd) const
+  const scattered_insertion_index_space_handle& ld_cells_id_space =
     lbase_space_const->d_cells_id_space(1);
 
 //   //void insert_member_in_standard_subposets(pod_index_type xmbr_id);

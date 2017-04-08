@@ -27,7 +27,7 @@ set(SRCS
 
    )
 
-collect_sources()
+ShfSysTst_collect_sources(fiber_bundles_test "${SRCS}")
 
 #
 # Headers that are NOT associated with a .cc file.
@@ -36,7 +36,7 @@ set(ADDITIONAL_INCS
 
    )
   
-collect_includes() 
+ShfSysTst_collect_includes(fiber_bundles_test "${SRCS}" "${ADDITIONAL_INCS}") 
 
 #
 # Source for unit test executables.
@@ -63,7 +63,7 @@ set(UNIT_TEST_SRCS
     uniform_eval_family.t.cc
    )
 
-collect_unit_test_sources()
+ShfSysTst_collect_unit_test_sources(fiber_bundles_test "${UNIT_TEST_SRCS}")
 
 #
 # Source for non-test executables.
@@ -72,5 +72,5 @@ set(EXAMPLE_SRCS
 
    )
 
-collect_example_sources()
+ShfSysTst_collect_example_sources(fiber_bundles_test "${EXAMPLE_SRCS}")
 

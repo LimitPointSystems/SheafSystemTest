@@ -18,7 +18,7 @@ test_case_2d.cc
 test_case_3d.cc
    )
 
-collect_sources()
+ShfSysTst_collect_sources(tools_test "${SRCS}")
 
 #
 # Headers that are NOT associated with a .cc file.
@@ -27,7 +27,7 @@ set(ADDITIONAL_INCS
  #   lps_environment.h
    )
 
-collect_includes()
+ShfSysTst_collect_includes(tools_test "${SRCS}" "${ADDITIONAL_INCS}")
 
 #
 # Source for unit test executables.
@@ -35,7 +35,7 @@ collect_includes()
 set(UNIT_TEST_SRCS
    )
 
-collect_unit_test_sources()
+ShfSysTst_collect_unit_test_sources(tools_test "${UNIT_TEST_SRCS}")
 
 #
 # Source for example executables.
@@ -45,4 +45,4 @@ test_case_2d.t.cc
 test_case_3d.t.cc
    )
 
-collect_example_sources()
+ShfSysTst_collect_example_sources(tools_test "${EXAMPLE_SRCS}")

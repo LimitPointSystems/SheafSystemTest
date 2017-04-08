@@ -14,9 +14,21 @@
 # limitations under the License.
 #
 
-project(sheaves_test)
+#
+# Announce current status.
+#
+ShfSysTst_status_message("Processing sheaves_test component")
 
-cmake_minimum_required(VERSION 2.8.8)
+#
+# Define the clusters for this component.
+#
+set(clusters concurrency dof_iterators dof_maps examples id_spaces io iterators 
+    maps posets support test_posets traversers general template_instantiations)
+
+#
+# Include functions and definitions common to all components.
+# .
+include(${SHFSYSTST_CMAKE_MODULE_PATH}/component_functions.cmake)
 
 #
 # Include the functions and variable definitions unigue to this component.
@@ -24,53 +36,51 @@ cmake_minimum_required(VERSION 2.8.8)
 include(${CMAKE_CURRENT_SOURCE_DIR}/component_definitions.cmake)
 
 #
-# Announce current status.
+# Initialize all variables for this component.
 #
-status_message("Processing ${PROJECT_NAME}")
+ShfSysTst_set_component_variables(sheaves_test)
 
 #
-# Set compiler flags for all build configurations
+# Add the clusters to the project
 #
-set_compiler_flags()
+ShfSysTst_add_clusters("${clusters}")
+
+#
+# Set the ipath variable.
+#
+ShfSysTst_set_component_ipath_variable(sheaves_test "${clusters}")
 
 #
 # Add the library targets
 #
-add_library_targets()
-
-#
-# Set up output directories
-#
-create_output_dirs()
+ShfSysTst_add_sheaves_test_library_targets()
 
 #
 # Add the unit test targets
 #
-if(WIN64MSVC OR WIN64INTEL)
-    add_win32_test_targets()
-else()
-    add_linux_test_targets()
-endif()
+ShfSysTst_add_component_unit_test_targets(sheaves_test)
 
 #
 # Add the example targets
 #
-add_example_targets()
+ShfSysTst_add_component_example_targets(sheaves_test)
 
 #
 # Component specific check target
 #
-add_component_check_target()
+ShfSysTst_add_component_check_target(sheaves_test)
 
 #
 # Component specific check target
 #
-add_component_bin_target()
+ShfSysTst_add_component_bin_target(sheaves_test)
 
 #
 # Component specific coverage target
 #
 if(ENABLE_COVERAGE)
-    status_message("Creating coverage target for ${PROJECT_NAME}")
-        add_component_coverage_target()
+
+    ShfSysTst_status_message("Creating coverage target for sheaves_test")
+    ShfSysTst_add_component_coverage_target(sheaves_test)
+
 endif()

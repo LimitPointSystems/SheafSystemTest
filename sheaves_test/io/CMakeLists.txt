@@ -27,7 +27,7 @@ set(SRCS
 
    )
 
-collect_sources()
+ShfSysTst_collect_sources(sheaves_test "${SRCS}")
 
 #
 # Headers that are NOT associated with a .cc file.
@@ -35,7 +35,7 @@ collect_sources()
 set(ADDITIONAL_INCS
    )
   
-collect_includes()
+ShfSysTst_collect_includes(sheaves_test "${SRCS}" "${ADDITIONAL_INCS}")
 
 #
 # Source for unit test executables.
@@ -43,7 +43,7 @@ collect_includes()
 set(UNIT_TEST_SRCS
    )
 
-collect_unit_test_sources()
+ShfSysTst_collect_unit_test_sources(sheaves_test "${UNIT_TEST_SRCS}")
 
 #
 # Source for example executables.
@@ -52,5 +52,5 @@ set(EXAMPLE_SRCS
 
    )
 
-collect_example_sources()
+ShfSysTst_collect_example_sources(sheaves_test "${EXAMPLE_SRCS}")
 

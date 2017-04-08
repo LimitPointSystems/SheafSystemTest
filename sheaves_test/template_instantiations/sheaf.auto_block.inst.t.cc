@@ -367,15 +367,15 @@ main(int xargc, char* xargv[])
   //ltest &= test_auto_block_facet_deep_size_all<index_space_handle*>();
   print_footer("End testing auto_block<index_space_handle*>");
 
-  // mutable_index_space_handle*
+  // scattered_insertion_index_space_handle*
 
-  print_header("Begin testing auto_block<mutable_index_space_handle*>");
-  ltest &= test_auto_block_facet_all<mutable_index_space_handle*>();
-  ltest &= test_auto_block_facet_equal_all<mutable_index_space_handle*>();
-  //ltest &= test_auto_block_facet_equal_equal_all<mutable_index_space_handle*>();
-  //ltest &= test_auto_block_facet_insertion_all<mutable_index_space_handle*>();
-  //ltest &= test_auto_block_facet_deep_size_all<mutable_index_space_handle*>();
-  print_footer("End testing auto_block<mutable_index_space_handle*>");
+  print_header("Begin testing auto_block<scattered_insertion_index_space_handle*>");
+  ltest &= test_auto_block_facet_all<scattered_insertion_index_space_handle*>();
+  ltest &= test_auto_block_facet_equal_all<scattered_insertion_index_space_handle*>();
+  //ltest &= test_auto_block_facet_equal_equal_all<scattered_insertion_index_space_handle*>();
+  //ltest &= test_auto_block_facet_insertion_all<scattered_insertion_index_space_handle*>();
+  //ltest &= test_auto_block_facet_deep_size_all<scattered_insertion_index_space_handle*>();
+  print_footer("End testing auto_block<scattered_insertion_index_space_handle*>");
 
   // list<scoped_index>
 

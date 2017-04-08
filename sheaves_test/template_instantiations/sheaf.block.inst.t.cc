@@ -22,7 +22,7 @@
 
 #include "arg_list.h"
 #include "crg_interval.h"
-#include "mutable_index_space_handle.h"
+#include "scattered_insertion_index_space_handle.h"
 #include "poset_dof_map.h"
 #include "poset_path.h"
 #include "primitive_value.h"
@@ -279,14 +279,14 @@ main(int xargc, char* xargv[])
   ltest &= test_block_facet_deep_size<index_space_handle*>();
   print_footer("End testing block<index_space_handle*>");
 
-  // mutable_index_space_handle*
+  // scattered_insertion_index_space_handle*
 
-  print_header("Begin testing block<mutable_index_space_handle*>");
-  ltest &= test_block_facet<mutable_index_space_handle*>();
-  ltest &= test_block_facet_equal<mutable_index_space_handle*>();
-  ltest &= test_block_facet_insertion<mutable_index_space_handle*>();
-  ltest &= test_block_facet_deep_size<mutable_index_space_handle*>();
-  print_footer("End testing block<mutable_index_space_handle*>");
+  print_header("Begin testing block<scattered_insertion_index_space_handle*>");
+  ltest &= test_block_facet<scattered_insertion_index_space_handle*>();
+  ltest &= test_block_facet_equal<scattered_insertion_index_space_handle*>();
+  ltest &= test_block_facet_insertion<scattered_insertion_index_space_handle*>();
+  ltest &= test_block_facet_deep_size<scattered_insertion_index_space_handle*>();
+  print_footer("End testing block<scattered_insertion_index_space_handle*>");
 
   // block<double>
 

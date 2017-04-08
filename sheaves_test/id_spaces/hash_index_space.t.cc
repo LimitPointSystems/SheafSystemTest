@@ -44,7 +44,7 @@ int main( int argc, char* argv[])
 
   string lname("test_hash_id_space");
 
-  mutable_index_space_handle lhandle =
+  scattered_insertion_index_space_handle lhandle =
     hash_index_space_handle::new_space(lid_spaces, lname, false, 3);
 
   pod_index_type lspace_id = lhandle.index();
@@ -61,9 +61,13 @@ int main( int argc, char* argv[])
 
   test_state_facet(lid_spaces, lspace_id, 1, 2);
 
+  // Test the gathered_insertion facet.
+
+  test_gathered_insertion_facet(lid_spaces, lspace_id);
+
   // Test the mutable facet.
 
-  test_mutable_facet(lid_spaces, lspace_id);
+  test_scattered_insertion_facet(lid_spaces, lspace_id);
 
   // Postconditions:
 

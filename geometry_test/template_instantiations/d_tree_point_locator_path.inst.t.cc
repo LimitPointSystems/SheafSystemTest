@@ -26,6 +26,9 @@
 using namespace std;
 using namespace geometry;
 
+#include <cstdlib>
+
+
 int
 main(int xargc, char* xargv[])
 {

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2013 Limit Point Systems, Inc. 
+# Copyright (c) 2014 Limit Point Systems, Inc. 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,39 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-# Setting CMAKE_CONFIGURATION_TYPES prior to the project function call
-# will eliminate the default configuration types (debug,release,RelWithDebugInfo, et al.) --
-# or at least stop them from appearing in the VS configuration list.
-# It does NOT stop cmake from setting all the cache variables associated with those same
-# configurations however.
-
-if(WIN32)
-    set(CMAKE_CONFIGURATION_TYPES  Debug_contracts RelWithDebInfo_no_contracts 
-        CACHE STRING "Supported configuration types" FORCE)
-else()
-    set(CMAKE_CONFIGURATION_TYPES Debug_contracts Release_no_contracts 
-         CACHE STRING "Supported configuration types" FORCE)
-endif()
-
-#
-# Tell Cmake which configurations it should see and "Debug"
-#
-set_property(GLOBAL PROPERTY DEBUG_CONFIGURATIONS "Debug_contracts" ) 
-
-#
-# Debug lib should have "_d" appended to filename.
-#
-if(WIN32)
-    set(CMAKE_DEBUG_CONTRACTS_POSTFIX "_d" CACHE STRING "Debug libs suffix")
-else()
-    set(CMAKE_DEBUG_CONTRACTS_POSTFIX "_debug" CACHE STRING "Debug libs suffix")
-endif()
-    
-#
-# Establish the project name
-#    
-project(SheafSystemTest)
 
 #
 # Information omitted from CMake documentation and discussion regarding CTest and CDash:
@@ -67,69 +34,90 @@ project(SheafSystemTest)
 #    enable_testing() is implied by the inclusion of the CTest modules and
 #    therefore an explicit reference to it is redundant and perhaps problematic
 #    under certain conditions. 
+#    2016-5-23: If Ctest is only included at top level, component check targets
+#    complain they can't find the configuration file DartConfiguration.tcl. 
+#    Moved include(CTest) to component CMakeLists.txt files.
 
 #
-# Ensure that we have the required cmake version.
+# Specify the minimum cmake version.
 #
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.5.0)
+
+#
+# Make sure if() treats constants like TRUE as constants 
+# rather than implicitly treating them as variables and trying to dereference them.
+
+cmake_policy(SET CMP0012 NEW)
+
+# Setting CMAKE_CONFIGURATION_TYPES prior to the project function call
+# will eliminate the default configuration types (debug,release,RelWithDebugInfo, et al.) --
+# or at least stop them from appearing in the VS configuration list.
+# It does NOT stop cmake from setting all the cache variables associated with those same
+# configurations however.
+
+if(WIN32)
+    set(CMAKE_CONFIGURATION_TYPES Debug_contracts RelWithDebInfo_no_contracts 
+       CACHE STRING "Supported configuration types" FORCE)
+    mark_as_advanced(FORCE CMAKE_CONFIGURATION_TYPES)
+else()
+    set(CMAKE_CONFIGURATION_TYPES Debug_contracts Release_no_contracts 
+       CACHE STRING "Supported configuration types" FORCE)
+    mark_as_advanced(FORCE CMAKE_CONFIGURATION_TYPES)
+endif()
+
+#
+# Establish the project name
+#    
+project(SheafSystemTest)
+
+#
+# Enable testing support, must be called after project command.
+#
+include(CTest)
+
+# CTest defines several variables, mark them advanced to keep user interface clean.
+
+mark_as_advanced(FORCE BUILD_TESTING)
+mark_as_advanced(FORCE CTEST_DROP_SITE)
+mark_as_advanced(FORCE CTEST_NIGHTLY_START_TIME)
+
+#
+# Set the cmake module path.
+#
+set(SHFSYSTST_CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" 
+   CACHE STRING "Location of SheafSystemTest Cmake modules")
+mark_as_advanced(FORCE SHFSYSTST_CMAKE_MODULE_PATH)
+
+# Make the requires and ensures functions available.
+
+include(${SHFSYSTST_CMAKE_MODULE_PATH}/design_by_contract.cmake)
 
 #
 # Include variable definitions and functions
 # unique to and/or required at the system level.
 #
 include(system_definitions.cmake)
+ShfSysTst_make_system_definitions()
 
 #
-# Set the compiler optimization level
+# Set up output directories
 #
-#set_optimization_level()
+ShfSysTst_create_output_dirs()
 
 #
 # Add components to the system
 #
-add_components()
+ShfSysTst_add_components()
 
 #
-# Add the system-level check target.
-# This is an aggregate target and will exercise all the components.
-# Use "<component>-check" for component level tests. 
-# NOTE: add_check_target() must only be called AFTER all component CmakeLists.txt
-# files are read.
+# Add all the system level targets.
 #
-add_check_target()
+include(${SHFSYSTST_CMAKE_MODULE_PATH}/target_declarations.cmake)
+ShfSysTst_add_system_targets()
 
 #
-# Add the system coverage target.
-# This is an aggregate target and will exercise all the components.
-# Use "<component>-coverage" for component level coverage results.
-# NOTE: add_coverage_target() must only be called AFTER all component CmakeLists.txt
-# files are read.
+# Configure the environment variable scripts. 
 #
-if(ENABLE_COVERAGE)
-    add_coverage_target()
+if(SHFSYSTST_LINUX)
+   ShfSysTst_configure_set_env_var_scripts()
 endif()
-
-#
-# Add the system bin target.
-# This is an aggregate target and will exercise all the components.
-# All unit tests and examples are built, but not run.
-# Use "<component>-bin" for component level binary construction.
-# NOTE: add_bin_target() must only be called AFTER all component CmakeLists.txt
-# files are read.
-#
-add_bin_target()
-
-#
-# Configure the environment scripts. 
-#
-if(LINUX64GNU OR LINUX64INTEL)
-    configure_file(${CMAKE_MODULE_PATH}/set_env_vars.csh.cmake.in ${CMAKE_BINARY_DIR}/set_env_vars.csh)
-    configure_file(${CMAKE_MODULE_PATH}/set_env_vars.sh.cmake.in ${CMAKE_BINARY_DIR}/set_env_vars.sh)
-endif()
-
-#
-# Markup the RELEASE_NOTES file. 
-#
-#set(RELEASE_DATE)
-#get_date(RELEASE_DATE)
-#configure_file(${CMAKE_SOURCE_DIR}/RELEASE_NOTES.in ${CMAKE_SOURCE_DIR}/RELEASE_NOTES)

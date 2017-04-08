@@ -25,13 +25,13 @@
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 # See the License for more information.
 #=============================================================================
-set(CTEST_PROJECT_NAME "SheafSystem" CACHE STRING "")
+set(CTEST_PROJECT_NAME "SheafSystemTest" CACHE STRING "")
 set(CTEST_NIGHTLY_START_TIME "8:00:00 UTC" CACHE STRING "")
 set(CTEST_DROP_METHOD "http" CACHE STRING "")
 set(CTEST_DROP_SITE "www.limitpoint.com" CACHE STRING "")
-set(CTEST_DROP_LOCATION "/CDash/submit.php?project=SheafSystem" CACHE STRING "")
+set(CTEST_DROP_LOCATION "/CDash/submit.php?project=SheafSystemTest" CACHE STRING "")
 set(CTEST_DROP_SITE_CDASH TRUE CACHE BOOL "")
-set(CTEST_CDASH_VERSION "2.0.2" CACHE STRING "")
+set(CTEST_CDASH_VERSION "3.5.0" CACHE STRING "")
 set(CTEST_CDASH_QUERY_VERSION TRUE CACHE BOOL "")
 
 # Mark the least used as advanced so as not to clutter up the ccmake interface.

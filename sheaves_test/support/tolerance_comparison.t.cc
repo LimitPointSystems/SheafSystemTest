@@ -25,7 +25,7 @@ using namespace std;
 using namespace sheaf;
 
 int
-main(int argc, char** argv[])
+main(int argc, char* argv[])
 {
   
   cout << boolalpha;

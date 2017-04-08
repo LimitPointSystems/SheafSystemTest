@@ -27,7 +27,7 @@ set(SRCS
 
    )
 
-collect_sources()
+ShfSysTst_collect_sources(fields_test "${SRCS}")
 
 #
 # Headers that are NOT associated with a .cc file.
@@ -36,7 +36,7 @@ set(ADDITIONAL_INCS
 
    )
 
-collect_includes()
+ShfSysTst_collect_sources(fields_test "${SRCS}" "${ADDITIONAL_INCS}")
 
 #
 # Source for unit test executables.
@@ -52,7 +52,7 @@ set(UNIT_TEST_SRCS
 ##    multisection_base_space_map.t.cc 
    )
 
-collect_unit_test_sources()
+ShfSysTst_collect_unit_test_sources(fields_test "${UNIT_TEST_SRCS}")
 
 #
 # Source for example executables.
@@ -61,4 +61,4 @@ set(EXAMPLE_SRCS
 
    )
 
-collect_example_sources()
+ShfSysTst_collect_example_sources(fields_test "${EXAMPLE_SRCS}")
