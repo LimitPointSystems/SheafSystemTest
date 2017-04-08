@@ -45,7 +45,7 @@ namespace sheaf
 
 class index_space_iterator;
 class index_space_handle;
-class mutable_index_space_handle;
+class scattered_insertion_index_space_handle;
 
 // ===========================================================
 // INDEX_SPACE_FAMILY FACET
@@ -152,6 +152,66 @@ void
 delete_id(index_space_family& xid_spaces, pod_index_type xid);
 
 // ===========================================================
+// GATHER_INSERTION_INDEX_SPACE FACET
+// ===========================================================
+
+///
+/// Test the mutable facet.
+///
+SHEAF_DLL_SPEC
+void
+test_gathered_insertion_facet(index_space_family& xid_spaces, pod_index_type xspace_id);
+
+///
+/// Test the gathered_insertion facet.
+///
+SHEAF_DLL_SPEC
+void
+test_gathered_insertion_facet(gathered_insertion_index_space_handle& xid_space);
+
+///
+/// Push back hub id, hub_id into xid_space.
+///
+SHEAF_DLL_SPEC
+void
+push_back(gathered_insertion_index_space_handle& xid_space, pod_index_type xhub_id);
+
+///
+/// Remove entry for the id xid from xid_space.
+///
+SHEAF_DLL_SPEC
+void
+remove(gathered_insertion_index_space_handle& xid_space, pod_index_type xid, bool xupdate_extrema);
+
+///
+/// Remove entry for the hub id xhub_id from xid_space.
+///
+SHEAF_DLL_SPEC
+void
+remove_hub(gathered_insertion_index_space_handle& xid_space, pod_index_type xhub_id, bool xupdate_extrema);
+
+///
+/// Update the extrema for xid_space.
+///
+SHEAF_DLL_SPEC
+void 
+update_extrema(gathered_insertion_index_space_handle& xid_space);
+
+///
+/// Gather xid_space.
+///
+SHEAF_DLL_SPEC
+void 
+gather(gathered_insertion_index_space_handle& xid_space);
+
+///
+/// Clear xid_space.
+///
+SHEAF_DLL_SPEC
+void 
+clear(gathered_insertion_index_space_handle& xid_space);
+
+// ===========================================================
 // MUTABLE_INDEX_SPACE FACET
 // ===========================================================
 
@@ -160,70 +220,21 @@ delete_id(index_space_family& xid_spaces, pod_index_type xid);
 ///
 SHEAF_DLL_SPEC
 void
-test_mutable_facet(index_space_family& xid_spaces, pod_index_type xspace_id);
+test_scattered_insertion_facet(index_space_family& xid_spaces, pod_index_type xspace_id);
 
 ///
 /// Test the mutable facet.
 ///
 SHEAF_DLL_SPEC
 void
-test_mutable_facet(mutable_index_space_handle& xid_space);
+test_scattered_insertion_facet(scattered_insertion_index_space_handle& xid_space);
 
 ///
 /// Insert the entry (xid, xhub_id) into xid_space.
 ///
 SHEAF_DLL_SPEC
 void
-insert(mutable_index_space_handle& xid_space,
-       pod_index_type xid,
-       pod_index_type xhub_id);
-
-///
-/// Push back hub id, hub_id into xid_space.
-///
-SHEAF_DLL_SPEC
-void
-push_back(mutable_index_space_handle& xid_space,
-	  pod_index_type xhub_id);
-
-///
-/// Remove entry for the id xid from xid_space.
-///
-SHEAF_DLL_SPEC
-void
-remove(mutable_index_space_handle& xid_space,
-       pod_index_type xid,
-       bool xupdate_extrema);
-
-///
-/// Remove entry for the hub id xhub_id from xid_space.
-///
-SHEAF_DLL_SPEC
-void
-remove_hub(mutable_index_space_handle& xid_space,
-	   pod_index_type xhub_id,
-	   bool xupdate_extrema);
-
-///
-/// Update the extrema for xid_space.
-///
-SHEAF_DLL_SPEC
-void 
-update_extrema(mutable_index_space_handle& xid_space);
-
-///
-/// Gather xid_space.
-///
-SHEAF_DLL_SPEC
-void 
-gather(mutable_index_space_handle& xid_space);
-
-///
-/// Clear xid_space.
-///
-SHEAF_DLL_SPEC
-void 
-clear(mutable_index_space_handle& xid_space);
+insert(scattered_insertion_index_space_handle& xid_space, pod_index_type xid, pod_index_type xhub_id);
 
 // ===========================================================
 // HANDLE FACET

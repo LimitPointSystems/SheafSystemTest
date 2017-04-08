@@ -284,7 +284,7 @@ main(int xargc, char* xargv[])
 
 
   print_header("Testing primitive_value facet for type \"char*\"");
-  ltest &= test_primitive_value_facet<char>("ABC");
+  ltest &= test_primitive_value_facet<const char>("ABC");
 
 
   print_header("Testing primitive_value facet for type \"double\"");

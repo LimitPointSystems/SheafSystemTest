@@ -17,70 +17,6 @@
 #
 # This file contains declarations and functions unique to this component.
 #
-
-#
-# Include functions and definitions common to all components.
-# .
-include(${CMAKE_MODULE_PATH}/component_functions.cmake)
-
-#
-# Check for the presence of system cxx includes.
-#
-check_cxx_includes()
-
-#
-# Define the clusters for this component.
-#
-set(clusters concurrency dof_iterators dof_maps examples id_spaces io iterators 
-    maps posets support test_posets traversers general template_instantiations)
-
-#
-# Initialize all variables for this component.
-#
-set_component_vars()
-
-#
-# Add the clusters to the project
-#
-add_clusters("${clusters}")
-
-#
-# We don't have to use this decision structure. Windows and linux will ignore the other's lib vars. Just keeps things tidy in the CMake GUI.
-#
-if(WIN64INTEL OR WIN64MSVC)
-
-    #
-    # Set the cumulative import library (win32) var for this component.
-    #
-    set(${COMPONENT}_IMPORT_LIBS ${${COMPONENT}_IMPORT_LIB} ${SHEAVES_IMPORT_LIB}  CACHE STRING " Cumulative import libraries (win32) for ${PROJECT_NAME}" FORCE)
-
-else()
-
-    #
-    # Set the cumulative shared library var for this component.
-    #
-    set(${COMPONENT}_STATIC_LIBS ${${COMPONENT}_STATIC_LIB} ${SHEAVES_STATIC_LIBS} CACHE STRING " Cumulative static libraries for ${PROJECT_NAME}" FORCE)
-    
-    #
-    # Set the cumulative shared library var for this component.
-    #
-    set(${COMPONENT}_SHARED_LIBS ${${COMPONENT}_SHARED_LIB} ${SHEAVES_SHARED_LIBS} CACHE STRING " Cumulative shared libraries for ${PROJECT_NAME}" FORCE)
-
-endif()
-
-#
-# Set the cumulative include path for this component.
-#
-set(${COMPONENT}_IPATHS ${${COMPONENT}_IPATH} ${SHEAVES_IPATHS} ${CMAKE_BINARY_DIR}/include CACHE STRING " Cumulative include paths for ${PROJECT_NAME}" FORCE)
-
-include_directories(${${COMPONENT}_IPATHS}) 
-
-include_directories(${SHEAVES_IPATHS}) 
-
-#
-# Set up output directories
-#
-create_output_dirs()
     
 #------------------------------------------------------------------------------
 # FUNCTION DEFINITION SECTION
@@ -89,48 +25,86 @@ create_output_dirs()
 #
 # Create the library targets for this component.
 #
-function(add_library_targets)
+function(ShfSysTst_add_sheaves_test_library_targets)
 
-    if(WIN64INTEL OR WIN64MSVC)
-        # Tell the linker where to look for this project's libraries.
-        link_directories(${${COMPONENT}_OUTPUT_DIR})
-        
-        # Create the DLL.
-        add_library(${${COMPONENT}_DYNAMIC_LIB} SHARED ${${COMPONENT}_SRCS})
-        
-        target_link_libraries(${${COMPONENT}_DYNAMIC_LIB} ${SHEAVES_IMPORT_LIBS})
-        set_target_properties(${${COMPONENT}_DYNAMIC_LIB} PROPERTIES FOLDER "Library Targets")
-        # Override cmake's placing of "${${COMPONENT}_DYNAMIC_LIB}_EXPORTS into the preproc symbol table.
-        set_target_properties(${${COMPONENT}_DYNAMIC_LIB} PROPERTIES DEFINE_SYMBOL "SHEAF_DLL_EXPORTS")
+   #message("Entering sheaves_test/component_definitions.cmake:add_library_targets")
 
-    else()
+   # Preconditions:
 
-        # Static library
-        add_library(${${COMPONENT}_STATIC_LIB} STATIC ${${COMPONENT}_SRCS})
-        set_target_properties(${${COMPONENT}_STATIC_LIB} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
+   dbc_require_or(SHFSYSTST_WINDOWS SHFSYSTST_LINUX)
 
-        # Shared library
-        add_library(${${COMPONENT}_SHARED_LIB} SHARED ${${COMPONENT}_SRCS})
-        set_target_properties(${${COMPONENT}_SHARED_LIB} PROPERTIES OUTPUT_NAME ${PROJECT_NAME} LINKER_LANGUAGE CXX)
-        set_target_properties(${${COMPONENT}_SHARED_LIB} PROPERTIES LINK_INTERFACE_LIBRARIES "")        
- 
-        # Override cmake's placing of "${COMPONENT_LIB}_EXPORTS into the preproc symbol table.
-        # CMake apparently detects the presence of cdecl_dllspec in the source and places
-        # -D<LIBRARY>_EXPORTS into the preproc symbol table no matter the platform.
-        set_target_properties(${${COMPONENT}_SHARED_LIB} PROPERTIES DEFINE_SYMBOL "")
- 
-        # Define the library version.
-        set_target_properties(${${COMPONENT}_SHARED_LIB} PROPERTIES VERSION ${LIB_VERSION})  
-    
-        # Library alias definitions
-        add_dependencies(${PROJECT_NAME}-shared-lib ${${COMPONENT}_SHARED_LIB})
-        add_dependencies(${PROJECT_NAME}-static-lib ${${COMPONENT}_STATIC_LIB})
-    
-        target_link_libraries(${${COMPONENT}_SHARED_LIB} ${SHEAVES_SHARED_LIBS})
-        target_link_libraries(${${COMPONENT}_STATIC_LIB} ${SHEAVES_SHARED_LIBS})
-        
-    endif()
+   # Body
 
-endfunction(add_library_targets)
+   if(SHFSYSTST_WINDOWS)
+      
+      # DLL.
+
+      add_library(${SHEAVES_TEST_DYNAMIC_LIB} SHARED ${SHEAVES_TEST_SRCS})
+      target_include_directories(${SHEAVES_TEST_DYNAMIC_LIB}
+         PUBLIC ${SHEAVES_TEST_IPATH} ${CMAKE_BINARY_DIR}/include)
+      target_link_libraries(${SHEAVES_TEST_DYNAMIC_LIB} PUBLIC ${SHEAVES_IMPORT_LIB})
+      set_target_properties(${SHEAVES_TEST_DYNAMIC_LIB} PROPERTIES FOLDER "Library Targets")
+
+      # Override cmake's placing of "${SHEAVES_TEST_DYNAMIC_LIB}_EXPORTS
+      # into the preproc symbol table.
+
+      set_target_properties(${SHEAVES_TEST_DYNAMIC_LIB}
+         PROPERTIES DEFINE_SYMBOL "SHEAF_DLL_EXPORTS")
+
+      # Static library
+
+      add_library(${SHEAVES_TEST_STATIC_LIB} STATIC ${SHEAVES_TEST_SRCS})            
+
+   elseif(SHFSYSTST_LINUX)
+
+      # Static library; depends on imported libsheaves target
+
+      add_library(${SHEAVES_TEST_STATIC_LIB} STATIC ${SHEAVES_TEST_SRCS})
+      target_include_directories(${SHEAVES_TEST_STATIC_LIB}
+         PUBLIC ${SHEAVES_TEST_IPATH} ${CMAKE_BINARY_DIR}/include)
+      target_link_libraries(${SHEAVES_TEST_STATIC_LIB} ${SHEAVES_STATIC_LIB})
+
+      # Not clear why we are setting output_name for the library
+      # or whether the value is correct.
+
+      set_target_properties(${SHEAVES_TEST_STATIC_LIB} PROPERTIES OUTPUT_NAME sheaves_test)
+
+      # Shared library
+
+      add_library(${SHEAVES_TEST_SHARED_LIB} SHARED ${SHEAVES_TEST_SRCS})
+      target_include_directories(${SHEAVES_TEST_SHARED_LIB}
+         PUBLIC ${SHEAVES_TEST_IPATH} ${CMAKE_BINARY_DIR}/include)
+      target_link_libraries(${SHEAVES_TEST_SHARED_LIB} ${SHEAVES_SHARED_LIB})
+
+      set_target_properties(${SHEAVES_TEST_SHARED_LIB} PROPERTIES LINKER_LANGUAGE CXX)
+
+      # Not clear why we are setting output_name for the library
+      # or whether the value is correct.
+
+      set_target_properties(${SHEAVES_TEST_SHARED_LIB} PROPERTIES OUTPUT_NAME sheaves_test)
+      
+      # Override cmake's placing of "${COMPONENT_LIB}_EXPORTS into the preproc symbol table.
+      # CMake apparently detects the presence of cdecl_dllspec in the source and places
+      # -D<LIBRARY>_EXPORTS into the preproc symbol table no matter the platform.
+
+      set_target_properties(${SHEAVES_TEST_SHARED_LIB} PROPERTIES DEFINE_SYMBOL "")
+      
+      # Define the library version.
+
+      set_target_properties(${SHEAVES_TEST_SHARED_LIB} PROPERTIES VERSION ${LIB_VERSION})  
+      
+      # Library alias definitions; 
+
+      add_custom_target(sheaves_test-static-lib)
+      add_dependencies(sheaves_test-static-lib ${SHEAVES_TEST_STATIC_LIB})
+
+      add_custom_target(sheaves_test-shared-lib)
+      add_dependencies(sheaves_test-shared-lib ${SHEAVES_TEST_SHARED_LIB})
+      
+   endif()
+
+   #message("Leaving sheaves_test/component_definitions.cmake:add_library_targets")
+
+endfunction(ShfSysTst_add_sheaves_test_library_targets)
 
 

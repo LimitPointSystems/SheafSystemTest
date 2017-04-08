@@ -44,7 +44,7 @@ int main( int argc, char* argv[])
 
   string lname("test_mutable_id_space");
 
-  mutable_index_space_handle lhandle =
+  scattered_insertion_index_space_handle lhandle =
     hash_index_space_handle::new_space(lid_spaces, lname, false, 3);
 
   pod_index_type lspace_id = lhandle.index();
@@ -55,7 +55,7 @@ int main( int argc, char* argv[])
 
   // Test handle facet.
 
-  test_handle_facet<mutable_index_space_handle>(lid_spaces, lspace_id);
+  test_handle_facet<scattered_insertion_index_space_handle>(lid_spaces, lspace_id);
 
   print_out_header("Testing miscellaneous handle functions");
 

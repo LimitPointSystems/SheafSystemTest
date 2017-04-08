@@ -102,14 +102,12 @@ main()
 
   // Char_ptr insertion operator.
 
-  char* char_ptr_dof = "this_is_a_test";
-  const char* xxx = "char_ptr_dof";
-  //  test1 << xxx;
+  const char* char_ptr_dof = "this_is_a_test";
   test1 << "char_ptr_dof" << char_ptr_dof;
   cout << "ct: " << test1.ct() << " should be 1" << endl
   << "arg_list:  " << test1
   << "should be: char_ptr_dof  C_STRING  "
-  << static_cast<void*>(char_ptr_dof)
+  << static_cast<const void*>(char_ptr_dof)
   << endl << endl;
   test1.clear();
 
@@ -126,7 +124,7 @@ main()
 
   // Void_ptr insertion operator.
 
-  void* void_ptr_dof = char_ptr_dof;
+  const void* void_ptr_dof = char_ptr_dof;
   test1 << "void_ptr_dof" << void_ptr_dof;
   cout << "ct: " << test1.ct() << " should be 1" << endl
   << "arg_list:  " << test1

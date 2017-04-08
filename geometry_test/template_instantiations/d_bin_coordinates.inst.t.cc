@@ -156,6 +156,8 @@ test_d_bin_coordinates_facet()
 
 } //end namespace
 
+#include <cstdlib>
+
 int
 main(int xargc, char* xargv[])
 {

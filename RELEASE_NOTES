@@ -1,1 +1,19 @@
-SheafSystemTest Release Notes Version @LIB_VERSION@  @RELEASE_DATE@
+SheafSystemTest Release Notes Version 4.0.0.0  07/20/2016
+
+Changes in branch COM-521:
+
+1.  Updated entire system to Windows10/VS2015/RHEL6.6/gcc4.9.3/C++11
+
+2.  Updated to current (or at least newer) versions of all prerequisties, see
+    the README-Linux or README-Windows files.
+
+3.  Completely refactored and reimplemented build sys for consistency with CMake 3.x.
+    See the README files for detailed instructions on new build procedures.
+    Supports <package>Config discovery mechanism, see CMake documentation.
+
+Changes in branch COM-521-2:
+
+1. Removed declaration of separate projects for each component.
+2. Reimplemented check targets to run tests in parallel
+3. Added CMake cache variable SHFSYSTST_TEST_JOBS to control number of
+   concurrent test jobs. SHFSYSTST_TEST_JOBS=1 results in sequential execution.

@@ -23,7 +23,7 @@
 #include "block.h"
 #include "hub_index_space_handle.h"
 #include "index_space_iterator.h"
-#include "mutable_index_space_handle.h"
+#include "scattered_insertion_index_space_handle.h"
 #include "scoped_index.h"
 #include "std_iomanip.h"
 #include "std_iostream.h"
@@ -200,20 +200,20 @@ delete_id(index_space_family& xid_spaces, pod_index_type xid)
 }
 
 // ===========================================================
-// MUTABLE_INDEX_MAP FACET
+// GATHERED_INSERTION_INDEX_MAP FACET
 // ===========================================================
 
 void
 sheaf::
-test_mutable_facet(index_space_family& xid_spaces, pod_index_type xspace_id)
+test_gathered_insertion_facet(index_space_family& xid_spaces, pod_index_type xspace_id)
 {
   // Preconditions:
 
   // Body:
 
-  mutable_index_space_handle lhandle(xid_spaces, xspace_id);
+  gathered_insertion_index_space_handle lhandle(xid_spaces, xspace_id);
 
-  test_mutable_facet(lhandle);
+  test_gathered_insertion_facet(lhandle);
 
   // Postconditions:
 
@@ -224,17 +224,17 @@ test_mutable_facet(index_space_family& xid_spaces, pod_index_type xspace_id)
 
 void
 sheaf::
-test_mutable_facet(mutable_index_space_handle& xid_space)
+test_gathered_insertion_facet(gathered_insertion_index_space_handle& xid_space)
 {
   // Preconditions:
 
   // Body:
 
-  print_out_header("Testing Mutable Facet");
+  print_out_header("Testing Gathered_Insertion Facet");
 
-  cout << "insert(10, 1)" << endl;
+  cout << "push_back(1)" << endl;
   scoped_index lid(xid_space.hub_id_space(), 1);
-  xid_space.insert(10, lid);
+  xid_space.push_back(lid);
 
   cout << "push_back(3)" << endl;
   lid = 3;
@@ -281,29 +281,7 @@ test_mutable_facet(mutable_index_space_handle& xid_space)
 
 void
 sheaf::
-insert(mutable_index_space_handle& xid_space,
-       pod_index_type xid,
-       pod_index_type xhub_id)
-{
-  // Print the operation.
-
-  stringstream lstr;
-  lstr << "insert_entry(" << xid << ", " << xhub_id << ")";
-
-  string loutput;
-  lstr >> loutput;
-
-  print_out_action(loutput);
-
-  // Insert the entry.
-
-  xid_space.insert(xid, xhub_id);
-}
-
-void
-sheaf::
-push_back(mutable_index_space_handle& xid_space,
-	  pod_index_type xhub_id)
+push_back(gathered_insertion_index_space_handle& xid_space, pod_index_type xhub_id)
 {
   // Print the operation.
 
@@ -322,9 +300,7 @@ push_back(mutable_index_space_handle& xid_space,
   
 void
 sheaf::
-remove(mutable_index_space_handle& xid_space,
-       pod_index_type xid,
-       bool xupdate_extrema)
+remove(gathered_insertion_index_space_handle& xid_space, pod_index_type xid, bool xupdate_extrema)
 {
   // Print the operation.
 
@@ -344,9 +320,7 @@ remove(mutable_index_space_handle& xid_space,
 
 void
 sheaf::
-remove_hub(mutable_index_space_handle& xid_space,
-	   pod_index_type xhub_id,
-	   bool xupdate_extrema)
+remove_hub(gathered_insertion_index_space_handle& xid_space, pod_index_type xhub_id, bool xupdate_extrema)
 {
   // Print the operation.
 
@@ -366,7 +340,7 @@ remove_hub(mutable_index_space_handle& xid_space,
 
 void
 sheaf::
-update_extrema(mutable_index_space_handle& xid_space)
+update_extrema(gathered_insertion_index_space_handle& xid_space)
 {
   // Print the operation.
 
@@ -379,7 +353,7 @@ update_extrema(mutable_index_space_handle& xid_space)
 
 void
 sheaf::
-gather(mutable_index_space_handle& xid_space)
+gather(gathered_insertion_index_space_handle& xid_space)
 {
   // Print the operation.
 
@@ -392,7 +366,7 @@ gather(mutable_index_space_handle& xid_space)
 
 void
 sheaf::
-clear(mutable_index_space_handle& xid_space)
+clear(gathered_insertion_index_space_handle& xid_space)
 {
   // Print the operation.
 
@@ -401,6 +375,105 @@ clear(mutable_index_space_handle& xid_space)
   // Clear the map.
 
   xid_space.clear();
+}
+
+// ===========================================================
+// MUTABLE_INDEX_MAP FACET
+// ===========================================================
+
+void
+sheaf::
+test_scattered_insertion_facet(index_space_family& xid_spaces, pod_index_type xspace_id)
+{
+  // Preconditions:
+
+  // Body:
+
+  scattered_insertion_index_space_handle lhandle(xid_spaces, xspace_id);
+
+  test_scattered_insertion_facet(lhandle);
+
+  // Postconditions:
+
+  // Exit:
+
+  return;
+}
+
+void
+sheaf::
+test_scattered_insertion_facet(scattered_insertion_index_space_handle& xid_space)
+{
+  // Preconditions:
+
+  // Body:
+
+  print_out_header("Testing Mutable Facet");
+
+  cout << "insert(10, 1)" << endl;
+  scoped_index lid(xid_space.hub_id_space(), 1);
+  xid_space.insert(10, lid);
+
+//   cout << "push_back(3)" << endl;
+//   lid = 3;
+//   xid_space.push_back(lid);
+
+//   cout << "push(litr, 5)" << endl;
+//   index_space_iterator& litr = xid_spaces.get_id_space_iterator(xspace_id);
+//   lid = 5;
+//   xid_space.push(litr, lid);
+//   xid_spaces.release_id_space_iterator(litr);
+  
+//   cout << "remove(5, false)" << endl;
+//   xid_space.remove(lid, false);
+
+//   cout << "remove(3, true)" << endl;
+//   lid = 3;
+//   xid_space.remove(lid, true);
+
+//   cout << "remove_hub(2, true)" << endl;
+//   xid_space.remove_hub(2, true);
+
+//   cout << "remove_hub(0, false)" << endl;
+//   xid_space.remove_hub(0, false);
+
+//   cout << "update_extrema()" << endl;
+//   xid_space.update_extrema();
+
+//   cout << "next_id()  = " << xid_space.next_id() << endl;
+
+//   cout << "capacity() = " << xid_space.capacity() << endl;
+
+//   cout << "gather()" << endl;
+//   xid_space.gather();
+
+//   cout << "clear()" << endl;
+//   xid_space.clear();
+
+  // Postconditions:
+
+  // Exit:
+
+  return;
+}
+
+void
+sheaf::
+insert(scattered_insertion_index_space_handle& xid_space, pod_index_type xid, pod_index_type xhub_id)
+{
+  // Print the operation.
+
+  stringstream lstr;
+  lstr << "insert_entry(" << xid << ", " << xhub_id << ")";
+
+  string loutput;
+  lstr >> loutput;
+
+  print_out_action(loutput);
+
+  // Insert the entry.
+
+  xid_space.insert(xid, xhub_id);
 }
 
 // ===========================================================

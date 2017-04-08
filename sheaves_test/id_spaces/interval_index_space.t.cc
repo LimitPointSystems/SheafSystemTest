@@ -65,9 +65,13 @@ int main( int argc, char* argv[])
 
   test_state_facet(lid_spaces, lspace_id, 1, 2);
 
+  // Test the gathered_insertion facet.
+
+  test_gathered_insertion_facet(lid_spaces, lspace_id);
+
   // Test the mutable facet.
 
-  test_mutable_facet(lid_spaces, lspace_id);
+  test_scattered_insertion_facet(lid_spaces, lspace_id);
 
   // Test interval facet.
 

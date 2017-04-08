@@ -27,7 +27,7 @@ set(SRCS
     block_scaling_test.cc
    )
 
-collect_sources()
+ShfSysTst_collect_sources(fiber_bundles_test "${SRCS}")
 
 #
 # Headers that are NOT associated with a .cc file.
@@ -36,7 +36,7 @@ set(ADDITIONAL_INCS
     block_scaling_test.impl.h
    )
 
-collect_includes() 
+ShfSysTst_collect_includes(fiber_bundles_test "${SRCS}" "${ADDITIONAL_INCS}") 
 
 #
 # Source for unit test executables.
@@ -70,7 +70,7 @@ set(UNIT_TEST_SRCS
 #    connectivity_extractor.t.cc
    )
 
-collect_unit_test_sources()
+ShfSysTst_collect_unit_test_sources(fiber_bundles_test "${UNIT_TEST_SRCS}")
 
 #
 # Source for non-test executables.
@@ -90,5 +90,5 @@ set(EXAMPLE_SRCS
     scalable_unstructured_block_3d.t.cc
    )
 
-collect_example_sources()
+ShfSysTst_collect_example_sources(fiber_bundles_test "${EXAMPLE_SRCS}")
 
