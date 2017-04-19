@@ -18,9 +18,9 @@
 /// @example evaluators/uniform_3d.t.cc
 /// Test case for class uniform_3d
 
-#include "uniform_3d.h"
-#include "assert_contract.h"
-#include "std_iostream.h"
+#include "SheafSystem/uniform_3d.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/std_iostream.h"
 
 using namespace std;
 using namespace std;

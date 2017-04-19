@@ -18,15 +18,15 @@
 /// @example singleton_index_space_interval.t.cc
 /// Test driver for singleton id space intervals.
 
-#include "assert_contract.h"
-#include "error_message.h"
-#include "index_space_family.h"
-#include "namespace_poset.h"
-#include "singleton_index_space_interval.h"
-#include "singleton_implicit_index_space_iterator.h"
-#include "std_iostream.h"
-#include "std_sstream.h"
-#include "test_index_spaces.impl.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/error_message.h"
+#include "SheafSystem/index_space_family.h"
+#include "SheafSystem/namespace_poset.h"
+#include "SheafSystem/singleton_index_space_interval.h"
+#include "SheafSystem/singleton_implicit_index_space_iterator.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystem/std_sstream.h"
+#include "SheafSystemTest/test_index_spaces.impl.h"
 
 using namespace std;
 using namespace sheaf;

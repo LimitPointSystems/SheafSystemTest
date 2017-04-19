@@ -18,9 +18,9 @@
 /// @example evaluators/constant_triangle.t.cc
 /// Test case for class constant_triangle
 
-#include "constant_triangle.h"
-#include "assert_contract.h"
-#include "std_iostream.h"
+#include "SheafSystem/constant_triangle.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/std_iostream.h"
 
 using namespace std;
 using namespace std;

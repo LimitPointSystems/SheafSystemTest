@@ -17,10 +17,10 @@
 
 /// Test driver for class interval_set.
 
-#include "interval_set.h"
-#include "interval_set_iterator.h"
-#include "std_string.h"
-#include "std_iomanip.h"
+#include "SheafSystem/interval_set.h"
+#include "SheafSystem/interval_set_iterator.h"
+#include "SheafSystem/std_string.h"
+#include "SheafSystem/std_iomanip.h"
 
 
 using namespace std;

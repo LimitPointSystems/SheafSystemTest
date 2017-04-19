@@ -22,31 +22,31 @@
 #define TEST_FIBERS_IMPL_H
 
 #ifndef SHEAF_DLL_SPEC_H
-#include "sheaf_dll_spec.h"
+#include "SheafSystem/sheaf_dll_spec.h"
 #endif
 
 #ifndef TEST_FIBERS_H
-#include "test_fibers.h"
+#include "SheafSystemTest/test_fibers.h"
 #endif
 
 #ifndef ASSERT_CONTRACT_H
-#include "assert_contract.h"
+#include "SheafSystem/assert_contract.h"
 #endif
 
 #ifndef FIBER_BUNDLES_NAMESPACE_H
-#include "fiber_bundles_namespace.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
 #endif
 
 #ifndef STD_CSTDLIB_H
-#include "std_cstdlib.h"
+#include "SheafSystem/std_cstdlib.h"
 #endif
 
 #ifndef STD_SSTREAM_H
-#include "std_sstream.h"
+#include "SheafSystem/std_sstream.h"
 #endif
 
 #ifndef TEST_UTILS_H
-#include "test_utils.h"
+#include "SheafSystemTest/test_utils.h"
 #endif
 
 namespace fiber_bundle

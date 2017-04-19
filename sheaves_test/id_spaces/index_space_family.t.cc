@@ -18,15 +18,15 @@
 /// @example id_spaces/index_space_family.t.cc
 /// Test driver for class index_space_family.
 
-#include "array_index_space_handle.h"
-#include "array_index_space_state.h"
-#include "index_space_family.h"
-#include "index_space_iterator.h"
-#include "hash_index_space_handle.h"
-#include "hash_index_space_state.h"
-#include "hub_index_space_handle.h"
-#include "namespace_poset.h"
-#include "test_index_spaces.h"
+#include "SheafSystem/array_index_space_handle.h"
+#include "SheafSystem/array_index_space_state.h"
+#include "SheafSystem/index_space_family.h"
+#include "SheafSystem/index_space_iterator.h"
+#include "SheafSystem/hash_index_space_handle.h"
+#include "SheafSystem/hash_index_space_state.h"
+#include "SheafSystem/hub_index_space_handle.h"
+#include "SheafSystem/namespace_poset.h"
+#include "SheafSystemTest/test_index_spaces.h"
 
 //#define TEST_RELEASE_FAILURE
 

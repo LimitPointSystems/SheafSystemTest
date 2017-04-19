@@ -19,24 +19,24 @@
 /// Implementation for class test_case_3d_irregular.
 
 
-#include "test_case_3d_irregular.h"
+#include "SheafSystemTest/test_case_3d_irregular.h"
 
-#include "base_space_poset.h"
-#include "unstructured_block.h"
-#include "sec_at0_space.h"
-#include "sec_at1_space.h"
-#include "sec_rep_space.h"
-#include "sec_st2_e3.h"
-#include "sec_stp_space.h"
-#include "trilinear_3d.h"
+#include "SheafSystem/base_space_poset.h"
+#include "SheafSystem/unstructured_block.h"
+#include "SheafSystem/sec_at0_space.h"
+#include "SheafSystem/sec_at1_space.h"
+#include "SheafSystem/sec_rep_space.h"
+#include "SheafSystem/sec_st2_e3.h"
+#include "SheafSystem/sec_stp_space.h"
+#include "SheafSystem/trilinear_3d.h"
 
-#include "vtkConnectivityFilter.h"
-#include "vtkDelaunay3D.h"
-#include "vtkMath.h"
-#include "vtkPoints.h"
-#include "vtkPolyData.h"
-#include "vtkUnstructuredGrid.h"
-#include "vtkUnstructuredGridWriter.h"
+#include "SheafSystem/vtkConnectivityFilter.h"
+#include "SheafSystem/vtkDelaunay3D.h"
+#include "SheafSystem/vtkMath.h"
+#include "SheafSystem/vtkPoints.h"
+#include "SheafSystem/vtkPolyData.h"
+#include "SheafSystem/vtkUnstructuredGrid.h"
+#include "SheafSystem/vtkUnstructuredGridWriter.h"
 
 
 ///@todo Cleanup and refactor to eliminate duplicate code.

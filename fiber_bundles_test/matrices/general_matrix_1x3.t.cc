@@ -18,13 +18,13 @@
 /// @example general_matrix_1x3.t.cc
 /// Test driver for class general_matrix_1x3.
 
-#include "assert_contract.h"
-#include "general_matrix_1x3.h"
-#include "general_matrix_1x2.h"
-#include "general_matrix_3x1.h"
-#include "general_matrix_3x2.h"
-#include "general_matrix_3x3.h"
-#include "std_iostream.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/general_matrix_1x3.h"
+#include "SheafSystem/general_matrix_1x2.h"
+#include "SheafSystem/general_matrix_3x1.h"
+#include "SheafSystem/general_matrix_3x2.h"
+#include "SheafSystem/general_matrix_3x3.h"
+#include "SheafSystem/std_iostream.h"
 
 
 using namespace std;

@@ -17,12 +17,12 @@
 
 /// Unit test for class sec_stp.
 
-#include "sec_stp.h"
-#include "sec_st2_e2.h"
+#include "SheafSystem/sec_stp.h"
+#include "SheafSystem/sec_st2_e2.h"
 
-#include "fiber_bundles_namespace.h"
-#include "test_sections.impl.h"
-#include "test_utils.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
+#include "SheafSystemTest/test_sections.impl.h"
+#include "SheafSystemTest/test_utils.h"
 
 using namespace std;
 using namespace fiber_bundle;

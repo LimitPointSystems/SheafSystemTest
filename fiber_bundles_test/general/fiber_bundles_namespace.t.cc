@@ -18,9 +18,9 @@
 /// @example general/fiber_bundles_namespace.t.cc
 /// Test driver for class fiber_bundles_namespace
 
-#include "fiber_bundles_namespace.h"
-#include "assert_contract.h"
-#include "storage_agent.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/storage_agent.h"
 
 using namespace std;
 using namespace fiber_bundle;

@@ -18,10 +18,10 @@
 /// @example
 /// Unit test driver for class d_bin_coordinates.
 
-#include "d_bin_coordinates.h"
+#include "SheafSystem/d_bin_coordinates.h"
 
-#include "geometry.h"
-#include "test_utils.h"
+#include "SheafSystem/geometry.h"
+#include "SheafSystemTest/test_utils.h"
 
 using namespace std;
 using namespace geometry;

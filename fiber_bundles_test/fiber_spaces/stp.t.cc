@@ -18,16 +18,16 @@
 /// @example stp.t.cc
 /// Unit test driver for class stp.
 
-#include "stp.h"
+#include "SheafSystem/stp.h"
 
-#include "assert_contract.h"
-#include "fiber_bundles_namespace.h"
-#include "st2_e2.h"
-#include "std_iomanip.h"
-#include "std_iostream.h"
-#include "stp_space.h"
-#include "test_fibers.impl.h"
-//#include "storage_agent.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
+#include "SheafSystem/st2_e2.h"
+#include "SheafSystem/std_iomanip.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystem/stp_space.h"
+#include "SheafSystemTest/test_fibers.impl.h"
+//#include "SheafSystem/storage_agent.h"
 
 
 using namespace std;

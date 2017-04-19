@@ -18,9 +18,9 @@
 /// @example evaluators/constant_hex.t.cc
 /// Test case for class constant_hex
 
-#include "constant_hex.h"
-#include "assert_contract.h"
-#include "std_iostream.h"
+#include "SheafSystem/constant_hex.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/std_iostream.h"
 
 using namespace std;
 using namespace std;

@@ -18,20 +18,20 @@
 /// @example base_spaces/processor_decomposition.t.cc
 /// Test driver for processor_decomposition.cc.
 
-#include "id_block.h"
-#include "material_decomposition.h"
-#include "mesh_decomposition.h"
-#include "poset_path.h"
-#include "preorder_iterator.h"
-#include "processor_decomposition.h"
-#include "sec_at0_space.h"
-#include "sec_at1_space.h"
-#include "sec_at0.h"
-#include "sec_e2.h"
-#include "sec_rep_space.h"
-#include "structured_block_1d.h"
-#include "storage_agent.h"
-#include "unstructured_block.h"
+#include "SheafSystem/id_block.h"
+#include "SheafSystem/material_decomposition.h"
+#include "SheafSystem/mesh_decomposition.h"
+#include "SheafSystem/poset_path.h"
+#include "SheafSystem/preorder_iterator.h"
+#include "SheafSystem/processor_decomposition.h"
+#include "SheafSystem/sec_at0_space.h"
+#include "SheafSystem/sec_at1_space.h"
+#include "SheafSystem/sec_at0.h"
+#include "SheafSystem/sec_e2.h"
+#include "SheafSystem/sec_rep_space.h"
+#include "SheafSystem/structured_block_1d.h"
+#include "SheafSystem/storage_agent.h"
+#include "SheafSystem/unstructured_block.h"
 
 using namespace std;
 using namespace fiber_bundle;

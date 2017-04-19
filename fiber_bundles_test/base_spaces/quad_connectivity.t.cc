@@ -18,8 +18,8 @@
 /// @example base_spaces/quad_connectivity.t.cc
 /// Test case for class quad_connectivity
 
-#include "quad_connectivity.h"
-#include "std_iostream.h"
+#include "SheafSystem/quad_connectivity.h"
+#include "SheafSystem/std_iostream.h"
 
 using namespace std;
 using namespace fiber_bundle;

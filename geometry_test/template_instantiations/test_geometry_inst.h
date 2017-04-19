@@ -22,11 +22,11 @@
 #define TEST_GEOMETRY_INST_H
 
 #ifndef SHEAF_DLL_SPEC_H
-#include "sheaf_dll_spec.h"
+#include "SheafSystem/sheaf_dll_spec.h"
 #endif
 
 #ifndef GEOMETRY_NAMESPACE_H
-#include "geometry_namespace.h"
+#include "SheafSystem/geometry_namespace.h"
 #endif
 
 

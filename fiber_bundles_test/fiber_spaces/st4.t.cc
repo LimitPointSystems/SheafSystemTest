@@ -18,16 +18,16 @@
 /// @example st4.t.cc
 /// Test driver for class st4.
 
-#include "st4.h"
+#include "SheafSystem/st4.h"
 
-#include "assert_contract.h"
-#include "fiber_bundles_namespace.h"
-#include "st4_e2.h"
-#include "std_iomanip.h"
-#include "std_iostream.h"
-#include "stp_space.h"
-#include "test_fibers.impl.h"
-//#include "storage_agent.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
+#include "SheafSystem/st4_e2.h"
+#include "SheafSystem/std_iomanip.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystem/stp_space.h"
+#include "SheafSystemTest/test_fibers.impl.h"
+//#include "SheafSystem/storage_agent.h"
 
 using namespace std;
 using namespace fiber_bundle;

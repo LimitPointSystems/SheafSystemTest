@@ -18,8 +18,8 @@
 /// @example base_spaces/triangle_connectivity.t.cc
 /// Test case for class triangle_connectivity
 
-#include "triangle_connectivity.h"
-#include "std_iostream.h"
+#include "SheafSystem/triangle_connectivity.h"
+#include "SheafSystem/std_iostream.h"
 
 using namespace std;
 using namespace fiber_bundle;

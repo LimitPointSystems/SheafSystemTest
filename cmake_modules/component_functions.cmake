@@ -751,12 +751,12 @@ function(ShfSysTst_collect_includes xcomponent_name xsrcs xadditional_incs)
    # Prepend the cluster name to each member of the srcs list
 
    set(lincs)
-   if(NOT ${CLUSTERNAME} STREQUAL "template_instantiations")
+#   if(NOT ${CLUSTERNAME} STREQUAL "template_instantiations")
       foreach(src ${xsrcs})
          string(REGEX REPLACE ".cc$" ".h"  inc ${src})
          list(APPEND lincs ${CMAKE_CURRENT_SOURCE_DIR}/${inc})
       endforeach()
-   endif()
+#   endif()
    
    # Prepend the cluster name to each member of the additional_incs list
 

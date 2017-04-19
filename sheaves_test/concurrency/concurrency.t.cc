@@ -18,38 +18,38 @@
 /// @example concurrency/concurrency.t.cc
 /// tester for CONCURRENCY cluster
 
-#include "std_iostream.h"
+#include "SheafSystem/std_iostream.h"
 
 #ifdef _PTHREADS
 
 #ifndef LINE_H
-#include "line.h"
+#include "SheafSystem/line.h"
 #endif
 
 #ifndef NAMESPACE_POSET_H
-#include "namespace_poset.h"
+#include "SheafSystem/namespace_poset.h"
 #endif
 
 class poset;
 
 #ifndef POSET_MEMBER_H
-#include "abstract_poset_member.h"
+#include "SheafSystem/abstract_poset_member.h"
 #endif
 
 #ifndef RUNNABLE_H
-#include "runnable.h"
+#include "SheafSystem/runnable.h"
 #endif
 
 #ifndef THREAD_H
-#include "thread.h"
+#include "SheafSystem/thread.h"
 #endif
 
 #ifndef THREAD_CONDITION_VARIABLE_H
-#include "thread_condition_variable.h"
+#include "SheafSystem/thread_condition_variable.h"
 #endif
 
 #ifndef TRIANGLE_H
-#include "triangle.h"
+#include "SheafSystem/triangle.h"
 #endif
 
 // global variables accessible to all threads:

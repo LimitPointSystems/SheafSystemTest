@@ -18,8 +18,8 @@
 /// @example base_spaces/point_connectivity.t.cc
 /// Test case for class point_connectivity
 
-#include "point_connectivity.h"
-#include "std_iostream.h"
+#include "SheafSystem/point_connectivity.h"
+#include "SheafSystem/std_iostream.h"
 
 using namespace std;
 using namespace fiber_bundle;

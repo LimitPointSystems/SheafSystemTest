@@ -21,23 +21,23 @@
 #define TEST_INDEX_SPACES_H
 
 #ifndef SHEAF_DLL_SPEC_H
-#include "sheaf_dll_spec.h"
+#include "SheafSystem/sheaf_dll_spec.h"
 #endif
 
 #ifndef INDEX_SPACE_FAMILY_H
-#include "index_space_family.h"
+#include "SheafSystem/index_space_family.h"
 #endif
 
 #ifndef POD_TYPES_H
-#include "pod_types.h"
+#include "SheafSystem/pod_types.h"
 #endif
 
 #ifndef SHEAF_H
-#include "sheaf.h"
+#include "SheafSystem/sheaf.h"
 #endif
 
 #ifndef STD_STRING_H
-#include "std_string.h"
+#include "SheafSystem/std_string.h"
 #endif
 
 namespace sheaf

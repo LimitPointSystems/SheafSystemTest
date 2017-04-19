@@ -18,14 +18,14 @@
 /// @example base_spaces/base_space_poset.t.cc
 /// Unit test for class base_space_poset.
 
-#include "fiber_bundles_namespace.h"
-#include "namespace_poset_member.h"
-#include "std_iomanip.h"
-#include "structured_block_1d.h"
-#include "test_utils.h"
-//#include "poset_path.h"
-//#include "storage_agent.h"
-//#include "test_sections.impl.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
+#include "SheafSystem/namespace_poset_member.h"
+#include "SheafSystem/std_iomanip.h"
+#include "SheafSystem/structured_block_1d.h"
+#include "SheafSystemTest/test_utils.h"
+//#include "SheafSystem/poset_path.h"
+//#include "SheafSystem/storage_agent.h"
+//#include "SheafSystemTest/test_sections.impl.h"
 
 using namespace std;
 using namespace fiber_bundle;

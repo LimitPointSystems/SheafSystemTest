@@ -17,16 +17,16 @@
 /// @example id_spaces/index_space_interval.t.cc
 /// Test driver for class id space intervals.
 
-#include "array_index_space_interval.h"
-#include "hub_index_space_handle.h"
-#include "index_space_family.h"
-#include "index_space_iterator.h"
-#include "namespace_poset.h"
-#include "ragged_array_index_space_interval.h"
-#include "scoped_index.h"
-#include "singleton_implicit_index_space_iterator.h"
-#include "singleton_index_space_interval.h"
-#include "test_index_spaces.h"
+#include "SheafSystem/array_index_space_interval.h"
+#include "SheafSystem/hub_index_space_handle.h"
+#include "SheafSystem/index_space_family.h"
+#include "SheafSystem/index_space_iterator.h"
+#include "SheafSystem/namespace_poset.h"
+#include "SheafSystem/ragged_array_index_space_interval.h"
+#include "SheafSystem/scoped_index.h"
+#include "SheafSystem/singleton_implicit_index_space_iterator.h"
+#include "SheafSystem/singleton_index_space_interval.h"
+#include "SheafSystemTest/test_index_spaces.h"
 
 using namespace std;
 using namespace sheaf;

@@ -22,11 +22,11 @@
 #define TEST_INDEX_SPACES_IMPL_H
 
 #ifndef SHEAF_DLL_SPEC_H
-#include "sheaf_dll_spec.h"
+#include "SheafSystem/sheaf_dll_spec.h"
 #endif
 
 #ifndef TEST_INDEX_SPACES_H
-#include "test_index_spaces.h"
+#include "SheafSystemTest/test_index_spaces.h"
 #endif
 
 namespace sheaf

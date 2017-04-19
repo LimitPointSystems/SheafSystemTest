@@ -18,17 +18,17 @@
 /// @example base_spaces/point_block_1d.t.cc
 /// Test driver for point_block_1d.cc.
 
-#include "chart_point_1d.h"
-#include "fiber_bundles_namespace.h"
-#include "poset_path.h"
-#include "sec_at0.h"
-#include "sec_e1.h"
-#include "sec_e1_uniform.h"
-#include "std_string.h"
-#include "point_block_1d.h"
-#include "std_string.h"
-#include "storage_agent.h"
-#include "test_sections.impl.h"
+#include "SheafSystem/chart_point_1d.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
+#include "SheafSystem/poset_path.h"
+#include "SheafSystem/sec_at0.h"
+#include "SheafSystem/sec_e1.h"
+#include "SheafSystem/sec_e1_uniform.h"
+#include "SheafSystem/std_string.h"
+#include "SheafSystem/point_block_1d.h"
+#include "SheafSystem/std_string.h"
+#include "SheafSystem/storage_agent.h"
+#include "SheafSystemTest/test_sections.impl.h"
 
 using namespace std;
 using namespace fiber_bundle;

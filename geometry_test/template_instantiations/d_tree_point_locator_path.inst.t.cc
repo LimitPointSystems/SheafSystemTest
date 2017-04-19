@@ -18,10 +18,10 @@
 /// @example
 /// Unit test driver for class d_tree_point_locator_path.
 
-#include "d_tree_point_locator_path.h"
+#include "SheafSystem/d_tree_point_locator_path.h"
 
-#include "geometry.h"
-#include "test_utils.h"
+#include "SheafSystem/geometry.h"
+#include "SheafSystemTest/test_utils.h"
 
 using namespace std;
 using namespace geometry;

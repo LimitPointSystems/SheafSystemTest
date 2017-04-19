@@ -17,12 +17,12 @@
 
 /// Unit test for class sec_tuple.
 
-#include "sec_tuple.h"
-#include "sec_e2.h"
+#include "SheafSystem/sec_tuple.h"
+#include "SheafSystem/sec_e2.h"
 
-#include "fiber_bundles_namespace.h"
-#include "test_sections.impl.h"
-#include "test_utils.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
+#include "SheafSystemTest/test_sections.impl.h"
+#include "SheafSystemTest/test_utils.h"
 
 using namespace std;
 using namespace fiber_bundle;

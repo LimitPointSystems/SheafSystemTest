@@ -18,12 +18,12 @@
 /// @example io/read_index.t.cc
 /// Test driver for storage_agent::read_index().
 
-#include "index_iterator.h"
-#include "poset.h"
-#include "poset_bounds_descriptor.h"
-#include "namespace_poset.h"
-#include "assert_contract.h"
-#include "storage_agent.h"
+#include "SheafSystem/index_iterator.h"
+#include "SheafSystem/poset.h"
+#include "SheafSystem/poset_bounds_descriptor.h"
+#include "SheafSystem/namespace_poset.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/storage_agent.h"
 
 
 poset* mesh;

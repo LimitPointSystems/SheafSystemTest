@@ -15,8 +15,8 @@
 // limitations under the License.
 //
 
-#include "svd.h"
-#include "std_iostream.h"
+#include "SheafSystem/svd.h"
+#include "SheafSystem/std_iostream.h"
 
 using namespace std;
 using namespace fiber_bundle;

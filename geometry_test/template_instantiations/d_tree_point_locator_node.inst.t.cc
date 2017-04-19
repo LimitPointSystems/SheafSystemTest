@@ -18,12 +18,12 @@
 /// @example
 /// Unit test driver for class d_tree_point_locator_node.
 
-#include "d_tree_point_locator_node.h"
+#include "SheafSystem/d_tree_point_locator_node.h"
 
-#include "test_utils.h"
+#include "SheafSystemTest/test_utils.h"
 
-#include "std_iostream.h"
-#include "std_iomanip.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystem/std_iomanip.h"
 
 namespace
 {

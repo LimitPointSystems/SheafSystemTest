@@ -17,11 +17,11 @@
 
 /// Test driver for class int_set.
 
-#include "int_set.h"
-#include "std_iostream.h"
-#include "std_iomanip.h"
-#include "subposet.h"
-#include "test_utils.h"
+#include "SheafSystem/int_set.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystem/std_iomanip.h"
+#include "SheafSystem/subposet.h"
+#include "SheafSystemTest/test_utils.h"
 
 using namespace std;
 using namespace sheaf;

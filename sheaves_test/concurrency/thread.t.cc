@@ -17,19 +17,19 @@
 
 #ifdef _PTHREADS
 
-#include "std_iostream.h"
+#include "SheafSystem/std_iostream.h"
 
-#include "read_write_monitor.h"
+#include "SheafSystem/read_write_monitor.h"
 
-#include "runnable.h"
+#include "SheafSystem/runnable.h"
 
-#include "singly_linked_list.h"
+#include "SheafSystem/singly_linked_list.h"
 
-#include "thread.h"
+#include "SheafSystem/thread.h"
 
-#include "thread_condition_variable.h"
+#include "SheafSystem/thread_condition_variable.h"
 
-#include "thread_mutex.h"
+#include "SheafSystem/thread_mutex.h"
 
 thread_mutex               p_mutex;
 int                        p;
@@ -217,7 +217,7 @@ doit(runnable* r) {
 
 #else // no _PTHREADS
 
-#include "std_iostream.h"
+#include "SheafSystem/std_iostream.h"
 
 int main() {
   std::cout << "Not built with -D_PTHREADS" << std::endl;

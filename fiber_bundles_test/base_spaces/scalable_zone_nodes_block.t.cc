@@ -23,8 +23,8 @@
 /// @example base_spaces/scalable_zone_nodes_block.t.cc
 /// Test driver for timing zone_nodes_block performance.
 
-#include "zone_nodes_block.h"
-#include "block_scaling_test.impl.h"
+#include "SheafSystem/zone_nodes_block.h"
+#include "SheafSystemTest/block_scaling_test.impl.h"
 
 using namespace std;
 using namespace fiber_bundle;

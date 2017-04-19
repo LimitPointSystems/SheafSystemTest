@@ -17,12 +17,12 @@
 
 /// Unit test driver for class any_lite.
 
-#include "any_lite.h"
+#include "SheafSystem/any_lite.h"
 
-#include "assert_contract.h"
-#include "std_iomanip.h"
-#include "std_iostream.h"
-#include "test_utils.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/std_iomanip.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystemTest/test_utils.h"
 
 using namespace std;
 using namespace fiber_bundle;

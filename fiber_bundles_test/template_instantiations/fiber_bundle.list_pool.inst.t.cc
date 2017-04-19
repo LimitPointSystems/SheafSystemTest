@@ -18,18 +18,18 @@
 /// @example template_instantiations/list_pool.inst.t.cc
 /// Unit test driver for class list_pool template functions.
 
-#include "fiber_bundles_namespace.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
 
-#include "i_adjacency_implicit_index_space_iterator.h"
-#include "i_connectivity_implicit_index_space_iterator.h"
-#include "ij_adjacency_implicit_index_space_iterator.h"
-#include "ij_connectivity_implicit_index_space_iterator.h"
-#include "ijk_adjacency_implicit_index_space_iterator.h"
-#include "ijk_connectivity_implicit_index_space_iterator.h"
-#include "section_space_schema_jims_index_space_handle.h"
-#include "section_space_schema_jims_index_space_iterator.h"
-#include "test_utils.h"
-#include "test_sheaves.impl.h"
+#include "SheafSystem/i_adjacency_implicit_index_space_iterator.h"
+#include "SheafSystem/i_connectivity_implicit_index_space_iterator.h"
+#include "SheafSystem/ij_adjacency_implicit_index_space_iterator.h"
+#include "SheafSystem/ij_connectivity_implicit_index_space_iterator.h"
+#include "SheafSystem/ijk_adjacency_implicit_index_space_iterator.h"
+#include "SheafSystem/ijk_connectivity_implicit_index_space_iterator.h"
+#include "SheafSystem/section_space_schema_jims_index_space_handle.h"
+#include "SheafSystem/section_space_schema_jims_index_space_iterator.h"
+#include "SheafSystemTest/test_utils.h"
+#include "SheafSystemTest/test_sheaves.impl.h"
 
 using namespace std;
 using namespace fiber_bundle;

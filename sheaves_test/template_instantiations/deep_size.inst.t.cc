@@ -17,17 +17,17 @@
 
 /// Test driver for deep_size function template instantiations.
 
-//#include "sheaves_namespace.h"
+//#include "SheafSystem/sheaves_namespace.h"
 
-#include "deep_size.impl.h"
+#include "SheafSystem/deep_size.impl.h"
 
-#include "index_space_family.h"
-#include "namespace_poset.h"
-#include "scoped_index.h"
-#include "std_list.h"
-#include "std_map.h"
-#include "std_unordered_map.h"
-#include "test_utils.h"
+#include "SheafSystem/index_space_family.h"
+#include "SheafSystem/namespace_poset.h"
+#include "SheafSystem/scoped_index.h"
+#include "SheafSystem/std_list.h"
+#include "SheafSystem/std_map.h"
+#include "SheafSystem/std_unordered_map.h"
+#include "SheafSystemTest/test_utils.h"
 
 using namespace std;
 using namespace unordered;

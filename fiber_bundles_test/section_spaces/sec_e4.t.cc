@@ -18,13 +18,13 @@
 /// @example sec_e4.t.cc
 /// Unit test for class e4.
 
-#include "sec_e4.h"
+#include "SheafSystem/sec_e4.h"
 
-#include "assert_contract.h"
-#include "fiber_bundles_namespace.h"
-#include "storage_agent.h"
-#include "test_sections.impl.h"
-#include "test_utils.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
+#include "SheafSystem/storage_agent.h"
+#include "SheafSystemTest/test_sections.impl.h"
+#include "SheafSystemTest/test_utils.h"
 
 using namespace std;
 using namespace fiber_bundle;

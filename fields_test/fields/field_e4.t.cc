@@ -18,11 +18,11 @@
 /// @example field_e4.t.cc
 /// Test driver for class e4.
 
-#include "assert_contract.h"
-#include "fiber_bundles_namespace.h"
-#include "field_e4.h"
-#include "storage_agent.h"
-#include "test_fields.impl.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
+#include "SheafSystem/field_e4.h"
+#include "SheafSystem/storage_agent.h"
+#include "SheafSystemTest/test_fields.impl.h"
 
 using namespace std;
 using namespace fields;

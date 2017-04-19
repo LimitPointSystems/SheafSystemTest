@@ -22,25 +22,25 @@
 #define TEST_SHEAVES_IMPL_H
 
 #ifndef SHEAF_DLL_SPEC_H
-#include "sheaf_dll_spec.h"
+#include "SheafSystem/sheaf_dll_spec.h"
 #endif
 
-#include "arg_list.h"
-#include "assert_contract.h"
-#include "block.h"
-#include "list_pool.h"
-#include "std_iostream.h"
-#include "test_sheaves.h"
-#include "test_utils.h"
+#include "SheafSystem/arg_list.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/block.h"
+#include "SheafSystem/list_pool.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystemTest/test_sheaves.h"
+#include "SheafSystemTest/test_utils.h"
 
-#include "test_sheaves.h"
+#include "SheafSystemTest/test_sheaves.h"
 
-#include "namespace_poset.h"
-#include "subposet_member_iterator.h"
+#include "SheafSystem/namespace_poset.h"
+#include "SheafSystem/subposet_member_iterator.h"
 
-#include "ragged_array.h"
-#include "rc_any.h"
-#include "record_map.h"
+#include "SheafSystem/ragged_array.h"
+#include "SheafSystem/rc_any.h"
+#include "SheafSystem/record_map.h"
 
 
 

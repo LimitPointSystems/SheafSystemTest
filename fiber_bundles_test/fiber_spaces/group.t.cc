@@ -18,10 +18,10 @@
 /// @example group.t.cc
 /// Unit test driver for class group.
 
-#include "group.h"
+#include "SheafSystem/group.h"
 
-#include "assert_contract.h"
-#include "std_iomanip.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/std_iomanip.h"
 
 using namespace std;
 using namespace fiber_bundle;

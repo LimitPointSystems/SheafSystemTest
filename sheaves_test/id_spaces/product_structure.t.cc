@@ -18,12 +18,12 @@
 /// @example product_structure.t.cc
 /// Test driver for the product structure classes.
 
-#include "ij_product_structure.h"
-#include "ijk_product_structure.h"
+#include "SheafSystem/ij_product_structure.h"
+#include "SheafSystem/ijk_product_structure.h"
 
-#include "assert_contract.h"
-#include "error_message.h"
-#include "std_iostream.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/error_message.h"
+#include "SheafSystem/std_iostream.h"
 
 using namespace std;
 using namespace sheaf;

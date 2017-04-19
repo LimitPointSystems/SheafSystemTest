@@ -17,8 +17,8 @@
 /// @example
 /// Unit test driver for template class auto_block instantiations.
 
-#include "auto_block.h"
-#include "test_sheaves.impl.h"
+#include "SheafSystem/auto_block.h"
+#include "SheafSystemTest/test_sheaves.impl.h"
 
 using namespace std;
 using namespace sheaf;

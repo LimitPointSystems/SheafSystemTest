@@ -18,10 +18,10 @@
 /// @example basis_transform.t.cc
 /// Test driver for class gl3 and transform_basis_by routines.
 
-#include "assert_contract.h"
-#include "e3.h"
-#include "gl3.h"
-#include "st2_e3.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/e3.h"
+#include "SheafSystem/gl3.h"
+#include "SheafSystem/st2_e3.h"
 
 using namespace std;
 using namespace fiber_bundle;

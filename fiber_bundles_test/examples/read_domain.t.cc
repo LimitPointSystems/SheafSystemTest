@@ -17,11 +17,11 @@
 
 /// @example examples/read_domain.t.cc
 
-#include "std_iostream.h"
-#include "namespace_poset.h"
-#include "poset_bounds_descriptor.h"
-#include "sec_rep_space.h"
-#include "storage_agent.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystem/namespace_poset.h"
+#include "SheafSystem/poset_bounds_descriptor.h"
+#include "SheafSystem/sec_rep_space.h"
+#include "SheafSystem/storage_agent.h"
 
 using namespace std;
 using namespace fiber_bundle;

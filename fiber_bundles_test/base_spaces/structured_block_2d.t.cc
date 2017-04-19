@@ -18,19 +18,19 @@
 /// @example base_spaces/structured_block_2d.t.cc
 /// Test driver for structured_block_2d.
 
-#include "chart_point_2d.h"
-#include "fiber_bundles_namespace.h"
-#include "ij_product_structure.h"
-#include "sec_at0.h"
-#include "sec_e2.h"
-#include "sec_e2_uniform.h"
-#include "std_sstream.h"
-#include "std_string.h"
-#include "storage_agent.h"
-#include "structured_block_2d.h"
-#include "tern.h"
-#include "test_sections.impl.h"
-#include "wsv_block.h"
+#include "SheafSystem/chart_point_2d.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
+#include "SheafSystem/ij_product_structure.h"
+#include "SheafSystem/sec_at0.h"
+#include "SheafSystem/sec_e2.h"
+#include "SheafSystem/sec_e2_uniform.h"
+#include "SheafSystem/std_sstream.h"
+#include "SheafSystem/std_string.h"
+#include "SheafSystem/storage_agent.h"
+#include "SheafSystem/structured_block_2d.h"
+#include "SheafSystem/tern.h"
+#include "SheafSystemTest/test_sections.impl.h"
+#include "SheafSystem/wsv_block.h"
 
 using namespace std;
 using namespace fiber_bundle;

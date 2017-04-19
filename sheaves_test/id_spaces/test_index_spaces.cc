@@ -17,17 +17,17 @@
 /// @file
 /// Implementation for id space test functions.
 
-#include "test_index_spaces.h"
+#include "SheafSystemTest/test_index_spaces.h"
 
-#include "assert_contract.h"
-#include "block.h"
-#include "hub_index_space_handle.h"
-#include "index_space_iterator.h"
-#include "scattered_insertion_index_space_handle.h"
-#include "scoped_index.h"
-#include "std_iomanip.h"
-#include "std_iostream.h"
-#include "std_sstream.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/block.h"
+#include "SheafSystem/hub_index_space_handle.h"
+#include "SheafSystem/index_space_iterator.h"
+#include "SheafSystem/scattered_insertion_index_space_handle.h"
+#include "SheafSystem/scoped_index.h"
+#include "SheafSystem/std_iomanip.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystem/std_sstream.h"
 
 using namespace std;
 

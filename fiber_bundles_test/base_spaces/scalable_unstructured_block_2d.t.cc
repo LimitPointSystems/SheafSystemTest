@@ -25,8 +25,8 @@
 #define TEST_IO // Test the io system
 #define USE_RUSAGE // Use getrusage to test memory performance.  Otherwise, use the deep size function of the block.
 
-#include "unstructured_block.h"
-#include "block_scaling_test.impl.h"
+#include "SheafSystem/unstructured_block.h"
+#include "SheafSystemTest/block_scaling_test.impl.h"
 
 using namespace std;
 using namespace fiber_bundle;

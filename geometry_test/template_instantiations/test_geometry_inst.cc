@@ -18,8 +18,8 @@
 /// @file
 /// Implementation for test_geometry_inst specializations
 
-#include "test_geometry_inst.impl.h"
-#include "test_utils.h"
+#include "SheafSystemTest/test_geometry_inst.impl.h"
+#include "SheafSystemTest/test_utils.h"
 
 using namespace std;
 

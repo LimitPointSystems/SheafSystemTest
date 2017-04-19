@@ -20,13 +20,13 @@
 // $$OBSOLETE No longer part of the tests.  Code remains only as
 //            a reference for future development.
 
-#include "deep_size.h"
-#include "fiber_bundles_namespace.h"
-#include "hex_connectivity.h"
-#include "plot.h"
-#include "std_sstream.h"
-#include "storage_agent.h"
-#include "zone_nodes_block.h"
+#include "SheafSystem/deep_size.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
+#include "SheafSystem/hex_connectivity.h"
+#include "SheafSystem/plot.h"
+#include "SheafSystem/std_sstream.h"
+#include "SheafSystem/storage_agent.h"
+#include "SheafSystem/zone_nodes_block.h"
 
 using namespace std;
 using namespace fiber_bundle;

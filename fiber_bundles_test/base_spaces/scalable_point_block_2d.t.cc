@@ -23,8 +23,8 @@
 #define TEST_IO // Test the io system
 #define USE_RUSAGE // Use getrusage to test memory performance.  Otherwise, use the deep size function of the block.
 
-#include "point_block_2d.h"
-#include "block_scaling_test.impl.h"
+#include "SheafSystem/point_block_2d.h"
+#include "SheafSystemTest/block_scaling_test.impl.h"
 
 using namespace std;
 using namespace fiber_bundle;

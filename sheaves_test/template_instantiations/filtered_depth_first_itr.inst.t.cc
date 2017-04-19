@@ -18,11 +18,11 @@
 /// @example template_instantiations/filtered_depth_first_itr.inst.t.cc
 /// Unit test driver for template class filtered_depth_first_itr.
 
-#include "filtered_depth_first_itr.h"
+#include "SheafSystem/filtered_depth_first_itr.h"
 
-#include "namespace_poset.h"
-#include "test_sheaves.impl.h"
-#include "test_utils.h"
+#include "SheafSystem/namespace_poset.h"
+#include "SheafSystemTest/test_sheaves.impl.h"
+#include "SheafSystemTest/test_utils.h"
 
 
 using namespace std;

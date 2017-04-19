@@ -17,9 +17,9 @@
 
 /// Test driver for functions in tolerance_comparison.h
 
-#include "tolerance_comparison.h"
-#include "assert_contract.h"
-#include "std_iostream.h"
+#include "SheafSystem/tolerance_comparison.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/std_iostream.h"
 
 using namespace std;
 using namespace sheaf;

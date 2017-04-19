@@ -35,13 +35,21 @@ function(ShfSysTst_add_sheaves_test_library_targets)
 
    # Body
 
+   # Target to create copies of header files with path ${SHFSYSTST_HEADER_SCOPE}/*.h,
+   # so uniquely scoped paths in include directives will work.
+
+   add_custom_target(sheaves_test_scoped_headers
+      COMMAND ${CMAKE_COMMAND} -E copy_if_different ${SHEAVES_TEST_INCS} ${SHFSYSTST_HEADER_DIR})   
+
    if(SHFSYSTST_WINDOWS)
       
       # DLL.
 
       add_library(${SHEAVES_TEST_DYNAMIC_LIB} SHARED ${SHEAVES_TEST_SRCS})
-      target_include_directories(${SHEAVES_TEST_DYNAMIC_LIB}
-         PUBLIC ${SHEAVES_TEST_IPATH} ${CMAKE_BINARY_DIR}/include)
+      add_dependencies(${SHEAVES_TEST_DYNAMIC_LIB} sheaves_test_scoped_headers)
+#      target_include_directories(${SHEAVES_TEST_DYNAMIC_LIB}
+#         PUBLIC ${SHEAVES_TEST_IPATH} ${CMAKE_BINARY_DIR}/include)
+      target_include_directories(${SHEAVES_TEST_DYNAMIC_LIB} PUBLIC ${CMAKE_BINARY_DIR}/include)
       target_link_libraries(${SHEAVES_TEST_DYNAMIC_LIB} PUBLIC ${SHEAVES_IMPORT_LIB})
       set_target_properties(${SHEAVES_TEST_DYNAMIC_LIB} PROPERTIES FOLDER "Library Targets")
 
@@ -60,8 +68,10 @@ function(ShfSysTst_add_sheaves_test_library_targets)
       # Static library; depends on imported libsheaves target
 
       add_library(${SHEAVES_TEST_STATIC_LIB} STATIC ${SHEAVES_TEST_SRCS})
-      target_include_directories(${SHEAVES_TEST_STATIC_LIB}
-         PUBLIC ${SHEAVES_TEST_IPATH} ${CMAKE_BINARY_DIR}/include)
+      add_dependencies(${SHEAVES_TEST_STATIC_LIB} sheaves_test_scoped_headers)
+#      target_include_directories(${SHEAVES_TEST_STATIC_LIB}
+#         PUBLIC ${SHEAVES_TEST_IPATH} ${CMAKE_BINARY_DIR}/include)
+      target_include_directories(${SHEAVES_TEST_STATIC_LIB} PUBLIC ${CMAKE_BINARY_DIR}/include)
       target_link_libraries(${SHEAVES_TEST_STATIC_LIB} ${SHEAVES_STATIC_LIB})
 
       # Not clear why we are setting output_name for the library
@@ -72,8 +82,10 @@ function(ShfSysTst_add_sheaves_test_library_targets)
       # Shared library
 
       add_library(${SHEAVES_TEST_SHARED_LIB} SHARED ${SHEAVES_TEST_SRCS})
-      target_include_directories(${SHEAVES_TEST_SHARED_LIB}
-         PUBLIC ${SHEAVES_TEST_IPATH} ${CMAKE_BINARY_DIR}/include)
+      add_dependencies(${SHEAVES_TEST_SHARED_LIB} sheaves_test_scoped_headers)
+#      target_include_directories(${SHEAVES_TEST_SHARED_LIB}
+#         PUBLIC ${SHEAVES_TEST_IPATH} ${CMAKE_BINARY_DIR}/include)
+      target_include_directories(${SHEAVES_TEST_SHARED_LIB} PUBLIC ${CMAKE_BINARY_DIR}/include)
       target_link_libraries(${SHEAVES_TEST_SHARED_LIB} ${SHEAVES_SHARED_LIB})
 
       set_target_properties(${SHEAVES_TEST_SHARED_LIB} PROPERTIES LINKER_LANGUAGE CXX)

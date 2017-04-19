@@ -17,18 +17,18 @@
 
 /// Unit test driver for class error_message.
 
-#include "arg_list.h"
-#include "assert_contract.h"
-#include "index_space_family.h"
-#include "namespace_poset.h"
-#include "namespace_relative_member_index.h"
-#include "namespace_relative_subposet_index.h"
-#include "schema_descriptor.h"
-#include "sheaves_namespace.h"
-#include "std_iostream.h"
-#include "std_sstream.h"
-#include "scoped_index.h"
-#include "wsv_block.h"
+#include "SheafSystem/arg_list.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/index_space_family.h"
+#include "SheafSystem/namespace_poset.h"
+#include "SheafSystem/namespace_relative_member_index.h"
+#include "SheafSystem/namespace_relative_subposet_index.h"
+#include "SheafSystem/schema_descriptor.h"
+#include "SheafSystem/sheaves_namespace.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystem/std_sstream.h"
+#include "SheafSystem/scoped_index.h"
+#include "SheafSystem/wsv_block.h"
 
 using namespace std;
 using namespace sheaf;

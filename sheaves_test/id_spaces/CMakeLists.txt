@@ -33,7 +33,7 @@ ShfSysTst_collect_sources(sheaves_test "${SRCS}")
 # Headers that are NOT associated with a .cc file.
 #
 set(ADDITIONAL_INCS
-    test_index_space.impl.h
+    test_index_spaces.impl.h
    )
   
 ShfSysTst_collect_includes(sheaves_test "${SRCS}" "${ADDITIONAL_INCS}")

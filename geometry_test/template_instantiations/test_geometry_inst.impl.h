@@ -21,12 +21,12 @@
 #ifndef TEST_GEOMETRY_INST_IMPL_H
 #define TEST_GEOMETRY_INST_IMPL_H
 
-#include "test_geometry_inst.h"
+#include "SheafSystemTest/test_geometry_inst.h"
 
-// #include "assert_contract.h"
-// #include "geometry_namespace.h"
-// #include "std_iostream.h"
-// #include "test_utils.h"
+// #include "SheafSystem/assert_contract.h"
+// #include "SheafSystem/geometry_namespace.h"
+// #include "SheafSystem/std_iostream.h"
+// #include "SheafSystemTest/test_utils.h"
 
 namespace geometry
 {

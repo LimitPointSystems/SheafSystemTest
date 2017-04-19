@@ -17,9 +17,9 @@
 
 /// Unit test driver for class assert_contract.
 
-#include "assert_contract.h"
-#include "std_iostream.h"
-#include "std_stdexcept.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystem/std_stdexcept.h"
 
 using namespace std;
 using namespace sheaf;

@@ -20,11 +20,11 @@
 // $$OBSOLETE No longer part of the tests.  Code remains only as
 //            a reference for future development.
 
-#include "zone_partition.h"
+#include "SheafSystem/zone_partition.h"
 
-#include "std_iomanip.h"
-#include "std_iostream.h"
-#include "test_utils.h"
+#include "SheafSystem/std_iomanip.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystemTest/test_utils.h"
 
 //$$HACK: This entire test case is a HACK. Class zone_partition
 //        is abstract and has no real derived classes in the

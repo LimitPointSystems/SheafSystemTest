@@ -17,19 +17,19 @@
 /// @example
 /// Unit test driver for class array_cylindrical_point_locator.
 
-#include "array_cylindrical_point_locator.h"
+#include "SheafSystem/array_cylindrical_point_locator.h"
 
-#include "sec_at1_space.h"
-#include "sec_e3.h"
-#include "structured_block_1d.h"
-#include "structured_block_2d.h"
-#include "structured_block_3d.h"
+#include "SheafSystem/sec_at1_space.h"
+#include "SheafSystem/sec_e3.h"
+#include "SheafSystem/structured_block_1d.h"
+#include "SheafSystem/structured_block_2d.h"
+#include "SheafSystem/structured_block_3d.h"
 
-#include "geometry.h"
-#include "test_utils.h"
+#include "SheafSystem/geometry.h"
+#include "SheafSystemTest/test_utils.h"
 
-#include "std_iomanip.h"
-#include "std_sstream.h"
+#include "SheafSystem/std_iomanip.h"
+#include "SheafSystem/std_sstream.h"
 
 using namespace std;
 using namespace geometry;
