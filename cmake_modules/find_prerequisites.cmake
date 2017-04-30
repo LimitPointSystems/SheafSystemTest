@@ -189,7 +189,8 @@ function(ShfSysTst_find_prerequisites)
 
    # Initialize the PREREQ variable; sets LVAR_INITIALIZED
 
-   ShfSysTst_init_dir_prereq(SheafSystem PREREQ_SHEAFSYSTEM_HOME "Sheaf_system top level directory." SheafSystem_DIR)
+   ShfSysTst_init_dir_prereq(SheafSystem PREREQ_SHEAFSYSTEM_CONFIG_DIR
+      "Path to folder containing SheafSystemConfig.cmake." SheafSystem_DIR)
 
    if(LVAR_INITIALIZED)
 
@@ -200,16 +201,17 @@ function(ShfSysTst_find_prerequisites)
       #
       # Find the SheafSystem using CONFIG mode.
       # Hints for the installation tree and build tree locations for 
-      # SheafSystemConfig.cmake relative to PREREQ_SHEAFSYSTEM_HOME.
+      # SheafSystemConfig.cmake relative to PREREQ_SHEAFSYSTEM_CONFIG_DIR.
       #
-      find_package(SheafSystem QUIET CONFIG
-         HINTS ${PREREQ_SHEAFSYSTEM_HOME}/cmake ${PREREQ_SHEAFSYSTEM_HOME}/build/cmake
+      find_package(SheafSystem QUIET CONFIG HINTS ${SHEAFSYSTEM_CONFIG_DIR}
          NO_CMAKE_ENVIRONMENT_PATH NO_SYSTEM_ENVIRONMENT_PATH)
 
       # Find_package always sets <pkg>_DIR;
       # mark it advanced to keep user interface clean.
       
       mark_as_advanced(FORCE SheafSystem_DIR)
+
+      message("SheafSystem_DIR=${SheafSystem_DIR}")
 
       set(SHFSYSTST_SHEAFSYSTEM_FOUND ${SheafSystem_FOUND} CACHE BOOL "True if SheafSystem has been found." FORCE)
       mark_as_advanced(FORCE SHFSYSTST_SHEAFSYSTEM_FOUND)
@@ -220,7 +222,7 @@ function(ShfSysTst_find_prerequisites)
 
          # Couldn't find SheafSystem; remind the client to set the PREREQ variable.
 
-         message("Unable to find prerequisite SheafSystem; check setting of PREREQ_SHEAFSYSTEM_HOME.")
+         message("Unable to find prerequisite SheafSystem; check setting of PREREQ_SHEAFSYSTEM_CONFIG_DIR.")
          set(SHFSYSTST_PREREQS_FOUND FALSE CACHE INTERNAL "")
 
       endif(SheafSystem_FOUND)
@@ -232,7 +234,7 @@ function(ShfSysTst_find_prerequisites)
 
       # Couldn't find SheafSystem; remind the client to set the PREREQ variable.
 
-      message("Unable to find prerequisite SheafSystem; check setting of PREREQ_SHEAFSYSTEM_HOME.")
+      message("Unable to find prerequisite SheafSystem; check setting of PREREQ_SHEAFSYSTEM_CONFIG_DIR.")
       set(SHFSYSTST_PREREQS_FOUND FALSE CACHE INTERNAL "")
       
    endif(LVAR_INITIALIZED)
@@ -243,6 +245,17 @@ function(ShfSysTst_find_prerequisites)
    endif()
 
    # If we get here, we've successfully set the prereq varibles.
+
+   # The several SheafSystem directories we will need all hang off the parent
+   # of SheafSystem_DIR
+
+   get_filename_component(lshfsys_root ${SheafSystem_DIR} DIRECTORY)
+   message("lshfsys_root=${lshfsys_root}")
+
+   set(SHFSYSTST_SHEAFSYSTEM_ROOT ${lshfsys_root} CACHE PATH "Path to parent of config dir." FORCE)
+   mark_as_advanced(FORCE SHFSYSTST_SHEAFSYSTEM_ROOT)
+   message("SHFSYSTST_SHEAFSYSTEM_ROOT=${SHFSYSTST_SHEAFSYSTEM_ROOT}")
+   
    # Configure the set_prereq_vars scripts.
    
    if(SHFSYSTST_WINDOWS)

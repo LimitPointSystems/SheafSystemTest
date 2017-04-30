@@ -1,3 +1,29 @@
+SheafSystem Release Notes Version @SHEAFSYSTEM_LIB_VERSION@  @RELEASE_DATE@
+
+Changes pulled from github.com/DavidMButler/SheafSystem branch issue2
+
+1. Qualified all internal includes of SheafSystem and SheafSystemTest header files
+   by scope "SheafSystem" and "SheafSystemTest", respectively,
+   e.g. #include "SheafSystemTest/xxx.h".
+
+2. Updated build system to copy all header files into <build dir>/include/SheafSystem
+   so scoped header references will resolve correctly at compile time.
+
+3. Changed PREREQ_SHEAFSYSTEM_HOME to PREREQ_SHEAFSYSTEM_CONFIG_DIR. The latter is consistent
+   with way we specify finding the config files for other prerequisites (e.g. HDF5)
+   and eliminates an ambiguity that was causing link errors when the home variable
+   wasn't specified correctly. PREREQ_SHEAFSYSTEM_CONFIG_DIR should always the directory
+   containing the SheafSystem config file, whether in an installation tree or a source tree.
+   Specifically, <installation root>/cmake or <source root>/build/cmake, respectively.
+
+SheafSystem Release Notes Version 4.0.0.1  Tue 04/08/17
+
+Changes pulled from github.com/DavidMButler/SheafSystem branch version-4-merge
+
+1.  Merged release 4.0.0.0 from LPS private repository into github repository.
+    Private repository was heretofore maintained to satisfy contractual obligations
+    that no longer exist. All future development will take place in github repository.
+
 SheafSystemTest Release Notes Version 4.0.0.0  07/20/2016
 
 Changes in branch COM-521:

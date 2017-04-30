@@ -139,8 +139,10 @@ function(ShfSysTst_add_component_win32_unit_test_targets xcomponent_name)
    ShfSysTst_status_message("Configuring Unit Tests for ${xcomponent_name}")   
 
    # Set the path to the SheafSystem bin directory; used by test and debugger paths below.
-   
-   set(SHEAFSYSTEM_BIN_DIR "${PREREQ_SHEAFSYSTEM_HOME}/bin"
+
+   set(SHEAFSYSTEM_BIN_DIR "${SHFSYSTST_SHEAFSYSTEM_ROOT}/bin"
+      # !!! Here's the problem. Above is correct path for install but not for build, given
+      # defn PREREQ_SHEAFSYSTEM_HOME defined in  call to find_package in find_prerequisites
       CACHE STRING "Path to SheafSystem bin directory" FORCE)
    mark_as_advanced(FORCE SHEAFSYSTEM_BIN_DIR)   
    

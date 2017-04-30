@@ -786,7 +786,7 @@ function(ShfSysTst_configure_set_env_var_scripts)
 
    # Set the path to the SheafSytem lib directory; used by set_env_var scripts.
 
-   set(SHEAFSYSTEM_LIB_DIR ${PREREQ_SHEAFSYSTEM_HOME}/${CMAKE_BUILD_TYPE}/lib
+   set(SHEAFSYSTEM_LIB_DIR ${SHFSYSTST_SHEAFSYSTEM_ROOT}/${CMAKE_BUILD_TYPE}/lib
       CACHE STRING "Path to SheafSystem library directory" FORCE)
    mark_as_advanced(FORCE SHEAFSYSTEM_LIB_DIR)   
 

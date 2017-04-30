@@ -17,4 +17,4 @@
 
 # PREREQ var values from most recent successful find_prerequisites.
 
-export PREREQ_SHEAFSYSTEM_HOME=@PREREQ_SHEAFSYSTEM_HOME@
+export PREREQ_SHEAFSYSTEM_CONFIG_DIR=@PREREQ_SHEAFSYSTEM_CONFIG_DIR@
