@@ -18,16 +18,16 @@
 /// @example posets/member_multiple_names.t.cc
 /// Test driver for multiple names for posets.
 
-#include "arg_list.h"
-#include "poset_member.h"
-#include "postorder_iterator.h"
-#include "preorder_iterator.h"
-#include "sheaves_namespace.h"
-#include "std_iostream.h"
-#include "std_string.h"
-#include "storage_agent.h"
-#include "subposet.h"
-#include "subposet_member_iterator.h"
+#include "SheafSystem/arg_list.h"
+#include "SheafSystem/poset_member.h"
+#include "SheafSystem/postorder_iterator.h"
+#include "SheafSystem/preorder_iterator.h"
+#include "SheafSystem/sheaves_namespace.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystem/std_string.h"
+#include "SheafSystem/storage_agent.h"
+#include "SheafSystem/subposet.h"
+#include "SheafSystem/subposet_member_iterator.h"
 
 
 

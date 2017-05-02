@@ -20,11 +20,11 @@
 /// @file
 /// Test driver for class body_builder.
 
-#include "assert_contract.h"
-#include "body_factory.h"
-#include "fiber_bundles_namespace.h"
-#include "section_space_schema_poset.h"
-#include "std_iostream.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/body_factory.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
+#include "SheafSystem/section_space_schema_poset.h"
+#include "SheafSystem/std_iostream.h"
 
 using namespace std;
 using namespace fields;

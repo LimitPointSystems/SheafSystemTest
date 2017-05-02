@@ -18,8 +18,8 @@
 /// @example base_spaces/tetra_connectivity.t.cc
 /// Test case for class tetra_connectivity
 
-#include "tetra_connectivity.h"
-#include "std_iostream.h"
+#include "SheafSystem/tetra_connectivity.h"
+#include "SheafSystem/std_iostream.h"
 
 using namespace std;
 using namespace fiber_bundle;

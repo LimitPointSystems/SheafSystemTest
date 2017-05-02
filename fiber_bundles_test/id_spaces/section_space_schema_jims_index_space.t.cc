@@ -18,16 +18,16 @@
 /// @example section_space_schema_jims_index_sapce.t.cc
 /// Test driver for the section space schema jims id space.
 
-#include "section_space_schema_jims_index_space_handle.h"
-#include "section_space_schema_jims_index_space_iterator.h"
-#include "section_space_schema_jims_index_space_state.h"
+#include "SheafSystem/section_space_schema_jims_index_space_handle.h"
+#include "SheafSystem/section_space_schema_jims_index_space_iterator.h"
+#include "SheafSystem/section_space_schema_jims_index_space_state.h"
 
-#include "assert_contract.h"
-#include "array_index_space_handle.h"
-#include "fiber_bundles_namespace.h"
-#include "ij_product_structure.h"
-#include "index_space_family.h"
-#include "test_index_spaces.impl.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/array_index_space_handle.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
+#include "SheafSystem/ij_product_structure.h"
+#include "SheafSystem/index_space_family.h"
+#include "SheafSystemTest/test_index_spaces.impl.h"
 
 using namespace std;
 using namespace fiber_bundle;

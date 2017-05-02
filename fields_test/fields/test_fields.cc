@@ -17,22 +17,22 @@
 
 // Implementation for test_fields non templated functions.
 
-#include "test_fields.impl.h"
+#include "SheafSystemTest/test_fields.impl.h"
 
-#include "fields.h"
-#include "index_space_iterator.h"
-#include "poset_path.h"
-#include "sec_at1_space.h"
-#include "sec_e1.h"
-#include "sec_e2.h"
-#include "sec_e3.h"
-#include "sec_rep_space.h"
-#include "std_iostream.h"
-#include "std_sstream.h"
-#include "structured_block_1d.h"
-#include "structured_block_2d.h"
-#include "structured_block_3d.h"
-#include "test_utils.h"
+#include "SheafSystem/fields.h"
+#include "SheafSystem/index_space_iterator.h"
+#include "SheafSystem/poset_path.h"
+#include "SheafSystem/sec_at1_space.h"
+#include "SheafSystem/sec_e1.h"
+#include "SheafSystem/sec_e2.h"
+#include "SheafSystem/sec_e3.h"
+#include "SheafSystem/sec_rep_space.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystem/std_sstream.h"
+#include "SheafSystem/structured_block_1d.h"
+#include "SheafSystem/structured_block_2d.h"
+#include "SheafSystem/structured_block_3d.h"
+#include "SheafSystemTest/test_utils.h"
 
 using namespace std;
 using namespace fields; // Workaround for MS C++ bug.

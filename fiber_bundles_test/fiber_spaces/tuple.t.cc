@@ -18,15 +18,15 @@
 /// @example tuple.t.cc
 /// Test driver for class tuple.
 
-#include "tuple.h"
+#include "SheafSystem/tuple.h"
 
-// #include "assert_contract.h"
-// #include "at1_space.h"
-// #include "e1.h"
-// #include "fiber_bundles_namespace.h"
-// #include "storage_agent.h"
-// #include "test_fibers.impl.h"
-// #include "tuple_space.h"
+// #include "SheafSystem/assert_contract.h"
+// #include "SheafSystem/at1_space.h"
+// #include "SheafSystem/e1.h"
+// #include "SheafSystem/fiber_bundles_namespace.h"
+// #include "SheafSystem/storage_agent.h"
+// #include "SheafSystemTest/test_fibers.impl.h"
+// #include "SheafSystem/tuple_space.h"
 
 
 using namespace std;

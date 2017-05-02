@@ -36,7 +36,7 @@ set(ADDITIONAL_INCS
 
    )
 
-ShfSysTst_collect_sources(fields_test "${SRCS}" "${ADDITIONAL_INCS}")
+ShfSysTst_collect_includes(fields_test "${SRCS}" "${ADDITIONAL_INCS}")
 
 #
 # Source for unit test executables.

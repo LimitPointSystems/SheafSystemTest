@@ -18,14 +18,14 @@
 /// @example template_instantiations/namespace_poset.inst.t.cc
 /// Unit test driver for class namespace_poset template functions.
 
-#include "sheaves_namespace.h"
-#include "test_sheaves.impl.h"
-#include "test_utils.h"
+#include "SheafSystem/sheaves_namespace.h"
+#include "SheafSystemTest/test_sheaves.impl.h"
+#include "SheafSystemTest/test_utils.h"
 
-#include "primitives_poset.h"
-#include "primitives_poset_schema.h"
-#include "namespace_poset_schema.h"
-#include "refinable_poset.h"
+#include "SheafSystem/primitives_poset.h"
+#include "SheafSystem/primitives_poset_schema.h"
+#include "SheafSystem/namespace_poset_schema.h"
+#include "SheafSystem/refinable_poset.h"
 
 using namespace std;
 using namespace sheaf;

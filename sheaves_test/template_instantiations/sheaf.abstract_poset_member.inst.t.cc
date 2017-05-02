@@ -18,8 +18,8 @@
 /// @example
 /// Unit test driver for template class sheaves_abstract_poset_member.
 
-#include "test_sheaves.h"
-#include "test_utils.h"
+#include "SheafSystemTest/test_sheaves.h"
+#include "SheafSystemTest/test_utils.h"
 
 using namespace std;
 using namespace sheaf;

@@ -18,11 +18,11 @@
 /// @example general/geometry_namespace.t.cc
 /// Test driver for class geometry_namespace
 
-#include "geometry_namespace.h"
+#include "SheafSystem/geometry_namespace.h"
 
-#include "assert_contract.h"
-#include "poset_path.h"
-#include "storage_agent.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/poset_path.h"
+#include "SheafSystem/storage_agent.h"
 
 using namespace raw;
 

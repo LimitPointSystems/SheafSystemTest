@@ -18,8 +18,8 @@
 /// @file
 /// Implementation for test_fields_inst specializations
 
-#include "test_fields_inst.impl.h"
-#include "test_utils.h"
+#include "SheafSystemTest/test_fields_inst.impl.h"
+#include "SheafSystemTest/test_utils.h"
 
 using namespace std;
 

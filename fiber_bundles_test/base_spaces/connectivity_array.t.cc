@@ -20,11 +20,11 @@
 // $$OBSOLETE No longer part of the tests.  Code remains only as
 //            a reference for future development.
 
-#include "connectivity_array.h"
+#include "SheafSystem/connectivity_array.h"
 
-#include "std_iomanip.h"
-#include "std_iostream.h"
-#include "test_utils.h"
+#include "SheafSystem/std_iomanip.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystemTest/test_utils.h"
 
 using namespace std;
 using namespace fiber_bundle;

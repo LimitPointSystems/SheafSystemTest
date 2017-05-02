@@ -18,13 +18,13 @@
 /// @example
 /// Unit test driver for class d_bounding_box.
 
-#include "d_bounding_box.h"
+#include "SheafSystem/d_bounding_box.h"
 
-#include "constant_quad.h"  // concrete section_evaluator
-#include "d_bin_coordinates.h"
-#include "geometry.h"
-#include "geometry_namespace.h"
-#include "test_utils.h"
+#include "SheafSystem/constant_quad.h"  // concrete section_evaluator
+#include "SheafSystem/d_bin_coordinates.h"
+#include "SheafSystem/geometry.h"
+#include "SheafSystem/geometry_namespace.h"
+#include "SheafSystemTest/test_utils.h"
 
 using namespace std;
 using namespace geometry;

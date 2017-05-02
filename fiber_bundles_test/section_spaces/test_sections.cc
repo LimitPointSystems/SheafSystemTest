@@ -17,19 +17,19 @@
 
 // Implementation for test_sections non template functions.
 
-#include "test_sections.impl.h"
+#include "SheafSystemTest/test_sections.impl.h"
 
-#include "fiber_bundles_namespace.h"
-#include "sec_e3.h"
-#include "sec_e2.h"
-#include "sec_tuple.h"
-#include "sec_rep_space.h"
-#include "std_iostream.h"
-#include "std_sstream.h"
-#include "structured_block_1d.h"
-#include "structured_block_2d.h"
-#include "structured_block_3d.h"
-#include "test_utils.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
+#include "SheafSystem/sec_e3.h"
+#include "SheafSystem/sec_e2.h"
+#include "SheafSystem/sec_tuple.h"
+#include "SheafSystem/sec_rep_space.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystem/std_sstream.h"
+#include "SheafSystem/structured_block_1d.h"
+#include "SheafSystem/structured_block_2d.h"
+#include "SheafSystem/structured_block_3d.h"
+#include "SheafSystemTest/test_utils.h"
 
 using namespace std;
 using namespace fiber_bundle; // Workaround for MS C++ bug.

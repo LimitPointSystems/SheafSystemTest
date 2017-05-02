@@ -17,11 +17,11 @@
 
 /// Test driver for fiber_bundle functions.
 
-#include "fiber_bundle.h"
+#include "SheafSystem/fiber_bundle.h"
 
-#include "poset_path.h"
-#include "std_iostream.h"
-#include "test_utils.h"
+#include "SheafSystem/poset_path.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystemTest/test_utils.h"
 
 using namespace std;
 using namespace fiber_bundle;

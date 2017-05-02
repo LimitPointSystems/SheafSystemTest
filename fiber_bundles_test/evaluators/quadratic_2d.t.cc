@@ -18,9 +18,9 @@
 /// @example evaluators/quadratic_2d.t.cc
 /// Test case for class quadratic_2d
 
-#include "quadratic_2d.h"
-#include "assert_contract.h"
-#include "std_iostream.h"
+#include "SheafSystem/quadratic_2d.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/std_iostream.h"
 
 using namespace std;
 using namespace std;

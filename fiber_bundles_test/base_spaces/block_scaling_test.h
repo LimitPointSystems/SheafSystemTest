@@ -21,15 +21,15 @@
 #define BLOCK_SCALING_TEST_H
 
 #ifndef SHEAF_DLL_SPEC_H
-#include "sheaf_dll_spec.h"
+#include "SheafSystem/sheaf_dll_spec.h"
 #endif
 
 #ifndef SHEAF_H
-#include "sheaf.h" // for size_type
+#include "SheafSystem/sheaf.h" // for size_type
 #endif
 
 #ifndef PLOT_H
-#include "plot.h"
+#include "SheafSystem/plot.h"
 #endif
 
 namespace fiber_bundle

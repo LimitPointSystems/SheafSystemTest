@@ -18,9 +18,9 @@
 /// @example examples/sheaves_namespace.t.cc
 /// Test driver for class sheaves_namespace
 
-#include "sheaves_namespace.h"
-#include "assert_contract.h"
-#include "storage_agent.h"
+#include "SheafSystem/sheaves_namespace.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/storage_agent.h"
 
 using namespace std;
 using namespace sheaf;

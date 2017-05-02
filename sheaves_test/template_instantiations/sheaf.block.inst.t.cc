@@ -18,21 +18,21 @@
 /// @example
 /// Unit test driver for template class block instantiations.
 
-#include "block.h"
+#include "SheafSystem/block.h"
 
-#include "arg_list.h"
-#include "crg_interval.h"
-#include "scattered_insertion_index_space_handle.h"
-#include "poset_dof_map.h"
-#include "poset_path.h"
-#include "primitive_value.h"
-#include "schema_descriptor.h"
-#include "subposet.h"
-#include "subposet_state.h"
-#include "std_list.h"
-#include "std_set.h"
-#include "test_utils.h"
-#include "test_sheaves.impl.h"
+#include "SheafSystem/arg_list.h"
+#include "SheafSystem/crg_interval.h"
+#include "SheafSystem/scattered_insertion_index_space_handle.h"
+#include "SheafSystem/poset_dof_map.h"
+#include "SheafSystem/poset_path.h"
+#include "SheafSystem/primitive_value.h"
+#include "SheafSystem/schema_descriptor.h"
+#include "SheafSystem/subposet.h"
+#include "SheafSystem/subposet_state.h"
+#include "SheafSystem/std_list.h"
+#include "SheafSystem/std_set.h"
+#include "SheafSystemTest/test_utils.h"
+#include "SheafSystemTest/test_sheaves.impl.h"
 
 using namespace std;
 using namespace sheaf;

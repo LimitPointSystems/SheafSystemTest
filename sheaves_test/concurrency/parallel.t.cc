@@ -18,16 +18,16 @@
 /// @example concurrency/parallel.t.cc
 /// Test of parallel operation
 
-#include "std_iostream.h"
-#include "std_string.h"
-#include "std_fstream.h"
-#include "std_sstream.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystem/std_string.h"
+#include "SheafSystem/std_fstream.h"
+#include "SheafSystem/std_sstream.h"
 /*
 #ifdef PARALLEL_MPI
-#include "mpi++.h"
+#include "SheafSystem/mpi++.h"
  
 #ifndef SHEAF_FILE_H
-#include "sheaf_file.h"
+#include "SheafSystem/sheaf_file.h"
 #endif
 */
 /* @hack

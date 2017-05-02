@@ -7,16 +7,16 @@
 /// @example base_spaces/point_block_3d.t.cc
 /// Test driver for point_block_3d.cc.
 
-#include "fiber_bundles_namespace.h"
-#include "poset_path.h"
-#include "sec_at0.h"
-#include "sec_e3.h"
-#include "sec_e3_uniform.h"
-#include "std_string.h"
-#include "point_block_3d.h"
-#include "storage_agent.h"
-#include "test_sections.impl.h"
-#include "wsv_block.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
+#include "SheafSystem/poset_path.h"
+#include "SheafSystem/sec_at0.h"
+#include "SheafSystem/sec_e3.h"
+#include "SheafSystem/sec_e3_uniform.h"
+#include "SheafSystem/std_string.h"
+#include "SheafSystem/point_block_3d.h"
+#include "SheafSystem/storage_agent.h"
+#include "SheafSystemTest/test_sections.impl.h"
+#include "SheafSystem/wsv_block.h"
 
 using namespace std;
 using namespace fiber_bundle;

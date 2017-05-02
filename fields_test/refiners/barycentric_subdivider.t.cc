@@ -53,11 +53,11 @@
 /// @file
 /// Generates data for barycentric subdivision of d-simplex.
 
-#include "assert_contract.h"
-#include "std_bitset.h"
-#include "std_iostream.h"
-#include "std_iomanip.h"
-#include "std_vector.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/std_bitset.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystem/std_iomanip.h"
+#include "SheafSystem/std_vector.h"
 
 using namespace std;
 

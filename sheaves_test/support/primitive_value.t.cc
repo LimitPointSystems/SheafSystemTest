@@ -18,12 +18,12 @@
 /// @example
 /// Unit test driver for class primitive_value.
 
-#include "primitive_value.h"
+#include "SheafSystem/primitive_value.h"
 
-#include "namespace_poset.h"
-#include "poset_path.h"
-#include "std_iomanip.h"
-#include "test_utils.h"
+#include "SheafSystem/namespace_poset.h"
+#include "SheafSystem/poset_path.h"
+#include "SheafSystem/std_iomanip.h"
+#include "SheafSystemTest/test_utils.h"
 
 using namespace std;
 using namespace sheaf;

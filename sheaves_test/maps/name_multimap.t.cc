@@ -18,10 +18,10 @@
 /// @example maps/name_multimap.t.cc
 /// Unit test driver for template class name_multimap.
 
-#include "name_multimap.h"
-#include "namespace_poset.h"
-#include "subposet_member_iterator.h"
-#include "scoped_index.h"
+#include "SheafSystem/name_multimap.h"
+#include "SheafSystem/namespace_poset.h"
+#include "SheafSystem/subposet_member_iterator.h"
+#include "SheafSystem/scoped_index.h"
 
 using namespace std;
 using namespace sheaf;

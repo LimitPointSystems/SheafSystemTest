@@ -18,9 +18,9 @@
 /// @example examples/default_namespace_poset.t.cc
 /// Test driver for class namespace_poset
 
-#include "namespace_poset.h"
-#include "assert_contract.h"
-#include "storage_agent.h"
+#include "SheafSystem/namespace_poset.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/storage_agent.h"
 
 using namespace std;
 using namespace sheaf;

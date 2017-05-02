@@ -18,8 +18,8 @@
 /// @example base_spaces/hex_connectivity.t.cc
 /// Test case for class hex_connectivity
 
-#include "hex_connectivity.h"
-#include "std_iostream.h"
+#include "SheafSystem/hex_connectivity.h"
+#include "SheafSystem/std_iostream.h"
 
 using namespace std;
 using namespace fiber_bundle;

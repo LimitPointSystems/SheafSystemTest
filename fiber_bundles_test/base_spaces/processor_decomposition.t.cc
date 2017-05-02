@@ -20,14 +20,14 @@
 // $$OBSOLETE No longer part of the tests.  Code remains only as
 //            a reference for future development.
 
-#include "processor_decomposition.h"
+#include "SheafSystem/processor_decomposition.h"
 
-#include "fiber_bundles_namespace.h"
-#include "quad_connectivity.h" 
-#include "std_iomanip.h"
-#include "std_iostream.h"
-#include "test_utils.h"
-#include "zone_nodes_block.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
+#include "SheafSystem/quad_connectivity.h" 
+#include "SheafSystem/std_iomanip.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystemTest/test_utils.h"
+#include "SheafSystem/zone_nodes_block.h"
 
 using namespace std;
 using namespace fiber_bundle;

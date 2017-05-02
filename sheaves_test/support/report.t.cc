@@ -17,14 +17,14 @@
 
 /// Test driver for deep_size.
 
-#include "report.h"
+#include "SheafSystem/report.h"
 
-#include "block.h"
-#include "sheaves_namespace.h"
-#include "std_iomanip.h"
-#include "std_iostream.h"
-#include "stop_watch.h"
-#include "test_utils.h"
+#include "SheafSystem/block.h"
+#include "SheafSystem/sheaves_namespace.h"
+#include "SheafSystem/std_iomanip.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystem/stop_watch.h"
+#include "SheafSystemTest/test_utils.h"
 
 using namespace std;
 using namespace sheaf;

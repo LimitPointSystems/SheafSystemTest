@@ -18,11 +18,11 @@
 /// @example io/name_limit.t.cc
 /// Routine to test ability to store many member names
 
-#include "sheaves_namespace.h"
-#include "poset_path.h"
-#include "std_sstream.h"
-#include "storage_agent.h"
-#include "subposet_member_iterator.h"
+#include "SheafSystem/sheaves_namespace.h"
+#include "SheafSystem/poset_path.h"
+#include "SheafSystem/std_sstream.h"
+#include "SheafSystem/storage_agent.h"
+#include "SheafSystem/subposet_member_iterator.h"
 
 using namespace std;
 using namespace sheaf;

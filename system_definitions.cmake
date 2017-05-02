@@ -30,6 +30,17 @@ function(ShfSysTst_set_system_variable_defaults)
    mark_as_advanced(LIB_VERSION)
 
    #
+   # Define the unique header file scope qualifier and directory path.
+   #
+   set(SHFSYSTST_HEADER_SCOPE SheafSystemTest
+      CACHE STRING "Used to give header files unique scope in include directives.")
+   mark_as_advanced(SHFSYSTST_HEADER_SCOPE)  
+
+   set(SHFSYSTST_HEADER_DIR ${CMAKE_BINARY_DIR}/include/${SHFSYSTST_HEADER_SCOPE}
+      CACHE PATH "Path to scoped header file directory.")
+   mark_as_advanced(SHFSYSTST_HEADER_DIR)  
+
+   #
    # Toggle tests. Only effective in Windows.
    # Enabling all tests types by default can create a really slow VS project.
    # Toggle the test type(s) you need.
@@ -344,9 +355,9 @@ function(ShfSysTst_create_output_dirs)
 
    # Body:
 
-   # Create directory for STD header files.
+   # Create directory for scoped header files.
 
-   file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/include)
+   file(MAKE_DIRECTORY ${SHFSYSTST_HEADER_DIR})
 
    # Create directory for documentation files.
 
@@ -775,7 +786,7 @@ function(ShfSysTst_configure_set_env_var_scripts)
 
    # Set the path to the SheafSytem lib directory; used by set_env_var scripts.
 
-   set(SHEAFSYSTEM_LIB_DIR ${PREREQ_SHEAFSYSTEM_HOME}/${CMAKE_BUILD_TYPE}/lib
+   set(SHEAFSYSTEM_LIB_DIR ${SHFSYSTST_SHEAFSYSTEM_ROOT}/${CMAKE_BUILD_TYPE}/lib
       CACHE STRING "Path to SheafSystem library directory" FORCE)
    mark_as_advanced(FORCE SHEAFSYSTEM_LIB_DIR)   
 

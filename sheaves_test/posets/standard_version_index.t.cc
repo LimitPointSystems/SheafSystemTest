@@ -17,11 +17,11 @@
 
 /// Test driver for class standard_version_index.
 
-#include "standard_version_index.h"
+#include "SheafSystem/standard_version_index.h"
 
-#include "std_iomanip.h"
-#include "std_iostream.h"
-#include "test_utils.h"
+#include "SheafSystem/std_iomanip.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystemTest/test_utils.h"
 
 using namespace std;
 using namespace sheaf;

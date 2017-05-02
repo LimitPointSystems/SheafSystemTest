@@ -23,8 +23,8 @@
 /// @example base_spaces/scalable_unstructured_block.t.cc
 /// Test driver for timing unstructured_block performance.
 
-#include "unstructured_block.h"
-#include "block_scaling_test.impl.h"
+#include "SheafSystem/unstructured_block.h"
+#include "SheafSystemTest/block_scaling_test.impl.h"
 
 using namespace std;
 using namespace fiber_bundle;

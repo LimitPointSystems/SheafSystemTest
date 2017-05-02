@@ -18,9 +18,9 @@
 /// @example io/file_rewrite.t.cc
 /// Tests multiple writes of a single namespace to new and existing files.
 
-#include "namespace_poset.h"
-#include "std_iostream.h"
-#include "storage_agent.h"
+#include "SheafSystem/namespace_poset.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystem/storage_agent.h"
 
 string filename;
 

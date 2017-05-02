@@ -18,11 +18,11 @@
 /// @example template_instantiations/postorder_itr.inst.t.cc
 /// Unit test driver for template class postorder_itr.
 
-#include "postorder_itr.h"
+#include "SheafSystem/postorder_itr.h"
 
-#include "namespace_poset.h"
-#include "test_sheaves.impl.h"
-#include "test_utils.h"
+#include "SheafSystem/namespace_poset.h"
+#include "SheafSystemTest/test_sheaves.impl.h"
+#include "SheafSystemTest/test_utils.h"
 
 using namespace std;
 using namespace unordered;

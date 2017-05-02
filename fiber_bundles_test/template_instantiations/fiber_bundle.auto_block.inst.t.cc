@@ -18,25 +18,25 @@
 /// @example
 /// Unit test driver for template class auto_block.
 
-#include "auto_block.h"
+#include "SheafSystem/auto_block.h"
 
-#include "block.h"
-#include "fiber_bundle.h"
-#include "arg_list.h"
-#include "chart_point_1d.h"
-#include "chart_point_2d.h"
-#include "chart_point_3d.h"
-#include "discretization_context.h"
-#include "e3.h"
-#include "sec_tuple.h"
-#include "sec_vd.h"
-#include "section_evaluator.h"
-#include "differentiable_section_evaluator.h"
-#include "integrable_section_evaluator.h"
-#include "structured_block.h"
-#include "structured_block_1d.h"
-#include "test_utils.h"
-#include "test_sheaves.impl.h"
+#include "SheafSystem/block.h"
+#include "SheafSystem/fiber_bundle.h"
+#include "SheafSystem/arg_list.h"
+#include "SheafSystem/chart_point_1d.h"
+#include "SheafSystem/chart_point_2d.h"
+#include "SheafSystem/chart_point_3d.h"
+#include "SheafSystem/discretization_context.h"
+#include "SheafSystem/e3.h"
+#include "SheafSystem/sec_tuple.h"
+#include "SheafSystem/sec_vd.h"
+#include "SheafSystem/section_evaluator.h"
+#include "SheafSystem/differentiable_section_evaluator.h"
+#include "SheafSystem/integrable_section_evaluator.h"
+#include "SheafSystem/structured_block.h"
+#include "SheafSystem/structured_block_1d.h"
+#include "SheafSystemTest/test_utils.h"
+#include "SheafSystemTest/test_sheaves.impl.h"
 
 using namespace std;
 using namespace fiber_bundle;

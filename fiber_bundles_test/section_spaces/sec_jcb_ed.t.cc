@@ -17,12 +17,12 @@
 
 /// Unit test for class sec_jcb_ed.
 
-#include "sec_jcb_ed.h"
+#include "SheafSystem/sec_jcb_ed.h"
 
-#include "assert_contract.h"
-#include "std_iomanip.h"
-#include "std_iostream.h"
-#include "test_utils.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/std_iomanip.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystemTest/test_utils.h"
 
 using namespace std;
 using namespace fiber_bundle;

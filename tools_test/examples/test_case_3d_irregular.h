@@ -21,23 +21,23 @@
 #define TEST_CASE_3D_IRREGULAR_H
 
 #ifndef SHEAF_DLL_SPEC_H
-#include "sheaf_dll_spec.h"
+#include "SheafSystem/sheaf_dll_spec.h"
 #endif
 
 #ifndef BLOCK_CONNECTIVITY_H
-#include "block_connectivity.h"
+#include "SheafSystem/block_connectivity.h"
 #endif
 
 #ifndef FIBER_BUNDLES_NAMESPACe_H
-#include "fiber_bundles_namespace.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
 #endif
 
 #ifndef SEC_ATO_H
-#include "sec_at0.h"
+#include "SheafSystem/sec_at0.h"
 #endif
 
 #ifndef SEC_E3_H
-#include "sec_e3.h"
+#include "SheafSystem/sec_e3.h"
 #endif
 
 namespace fiber_bundle

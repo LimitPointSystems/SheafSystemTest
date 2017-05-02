@@ -18,22 +18,22 @@
 /// @example io/write_col_decomposition.t.cc
 /// Test driver for test.
 
-//#include "abstract_poset_member.h"
-//#include "poset_bounds_descriptor.h"
-#include "fiber_bundles_namespace.h"
-#include "poset_path.h"
-#include "poset.h"
-#include "sec_rep_descriptor.h"
-#include "sec_rep_space.h"
-#include "sec_rep_space_member.h"
-#include "section_dof_iterator.h"
-#include "sheaves_namespace.h"
-#include "assert_contract.h"
-#include "std_string.h"
-#include "std_sstream.h"
-#include "storage_agent.h"
-#include "subposet_member_iterator.h"
-#include "total_poset_member.h"
+//#include "SheafSystem/abstract_poset_member.h"
+//#include "SheafSystem/poset_bounds_descriptor.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
+#include "SheafSystem/poset_path.h"
+#include "SheafSystem/poset.h"
+#include "SheafSystem/sec_rep_descriptor.h"
+#include "SheafSystem/sec_rep_space.h"
+#include "SheafSystem/sec_rep_space_member.h"
+#include "SheafSystem/section_dof_iterator.h"
+#include "SheafSystem/sheaves_namespace.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/std_string.h"
+#include "SheafSystem/std_sstream.h"
+#include "SheafSystem/storage_agent.h"
+#include "SheafSystem/subposet_member_iterator.h"
+#include "SheafSystem/total_poset_member.h"
 
 using namespace std;
 using namespace sheaf;

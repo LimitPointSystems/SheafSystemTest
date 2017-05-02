@@ -21,11 +21,11 @@
 #ifndef TEST_FIBER_BUNDLES_IMPL_H
 #define TEST_FIBER_BUNDLES_IMPL_H
 
-#include "assert_contract.h"
-#include "fiber_bundles_namespace.h"
-#include "std_iostream.h"
-#include "test_utils.h"
-#include "test_fiber_bundles.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystemTest/test_utils.h"
+#include "SheafSystemTest/test_fiber_bundles.h"
 
 namespace fiber_bundle
 {

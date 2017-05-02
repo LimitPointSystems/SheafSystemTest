@@ -31,14 +31,21 @@ function(ShfSysTst_add_fields_test_library_targets)
    dbc_require_or(SHFSYSTST_WINDOWS SHFSYSTST_LINUX)
 
    # Body
+
+   # Target to create copies of header files with path ${SHFSYSTST_HEADER_SCOPE}/*.h,
+   # so uniquely scoped paths in include directives will work.
+
+   ShfSysTst_add_component_scoped_headers_target(fields_test)
    
    if(SHFSYSTST_WINDOWS)
 
       # Create the DLL.
 
       add_library(${FIELDS_TEST_DYNAMIC_LIB} SHARED ${FIELDS_TEST_SRCS})
-      target_include_directories(${FIELDS_TEST_DYNAMIC_LIB}
-         PUBLIC ${FIELDS_TEST_IPATH} ${CMAKE_BINARY_DIR}/include)
+      add_dependencies(${FIELDS_TEST_DYNAMIC_LIB} fields_test_scoped_headers)
+#      target_include_directories(${FIELDS_TEST_DYNAMIC_LIB}
+#         PUBLIC ${FIELDS_TEST_IPATH} ${CMAKE_BINARY_DIR}/include)
+      target_include_directories(${FIELDS_TEST_DYNAMIC_LIB} PUBLIC ${CMAKE_BINARY_DIR}/include)
       target_link_libraries(${FIELDS_TEST_DYNAMIC_LIB}
          PUBLIC ${GEOMETRY_TEST_IMPORT_LIB} ${FIELDS_IMPORT_LIB})        
       set_target_properties(${FIELDS_TEST_DYNAMIC_LIB} PROPERTIES FOLDER "Library Targets")
@@ -52,15 +59,19 @@ function(ShfSysTst_add_fields_test_library_targets)
       # Static library
 
       add_library(${FIELDS_TEST_STATIC_LIB} STATIC ${FIELDS_TEST_SRCS})
-      target_include_directories(${FIELDS_TEST_STATIC_LIB} PUBLIC ${FIELDS_TEST_IPATH})
+      add_dependencies(${FIELDS_TEST_STATIC_LIB} fields_test_scoped_headers)
+#      target_include_directories(${FIELDS_TEST_STATIC_LIB} PUBLIC ${FIELDS_TEST_IPATH})
+      target_include_directories(${FIELDS_TEST_STATIC_LIB} PUBLIC ${CMAKE_BINARY_DIR}/include)
       target_link_libraries(${FIELDS_TEST_STATIC_LIB} ${GEOMETRY_TEST_STATIC_LIB} ${FIELDS_SHARED_LIB})  
       set_target_properties(${FIELDS_TEST_STATIC_LIB} PROPERTIES OUTPUT_NAME fields_test)
       
       # Shared library
 
       add_library(${FIELDS_TEST_SHARED_LIB} SHARED ${FIELDS_TEST_SRCS})
+      add_dependencies(${FIELDS_TEST_SHARED_LIB} fields_test_scoped_headers)
       add_dependencies(${FIELDS_TEST_SHARED_LIB} ${GEOMETRY_TEST_SHARED_LIB} ${FIELDS_SHARED_LIB})
-      target_include_directories(${FIELDS_TEST_SHARED_LIB} PUBLIC ${FIELDS_TEST_IPATH})
+#      target_include_directories(${FIELDS_TEST_SHARED_LIB} PUBLIC ${FIELDS_TEST_IPATH})
+      target_include_directories(${FIELDS_TEST_SHARED_LIB} PUBLIC ${CMAKE_BINARY_DIR}/include)
       target_link_libraries(${FIELDS_TEST_SHARED_LIB} ${GEOMETRY_TEST_SHARED_LIB} ${FIELDS_SHARED_LIB})
       set_target_properties(${FIELDS_TEST_SHARED_LIB} PROPERTIES OUTPUT_NAME fields_test LINKER_LANGUAGE CXX)
       set_target_properties(${FIELDS_TEST_SHARED_LIB} PROPERTIES VERSION ${LIB_VERSION}) 

@@ -19,18 +19,18 @@
 /// Implementation for class test_case_2d.
 
 
-#include "test_case_2d.h"
+#include "SheafSystemTest/test_case_2d.h"
 
-#include "base_space_poset.h"
-#include "bilinear_2d.h"
-#include "error_message.h"
-#include "fiber_bundles_namespace.h"
-#include "sec_at0_space.h"
-#include "sec_at1_space.h"
-#include "sec_rep_space.h"
-#include "sec_st2_e2.h"
-#include "sec_stp_space.h"
-#include "unstructured_block.h"
+#include "SheafSystem/base_space_poset.h"
+#include "SheafSystem/bilinear_2d.h"
+#include "SheafSystem/error_message.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
+#include "SheafSystem/sec_at0_space.h"
+#include "SheafSystem/sec_at1_space.h"
+#include "SheafSystem/sec_rep_space.h"
+#include "SheafSystem/sec_st2_e2.h"
+#include "SheafSystem/sec_stp_space.h"
+#include "SheafSystem/unstructured_block.h"
 
 ///@todo Cleanup and refactor to eliminate duplicate code.
 

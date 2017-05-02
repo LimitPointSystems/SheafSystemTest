@@ -18,17 +18,17 @@
 /// @example base_spaces/structured_block_1d.t.cc
 /// Test driver for structured_block_1d.cc.
 
-#include "chart_point_1d.h"
-#include "fiber_bundles_namespace.h"
-#include "poset_path.h"
-#include "sec_at0.h"
-#include "sec_e1.h"
-#include "sec_e1_uniform.h"
-#include "std_string.h"
-#include "structured_block_1d.h"
-#include "storage_agent.h"
-#include "test_sections.impl.h"
-#include "tern.h"
+#include "SheafSystem/chart_point_1d.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
+#include "SheafSystem/poset_path.h"
+#include "SheafSystem/sec_at0.h"
+#include "SheafSystem/sec_e1.h"
+#include "SheafSystem/sec_e1_uniform.h"
+#include "SheafSystem/std_string.h"
+#include "SheafSystem/structured_block_1d.h"
+#include "SheafSystem/storage_agent.h"
+#include "SheafSystemTest/test_sections.impl.h"
+#include "SheafSystem/tern.h"
 
 using namespace std;
 using namespace fiber_bundle;

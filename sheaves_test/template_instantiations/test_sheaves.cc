@@ -19,19 +19,19 @@
 /// Implementation for sheaves test template specializations
 //  and non template functions.
 
-#include "test_sheaves.impl.h"
-#include "test_utils.h"
+#include "SheafSystemTest/test_sheaves.impl.h"
+#include "SheafSystemTest/test_utils.h"
 
-#include "hub_index_space_handle.h"
-#include "index_space_handle.h"
-#include "namespace_poset.h"
-#include "namespace_poset_member.h"
-#include "poset_state_handle.h"
-#include "refinable_poset.h"
-#include "schema_descriptor.h"
-#include "test_utils.h"
-#include "total_poset_member.h"
-#include "wsv_block.h"
+#include "SheafSystem/hub_index_space_handle.h"
+#include "SheafSystem/index_space_handle.h"
+#include "SheafSystem/namespace_poset.h"
+#include "SheafSystem/namespace_poset_member.h"
+#include "SheafSystem/poset_state_handle.h"
+#include "SheafSystem/refinable_poset.h"
+#include "SheafSystem/schema_descriptor.h"
+#include "SheafSystemTest/test_utils.h"
+#include "SheafSystem/total_poset_member.h"
+#include "SheafSystem/wsv_block.h"
 
 using namespace std;
 

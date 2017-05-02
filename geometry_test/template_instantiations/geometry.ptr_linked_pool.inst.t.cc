@@ -18,10 +18,10 @@
 /// @example
 /// Unit test driver for class ptr_linked_pool.
 
-#include "ptr_linked_pool.h"
+#include "SheafSystem/ptr_linked_pool.h"
 
-#include "d_tree_point_locator_node.h"
-#include "test_utils.h"
+#include "SheafSystem/d_tree_point_locator_node.h"
+#include "SheafSystemTest/test_utils.h"
 
 namespace
 {

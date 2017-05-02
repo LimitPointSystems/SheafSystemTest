@@ -32,13 +32,20 @@ function(ShfSysTst_add_tools_test_library_targets)
 
    # Body
 
+   # Target to create copies of header files with path ${SHFSYSTST_HEADER_SCOPE}/*.h,
+   # so uniquely scoped paths in include directives will work.
+
+   ShfSysTst_add_component_scoped_headers_target(tools_test)
+
    if(SHFSYSTST_WINDOWS)
 
       # Create the DLL.
 
       add_library(${TOOLS_TEST_DYNAMIC_LIB} SHARED ${TOOLS_TEST_SRCS})
-      target_include_directories(${SHEAVES_TEST_DYNAMIC_LIB}
-         PUBLIC ${SHEAVES_TEST_IPATH} ${CMAKE_BINARY_DIR}/include)
+      add_dependencies(${TOOLS_TEST_DYNAMIC_LIB} tools_test_scoped_headers)
+#      target_include_directories(${SHEAVES_TEST_DYNAMIC_LIB}
+#         PUBLIC ${SHEAVES_TEST_IPATH} ${CMAKE_BINARY_DIR}/include)
+      target_include_directories(${TOOLS_TEST_DYNAMIC_LIB} PUBLIC ${CMAKE_BINARY_DIR}/include)
       target_link_libraries(${TOOLS_TEST_DYNAMIC_LIB}
          PUBLIC ${FIELDS_TEST_IMPORT_LIB} ${GEOMETRY_IMPORT_LIB})              
       set_target_properties(${TOOLS_TEST_DYNAMIC_LIB} PROPERTIES FOLDER "Library Targets")
@@ -52,7 +59,9 @@ function(ShfSysTst_add_tools_test_library_targets)
       # Static library
 
       add_library(${TOOLS_TEST_STATIC_LIB} STATIC ${TOOLS_TEST_SRCS})
-      target_include_directories(${TOOLS_TEST_STATIC_LIB} PUBLIC ${TOOLS_TEST_IPATH})
+      add_dependencies(${TOOLS_TEST_STATIC_LIB} tools_test_scoped_headers)
+#      target_include_directories(${TOOLS_TEST_STATIC_LIB} PUBLIC ${TOOLS_TEST_IPATH})
+      target_include_directories(${TOOLS_TEST_STATIC_LIB} PUBLIC ${CMAKE_BINARY_DIR}/include)
       
       target_link_libraries(${TOOLS_TEST_STATIC_LIB} ${FIELDS_STATIC_LIB})
 
@@ -61,8 +70,10 @@ function(ShfSysTst_add_tools_test_library_targets)
       # Shared library
 
       add_library(${TOOLS_TEST_SHARED_LIB} SHARED ${TOOLS_TEST_SRCS})
+      add_dependencies(${TOOLS_TEST_SHARED_LIB} tools_test_scoped_headers)
       add_dependencies(${TOOLS_TEST_SHARED_LIB} ${FIELDS_TEST_SHARED_LIB} ${GEOMETRY_SHARED_LIB})
-      target_include_directories(${TOOLS_TEST_SHARED_LIB} PUBLIC ${TOOLS_TEST_IPATH})
+#      target_include_directories(${TOOLS_TEST_SHARED_LIB} PUBLIC ${TOOLS_TEST_IPATH})
+      target_include_directories(${TOOLS_TEST_SHARED_LIB} PUBLIC ${CMAKE_BINARY_DIR}/include)
       
       target_link_libraries(${TOOLS_TEST_SHARED_LIB} ${FIELDS_TEST_SHARED_LIB} ${GEOMETRY_SHARED_LIB})
 

@@ -18,19 +18,19 @@
 /// @example iterators/iterator.t.cc
 /// ITERATOR cluster tester
 
-#include "postorder_iterator.h"
-#include "postorder_member_iterator.h"
-#include "preorder_member_iterator.h"
-#include "refinable_poset.h"
-#include "assert_contract.h"
-#include "sheaves_namespace.h"
-#include "std_iostream.h"
-#include "subposet_member_iterator.h"
-#include "total_poset_member.h"
-#include "filtered_depth_first_iterator.h"
-#include "triorder_iterator.h"
-#include "biorder_iterator.h"
-#include "linkorder_iterator.h"
+#include "SheafSystem/postorder_iterator.h"
+#include "SheafSystem/postorder_member_iterator.h"
+#include "SheafSystem/preorder_member_iterator.h"
+#include "SheafSystem/refinable_poset.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/sheaves_namespace.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystem/subposet_member_iterator.h"
+#include "SheafSystem/total_poset_member.h"
+#include "SheafSystem/filtered_depth_first_iterator.h"
+#include "SheafSystem/triorder_iterator.h"
+#include "SheafSystem/biorder_iterator.h"
+#include "SheafSystem/linkorder_iterator.h"
 using namespace std;
 using namespace sheaf;
 

@@ -18,14 +18,14 @@
 /// @file
 /// Implementation for test_fibers non template functions.
 
-#include "test_fibers.impl.h"
+#include "SheafSystemTest/test_fibers.impl.h"
 
-#include "at0_space.h"
-#include "at1_space.h"
-#include "std_iostream.h"
-#include "test_utils.h"
+#include "SheafSystem/at0_space.h"
+#include "SheafSystem/at1_space.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystemTest/test_utils.h"
 
-#include "gln_space.h"
+#include "SheafSystem/gln_space.h"
 
 using namespace std;
 using namespace fiber_bundle;

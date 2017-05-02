@@ -22,23 +22,23 @@
 #define TEST_FIBER_BUNDLES_H
 
 #ifndef SHEAF_DLL_SPEC_H
-#include "sheaf_dll_spec.h"
+#include "SheafSystem/sheaf_dll_spec.h"
 #endif
 
 #ifndef FIBER_BUNDLES_NAMESPACE_H
-#include "fiber_bundles_namespace.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
 #endif
 
 #ifndef SEC_REP_DESCRIPTOR_POSET_H
-#include "sec_rep_descriptor_poset.h"
+#include "SheafSystem/sec_rep_descriptor_poset.h"
 #endif
 
 #ifndef BINARY_SECTION_SPACE_SCHEMA_POSET_H
-#include "binary_section_space_schema_poset.h"
+#include "SheafSystem/binary_section_space_schema_poset.h"
 #endif
 
 #ifndef BASE_SPACE_POSET_H
-#include "base_spaceposet.h"
+#include "SheafSystem/base_spaceposet.h"
 #endif
 
 namespace fiber_bundle

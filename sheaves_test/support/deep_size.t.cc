@@ -17,8 +17,8 @@
 
 /// Test driver for deep_size.
 
-#include "sheaves_namespace.h"
-#include "deep_size.h"
+#include "SheafSystem/sheaves_namespace.h"
+#include "SheafSystem/deep_size.h"
 
 using namespace std;
 using namespace sheaf;

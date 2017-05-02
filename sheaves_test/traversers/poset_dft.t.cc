@@ -19,11 +19,11 @@
 /// Test code for class poset_dft
 
 #ifndef POSET_DFT_H
-#include "poset_dft.h"
+#include "SheafSystem/poset_dft.h"
 #endif
 
 #ifndef POSET_FILTER_H
-#include "poset_filter.h"
+#include "SheafSystem/poset_filter.h"
 #endif
 
 #include<stdio.h>

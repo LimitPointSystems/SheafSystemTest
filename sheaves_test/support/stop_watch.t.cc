@@ -17,9 +17,9 @@
 
 /// Test driver for class stop_watch.
 
-#include "stop_watch.h"
-#include "std_iostream.h"
-#include "test_utils.h"
+#include "SheafSystem/stop_watch.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystemTest/test_utils.h"
 
 using namespace std;
 using namespace sheaf;

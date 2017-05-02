@@ -36,13 +36,20 @@ function(ShfSysTst_add_geometry_test_library_targets)
 
    # Body
 
+   # Target to create copies of header files with path ${SHFSYSTST_HEADER_SCOPE}/*.h,
+   # so uniquely scoped paths in include directives will work.
+
+   ShfSysTst_add_component_scoped_headers_target(geometry_test)
+
    if(SHFSYSTST_WINDOWS)
 
       # Create the DLL.
 
       add_library(${GEOMETRY_TEST_DYNAMIC_LIB} SHARED ${GEOMETRY_TEST_SRCS})
-      target_include_directories(${GEOMETRY_TEST_DYNAMIC_LIB}
-         PUBLIC ${GEOMETRY_TEST_IPATH} ${CMAKE_BINARY_DIR}/include)
+      add_dependencies(${GEOMETRY_TEST_DYNAMIC_LIB} geometry_test_scoped_headers)
+#      target_include_directories(${GEOMETRY_TEST_DYNAMIC_LIB}
+#         PUBLIC ${GEOMETRY_TEST_IPATH} ${CMAKE_BINARY_DIR}/include)
+      target_include_directories(${GEOMETRY_TEST_DYNAMIC_LIB} PUBLIC ${CMAKE_BINARY_DIR}/include)
       target_link_libraries(${GEOMETRY_TEST_DYNAMIC_LIB}
          PUBLIC ${FIBER_BUNDLES_TEST_IMPORT_LIB} ${GEOMETRY_IMPORT_LIB})  
       set_target_properties(${GEOMETRY_TEST_DYNAMIC_LIB} PROPERTIES FOLDER "Library Targets")
@@ -56,7 +63,9 @@ function(ShfSysTst_add_geometry_test_library_targets)
       # Static library
 
       add_library(${GEOMETRY_TEST_STATIC_LIB} STATIC ${GEOMETRY_TEST_SRCS})
-      target_include_directories(${GEOMETRY_TEST_STATIC_LIB} PUBLIC ${GEOMETRY_TEST_IPATH})
+      add_dependencies(${GEOMETRY_TEST_STATIC_LIB} geometry_test_scoped_headers)
+#      target_include_directories(${GEOMETRY_TEST_STATIC_LIB} PUBLIC ${GEOMETRY_TEST_IPATH})
+      target_include_directories(${GEOMETRY_TEST_STATIC_LIB} PUBLIC ${CMAKE_BINARY_DIR}/include)
       target_link_libraries(${GEOMETRY_TEST_STATIC_LIB} ${GEOMETRY_STATIC_LIB})
 
       set_target_properties(${GEOMETRY_TEST_STATIC_LIB} PROPERTIES OUTPUT_NAME geometry_test)
@@ -64,8 +73,10 @@ function(ShfSysTst_add_geometry_test_library_targets)
       # Shared library
 
       add_library(${GEOMETRY_TEST_SHARED_LIB} SHARED ${GEOMETRY_TEST_SRCS})
+      add_dependencies(${GEOMETRY_TEST_SHARED_LIB} geometry_test_scoped_headers)
       add_dependencies(${GEOMETRY_TEST_SHARED_LIB} ${FIBER_BUNDLES_TEST_SHARED_LIB} ${GEOMETRY_SHARED_LIB})
-      target_include_directories(${GEOMETRY_TEST_SHARED_LIB} PUBLIC ${GEOMETRY_TEST_IPATH})      
+#      target_include_directories(${GEOMETRY_TEST_SHARED_LIB} PUBLIC ${GEOMETRY_TEST_IPATH})      
+      target_include_directories(${GEOMETRY_TEST_SHARED_LIB} PUBLIC ${CMAKE_BINARY_DIR}/include)
       target_link_libraries(${GEOMETRY_TEST_SHARED_LIB} ${FIBER_BUNDLES_TEST_SHARED_LIB} ${GEOMETRY_SHARED_LIB})
       set_target_properties(${GEOMETRY_TEST_SHARED_LIB} PROPERTIES OUTPUT_NAME geometry_test LINKER_LANGUAGE CXX)
       set_target_properties(${GEOMETRY_TEST_SHARED_LIB} PROPERTIES VERSION ${LIB_VERSION}) 

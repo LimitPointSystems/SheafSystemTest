@@ -18,9 +18,9 @@
 /// @example evaluators/constant_segment.t.cc
 /// Test case for class constant_segment
 
-#include "constant_segment.h"
-#include "assert_contract.h"
-#include "std_iostream.h"
+#include "SheafSystem/constant_segment.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/std_iostream.h"
 
 using namespace std;
 using namespace std;

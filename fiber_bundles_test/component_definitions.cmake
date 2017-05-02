@@ -31,13 +31,20 @@ function(ShfSysTst_add_fiber_bundles_test_library_targets)
 
    # Body
 
+   # Target to create copies of header files with path ${SHFSYSTST_HEADER_SCOPE}/*.h,
+   # so uniquely scoped paths in include directives will work.
+
+   ShfSysTst_add_component_scoped_headers_target(fiber_bundles_test)
+
    if(SHFSYSTST_WINDOWS)
       
       # Create the DLL.
 
       add_library(${FIBER_BUNDLES_TEST_DYNAMIC_LIB} SHARED ${FIBER_BUNDLES_TEST_SRCS})
-      target_include_directories(${FIBER_BUNDLES_TEST_DYNAMIC_LIB}
-         PUBLIC ${FIBER_BUNDLES_TEST_IPATH} ${CMAKE_BINARY_DIR}/include)
+      add_dependencies(${FIBER_BUNDLES_TEST_DYNAMIC_LIB} fiber_bundles_test_scoped_headers)
+#      target_include_directories(${FIBER_BUNDLES_TEST_DYNAMIC_LIB}
+#         PUBLIC ${FIBER_BUNDLES_TEST_IPATH} ${CMAKE_BINARY_DIR}/include)
+      target_include_directories(${FIBER_BUNDLES_TEST_DYNAMIC_LIB} PUBLIC ${CMAKE_BINARY_DIR}/include)
       target_link_libraries(${FIBER_BUNDLES_TEST_DYNAMIC_LIB}
          PUBLIC ${SHEAVES_TEST_IMPORT_LIB} ${FIBER_BUNDLES_IMPORT_LIB})
       set_target_properties(${FIBER_BUNDLES_TEST_DYNAMIC_LIB} PROPERTIES FOLDER "Library Targets")
@@ -51,16 +58,20 @@ function(ShfSysTst_add_fiber_bundles_test_library_targets)
       # Static library
 
       add_library(${FIBER_BUNDLES_TEST_STATIC_LIB} STATIC ${FIBER_BUNDLES_TEST_SRCS})
+      add_dependencies(${FIBER_BUNDLES_TEST_STATIC_LIB} fiber_bundles_test_scoped_headers)
       add_dependencies(${FIBER_BUNDLES_TEST_STATIC_LIB} ${SHEAVES_TEST_STATIC_LIB} ${FIBER_BUNDLES_STATIC_LIB})
-      target_include_directories(${FIBER_BUNDLES_TEST_STATIC_LIB} PUBLIC ${FIBER_BUNDLES_TEST_IPATH})
+#      target_include_directories(${FIBER_BUNDLES_TEST_STATIC_LIB} PUBLIC ${FIBER_BUNDLES_TEST_IPATH})
+      target_include_directories(${FIBER_BUNDLES_TEST_STATIC_LIB} PUBLIC ${CMAKE_BINARY_DIR}/include)
       target_link_libraries(${FIBER_BUNDLES_TEST_STATIC_LIB} ${SHEAVES_TEST_STATIC_LIB} ${FIBER_BUNDLES_STATIC_LIB})
       set_target_properties(${FIBER_BUNDLES_TEST_STATIC_LIB} PROPERTIES OUTPUT_NAME fiber_bundles_test )
 
       # Shared library      
 
       add_library(${FIBER_BUNDLES_TEST_SHARED_LIB} SHARED ${FIBER_BUNDLES_TEST_SRCS})
+      add_dependencies(${FIBER_BUNDLES_TEST_SHARED_LIB} fiber_bundles_test_scoped_headers)
       add_dependencies(${FIBER_BUNDLES_TEST_SHARED_LIB} ${SHEAVES_TEST_SHARED_LIB} ${FIBER_BUNDLES_SHARED_LIB})
-      target_include_directories(${FIBER_BUNDLES_TEST_SHARED_LIB} PUBLIC ${FIBER_BUNDLES_TEST_IPATH})
+#      target_include_directories(${FIBER_BUNDLES_TEST_SHARED_LIB} PUBLIC ${FIBER_BUNDLES_TEST_IPATH})
+      target_include_directories(${FIBER_BUNDLES_TEST_SHARED_LIB} PUBLIC ${CMAKE_BINARY_DIR}/include)
       target_link_libraries(${FIBER_BUNDLES_TEST_SHARED_LIB} ${SHEAVES_TEST_SHARED_LIB} ${FIBER_BUNDLES_SHARED_LIB})
       set_target_properties(${FIBER_BUNDLES_TEST_SHARED_LIB} PROPERTIES OUTPUT_NAME fiber_bundles_test)
       set_target_properties(${FIBER_BUNDLES_TEST_SHARED_LIB} PROPERTIES LINKER_LANGUAGE CXX)

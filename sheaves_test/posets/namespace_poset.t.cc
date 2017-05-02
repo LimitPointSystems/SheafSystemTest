@@ -18,11 +18,11 @@
 /// @example posets/namespace_poset.t.cc
 /// Test driver for class namespace_poset
 
-#include "namespace_poset.h"
-#include "assert_contract.h"
-#include "std_string.h"
-#include "storage_agent.h"
-#include "subposet_member_iterator.h"
+#include "SheafSystem/namespace_poset.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/std_string.h"
+#include "SheafSystem/storage_agent.h"
+#include "SheafSystem/subposet_member_iterator.h"
 
 
 using namespace std;

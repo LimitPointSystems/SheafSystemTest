@@ -17,12 +17,12 @@
 
 /// @example examples/parallel_read_domain.t.cc
 
-#include "std_iostream.h"
-#include "namespace_poset.h"
-#include "sec_rep_space.h"
-#include "storage_agent.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystem/namespace_poset.h"
+#include "SheafSystem/sec_rep_space.h"
+#include "SheafSystem/storage_agent.h"
 #ifdef PARALLEL
-#include "mpi.h"
+#include "SheafSystem/mpi.h"
 #endif
 
 string filename;

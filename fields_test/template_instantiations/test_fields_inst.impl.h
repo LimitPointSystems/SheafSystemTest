@@ -21,12 +21,12 @@
 #ifndef TEST_FIELDS_IMPL_H
 #define TEST_FIELDS_IMPL_H
 
-#include "test_fields_inst.h"
+#include "SheafSystemTest/test_fields_inst.h"
 
-// #include "assert_contract.h"
-// #include "fields_namespace.h"
-// #include "std_iostream.h"
-// #include "test_utils.h"
+// #include "SheafSystem/assert_contract.h"
+// #include "SheafSystem/fields_namespace.h"
+// #include "SheafSystem/std_iostream.h"
+// #include "SheafSystemTest/test_utils.h"
 
 namespace fields
 {

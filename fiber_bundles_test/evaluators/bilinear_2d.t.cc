@@ -18,9 +18,9 @@
 /// @example evaluators/bilinear_2d.t.cc
 /// Test case for class bilinear_2d
 
-#include "bilinear_2d.h"
-#include "assert_contract.h"
-#include "std_iostream.h"
+#include "SheafSystem/bilinear_2d.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/std_iostream.h"
 
 using namespace std;
 using namespace std;

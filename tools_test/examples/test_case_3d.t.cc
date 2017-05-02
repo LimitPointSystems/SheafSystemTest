@@ -15,10 +15,10 @@
 // limitations under the License.
 //
 
-#include "assert_contract.h"
-#include "fiber_bundles_namespace.h"
-#include "storage_agent.h"
-#include "test_case_3d.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
+#include "SheafSystem/storage_agent.h"
+#include "SheafSystemTest/test_case_3d.h"
 
 using namespace std;
 using namespace tool;

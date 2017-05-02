@@ -18,11 +18,11 @@
 /// @example test_posets/sheaves_namespace.t.cc
 /// Test driver for class sheaves_namespace
 
-#include "sheaves_namespace.h"
-#include "assert_contract.h"
-#include "std_string.h"
-#include "storage_agent.h"
-#include "subposet_member_iterator.h"
+#include "SheafSystem/sheaves_namespace.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/std_string.h"
+#include "SheafSystem/storage_agent.h"
+#include "SheafSystem/subposet_member_iterator.h"
 
 using namespace std;
 using namespace sheaf;

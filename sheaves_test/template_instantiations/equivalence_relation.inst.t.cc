@@ -18,9 +18,9 @@
 /// @example
 /// Unit test driver for class equivalence_relation.
 
-#include "equivalence_relation.impl.h"
+#include "SheafSystem/equivalence_relation.impl.h"
 
-#include "test_utils.h"
+#include "SheafSystemTest/test_utils.h"
 
 using namespace std;
 using namespace sheaf;

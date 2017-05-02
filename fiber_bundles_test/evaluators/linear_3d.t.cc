@@ -18,9 +18,9 @@
 /// @example evaluators/linear_3d.t.cc
 /// Test case for class linear_3d
 
-#include "linear_3d.h"
-#include "assert_contract.h"
-#include "std_iostream.h"
+#include "SheafSystem/linear_3d.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/std_iostream.h"
 
 using namespace std;
 using namespace std;

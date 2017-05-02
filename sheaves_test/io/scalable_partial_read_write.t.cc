@@ -18,13 +18,13 @@
 /// @example io/scalable_partial_read_write.t.cc
 /// Test driver for test.
 
-#include "block_decomposition_iterator.h"
-#include "index_iterator.h"
-#include "poset.h"
-#include "poset_bounds_descriptor.h"
-#include "namespace_poset.h"
-#include "assert_contract.h"
-#include "storage_agent.h"
+#include "SheafSystem/block_decomposition_iterator.h"
+#include "SheafSystem/index_iterator.h"
+#include "SheafSystem/poset.h"
+#include "SheafSystem/poset_bounds_descriptor.h"
+#include "SheafSystem/namespace_poset.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/storage_agent.h"
 
 
 poset* mesh;

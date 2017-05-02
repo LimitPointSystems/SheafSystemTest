@@ -18,9 +18,9 @@
 /// @example template_instantiations/record_map.inst.t.cc
 /// Unit test driver for template class record_map.
 
-#include "record_map.h"
-#include "test_sheaves.impl.h"
-#include "test_utils.h"
+#include "SheafSystem/record_map.h"
+#include "SheafSystemTest/test_sheaves.impl.h"
+#include "SheafSystemTest/test_utils.h"
 
 using namespace std;
 using namespace sheaf;

@@ -18,8 +18,8 @@
 /// @file
 /// Implementation for test_sheaves non template functions.
 
-#include "test_utils.h"
-#include "std_iostream.h"
+#include "SheafSystemTest/test_utils.h"
+#include "SheafSystem/std_iostream.h"
 
 using namespace std;
 

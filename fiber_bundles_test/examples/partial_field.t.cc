@@ -20,15 +20,15 @@
 // $$OBSOLETE No longer part of the tests.  Code remains only as
 //            a reference for future development.
 
-#include "binary_section_space_schema_poset.h"
-#include "discretization_iterator.h"
-#include "structured_block_1d.h"
-#include "sec_e3.h"
-#include "sec_at0_space.h"
-#include "sec_at1_space.h"
-#include "storage_agent.h"
-#include "tern.h"
-#include "total_poset_member.h"
+#include "SheafSystem/binary_section_space_schema_poset.h"
+#include "SheafSystem/discretization_iterator.h"
+#include "SheafSystem/structured_block_1d.h"
+#include "SheafSystem/sec_e3.h"
+#include "SheafSystem/sec_at0_space.h"
+#include "SheafSystem/sec_at1_space.h"
+#include "SheafSystem/storage_agent.h"
+#include "SheafSystem/tern.h"
+#include "SheafSystem/total_poset_member.h"
 
 using namespace std;
 using namespace fiber_bundle;

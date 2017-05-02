@@ -17,11 +17,11 @@
 /// @example template_instantiations/triorder_itr.inst.t.cc
 /// Unit test driver for template class triorder_itr.
 
-#include "triorder_itr.h"
+#include "SheafSystem/triorder_itr.h"
 
-#include "namespace_poset.h"
-#include "test_sheaves.impl.h"
-#include "test_utils.h"
+#include "SheafSystem/namespace_poset.h"
+#include "SheafSystemTest/test_sheaves.impl.h"
+#include "SheafSystemTest/test_utils.h"
 
 using namespace std;
 using namespace unordered;

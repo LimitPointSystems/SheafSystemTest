@@ -22,23 +22,23 @@
 #define TEST_SECTIONS_H
 
 #ifndef SHEAF_DLL_SPEC_H
-#include "sheaf_dll_spec.h"
+#include "SheafSystem/sheaf_dll_spec.h"
 #endif
 
 #ifndef SHEAF_H
-#include "sheaf.h" // for size_type
+#include "SheafSystem/sheaf.h" // for size_type
 #endif
 
 #ifndef STD_STRING_H
-#include "std_string.h"
+#include "SheafSystem/std_string.h"
 #endif
 
 #ifndef SEC_TUPLE_H
-#include "sec_tuple.h"
+#include "SheafSystem/sec_tuple.h"
 #endif
 
 #ifndef SEC_E2_H
-#include "sec_e2.h"
+#include "SheafSystem/sec_e2.h"
 #endif
 
 namespace sheaf

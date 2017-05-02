@@ -17,15 +17,15 @@
 
 /// @example examples/recipe.t.cc
 
-#include "arg_list.h"
-#include "assert_contract.h"
-#include "fiber_bundles_namespace.h"
-#include "schema_descriptor.h"
-#include "storage_agent.h"
-#include "tern.h"
-#include "tuple.h"
-#include "tuple_space.h"
-#include "wsv_block.h"
+#include "SheafSystem/arg_list.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
+#include "SheafSystem/schema_descriptor.h"
+#include "SheafSystem/storage_agent.h"
+#include "SheafSystem/tern.h"
+#include "SheafSystem/tuple.h"
+#include "SheafSystem/tuple_space.h"
+#include "SheafSystem/wsv_block.h"
 
 using namespace std;
 using namespace fiber_bundle;

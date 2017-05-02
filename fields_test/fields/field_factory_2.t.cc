@@ -19,16 +19,16 @@
 /// @file
 /// Test driver for class field_factory_2.
 
-#include "field_factory_2.h"
+#include "SheafSystem/field_factory_2.h"
 
-#include "assert_contract.h"
-#include "fiber_bundles_namespace.h"
-#include "point_block_1d.h"
-#include "point_block_2d.h"
-#include "point_block_3d.h"
-#include "storage_agent.h"
-#include "field_vd.h"
-#include "wsv_block.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
+#include "SheafSystem/point_block_1d.h"
+#include "SheafSystem/point_block_2d.h"
+#include "SheafSystem/point_block_3d.h"
+#include "SheafSystem/storage_agent.h"
+#include "SheafSystem/field_vd.h"
+#include "SheafSystem/wsv_block.h"
 
 namespace fiber_bundle
 {

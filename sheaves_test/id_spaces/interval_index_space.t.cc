@@ -18,15 +18,15 @@
 /// @example interval_index_space.t.cc
 /// Test driver for interval id spaces.
 
-#include "assert_contract.h"
-#include "error_message.h"
-#include "index_space_family.h"
-#include "interval_index_space_handle.h"
-#include "interval_index_space_iterator.h"
-#include "interval_index_space_state.h"
-#include "namespace_poset.h"
-#include "std_iostream.h"
-#include "test_index_spaces.impl.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/error_message.h"
+#include "SheafSystem/index_space_family.h"
+#include "SheafSystem/interval_index_space_handle.h"
+#include "SheafSystem/interval_index_space_iterator.h"
+#include "SheafSystem/interval_index_space_state.h"
+#include "SheafSystem/namespace_poset.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystemTest/test_index_spaces.impl.h"
 
 using namespace std;
 using namespace sheaf;

@@ -15,10 +15,10 @@
 // limitations under the License.
 //
 
-#include "fiber_bundles_namespace.h"
-#include "sec_e2.h"
-#include "structured_block_2d.h"
-#include "test_sections.impl.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
+#include "SheafSystem/sec_e2.h"
+#include "SheafSystem/structured_block_2d.h"
+#include "SheafSystemTest/test_sections.impl.h"
 
 using namespace std;
 using namespace fiber_bundle;

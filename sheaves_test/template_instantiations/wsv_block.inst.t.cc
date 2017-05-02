@@ -18,9 +18,9 @@
 /// @example
 /// Unit test driver for template class wsv_block.
 
-#include "wsv_block.h"
-#include "schema_descriptor.h"
-#include "test_sheaves.impl.h"
+#include "SheafSystem/wsv_block.h"
+#include "SheafSystem/schema_descriptor.h"
+#include "SheafSystemTest/test_sheaves.impl.h"
 
 using namespace std;
 using namespace sheaf;

@@ -17,14 +17,14 @@
 
 /// Unit test for class zn_to_bool.
 
-#include "zn_to_bool.h"
+#include "SheafSystem/zn_to_bool.h"
 
-#include "assert_contract.h"
-#include "block.h"
-#include "index_iterator.h"
-#include "index_space_family.h"
-#include "namespace_poset.h"
-#include "std_iostream.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/block.h"
+#include "SheafSystem/index_iterator.h"
+#include "SheafSystem/index_space_family.h"
+#include "SheafSystem/namespace_poset.h"
+#include "SheafSystem/std_iostream.h"
 
 using namespace std;
 using namespace sheaf;

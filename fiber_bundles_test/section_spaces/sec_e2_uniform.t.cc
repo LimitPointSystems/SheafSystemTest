@@ -18,13 +18,13 @@
 /// @example section_spaces/sec_e2_uniform.t.cc
 /// Unit test for class sec_e2_uniform.
 
-#include "sec_e2_uniform.h"
+#include "SheafSystem/sec_e2_uniform.h"
 
-#include "assert_contract.h"
-#include "std_iostream.h"
-#include "test_sections.impl.h"
-#include "test_utils.h"
-#include "wsv_block.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystemTest/test_sections.impl.h"
+#include "SheafSystemTest/test_utils.h"
+#include "SheafSystem/wsv_block.h"
 
 using namespace std;
 using namespace fiber_bundle;

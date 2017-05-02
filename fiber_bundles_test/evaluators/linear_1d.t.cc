@@ -18,9 +18,9 @@
 /// @example evaluators/linear_1d.t.cc
 /// Test case for class linear_1d
 
-#include "linear_1d.h"
-#include "assert_contract.h"
-#include "std_iostream.h"
+#include "SheafSystem/linear_1d.h"
+#include "SheafSystem/assert_contract.h"
+#include "SheafSystem/std_iostream.h"
 
 using namespace std;
 using namespace std;

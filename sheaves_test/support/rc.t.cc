@@ -17,11 +17,11 @@
 
 /// class RC_ANY & RC_PTR tester
 
-#include "assert_contract.h"
+#include "SheafSystem/assert_contract.h"
 
-#include "rc_any.h"
-#include "rc_ptr.impl.h"
-#include "std_iostream.h"
+#include "SheafSystem/rc_any.h"
+#include "SheafSystem/rc_ptr.impl.h"
+#include "SheafSystem/std_iostream.h"
 
 using namespace std;
 using namespace sheaf;

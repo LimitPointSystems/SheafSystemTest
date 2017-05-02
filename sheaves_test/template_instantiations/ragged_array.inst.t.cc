@@ -18,8 +18,8 @@
 /// @example
 /// Unit test driver for template class ragged_array.
 
-#include "ragged_array.h"
-#include "test_sheaves.impl.h"
+#include "SheafSystem/ragged_array.h"
+#include "SheafSystemTest/test_sheaves.impl.h"
 
 using namespace std;
 using namespace sheaf;

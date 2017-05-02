@@ -18,7 +18,7 @@
 /// @example dof_iterators/dof_iterator.t.cc
 /// Test driver for dof_iterator cluster.
 
-#include "std_iostream.h"
+#include "SheafSystem/std_iostream.h"
 
 using namespace std;
 

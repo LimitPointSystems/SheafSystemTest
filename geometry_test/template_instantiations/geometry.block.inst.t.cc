@@ -18,15 +18,15 @@
 /// @example
 /// Unit test driver for template class block.
 
-#include "auto_block.h"
-#include "block.h"
-#include "geometry.h"
-#include "test_utils.h"
-#include "test_sheaves.impl.h"
-#include "d_tree_point_locator_node.h"
-#include "d_bounding_box.h"
-#include "db0_point_locator.h"
-#include "singly_linked_list.h"
+#include "SheafSystem/auto_block.h"
+#include "SheafSystem/block.h"
+#include "SheafSystem/geometry.h"
+#include "SheafSystemTest/test_utils.h"
+#include "SheafSystemTest/test_sheaves.impl.h"
+#include "SheafSystem/d_tree_point_locator_node.h"
+#include "SheafSystem/d_bounding_box.h"
+#include "SheafSystem/db0_point_locator.h"
+#include "SheafSystem/singly_linked_list.h"
 
 using namespace std;
 using namespace geometry;

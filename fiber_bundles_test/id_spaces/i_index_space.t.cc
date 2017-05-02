@@ -19,14 +19,14 @@
 /// Test driver for for the connectivity and adjacency id spaces for
 /// a 1-dimensional structured block.
 
-#include "fiber_bundles_namespace.h"
-#include "i_adjacency_index_space_interval.h"
-#include "i_adjacency_implicit_index_space_iterator.h"
-#include "i_connectivity_index_space_interval.h"
-#include "i_connectivity_implicit_index_space_iterator.h"
-#include "offset_index_space_handle.h"
-#include "test_index_spaces.impl.h"
-#include "std_sstream.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
+#include "SheafSystem/i_adjacency_index_space_interval.h"
+#include "SheafSystem/i_adjacency_implicit_index_space_iterator.h"
+#include "SheafSystem/i_connectivity_index_space_interval.h"
+#include "SheafSystem/i_connectivity_implicit_index_space_iterator.h"
+#include "SheafSystem/offset_index_space_handle.h"
+#include "SheafSystemTest/test_index_spaces.impl.h"
+#include "SheafSystem/std_sstream.h"
 
 using namespace std;
 using namespace fiber_bundle;

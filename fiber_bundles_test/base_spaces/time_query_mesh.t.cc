@@ -17,17 +17,17 @@
 
 /// @example base_spaces/time_query_mesh.t.cc
 
-#include "adjacency_extractor.h"
-#include "connectivity_extractor.h"
-#include "fiber_bundles_namespace.h"
-#include "unstructured_block.h"
-#include "index_map.h"
-#include "namespace_poset.h"
-#include "neighborhood_extractor.h"
-#include "postorder_iterator.h"
-#include "std_iostream.h"
-#include "std_ctime.h"
-#include "stencil_extractor.h"
+#include "SheafSystem/adjacency_extractor.h"
+#include "SheafSystem/connectivity_extractor.h"
+#include "SheafSystem/fiber_bundles_namespace.h"
+#include "SheafSystem/unstructured_block.h"
+#include "SheafSystem/index_map.h"
+#include "SheafSystem/namespace_poset.h"
+#include "SheafSystem/neighborhood_extractor.h"
+#include "SheafSystem/postorder_iterator.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystem/std_ctime.h"
+#include "SheafSystem/stencil_extractor.h"
 
 using namespace std;
 using namespace fiber_bundle;

@@ -17,13 +17,13 @@
 /// @example posets/poset_joiner.t.cc
 /// Test dirver for poset_joiner.  Only the subposet interface.
 
-#include "sheaves_namespace.h"
-#include "subposet.h"
-#include "poset_joiner.h"
-#include "subposet_member_iterator.h"
-#include "std_iostream.h"
-#include "tern.h"
-#include "total_poset_member.h"
+#include "SheafSystem/sheaves_namespace.h"
+#include "SheafSystem/subposet.h"
+#include "SheafSystem/poset_joiner.h"
+#include "SheafSystem/subposet_member_iterator.h"
+#include "SheafSystem/std_iostream.h"
+#include "SheafSystem/tern.h"
+#include "SheafSystem/total_poset_member.h"
 
 using namespace std;
 using namespace sheaf;
