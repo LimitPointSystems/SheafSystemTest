@@ -38,8 +38,7 @@ function(ShfSysTst_add_sheaves_test_library_targets)
    # Target to create copies of header files with path ${SHFSYSTST_HEADER_SCOPE}/*.h,
    # so uniquely scoped paths in include directives will work.
 
-   add_custom_target(sheaves_test_scoped_headers
-      COMMAND ${CMAKE_COMMAND} -E copy_if_different ${SHEAVES_TEST_INCS} ${SHFSYSTST_HEADER_DIR})   
+   ShfSysTst_add_component_scoped_headers_target(sheaves_test)
 
    if(SHFSYSTST_WINDOWS)
       

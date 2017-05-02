@@ -211,8 +211,6 @@ function(ShfSysTst_find_prerequisites)
       
       mark_as_advanced(FORCE SheafSystem_DIR)
 
-      message("SheafSystem_DIR=${SheafSystem_DIR}")
-
       set(SHFSYSTST_SHEAFSYSTEM_FOUND ${SheafSystem_FOUND} CACHE BOOL "True if SheafSystem has been found." FORCE)
       mark_as_advanced(FORCE SHFSYSTST_SHEAFSYSTEM_FOUND)
 
@@ -250,11 +248,9 @@ function(ShfSysTst_find_prerequisites)
    # of SheafSystem_DIR
 
    get_filename_component(lshfsys_root ${SheafSystem_DIR} DIRECTORY)
-   message("lshfsys_root=${lshfsys_root}")
 
    set(SHFSYSTST_SHEAFSYSTEM_ROOT ${lshfsys_root} CACHE PATH "Path to parent of config dir." FORCE)
    mark_as_advanced(FORCE SHFSYSTST_SHEAFSYSTEM_ROOT)
-   message("SHFSYSTST_SHEAFSYSTEM_ROOT=${SHFSYSTST_SHEAFSYSTEM_ROOT}")
    
    # Configure the set_prereq_vars scripts.
    

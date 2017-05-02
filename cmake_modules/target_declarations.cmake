@@ -44,25 +44,8 @@ function(ShfSysTst_add_check_target)
    dbc_require_or(SHFSYSTST_WINDOWS SHFSYSTST_LINUX)
 
    # Body
-
-#   if(SHFSYSTST_WINDOWS)
-#
-#      add_custom_target(check)
-#      add_dependencies(check ${ALL_COMP_CHECK_TARGETS})
-#      set_target_properties(check PROPERTIES FOLDER "Check Targets")
-#
-#   elseif(SHFSYSTST_LINUX)
-#
-#      add_custom_target(check)
-#      add_dependencies(check ${ALL_COMP_CHECK_TARGETS})
-#
-#   endif()
-
-   add_custom_target(check)
-   add_dependencies(check bin)
-
-   add_custom_command(TARGET check 
-      POST_BUILD 
+   
+   add_custom_target(check
       COMMAND ${CMAKE_COMMAND} -E echo ""
       COMMAND ${CMAKE_COMMAND} -E echo "+++ BEGIN SHEAF SYSTEM TESTS +++++++++++++++++++++++++++++++++++"
       COMMAND ${CMAKE_COMMAND} -E echo ""
@@ -74,6 +57,8 @@ function(ShfSysTst_add_check_target)
       COMMAND ${CMAKE_COMMAND} -E echo ""
       COMMAND ${CMAKE_COMMAND} -E echo "+++ END SHEAF SYSTEM TESTS +++++++++++++++++++++++++++++++++++++"
       COMMAND ${CMAKE_COMMAND} -E echo "")
+   
+   add_dependencies(check bin)
 
    if(SHFSYSTST_WINDOWS)
 

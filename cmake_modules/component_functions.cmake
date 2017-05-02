@@ -141,8 +141,6 @@ function(ShfSysTst_add_component_win32_unit_test_targets xcomponent_name)
    # Set the path to the SheafSystem bin directory; used by test and debugger paths below.
 
    set(SHEAFSYSTEM_BIN_DIR "${SHFSYSTST_SHEAFSYSTEM_ROOT}/bin"
-      # !!! Here's the problem. Above is correct path for install but not for build, given
-      # defn PREREQ_SHEAFSYSTEM_HOME defined in  call to find_package in find_prerequisites
       CACHE STRING "Path to SheafSystem bin directory" FORCE)
    mark_as_advanced(FORCE SHEAFSYSTEM_BIN_DIR)   
    
@@ -188,6 +186,9 @@ function(ShfSysTst_add_component_win32_unit_test_targets xcomponent_name)
          set(TESTPATH "PATH=$ENV{PATH}")
          set(TESTPATH "${TESTPATH};${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIG>")
          set(TESTPATH "${TESTPATH};${SHEAFSYSTEM_BIN_DIR}/$<CONFIG>")
+
+         set(SHFSYSTST_TESTPATH ${TESTPATH} CACHE
+            STRING "PATH environment variable for tests" FORCE)
 
          # Unfortunately, Windows uses the semicolon as a path delimiter,
          # but the semicolon has special meaning to Cmake as well.
@@ -567,10 +568,7 @@ function(ShfSysTst_add_component_check_target xcomponent_name)
    string(TOUPPER ${xcomponent_name} LCOMP_NAME_UC)
    string(TOLOWER ${xcomponent_name} lcomp_name_lc)
 
-   add_custom_target(${lcomp_name_lc}-check)
-
-   add_custom_command(TARGET ${lcomp_name_lc}-check 
-      POST_BUILD 
+   add_custom_target(${lcomp_name_lc}-check
       COMMAND ${CMAKE_COMMAND} -E echo ""
       COMMAND ${CMAKE_COMMAND} -E echo "+++ BEGIN TESTS FOR ${xcomponent_name}+++++++++++++++++++++++++++++++++++"
       COMMAND ${CMAKE_COMMAND} -E echo ""
@@ -813,6 +811,35 @@ function(ShfSysTst_collect_example_sources xcomponent_name xexample_srcs)
 
 endfunction(ShfSysTst_collect_example_sources)
 
+
+# Function to create target to create copies of header files with path ${SHFSYSTST_HEADER_SCOPE}/*.h,
+# so uniquely scoped paths in include directives will work.
+# Note: can't use copy_if_different command with multiple input files
+# directly in add_custom_target because fails on Windows, apparently
+# due to error in copy_if_different dealing with long lists
+
+function(ShfSysTst_add_component_scoped_headers_target xcomponent_name)
+
+   string(TOUPPER ${xcomponent_name} LCOMP_NAME_UC)
+   string(TOLOWER ${xcomponent_name} LCOMP_NAME_LC)
+
+   set(all_scoped_hdrs)
+   foreach(hdr_path ${${LCOMP_NAME_UC}_INCS})
+
+      get_filename_component(hdr_file ${hdr_path} NAME)
+
+      add_custom_command(OUTPUT ${SHFSYSTST_HEADER_DIR}/${hdr_file}
+         COMMAND ${CMAKE_COMMAND} -E copy_if_different ${hdr_path} ${SHFSYSTST_HEADER_DIR}
+         DEPENDS ${hdr_path}
+         )
+
+      list(APPEND all_scoped_hdrs ${SHFSYSTST_HEADER_DIR}/${hdr_file})
+
+   endforeach()
+
+   add_custom_target(${LCOMP_NAME_LC}_scoped_headers DEPENDS ${all_scoped_hdrs} )
+
+endfunction(ShfSysTst_add_component_scoped_headers_target)
 
 #------------------------------------------------------------------------------
 # Misc functions

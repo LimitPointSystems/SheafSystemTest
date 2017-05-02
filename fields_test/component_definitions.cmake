@@ -35,8 +35,7 @@ function(ShfSysTst_add_fields_test_library_targets)
    # Target to create copies of header files with path ${SHFSYSTST_HEADER_SCOPE}/*.h,
    # so uniquely scoped paths in include directives will work.
 
-   add_custom_target(fields_test_scoped_headers
-      COMMAND ${CMAKE_COMMAND} -E copy_if_different ${FIELDS_TEST_INCS} ${SHFSYSTST_HEADER_DIR})   
+   ShfSysTst_add_component_scoped_headers_target(fields_test)
    
    if(SHFSYSTST_WINDOWS)
 
